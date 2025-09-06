@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Part B – Lesson 7: CSS Box Model</title>
+    
+    <!-- External CSS Links -->
+    <link rel="stylesheet" href="/Global/root.css">
+    <link rel="stylesheet" href="/2. partB/lesson7_remake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Add this protection script -->
+        <script>
+            (function() {
+                'use strict';
+                
+                function getCurrentLessonNumber() {
+                    const path = window.location.pathname;
+                    const match = path.match(/lesson(\d+)/);
+                    return match ? parseInt(match[1]) : 1;
+                }
+
+                function isLessonCompleted(lessonNumber) {
+                    return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+                }
+
+                function canAccessLesson(lessonNumber) {
+                    if (lessonNumber === 1) return true;
+                    
+                    for (let i = 1; i < lessonNumber; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                function getNextAvailableLesson() {
+                    for (let i = 1; i <= 15; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 15;
+                }
+
+                function showAccessDenied() {
+                    const currentLesson = getCurrentLessonNumber();
+                    const nextLesson = getNextAvailableLesson();
+                    const requiredLesson = currentLesson - 1;
+                    
+                    document.body.innerHTML = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                                <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                                <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                                <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                                <button onclick="window.location.href='/2. partB/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // IMMEDIATE CHECK
+                const currentLesson = getCurrentLessonNumber();
+                
+                if (!canAccessLesson(currentLesson)) {
+                    // Don't hide the document immediately - wait for DOM to be ready
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', showAccessDenied);
+                    } else {
+                        // DOM is already ready, show access denied immediately
+                        showAccessDenied();
+                    }
+                    return; // Exit early
+                }
+            })();
+        </script>
+</head>
+<body>
+    <!-- Navigation: Back to Part A -->
+    <a href="../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <!-- Page Header -->
+    <header>
+        <h1>Lesson 7 — CSS Box Model</h1>
+    </header>
+    
+    <!-- Main Content Container -->
+    <main class="container">
+        
+        <!-- Progress Tracker Section -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section with Interactive Box Model -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">📦</span>
+                CSS Box Model — Understanding Element Structure!
+            </h2>
+            <p>
+                Every HTML element is like a box with layers. The CSS Box Model defines how 
+                these layers work together to control size, spacing, and layout. Master this 
+                concept to create perfectly spaced, professional layouts!
+            </p>
+            
+            <!-- Key Concept Highlight -->
+            <div class="intro-highlight">
+                The Box Model consists of four layers: <strong>Content</strong> (your text/images), 
+                <strong>Padding</strong> (inner space), <strong>Border</strong> (outline), and 
+                <strong>Margin</strong> (outer space).
+            </div>
+
+            <!-- Interactive Box Model Visualization -->
+            <h3>🎯 Interactive Box Model Diagram</h3>
+            <div class="box-model-interactive">
+                <div class="visual-box" onclick="highlightBoxModel(this)">
+                    <div class="margin-layer">
+                        <div class="margin-label">Margin</div>
+                        <div class="border-layer">
+                            <div class="border-label">Border</div>
+                            <div class="padding-layer">
+                                <div class="padding-label">Padding</div>
+                                <div class="content-layer">
+                                    Content Area
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;">
+                    <strong>Click the box above to see interactive effects!</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Box Model Components Grid Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🧩</span>
+                The Four Box Model Layers — Your Building Blocks!
+            </h2>
+            <p>Understanding each layer is crucial for mastering CSS layouts. Click each component to learn more:</p>
+            
+            <!-- Interactive Component Cards Grid -->
+            <div class="components-grid">
+                <!-- Content Component Card -->
+                <div class="component-card" onclick="showComponentInfo(this, 'content')">
+                    <span class="component-icon">📄</span>
+                    <h4>Content</h4>
+                    <p class="component-desc">The actual content of your element - text, images, videos</p>
+                    <div class="component-code">width: 200px;<br>height: 100px;</div>
+                </div>
+                
+                <!-- Padding Component Card -->
+                <div class="component-card" onclick="showComponentInfo(this, 'padding')">
+                    <span class="component-icon">🛡️</span>
+                    <h4>Padding</h4>
+                    <p class="component-desc">Inner space between content and border - breathing room inside</p>
+                    <div class="component-code">padding: 20px;</div>
+                </div>
+
+                <!-- Border Component Card -->
+                <div class="component-card" onclick="showComponentInfo(this, 'border')">
+                    <span class="component-icon">🖼️</span>
+                    <h4>Border</h4>
+                    <p class="component-desc">Visible outline around the padding and content</p>
+                    <div class="component-code">border: 2px solid #007BFF;</div>
+                </div>
+
+                <!-- Margin Component Card -->
+                <div class="component-card" onclick="showComponentInfo(this, 'margin')">
+                    <span class="component-icon">🌌</span>
+                    <h4>Margin</h4>
+                    <p class="component-desc">Outer space around the element - distance from other elements</p>
+                    <div class="component-code">margin: 15px;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Examples Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">⚙️</span>
+                Box Model Properties — Master the Syntax!
+            </h2>
+            <p>Learn the different ways to apply margin, padding, and border properties:</p>
+            
+            <!-- Property Demonstration Cards -->
+            <div class="property-showcase">
+                <!-- Margin Property Examples -->
+                <div class="property-demo" onclick="highlightProperty(this, 'margin')">
+                    <h4><span class="demo-icon">🌌</span>Margin Variations</h4>
+                    <div class="property-code">margin: 20px; /* All sides */
+margin: 10px 20px; /* Vertical, Horizontal */
+margin: 5px 10px 15px 20px; /* Top, Right, Bottom, Left */
+
+margin-top: 10px;
+margin-right: 15px;</div>
+                </div>
+                
+                <!-- Padding Property Examples -->
+                <div class="property-demo" onclick="highlightProperty(this, 'padding')">
+                    <h4><span class="demo-icon">🛡️</span>Padding Variations</h4>
+                    <div class="property-code">padding: 15px; /* All sides */
+padding: 10px 20px; /* Vertical, Horizontal */
+padding: 5px 10px 15px 20px; /* Top, Right, Bottom, Left */
+
+padding-top: 10px;
+padding-bottom: 20px;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Border Styles Showcase Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎨</span>
+                Border Styles — Add Visual Definition!
+            </h2>
+            <p>Borders add structure and style to your elements. Try these different border types:</p>
+            
+            <!-- Border Examples Grid -->
+            <div class="border-showcase">
+                <!-- Solid Border Example -->
+                <div class="border-example solid" onclick="highlightBorder(this, 'solid')">
+                    <strong>Solid Border</strong>
+                    <div class="border-code">border: 3px solid #007BFF;</div>
+                </div>
+                
+                <!-- Dashed Border Example -->
+                <div class="border-example dashed" onclick="highlightBorder(this, 'dashed')">
+                    <strong>Dashed Border</strong>
+                    <div class="border-code">border: 3px dashed #27ae60;</div>
+                </div>
+                
+                <!-- Dotted Border Example -->
+                <div class="border-example dotted" onclick="highlightBorder(this, 'dotted')">
+                    <strong>Dotted Border</strong>
+                    <div class="border-code">border: 4px dotted #e74c3c;</div>
+                </div>
+                
+                <!-- Rounded Border Example -->
+                <div class="border-example rounded" onclick="highlightBorder(this, 'rounded')">
+                    <strong>Rounded Border</strong>
+                    <div class="border-code">border: 3px solid #e91e63;<br>border-radius: 15px;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits of Box Model Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🚀</span>
+                Why Box Model Matters — The Power of Proper Spacing!
+            </h2>
+            <p>Mastering the box model transforms your layouts from amateur to professional:</p>
+            
+            <!-- Benefits Grid -->
+            <div class="benefits-grid">
+                <!-- Precision Control Benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'precision')">
+                    <span class="benefit-icon">🎯</span>
+                    <h4 class="benefit-title">Precise Control</h4>
+                    <p class="benefit-desc">Control exact spacing and sizing of every element</p>
+                </div>
+                
+                <!-- Layout Foundation Benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'layout')">
+                    <span class="benefit-icon">🏗️</span>
+                    <h4 class="benefit-title">Layout Foundation</h4>
+                    <p class="benefit-desc">Essential for creating professional page layouts</p>
+                </div>
+                
+                <!-- Responsive Design Benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'responsive')">
+                    <span class="benefit-icon">📱</span>
+                    <h4 class="benefit-title">Responsive Design</h4>
+                    <p class="benefit-desc">Flexible spacing that adapts to different screens</p>
+                </div>
+                
+                <!-- Visual Hierarchy Benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'visual')">
+                    <span class="benefit-icon">✨</span>
+                    <h4 class="benefit-title">Visual Hierarchy</h4>
+                    <p class="benefit-desc">Guide user attention with strategic spacing</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Demo Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎭</span>
+                Box Model in Action — See the Magic!
+            </h2>
+            <p>Watch how margin, padding, and border create professional layouts:</p>
+            
+            <!-- Two-Column Layout for Code and Preview -->
+            <div class="two-col">
+                <!-- Code Pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">💻</span>
+                        Box Model Code
+                    </h3>
+                    <textarea readonly id="demo-code">.header {
+  background: #007BFF;
+  color: white;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card {
+  background: #f8f9ff;
+  padding: 25px;
+  margin: 20px auto;
+  border: 2px solid #dde7ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 400px;
+}
+
+.button {
+  background: #27ae60;
+  color: white;
+  padding: 12px 24px;
+  margin: 15px 10px;
+  border: 2px solid #219a52;
+  border-radius: 25px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.info-box {
+  background: #fff3cd;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-left: 4px solid #ffc107;
+  border-radius: 0 8px 8px 0;
+}</textarea>
+                </div>
+                
+                <!-- Preview Pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">👁️</span>
+                        Live Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="demo-preview" title="Box Model Demo"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Challenge Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Your Box Model Challenge
+            </h2>
+            <p>Create a webpage demonstrating the CSS box model! Your page must include:</p>
+            
+            <!-- Challenge Requirements List -->
+            <ul>
+                <li>✅ At least <strong>3 different elements</strong> (divs, paragraphs, etc.)</li>
+                <li>✅ Use <code>margin</code> to create space between elements</li>
+                <li>✅ Apply <code>padding</code> to create space inside elements</li>
+                <li>✅ Add <code>border</code> styling to elements</li>
+                <li>✅ Use different spacing values for different elements</li>
+                <li>✅ Include background colors to visualize the box model</li>
+            </ul>
+            
+            <!-- Pro Tips Highlight -->
+            <div class="intro-highlight">
+                <strong>💡 Pro Tips:</strong> Start with basic HTML structure, then add CSS with different 
+                margin, padding, and border values. Use background colors to see how spacing works!
+            </div>
+            
+            <!-- Two-Column Layout for Task -->
+            <div class="two-col">
+                <!-- Code Input Pane with Enhanced Editor -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">✏️</span>
+                        Build Your Box Model Demo
+                    </h3>
+                    <!-- Enhanced Code Editor Structure from Lesson 1 -->
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-tab active">
+                                <div class="file-icon"></div>
+                                index.html
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <textarea
+                                id="task-code" 
+                                class="editor-textarea"
+                                placeholder="Create your HTML with box model styling here...
+
+Hint: Start with this structure:
+
+<html>
+<head>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 100px;
+      background: lightblue;
+      margin: 20px;
+      padding: 15px;
+      border: 3px solid blue;
+    }
+    .box2 {
+      width: 180px;
+      height: 80px;
+      background: lightgreen;
+      margin: 10px 30px;
+      padding: 20px;
+      border: 2px dashed green;
+    }
+    .box3 {
+      background: lightyellow;
+      margin: 15px auto;
+      padding: 25px;
+      border: 1px solid orange;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class='box1'>Box with standard spacing</div>
+  <div class='box2'>Box with asymmetric spacing</div>
+  <div class='box3'>Box with auto margins (centered)</div>
+</body>
+</html>
+
+Remember: You need margin, padding, and border properties with background colors!"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            ></textarea>
+                        </div>
+                        <div class="editor-status">
+                            <div class="status-left">
+                                <span>🌐 HTML</span>
+                                <span>UTF-8</span>
+                                <span>LF</span>
+                            </div>
+                            <div class="status-right">
+                                <span>Ln <span id="current-line">1</span>, Col <span id="current-col">1</span></span>
+                                <span>Spaces: 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preview Pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🎨</span>
+                        Your Box Model Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="task-preview" title="Your Box Model Creation"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="btns">
+                <button class="btn-primary" onclick="checkAnswer()">
+                    🔍 Check My Box Model
+                </button>
+                <button class="btn-warn" onclick="showHint()">
+                    💡 Need a Hint?
+                </button>
+                <button disabled id="nextLessonBtn">
+                    ➡️ Next Lesson
+                </button>
+            </div>
+            
+            <!-- Feedback Display Area -->
+            <div class="feedback" id="feedback"></div>
+        </section>
+        
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="/2. partB/lesson-navigation.js"></script>
+    <script src="/2. partB/lesson7_remake.js"></script>
+</body>
+</html>
