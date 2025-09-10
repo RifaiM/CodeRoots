@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Global/root.css">
+    <link rel="stylesheet" href="/2. partB/lesson14_remake.css">
+    <title>Lesson 14 - Guided Mini Project</title>
+
+    <!-- protection script -->
+        <script>
+            (function() {
+                'use strict';
+                
+                function getCurrentLessonNumber() {
+                    const path = window.location.pathname;
+                    const match = path.match(/lesson(\d+)/);
+                    return match ? parseInt(match[1]) : 1;
+                }
+
+                function isLessonCompleted(lessonNumber) {
+                    return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+                }
+
+                function canAccessLesson(lessonNumber) {
+                    if (lessonNumber === 1) return true;
+                    
+                    for (let i = 1; i < lessonNumber; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                function getNextAvailableLesson() {
+                    for (let i = 1; i <= 15; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 15;
+                }
+
+                function showAccessDenied() {
+                    const currentLesson = getCurrentLessonNumber();
+                    const nextLesson = getNextAvailableLesson();
+                    const requiredLesson = currentLesson - 1;
+                    
+                    document.body.innerHTML = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                                <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                                <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                                <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                                <button onclick="window.location.href='/2. partB/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // IMMEDIATE CHECK
+                const currentLesson = getCurrentLessonNumber();
+                
+                if (!canAccessLesson(currentLesson)) {
+                    // Don't hide the document immediately - wait for DOM to be ready
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', showAccessDenied);
+                    } else {
+                        // DOM is already ready, show access denied immediately
+                        showAccessDenied();
+                    }
+                    return; // Exit early
+                }
+            })();
+        </script>
+</head>
+<body>
+    <a href="../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <header class="lesson-header">
+        <h1>Lesson 14: Guided Mini Project - Build Your First Complete Website!</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Progress Tracker -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Build</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Enhanced Introduction -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🚀</span>
+                Your Mini Project Journey Begins!
+            </h2>
+            <p>Time to bring everything together! You'll build a complete interactive portfolio website that showcases all your HTML, CSS, and JavaScript skills. This isn't just practice - it's your first real web development project!</p>
+            
+            <div class="intro-highlight">
+                This project combines <strong>everything you've learned</strong> from Lessons 1-13. You'll create a professional website that you can actually use to show off your skills!
+            </div>
+
+            <h3>🎯 What Makes This Project Special</h3>
+            <div class="project-benefits">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🏗️</span>
+                    <h4>Real-World Skills</h4>
+                    <p>Build exactly the kind of website professionals create every day</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎨</span>
+                    <h4>Your Creative Vision</h4>
+                    <p>Express yourself while learning proper web development techniques</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📱</span>
+                    <h4>Mobile-Ready</h4>
+                    <p>Your site will work perfectly on phones, tablets, and desktops</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">⚡</span>
+                    <h4>Interactive Magic</h4>
+                    <p>Add JavaScript-powered features that respond to user actions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Project Breakdown -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🧭</span>
+                Interactive Project Explorer
+            </h2>
+            <p>Click on each component below to learn what you'll build and see examples!</p>
+            
+            <div class="project-components">
+                <div class="component-tab active" data-component="html">
+                    <div class="tab-icon">📝</div>
+                    <div class="tab-title">HTML Structure</div>
+                </div>
+                <div class="component-tab" data-component="css">
+                    <div class="tab-icon">🎨</div>
+                    <div class="tab-title">CSS Styling</div>
+                </div>
+                <div class="component-tab" data-component="js">
+                    <div class="tab-icon">⚡</div>
+                    <div class="tab-title">JavaScript Magic</div>
+                </div>
+                <div class="component-tab" data-component="integration">
+                    <div class="tab-icon">🔗</div>
+                    <div class="tab-title">Full Integration</div>
+                </div>
+            </div>
+
+            <div class="component-content">
+                <div class="content-panel active" id="html-panel">
+                    <div class="panel-header">
+                        <h3>📝 HTML Structure - Your Website's Foundation</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Create a semantic HTML structure that search engines love and screen readers understand:</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">🏠</span>
+                                <strong>Header Section</strong>
+                                <p>Navigation and site title</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">👋</span>
+                                <strong>About Section</strong>
+                                <p>Personal introduction</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🛠️</span>
+                                <strong>Skills Section</strong>
+                                <p>Your technical abilities</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📞</span>
+                                <strong>Contact Form</strong>
+                                <p>Interactive contact form</p>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <strong>Key HTML elements you'll use:</strong>
+                            <code>&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;form&gt;, &lt;footer&gt;</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="css-panel">
+                    <div class="panel-header">
+                        <h3>🎨 CSS Styling - Make It Beautiful</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Apply modern CSS techniques to create a professional-looking website:</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">📐</span>
+                                <strong>Flexbox Layout</strong>
+                                <p>Modern responsive layouts</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <strong>Color Schemes</strong>
+                                <p>Professional color palettes</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✨</span>
+                                <strong>Animations</strong>
+                                <p>Smooth transitions and effects</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📱</span>
+                                <strong>Mobile-First</strong>
+                                <p>Works on all screen sizes</p>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <strong>CSS techniques you'll master:</strong>
+                            <code>display: flex, @media queries, :hover effects, CSS variables</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="js-panel">
+                    <div class="panel-header">
+                        <h3>⚡ JavaScript Magic - Bring It to Life</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Add interactive features that respond to user actions:</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">🌙</span>
+                                <strong>Theme Toggle</strong>
+                                <p>Dark/light mode switcher</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <strong>Skill Bars</strong>
+                                <p>Animated progress indicators</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <strong>Form Validation</strong>
+                                <p>Smart form error checking</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎭</span>
+                                <strong>DOM Magic</strong>
+                                <p>Dynamic content updates</p>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <strong>JavaScript concepts you'll use:</strong>
+                            <code>addEventListener, getElementById, classList.toggle, preventDefault</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="integration-panel">
+                    <div class="panel-header">
+                        <h3>🔗 Full Integration - Everything Working Together</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Combine all components into a seamless, professional website:</p>
+                        <div class="integration-demo">
+                            <div class="demo-device">
+                                <div class="device-screen">
+                                    <div class="demo-header"></div>
+                                    <div class="demo-content">
+                                        <div class="content-block"></div>
+                                        <div class="content-block"></div>
+                                    </div>
+                                    <div class="demo-footer"></div>
+                                </div>
+                            </div>
+                            <div class="demo-features">
+                                <div class="feature-check">✅ Responsive Design</div>
+                                <div class="feature-check">✅ Interactive Elements</div>
+                                <div class="feature-check">✅ Professional Styling</div>
+                                <div class="feature-check">✅ Working Forms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Guide -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Your Step-by-Step Building Guide
+            </h2>
+            <p>Follow this proven process to build your project successfully. Each step builds on the previous ones:</p>
+            
+            <div class="build-steps">
+                <div class="build-step" data-step="1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h4>🏗️ HTML Foundation</h4>
+                        <div class="step-toggle">+</div>
+                    </div>
+                    <div class="step-content">
+                        <p>Start with a solid HTML structure using semantic elements:</p>
+                        <div class="code-example">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;My Portfolio&lt;/title&gt;
+    &lt;style&gt;/* CSS goes here */&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Your Name&lt;/h1&gt;
+        &lt;button id="themeToggle"&gt;🌙 Toggle Theme&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;section id="about"&gt;...&lt;/section&gt;
+        &lt;section id="skills"&gt;...&lt;/section&gt;
+        &lt;section id="contact"&gt;...&lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                        <div class="step-checklist">
+                            <div class="checklist-item">Complete DOCTYPE and HTML structure</div>
+                            <div class="checklist-item">Header with navigation</div>
+                            <div class="checklist-item">Main content sections</div>
+                            <div class="checklist-item">Footer with copyright</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="build-step" data-step="2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h4>🎨 CSS Styling</h4>
+                        <div class="step-toggle">+</div>
+                    </div>
+                    <div class="step-content">
+                        <p>Add professional styling with modern CSS techniques:</p>
+                        <div class="code-example">
+                            <pre><code>/* CSS Reset and Variables */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --primary: #007bff;
+    --text: #333;
+    --bg: #f8f9fa;
+}
+
+/* Layout with Flexbox */
+body { font-family: Arial, sans-serif; }
+header { display: flex; justify-content: space-between; }
+main { max-width: 1200px; margin: 0 auto; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header { flex-direction: column; }
+}</code></pre>
+                        </div>
+                        <div class="step-checklist">
+                            <div class="checklist-item">CSS reset and variables</div>
+                            <div class="checklist-item">Flexbox layouts</div>
+                            <div class="checklist-item">Professional color scheme</div>
+                            <div class="checklist-item">Mobile responsiveness</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="build-step" data-step="3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h4>⚡ JavaScript Interactivity</h4>
+                        <div class="step-toggle">+</div>
+                    </div>
+                    <div class="step-content">
+                        <p>Add interactive features with JavaScript:</p>
+                        <div class="code-example">
+                            <pre><code>&lt;script&gt;
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-theme');
+});
+
+// Form Validation
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Validation logic here
+});
+
+// Skill Bar Animation
+function animateSkills() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    skillBars.forEach(bar =&gt; {
+        const width = bar.dataset.skill;
+        bar.style.width = width + '%';
+    });
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+                        <div class="step-checklist">
+                            <div class="checklist-item">Theme toggle functionality</div>
+                            <div class="checklist-item">Form validation</div>
+                            <div class="checklist-item">Animated skill bars</div>
+                            <div class="checklist-item">Event listeners</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="build-step" data-step="4">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h4>🔧 Testing & Polish</h4>
+                        <div class="step-toggle">+</div>
+                    </div>
+                    <div class="step-content">
+                        <p>Test everything works together and add final touches:</p>
+                        <div class="testing-checklist">
+                            <div class="test-category">
+                                <h5>🖥️ Desktop Testing</h5>
+                                <div class="test-item">Theme toggle works</div>
+                                <div class="test-item">Forms validate correctly</div>
+                                <div class="test-item">All links and buttons work</div>
+                            </div>
+                            <div class="test-category">
+                                <h5>📱 Mobile Testing</h5>
+                                <div class="test-item">Layout adapts to small screens</div>
+                                <div class="test-item">Text is readable</div>
+                                <div class="test-item">Touch targets are large enough</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Criteria -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Project Success Checklist
+            </h2>
+            <p>Your project will be complete when it meets these criteria:</p>
+            
+            <div class="success-criteria">
+                <div class="criterion-group">
+                    <h4>📝 HTML Requirements</h4>
+                    <div class="criterion-list">
+                        <div class="criterion">Complete DOCTYPE and HTML structure</div>
+                        <div class="criterion">Header with navigation and theme toggle</div>
+                        <div class="criterion">About, Skills, and Contact sections</div>
+                        <div class="criterion">Working contact form</div>
+                        <div class="criterion">Footer with copyright</div>
+                    </div>
+                </div>
+                
+                <div class="criterion-group">
+                    <h4>🎨 CSS Requirements</h4>
+                    <div class="criterion-list">
+                        <div class="criterion">Professional styling and layout</div>
+                        <div class="criterion">Flexbox for responsive design</div>
+                        <div class="criterion">Consistent color scheme</div>
+                        <div class="criterion">Hover effects and transitions</div>
+                        <div class="criterion">Mobile-responsive design</div>
+                    </div>
+                </div>
+                
+                <div class="criterion-group">
+                    <h4>⚡ JavaScript Requirements</h4>
+                    <div class="criterion-list">
+                        <div class="criterion">Working theme toggle</div>
+                        <div class="criterion">Form validation</div>
+                        <div class="criterion">Skill bar animations</div>
+                        <div class="criterion">Event handling</div>
+                        <div class="criterion">DOM manipulation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Building Area -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🛠️</span>
+                Your Building Workspace
+            </h2>
+            <p>Create your complete portfolio website here. Use the template below or start from scratch:</p>
+            
+            <div class="workspace-controls">
+                <button class="control-btn" id="load-template">📋 Load Template</button>
+                <button class="control-btn" id="clear-code">🗑️ Clear All</button>
+                <button class="control-btn" id="format-code">✨ Format Code</button>
+            </div>
+            
+            <div class="editor-container">
+                <div class="editor-pane">
+                    <div class="editor-header">
+                        <span class="editor-icon">💻</span>
+                        <span class="editor-title">Your Complete Website Code</span>
+                        <div class="editor-controls">
+                            <span class="line-counter" id="line-counter">Lines: 1</span>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="code-editor" 
+                        placeholder="Start building your portfolio website here!
+
+🎯 Quick Start:
+1. Click 'Load Template' for a complete starting template
+2. Or begin with basic HTML structure
+3. Add your CSS styling
+4. Include JavaScript functionality
+5. Test everything works together
+
+💡 Need help? Click 'Show Detailed Help' for step-by-step guidance!
+
+Example beginning:
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>My Portfolio</title>
+    <style>
+        /* Your CSS here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <button id='themeToggle'>🌙 Toggle Theme</button>
+    </header>
+    
+    <!-- Continue building... -->
+    
+    <script>
+        // Your JavaScript here
+    </script>
+</body>
+</html>"></textarea>
+                </div>
+                
+                <div class="preview-pane">
+                    <div class="preview-header">
+                        <span class="editor-icon">👁️</span>
+                        <span class="editor-title">Live Preview</span>
+                        <div class="preview-controls">
+                            <button class="preview-btn" id="refresh-preview">🔄</button>
+                            <button class="preview-btn" id="fullscreen-preview">⛶</button>
+                        </div>
+                    </div>
+                    <div class="preview-container">
+                        <iframe id="preview-frame" title="Live Preview"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn-primary" id="check-project">🔍 Check My Project</button>
+                <button class="btn-secondary" id="show-detailed-help">💡 Show Detailed Help</button>
+                <button class="btn-success" id="next-lesson" disabled>🚀 Complete Project</button>
+            </div>
+            
+            <div class="feedback-area" id="feedback"></div>
+        </section>
+    </main>
+
+    <script src="/2. partB/lesson-navigation.js"></script>
+    <script src="/2. partB/lesson14_remake.js"></script>
+</body>
+</html>
