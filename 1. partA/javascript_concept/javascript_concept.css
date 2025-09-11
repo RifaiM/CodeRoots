@@ -311,6 +311,8 @@ body {
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     position: relative;
     overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
   }
   
   .code-header {
@@ -652,4 +654,5 @@ body {
     }
   }
   
+
   /* Pass checked_1 */
