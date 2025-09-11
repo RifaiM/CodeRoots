@@ -12,7 +12,7 @@ DevDojo is an interactive web learning platform designed to guide beginners thro
 🚧 Project Status
 
 - Actively under development
-- Currently hosted on Vercel & netlify (devdojo.netlify.app) for preview and testing
+- Currently hosted on Vercel (https://devdojo-id.vercel.app/) & netlify (devdojo.netlify.app) for preview and testing
 
 🎯 Roadmap
 
