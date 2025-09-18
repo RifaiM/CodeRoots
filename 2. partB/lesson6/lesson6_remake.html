@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic document metadata -->
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Part B — Lesson 6: CSS Basics</title>
+    
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="./lesson6_remake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- protection script -->
+    <script>
+        (function() {
+            'use strict';
+            
+            function getCurrentLessonNumber() {
+                const path = window.location.pathname;
+                const match = path.match(/lesson(\d+)/);
+                return match ? parseInt(match[1]) : 1;
+            }
+        
+            function isLessonCompleted(lessonNumber) {
+                return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+            }
+        
+            function canAccessLesson(lessonNumber) {
+                if (lessonNumber === 1) return true;
+                
+                for (let i = 1; i < lessonNumber; i++) {
+                    if (!isLessonCompleted(i)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        
+            function getNextAvailableLesson() {
+                for (let i = 1; i <= 15; i++) {
+                    if (!isLessonCompleted(i)) {
+                        return i;
+                    }
+                }
+                return 15;
+            }
+        
+            function showAccessDenied() {
+                const currentLesson = getCurrentLessonNumber();
+                const nextLesson = getNextAvailableLesson();
+                const requiredLesson = currentLesson - 1;
+                
+                document.body.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                            <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                            <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                            <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                            <button onclick="window.location.href='../lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            // IMMEDIATE CHECK
+            const currentLesson = getCurrentLessonNumber();
+            
+            if (!canAccessLesson(currentLesson)) {
+                // Don't hide the document immediately - wait for DOM to be ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', showAccessDenied);
+                } else {
+                    // DOM is already ready, show access denied immediately
+                    showAccessDenied();
+                }
+                return; // Exit early
+            }
+        })();
+        </script>
+</head>
+<body>
+    <!-- Navigation: Back to home button -->
+    <a href="../../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <!-- Page header -->
+    <header>
+        <h1>Lesson 6 — CSS Basics</h1>
+    </header>
+    
+    <!-- Main content container -->
+    <main class="container">
+        <!-- Progress tracking component -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Introduction section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎨</span>
+                CSS Basics — Styling Your Web!
+            </h2>
+            <p>CSS (Cascading Style Sheets) transforms plain HTML into beautiful, interactive websites. Think of HTML as the skeleton and CSS as the skin, clothes, and makeup that makes everything look amazing!</p>
+            
+            <!-- Highlighted introduction -->
+            <div class="intro-highlight">
+                CSS controls <strong>colors</strong>, <strong>fonts</strong>, <strong>spacing</strong>, <strong>layout</strong>, and <strong>animations</strong>. It's the magic that turns boring text into stunning visual experiences!
+            </div>
+
+            <!-- CSS syntax explanation -->
+            <h3>🎯 CSS Syntax Structure</h3>
+            <div class="css-syntax-demo">
+                <div class="syntax-box">
+                    <span class="highlight-selector">selector</span> {<br>
+                    &nbsp;&nbsp;<span class="highlight-property">property</span>: <span class="highlight-value">value</span>;<br>
+                    &nbsp;&nbsp;<span class="highlight-property">property</span>: <span class="highlight-value">value</span>;<br>
+                    }
+                </div>
+                <p><strong>🔍 Selector:</strong> What to style | <strong>🎨 Property:</strong> What aspect | <strong>✨ Value:</strong> How to style it</p>
+            </div>
+        </section>
+
+        <!-- CSS implementation methods -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">📂</span>
+                Ways to Add CSS — Pick Your Style!
+            </h2>
+            <p>There are three ways to add CSS to your HTML. Each has its place, but external CSS is usually the best choice:</p>
+            
+            <!-- Grid of CSS implementation methods -->
+            <div class="css-types-grid">
+                <!-- External CSS (recommended approach) -->
+                <div class="css-type-card" onclick="highlightCSSType(this, 'external')">
+                    <h4><span class="type-icon">🌟</span>External CSS (Recommended)</h4>
+                    <div class="code-sample">
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;<span class="highlight-selector">link</span> <span class="highlight-property">rel</span>=<span class="highlight-value">"stylesheet"</span> <span class="highlight-property">href</span>=<span class="highlight-value">"styles.css"</span>&gt;<br>
+                        &lt;/head&gt;
+                    </div>
+                    <div class="benefit-note">✅ Perfect for multiple pages</div>
+                    <div class="benefit-note">✅ Easy to maintain</div>
+                    <div class="benefit-note">✅ Faster loading</div>
+                </div>
+                
+                <!-- Internal CSS (single page styling) -->
+                <div class="css-type-card" onclick="highlightCSSType(this, 'internal')">
+                    <h4><span class="type-icon">📝</span>Internal CSS</h4>
+                    <div class="code-sample">
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;<span class="highlight-selector">style</span>&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight-selector">h1</span> { <span class="highlight-property">color</span>: <span class="highlight-value">blue</span>; }<br>
+                        &nbsp;&nbsp;&lt;/<span class="highlight-selector">style</span>&gt;<br>
+                        &lt;/head&gt;
+                    </div>
+                    <div class="benefit-note">✅ Good for single pages</div>
+                    <div class="benefit-note">✅ Quick prototyping</div>
+                </div>
+
+                <!-- Inline CSS (discouraged method) -->
+                <div class="css-type-card" onclick="highlightCSSType(this, 'inline')">
+                    <h4><span class="type-icon">⚡</span>Inline CSS (Avoid)</h4>
+                    <div class="code-sample">
+                        &lt;<span class="highlight-selector">h1</span> <span class="highlight-property">style</span>=<span class="highlight-value">"color: blue;"</span>&gt;<br>
+                        &nbsp;&nbsp;Title<br>
+                        &lt;/<span class="highlight-selector">h1</span>&gt;
+                    </div>
+                    <div class="warning-note">⚠️ Hard to maintain</div>
+                    <div class="warning-note">⚠️ Mixes content & style</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Essential CSS properties showcase -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎨</span>
+                Essential CSS Properties — Your Styling Toolkit!
+            </h2>
+            <p>These are the most important CSS properties you'll use to transform your websites:</p>
+            
+            <!-- Interactive property cards grid -->
+            <div class="properties-showcase">
+                <!-- Text color property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'color')">
+                    <span class="property-name">color</span>
+                    <p class="property-desc">Text color</p>
+                    <code class="property-example">color: #007BFF;</code>
+                </div>
+                
+                <!-- Background styling property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'background')">
+                    <span class="property-name">background</span>
+                    <p class="property-desc">Background color/image</p>
+                    <code class="property-example">background: #f8f9ff;</code>
+                </div>
+                
+                <!-- Font family property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'font-family')">
+                    <span class="property-name">font-family</span>
+                    <p class="property-desc">Font type</p>
+                    <code class="property-example">font-family: Arial, sans-serif;</code>
+                </div>
+                
+                <!-- Font size property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'font-size')">
+                    <span class="property-name">font-size</span>
+                    <p class="property-desc">Text size</p>
+                    <code class="property-example">font-size: 16px;</code>
+                </div>
+                
+                <!-- Inner spacing property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'padding')">
+                    <span class="property-name">padding</span>
+                    <p class="property-desc">Inner spacing</p>
+                    <code class="property-example">padding: 20px;</code>
+                </div>
+                
+                <!-- Outer spacing property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'margin')">
+                    <span class="property-name">margin</span>
+                    <p class="property-desc">Outer spacing</p>
+                    <code class="property-example">margin: 10px;</code>
+                </div>
+                
+                <!-- Border styling property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'border')">
+                    <span class="property-name">border</span>
+                    <p class="property-desc">Element border</p>
+                    <code class="property-example">border: 2px solid #ddd;</code>
+                </div>
+                
+                <!-- Rounded corners property -->
+                <div class="property-card" onclick="showPropertyDemo(this, 'border-radius')">
+                    <span class="property-name">border-radius</span>
+                    <p class="property-desc">Rounded corners</p>
+                    <code class="property-example">border-radius: 10px;</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS selector types explanation -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                CSS Selectors — Target Like a Pro!
+            </h2>
+            <p>CSS selectors tell your styles which HTML elements to target. Master these three main types:</p>
+            
+            <!-- Selector types showcase -->
+            <div class="selector-showcase">
+                <!-- Element selector explanation -->
+                <div class="selector-card" onclick="highlightSelector(this, 'element')">
+                    <h4><span class="selector-icon">🏷️</span>Element Selector</h4>
+                    <div class="selector-example">
+                        h1 {<br>
+                        &nbsp;&nbsp;color: blue;<br>
+                        &nbsp;&nbsp;font-size: 2rem;<br>
+                        }
+                    </div>
+                    <p class="selector-desc">Targets all &lt;h1&gt; elements on the page</p>
+                </div>
+                
+                <!-- Class selector explanation -->
+                <div class="selector-card" onclick="highlightSelector(this, 'class')">
+                    <h4><span class="selector-icon">🎪</span>Class Selector</h4>
+                    <div class="selector-example">
+                        .highlight {<br>
+                        &nbsp;&nbsp;background: yellow;<br>
+                        &nbsp;&nbsp;padding: 10px;<br>
+                        }
+                    </div>
+                    <p class="selector-desc">Targets elements with class="highlight"</p>
+                </div>
+                
+                <!-- ID selector explanation -->
+                <div class="selector-card" onclick="highlightSelector(this, 'id')">
+                    <h4><span class="selector-icon">🆔</span>ID Selector</h4>
+                    <div class="selector-example">
+                        #header {<br>
+                        &nbsp;&nbsp;font-size: 3rem;<br>
+                        &nbsp;&nbsp;text-align: center;<br>
+                        }
+                    </div>
+                    <p class="selector-desc">Targets element with id="header" (unique)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS benefits section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🚀</span>
+                Why CSS is Amazing — The Power of Style!
+            </h2>
+            <p>CSS isn't just about making things look pretty — it's about creating better user experiences:</p>
+            
+            <!-- Benefits grid layout -->
+            <div class="benefits-grid">
+                <!-- Visual appeal benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'visual')">
+                    <span class="benefit-icon">🌈</span>
+                    <h4 class="benefit-title">Visual Appeal</h4>
+                    <p class="benefit-desc">Transform plain HTML into stunning designs</p>
+                </div>
+                
+                <!-- Separation of concerns benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'separation')">
+                    <span class="benefit-icon">🗂️</span>
+                    <h4 class="benefit-title">Separation of Concerns</h4>
+                    <p class="benefit-desc">Keep content and presentation separate</p>
+                </div>
+                
+                <!-- Responsive design benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'responsive')">
+                    <span class="benefit-icon">📱</span>
+                    <h4 class="benefit-title">Responsive Design</h4>
+                    <p class="benefit-desc">Adapt to different screen sizes automatically</p>
+                </div>
+                
+                <!-- Maintenance benefit -->
+                <div class="benefit-item" onclick="showBenefitInfo(this, 'maintenance')">
+                    <span class="benefit-icon">🔧</span>
+                    <h4 class="benefit-title">Easy Maintenance</h4>
+                    <p class="benefit-desc">Change styles across entire website quickly</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live demonstration section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎭</span>
+                CSS in Action — See the Magic!
+            </h2>
+            <p>Watch how CSS transforms plain HTML into a beautiful, styled webpage:</p>
+            
+            <!-- Two-column layout for code and preview -->
+            <div class="two-col">
+                <!-- CSS code input panel -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">💻</span>
+                        CSS Code
+                    </h3>
+                    <textarea readonly id="demo-code">h1 {
+  color: #007BFF;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid #007BFF;
+}
+
+p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.highlight {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  margin: 20px 0;
+  color: #856404;
+}
+
+.button {
+  background: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}</textarea>
+                </div>
+                
+                <!-- Live preview panel -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">👁️</span>
+                        Live Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="demo-preview" title="CSS Demo"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive practice task -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Your CSS Challenge
+            </h2>
+            <p>Create a complete styled webpage using CSS! Your page must include:</p>
+            
+            <!-- Requirements checklist -->
+            <ul>
+                <li>✅ Set the <code>color</code> property for at least one element</li>
+                <li>✅ Apply a <code>font-family</code> to text elements</li>
+                <li>✅ Use a <code>background</code> color or style</li>
+                <li>✅ Include both element selectors (like <code>h1</code>) and class selectors (like <code>.highlight</code>)</li>
+                <li>✅ Use proper CSS syntax with selectors, properties, and values</li>
+            </ul>
+            
+            <!-- Pro tips section -->
+            <div class="intro-highlight">
+                <strong>💡 Pro Tips:</strong> Start with basic HTML structure, add &lt;style&gt; tags in the head, then create your CSS rules. Remember: selector { property: value; }
+            </div>
+            
+            <!-- Two-column layout for task interface -->
+            <div class="two-col">
+                <!-- Enhanced Code Editor Panel -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">✏️</span>
+                        Build Your Styled Page
+                    </h3>
+                    <!-- Enhanced VS Code-style editor -->
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-tab active">
+                                <div class="file-icon"></div>
+                                index.html
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <textarea
+                                id="task-code" 
+                                class="editor-textarea"
+                                placeholder="Create your HTML with CSS styling here...
+        
+Hint: Start with this structure:
+
+<html>
+<head>
+    <style>
+    h1 {
+        color: blue;
+        font-family: Arial, sans-serif;
+    }
+    body {
+        background: #f0f0f0;
+    }
+    .special {
+        color: red;
+        background: yellow;
+    }
+    </style>
+</head>
+<body>
+    <h1>My Styled Page</h1>
+    <p class='special'>Special paragraph</p>
+</body>
+</html>
+
+Remember: You need color, font-family, and background properties!"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            ></textarea>
+                        </div>
+                        <div class="editor-status">
+                            <div class="status-left">
+                                <span>🌐 HTML + CSS</span>
+                                <span>UTF-8</span>
+                                <span>LF</span>
+                            </div>
+                            <div class="status-right">
+                                <span>Ln <span id="current-line">1</span>, Col <span id="current-col">1</span></span>
+                                <span>Spaces: 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preview panel -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🎨</span>
+                        Your Styled Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="task-preview" title="Your CSS Creation"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action buttons -->
+            <div class="btns">
+                <button class="btn-primary" onclick="checkAnswer()">
+                    🔍 Check My CSS
+                </button>
+                <button class="btn-warn" onclick="showHint()">
+                    💡 Need a Hint?
+                </button>
+                <button disabled id="nextLessonBtn">
+                    ➡️ Next Lesson
+                </button>
+            </div>
+            
+            <!-- Feedback display area -->
+            <div class="feedback" id="feedback"></div>
+        </section>
+    </main>
+
+    <!-- External JavaScript files -->
+    <script src="../lesson-navigation.js"></script>
+    <script src="./lesson6_remake.js"></script>
+</body>
+</html>

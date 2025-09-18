@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 8 - Flexbox Layout</title>
+  
+  <!-- External stylesheets -->
+  <link rel="stylesheet" href="../../Global/root.css">
+  <link rel="stylesheet" href="./lesson8_remake.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- protection script -->
+  <script>
+    (function() {
+        'use strict';
+        
+        function getCurrentLessonNumber() {
+            const path = window.location.pathname;
+            const match = path.match(/lesson(\d+)/);
+            return match ? parseInt(match[1]) : 1;
+        }
+    
+        function isLessonCompleted(lessonNumber) {
+            return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+        }
+    
+        function canAccessLesson(lessonNumber) {
+            if (lessonNumber === 1) return true;
+            
+            for (let i = 1; i < lessonNumber; i++) {
+                if (!isLessonCompleted(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    
+        function getNextAvailableLesson() {
+            for (let i = 1; i <= 15; i++) {
+                if (!isLessonCompleted(i)) {
+                    return i;
+                }
+            }
+            return 15;
+        }
+    
+        function showAccessDenied() {
+            const currentLesson = getCurrentLessonNumber();
+            const nextLesson = getNextAvailableLesson();
+            const requiredLesson = currentLesson - 1;
+            
+            document.body.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                        <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                        <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                        <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                        <button onclick="window.location.href='../lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                    </div>
+                </div>
+            `;
+        }
+    
+        // IMMEDIATE CHECK
+        const currentLesson = getCurrentLessonNumber();
+        
+        if (!canAccessLesson(currentLesson)) {
+            // Don't hide the document immediately - wait for DOM to be ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', showAccessDenied);
+            } else {
+                // DOM is already ready, show access denied immediately
+                showAccessDenied();
+            }
+            return; // Exit early
+        }
+    })();
+    </script>
+</head>
+<body>
+  <!-- Navigation: Back to home button -->
+  <a href="../../index.html" class="home-button" title="Back to PartA">🏠</a>
+  
+  <!-- Page header -->
+  <header>
+    <h1>Lesson 8 – Flexbox Layout</h1>
+  </header>
+  
+  <!-- Main content container -->
+  <main class="container">
+    
+    <!-- Progress tracking section -->
+    <div class="progress-steps">
+      <div class="step active">
+        <div class="step-circle">1</div>
+        <div class="step-label">Learn</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-label">Practice</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-label">Complete</div>
+      </div>
+    </div>
+
+    <!-- Introduction section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">📦</span>
+        Master Flexbox – Modern Layout Made Easy!
+      </h2>
+      <p>
+        CSS Flexbox (Flexible Box Layout) revolutionizes how we create layouts. 
+        It makes arranging elements in rows or columns incredibly simple, with 
+        perfect alignment and responsive behavior built-in!
+      </p>
+      
+      <!-- Highlighted introduction content -->
+      <div class="intro-highlight">
+        Flexbox works with two main components: a <strong>Flex Container</strong> 
+        (parent with display: flex) and <strong>Flex Items</strong> 
+        (children that arrange themselves automatically).
+      </div>
+
+      <!-- Interactive playground section -->
+      <h3>🎮 Interactive Flexbox Playground</h3>
+      <div class="flexbox-playground">
+        
+        <!-- Control panel for playground -->
+        <div class="playground-controls">
+          
+          <!-- Flex direction control -->
+          <div class="control-group">
+            <div class="control-label">Flex Direction</div>
+            <select id="flex-direction" onchange="updatePlayground()">
+              <option value="row">row</option>
+              <option value="column">column</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+          </div>
+          
+          <!-- Justify content control -->
+          <div class="control-group">
+            <div class="control-label">Justify Content</div>
+            <select id="justify-content" onchange="updatePlayground()">
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="center">center</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+          </div>
+          
+          <!-- Align items control -->
+          <div class="control-group">
+            <div class="control-label">Align Items</div>
+            <select id="align-items" onchange="updatePlayground()">
+              <option value="stretch">stretch</option>
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="center">center</option>
+              <option value="baseline">baseline</option>
+            </select>
+          </div>
+          
+          <!-- Gap control slider -->
+          <div class="control-group">
+            <div class="control-label">Gap</div>
+            <input type="range" id="gap" min="0" max="30" value="15" onchange="updatePlayground()">
+            <span id="gap-value">15px</span>
+          </div>
+          
+        </div>
+        
+        <!-- Interactive demo container -->
+        <div class="demo-container" id="playground-container">
+          <div class="container-label">Flex Container</div>
+          <div class="flex-item" onclick="highlightItem(this)">Item 1</div>
+          <div class="flex-item" onclick="highlightItem(this)">Item 2</div>
+          <div class="flex-item" onclick="highlightItem(this)">Item 3</div>
+          <div class="flex-item" onclick="highlightItem(this)">Item 4</div>
+        </div>
+        
+        <!-- Playground instructions -->
+        <p style="margin-top: 15px; text-align: center;">
+          <strong>🎯 Try different combinations and click items to see effects!</strong>
+        </p>
+        
+      </div>
+    </section>
+
+    <!-- Properties showcase section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">🧩</span>
+        Essential Flexbox Properties – Your Toolkit!
+      </h2>
+      <p>
+        Master these core properties to control how flex containers and items behave. 
+        Click each property to learn more:
+      </p>
+      
+      <!-- Grid of property cards -->
+      <div class="properties-showcase">
+        
+        <!-- Display flex property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'display-flex')">
+          <span class="property-icon">📦</span>
+          <h4>display: flex</h4>
+          <p class="property-desc">Transforms any element into a flex container</p>
+          <div class="property-code">display: flex;</div>
+        </div>
+        
+        <!-- Justify content property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'justify-content')">
+          <span class="property-icon">↔️</span>
+          <h4>justify-content</h4>
+          <p class="property-desc">Controls alignment along the main axis</p>
+          <div class="property-code">justify-content: center;</div>
+        </div>
+
+        <!-- Align items property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'align-items')">
+          <span class="property-icon">↕️</span>
+          <h4>align-items</h4>
+          <p class="property-desc">Controls alignment along the cross axis</p>
+          <div class="property-code">align-items: center;</div>
+        </div>
+
+        <!-- Flex direction property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'flex-direction')">
+          <span class="property-icon">🔄</span>
+          <h4>flex-direction</h4>
+          <p class="property-desc">Sets the main axis direction (row or column)</p>
+          <div class="property-code">flex-direction: row;</div>
+        </div>
+
+        <!-- Flex wrap property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'flex-wrap')">
+          <span class="property-icon">📋</span>
+          <h4>flex-wrap</h4>
+          <p class="property-desc">Controls whether items wrap to new lines</p>
+          <div class="property-code">flex-wrap: wrap;</div>
+        </div>
+
+        <!-- Gap property -->
+        <div class="property-card" onclick="showPropertyInfo(this, 'gap')">
+          <span class="property-icon">📏</span>
+          <h4>gap</h4>
+          <p class="property-desc">Creates consistent spacing between items</p>
+          <div class="property-code">gap: 20px;</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Examples showcase section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">⚡</span>
+        Flexbox in Action – See the Power!
+      </h2>
+      <p>Explore different justify-content and align-items combinations:</p>
+      
+      <!-- Grid of example cards -->
+      <div class="examples-grid">
+        
+        <!-- Flex-start example -->
+        <div class="example-card" onclick="highlightExample(this, 'flex-start')">
+          <div class="example-title">justify-content: flex-start</div>
+          <div class="example-demo">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">justify-content: flex-start;</div>
+        </div>
+        
+        <!-- Center example -->
+        <div class="example-card" onclick="highlightExample(this, 'center')">
+          <div class="example-title">justify-content: center</div>
+          <div class="example-demo center">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">justify-content: center;</div>
+        </div>
+
+        <!-- Space-between example -->
+        <div class="example-card" onclick="highlightExample(this, 'space-between')">
+          <div class="example-title">space-between</div>
+          <div class="example-demo between">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">justify-content: space-between;</div>
+        </div>
+
+        <!-- Space-around example -->
+        <div class="example-card" onclick="highlightExample(this, 'space-around')">
+          <div class="example-title">space-around</div>
+          <div class="example-demo around">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">justify-content: space-around;</div>
+        </div>
+
+        <!-- Space-evenly example -->
+        <div class="example-card" onclick="highlightExample(this, 'space-evenly')">
+          <div class="example-title">space-evenly</div>
+          <div class="example-demo evenly">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">justify-content: space-evenly;</div>
+        </div>
+
+        <!-- Column example -->
+        <div class="example-card" onclick="highlightExample(this, 'column')">
+          <div class="example-title">flex-direction: column</div>
+          <div class="example-demo column center">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+          </div>
+          <div class="example-code">flex-direction: column;</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Benefits section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">🚀</span>
+        Why Flexbox Changes Everything!
+      </h2>
+      <p>Discover how Flexbox transforms web development from complex to simple:</p>
+      
+      <!-- Benefits grid -->
+      <div class="benefits-grid">
+        
+        <!-- Perfect alignment benefit -->
+        <div class="benefit-item" onclick="showBenefitInfo(this, 'alignment')">
+          <span class="benefit-icon">🎯</span>
+          <h4 class="benefit-title">Perfect Alignment</h4>
+          <p class="benefit-desc">Center items easily without complex calculations or hacks</p>
+        </div>
+        
+        <!-- Responsive benefit -->
+        <div class="benefit-item" onclick="showBenefitInfo(this, 'responsive')">
+          <span class="benefit-icon">📱</span>
+          <h4 class="benefit-title">Responsive by Default</h4>
+          <p class="benefit-desc">Layouts adapt automatically to different screen sizes</p>
+        </div>
+        
+        <!-- Efficiency benefit -->
+        <div class="benefit-item" onclick="showBenefitInfo(this, 'efficient')">
+          <span class="benefit-icon">⚡</span>
+          <h4 class="benefit-title">Replaces Complex Code</h4>
+          <p class="benefit-desc">No more floats, clearfix, or positioning nightmares</p>
+        </div>
+        
+        <!-- Flexibility benefit -->
+        <div class="benefit-item" onclick="showBenefitInfo(this, 'flexible')">
+          <span class="benefit-icon">🔧</span>
+          <h4 class="benefit-title">Flexible Control</h4>
+          <p class="benefit-desc">Fine-tune spacing, distribution, and item sizing</p>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Live demo section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">🎭</span>
+        Flexbox Navigation Demo – Professional Layout!
+      </h2>
+      <p>See how Flexbox creates clean, professional navigation bars:</p>
+      
+      <!-- Two-column layout for code and preview -->
+      <div class="two-col">
+        
+        <!-- Code panel -->
+        <div class="pane">
+          <h3>
+            <span class="pane-icon">💻</span>
+            Flexbox Navigation Code
+          </h3>
+          <textarea readonly id="demo-code">.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #007BFF;
+  padding: 15px 5px;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.logo {
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.6rem;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 30px 20px;
+}
+
+.card {
+  flex: 1 1 280px;
+  background: white;
+  padding: 25px;
+  border: 1px solid #dde7ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+  text-align: center;
+}</textarea>
+        </div>
+        
+        <!-- Preview panel -->
+        <div class="pane">
+          <h3>
+            <span class="pane-icon">👁️</span>
+            Live Navigation Result
+          </h3>
+          <div class="frame-wrap">
+            <iframe id="demo-preview" title="Flexbox Navigation Demo"></iframe>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Interactive task section -->
+    <section class="card">
+      <h2>
+        <span class="section-icon">🎯</span>
+        Your Flexbox Challenge
+      </h2>
+      <p>Create a webpage with a navigation bar using Flexbox! Your page must include:</p>
+      
+      <!-- Requirements checklist -->
+      <ul>
+        <li>✅ Navigation bar with <code>display: flex</code></li>
+        <li>✅ Use <code>justify-content</code> to align navigation items</li>
+        <li>✅ Apply <code>align-items</code> for vertical alignment</li>
+        <li>✅ Include at least <strong>3 navigation links</strong></li>
+        <li>✅ Add a logo or site title</li>
+        <li>✅ Use proper navigation structure with semantic HTML</li>
+      </ul>
+      
+      <!-- Pro tips section -->
+      <div class="intro-highlight">
+        <strong>💡 Pro Tips:</strong> Start with a nav element, add display: flex, 
+        then use justify-content: space-between to separate logo and links. 
+        Use a second flex container for the nav links!
+      </div>
+      
+      <!-- Two-column layout for task -->
+      <div class="two-col">
+        
+        <!-- Code editor panel -->
+        <div class="pane">
+          <h3>
+            <span>✏️</span>
+            Build Your Flexbox Navigation
+          </h3>
+          
+          <!-- Enhanced Code Editor Container -->
+          <div class="code-editor">
+              <!-- Editor Header with Tab -->
+              <div class="editor-header">
+                  <div class="editor-tab active">
+                      <div class="file-icon"></div>
+                      index.html
+                  </div>
+              </div>
+              
+              <!-- Editor Content Area -->
+              <div class="editor-content">
+                  <!-- Main Textarea with invisible placeholder -->
+                  <textarea id="task-code" 
+                            class="editor-textarea" 
+                            placeholder=" "
+                            spellcheck="false" 
+                            autocomplete="off" 
+                            autocorrect="off" 
+                            autocapitalize="off"></textarea>
+                  
+                  <!-- Visible Custom Placeholder -->
+                  <div class="editor-placeholder" id="editor-placeholder">Type your HTML code here...
+        
+        <strong>Hint:</strong> Start with this structure:
+        
+        &lt;html&gt;
+        &lt;head&gt;
+        &nbsp;&lt;style&gt;
+        &nbsp;&nbsp;.navbar {
+          &nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+          &nbsp;&nbsp;&nbsp;&nbsp;justify-content: space-between;
+          &nbsp;&nbsp;&nbsp;&nbsp;align-items: center;
+          &nbsp;&nbsp;&nbsp;&nbsp;background: #007BFF;
+          &nbsp;&nbsp;&nbsp;&nbsp;padding: 15px 20px;
+          &nbsp;&nbsp;}
+            
+          &nbsp;&nbsp;.logo {
+            &nbsp;&nbsp;&nbsp;&nbsp;color: white;
+            &nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.3rem;
+            &nbsp;&nbsp;&nbsp;&nbsp;font-weight: 700;
+            &nbsp;&nbsp;}
+            
+            &nbsp;&nbsp;.nav-links {
+              &nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+              &nbsp;&nbsp;&nbsp;&nbsp;gap: 20px;
+              &nbsp;&nbsp;&nbsp;&nbsp;list-style: none;
+              &nbsp;&nbsp;&nbsp;&nbsp;margin: 0;
+              &nbsp;&nbsp;&nbsp;&nbsp;padding: 0;
+              &nbsp;&nbsp;}
+            
+              &nbsp;.nav-links a {
+                &nbsp;&nbsp;&nbsp;&nbsp;color: white;
+                &nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+                &nbsp;&nbsp;&nbsp;&nbsp;padding: 10px 15px;
+                &nbsp;&nbsp;&nbsp;&nbsp;border-radius: 6px;
+                &nbsp;&nbsp;}
+                &nbsp;&lt;/style&gt;
+        &lt;/head&gt;
+        
+        &lt;body&gt;
+        &nbsp;&lt;nav class='navbar'&gt;
+        &nbsp;&nbsp;&lt;div class='logo'&gt;My Website&lt;/div&gt;
+        &nbsp;&nbsp;&lt;ul class='nav-links'&gt;
+        &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href='#'&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href='#'&gt;About&lt;/a&gt;&lt;/li&gt;
+        &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href='#'&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &nbsp;&nbsp;&lt;/ul&gt;
+        &nbsp;&lt;/nav&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+        
+        <strong>Remember:</strong> You need display: flex and justify-content!</div>
+              </div>
+              
+              <!-- Editor Status Bar -->
+              <div class="editor-status">
+                  <div class="status-left">
+                      <span>🌐 HTML</span>
+                      <span>UTF-8</span>
+                      <span>LF</span>
+                  </div>
+                  <div class="status-right">
+                      <span>Ln <span id="current-line">1</span>, Col <span id="current-col">1</span></span>
+                      <span>Spaces: 2</span>
+                  </div>
+              </div>
+          </div>
+        </div>
+        
+        <!-- Preview panel -->
+        <div class="pane">
+          <h3>
+            <span class="pane-icon">🎨</span>
+            Your Flexbox Result
+          </h3>
+          <div class="frame-wrap">
+            <iframe id="task-preview" title="Your Flexbox Navigation"></iframe>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Action buttons -->
+      <div class="btns">
+        <button class="btn-primary" onclick="checkAnswer()">
+          🔍 Check My Flexbox Navigation
+        </button>
+        <button class="btn-warn" onclick="showHint()">
+          💡 Need a Hint?
+        </button>
+        <button disabled id="nextLessonBtn">
+          ➡️ Next Lesson
+        </button>
+      </div>
+      
+      <!-- Feedback container -->
+      <div class="feedback" id="feedback"></div>
+      
+    </section>
+    
+  </main>
+
+  <!-- JavaScript files -->
+  <script src="../lesson-navigation.js"></script>
+  <script src="./lesson8_remake.js"></script>
+</body>
+</html>

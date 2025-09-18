@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Global/root.css">
+    <title>Web Development Course Certificate</title>
+
+    <!-- Certificate Protection Script - Must run FIRST -->
+    <script>
+        (function() {
+            'use strict';
+            
+            function isLessonCompleted(lessonNumber) {
+                return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+            }
+
+            function isCourseCompleted() {
+                return localStorage.getItem('partB_course_complete') === 'true';
+            }
+
+            function countCompletedLessons() {
+                let completed = 0;
+                for (let i = 1; i <= 15; i++) {
+                    if (isLessonCompleted(i)) {
+                        completed++;
+                    }
+                }
+                return completed;
+            }
+
+            function getNextIncompleteLesson() {
+                for (let i = 1; i <= 15; i++) {
+                    if (!isLessonCompleted(i)) {
+                        return i;
+                    }
+                }
+                return 15; // All completed, go to final lesson
+            }
+
+            function canAccessCertificate() {
+                // All lessons must be completed
+                const completedCount = countCompletedLessons();
+                return completedCount >= 15;
+            }
+
+            function showAccessDenied() {
+                const completedCount = countCompletedLessons();
+                const nextLesson = getNextIncompleteLesson();
+                const remaining = 15 - completedCount;
+                
+                document.body.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 500px; margin: 20px;">
+                            <div style="font-size: 4em; margin-bottom: 20px;">🏆</div>
+                            <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.8em;">Certificate Not Available Yet</h1>
+                            <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">
+                                You need to complete all 15 lessons before you can access your certificate.
+                            </p>
+                            <div style="background: #f8f9ff; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #667eea;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2em; font-weight: 700; color: #667eea;">${completedCount}</div>
+                                        <div style="font-size: 0.9em; color: #666;">Lessons Completed</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2em; font-weight: 700; color: #e74c3c;">${remaining}</div>
+                                        <div style="font-size: 0.9em; color: #666;">Lessons Remaining</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 15px;">
+                                    <strong style="color: #667eea;">Next: Lesson ${nextLesson}</strong>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                                <button onclick="window.location.href='./lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 15px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                    Continue Learning
+                                </button>
+                                <button onclick="window.location.href='/index.html'" style="background: #f8f9ff; color: #667eea; border: 2px solid #667eea; padding: 15px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em; transition: all 0.3s ease;" onmouseover="this.style.background='#667eea'; this.style.color='white'" onmouseout="this.style.background='#f8f9ff'; this.style.color='#667eea'">
+                                    Back to Home
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // IMMEDIATE CHECK - runs before page content loads
+            if (!canAccessCertificate()) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', showAccessDenied);
+                } else {
+                    showAccessDenied();
+                }
+                return;
+            }
+        })();
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .certificate-generator {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-check {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .status-check.completed {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-color: #4caf50;
+        }
+
+        .status-check.incomplete {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-color: #ff9800;
+        }
+
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .status-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .status-title.completed {
+            color: #2e7d32;
+        }
+
+        .status-title.incomplete {
+            color: #f57c00;
+        }
+
+        .status-description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .form-section {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #333;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .certificate-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .certificate-preview.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .preview-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .mini-certificate {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mini-certificate::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid #667eea;
+            border-radius: 10px;
+            opacity: 0.3;
+        }
+
+        .mini-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .mini-subtitle {
+            font-size: 1rem;
+            color: #764ba2;
+            margin-bottom: 20px;
+        }
+
+        .mini-name {
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: 700;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .mini-details {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(145deg, #ff9800, #ffb74d);
+            padding: 10px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-link:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Certificate Generator</h1>
+            <p class="page-subtitle">Generate your Web Development Course completion certificate</p>
+        </div>
+
+        <div class="certificate-generator">
+            <div class="status-check" id="statusCheck">
+                <div class="status-icon" id="statusIcon">⏳</div>
+                <h2 class="status-title" id="statusTitle">Checking Course Progress...</h2>
+                <p class="status-description" id="statusDescription">Please wait while we verify your course completion status.</p>
+                
+                <div class="progress-stats" id="progressStats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="lessonsCompleted">0</div>
+                        <div class="stat-label">Lessons Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="finalScore">-</div>
+                        <div class="stat-label">Final Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completionDate">-</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section" id="certificateForm" style="display: none;">
+                <h3 class="form-title">📋 Certificate Details</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Full Name:</label>
+                        <input type="text" id="studentName" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="completionDateInput">Completion Date:</label>
+                        <input type="date" id="completionDateInput" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="finalScoreInput">Final Project Score:</label>
+                        <input type="number" id="finalScoreInput" min="0" max="100" readonly>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="autoFillData()">
+                        ⚡ Auto-Fill from Course Data
+                    </button>
+                    <button class="btn btn-primary" onclick="generatePreview()">
+                        👀 Preview Certificate
+                    </button>
+                    <button class="btn btn-success" onclick="downloadCertificate()" id="downloadBtn" disabled>
+                        🏆 Download Certificate
+                    </button>
+                </div>
+            </div>
+
+            <div class="certificate-preview" id="certificatePreview">
+                <h3 class="preview-title">Certificate Preview</h3>
+                <div class="mini-certificate">
+                    <h4 class="mini-title">Certificate of Completion</h4>
+                    <p class="mini-subtitle">Web Development Mastery Course</p>
+                    <p style="color: #666; margin-bottom: 10px;">This certificate is proudly awarded to</p>
+                    <h5 class="mini-name" id="previewName">Your Name Here</h5>
+                    <div class="mini-details" id="previewDetails">
+                        For successfully completing all 15 lessons of the Web Development course<br>
+                        Final Score: <strong id="previewScore">100%</strong> | Completed: <strong id="previewDate">2025-01-01</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript Files - Include lesson navigation system -->
+    <script src="/2. partB/lesson-navigation.js"></script>
+
+    <script>
+        // ============================================================================
+// SIMPLE CERTIFICATE SECURITY - REPLACE MAIN SCRIPT SECTION ONLY
+// ============================================================================
+
+// Check course completion status on page load
+document.addEventListener('DOMContentLoaded', function() {
+    checkCourseStatus();
+});
+
+function checkCourseStatus() {
+    const lessonsCompleted = countCompletedLessons();
+    const isCourseComplete = localStorage.getItem('partB_course_complete') === 'true';
+    const completionDate = localStorage.getItem('partB_course_completed_date');
+    const finalScore = localStorage.getItem('partB_lesson15_project_score');
+
+    // Update progress stats
+    document.getElementById('lessonsCompleted').textContent = lessonsCompleted + '/15';
+    document.getElementById('finalScore').textContent = finalScore ? finalScore + '%' : '-';
+    document.getElementById('completionDate').textContent = completionDate ? 
+        new Date(completionDate).toLocaleDateString() : '-';
+
+    const statusCheck = document.getElementById('statusCheck');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusDescription = document.getElementById('statusDescription');
+    const certificateForm = document.getElementById('certificateForm');
+
+    // Since we already passed the protection check, we know they can access the certificate
+    if (lessonsCompleted >= 15) {
+        statusCheck.className = 'status-check completed';
+        statusIcon.textContent = '🎉';
+        statusTitle.textContent = 'Course Completed!';
+        statusTitle.className = 'status-title completed';
+        statusDescription.textContent = 'Congratulations! You have successfully completed all 15 lessons and can now generate your certificate.';
+        certificateForm.style.display = 'block';
+        
+        // Auto-fill completion date if available
+        if (completionDate) {
+            document.getElementById('completionDateInput').value = 
+                new Date(completionDate).toISOString().split('T')[0];
+        }
+        if (finalScore) {
+            document.getElementById('finalScoreInput').value = finalScore;
+        }
+
+        // Add basic security measures
+        addBasicSecurity();
+    }
+}
+
+function countCompletedLessons() {
+    let completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+            completed++;
+        }
+    }
+    return completed;
+}
+
+// Add basic security without breaking functionality
+function addBasicSecurity() {
+    // Make critical fields readonly (but don't break them)
+    const protectedFields = ['completionDateInput', 'finalScoreInput'];
+    protectedFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.setAttribute('readonly', true);
+            field.style.background = '#f0f0f0';
+            field.style.cursor = 'not-allowed';
+        }
+    });
+
+    // Add validation to certificate generation
+    const originalDownload = window.downloadCertificate;
+    window.downloadCertificate = function() {
+        if (validateCertificateData()) {
+            secureDownloadCertificate();
+        } else {
+            alert('Certificate data validation failed. Please refresh the page and try again.');
+        }
+    };
+}
+
+// Simple validation without complex checks
+function validateCertificateData() {
+    const completedLessons = countCompletedLessons();
+    const finalScore = localStorage.getItem('partB_lesson15_project_score');
+    const completionDate = localStorage.getItem('partB_course_completed_date');
+    
+    // Basic checks
+    if (completedLessons < 15) return false;
+    if (!localStorage.getItem('partB_course_complete')) return false;
+    if (finalScore && (parseInt(finalScore) < 0 || parseInt(finalScore) > 100)) return false;
+    
+    return true;
+}
+
+function autoFillData() {
+    const savedName = localStorage.getItem('student_name');
+    const completionDate = localStorage.getItem('partB_course_completed_date');
+    const finalScore = localStorage.getItem('partB_lesson15_project_score');
+
+    if (savedName) {
+        document.getElementById('studentName').value = savedName;
+    } else {
+        const name = prompt('Enter your name to save for future use:');
+        if (name) {
+            document.getElementById('studentName').value = name;
+            localStorage.setItem('student_name', name);
+        }
+    }
+
+    if (completionDate) {
+        document.getElementById('completionDateInput').value = 
+            new Date(completionDate).toISOString().split('T')[0];
+    }
+
+    if (finalScore) {
+        document.getElementById('finalScoreInput').value = finalScore;
+    }
+
+    // Auto-generate preview if we have name
+    if (document.getElementById('studentName').value) {
+        generatePreview();
+    }
+}
+
+function generatePreview() {
+    const name = document.getElementById('studentName').value.trim();
+    const date = document.getElementById('completionDateInput').value;
+    const score = document.getElementById('finalScoreInput').value || '100';
+
+    if (!name) {
+        alert('Please enter your name');
+        return;
+    }
+
+    // Update preview
+    document.getElementById('previewName').textContent = name;
+    document.getElementById('previewScore').textContent = score + '%';
+    document.getElementById('previewDate').textContent = date ? 
+        new Date(date).toLocaleDateString() : new Date().toLocaleDateString();
+
+    // Show preview
+    const preview = document.getElementById('certificatePreview');
+    preview.classList.add('show');
+
+    // Enable download button
+    document.getElementById('downloadBtn').disabled = false;
+}
+
+function secureDownloadCertificate() {
+    const name = document.getElementById('studentName').value.trim();
+    const date = document.getElementById('completionDateInput').value;
+    const score = document.getElementById('finalScoreInput').value || '100';
+
+    if (!name) {
+        alert('Please generate preview first');
+        return;
+    }
+
+    // Create certificate window
+    const certificateWindow = window.open('', '_blank', 'width=1000,height=700');
+    
+    if (!certificateWindow) {
+        alert('Please allow pop-ups to generate your certificate');
+        return;
+    }
+    
+    const certificateHTML = generateSecureCertificateHTML(name, date, score);
+    certificateWindow.document.write(certificateHTML);
+    certificateWindow.document.close();
+    certificateWindow.focus();
+
+    // Save certificate data
+    const certificateData = {
+        studentName: name,
+        completionDate: date || new Date().toISOString().split('T')[0],
+        finalScore: score,
+        generatedAt: new Date().toISOString(),
+        validated: true
+    };
+    localStorage.setItem('certificateData', JSON.stringify(certificateData));
+
+    alert('Certificate opened in new window! Use Ctrl+P or Cmd+P to print/save as PDF.');
+}
+
+function generateSecureCertificateHTML(name, date, score) {
+    const formattedDate = date ? 
+        new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) :
+        new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Generate certificate ID for basic security
+    const certificateId = generateCertificateId(name, date, score);
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Certificate - ${name}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .certificate-container {
+            background: white;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 4/3;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .certificate {
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            position: relative;
+        }
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+        }
+        .certificate-header {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .certificate-title {
+            font-size: 3rem;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .certificate-subtitle {
+            font-size: 1.5rem;
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .certificate-body {
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .awarded-to {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .student-name {
+            font-size: 3rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: inline-block;
+            min-width: 300px;
+        }
+        .completion-text {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .course-details {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .detail-item {
+            text-align: center;
+        }
+        .detail-label {
+            font-size: 0.8rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .detail-value {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 700;
+        }
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            position: relative;
+            z-index: 2;
+        }
+        .signature-section {
+            text-align: center;
+            flex: 1;
+        }
+        .signature-line {
+            border-bottom: 2px solid #333;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        .signature-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+        .seal {
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 120px;
+            border: 8px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        .certificate-id {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 0.7rem;
+            color: #999;
+            font-family: monospace;
+        }
+        .download-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+            .download-controls { display: none; }
+            .certificate-container { box-shadow: none; border-radius: 0; }
+        }
+        @media (max-width: 768px) {
+            .certificate { padding: 30px 20px; }
+            .certificate-title { font-size: 2rem; }
+            .student-name { font-size: 2rem; min-width: 200px; }
+            .course-details { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .certificate-footer { flex-direction: column; gap: 20px; }
+            .seal { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-controls">
+        <button class="download-btn" onclick="window.print()">
+            Download Certificate
+        </button>
+    </div>
+
+    <div class="certificate-container">
+        <div class="certificate">
+            <div class="certificate-header">
+                <h1 class="certificate-title">Certificate of Completion</h1>
+                <p class="certificate-subtitle">Web Development Mastery Course</p>
+            </div>
+
+            <div class="certificate-body">
+                <p class="awarded-to">This certificate is proudly awarded to</p>
+                <h2 class="student-name">${name}</h2>
+                
+                <p class="completion-text">
+                    For successfully completing all 15 lessons of the comprehensive Web Development course,
+                    demonstrating proficiency in HTML5, CSS3, and JavaScript, and creating professional-quality
+                    web applications that showcase modern development skills and best practices.
+                </p>
+
+                <div class="course-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Lessons Completed</div>
+                        <div class="detail-value">15/15</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Technologies Mastered</div>
+                        <div class="detail-value">HTML, CSS, JS</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Final Project Score</div>
+                        <div class="detail-value">${score}%</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Course Level</div>
+                        <div class="detail-value">Beginner to Intermediate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-footer">
+                <div class="signature-section">
+                    <div class="signature-line"></div>
+                    <p class="signature-label">Course Instructor</p>
+                </div>
+                
+                <div class="signature-section">
+                    <div class="signature-line"></div>
+                    <p class="signature-label">Date: ${formattedDate}</p>
+                </div>
+            </div>
+
+            <div class="seal">
+                <div>
+                    CERTIFIED<br>
+                    WEB<br>
+                    DEVELOPER
+                </div>
+            </div>
+            
+            <div class="certificate-id">
+                Certificate ID: ${certificateId}
+            </div>
+        </div>
+    </div>
+</body>
+</html>`;
+}
+
+// Generate a simple certificate ID for basic verification
+function generateCertificateId(name, date, score) {
+    const data = name + date + score + new Date().getFullYear();
+    let hash = 0;
+    for (let i = 0; i < data.length; i++) {
+        const char = data.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    return 'WD' + Math.abs(hash).toString(16).toUpperCase().slice(0, 8);
+}
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const score = localStorage.getItem('partB_lesson15_project_score');
+
+            if (score !== null) {
+                // Update stat card
+                const statEl = document.getElementById('finalScore');
+                if (statEl) {
+                    statEl.textContent = score + '%';
+                }
+
+                // Update detail section (replace ${score})
+                const detailEls = document.querySelectorAll('.detail-item .detail-value');
+                detailEls.forEach(el => {
+                    if (el.textContent.includes('${score}') || el.textContent.trim() === '-') {
+                        el.textContent = score + '%';
+                    }
+                });
+
+                // Update input field
+                const input = document.getElementById('finalScoreInput');
+                if (input) {
+                    input.value = score;
+                    input.readOnly = true; // not editable, but still visible
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

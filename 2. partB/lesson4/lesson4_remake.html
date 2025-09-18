@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Part B – Lesson 4: Lists & Navigation</title>
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="./lesson4_remake.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- protection script -->
+    <script>
+        (function() {
+            'use strict';
+            
+            function getCurrentLessonNumber() {
+                const path = window.location.pathname;
+                const match = path.match(/lesson(\d+)/);
+                return match ? parseInt(match[1]) : 1;
+            }
+        
+            function isLessonCompleted(lessonNumber) {
+                return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+            }
+        
+            function canAccessLesson(lessonNumber) {
+                if (lessonNumber === 1) return true;
+                
+                for (let i = 1; i < lessonNumber; i++) {
+                    if (!isLessonCompleted(i)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        
+            function getNextAvailableLesson() {
+                for (let i = 1; i <= 15; i++) {
+                    if (!isLessonCompleted(i)) {
+                        return i;
+                    }
+                }
+                return 15;
+            }
+        
+            function showAccessDenied() {
+                const currentLesson = getCurrentLessonNumber();
+                const nextLesson = getNextAvailableLesson();
+                const requiredLesson = currentLesson - 1;
+                
+                document.body.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                            <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                            <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                            <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                            <button onclick="window.location.href='../lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            // IMMEDIATE CHECK
+            const currentLesson = getCurrentLessonNumber();
+            
+            if (!canAccessLesson(currentLesson)) {
+                // Don't hide the document immediately - wait for DOM to be ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', showAccessDenied);
+                } else {
+                    // DOM is already ready, show access denied immediately
+                    showAccessDenied();
+                }
+                return; // Exit early
+            }
+        })();
+        </script>
+</head>
+
+<body>
+    <!-- Home navigation button -->
+    <a href="../../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <!-- Page header -->
+    <header>
+        <h1>Lesson 4 – Lists & Navigation</h1>
+    </header>
+    
+    <!-- Main content container -->
+    <main class="container">
+        
+        <!-- Progress tracker section -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Introduction section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">📋</span>
+                Lists Make Content Organized!
+            </h2>
+            <p>Lists are one of the most useful ways to organize information on websites. Whether it's a shopping list, navigation menu, or step-by-step instructions, HTML provides different list types for different purposes.</p>
+            
+            <div class="intro-highlight">
+                Lists help users scan information quickly and make your content more <strong>readable and accessible</strong>. They're also essential for creating navigation menus!
+            </div>
+            
+            <!-- Types of lists demonstration -->
+            <h3>🎯 Types of Lists</h3>
+            <div class="list-types-demo">
+                <!-- Unordered list example -->
+                <div class="list-type-card" onclick="highlightListType(this, 'ul')">
+                    <h4>📋 Unordered List</h4>
+                    <p>For items where order doesn't matter</p>
+                    <div class="list-code">&lt;ul&gt;
+  &lt;li&gt;Apples&lt;/li&gt;
+  &lt;li&gt;Bananas&lt;/li&gt;
+  &lt;li&gt;Oranges&lt;/li&gt;
+&lt;/ul&gt;</div>
+                    <div class="list-preview">
+                        <ul>
+                            <li>Apples</li>
+                            <li>Bananas</li>
+                            <li>Oranges</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Ordered list example -->
+                <div class="list-type-card" onclick="highlightListType(this, 'ol')">
+                    <h4>🔢 Ordered List</h4>
+                    <p>For items with a specific sequence</p>
+                    <div class="list-code">&lt;ol&gt;
+  &lt;li&gt;Mix ingredients&lt;/li&gt;
+  &lt;li&gt;Bake for 20 mins&lt;/li&gt;
+  &lt;li&gt;Let cool&lt;/li&gt;
+&lt;/ol&gt;</div>
+                    <div class="list-preview">
+                        <ol>
+                            <li>Mix ingredients</li>
+                            <li>Bake for 20 mins</li>
+                            <li>Let cool</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation concepts section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🧭</span>
+                Navigation – Guiding Users Around
+            </h2>
+            <p>The <code>&lt;nav&gt;</code> element tells browsers and screen readers that this section contains navigation links. It's a semantic element that makes your website more accessible and meaningful.</p>
+            
+            <!-- Navigation concept cards -->
+            <div class="nav-concepts">
+                <!-- Semantic meaning concept -->
+                <div class="nav-concept" onclick="showNavInfo('semantic')">
+                    <span class="concept-icon">🎯</span>
+                    <h4>Semantic Meaning</h4>
+                    <p>The &lt;nav&gt; element tells browsers "this is navigation"</p>
+                </div>
+                
+                <!-- Accessibility concept -->
+                <div class="nav-concept" onclick="showNavInfo('accessibility')">
+                    <span class="concept-icon">♿</span>
+                    <h4>Accessibility</h4>
+                    <p>Screen readers can jump directly to navigation sections</p>
+                </div>
+                
+                <!-- Clean structure concept -->
+                <div class="nav-concept" onclick="showNavInfo('structure')">
+                    <span class="concept-icon">🗂️</span>
+                    <h4>Clean Structure</h4>
+                    <p>nav → ul → li → a creates organized menus</p>
+                </div>
+            </div>
+            
+            <!-- Navigation structure example -->
+            <h3>🔗 Navigation Structure</h3>
+            <pre><span class="highlight-tag">&lt;nav&gt;</span>
+  <span class="highlight-tag">&lt;ul&gt;</span>
+    <span class="highlight-tag">&lt;li&gt;&lt;a</span> <span class="highlight-attr">href</span>=<span class="highlight-value">"#home"</span><span class="highlight-tag">&gt;</span>Home<span class="highlight-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="highlight-tag">&lt;li&gt;&lt;a</span> <span class="highlight-attr">href</span>=<span class="highlight-value">"#about"</span><span class="highlight-tag">&gt;</span>About<span class="highlight-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="highlight-tag">&lt;li&gt;&lt;a</span> <span class="highlight-attr">href</span>=<span class="highlight-value">"#contact"</span><span class="highlight-tag">&gt;</span>Contact<span class="highlight-tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="highlight-tag">&lt;/ul&gt;</span>
+<span class="highlight-tag">&lt;/nav&gt;</span></pre>
+        </section>
+
+        <!-- Live demo section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎭</span>
+                Lists & Navigation in Action
+            </h2>
+            <p>See how different list types and navigation work together in a real example:</p>
+            
+            <div class="two-col">
+                <!-- HTML code pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">💻</span>
+                        HTML Code
+                    </h3>
+                    <textarea readonly id="demo-code">&lt;h2&gt;🍕 My Favorite Foods&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pizza&lt;/li&gt;
+  &lt;li&gt;Pasta&lt;/li&gt;
+  &lt;li&gt;Ice Cream&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;☕ How to Make Coffee&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Boil water&lt;/li&gt;
+  &lt;li&gt;Add coffee grounds&lt;/li&gt;
+  &lt;li&gt;Pour and enjoy!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;🏠 Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;🍽️ Menu&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;📞 Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</textarea>
+                </div>
+                
+                <!-- Live result pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">👁️</span>
+                        Live Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="demo-preview" title="Lists Demo"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure understanding section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🗂️</span>
+                Understanding List Structure
+            </h2>
+            <p>Lists must follow a specific nesting structure. Here's what works and what doesn't:</p>
+            
+            <div class="structure-demo">
+                <!-- Correct structure example -->
+                <div class="structure-example correct">
+                    <span class="structure-label">✅ Correct Structure</span>
+                    <pre>&lt;ul&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+  &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                    <p><strong>Why it works:</strong> Each list item is properly wrapped in <code>&lt;li&gt;</code> tags inside the <code>&lt;ul&gt;</code> container.</p>
+                </div>
+                
+                <!-- Incorrect structure example -->
+                <div class="structure-example incorrect">
+                    <span class="structure-label">❌ Incorrect Structure</span>
+                    <pre>&lt;ul&gt;
+  First item
+  Second item
+  Third item
+&lt;/ul&gt;</pre>
+                    <p><strong>Why it fails:</strong> List items must be wrapped in <code>&lt;li&gt;</code> tags. Plain text inside <code>&lt;ul&gt;</code> is invalid HTML.</p>
+                </div>
+            </div>
+            
+            <!-- Navigation structure rules -->
+            <h3>🎯 Navigation Structure Rules</h3>
+            <div class="intro-highlight">
+                <strong>Perfect Navigation Formula:</strong><br>
+                <code>&lt;nav&gt;</code> → <code>&lt;ul&gt;</code> → <code>&lt;li&gt;</code> → <code>&lt;a&gt;</code><br>
+                Each navigation link should be wrapped in this semantic structure!
+            </div>
+        </section>
+
+        <!-- Interactive task section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Your Navigation Challenge
+            </h2>
+            <p>Create a navigation menu with exactly 3 links. Your navigation should include:</p>
+            
+            <!-- Challenge requirements list -->
+            <ul>
+                <li>✅ A <code>&lt;nav&gt;</code> element to wrap everything</li>
+                <li>✅ An unordered list <code>&lt;ul&gt;</code> inside the nav</li>
+                <li>✅ Exactly 3 list items <code>&lt;li&gt;</code> with links inside</li>
+                <li>🎨 Feel free to add emojis or creative link names!</li>
+            </ul>
+            
+            <!-- Pro tip highlight -->
+            <div class="intro-highlight">
+                <strong>💡 Pro Tip:</strong> Use <code>href="#"</code> for dummy links, or get creative with <code>href="#home"</code>, <code>href="#about"</code>, etc.
+            </div>
+            
+            <div class="two-col">
+                <!-- Code input pane with enhanced editor -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">✏️</span>
+                        Write Your HTML Here
+                    </h3>
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-tab active">
+                                <div class="file-icon"></div>
+                                index.html
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <textarea 
+                                id="task-code" 
+                                class="editor-textarea"
+                                placeholder="Create your navigation menu here...
+
+Hint: Start with <nav>, then <ul>, then three <li> elements with <a> tags inside!
+
+Example:
+<nav>
+  <ul>
+    <li><a href='#'>Home</a></li>
+    <li><a href='#'>About</a></li>
+    <li><a href='#'>Contact</a></li>
+  </ul>
+</nav>"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            ></textarea>
+                        </div>
+                        <div class="editor-status">
+                            <div class="status-left">
+                                <span>🌐 HTML</span>
+                                <span>UTF-8</span>
+                                <span>LF</span>
+                            </div>
+                            <div class="status-right">
+                                <span>Ln <span id="current-line">1</span>, Col <span id="current-col">1</span></span>
+                                <span>Spaces: 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Live preview pane -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🎭</span>
+                        Your Live Preview
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="task-preview" title="Your Navigation Result"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action buttons -->
+            <div class="btns">
+                <button class="btn-primary" onclick="checkAnswer()">
+                    🔍 Check My Navigation
+                </button>
+                <button class="btn-warn" onclick="showHint()">
+                    💡 Need a Hint?
+                </button>
+                <button disabled id="nextLessonBtn">
+                    ➡️ Next Lesson
+                </button>
+            </div>
+            
+            <!-- Feedback display area -->
+            <div class="feedback" id="feedback"></div>
+        </section>
+        
+    </main>
+
+    <!-- JavaScript files -->
+    <!-- Lesson navigation functionality -->
+    <script src="../lesson-navigation.js"></script>
+    
+    <!-- Lesson 4 specific functionality -->
+    <script src="./lesson4_remake.js"></script>
+</body>
+</html>
