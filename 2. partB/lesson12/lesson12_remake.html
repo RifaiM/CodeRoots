@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Global/root.css">
+    <link rel="stylesheet" href="/2. partB/lesson12_remake.css">
+    <title>Lesson 12 - Events & Listeners</title>
+
+    <!-- protection script -->
+        <script>
+            (function() {
+                'use strict';
+                
+                function getCurrentLessonNumber() {
+                    const path = window.location.pathname;
+                    const match = path.match(/lesson(\d+)/);
+                    return match ? parseInt(match[1]) : 1;
+                }
+
+                function isLessonCompleted(lessonNumber) {
+                    return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+                }
+
+                function canAccessLesson(lessonNumber) {
+                    if (lessonNumber === 1) return true;
+                    
+                    for (let i = 1; i < lessonNumber; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                function getNextAvailableLesson() {
+                    for (let i = 1; i <= 15; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 15;
+                }
+
+                function showAccessDenied() {
+                    const currentLesson = getCurrentLessonNumber();
+                    const nextLesson = getNextAvailableLesson();
+                    const requiredLesson = currentLesson - 1;
+                    
+                    document.body.innerHTML = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                                <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                                <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                                <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                                <button onclick="window.location.href='/2. partB/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // IMMEDIATE CHECK
+                const currentLesson = getCurrentLessonNumber();
+                
+                if (!canAccessLesson(currentLesson)) {
+                    // Don't hide the document immediately - wait for DOM to be ready
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', showAccessDenied);
+                    } else {
+                        // DOM is already ready, show access denied immediately
+                        showAccessDenied();
+                    }
+                    return; // Exit early
+                }
+            })();
+        </script>
+</head>
+<body>
+    <a href="../index.html" class="home-button" title="Back to PartA">🏠</a>
+    <header class="lesson-header">
+        <h1>Lesson 12 — Events & Listeners</h1>
+    </header>
+
+    <main class="lesson-content">
+        <section class="intro">
+            <h2>Welcome to Interactive Web Development!</h2>
+            <p>Events & Listeners are what make websites come alive! Think of events as "things that happen" (like clicking a button or moving your mouse) and listeners as "code that waits and responds" to those events. Together, they create the interactive experiences you see on every modern website.</p>
+            
+            <div class="interactive-demo-intro">
+                <h3>Try This First - See Events in Action!</h3>
+                <div class="demo-playground">
+                    <button id="demo-color-btn" class="demo-button pulse">Click Me!</button>
+                    <div id="demo-hover-box" class="demo-hover-box">Hover Over Me!</div>
+                    <div id="demo-feedback" class="demo-feedback">Try the interactive elements above!</div>
+                </div>
+            </div>
+
+            <h3>What Are Events & Listeners?</h3>
+            <div class="concept-grid">
+                <div class="concept-card event-card">
+                    <div class="concept-icon">⚡</div>
+                    <h4>Events</h4>
+                    <p>Things that happen on your webpage - clicks, hovers, key presses, page loads, and more!</p>
+                    <div class="concept-example">
+                        <code>User clicks button → Click Event</code>
+                    </div>
+                </div>
+                
+                <div class="concept-card listener-card">
+                    <div class="concept-icon">👂</div>
+                    <h4>Event Listeners</h4>
+                    <p>JavaScript code that "listens" for events and runs specific functions when they happen.</p>
+                    <div class="concept-example">
+                        <code>addEventListener("click", myFunction)</code>
+                    </div>
+                </div>
+                
+                <div class="concept-card interaction-card">
+                    <div class="concept-icon">🎯</div>
+                    <h4>User Interaction</h4>
+                    <p>The magic happens when events trigger listeners, creating responsive, dynamic web experiences!</p>
+                    <div class="concept-example">
+                        <code>Event + Listener = Interaction</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="learning">
+            <h2>Learning Through Interactive Examples</h2>
+            
+            <div class="learning-path">
+                <div class="learning-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>🎯 Understanding addEventListener</h3>
+                        <div class="explanation-box">
+                            <p><strong>What it does:</strong> <code>addEventListener()</code> is like hiring a security guard for your website. You tell it what to watch for ("click", "hover", etc.) and what to do when it happens.</p>
+                            
+                            <div class="code-breakdown">
+                                <div class="code-line">
+                                    <span class="code-part element">element</span>
+                                    <span class="code-part dot">.</span>
+                                    <span class="code-part method">addEventListener</span>
+                                    <span class="code-part paren">(</span>
+                                    <span class="code-part string">"eventType"</span>
+                                    <span class="code-part comma">,</span>
+                                    <span class="code-part function">functionToRun</span>
+                                    <span class="code-part paren">)</span>
+                                </div>
+                                <div class="code-annotations">
+                                    <div class="annotation element-ann">Which HTML element to watch</div>
+                                    <div class="annotation method-ann">The "listener" function</div>
+                                    <div class="annotation string-ann">What event to listen for</div>
+                                    <div class="annotation function-ann">What code to run</div>
+                                </div>
+                            </div>
+                            
+                            <div class="live-example">
+                                <h4>Live Example:</h4>
+                                <button id="step1-btn" class="example-button">Click to Change My Color!</button>
+                                <div class="code-display">
+                                    <h4>How it works:</h4>
+                                    <pre><code>let button = document.getElementById("myButton");
+button.addEventListener("click", function() {
+    button.style.backgroundColor = "lightblue";
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learning-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>🖱️ Click Events - The Most Common Interaction</h3>
+                        <div class="explanation-box">
+                            <p><strong>Why clicks matter:</strong> Click events are the foundation of web interaction. Every button, link, and interactive element uses them!</p>
+                            
+                            <div class="click-demo-section">
+                                <div class="demo-area">
+                                    <div class="demo-buttons">
+                                        <button id="color-demo-btn" class="demo-btn color-btn">Change Background</button>
+                                        <button id="text-demo-btn" class="demo-btn text-btn">Change Text</button>
+                                        <button id="size-demo-btn" class="demo-btn size-btn">Change Size</button>
+                                    </div>
+                                    <div id="demo-target" class="demo-target">I will change based on your clicks!</div>
+                                </div>
+                                
+                                <div class="code-explanation">
+                                    <h4>How it works:</h4>
+                                    <pre><code>// Step 1: Find the button
+let button = document.getElementById("myButton");
+
+// Step 2: Add a click listener
+button.addEventListener("click", function() {
+    // Step 3: This code runs when clicked!
+    console.log("Button was clicked!");
+    document.body.style.backgroundColor = "lightgreen";
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learning-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>🏃 Hover Events - Responding to Mouse Movement</h3>
+                        <div class="explanation-box">
+                            <p><strong>Two types of hover:</strong> <code>mouseover</code> (when mouse enters) and <code>mouseout</code> (when mouse leaves). Perfect for creating engaging visual feedback!</p>
+                            
+                            <div class="hover-demo-section">
+                                <div class="hover-playground">
+                                    <div class="hover-card" id="hover-card-1">
+                                        <h4>Hover Card 1</h4>
+                                        <p>Watch me change!</p>
+                                    </div>
+                                    <div class="hover-card" id="hover-card-2">
+                                        <h4>Hover Card 2</h4>
+                                        <p>I'm different!</p>
+                                    </div>
+                                    <div class="hover-card" id="hover-card-3">
+                                        <h4>Hover Card 3</h4>
+                                        <p>Try me too!</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="hover-code">
+                                    <h4>How it works:</h4>
+                                    <pre><code>let element = document.getElementById("hoverBox");
+
+// When mouse enters the element
+element.addEventListener("mouseover", function() {
+    this.style.backgroundColor = "yellow";
+    this.innerHTML = "Mouse is here!";
+});
+
+// When mouse leaves the element  
+element.addEventListener("mouseout", function() {
+    this.style.backgroundColor = "white";
+    this.innerHTML = "Hover over me!";
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learning-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>🎨 Multiple Events - Creating Rich Interactions</h3>
+                        <div class="explanation-box">
+                            <p><strong>Power combo:</strong> You can add multiple event listeners to the same element! This creates rich, multi-layered interactions.</p>
+                            
+                            <div class="multi-event-demo">
+                                <div class="interactive-box" id="multi-demo-box">
+                                    <div class="box-content">
+                                        <h4>Multi-Event Element</h4>
+                                        <p>Click me, hover over me, try everything!</p>
+                                        <div class="event-log" id="event-log">No events yet...</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="event-types">
+                                    <div class="event-type">
+                                        <span class="event-name">Click:</span>
+                                        <span class="event-effect">Changes border color</span>
+                                    </div>
+                                    <div class="event-type">
+                                        <span class="event-name">Hover:</span>
+                                        <span class="event-effect">Scales up and glows</span>
+                                    </div>
+                                    <div class="event-type">
+                                        <span class="event-name">Double-click:</span>
+                                        <span class="event-effect">Resets everything</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="practical-examples">
+            <h2>Real-World Examples</h2>
+            <p>See how events and listeners are used in websites you use every day:</p>
+            
+            <div class="example-showcase">
+                <div class="example-item">
+                    <div class="example-icon">🛒</div>
+                    <h4>E-commerce Sites</h4>
+                    <p>Add to cart buttons, image zoom on hover, quantity selectors</p>
+                    <button class="mini-demo-btn" data-demo="shopping">Try Demo</button>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-icon">📱</div>
+                    <h4>Social Media</h4>
+                    <p>Like buttons, comment toggles, image carousels</p>
+                    <button class="mini-demo-btn" data-demo="social">Try Demo</button>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-icon">🎮</div>
+                    <h4>Games</h4>
+                    <p>Click to move, hover for tooltips, keyboard controls</p>
+                    <button class="mini-demo-btn" data-demo="game">Try Demo</button>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-icon">📋</div>
+                    <h4>Forms</h4>
+                    <p>Input validation, submit buttons, dynamic fields</p>
+                    <button class="mini-demo-btn" data-demo="form">Try Demo</button>
+                </div>
+            </div>
+            
+            <div id="mini-demo-area" class="mini-demo-area"></div>
+        </section>
+
+        <section class="task">
+            <h2>Your Interactive Challenge!</h2>
+            <p>Now it's your turn! Create an interactive webpage that demonstrates your understanding of events and listeners.</p>
+            
+            <div class="task-requirements">
+                <h3>📋 What You Need to Include:</h3>
+                <div class="requirements-grid">
+                    <div class="requirement-item completed" id="req-html">
+                        <div class="req-icon">🏗️</div>
+                        <h4>HTML Structure</h4>
+                        <p>At least one button and one div element with unique IDs</p>
+                    </div>
+                    <div class="requirement-item" id="req-ids">
+                        <div class="req-icon">🏷️</div>
+                        <h4>Unique IDs</h4>
+                        <p>ID attributes for elements you want to interact with</p>
+                    </div>
+                    <div class="requirement-item" id="req-listeners">
+                        <div class="req-icon">👂</div>
+                        <h4>Event Listeners</h4>
+                        <p>Use addEventListener method (not onclick)</p>
+                    </div>
+                    <div class="requirement-item" id="req-click">
+                        <div class="req-icon">🖱️</div>
+                        <h4>Click Events</h4>
+                        <p>Button that changes the page background color</p>
+                    </div>
+                    <div class="requirement-item" id="req-hover">
+                        <div class="req-icon">🏃</div>
+                        <h4>Hover Events</h4>
+                        <p>Element that responds to mouseover/mouseout</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-task-container">
+                <div class="editor-box">
+                    <div class="editor-header">
+                        <div class="editor-label">Your HTML & JavaScript Code</div>
+                        <div class="editor-tips">
+                            <span class="tip-icon">💡</span>
+                            <span>Need help? Click the hint button below!</span>
+                        </div>
+                    </div>
+                    <!--example-->
+                    <textarea id="code-editor" 
+                    placeholder="<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>My Interactive Page</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            transition: background-color 0.3s; 
+            padding: 20px;
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .hover-box { 
+            padding: 20px; 
+            border: 2px solid #333; 
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Interactive Webpage</h1>
+    <button id='colorButton'>Change Background Color</button>
+    <div id='hoverBox' class='hover-box'>Hover over me to see magic!</div>
+
+    <script>
+        // Your event listeners go here!
+        // Example:
+        let colorBtn = document.getElementById('colorButton');
+        colorBtn.addEventListener('click', function() {
+            document.body.style.backgroundColor = 'lightblue';
+        });
+
+        // Add your hover event listener here:
+        let hoverBox = document.getElementById('hoverBox');
+        hoverBox.addEventListener('mouseover', function() {
+            this.style.backgroundColor = 'yellow';
+            this.innerHTML = 'Mouse is over me!';
+        });
+        
+        hoverBox.addEventListener('mouseout', function() {
+            this.style.backgroundColor = 'white';
+            this.innerHTML = 'Hover over me to see magic!';
+        });
+    </script>
+</body>
+</html>"></textarea>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button id="check-answer">🔍 Check My Code</button>
+                <button id="show-hint">💡 Show Hint</button>
+                <button id="reset-code">🔄 Reset</button>
+                <button id="next-lesson" disabled>➡️ Next Lesson</button>
+            </div>
+            
+            <div id="progress-indicator" class="progress-indicator">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text">Complete the requirements above to continue!</div>
+            </div>
+            
+            <div id="feedback" class="feedback"></div>
+        </section>
+    </main>
+
+    <script src="/2. partB/lesson-navigation.js"></script>
+    <script src="/2. partB/lesson12_remake.js"></script>
+</body>
+</html>

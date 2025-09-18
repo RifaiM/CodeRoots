@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Part B – Lesson 1: HTML Basics & Website Structure</title>
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="/Global/root.css">
+    <link rel="stylesheet" href="/2. partB/lesson1_remake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- protection script -->
+        <script>
+            (function() {
+                'use strict';
+                
+                function getCurrentLessonNumber() {
+                    const path = window.location.pathname;
+                    const match = path.match(/lesson(\d+)/);
+                    return match ? parseInt(match[1]) : 1;
+                }
+
+                function isLessonCompleted(lessonNumber) {
+                    return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+                }
+
+                function canAccessLesson(lessonNumber) {
+                    if (lessonNumber === 1) return true;
+                    
+                    for (let i = 1; i < lessonNumber; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                function getNextAvailableLesson() {
+                    for (let i = 1; i <= 15; i++) {
+                        if (!isLessonCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 15;
+                }
+
+                function showAccessDenied() {
+                    const currentLesson = getCurrentLessonNumber();
+                    const nextLesson = getNextAvailableLesson();
+                    const requiredLesson = currentLesson - 1;
+                    
+                    document.body.innerHTML = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
+                            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
+                                <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+                                <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                                <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
+                                <button onclick="window.location.href='/2. partB/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // IMMEDIATE CHECK
+                const currentLesson = getCurrentLessonNumber();
+                
+                if (!canAccessLesson(currentLesson)) {
+                    // Don't hide the document immediately - wait for DOM to be ready
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', showAccessDenied);
+                    } else {
+                        // DOM is already ready, show access denied immediately
+                        showAccessDenied();
+                    }
+                    return; // Exit early
+                }
+            })();
+        </script>
+</head>
+
+<body>
+    <!-- Navigation: Back to Part A -->
+    <a href="../index.html" class="home-button" title="Back to PartA">🏠</a>
+    
+    <!-- Page Header -->
+    <header>
+        <h1>Lesson 1 – HTML Basics & Website Structure</h1>
+    </header>
+    
+    <!-- Main Content Container -->
+    <main class="container">
+        <!-- Progress Tracker Section -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🌟</span>
+                Welcome to HTML!
+            </h2>
+            <p>HTML (HyperText Markup Language) is the foundation of every webpage on the internet. Think of it as the skeleton that gives structure to your content!</p>
+            
+            <!-- Highlight Box -->
+            <div class="intro-highlight">
+                HTML uses <strong>tags</strong> to tell the browser what each part of your content means. Tags are like labels that wrap around your content.
+            </div>
+            
+            <!-- Interactive Tag Examples -->
+            <div class="tag-demo">
+                <div class="tag-example" onclick="highlightExample(this)">
+                    <div class="tag-code">&lt;h1&gt;Hello World&lt;/h1&gt;</div>
+                    <div class="tag-result">Creates a large heading</div>
+                </div>
+                <div class="tag-example" onclick="highlightExample(this)">
+                    <div class="tag-code">&lt;p&gt;This is text&lt;/p&gt;</div>
+                    <div class="tag-result">Creates a paragraph</div>
+                </div>
+                <div class="tag-example" onclick="highlightExample(this)">
+                    <div class="tag-code">&lt;img src="photo.jpg"&gt;</div>
+                    <div class="tag-result">Displays an image</div>
+                </div>
+            </div>
+            
+            <!-- HTML Tag Anatomy Explanation -->
+            <h3>🛠️ Anatomy of an HTML Tag</h3>
+            <pre><span class="highlight-tag">&lt;p</span> <span class="highlight-attr">class</span>=<span class="highlight-value">"intro"</span><span class="highlight-tag">&gt;</span>This is content<span class="highlight-tag">&lt;/p&gt;</span>
+
+<strong>Opening tag:</strong> &lt;p class="intro"&gt;
+<strong>Content:</strong> This is content  
+<strong>Closing tag:</strong> &lt;/p&gt;</pre>
+        </section>
+
+        <!-- HTML Structure Demonstration -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🛠️</span>
+                HTML Structure – See it in Action
+            </h2>
+            <p>Every webpage follows the same basic structure. Let's see how HTML creates a simple page:</p>
+            
+            <!-- Two-Column Layout: Code and Preview -->
+            <div class="two-col">
+                <!-- Left Column: HTML Code -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">💻</span>
+                        HTML Code
+                    </h3>
+                    <textarea readonly id="demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage. Isn't HTML amazing?&lt;/p&gt;
+    &lt;p&gt;I can create multiple paragraphs!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                </div>
+                
+                <!-- Right Column: Live Preview -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">👁️</span>
+                        Live Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="demo-preview" title="HTML Demo"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website Building Blocks Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🧩</span>
+                Website Building Blocks
+            </h2>
+            <p>Professional websites are built using semantic HTML elements. Each element has a specific purpose:</p>
+            
+            <!-- Interactive Element Icons -->
+            <div class="icons">
+                <div class="icon" onclick="showElementInfo('header')">
+                    <span class="em">🏠</span>
+                    <div><strong>Header</strong></div>
+                    <div>Site title & logo</div>
+                </div>
+                <div class="icon" onclick="showElementInfo('nav')">
+                    <span class="em">🧭</span>
+                    <div><strong>Navigation</strong></div>
+                    <div>Menu & links</div>
+                </div>
+                <div class="icon" onclick="showElementInfo('main')">
+                    <span class="em">📄</span>
+                    <div><strong>Main Content</strong></div>
+                    <div>Page content</div>
+                </div>
+                <div class="icon" onclick="showElementInfo('section')">
+                    <span class="em">📦</span>
+                    <div><strong>Section</strong></div>
+                    <div>Content groups</div>
+                </div>
+                <div class="icon" onclick="showElementInfo('article')">
+                    <span class="em">📰</span>
+                    <div><strong>Article</strong></div>
+                    <div>Blog posts, news</div>
+                </div>
+                <div class="icon" onclick="showElementInfo('footer')">
+                    <span class="em">📜</span>
+                    <div><strong>Footer</strong></div>
+                    <div>Copyright & links</div>
+                </div>
+            </div>
+            
+            <!-- Complete Website Structure Example -->
+            <div class="two-col" style="margin-top:20px;">
+                <!-- Left Column: Structure Code -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🛠️</span>
+                        Complete Website Structure
+                    </h3>
+                    <textarea readonly>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    🏠 My Awesome Website
+  &lt;/header&gt;
+
+  &lt;nav&gt;
+    🧭 Home | About | Contact
+  &lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h1&gt;📄 Welcome!&lt;/h1&gt;
+      &lt;p&gt;📝 This is the main content area.&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    📜 © 2024 My Website
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                </div>
+                
+                <!-- Right Column: Visual Preview -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🎨</span>
+                        Visual Result
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="structure-preview" title="Website Structure"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Challenge Section -->
+        <section class="card">
+            <h2>
+                <span class="section-icon">🎯</span>
+                Your First HTML Challenge
+            </h2>
+            <p>Now it's your turn! Create your first webpage with:</p>
+            
+            <!-- Challenge Requirements List -->
+            <ul>
+                <li>✅ A heading that says <strong>"My First Webpage"</strong></li>
+                <li>✅ A paragraph with any text you want</li>
+                <li>🎨 Feel free to add more content!</li>
+            </ul>
+            
+            <!-- Two-Column Challenge Layout -->
+            <div class="two-col">
+                <!-- Left Column: Enhanced Code Editor -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">✏️</span>
+                        Write Your HTML Here
+                    </h3>
+                    <!-- simple HTML structure -->
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-tab active">
+                                <div class="file-icon"></div>
+                                index.html
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <textarea
+                                id="task-code" 
+                                class="editor-textarea"
+                                placeholder="Type your HTML code here...
+                                
+Hint: Start with &lt;h1&gt; for the heading!"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            ></textarea>
+                        </div>
+                        <div class="editor-status">
+                            <div class="status-left">
+                                <span>🌐 HTML</span>
+                                <span>UTF-8</span>
+                                <span>LF</span>
+                            </div>
+                            <div class="status-right">
+                                <span>Ln <span id="current-line">1</span>, Col <span id="current-col">1</span></span>
+                                <span>Spaces: 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Live Preview -->
+                <div class="pane">
+                    <h3>
+                        <span class="pane-icon">🎭</span>
+                        Your Live Preview
+                    </h3>
+                    <div class="frame-wrap">
+                        <iframe id="task-preview" title="Your HTML Result"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="btns">
+                <button class="btn-primary" onclick="checkAnswer()">
+                    🔍 Check My Answer
+                </button>
+                <button class="btn-warn" onclick="showHint()">
+                    💡 Need a Hint?
+                </button>
+                <button disabled id="nextLessonBtn">
+                    ➡️ Next Lesson
+                </button>
+            </div>
+            
+            <!-- Feedback Display Area -->
+            <div class="feedback" id="feedback"></div>
+        </section>
+    </main>
+
+    <!-- External JavaScript Files -->
+    <script src="/2. partB/lesson-navigation.js"></script>
+    <script src="/2. partB/lesson1_remake.js"></script>
+</body>
+</html>
