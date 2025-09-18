@@ -1,6 +1,6 @@
 DevDojo
 
-DevDojo is an interactive web learning platform designed to guide beginners through the fundamentals of web development. The project is built with HTML, CSS, and JavaScript and aims to make coding concepts more engaging through hands-on lessons, quizzes, and interactive content.
+DevDojo is an interactive web learning platform designed to guide beginners through the fundamentals of web development. The project is built with HTML, CSS, and JavaScript and aims to make coding concepts more engaging through hands-on lessons and interactive content.
 
 ✨ Features
 
