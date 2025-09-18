@@ -12,7 +12,7 @@ CodeRoots is an interactive web learning platform designed to guide beginners th
 🚧 Project Status
 
 - Actively under development
-- Currently hosted on Vercel (https://coderoots-dojo.vercel.app/) & netlify (https://coderoots.netlify.app/) for preview and testing
+- Currently hosted on Vercel (https://coderoots-dojo.vercel.app/) for preview and testing
 
 🎯 Roadmap
 
