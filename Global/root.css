@@ -1,0 +1,197 @@
+:root {
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+    --brand: #007BFF;
+    --bg: #f4f8ff;
+    --box: #ffffff;
+    --muted: #eef4ff;
+    --border: #dde7ff;
+    --text: #222;
+    --success: #27ae60;
+    --error: #e74c3c;
+    --warning: #f39c12;
+    --project-color: #4caf50;
+    --project-dark: #2e7d32;
+    --html-color: #e34f26;
+    --css-color: #1572b6;
+    --js-color: #f7df1e;
+    --integration-color: #9c27b0;
+    --step-bg: #f8f9ff;
+    --feature-bg: #fff3e0;
+    --criterion-bg: #e8f5e8;
+    --css-color-2: #e91e63;
+    --margin-color: #ff9800;
+    --border-color: #2196f3;
+    --padding-color: #4caf50;
+    --content-color: #9c27b0;
+    --container-color: #2196f3;
+  
+    --position-color-ls9: #9c27b0;
+    --static-color-ls9: #607d8b;
+    --relative-color-ls9: #ff9800;
+    --absolute-color-ls9: #e91e63;
+    --fixed-color-ls9: #4caf50;
+  
+    --dom-dark: #20232a;
+    --selection-color: #e91e63;
+    --content-color: #9c27b0;
+    --event-color: #4caf50;
+    --dynamic-color: #ff9800;
+    --style-color: #673ab7;
+
+    --event-color:#e91e63;
+    --syntax-bg:#e8f5e8;
+    --listener-color:#9c27b0;
+    --interaction-color:#2196f3;
+    --purple: #8e44ad;
+    --green: #2ecc71;
+    --orange: #e67e22;
+    --red: #e74c3c;
+    --pink: #e91e63;
+
+    --capture-color:#9c27b0;
+    --check-color:#4caf50;
+    --feedback-color:#ff9800;
+    --control-color:#607d8b;
+
+    --js-dark: #323330;
+    --variable-color: #e91e63;
+    --operator-color: #9c27b0;
+    --console-color: #212529;
+
+    --step-bg: #f8f9ff;
+  
+    --css-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+    --html-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    --html-color-partA: #e74c3c;
+  
+    --js-gradient: linear-gradient(135deg, #f7b733 0%, #fc4a1a 100%);
+    --js-color-2: #f39c12;
+  
+    --website-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  
+    /* Final Challenge Premium Colors */
+    --challenge-gold: #ffd700;
+    --challenge-purple: #6b46c1;
+    --challenge-gradient: linear-gradient(135deg, var(--challenge-purple), var(--brand));
+    --expert-badge: #ff6b6b;
+    --master-badge: #4ecdc4;
+    --premium-shadow: 0 20px 40px rgba(107, 70, 193, 0.15);
+    --premium-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+  
+* {
+  box-sizing: border-box;
+}
+
+/* Focus and Accessibility */
+button:focus,
+textarea:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.home-button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand);
+}
+
+/* Body */
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  /* normal text */
+  line-height: 1.55;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Home Button */
+
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(145deg, #ff9800, #ffb74d);
+  color: white;
+  padding: 12px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.home-button:hover {
+  transform: translateY(-1px) scale(1.12);
+  box-shadow: 0 10px 20px rgba(255, 152, 0, 0.6);
+}
+
+.home-button:active {
+  transform: scale(0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+  }
+
+  100% {
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+  }
+}
+
+/* HEADER */
+
+
+header {
+  background: linear-gradient(135deg, var(--brand) 0%, #0056b3 100%);
+  color: #fff;
+  padding: 20px 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Pass checked_1 */
