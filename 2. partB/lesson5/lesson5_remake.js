@@ -1056,12 +1056,18 @@ function createCelebration() {
 updateDemo();
 renderTask();
 
-// Next lesson functionality
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    alert('🎉 Congratulations! You\'ve completed Lesson 5 - Semantic HTML!\n\nYou\'ve learned how to create meaningful document structures that are accessible, SEO-friendly, and maintainable. Great job!');
-
-    window.location.href = '/2. partB/lesson6/lesson6_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        5,
+        "Semantic HTML",
+        "You've learned how to create meaningful document structures that are accessible, SEO-friendly, and maintainable. Great job!",
+        "/2. partB/lesson6/lesson6_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson6/lesson6_remake.html';
+    }
   }
 });
 

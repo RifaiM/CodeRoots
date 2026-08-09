@@ -2,11 +2,12 @@
     --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   
     --brand: #007BFF;
-    --bg: #f4f8ff;
-    --box: #ffffff;
-    --muted: #eef4ff;
-    --border: #dde7ff;
-    --text: #222;
+    --bg: #e2e8f0;
+    --bg-gradient: linear-gradient(135deg, #eef2f7 0%, #e2e8f0 100%);
+    --box: #f8fafc;
+    --muted: #e2e8f0;
+    --border: #cbd5e1;
+    --text: #1e293b;
     --success: #27ae60;
     --error: #e74c3c;
     --warning: #f39c12;
@@ -16,7 +17,7 @@
     --css-color: #1572b6;
     --js-color: #f7df1e;
     --integration-color: #9c27b0;
-    --step-bg: #f8f9ff;
+    --step-bg: #f1f5f9;
     --feature-bg: #fff3e0;
     --criterion-bg: #e8f5e8;
     --css-color-2: #e91e63;
@@ -59,7 +60,7 @@
     --operator-color: #9c27b0;
     --console-color: #212529;
 
-    --step-bg: #f8f9ff;
+    --step-bg: #f1f5f9;
   
     --css-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   
@@ -121,77 +122,562 @@ textarea:focus {
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
-  /* normal text */
   line-height: 1.55;
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--text);
+  background-color: #e5ecf4 !important;
+  background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%) !important;
+  color: var(--text, #1a202c);
+  min-height: 100vh;
 }
 
-/* Home Button */
-
+/* Home Button - Embedded & Vertically Centered in Sticky Header Bar */
 .home-button {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  background: linear-gradient(145deg, #ff9800, #ffb74d);
-  color: white;
-  padding: 12px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 18px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  animation: pulseGlow 2.5s infinite;
+  position: fixed !important;
+  top: 12px !important;
+  left: 20px !important;
+  background: linear-gradient(145deg, #ff9800, #ffb74d) !important;
+  color: #ffffff !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  text-decoration: none !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4) !important;
+  transition: all 0.25s cubic-bezier(.25, .8, .25, 1) !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  animation: pulseGlow 2.5s infinite !important;
 }
 
 .home-button:hover {
-  transform: translateY(-1px) scale(1.12);
-  box-shadow: 0 10px 20px rgba(255, 152, 0, 0.6);
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.6) !important;
 }
 
 .home-button:active {
-  transform: scale(0.9);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 @keyframes pulseGlow {
   0% {
-    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
   }
-
   50% {
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+    box-shadow: 0 6px 18px rgba(255, 152, 0, 0.6);
   }
-
   100% {
-    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
   }
 }
 
-/* HEADER */
-
-
+/* DEFAULT HERO HEADER ARCHITECTURE (Home Page & Part A Concept Pages) */
 header {
-  background: linear-gradient(135deg, var(--brand) 0%, #0056b3 100%);
-  color: #fff;
-  padding: 20px 12px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  position: relative !important;
+  top: auto !important;
+  background: linear-gradient(135deg, var(--brand, #007BFF) 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  padding: 24px 16px !important;
+  text-align: center !important;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.2) !important;
+  display: block !important;
+  min-height: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  text-align: center !important;
+  width: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* Pass checked_1 */
+header p {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1rem !important;
+  opacity: 0.92 !important;
+  line-height: 1.4 !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+/* WCAG 2.1 AA ACCESSIBILITY & FOCUS VISIBLE GUARD */
+:focus-visible {
+  outline: 3px solid #007bff !important;
+  outline-offset: 2px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 3px solid #007bff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3) !important;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* EYE STRAIN RELIEF: SOFT CONTAINER & CARD BACKGROUNDS */
+.section,
+.card,
+.concept-card,
+.quiz-container,
+.progress-section,
+.certificate-generator,
+.instruction-panel,
+.workspace-panel,
+.editor-card,
+.modal-content,
+.preview-modal-content,
+.swal2-popup,
+.detail-card,
+.result-card,
+.info-card,
+.step-card {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+}
+
+/* Ensure inner headings inside soft cards are crisp and readable */
+.section h1, .section h2, .section h3,
+.card h1, .card h2, .card h3,
+.concept-card h1, .concept-card h2, .concept-card h3,
+.instruction-panel h1, .instruction-panel h2, .instruction-panel h3,
+.workspace-panel h1, .workspace-panel h2, .workspace-panel h3 {
+  color: #0f172a !important;
+}
+
+/* UNIFORM PURE WHITE TITLE TEXT ABOVE ALL CODE EDITORS & PREVIEW PANELS */
+.editor-header,
+.panel-header,
+.preview-header,
+.workspace-header,
+.window-header,
+.pane-header,
+.pane h2,
+.pane h3,
+.pane h4,
+.editor-header h1, .editor-header h2, .editor-header h3, .editor-header h4, .editor-header span,
+.panel-header h1, .panel-header h2, .panel-header h3, .panel-header h4, .panel-header span,
+.preview-header h1, .preview-header h2, .preview-header h3, .preview-header h4, .preview-header span,
+.workspace-header h1, .workspace-header h2, .workspace-header h3, .workspace-header h4, .workspace-header span,
+.window-header h1, .window-header h2, .window-header h3, .window-header h4, .window-header span,
+.panel-title,
+.editor-title,
+.preview-title,
+.window-title,
+.header-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* WCAG 1.4.3 Contrast Adjustments for Muted Text */
+.preview-info,
+.line-counter,
+.step-desc,
+.subtext,
+.muted-text {
+  color: #4a5568 !important;
+}
+
+/* Universal Modal Header & Close Button Architecture */
+.preview-header,
+.modal-header,
+.popup-header {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  padding: 16px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.preview-header h2,
+.preview-header h3,
+.preview-header h4,
+.modal-header h2,
+.modal-header h3,
+.modal-header h4,
+.popup-header h2,
+.popup-header h3,
+.popup-header h4 {
+  color: #ffffff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.preview-close,
+.modal-close,
+.nav-close,
+.popup-close {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  aspect-ratio: 1 / 1 !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+}
+
+.preview-close:hover,
+.modal-close:hover,
+.nav-close:hover,
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Universal Modal & SweetAlert Overlay Z-Index Priority Guard */
+.swal2-container,
+#preview-modal,
+.preview-modal,
+.preview-overlay,
+.modal-overlay,
+.modal,
+div[id*="modal"],
+div[class*="modal"],
+div[class*="overlay"],
+div[style*="z-index: 10000"],
+div[style*="z-index:10000"],
+div[style*="z-index: 10001"],
+div[style*="z-index:10001"],
+div[style*="position: fixed"][style*="background: rgba(0, 0, 0"],
+div[style*="position: fixed"][style*="background:rgba(0,0,0"] {
+  z-index: 999999 !important;
+}
+
+#preview-modal .preview-overlay,
+.preview-overlay,
+.modal-overlay {
+  z-index: 999999 !important;
+  padding-top: 78px !important; /* Prevents modal card top from colliding with sticky header */
+  box-sizing: border-box !important;
+}
+
+/* STICKY LESSON NAVBAR ARCHITECTURE (Part B Lesson Pages) */
+header:not(:has(p)),
+.lesson-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99990 !important;
+  width: 100% !important;
+  background: linear-gradient(135deg, var(--brand, #007BFF) 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  padding: 0 190px !important;
+  min-height: 64px !important;
+  height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.25) !important;
+  box-sizing: border-box !important;
+}
+
+header:not(:has(p)) h1,
+.lesson-header h1 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-align: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Suppress extra badges appended into sticky header that collide with nav buttons */
+header:not(:has(p)) .challenge-badge,
+header:not(:has(p)) .completion-badge,
+header:not(:has(p)) > div:not(.lesson-nav-container) {
+  display: none !important;
+}
+
+/* Sticky Navigation Control Placement - Vertically Centered Far Right */
+.lesson-nav-container {
+  position: fixed !important;
+  top: 12px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+}
+
+/* Universal Hint Popup Position Guard - Always below sticky navbar */
+div[style*="top: 20px"],
+div[style*="top:20px"],
+.hint-popup,
+.hint-modal {
+  top: 78px !important;
+}
+
+/* Responsive Mobile Rules (375px & 320px screens) */
+@media (max-width: 768px) {
+  #preview-modal .preview-overlay,
+  .preview-overlay,
+  .modal-overlay {
+    padding-top: 60px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  header {
+    padding: 18px 12px !important;
+  }
+
+  header h1 {
+    font-size: 1.2rem !important;
+  }
+
+  header p {
+    font-size: 0.85rem !important;
+  }
+
+  header:not(:has(p)),
+  .lesson-header {
+    min-height: 54px !important;
+    height: 54px !important;
+    padding: 0 54px !important;
+  }
+
+  header:not(:has(p)) h1,
+  .lesson-header h1 {
+    font-size: 0.9rem !important;
+    padding: 0 !important;
+  }
+
+  .home-button {
+    top: 9px !important;
+    left: 10px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .lesson-nav-container {
+    top: 9px !important;
+    right: 10px !important;
+  }
+
+  .lesson-nav-btn {
+    padding: 6px 10px !important;
+    font-size: 0.8rem !important;
+  }
+
+  div[style*="top: 20px"],
+  div[style*="top:20px"],
+  .hint-popup,
+  .hint-modal {
+    top: 64px !important;
+    right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+
+@media (max-width: 375px) {
+  header:not(:has(p)),
+  .lesson-header {
+    min-height: 50px !important;
+    height: 50px !important;
+    padding: 0 46px !important;
+  }
+
+  header:not(:has(p)) h1,
+  .lesson-header h1 {
+    font-size: 0.8rem !important;
+  }
+
+  .home-button {
+    top: 8px !important;
+    left: 6px !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .lesson-nav-container {
+    top: 8px !important;
+    right: 6px !important;
+  }
+
+  .lesson-nav-btn {
+    padding: 5px 8px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  /* 375px & 320px viewport optimizations */
+  header h1 {
+    font-size: 1.15rem !important;
+  }
+
+  header:not(:has(p)) h1,
+  .lesson-header h1 {
+    font-size: 0.9rem !important;
+    padding: 0 46px !important;
+  }
+
+  .home-button {
+    top: 8px !important;
+    left: 8px !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .lesson-nav-container {
+    top: 8px !important;
+    right: 8px !important;
+  }
+}
+
+@media (max-width: 330px) {
+  /* Ultra-small 320px screen polish */
+  header h1 {
+    font-size: 1.05rem !important;
+  }
+
+  header:not(:has(p)) h1,
+  .lesson-header h1 {
+    font-size: 0.85rem !important;
+    padding: 0 42px !important;
+  }
+}
+
+/* GLOBAL BACK TO TOP BUTTON ARCHITECTURE */
+.back-to-top-btn {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  z-index: 9990 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  flex-shrink: 0 !important;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) scale(0.9) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+}
+
+.back-to-top-btn svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #ffffff !important;
+  display: block !important;
+  margin: auto !important;
+  pointer-events: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.back-to-top-btn:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #003d80 100%) !important;
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.5) !important;
+}
+
+.back-to-top-btn:focus,
+.back-to-top-btn:focus-visible {
+  outline: 3px solid #007bff !important;
+  outline-offset: 3px !important;
+  border: none !important;
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0) scale(0.96) !important;
+}
+
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 20px !important;
+    right: 16px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .back-to-top-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}

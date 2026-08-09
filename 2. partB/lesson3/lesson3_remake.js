@@ -812,10 +812,18 @@ function checkAndRestoreCompletion() {
 // Initialize demo on page load
 updateDemo();
 
-// Set up next lesson navigation
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    window.location.href = '/2. partB/lesson4/lesson4_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        3,
+        "HTML Lists",
+        "You've learned how to create ordered (<ol>) and unordered (<ul>) lists with list items!",
+        "/2. partB/lesson4/lesson4_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson4/lesson4_remake.html';
+    }
   }
 });
 

@@ -946,12 +946,19 @@ class HTMLCodeEditor {
     codeEditor = new HTMLCodeEditor('task-code', 'line-numbers');
   
   
-    // Fix Next Lesson button navigation
     const nextBtn = document.getElementById('nextLessonBtn');
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        const nextLesson = getCurrentLessonNumber() + 1;
-        window.location.href = `/2. partB/lesson2/lesson${nextLesson}_remake.html`;
+        if (!nextBtn.disabled && window.showLessonCompletionModal) {
+          window.showLessonCompletionModal(
+            1,
+            "HTML Basics & Website Structure",
+            "You've learned how HTML tags work together to structure web pages cleanly!",
+            "/2. partB/lesson2/lesson2_remake.html"
+          );
+        } else {
+          window.location.href = "/2. partB/lesson2/lesson2_remake.html";
+        }
       });
     }
   });

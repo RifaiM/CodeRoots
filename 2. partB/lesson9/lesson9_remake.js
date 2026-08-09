@@ -1718,13 +1718,21 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Next lesson button functionality
 document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = document.getElementById('nextLessonBtn');
   if (nextBtn) {
     nextBtn.addEventListener('click', function() {
       if (!this.disabled) {
-        window.location.href = '/2. partB/lesson10/lesson10_remake.html';
+        if (window.showLessonCompletionModal) {
+          window.showLessonCompletionModal(
+            9,
+            "CSS Grid Basics",
+            "You've learned grid-template-columns, grid-template-rows, and two-dimensional layout grids!",
+            "/2. partB/lesson10/lesson10_remake.html"
+          );
+        } else {
+          window.location.href = '/2. partB/lesson10/lesson10_remake.html';
+        }
       }
     });
   }

@@ -60,6 +60,7 @@ const browsers = [
 
 let currentBrowserIndex = 0;
 let isMobile = false;
+let autoPlayTimer = null;
 
 const timelineContainer = document.getElementById('timelineContainer');
 const prevBtn = document.getElementById('prevBtn');
@@ -70,6 +71,23 @@ function detectMobile() {
     const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
     const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     return mobileMediaQuery.matches || touchDevice;
+}
+
+// Start auto-play carousel
+function startAutoPlayTimeline() {
+    stopAutoPlayTimeline();
+    autoPlayTimer = setInterval(() => {
+        currentBrowserIndex = (currentBrowserIndex + 1) % browsers.length;
+        updateTimeline();
+    }, 3200);
+}
+
+// Stop auto-play carousel
+function stopAutoPlayTimeline() {
+    if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+    }
 }
 
 // Initialize timeline
@@ -89,29 +107,40 @@ function initTimeline() {
             </div>
         `;
         
-        // Add click handler for mobile
-        if (isMobile) {
-            card.addEventListener('click', () => handleCardClick(index));
-        }
+        // Add click handler to select card & restart auto-play delay
+        card.addEventListener('click', () => handleCardClick(index));
         
         timelineContainer.appendChild(card);
     });
+
+    // Pause on hover or touch
+    timelineContainer.addEventListener('mouseenter', stopAutoPlayTimeline);
+    timelineContainer.addEventListener('mouseleave', startAutoPlayTimeline);
+    timelineContainer.addEventListener('touchstart', stopAutoPlayTimeline, { passive: true });
+    timelineContainer.addEventListener('touchend', () => {
+        setTimeout(startAutoPlayTimeline, 2000);
+    }, { passive: true });
+
+    // Start initial auto-play loop
+    startAutoPlayTimeline();
 }
 
 // Handle card click to make it active
 function handleCardClick(index) {
     currentBrowserIndex = index;
     updateTimeline();
+    // Reset timer when manually clicked
+    startAutoPlayTimeline();
 }
 
-// Timeline navigation - manual only
+// Timeline navigation with smooth auto-play scrolling
 function updateTimeline() {
     const cards = timelineContainer.querySelectorAll('.timeline-card');
     cards.forEach((card, index) => {
         card.classList.toggle('active', index === currentBrowserIndex);
     });
     
-    // Smooth scroll to active card only on manual interaction
+    // Smooth scroll to active card
     const activeCard = cards[currentBrowserIndex];
     if (activeCard) {
         const containerWidth = timelineContainer.offsetWidth;
@@ -124,7 +153,7 @@ function updateTimeline() {
         });
     }
     
-    // Update button states
+    // Update button states if buttons exist
     if (prevBtn) prevBtn.disabled = currentBrowserIndex === 0;
     if (nextBtn) nextBtn.disabled = currentBrowserIndex === browsers.length - 1;
 }
@@ -286,18 +315,47 @@ function handleConceptClick(e) {
     localStorage.setItem(`${concept}ClickTime`, Date.now().toString());
 }
 
-// Enhanced page load detection
-function navTypeIsReload() {
-    try {
-        if (performance.getEntriesByType) {
-            const nav = performance.getEntriesByType('navigation')[0];
-            if (nav && nav.type) return nav.type === 'reload';
-        }
-        if (performance.navigation) {
-            return performance.navigation.type === 1;
-        }
-    } catch (e) {}
-    return false;
+// Manual Progress Reset Function
+function resetPartAProgress() {
+    const doReset = () => {
+        ['readWebsite', 'readHTML', 'readCSS', 'readJavaScript'].forEach(key => {
+            localStorage.removeItem(key);
+        });
+        
+        // Remove badges & completed styling
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.classList.remove('completed');
+            const badge = card.querySelector('.completed-badge');
+            if (badge) badge.remove();
+        });
+        
+        updateProgress();
+    };
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: 'Reset Learning Progress?',
+            text: 'Are you sure you want to reset your Part A learning progress?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e74c3c',
+            cancelButtonColor: '#007BFF',
+            confirmButtonText: 'Yes, reset progress!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                doReset();
+                Swal.fire({
+                    title: 'Reset Complete!',
+                    text: 'Your learning progress has been reset.',
+                    icon: 'success',
+                    confirmButtonColor: '#007BFF'
+                });
+            }
+        });
+    } else {
+        doReset();
+    }
 }
 
 // Intersection Observer for animations
@@ -317,19 +375,18 @@ const observer = new IntersectionObserver((entries) => {
 
 // Initialize everything when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Reset progress on hard reload only
-    if (navTypeIsReload()) {
-        ['Website', 'HTML', 'CSS', 'JavaScript'].forEach(topic => {
-            localStorage.removeItem('read' + topic);
-        });
-    }
-
-    // Initialize components
+    // Initialize components (Progress is preserved across reloads!)
     initTimeline();
     updateTimeline();
     loadQuiz();
     updateProgress();
     setupTouchHandlers();
+
+    // Bind manual reset progress button
+    const resetBtn = document.getElementById('resetProgressBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetPartAProgress);
+    }
 
     // Responsive behavior updates
     function handleResize() {
@@ -368,12 +425,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 300);
 
-    // Add keyboard navigation
+    // Add keyboard navigation for timeline
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
-            prevBtn.click();
-        } else if (e.key === 'ArrowRight' && !nextBtn.disabled) {
-            nextBtn.click();
+        if (e.key === 'ArrowLeft') {
+            currentBrowserIndex = (currentBrowserIndex - 1 + browsers.length) % browsers.length;
+            updateTimeline();
+            startAutoPlayTimeline();
+        } else if (e.key === 'ArrowRight') {
+            currentBrowserIndex = (currentBrowserIndex + 1) % browsers.length;
+            updateTimeline();
+            startAutoPlayTimeline();
         }
     });
 
@@ -536,17 +597,33 @@ document.getElementById('nextBtnPartB').addEventListener('click', function() {
     }
 });
 
-// Add some fun Easter eggs
-let clickCount = 0;
-document.querySelector('header h1').addEventListener('click', () => {
-    clickCount++;
-    if (clickCount >= 5) {
-        document.body.style.filter = 'hue-rotate(45deg)';
-        setTimeout(() => {
-            document.body.style.filter = '';
-            clickCount = 0;
-        }, 2000);
-    }
-});
+// Universal Back to Top Button Auto-Initializer
+function initBackToTopButton() {
+    if (document.getElementById('globalBackToTopBtn')) return;
 
-/* Pass checked_1 */
+    const btn = document.createElement('button');
+    btn.id = 'globalBackToTopBtn';
+    btn.className = 'back-to-top-btn';
+    btn.setAttribute('aria-label', 'Scroll back to top of page');
+    btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    document.body.appendChild(btn);
+
+    const toggleVisibility = () => {
+        if (window.scrollY > 250) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    };
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackToTopButton);
+} else {
+    initBackToTopButton();
+}

@@ -563,20 +563,52 @@ class WorkspaceManager {
   }
 
   loadTemplate() {
-    if (confirm('This will replace your current code. Continue?')) {
+    const doLoadTemplate = () => {
       codeEditor.value = projectTemplate;
       this.updatePreview();
       this.updateLineCounter();
       this.showNotification('Template loaded successfully!', 'success');
+    };
+
+    if (typeof Swal !== 'undefined') {
+      Swal.fire({
+        title: 'Load Template?',
+        text: 'This will replace your current code. Continue?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#007BFF',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, load template'
+      }).then((result) => {
+        if (result.isConfirmed) doLoadTemplate();
+      });
+    } else {
+      doLoadTemplate();
     }
   }
 
   clearCode() {
-    if (confirm('This will delete all your code. Are you sure?')) {
+    const doClearCode = () => {
       codeEditor.value = '';
       this.updatePreview();
       this.updateLineCounter();
       this.showNotification('Code cleared', 'info');
+    };
+
+    if (typeof Swal !== 'undefined') {
+      Swal.fire({
+        title: 'Clear All Code?',
+        text: 'This will delete all your code. Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#007BFF',
+        confirmButtonText: 'Yes, clear code!'
+      }).then((result) => {
+        if (result.isConfirmed) doClearCode();
+      });
+    } else {
+      doClearCode();
     }
   }
 
@@ -630,7 +662,9 @@ class WorkspaceManager {
       newWindow.document.write(code);
       newWindow.document.close();
     } else {
-      alert('Pop-up blocked! Please allow pop-ups to view fullscreen preview.');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire('Pop-up Blocked', 'Please allow pop-ups to view fullscreen preview.', 'warning');
+      }
     }
   }
 
@@ -721,18 +755,28 @@ class ProjectValidator {
   }
 
   validateProject() {
+    const editorElem = document.getElementById('code-editor') || (typeof codeEditor !== 'undefined' ? codeEditor : null);
+    const code = editorElem ? editorElem.value.trim() : '';
+
+    if (!code) {
+      this.showFeedback('empty');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: '🤔 Workspace is Empty!',
+          text: 'Your code editor is empty! Click "Load Template" to get started with a complete project, or start writing your HTML, CSS, and JS code.',
+          icon: 'warning',
+          confirmButtonColor: '#007BFF',
+          confirmButtonText: 'Got It!'
+        });
+      }
+      return;
+    }
+
     // Check if lesson is already completed
     const isAlreadyCompleted = localStorage.getItem('partB_lesson14_remake_complete') === 'true';
 
     if (isAlreadyCompleted) {
       this.showAlreadyCompletedMessage();
-      return;
-    }
-
-    const code = codeEditor.value.trim();
-
-    if (!code) {
-      this.showFeedback('empty');
       return;
     }
 
@@ -1269,19 +1313,25 @@ contactForm.addEventListener('submit', function(e) {
     
     // Basic validation
     if (!name || !email || !message) {
-        alert('Please fill in all fields!');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Missing Information', 'Please fill in all fields!', 'warning');
+        }
         return;
     }
     
     // Email validation
     const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email!');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Invalid Email', 'Please enter a valid email address!', 'warning');
+        }
         return;
     }
     
     // Success
-    alert('Thank you! Message sent successfully!');
+    if (typeof Swal !== 'undefined') {
+        Swal.fire('Thank You! 🎉', 'Your message has been sent successfully!', 'success');
+    }
     contactForm.reset();
 });
 
@@ -1352,69 +1402,79 @@ Remember: This is YOUR portfolio - make it personal and unique!
     // Create help modal
     const modal = document.createElement('div');
     modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.8);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        `;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.75);
+        backdrop-filter: blur(4px);
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+    `;
 
     const content = document.createElement('div');
     content.style.cssText = `
-            background: white;
-            border-radius: 12px;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        `;
+        background: white;
+        border-radius: 16px;
+        max-width: 900px;
+        width: 100%;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    `;
 
     const header = document.createElement('div');
     header.style.cssText = `
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        `;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+    `;
 
     const title = document.createElement('h2');
     title.textContent = 'Complete Project Guide';
-    title.style.margin = '0';
+    title.style.cssText = 'margin: 0; font-size: 1.25rem; font-weight: 700; color: white;';
 
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '✕';
     closeBtn.style.cssText = `
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        `;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+    `;
 
     const body = document.createElement('div');
     body.style.cssText = `
-            padding: 30px;
-            font-family: monospace;
-            font-size: 13px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            color: #333;
-        `;
+        padding: 24px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        color: #333;
+        overflow-y: auto;
+        flex: 1;
+    `;
     body.textContent = helpContent;
 
     closeBtn.addEventListener('click', () => modal.remove());
@@ -1536,7 +1596,16 @@ class NavigationManager {
     const nextBtn = document.getElementById('next-lesson');
     nextBtn?.addEventListener('click', () => {
       if (!nextBtn.disabled) {
-        window.location.href = '/2. partB/lesson15/lesson15_remake.html';
+        if (window.showLessonCompletionModal) {
+          window.showLessonCompletionModal(
+            14,
+            "Mini Project - Interactive Web Portfolio",
+            "You've built a full interactive web portfolio incorporating HTML structure, CSS styling, and JS interactivity!",
+            "/2. partB/lesson15/lesson15_remake.html"
+          );
+        } else {
+          window.location.href = '/2. partB/lesson15/lesson15_remake.html';
+        }
       }
     });
   }

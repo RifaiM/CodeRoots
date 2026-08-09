@@ -592,7 +592,11 @@ function addMiniDemoListeners(type) {
                 
                 if (submitBtn) {
                     submitBtn.addEventListener('click', function() {
-                        alert('Form submitted! Event listeners handled validation and submission.');
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire('Form Submitted! 🎉', 'Event listeners handled validation and submission.', 'success');
+                        } else {
+                            showTempMessage('Form submitted! Event listeners handled validation and submission.', 3000);
+                        }
                     });
                 }
             }
@@ -819,7 +823,7 @@ hoverBox.addEventListener('mouseout', function() {
 
 // Reset code function
 document.getElementById('reset-code').addEventListener('click', function() {
-    if (confirm('Are you sure you want to reset the textarea? This will erase all of your current code.')) {
+    const doResetCode = () => {
         setDefaultTemplate();
         feedback.innerHTML = '';
         completionStatus = {
@@ -834,6 +838,25 @@ document.getElementById('reset-code').addEventListener('click', function() {
         nextBtn.disabled = true;
         nextBtn.style.opacity = '0.5';
         nextBtn.style.cursor = 'not-allowed';
+    };
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: 'Reset Code Editor?',
+            text: 'Are you sure you want to reset the textarea? This will erase all of your current code.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e74c3c',
+            cancelButtonColor: '#007BFF',
+            confirmButtonText: 'Yes, reset code!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                doResetCode();
+            }
+        });
+    } else {
+        doResetCode();
     }
 });
 
@@ -922,7 +945,9 @@ function showCodeResult(code) {
         resultWindow.document.close();
         resultWindow.focus();
     } else {
-        alert('Pop-up blocked! Please allow pop-ups to see your code result.\n\nAlternatively, copy your code to a new HTML file to test it.');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Pop-up Blocked', 'Please allow pop-ups to see your code result. Alternatively, copy your code to a new HTML file to test it.', 'warning');
+        }
     }
 }
 
@@ -1973,7 +1998,16 @@ function showErrorsWithWarnings(errorMessages, successMessages, warningMessages)
 // Next lesson button
 document.getElementById('next-lesson').addEventListener('click', function() {
     if (!this.disabled) {
-        window.location.href = '/2. partB/lesson13/lesson13_remake.html';
+        if (window.showLessonCompletionModal) {
+            window.showLessonCompletionModal(
+                12,
+                "DOM Manipulation",
+                "You've mastered querySelector, getElementById, innerHTML, textContent, and event listeners!",
+                "/2. partB/lesson13/lesson13_remake.html"
+            );
+        } else {
+            window.location.href = '/2. partB/lesson13/lesson13_remake.html';
+        }
     }
 });
 

@@ -969,10 +969,16 @@ renderTask();
  */
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    alert('🎉 Congratulations! You\'ve completed Lesson 7 - CSS Box Model!\n\nYou\'ve mastered margin, padding, and border properties - the foundation of professional web layouts. Great job!');
-
-    // Navigate to next lesson (uncomment and modify as needed)
-    window.location.href = '/2. partB/lesson8/lesson8_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        7,
+        "CSS Box Model",
+        "You've mastered margin, padding, and border properties – the foundation of professional web layouts. Great job!",
+        "/2. partB/lesson8/lesson8_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson8/lesson8_remake.html';
+    }
   }
 });
 

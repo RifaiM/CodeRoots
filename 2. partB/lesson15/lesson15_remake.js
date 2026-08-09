@@ -1635,50 +1635,83 @@ FinalChallenge.prototype.startEncouragement = function() {
 // Global function for certificate generation
 window.generateCertificate = function() {
   const savedName = localStorage.getItem('student_name');
-  let studentName = savedName;
   
-  if (!studentName) {
-      studentName = prompt('Please enter your name for the certificate:');
+  const proceedWithCertificate = (studentName) => {
       if (!studentName) {
-          alert('Name is required to generate certificate');
+          if (typeof Swal !== 'undefined') {
+              Swal.fire('Name Required', 'Your name is required to generate the official certificate.', 'warning');
+          }
           return;
       }
       localStorage.setItem('student_name', studentName);
-  }
 
-  const completionDate = localStorage.getItem('partB_course_completed_date');
-  const certificateData = {
-      studentName: studentName,
-      completionDate: completionDate ? new Date(completionDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-      generatedAt: new Date().toISOString()
+      const completionDate = localStorage.getItem('partB_course_completed_date');
+      const certificateData = {
+          studentName: studentName,
+          completionDate: completionDate ? new Date(completionDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+          generatedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem('certificateData', JSON.stringify(certificateData));
+
+      try {
+          const certificateWindow = window.open('', '_blank', 'width=1000,height=700');
+          
+          if (!certificateWindow) {
+              if (typeof Swal !== 'undefined') {
+                  Swal.fire('Pop-up Blocked', 'Please allow pop-ups to generate your certificate.', 'warning');
+              }
+              return;
+          }
+          
+          const certificateHTML = generateCertificateHTML(certificateData);
+          certificateWindow.document.write(certificateHTML);
+          certificateWindow.document.close();
+          certificateWindow.focus();
+
+          const promptModal = document.getElementById('certificate-prompt');
+          if (promptModal) {
+              promptModal.remove();
+          }
+
+          setTimeout(() => {
+              if (typeof Swal !== 'undefined') {
+                  Swal.fire('Certificate Generated! 🎓', 'You can download it as PDF using the Print function.', 'success');
+              }
+          }, 1000);
+      } catch (error) {
+          console.error('Error generating certificate:', error);
+          if (typeof Swal !== 'undefined') {
+              Swal.fire('Generation Error', 'Error generating certificate. Please try again.', 'error');
+          }
+      }
   };
 
-  localStorage.setItem('certificateData', JSON.stringify(certificateData));
-
-  try {
-      const certificateWindow = window.open('', '_blank', 'width=1000,height=700');
-      
-      if (!certificateWindow) {
-          alert('Please allow pop-ups to generate your certificate');
-          return;
+  if (!savedName) {
+      if (typeof Swal !== 'undefined') {
+          Swal.fire({
+              title: 'Official Certificate',
+              text: 'Please enter your full name for the certificate:',
+              input: 'text',
+              inputPlaceholder: 'e.g. Jane Doe',
+              showCancelButton: true,
+              confirmButtonColor: '#007BFF',
+              confirmButtonText: 'Generate Certificate 🎓',
+              inputValidator: (value) => {
+                  if (!value || !value.trim()) {
+                      return 'You need to write your name!';
+                  }
+              }
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  proceedWithCertificate(result.value.trim());
+              }
+          });
+      } else {
+          proceedWithCertificate("Student");
       }
-      
-      const certificateHTML = generateCertificateHTML(certificateData);
-      certificateWindow.document.write(certificateHTML);
-      certificateWindow.document.close();
-      certificateWindow.focus();
-
-      const prompt = document.getElementById('certificate-prompt');
-      if (prompt) {
-          prompt.remove();
-      }
-
-      setTimeout(() => {
-          alert('Certificate generated! You can download it as PDF using the Print function.');
-      }, 1000);
-  } catch (error) {
-      console.error('Error generating certificate:', error);
-      alert('Error generating certificate. Please try again.');
+  } else {
+      proceedWithCertificate(savedName);
   }
 };
 

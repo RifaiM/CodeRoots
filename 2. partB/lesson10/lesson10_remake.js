@@ -698,7 +698,15 @@ function checkAnswer() {
     const code = taskEditor.value.trim();
     
     if (!code) {
-        showFeedback('error', 'ðŸ¤" Your Code is Empty!', 'Please write some JavaScript code to complete the challenge.');
+        showFeedback('error', '🤔 Your Code is Empty!', 'Please write some JavaScript code to complete the challenge.');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                title: '🤔 Workspace is Empty!',
+                text: 'Please write some JavaScript code to complete the challenge.',
+                icon: 'warning',
+                confirmButtonColor: '#007BFF'
+            });
+        }
         return;
     }
 
@@ -975,7 +983,16 @@ function enableNextLesson() {
 function nextLesson() {
     const nextBtn = document.getElementById('next-lesson');
     if (nextBtn && !nextBtn.disabled) {
-        window.location.href = '/2. partB/lesson11/lesson11_remake.html';
+        if (window.showLessonCompletionModal) {
+            window.showLessonCompletionModal(
+                10,
+                "CSS Responsive Web Design",
+                "You've learned media queries (@media) and mobile-responsive layouts for all screen sizes!",
+                "/2. partB/lesson11/lesson11_remake.html"
+            );
+        } else {
+            window.location.href = '/2. partB/lesson11/lesson11_remake.html';
+        }
     }
 }
 

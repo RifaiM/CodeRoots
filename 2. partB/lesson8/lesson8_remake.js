@@ -1051,10 +1051,18 @@ function checkAndRestoreCompletion() {
 updateDemo();
 renderTask();
 
-// Next lesson button functionality
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    window.location.href = '/2. partB/lesson9/lesson9_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        8,
+        "CSS Flexbox",
+        "You've mastered flex containers, flex items, justify-content, and align-items for modern flexible layouts!",
+        "/2. partB/lesson9/lesson9_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson9/lesson9_remake.html';
+    }
   }
 });
 

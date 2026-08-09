@@ -872,10 +872,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize demo preview on page load
   updateDemo();
   
-  // Next lesson navigation functionality
   document.getElementById('nextLessonBtn').addEventListener('click', function() {
     if (!this.disabled) {
-      window.location.href = '/2. partB/lesson3/lesson3_remake.html';
+      if (window.showLessonCompletionModal) {
+        window.showLessonCompletionModal(
+          2,
+          "HTML Headings & Text Formatting",
+          "You've mastered heading hierarchy (h1-h6) and text formatting tags for structured content!",
+          "/2. partB/lesson3/lesson3_remake.html"
+        );
+      } else {
+        window.location.href = '/2. partB/lesson3/lesson3_remake.html';
+      }
     }
   });
   

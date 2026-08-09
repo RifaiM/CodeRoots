@@ -856,10 +856,18 @@ function createCelebration() {
 // Initialize demos
 updateDemo();
 
-// Next lesson functionality
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    window.location.href = '/2. partB/lesson5/lesson5_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        4,
+        "HTML Links & Images",
+        "You've learned how to connect web pages using hyperlinks (<a>) and embed rich images (<img>)!",
+        "/2. partB/lesson5/lesson5_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson5/lesson5_remake.html';
+    }
   }
 });
 

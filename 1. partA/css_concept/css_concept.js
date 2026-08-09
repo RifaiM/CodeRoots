@@ -229,7 +229,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Start auto demo after page loads (but disable it for now to avoid conflicts)
-// setTimeout(autoDemo, 3000);
+// Universal Back to Top Button Auto-Initializer
+function initBackToTopButton() {
+    if (document.getElementById('globalBackToTopBtn')) return;
 
-/* Pass checked_1 */
+    const btn = document.createElement('button');
+    btn.id = 'globalBackToTopBtn';
+    btn.className = 'back-to-top-btn';
+    btn.setAttribute('aria-label', 'Scroll back to top of page');
+    btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    document.body.appendChild(btn);
+
+    const toggleVisibility = () => {
+        if (window.scrollY > 250) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    };
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackToTopButton);
+} else {
+    initBackToTopButton();
+}

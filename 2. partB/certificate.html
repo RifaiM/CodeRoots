@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Global/root.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Web Development Course Certificate</title>
 
     <!-- Certificate Protection Script - Must run FIRST -->
@@ -119,19 +120,26 @@
 
         .page-header {
             text-align: center;
-            color: white;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: #ffffff !important;
+            padding: 32px 24px;
+            border-radius: 16px;
             margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
         }
 
         .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .page-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.95) !important;
+            margin: 0;
         }
 
         .certificate-generator {
@@ -483,15 +491,15 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="studentName">Full Name:</label>
-                        <input type="text" id="studentName" placeholder="Enter your full name">
+                        <input type="text" id="studentName" placeholder="Enter your full name" aria-required="true" aria-label="Student full name for official certificate">
                     </div>
                     <div class="form-group">
                         <label for="completionDateInput">Completion Date:</label>
-                        <input type="date" id="completionDateInput" readonly>
+                        <input type="date" id="completionDateInput" readonly aria-label="Course completion date">
                     </div>
                     <div class="form-group">
                         <label for="finalScoreInput">Final Project Score:</label>
-                        <input type="number" id="finalScoreInput" min="0" max="100" readonly>
+                        <input type="number" id="finalScoreInput" min="0" max="100" readonly aria-label="Final project score percentage">
                     </div>
                 </div>
                 
@@ -607,7 +615,9 @@ function addBasicSecurity() {
         if (validateCertificateData()) {
             secureDownloadCertificate();
         } else {
-            alert('Certificate data validation failed. Please refresh the page and try again.');
+            if (typeof Swal !== 'undefined') {
+                Swal.fire('Validation Failed', 'Certificate data validation failed. Please refresh the page and try again.', 'error');
+            }
         }
     };
 }
@@ -634,10 +644,20 @@ function autoFillData() {
     if (savedName) {
         document.getElementById('studentName').value = savedName;
     } else {
-        const name = prompt('Enter your name to save for future use:');
-        if (name) {
-            document.getElementById('studentName').value = name;
-            localStorage.setItem('student_name', name);
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                title: 'Enter Name',
+                text: 'Enter your name to save for future use:',
+                input: 'text',
+                inputPlaceholder: 'Your full name',
+                showCancelButton: true,
+                confirmButtonColor: '#007BFF'
+            }).then((result) => {
+                if (result.isConfirmed && result.value.trim()) {
+                    document.getElementById('studentName').value = result.value.trim();
+                    localStorage.setItem('student_name', result.value.trim());
+                }
+            });
         }
     }
 
@@ -662,7 +682,9 @@ function generatePreview() {
     const score = document.getElementById('finalScoreInput').value || '100';
 
     if (!name) {
-        alert('Please enter your name');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Name Required', 'Please enter your name.', 'warning');
+        }
         return;
     }
 
@@ -686,7 +708,9 @@ function secureDownloadCertificate() {
     const score = document.getElementById('finalScoreInput').value || '100';
 
     if (!name) {
-        alert('Please generate preview first');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Preview Required', 'Please generate preview first.', 'warning');
+        }
         return;
     }
 
@@ -694,7 +718,9 @@ function secureDownloadCertificate() {
     const certificateWindow = window.open('', '_blank', 'width=1000,height=700');
     
     if (!certificateWindow) {
-        alert('Please allow pop-ups to generate your certificate');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Pop-up Blocked', 'Please allow pop-ups to generate your certificate.', 'warning');
+        }
         return;
     }
     
@@ -713,7 +739,9 @@ function secureDownloadCertificate() {
     };
     localStorage.setItem('certificateData', JSON.stringify(certificateData));
 
-    alert('Certificate opened in new window! Use Ctrl+P or Cmd+P to print/save as PDF.');
+    if (typeof Swal !== 'undefined') {
+        Swal.fire('Certificate Opened! 🎓', 'Certificate opened in new window! Use Ctrl+P or Cmd+P to print/save as PDF.', 'success');
+    }
 }
 
 function generateSecureCertificateHTML(name, date, score) {
@@ -1049,6 +1077,37 @@ function generateCertificateId(name, date, score) {
                 }
             }
         });
+
+        // Universal Back to Top Button Auto-Initializer
+        function initBackToTopButton() {
+            if (document.getElementById('globalBackToTopBtn')) return;
+
+            const btn = document.createElement('button');
+            btn.id = 'globalBackToTopBtn';
+            btn.className = 'back-to-top-btn';
+            btn.setAttribute('aria-label', 'Scroll back to top of page');
+            btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+            document.body.appendChild(btn);
+
+            const toggleVisibility = () => {
+                if (window.scrollY > 250) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            };
+
+            window.addEventListener('scroll', toggleVisibility, { passive: true });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBackToTopButton);
+        } else {
+            initBackToTopButton();
+        }
     </script>
     
 </body>

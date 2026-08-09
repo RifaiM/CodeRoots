@@ -67,7 +67,6 @@ class LessonNavigation {
                 <div class="lesson-nav-dropdown" id="lessonNavDropdown">
                     <div class="nav-header">
                         <span class="nav-title">Course Navigation</span>
-                        <button class="nav-close" id="navCloseBtn">×</button>
                     </div>
                     <div class="nav-content">
                         ${this.generateLessonList()}
@@ -102,9 +101,10 @@ class LessonNavigation {
             }
 
             const clickHandler = canAccess ? `onclick="lessonNav.navigateToLesson(${lesson.id})"` : '';
+            const keyboardAttrs = canAccess ? `role="button" tabindex="0" aria-label="Go to Lesson ${lesson.id}: ${lesson.title}" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"` : 'aria-disabled="true"';
             
             return `
-                <div class="${className}" ${clickHandler} data-lesson="${lesson.id}">
+                <div class="${className}" ${clickHandler} ${keyboardAttrs} data-lesson="${lesson.id}">
                     <span class="lesson-status">${statusIcon}</span>
                     <span class="lesson-info">
                         <span class="lesson-number">Lesson ${lesson.id}</span>
@@ -126,7 +126,7 @@ class LessonNavigation {
                 <div class="nav-section-divider">
                     <span class="divider-text">Course Complete!</span>
                 </div>
-                <div class="nav-lesson-item certificate-item completed" onclick="lessonNav.navigateToCertificate()">
+                <div class="nav-lesson-item certificate-item completed" role="button" tabindex="0" aria-label="Download your official course certificate" onclick="lessonNav.navigateToCertificate()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
                     <span class="lesson-status">🏆</span>
                     <span class="lesson-info">
                         <span class="lesson-number certificate-label">Certificate</span>
@@ -140,7 +140,7 @@ class LessonNavigation {
                 <div class="nav-section-divider">
                     <span class="divider-text">Almost There!</span>
                 </div>
-                <div class="nav-lesson-item certificate-item available" onclick="lessonNav.navigateToLesson(15)">
+                <div class="nav-lesson-item certificate-item available" role="button" tabindex="0" aria-label="Complete final project challenge" onclick="lessonNav.navigateToLesson(15)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
                     <span class="lesson-status">🎯</span>
                     <span class="lesson-info">
                         <span class="lesson-number certificate-label">Final Step</span>
@@ -213,39 +213,55 @@ class LessonNavigation {
                 transition: transform 0.3s ease;
             }
 
-            /* Hamburger menu - hidden by default */
+            /* Hamburger menu - hidden by default on desktop */
             .nav-hamburger {
                 display: none;
                 flex-direction: column;
-                gap: 3px;
+                justify-content: center;
+                align-items: center;
                 width: 18px;
-                height: 14px;
+                height: 18px;
+                position: relative;
             }
 
             .nav-hamburger span {
                 display: block;
                 height: 2px;
-                width: 100%;
+                width: 16px;
                 background: white;
-                border-radius: 1px;
-                transition: all 0.3s ease;
+                border-radius: 2px;
+                position: absolute;
+                transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+            }
+
+            .nav-hamburger span:nth-child(1) {
+                transform: translateY(-5px);
+            }
+
+            .nav-hamburger span:nth-child(2) {
+                transform: translateY(0);
+            }
+
+            .nav-hamburger span:nth-child(3) {
+                transform: translateY(5px);
             }
 
             .lesson-nav-btn.active .nav-arrow {
                 transform: rotate(180deg);
             }
 
-            /* Hamburger animation when active */
+            /* Perfect Centered Cross ✕ Animation when active */
             .lesson-nav-btn.active .nav-hamburger span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+                transform: translateY(0) rotate(45deg);
             }
 
             .lesson-nav-btn.active .nav-hamburger span:nth-child(2) {
                 opacity: 0;
+                transform: scale(0);
             }
 
             .lesson-nav-btn.active .nav-hamburger span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
+                transform: translateY(0) rotate(-45deg);
             }
 
             .lesson-nav-dropdown {
@@ -443,24 +459,26 @@ class LessonNavigation {
             /* Mobile adjustments */
             @media (max-width: 768px) {
                 .lesson-nav-container {
-                    top: 80px;
-                    right: 15px;
+                    position: fixed !important;
+                    top: 8px !important;
+                    right: 12px !important;
+                    z-index: 99999 !important;
                 }
                 
                 .lesson-nav-btn {
-                    padding: 8px 12px;
+                    padding: 0 !important;
                     font-size: 12px;
-                    min-width: auto;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    justify-content: center;
-                    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+                    min-width: auto !important;
+                    width: 36px !important;
+                    height: 36px !important;
+                    border-radius: 50% !important;
+                    justify-content: center !important;
+                    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
                 }
                 
                 .lesson-nav-btn:hover {
                     transform: none;
-                    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+                    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.6);
                 }
                 
                 /* Hide text and arrow, show hamburger on mobile */
@@ -475,10 +493,14 @@ class LessonNavigation {
                 }
                 
                 .lesson-nav-dropdown {
-                    width: calc(100vw - 30px);
-                    max-width: 320px;
-                    right: 0;
+                    position: fixed !important;
+                    top: 54px !important;
+                    right: 10px !important;
+                    left: auto !important;
+                    width: calc(100vw - 20px) !important;
+                    max-width: 320px !important;
                     transform-origin: top right;
+                    z-index: 99999 !important;
                 }
                 
                 .lesson-nav-dropdown.show {
@@ -490,35 +512,32 @@ class LessonNavigation {
                 }
             }
 
-            /* Extra small screens */
-            @media (max-width: 480px) {
+            /* Extra small screens (375px & 320px) */
+            @media (max-width: 380px) {
                 .lesson-nav-container {
-                    top: 80px;
-                    right: 15px;
+                    top: 8px !important;
+                    right: 8px !important;
                 }
                 
                 .lesson-nav-btn {
-                    width: 40px;
-                    height: 40px;
-                    padding: 6px;
+                    width: 34px !important;
+                    height: 34px !important;
+                    padding: 0 !important;
+                }
+
+                .lesson-nav-dropdown {
+                    top: 50px !important;
+                    right: 8px !important;
+                    width: calc(100vw - 16px) !important;
+                    max-width: 310px !important;
                 }
                 
                 .nav-hamburger {
-                    width: 16px;
-                    height: 12px;
+                    width: 15px;
+                    height: 11px;
                     gap: 2px;
                 }
-                
-                .nav-hamburger span {
-                    height: 2px;
-                }
-                
-                .lesson-nav-dropdown {
-                    width: calc(100vw - 20px);
-                    max-width: 300px;
-                    max-height: 60vh;
-                }
-                
+
                 .nav-content {
                     max-height: calc(60vh - 60px);
                 }
@@ -568,11 +587,13 @@ class LessonNavigation {
             this.toggleDropdown();
         });
 
-        // Close dropdown
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.closeDropdown();
-        });
+        // Close dropdown if closeBtn exists
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.closeDropdown();
+            });
+        }
 
         // Close on outside click
         document.addEventListener('click', (e) => {
@@ -673,3 +694,113 @@ function markCurrentLessonComplete() {
 
 // Initialize navigation system
 const lessonNav = new LessonNavigation();
+
+// Dynamically load SweetAlert2 for modern completion popups
+(function loadSweetAlert2() {
+    if (!document.getElementById('sweetalert2-script')) {
+        const script = document.createElement('script');
+        script.id = 'sweetalert2-script';
+        script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+        document.head.appendChild(script);
+    }
+})();
+
+/**
+ * Global SweetAlert Lesson Completion Function (Lessons 1 to 15)
+ * Replaces native browser alert() with modern SweetAlert2 modals
+ */
+window.showLessonCompletionModal = function(lessonNumber, lessonTitle, summaryText, nextUrl) {
+    const titleText = `🎉 Congratulations!`;
+    const htmlContent = `
+        <div style="font-size: 1.1rem; margin-top: 8px; color: #2c3e50; font-weight: 600;">
+            You've completed Lesson ${lessonNumber} – ${lessonTitle}!
+        </div>
+        <div style="font-size: 0.95rem; margin-top: 14px; color: #4a5568; line-height: 1.5; background: #f8f9ff; padding: 14px; border-radius: 12px; border-left: 4px solid #007BFF; text-align: left;">
+            ${summaryText || "You've successfully mastered this lesson's core concepts. Great job!"}
+        </div>
+    `;
+    const btnText = lessonNumber === 15 ? 'Claim Your Certificate 🎓' : 'Continue to Next Lesson 🚀';
+
+    // If SweetAlert2 is loaded
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: titleText,
+            html: htmlContent,
+            icon: 'success',
+            confirmButtonText: btnText,
+            confirmButtonColor: '#007BFF',
+            background: '#ffffff',
+            borderRadius: '16px',
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed && nextUrl) {
+                window.location.href = nextUrl;
+            }
+        });
+    } else {
+        // Sleek Custom SweetAlert UI Fallback
+        const existingModal = document.getElementById('customSwalCompletionModal');
+        if (existingModal) existingModal.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'customSwalCompletionModal';
+        modal.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(4px);
+            z-index: 999999; display: flex; align-items: center; justify-content: center;
+            animation: fadeIn 0.3s ease; box-sizing: border-box;
+        `;
+        modal.innerHTML = `
+            <div style="
+                background: white; border-radius: 20px; padding: 32px 28px; max-width: 440px; width: 90%;
+                text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+                font-family: system-ui, -apple-system, sans-serif;
+            ">
+                <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
+                <h2 style="color: #2c3e50; margin: 0 0 8px 0; font-size: 1.5rem; font-weight: 700;">${titleText}</h2>
+                ${htmlContent}
+                <button id="customSwalContinueBtn" style="
+                    margin-top: 20px; background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none;
+                    padding: 12px 24px; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer;
+                    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4); width: 100%; transition: all 0.2s ease;
+                ">${btnText}</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        document.getElementById('customSwalContinueBtn').addEventListener('click', () => {
+            modal.remove();
+            if (nextUrl) window.location.href = nextUrl;
+        });
+    }
+};
+
+// Universal Back to Top Button Auto-Initializer
+function initBackToTopButton() {
+    if (document.getElementById('globalBackToTopBtn')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'globalBackToTopBtn';
+    btn.className = 'back-to-top-btn';
+    btn.setAttribute('aria-label', 'Scroll back to top of page');
+    btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    document.body.appendChild(btn);
+
+    const toggleVisibility = () => {
+        if (window.scrollY > 250) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    };
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackToTopButton);
+} else {
+    initBackToTopButton();
+}

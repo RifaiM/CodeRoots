@@ -54,7 +54,7 @@ class LessonProtection {
         
         if (!this.canAccessLesson(currentLesson)) {
             const highestAccessible = this.getHighestAccessibleLesson();
-            const redirectPath = `/2. partB/lesson${highestAccessible}_remake.html`;
+            const redirectPath = `/2. partB/lesson${highestAccessible}/lesson${highestAccessible}_remake.html`;
             
             // Show message before redirect
             const uncompletedLesson = currentLesson - 1;
@@ -110,7 +110,7 @@ class LessonProtection {
             <p style="margin: 0 0 25px 0; font-size: 0.9em; color: #777;">
                 Redirecting you to the correct lesson in <span id="countdown">2</span> seconds...
             </p>
-            <button onclick="window.location.href='/2. partB/lesson${requiredLesson}_remake.html'" style="
+            <button onclick="window.location.href='/2. partB/lesson${requiredLesson}/lesson${requiredLesson}_remake.html'" style="
                 background: linear-gradient(135deg, #007BFF, #0056b3);
                 color: white;
                 border: none;

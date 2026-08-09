@@ -344,13 +344,13 @@ function loadDOMExample() {
 </head>
 <body>
     <div class="container">
-        <h1 id="magicTitle">âœ¨ DOM Magic Show âœ¨</h1>
+        <h1 id="magicTitle">✨ DOM Magic Show ✨</h1>
         <p id="subtitle">Watch the magic happen!</p>
         
         <button id="changeTextBtn" class="fun-btn">Change Text</button>
         <button id="changeColorBtn" class="color-btn">Change Color</button>
         <button id="changeSizeBtn" class="size-btn">Change Size</button>
-        <button id="surpriseBtn">ðŸŽ² Surprise Me!</button>
+        <button id="surpriseBtn">🎲 Surprise Me!</button>
     </div>
 
     <script>
@@ -557,10 +557,18 @@ function checkDOMAnswer() {
       showFeedback('error', 'Code is Empty!',
          'Please write HTML and JavaScript code to complete the DOM manipulation challenge.<br><br>' +
          '<strong>Need help getting started?</strong><br>' +
-         'â€¢ Click the "Need a Hint?" button for tips<br>' +
-         'â€¢ Look at the playground examples above<br>' +
-         'â€¢ Use the starter template in the text area'
+         '• Click the "Need a Hint?" button for tips<br>' +
+         '• Look at the playground examples above<br>' +
+         '• Use the starter template in the text area'
       );
+      if (typeof Swal !== 'undefined') {
+         Swal.fire({
+            title: '🤔 Workspace is Empty!',
+            text: 'Please write HTML and JavaScript code to complete the DOM manipulation challenge.',
+            icon: 'warning',
+            confirmButtonColor: '#007BFF'
+         });
+      }
       return;
    }
 
@@ -1210,7 +1218,16 @@ function enableNextLesson() {
 function nextLesson() {
    const nextBtn = document.getElementById('next-lesson');
    if (nextBtn && !nextBtn.disabled) {
-      window.location.href = '/2. partB/lesson12/lesson12_remake.html';
+      if (window.showLessonCompletionModal) {
+         window.showLessonCompletionModal(
+            11,
+            "JavaScript Basics",
+            "You've learned JS variables, functions, strings, numbers, and browser console output!",
+            "/2. partB/lesson12/lesson12_remake.html"
+         );
+      } else {
+         window.location.href = '/2. partB/lesson12/lesson12_remake.html';
+      }
    }
 }
 
@@ -1355,7 +1372,7 @@ function checkAndRestoreCompletion() {
                     // Show completion message
                     feedback.innerHTML = `
                         <div style="display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 1.5em;">âœ…</span>
+                            <span style="font-size: 1.5em;">✅</span>
                             <div>
                                 <div style="font-size: 1.1em; margin-bottom: 4px;">
                                     <strong>Lesson Already Completed!</strong>

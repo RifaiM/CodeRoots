@@ -193,9 +193,13 @@
             <div class="image-demo">
                 <!-- Interactive demo image -->
                 <img src="https://placehold.jp/30/007BFF/ffffff/150x150.png?text=interactive+image" 
-                     alt="Interactive demo image" 
+                     alt="Interactive demo image showing hover and animation effects" 
                      class="demo-image"
-                     onclick="animateImage(this)">
+                     role="button"
+                     tabindex="0"
+                     aria-label="Click or press space to animate image"
+                     onclick="animateImage(this)"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();animateImage(this);}">
                 
                 <!-- Accessibility reminder -->
                 <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.8); border-radius: 8px; font-size: 0.9em;">

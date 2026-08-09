@@ -524,9 +524,13 @@ Time to show what you've learned! Create a website about yourself.
             const message = document.getElementById('messageInput').value.trim();
             
             if (name === '' || email === '' || message === '') {
-                alert('Please fill in all fields');
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire('Missing Information', 'Please fill in all fields', 'warning');
+                }
             } else {
-                alert('Thank you ' + name + '! Your message has been sent.');
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire('Thank You! 🎉', 'Thank you ' + name + '! Your message has been sent.', 'success');
+                }
                 this.reset();
             }
         });
@@ -576,7 +580,7 @@ Time to show what you've learned! Create a website about yourself.
                 </div>
             </div>
             
-            <div id="feedback"></div>
+            <div id="feedback" aria-live="polite" aria-atomic="true"></div>
         </section>
     </main>
 

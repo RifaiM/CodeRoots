@@ -1037,9 +1037,16 @@ renderTask();
 // Next lesson functionality
 document.getElementById('nextLessonBtn').addEventListener('click', function() {
   if (!this.disabled) {
-    alert('🎉 Congratulations! You\'ve completed Lesson 6 - CSS Basics!\n\nYou\'ve learned how to style HTML with colors, fonts, backgrounds, and selectors. You\'re now ready to create beautiful web pages!');
-
-    window.location.href = '/2. partB/lesson7/lesson7_remake.html';
+    if (window.showLessonCompletionModal) {
+      window.showLessonCompletionModal(
+        6,
+        "CSS Basics",
+        "You've learned how to style HTML with colors, fonts, backgrounds, and selectors. You're now ready to create beautiful web pages!",
+        "/2. partB/lesson7/lesson7_remake.html"
+      );
+    } else {
+      window.location.href = '/2. partB/lesson7/lesson7_remake.html';
+    }
   }
 });
 

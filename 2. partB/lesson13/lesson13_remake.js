@@ -401,12 +401,16 @@ const validationData = {
               event.preventDefault();
               result.innerHTML = '🛑 Form submission prevented! Field was empty.';
               result.style.color = '#e74c3c';
-              alert('Please fill in the field before submitting!');
+              if (typeof Swal !== 'undefined') {
+                Swal.fire('Validation Error', 'Please fill in the field before submitting!', 'warning');
+              }
             } else {
               event.preventDefault(); // Prevent actual submission in demo
               result.innerHTML = '✅ Form would submit! Field has content.';
               result.style.color = '#27ae60';
-              alert('Form would be submitted successfully!');
+              if (typeof Swal !== 'undefined') {
+                Swal.fire('Success!', 'Form would be submitted successfully!', 'success');
+              }
             }
           });
         }
@@ -818,7 +822,16 @@ const validationData = {
   // Next lesson functionality
   document.getElementById('nextLessonBtn').addEventListener('click', function() {
     if (!this.disabled) {
-      window.location.href = '/2. partB/lesson14/lesson14_remake.html';
+      if (window.showLessonCompletionModal) {
+        window.showLessonCompletionModal(
+          13,
+          "JS Form Validation",
+          "You've learned form input handling, real-time validation, preventDefault(), and user feedback!",
+          "/2. partB/lesson14/lesson14_remake.html"
+        );
+      } else {
+        window.location.href = '/2. partB/lesson14/lesson14_remake.html';
+      }
     }
   });
   

@@ -10,6 +10,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/Global/root.css">
     <link rel="stylesheet" href="/index.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <title>Journey Through Web History</title>
 </head>
@@ -33,13 +35,7 @@
                 Each browser brought revolutionary features that changed how we experience the internet.
             </p>
             
-            <!-- Timeline Navigation Controls -->
-            <div class="timeline-controls">
-                <button class="timeline-btn" id="prevBtn">← Previous Era</button>
-                <button class="timeline-btn" id="nextBtn">Next Era →</button>
-            </div>
-            
-            <!-- Timeline Container (Dynamic Content) -->
+            <!-- Timeline Container (Dynamic Auto-Play Carousel) -->
             <div class="timeline-container" id="timelineContainer">
                 <!-- Browser timeline cards will be inserted here dynamically -->
             </div>
@@ -73,9 +69,14 @@
 
         <!-- Learning Progress Section -->
         <section class="progress-section" id="progressSection">
-            <h2>
-                <span class="emoji">🎯</span>Your Learning Journey
-            </h2>
+            <div class="progress-header-wrap">
+                <h2>
+                    <span class="emoji">🎯</span>Your Learning Journey
+                </h2>
+                <button id="resetProgressBtn" class="reset-progress-btn" title="Reset Part A learning progress">
+                    🔄 Reset Progress
+                </button>
+            </div>
             
             <!-- Progress Text Display -->
             <div class="progress-text">
