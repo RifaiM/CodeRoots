@@ -24,12 +24,11 @@
                 return match ? parseInt(match[1], 10) : 15;
             }
 
-            function canAccessLesson() {
-                return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
-                const completed = getCompletedLessons();
-                return completed.includes(lessonNum - 1);
+            function canAccessLesson(lessonNumber) {
+                if (lessonNumber <= 1) return true;
+                const previousLessonKey = 'partB_lesson' + (lessonNumber - 1) + '_remake_complete';
+                return localStorage.getItem(previousLessonKey) === 'true';
             }
-
             function showAccessDenied() {
                 const currentLesson = getCurrentLessonNumber();
                 const requiredLesson = currentLesson - 1;

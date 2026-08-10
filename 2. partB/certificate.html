@@ -42,50 +42,46 @@
             }
 
             function canAccessCertificate() {
-                return true; // DEVELOPMENT BYPASS
+                return countCompletedLessons() >= 15;
             }
 
             function showAccessDenied() {
                 const completedCount = countCompletedLessons();
-                const nextLesson = getNextIncompleteLesson();
                 const remaining = 15 - completedCount;
                 
-                document.body.innerHTML = `
-                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
-                        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 500px; margin: 20px;">
-                            <div style="font-size: 4em; margin-bottom: 20px;">🏆</div>
-                            <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.8em;">Certificate Not Available Yet</h1>
-                            <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">
-                                You need to complete all 15 lessons before you can access your certificate.
-                            </p>
-                            <div style="background: #f8f9ff; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #667eea;">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 2em; font-weight: 700; color: #667eea;">${completedCount}</div>
-                                        <div style="font-size: 0.9em; color: #666;">Lessons Completed</div>
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'lock',
+                        title: 'Certificate Locked! 📜',
+                        html: `
+                            <div style="text-align: center; font-family: 'Nunito', sans-serif;">
+                                <p style="font-size: 1.05rem; color: #475569; margin-bottom: 16px;">
+                                    You must complete all <strong>15 lessons</strong> in the Practical Dojo before claiming your official Web Development Certificate!
+                                </p>
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                                    <div>
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981;">${completedCount}</div>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Completed</div>
                                     </div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 2em; font-weight: 700; color: #e74c3c;">${remaining}</div>
-                                        <div style="font-size: 0.9em; color: #666;">Lessons Remaining</div>
+                                    <div>
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #ef4444;">${remaining}</div>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
                                     </div>
                                 </div>
-                                <div style="text-align: center; margin-top: 15px;">
-                                    <strong style="color: #667eea;">Next: Lesson ${nextLesson}</strong>
-                                </div>
                             </div>
-                            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                                <button onclick="window.location.href='./lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 15px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                                    Continue Learning
-                                </button>
-                                <button onclick="window.location.href='../dashboard.html'" style="background: #f8f9ff; color: #667eea; border: 2px solid #667eea; padding: 15px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em; transition: all 0.3s ease;" onmouseover="this.style.background='#667eea'; this.style.color='white'" onmouseout="this.style.background='#f8f9ff'; this.style.color='#667eea'">
-                                    Back to Dashboard
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                        `,
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: '🏠 Back to Dashboard',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    }).then(() => {
+                        window.location.href = '../dashboard.html';
+                    });
+                } else {
+                    alert('⚠️ Certificate Locked! You must complete all 15 lessons to access your certificate.');
+                    window.location.href = '../dashboard.html';
+                }
             }
-
             // IMMEDIATE CHECK - runs before page content loads
             if (!canAccessCertificate()) {
                 if (document.readyState === 'loading') {

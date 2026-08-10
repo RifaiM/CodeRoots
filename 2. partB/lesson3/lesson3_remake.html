@@ -28,18 +28,13 @@
                     return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
                 }
             
-                function canAccessLesson() {
-                return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
-                    
-                    for (let i = 1; i < lessonNumber; i++) {
-                        if (!isLessonCompleted(i)) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-            
-                function getNextAvailableLesson() {
+                function canAccessLesson(lessonNumber) {
+                if (lessonNumber <= 1) return true;
+                const previousLessonKey = 'partB_lesson' + (lessonNumber - 1) + '_remake_complete';
+                return localStorage.getItem(previousLessonKey) === 'true';
+            }
+
+            function getNextAvailableLesson() {
                     for (let i = 1; i <= 15; i++) {
                         if (!isLessonCompleted(i)) {
                             return i;
