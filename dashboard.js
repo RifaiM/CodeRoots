@@ -226,7 +226,7 @@ function initUserProgress() {
     // Update Main Resume CTA
     if (resumeBtn) {
         if (!isLevel0Complete && !isPracticeUnlocked) {
-            resumeBtn.href = './index.html';
+            resumeBtn.href = './1. partA/web_history.html';
             resumeBtn.innerHTML = '<span>🚀 Level 0</span>';
         } else if (!isLevel1Complete && !isPracticeUnlocked) {
             resumeBtn.href = './foundations.html?track=html';

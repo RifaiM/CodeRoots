@@ -56,7 +56,7 @@ document.getElementById('markReadBtn').addEventListener('click', function() {
 
     // Return to overview with delay for animation
     setTimeout(() => {
-        window.location.href = '/index.html#before-code';
+        window.location.href = '../web_history.html#before-code';
     }, 1500);
 });
 

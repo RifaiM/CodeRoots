@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 celebration.remove();
                 // Redirect back to main page
-                window.location.href = '/index.html#footer';
+                window.location.href = '../web_history.html#footer';
             }, 2000);
         });
     }
