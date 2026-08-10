@@ -1,8 +1,5 @@
 @media (max-width: 860px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-  }
+  
 
   .code-example {
     word-break: break-all;

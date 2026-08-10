@@ -970,10 +970,7 @@ button:active:not(:disabled) {
 
 /* Mobile Responsive */
 @media (max-width: 860px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-  }
+  
   
   .lesson-header {
     padding: 16px;
@@ -1056,13 +1053,7 @@ button:active:not(:disabled) {
 }
 
 @media (max-width: 480px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-  }
+  
   
   .lesson-header {
     padding: 12px 8px;
@@ -1159,9 +1150,7 @@ button:active:not(:disabled) {
     transition-duration: 0.01ms !important;
   }
   
-  .home-button {
-    animation: none;
-  }
+  
   
   .demo-button.pulse {
     animation: none;
@@ -1173,9 +1162,7 @@ button:active:not(:disabled) {
 }
 
 @media (prefers-contrast: high) {
-  .home-button {
-    border: 2px solid #fff;
-  }
+  
   
   .concept-card, .example-item, .requirement-item {
     border-width: 2px;

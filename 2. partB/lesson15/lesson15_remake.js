@@ -241,31 +241,7 @@ class FinalChallenge {
           };
       }
 
-      // Update header to show completion
-      const header = document.querySelector('.lesson-header');
-      if (header && !header.querySelector('.completion-badge')) {
-          const badge = document.createElement('div');
-          badge.className = 'completion-badge';
-          badge.style.cssText = `
-              display: inline-block;
-              background: #27ae60;
-              color: white;
-              padding: 6px 16px;
-              border-radius: 20px;
-              font-size: 0.85rem;
-              font-weight: 700;
-              margin-left: 12px;
-              animation: pulseGreen 2s infinite;
-              box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
-          `;
-          badge.textContent = '✅ COMPLETED';
-
-          const challengeBadge = header.querySelector('.challenge-badge');
-          if (challengeBadge) {
-              challengeBadge.parentNode.insertBefore(badge, challengeBadge.nextSibling);
-          } else {
-              header.appendChild(badge);
-          }
+      // Header completion status handled clean without floating navbar badges
 
           // Add green pulse animation
           if (!document.getElementById('green-pulse-styles')) {
@@ -286,17 +262,30 @@ class FinalChallenge {
               document.head.appendChild(style);
           }
       }
-  }
 
   attachEventListeners() {
       const checkBtn = document.getElementById('check-answer');
       const previewBtn = document.getElementById('show-preview');
       const hintBtn = document.getElementById('show-hint');
       const completeBtn = document.getElementById('complete-course');
-      const editor = document.getElementById('code-editor');
+      const submitBtn = document.getElementById('submitProject');
+      const runBtn = document.getElementById('runCode');
+      const resetBtn = document.getElementById('resetCode');
+
+      if (submitBtn) {
+          submitBtn.addEventListener('click', () => this.submitProject());
+      }
+
+      if (runBtn) {
+          runBtn.addEventListener('click', () => this.runCode());
+      }
+
+      if (resetBtn) {
+          resetBtn.addEventListener('click', () => this.resetCode());
+      }
 
       if (checkBtn) {
-          checkBtn.addEventListener('click', () => this.checkProject());
+          checkBtn.addEventListener('click', () => this.submitProject());
       }
 
       if (previewBtn) {
@@ -311,66 +300,166 @@ class FinalChallenge {
           completeBtn.addEventListener('click', () => this.completeCourse());
       }
 
-      if (editor) {
-          editor.addEventListener('focus', () => this.startChallenge());
-          editor.addEventListener('input', () => this.onCodeChange());
-      }
+      // File tabs listener
+      const tabs = document.querySelectorAll('.file-tab');
+      tabs.forEach(tab => {
+          tab.addEventListener('click', (e) => {
+              tabs.forEach(t => t.classList.remove('active'));
+              e.currentTarget.classList.add('active');
+
+              const targetFile = e.currentTarget.getAttribute('data-file');
+              document.querySelectorAll('.editor-pane').forEach(pane => pane.classList.remove('active'));
+
+              if (targetFile === 'html') document.getElementById('htmlEditor')?.classList.add('active');
+              if (targetFile === 'css') document.getElementById('cssEditor')?.classList.add('active');
+              if (targetFile === 'js') document.getElementById('jsEditor')?.classList.add('active');
+          });
+      });
 
       // Preview modal event listeners
       this.setupPreviewModalListeners();
   }
 
-  startChallenge() {
-      if (!this.challengeStarted) {
-          this.challengeStarted = true;
-          this.startTime = new Date();
-          this.showTempMessage('🔥 Final challenge started! Show what you\'ve learned!');
-      }
-  }
+  submitProject() {
+      const htmlVal = (document.getElementById('htmlCode')?.value || '').trim();
+      const cssVal = (document.getElementById('cssCode')?.value || '').trim();
+      const jsVal = (document.getElementById('jsCode')?.value || '').trim();
+      const legacyVal = (document.getElementById('code-editor')?.value || '').trim();
 
-  onCodeChange() {
-      // Auto-save functionality
-      const editor = document.getElementById('code-editor');
-      if (editor) {
-          localStorage.setItem('lesson15_work_in_progress', editor.value);
-      }
+      const isCodeEmpty = !htmlVal && !cssVal && !jsVal && !legacyVal;
 
-      // Optional: Real-time encouragement based on progress
-      const code = editor.value.toLowerCase();
-      if (code.length > 500 && code.includes('<html') && code.includes('<style>')) {
-          this.showProgressHint('🎨 Looking good! Keep adding those interactive features!');
-      }
-  }
-
-  showProgressHint(message) {
-      // Only show each message once
-      if (!this.shownHints.has(message)) {
-          this.shownHints.add(message);
-          this.showTempMessage(message, 2500);
-      }
-  }
-
-  checkProject() {
-      const editor = document.getElementById('code-editor');
-      if (!editor) {
-          this.showMessage('❌ Code editor not found!', 'error');
+      if (isCodeEmpty) {
+          if (typeof Swal !== 'undefined') {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Code Editor is Empty!',
+                  text: 'Please write your HTML, CSS, or JavaScript code in the editor before submitting your project! 💻',
+                  confirmButtonColor: '#007BFF',
+                  confirmButtonText: 'Got it!'
+              });
+          } else {
+              alert('⚠️ Your code editor is empty! Please write your code in the editor before submitting.');
+          }
           return;
       }
 
-      const code = editor.value;
+      // Validate requirement items & mark checkboxes
+      this.validateRequirements(htmlVal, cssVal, jsVal);
 
-      if (!code.trim()) {
-          this.showMessage('🤔 Your code editor is empty! Start building your portfolio website.', 'warning');
+      if (typeof Swal !== 'undefined') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Final Project Submitted! 🏆',
+              text: 'Congratulations! You have submitted your portfolio project and completed Lesson 15!',
+              confirmButtonColor: '#10b981',
+              confirmButtonText: 'Awesome!'
+          });
+      }
+  }
+
+  runCode() {
+      const htmlVal = document.getElementById('htmlCode')?.value || '';
+      const cssVal = document.getElementById('cssCode')?.value || '';
+      const jsVal = document.getElementById('jsCode')?.value || '';
+
+      const isCodeEmpty = !htmlVal.trim() && !cssVal.trim() && !jsVal.trim();
+      if (isCodeEmpty) {
+          if (typeof Swal !== 'undefined') {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Code Editor is Empty!',
+                  text: 'Please write your HTML, CSS, or JavaScript code before running preview! 💻',
+                  confirmButtonColor: '#007BFF'
+              });
+          } else {
+              alert('⚠️ Code editor is empty! Please write your code first.');
+          }
           return;
       }
 
-      try {
-          const analysis = this.analyzeCode(code);
-          this.displayDetailedResults(analysis);
-      } catch (error) {
-          console.error('Error analyzing code:', error);
-          this.showMessage('❌ Error analyzing your code. Please try again.', 'error');
+      const iframe = document.getElementById('previewFrame');
+      if (iframe) {
+          const combined = `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                  <meta charset="UTF-8">
+                  <style>
+                      ${cssVal}
+                  </style>
+              </head>
+              <body>
+                  ${htmlVal}
+                  <script>
+                      try {
+                          ${jsVal}
+                      } catch (e) {
+                          console.error("Preview JS Error:", e);
+                      }
+                  </script>
+              </body>
+              </html>
+          `;
+          iframe.srcdoc = combined;
       }
+  }
+
+  resetCode() {
+      if (typeof Swal !== 'undefined') {
+          Swal.fire({
+              title: 'Reset All Code?',
+              text: 'Are you sure you want to clear your HTML, CSS, and JavaScript code? This action cannot be undone.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#ef4444',
+              cancelButtonColor: '#64748b',
+              confirmButtonText: 'Yes, reset code!',
+              cancelButtonText: 'Cancel'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  if (document.getElementById('htmlCode')) document.getElementById('htmlCode').value = '';
+                  if (document.getElementById('cssCode')) document.getElementById('cssCode').value = '';
+                  if (document.getElementById('jsCode')) document.getElementById('jsCode').value = '';
+                  const iframe = document.getElementById('previewFrame');
+                  if (iframe) iframe.srcdoc = '';
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Code Reset!',
+                      text: 'Your code editor has been cleared.',
+                      timer: 1500,
+                      showConfirmButton: false
+                  });
+              }
+          });
+      } else {
+          if (confirm('Are you sure you want to reset all your code in the editor?')) {
+              if (document.getElementById('htmlCode')) document.getElementById('htmlCode').value = '';
+              if (document.getElementById('cssCode')) document.getElementById('cssCode').value = '';
+              if (document.getElementById('jsCode')) document.getElementById('jsCode').value = '';
+              const iframe = document.getElementById('previewFrame');
+              if (iframe) iframe.srcdoc = '';
+          }
+      }
+  }
+
+  validateRequirements(html, css, js) {
+      // HTML Checklist items
+      if (html.includes('<header') || html.includes('<nav')) document.querySelector('[data-task="header"]')?.classList.add('completed');
+      if (html.includes('hero') || html.includes('<img')) document.querySelector('[data-task="hero"]')?.classList.add('completed');
+      if (html.includes('about')) document.querySelector('[data-task="about"]')?.classList.add('completed');
+      if (html.includes('project')) document.querySelector('[data-task="projects"]')?.classList.add('completed');
+      if (html.includes('<form') || html.includes('<input')) document.querySelector('[data-task="contact"]')?.classList.add('completed');
+
+      // CSS Checklist items
+      if (css.includes('--') || css.includes('var(')) document.querySelector('[data-task="colors"]')?.classList.add('completed');
+      if (css.includes('flex') || css.includes('grid')) document.querySelector('[data-task="layout"]')?.classList.add('completed');
+      if (css.includes('@media')) document.querySelector('[data-task="responsive"]')?.classList.add('completed');
+      if (css.includes(':hover')) document.querySelector('[data-task="hover"]')?.classList.add('completed');
+
+      // JS Checklist items
+      if (js.includes('addEventListener') || js.includes('onclick')) document.querySelector('[data-task="event"]')?.classList.add('completed');
+      if (js.includes('document.') || js.includes('.innerHTML')) document.querySelector('[data-task="dom"]')?.classList.add('completed');
+      if (js.includes('alert') || js.includes('submit')) document.querySelector('[data-task="validation"]')?.classList.add('completed');
   }
 }
 

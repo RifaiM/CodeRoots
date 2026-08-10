@@ -7,6 +7,7 @@
   
   <!-- External stylesheets -->
   <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../lesson-navigation.css">
   <link rel="stylesheet" href="./lesson8_remake.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -25,8 +26,8 @@
             return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
         }
     
-        function canAccessLesson(lessonNumber) {
-            if (lessonNumber === 1) return true;
+        function canAccessLesson() {
+                return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
             
             for (let i = 1; i < lessonNumber; i++) {
                 if (!isLessonCompleted(i)) {
@@ -80,7 +81,7 @@
 </head>
 <body>
   <!-- Navigation: Back to home button -->
-  <a href="../../index.html" class="home-button" title="Back to PartA">🏠</a>
+  <a href="../../dashboard.html" class="home-button" title="Back to Dashboard"><span class="home-icon">🏠</span> <span class="btn-text-full">Dashboard</span><span class="btn-text-short">Home</span></a>
   
   <!-- Page header -->
   <header>
@@ -632,5 +633,36 @@
   <!-- JavaScript files -->
   <script src="../lesson-navigation.js"></script>
   <script src="./lesson8_remake.js"></script>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        (function initBackToTopScroll() {
+            function check() {
+                const btn = document.getElementById('backToTopBtn');
+                if (!btn) return;
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                if (scrollPos > 100) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            }
+            window.addEventListener('scroll', check, { passive: true });
+            document.addEventListener('scroll', check, { passive: true });
+            document.addEventListener('DOMContentLoaded', () => {
+                check();
+                const btn = document.getElementById('backToTopBtn');
+                if (btn) {
+                    btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

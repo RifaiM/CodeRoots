@@ -3,49 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Part B – Lesson 15: Final Project Challenge</title>
     <link rel="stylesheet" href="../../Global/root.css">
-    <link rel="stylesheet" href="./lesson15_remake.css">
-    <title>Lesson 15 - Final Project Challenge</title>
-
-    <!-- protection script -->
+    <link rel="stylesheet" href="../lesson-navigation.css">
+    <link rel="stylesheet" href="lesson15_remake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         (function() {
-            'use strict';
-            
+            function getCompletedLessons() {
+                try {
+                    return JSON.parse(localStorage.getItem('novicodes_completed_lessons') || '[]');
+                } catch(e) {
+                    return [];
+                }
+            }
+
             function getCurrentLessonNumber() {
                 const path = window.location.pathname;
-                const match = path.match(/lesson(\d+)/);
-                return match ? parseInt(match[1]) : 1;
+                const match = path.match(/lesson(\d+)_remake\.html/);
+                return match ? parseInt(match[1], 10) : 15;
             }
-        
-            function isLessonCompleted(lessonNumber) {
-                return localStorage.getItem(`partB_lesson${lessonNumber}_remake_complete`) === 'true';
+
+            function canAccessLesson() {
+                return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
+                const completed = getCompletedLessons();
+                return completed.includes(lessonNum - 1);
             }
-        
-            function canAccessLesson(lessonNumber) {
-                if (lessonNumber === 1) return true;
-                
-                for (let i = 1; i < lessonNumber; i++) {
-                    if (!isLessonCompleted(i)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        
-            function getNextAvailableLesson() {
-                for (let i = 1; i <= 15; i++) {
-                    if (!isLessonCompleted(i)) {
-                        return i;
-                    }
-                }
-                return 15;
-            }
-        
+
             function showAccessDenied() {
                 const currentLesson = getCurrentLessonNumber();
-                const nextLesson = getNextAvailableLesson();
                 const requiredLesson = currentLesson - 1;
                 
                 document.body.innerHTML = `
@@ -54,12 +40,12 @@
                             <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
                             <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
                             <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
-                            <button onclick="window.location.href='../lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
+                            <button onclick="window.location.href='../lesson${requiredLesson}/lesson${requiredLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${requiredLesson}</button>
                         </div>
                     </div>
                 `;
             }
-        
+
             // IMMEDIATE CHECK
             const currentLesson = getCurrentLessonNumber();
             
@@ -75,10 +61,10 @@
     </script>
 </head>
 <body>
-    <a href="../../index.html" class="home-button" title="Back to PartA">🏠</a>
+    <a href="../../dashboard.html" class="home-button" title="Back to Dashboard"><span class="home-icon">🏠</span> <span class="btn-text-full">Dashboard</span><span class="btn-text-short">Home</span></a>
+    
     <header class="lesson-header">
         <h1>Lesson 15: Final Project Challenge</h1>
-        <div class="challenge-badge">🎯 FINAL BOSS</div>
     </header>
 
     <main class="lesson-content">
@@ -121,470 +107,106 @@
                             <div class="difficulty-badge">Apply Skills</div>
                         </div>
                         <div class="project-concept js advanced">
-                            <div class="concept-label">JavaScript Features</div>
-                            <span class="concept-desc">Interactive elements & validation</span>
+                            <div class="concept-label">JS Functionality</div>
+                            <span class="concept-desc">Interactivity & DOM manipulation</span>
                             <div class="difficulty-badge">Apply Skills</div>
                         </div>
-                        <div class="project-concept integration advanced">
-                            <div class="concept-label">Integration</div>
-                            <span class="concept-desc">Everything working together</span>
+                        <div class="project-concept fullstack expert">
+                            <div class="concept-label">Complete Project</div>
+                            <span class="concept-desc">All three technologies unified</span>
                             <div class="difficulty-badge">Master</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <h3>✨ What Makes This Special</h3>
-            <div class="project-features">
-                <div class="feature premium">
-                    <div class="feature-icon">🗗️</div>
-                    <h4>Apply HTML Skills</h4>
-                    <p>Use semantic elements, proper structure, and everything you learned in lessons 1-5</p>
-                    <code>header, nav, main, sections, footer</code>
-                </div>
-                
-                <div class="feature premium">
-                    <div class="feature-icon">🎨</div>
-                    <h4>Apply CSS Skills</h4>
-                    <p>Style with colors, layouts, flexbox, and responsive design from lessons 6-9</p>
-                    <code>flexbox + responsive + styling</code>
-                </div>
-
-                <div class="feature premium">
-                    <div class="feature-icon">⚡</div>
-                    <h4>Apply JavaScript Skills</h4>
-                    <p>Add interactivity, DOM manipulation, and validation from lessons 10-13</p>
-                    <code>addEventListener + DOM + validation</code>
-                </div>
-
-                <div class="feature premium">
-                    <div class="feature-icon">🏆</div>
-                    <h4>Portfolio Quality</h4>
-                    <p>Create something you'd be proud to show - demonstrate your new skills!</p>
-                    <code>professional result</code>
-                </div>
-            </div>
         </section>
 
-        <section class="understanding">
-            <h2>📋 Project Requirements</h2>
-            <p>Build a personal portfolio website that showcases your web development skills. Here's what it must include:</p>
-            
-            <div class="requirements-grid">
-                <div class="requirement-category">
-                    <div class="category-header html-category">
-                        <span class="category-icon">🗗️</span>
-                        <h4>HTML Structure (30 points)</h4>
-                    </div>
-                    <div class="requirement-list">
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Proper DOCTYPE and HTML structure</span>
+        <!-- Dynamic Challenge Workspace -->
+        <section class="interactive-workspace">
+            <div class="workspace-container">
+                <div class="pane-header">
+                    <h3>💻 Code Editor</h3>
+                    <div class="editor-controls">
+                        <div class="file-tabs">
+                            <button class="file-tab active" data-file="html">index.html</button>
+                            <button class="file-tab" data-file="css">styles.css</button>
+                            <button class="file-tab" data-file="js">script.js</button>
                         </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Semantic elements (header, main, footer)</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Navigation menu with links</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Content sections (about, portfolio, contact)</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>At least one image with alt text</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="requirement-category">
-                    <div class="category-header css-category">
-                        <span class="category-icon">🎨</span>
-                        <h4>CSS Styling (25 points)</h4>
-                    </div>
-                    <div class="requirement-list">
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Colors and typography styling</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Box model (margin, padding, borders)</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Flexbox for layout</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Responsive mobile design</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Visual hierarchy and clean design</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="requirement-category">
-                    <div class="category-header js-category">
-                        <span class="category-icon">⚡</span>
-                        <h4>JavaScript Features (25 points)</h4>
-                    </div>
-                    <div class="requirement-list">
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Interactive button/element</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Event listener (click, hover, etc.)</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>DOM manipulation (change content/style)</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Form validation or input handling</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Smooth functionality</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="requirement-category">
-                    <div class="category-header" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
-                        <span class="category-icon">🏆</span>
-                        <h4>Integration & Polish (20 points)</h4>
-                    </div>
-                    <div class="requirement-list">
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>All parts work together smoothly</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Multiple content sections</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Professional page setup</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Clean, organized code</span>
-                        </div>
-                        <div class="requirement-item">
-                            <span class="req-check">✓</span>
-                            <span>Complete, functional website</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>💡 Content Suggestions</h3>
-            <div class="content-ideas">
-                <div class="idea-section">
-                    <h4>👤 About Section</h4>
-                    <ul>
-                        <li>Your name and a brief intro</li>
-                        <li>What you're learning/interested in</li>
-                        <li>Your goals or aspirations</li>
-                        <li>A profile photo or avatar</li>
-                    </ul>
-                </div>
-                
-                <div class="idea-section">
-                    <h4>💼 Portfolio Section</h4>
-                    <ul>
-                        <li>Projects you've completed (even from this course!)</li>
-                        <li>Skills you've learned</li>
-                        <li>Technologies you know</li>
-                        <li>Future projects you want to build</li>
-                    </ul>
-                </div>
-
-                <div class="idea-section">
-                    <h4>📞 Contact Section</h4>
-                    <ul>
-                        <li>Contact form with name and email</li>
-                        <li>Social media links (or placeholders)</li>
-                        <li>How people can reach you</li>
-                        <li>Call-to-action for collaboration</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="challenge-hints">
-                <h4>🎯 Success Strategy</h4>
-                <div class="approach-steps">
-                    <div class="approach-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h5>Start Simple</h5>
-                            <p>Begin with basic HTML structure, then add CSS styling, then JavaScript features</p>
-                        </div>
-                    </div>
-                    <div class="approach-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h5>Use What You Learned</h5>
-                            <p>This tests lessons 1-14 - you already have all the skills needed!</p>
-                        </div>
-                    </div>
-                    <div class="approach-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h5>Test Everything</h5>
-                            <p>Make sure your navigation works, buttons respond, and forms validate</p>
-                        </div>
-                    </div>
-                    <div class="approach-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h5>Polish & Perfect</h5>
-                            <p>Clean up your code, check mobile view, and ensure everything looks professional</p>
-                        </div>
+                        <button class="control-btn run-btn" id="runCode">▶ Run Code</button>
+                        <button class="control-btn reset-btn" id="resetCode">🔄 Reset</button>
                     </div>
                 </div>
                 
-                <div class="hint-warning">
-                    <h4>⚠️ Remember: Only ONE Hint Available!</h4>
-                    <p>Use it wisely when you're truly stuck. You've learned everything you need - now apply it!</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="task">
-            <h2>🎯 Your Final Challenge</h2>
-            <div class="challenge-intro">
-                <p>This is your moment to shine! Build a personal portfolio website that demonstrates everything you've learned. You have <strong>ONE HINT</strong> to use wisely. Show what you can do!</p>
-                
-                <div class="challenge-motivation">
-                    <div class="motivation-quote">
-                        <span class="quote-mark">"</span>
-                        <p>The expert in anything was once a beginner who refused to give up.</p>
-                        <span class="quote-author">— Anonymous</span>
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="editor-task-container">
-                <div class="editor-box challenge-editor">
-                    <div class="editor-label">
-                        <span class="editor-title">Your Portfolio Website</span>
-                        <div class="editor-stats">
-                            <span class="hint-counter">Hints: <span id="hint-count">1</span>/1</span>
-                            <span class="challenge-timer" id="challenge-timer">Ready to code!</span>
+                <div class="editor-workspace">
+                    <div class="code-editor-container">
+                        <div class="editor-pane active" id="htmlEditor">
+                            <textarea id="htmlCode" spellcheck="false" placeholder="Write your HTML code here..."></textarea>
+                        </div>
+                        <div class="editor-pane" id="cssEditor">
+                            <textarea id="cssCode" spellcheck="false" placeholder="Write your CSS code here..."></textarea>
+                        </div>
+                        <div class="editor-pane" id="jsEditor">
+                            <textarea id="jsCode" spellcheck="false" placeholder="Write your JavaScript code here..."></textarea>
                         </div>
                     </div>
-                    <textarea id="code-editor" 
-                    placeholder="🎯 FINAL CHALLENGE: Build Your Personal Portfolio!
-
-Time to show what you've learned! Create a website about yourself.
-
-🚀 Your mission:
-- Build a personal portfolio with all required sections
-- Use HTML structure, CSS styling, and JavaScript interactivity
-- Apply everything you learned in lessons 1-14
-- Make it look professional and work perfectly
-
-💡 Starter template to help you begin:
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>My Portfolio - [Your Name]</title>
-    <style>
-        /* Your CSS styling here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        
-        header {
-            background: #333;
-            color: white;
-            padding: 1rem;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        nav a:hover {
-            color: #ddd;
-        }
-        
-        main {
-            padding: 2rem;
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
-            background: #f4f4f4;
-        }
-        
-        section {
-            margin-bottom: 3rem;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        /* Add more CSS for responsive design, colors, layout */
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href='#home'>Home</a></li>
-                <li><a href='#about'>About</a></li>
-                <li><a href='#portfolio'>Portfolio</a></li>
-                <li><a href='#contact'>Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class='hero' id='home'>
-            <h1>Welcome to My Portfolio</h1>
-            <p>I'm learning web development and this is what I can build!</p>
-            <button id='themeBtn'>Change Theme</button>
-        </section>
-
-        <section id='about'>
-            <h2>About Me</h2>
-            <img src='https://via.placeholder.com/200' alt='My photo' width='200'>
-            <p>Tell visitors about yourself, your interests, and your goals...</p>
-        </section>
-
-        <section id='portfolio'>
-            <h2>My Work</h2>
-            <p>Showcase projects you've built or skills you've learned...</p>
-        </section>
-
-        <section id='contact'>
-            <h2>Contact Me</h2>
-            <form id='contactForm'>
-                <input type='text' id='nameInput' placeholder='Your name' required>
-                <input type='email' id='emailInput' placeholder='Your email' required>
-                <textarea id='messageInput' placeholder='Your message' required></textarea>
-                <button type='submit'>Send Message</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 My Portfolio. Built with HTML, CSS, and JavaScript!</p>
-    </footer>
-
-    <script>
-        // Your JavaScript code here
-        
-        // Theme changer
-        document.getElementById('themeBtn').addEventListener('click', function() {
-            document.body.style.backgroundColor = 
-                document.body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
-            this.textContent = 
-                document.body.style.backgroundColor === 'lightblue' ? 'Reset Theme' : 'Change Theme';
-        });
-
-        // Form validation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('nameInput').value.trim();
-            const email = document.getElementById('emailInput').value.trim();
-            const message = document.getElementById('messageInput').value.trim();
-            
-            if (name === '' || email === '' || message === '') {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire('Missing Information', 'Please fill in all fields', 'warning');
-                }
-            } else {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire('Thank You! 🎉', 'Thank you ' + name + '! Your message has been sent.', 'success');
-                }
-                this.reset();
-            }
-        });
-        
-        // Add smooth scrolling for navigation
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-
-⚠️ Remember: You only have ONE HINT - use it when you need it!
-🏆 Make it something you're proud of - this is your portfolio!"></textarea>
-                </div>
-            </div>
-            
-            <div class="buttons">
-                <button id="check-answer" class="btn-primary">🔍 Test My Website</button>
-                <button id="show-preview" class="btn-primary">👁️ Preview My Code</button>
-                <button id="show-hint" class="btn-warning">💡 Use My ONE Hint</button>
-                <button id="complete-course" class="btn-success" disabled>🏆 Complete Course</button>
-            </div>
-            
-            <!-- Preview Modal -->
-            <div id="preview-modal" style="display: none;">
-                <div class="preview-overlay">
-                    <div class="preview-container">
+                    
+                    <div class="preview-pane">
                         <div class="preview-header">
-                            <h3>Your Website Preview</h3>
-                            <button id="close-preview" class="preview-close">✕</button>
+                            <span>🌐 Live Preview</span>
+                            <div class="preview-controls">
+                                <button class="preview-btn" id="popoutPreview" title="Open in new window">↗</button>
+                            </div>
                         </div>
-                        <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
-                        <div class="preview-footer">
-                            <button id="fullscreen-preview" class="btn-primary">🔍 Open in New Tab</button>
-                            <span class="preview-info">This is how your website looks to visitors</span>
-                        </div>
+                        <iframe id="previewFrame" title="Project Preview"></iframe>
                     </div>
                 </div>
             </div>
-            
-            <div id="feedback" aria-live="polite" aria-atomic="true"></div>
+        </section>
+
+        <!-- Requirements & Tasks Checklist -->
+        <section class="requirements-section">
+            <h3>📋 Project Requirements</h3>
+            <p>Your portfolio website must fulfill the following criteria:</p>
+
+            <div class="requirements-grid">
+                <div class="requirement-card" id="req-html">
+                    <h4>1. HTML Requirements 🏗️</h4>
+                    <ul class="task-checklist">
+                        <li data-task="header">Header with navigation links</li>
+                        <li data-task="hero">Hero section with intro & photo</li>
+                        <li data-task="about">About me section</li>
+                        <li data-task="projects">Projects grid with at least 2 projects</li>
+                        <li data-task="contact">Contact form with input fields</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card" id="req-css">
+                    <h4>2. CSS Requirements 🎨</h4>
+                    <ul class="task-checklist">
+                        <li data-task="colors">Custom color palette using CSS variables</li>
+                        <li data-task="layout">Flexbox or Grid layout</li>
+                        <li data-task="responsive">Responsive layout (mobile friendly)</li>
+                        <li data-task="hover">Hover transitions on buttons & links</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card" id="req-js">
+                    <h4>3. JavaScript Requirements ⚡</h4>
+                    <ul class="task-checklist">
+                        <li data-task="event">At least one event listener (click/submit)</li>
+                        <li data-task="dom">Dynamic DOM manipulation</li>
+                        <li data-task="validation">Form submission alert or validation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="submission-area">
+                <button class="submit-project-btn" id="submitProject">🏆 Submit Final Project</button>
+            </div>
         </section>
     </main>
 
     <script src="../lesson-navigation.js"></script>
-    <script src="./lesson15_remake.js"></script>
+    <script src="lesson15_remake.js"></script>
 </body>
 </html>

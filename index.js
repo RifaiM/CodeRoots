@@ -61,6 +61,8 @@ const browsers = [
 let currentBrowserIndex = 0;
 let isMobile = false;
 let autoPlayTimer = null;
+let isProgrammaticScroll = false;
+let programmaticScrollTimeout = null;
 
 const timelineContainer = document.getElementById('timelineContainer');
 const prevBtn = document.getElementById('prevBtn');
@@ -147,10 +149,17 @@ function updateTimeline() {
         const cardWidth = activeCard.offsetWidth;
         const scrollPosition = activeCard.offsetLeft - (containerWidth - cardWidth) / 2;
         
+        isProgrammaticScroll = true;
+        if (programmaticScrollTimeout) clearTimeout(programmaticScrollTimeout);
+
         timelineContainer.scrollTo({
             left: Math.max(0, scrollPosition),
             behavior: 'smooth'
         });
+
+        programmaticScrollTimeout = setTimeout(() => {
+            isProgrammaticScroll = false;
+        }, 800);
     }
     
     // Update button states if buttons exist
@@ -291,13 +300,23 @@ function updateProgress() {
     
     // Enable/disable next button
     const nextBtn = document.getElementById('nextBtnPartB');
-    if (completedCount === 4) {
-        nextBtn.classList.remove('disabled');
-        nextBtn.innerHTML = '🚀 Start Building Your First Website - Ready!';
-    } else {
-        nextBtn.classList.add('disabled');
-        nextBtn.innerHTML = `🚀 Complete ${4 - completedCount} more concepts to continue`;
+    if (nextBtn) {
+        if (completedCount === 4) {
+            nextBtn.classList.remove('disabled');
+            nextBtn.innerHTML = '✅ Complete Level 0 & Return to Dashboard';
+            nextBtn.onclick = handleLevel0Completion;
+        } else {
+            nextBtn.classList.add('disabled');
+            nextBtn.innerHTML = `🚀 Explore ${4 - completedCount} more concept card${(4 - completedCount) > 1 ? 's' : ''} to complete Level 0`;
+            nextBtn.onclick = null;
+        }
     }
+}
+
+// Handle Level 0 Completion & Return to Dashboard (Smooth instant redirect)
+function handleLevel0Completion() {
+    localStorage.setItem('level0_completed', 'true');
+    window.location.href = './dashboard.html';
 }
 
 // Handle concept card clicks with enhanced feedback
@@ -507,9 +526,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleScroll() {
-        // Find the card closest to center when user stops scrolling
+        if (isProgrammaticScroll) return; // Ignore scroll events generated during smooth programmatic auto-play
+
         clearTimeout(this.scrollTimeout);
         this.scrollTimeout = setTimeout(() => {
+            if (isProgrammaticScroll) return;
+
             const cards = timelineContainer.querySelectorAll('.timeline-card');
             const containerCenter = timelineContainer.scrollLeft + timelineContainer.offsetWidth / 2;
             let closestIndex = 0;

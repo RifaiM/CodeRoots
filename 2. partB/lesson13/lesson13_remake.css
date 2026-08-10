@@ -7,12 +7,7 @@ html, body {
     overflow-x: hidden;
 }
 
-@media (max-width: 860px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-  }
-}
+
 
 .container {
     max-width: 1200px;

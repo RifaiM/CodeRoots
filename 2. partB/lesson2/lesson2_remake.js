@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentColSpan = document.getElementById('current-col');
   
     function updateLineNumbers() {
+      if (!lineNumbers || !textarea) return;
       const lines = textarea.value.split('\n');
       const lineNumbersText = lines.map((_, index) => index + 1).join('\n');
       lineNumbers.textContent = lineNumbersText;
     }
   
     function updateCursorPosition() {
+      if (!currentLineSpan || !currentColSpan || !textarea) return;
       const cursorPosition = textarea.selectionStart;
       const textBeforeCursor = textarea.value.substring(0, cursorPosition);
       const lines = textBeforeCursor.split('\n');

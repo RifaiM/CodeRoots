@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NoviCodes - Zero-barrier interactive web development platform. From Novice to Fullstack Developer with hands-on exercises.">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Favicon & OpenGraph Metadata -->
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.png">
+    <meta property="og:image" content="./assets/og-image.jpg">
+    <meta property="og:title" content="NoviCodes - From Novice to Fullstack Web Developer">
+    <meta property="og:description" content="Zero-barrier interactive web development platform. Master HTML, CSS, JavaScript, Frameworks, and Python.">
+
+    <title>NoviCodes - From Novice to Fullstack Web Developer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./Global/root.css">
+    <link rel="stylesheet" href="./dashboard.css">
+
+    <!-- GSAP Animation Engine CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- SweetAlert2 for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Top Global Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <!-- NoviCodes Brand Logo Image Asset -->
+            <a href="./dashboard.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="./assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">From Novice to Dev</span>
+                </div>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="#roadmap" class="nav-link active">🗺️ Skill Tree</a>
+                <a href="./foundations.html?track=html" class="nav-link">📚 Foundations</a>
+                <a href="./2. partB/lesson1/lesson1_remake.html" class="nav-link" id="dojoNavLink">⚔️ Practical Dojo</a>
+                <a href="./2. partB/certificate.html" class="nav-link" id="certificateNavLink">📜 Certificate</a>
+            </nav>
+
+            <!-- Progress Badges & Quick Action -->
+            <div class="header-user-stats" id="userStatsBar">
+                <button class="stat-badge mode-toggle-badge" id="unlockToggleBtn" title="Toggle Unlock All Practice Mode">
+                    <span class="badge-icon">🔓</span>
+                    <span class="badge-label" id="unlockModeText">Unlock All</span>
+                </button>
+                <div class="stat-badge xp-badge" title="Total Experience Points Gained">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">1,250 XP</span>
+                </div>
+                <div class="stat-badge level-badge" title="Current Developer Rank">
+                    <span class="badge-icon" id="userRankIcon">🌱</span>
+                    <span class="badge-label" id="userRankLabel">Web Novice</span>
+                </div>
+                <a href="./index.html" class="resume-btn" id="resumeLessonBtn">
+                    <span>🚀 Start Track 0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Body Container -->
+    <main class="dashboard-main">
+        <!-- Hero Intro Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <span class="pill-sparkle">✨</span> 100% Free & Open-Source Learning
+                </div>
+                <h1 class="hero-title">
+                    Master Web Development From Zero to Shipping Code
+                </h1>
+                <p class="hero-subtitle">
+                    Understand how websites actually work. No software installation, no credit card, no academic jargon. Interactive lessons designed for every skill level.
+                </p>
+
+                <!-- Mobile Track Quick Switcher (320px/375px viewport control) -->
+                <div class="mobile-segmented-control" role="tablist" aria-label="Learning Track Filters">
+                    <button class="segmented-tab active" role="tab" aria-selected="true" data-filter="all">All Tracks</button>
+                    <button class="segmented-tab" role="tab" aria-selected="false" data-filter="foundations">Foundations</button>
+                    <button class="segmented-tab" role="tab" aria-selected="false" data-filter="dojo">Projects</button>
+                    <button class="segmented-tab" role="tab" aria-selected="false" data-filter="advanced">Advanced</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Tree Roadmap Section -->
+        <section class="roadmap-section" id="roadmap">
+            <div class="section-header">
+                <h2>
+                    <span class="section-emoji">🗺️</span> Curriculum Skill Tree
+                </h2>
+                <p class="section-desc">Follow the structured path or jump to your desired track below.</p>
+            </div>
+
+            <!-- Track Cards Grid / Snap Lane Container -->
+            <div class="tracks-snap-lane" id="tracksContainer">
+                
+                <!-- Track 0: Concepts -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 0</span>
+                        <span class="track-status-icon completed">✅ Completed</span>
+                    </div>
+                    <div class="card-icon-wrap concept-gradient">
+                        <span class="card-icon">🧠</span>
+                    </div>
+                    <h3 class="card-title">Web Concepts & Mental Models</h3>
+                    <p class="card-desc">
+                        Learn how the internet works—browsers, servers, HTTP requests, and the magic behind websites without writing code yet.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">4 Core Topics</span>
+                        <span class="meta-tag">Analogy-First</span>
+                    </div>
+                    <a href="./index.html" class="track-btn secondary-btn">
+                        <span>📖 Explore Web History & Concepts</span>
+                    </a>
+                </article>
+
+                <!-- Track 1: HTML5 -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 1</span>
+                        <span class="track-status-icon ready">🟢 Active Track</span>
+                    </div>
+                    <div class="card-icon-wrap html-gradient">
+                        <span class="card-icon">🧱</span>
+                    </div>
+                    <h3 class="card-title">HTML5 Structural Mastery</h3>
+                    <p class="card-desc">
+                        Master the wooden framing of web pages. Learn tags, semantic elements, forms, accessibility, and clean document structure.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Semantic Web</span>
+                        <span class="meta-tag">WCAG Standards</span>
+                    </div>
+                    <a href="./2. partB/lesson1/lesson1_remake.html" class="track-btn primary-btn">
+                        <span>▶ Start HTML Lessons</span>
+                    </a>
+                </article>
+
+                <!-- Track 2: CSS3 & Styling -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 2</span>
+                        <span class="track-status-icon ready">🟢 Active Track</span>
+                    </div>
+                    <div class="card-icon-wrap css-gradient">
+                        <span class="card-icon">🎨</span>
+                    </div>
+                    <h3 class="card-title">CSS3 & Utility Styling</h3>
+                    <p class="card-desc">
+                        Transform raw structure into beautiful designs. Deep dive into Flexbox, Grid, Responsive Media Queries, and Tailwind CSS.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Flexbox & Grid</span>
+                        <span class="meta-tag">Tailwind Sub-track</span>
+                    </div>
+                    <a href="./2. partB/lesson2/lesson2_remake.html" class="track-btn primary-btn">
+                        <span>▶ Start CSS Lessons</span>
+                    </a>
+                </article>
+
+                <!-- Track 3: JavaScript -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 3</span>
+                        <span class="track-status-icon ready">🟢 Active Track</span>
+                    </div>
+                    <div class="card-icon-wrap js-gradient">
+                        <span class="card-icon">⚡</span>
+                    </div>
+                    <h3 class="card-title">Modern JavaScript (ES6+)</h3>
+                    <p class="card-desc">
+                        Add life to your web pages. Learn variables, functions, DOM manipulation, click events, and fetching live web APIs.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">DOM & Events</span>
+                        <span class="meta-tag">Async / Fetch</span>
+                    </div>
+                    <a href="./2. partB/lesson10/lesson10_remake.html" class="track-btn primary-btn">
+                        <span>▶ Start JS Lessons</span>
+                    </a>
+                </article>
+
+                <!-- Track 4: Practical Dojo Projects -->
+                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+                    <div class="card-top">
+                        <span class="track-level-badge highlight-gold">Level 4</span>
+                        <span class="track-status-icon ready">🏆 Featured Dojo</span>
+                    </div>
+                    <div class="card-icon-wrap dojo-gradient">
+                        <span class="card-icon">⚔️</span>
+                    </div>
+                    <h3 class="card-title">15-Lesson Practical Dojo</h3>
+                    <p class="card-desc">
+                        Build 15 complete real-world projects step-by-step. Combine HTML, CSS, and JS to earn your official completion certificate!
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">15 Projects</span>
+                        <span class="meta-tag">Certificate Included</span>
+                    </div>
+                    <a href="./2. partB/lesson1/lesson1_remake.html" class="track-btn gold-btn">
+                        <span>🏆 Enter Practical Dojo</span>
+                    </a>
+                </article>
+
+                <!-- Track 5: Frameworks (Preview) -->
+                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 5</span>
+                        <span class="track-status-icon upcoming">🚀 Coming Soon</span>
+                    </div>
+                    <div class="card-icon-wrap react-gradient">
+                        <span class="card-icon">⚛️</span>
+                    </div>
+                    <h3 class="card-title">Modern Frameworks (React / Next)</h3>
+                    <p class="card-desc">
+                        Level up to component-based architectures. Build reactive user interfaces with React Hooks, JSX, and Next.js App Router.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">React 19</span>
+                        <span class="meta-tag">Next.js App Router</span>
+                    </div>
+                    <button class="track-btn preview-btn" onclick="showTrackPreview('React & Next.js Track', 'Interactive React sandboxing powered by client-side browser transpilation is currently in preview development!')">
+                        <span>🔍 View Track Info</span>
+                    </button>
+                </article>
+
+                <!-- Track 6: Python Web WASM (Preview) -->
+                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 6</span>
+                        <span class="track-status-icon upcoming">🐍 WASM Engine</span>
+                    </div>
+                    <div class="card-icon-wrap python-gradient">
+                        <span class="card-icon">🐍</span>
+                    </div>
+                    <h3 class="card-title">Python Web Development</h3>
+                    <p class="card-desc">
+                        Master Python syntax and web APIs using Pyodide WebAssembly—running 100% inside your browser with $0 backend cost!
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Pyodide WASM</span>
+                        <span class="meta-tag">Flask / FastAPI</span>
+                    </div>
+                    <button class="track-btn preview-btn" onclick="showTrackPreview('Python Web Track', 'Run Python 3.11 code natively inside your browser via WebAssembly without installing any software!')">
+                        <span>🔍 View Track Info</span>
+                    </button>
+                </article>
+
+                <!-- Track 7: Shipping to Cloud (Preview) -->
+                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 7</span>
+                        <span class="track-status-icon upcoming">☁️ Free Hosting</span>
+                    </div>
+                    <div class="card-icon-wrap cloud-gradient">
+                        <span class="card-icon">☁️</span>
+                    </div>
+                    <h3 class="card-title">Git & Cloud Deployment</h3>
+                    <p class="card-desc">
+                        Learn how to push code to GitHub and deploy live websites to Cloudflare Pages, Vercel, and Netlify for $0/month forever.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Git / GitHub</span>
+                        <span class="meta-tag">Vercel & Netlify</span>
+                    </div>
+                    <button class="track-btn preview-btn" onclick="showTrackPreview('Cloud & Deployment Track', 'Learn step-by-step how to publish your personal portfolio live on custom domains for free!')">
+                        <span>🔍 View Track Info</span>
+                    </button>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Certificate Showcase Card -->
+        <section class="certificate-promo-section">
+            <div class="cert-promo-card">
+                <div class="cert-promo-content">
+                    <span class="cert-badge">🎓 Official Proof of Work</span>
+                    <h2>Earn Your Web Development Certificate</h2>
+                    <p>Complete the 15 integrated Dojo projects to generate your official, verifiable course completion certificate.</p>
+                    <a href="./2. partB/certificate.html" class="cert-promo-btn">
+                        <span>🏆 View Certificate Generator</span>
+                    </a>
+                </div>
+                <div class="cert-promo-icon">
+                    📜
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="platform-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="./dashboard.html" class="platform-logo" aria-label="NoviCodes Footer Logo">
+                    <img src="./assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                    <div class="logo-text">
+                        <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                        <span class="logo-tag">From Novice to Dev</span>
+                    </div>
+                </a>
+                <p style="margin-top: 10px;">From Novice to Fullstack Web Developer. Zero-barrier, open-source environment for learners worldwide.</p>
+            </div>
+            <div class="footer-links">
+                <a href="./index.html">Web History</a>
+                <a href="./2. partB/lesson1/lesson1_remake.html">Practical Dojo</a>
+                <a href="./2. partB/certificate.html">Certificate</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NoviCodes. 100% Free & Open-Source under MIT License.</p>
+        </div>
+    </footer>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Main Dashboard JavaScript -->
+    <script src="./dashboard.js"></script>
+</body>
+</html>

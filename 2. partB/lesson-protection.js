@@ -37,8 +37,7 @@ class LessonProtection {
     }
 
     canAccessLesson(lessonNumber) {
-        // Always allow lesson 1
-        if (lessonNumber === 1) return true;
+        return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
         
         // Check if all previous lessons are completed
         for (let i = 1; i < lessonNumber; i++) {

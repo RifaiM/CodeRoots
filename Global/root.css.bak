@@ -373,8 +373,8 @@ div[style*="position: fixed"][style*="background:rgba(0,0,0"] {
   box-sizing: border-box !important;
 }
 
-/* DEFAULT HERO HEADER ARCHITECTURE (Home Page & Part A Concept Pages with Subtitle Paragraphs) */
-header:has(p) {
+/* DEFAULT HERO HEADER ARCHITECTURE (Home Page & Part A Concept Pages) */
+header:not(.platform-header) {
   position: relative !important;
   top: auto !important;
   background: linear-gradient(135deg, var(--brand, #007BFF) 0%, #0056b3 100%) !important;
@@ -388,7 +388,7 @@ header:has(p) {
   box-sizing: border-box !important;
 }
 
-header:has(p) h1 {
+header:not(.platform-header) h1 {
   margin: 0 0 6px 0 !important;
   padding: 0 !important;
   font-size: 1.6rem !important;
@@ -425,14 +425,383 @@ iframe,
   box-sizing: border-box !important;
 }
 
-/* Lesson Navigation Module styles are now cleanly isolated in 2. partB/lesson-navigation.css */
-
-/* GLOBAL STICKY PLATFORM HEADER ARCHITECTURE (Dashboard & Foundations Desktop Screens) */
-.platform-header {
+/* STICKY LESSON NAVBAR ARCHITECTURE (Part B Lesson Pages) */
+header:not(.platform-header):not(:has(p)),
+.lesson-header {
   position: sticky !important;
   top: 0 !important;
-  z-index: 99999 !important;
+  z-index: 99990 !important;
   width: 100% !important;
   max-width: 100vw !important;
   box-sizing: border-box !important;
+  background: linear-gradient(135deg, var(--brand, #007BFF) 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  padding: 10px 180px 10px 180px !important;
+  min-height: 56px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.25) !important;
+}
+
+header:not(.platform-header):not(:has(p)) h1,
+.lesson-header h1 {
+  margin: 0 auto !important;
+  padding: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-align: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Suppress extra badges appended into sticky header that collide with nav buttons */
+header:not(.platform-header):not(:has(p)) .challenge-badge,
+header:not(.platform-header):not(:has(p)) .completion-badge,
+header:not(.platform-header):not(:has(p)) > div:not(.lesson-nav-container) {
+  display: none !important;
+}
+
+/* Sticky Navigation Control Placement - Uniform Glassmorphic Top Controls */
+.home-button {
+  position: fixed !important;
+  top: 10px !important;
+  left: 16px !important;
+  z-index: 99999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  width: auto !important;
+  min-width: unset !important;
+  max-width: unset !important;
+  padding: 0 16px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+  font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  animation: none !important;
+}
+
+.home-button .home-icon {
+  display: inline-block !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+}
+
+.home-button .btn-text-full {
+  display: inline !important;
+}
+
+.home-button .btn-text-short {
+  display: none !important;
+}
+
+.home-button:hover {
+  background: #ffffff !important;
+  border-color: #bfdbfe !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
+}
+
+.lesson-nav-container {
+  position: fixed !important;
+  top: 10px !important;
+  right: 16px !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.lesson-nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+  font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+.lesson-nav-btn:hover {
+  background: #ffffff !important;
+  border-color: #bfdbfe !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Ensure mobile hamburger lines and text remain crisp dark slate */
+.lesson-nav-btn,
+.lesson-nav-btn span,
+.lesson-nav-btn svg,
+.lesson-nav-btn i,
+#toggleTocBtn {
+  color: #0f172a !important;
+  fill: #0f172a !important;
+  stroke: #0f172a !important;
+}
+
+.nav-hamburger span {
+  background: #0f172a !important;
+  background-color: #0f172a !important;
+}
+
+/* Universal Hint Popup Position Guard - Always below sticky navbar */
+div[style*="top: 20px"],
+div[style*="top:20px"],
+.hint-popup,
+.hint-modal {
+  top: 78px !important;
+}
+
+/* Responsive Mobile Rules (Tablet & Mobile Screens) */
+@media (max-width: 768px) {
+  #preview-modal .preview-overlay,
+  .preview-overlay,
+  .modal-overlay {
+    padding-top: 60px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  header {
+    padding: 18px 12px !important;
+  }
+
+  header h1 {
+    font-size: 1.2rem !important;
+  }
+
+  header p {
+    font-size: 0.85rem !important;
+  }
+
+  header:not(.platform-header):not(:has(p)),
+  .lesson-header {
+    min-height: 52px !important;
+    height: auto !important;
+    padding: 8px 52px 8px 52px !important;
+  }
+
+  header:not(.platform-header):not(:has(p)) h1,
+  .lesson-header h1 {
+    display: block !important;
+    font-size: 0.84rem !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .home-button {
+    top: 9px !important;
+    left: 9px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+  }
+
+  .home-button .btn-text-full,
+  .home-button .btn-text-short {
+    display: none !important;
+  }
+
+  .lesson-nav-container {
+    top: 9px !important;
+    right: 9px !important;
+    gap: 4px !important;
+  }
+
+  .lesson-nav-btn {
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 0.78rem !important;
+    border-radius: 17px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header:not(.platform-header):not(:has(p)),
+  .lesson-header {
+    min-height: 46px !important;
+    height: auto !important;
+    padding: 6px 44px 6px 44px !important;
+  }
+
+  header:not(.platform-header):not(:has(p)) h1,
+  .lesson-header h1 {
+    display: block !important;
+    font-size: 0.78rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    text-align: center !important;
+  }
+
+  .home-button {
+    top: 8px !important;
+    left: 7px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .lesson-nav-container {
+    top: 8px !important;
+    right: 7px !important;
+    gap: 3px !important;
+  }
+
+  .lesson-nav-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    font-size: 0.72rem !important;
+    border-radius: 50% !important;
+  }
+
+  .pane-header,
+  .editor-header {
+    padding: 6px 10px !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* GLOBAL BACK TO TOP BUTTON ARCHITECTURE (Identical across Dashboard, Foundations & Lessons) */
+.back-to-top-btn {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  z-index: 999999 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  flex-shrink: 0 !important;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) scale(0.9) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+}
+
+.back-to-top-btn svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #ffffff !important;
+  display: block !important;
+  margin: auto !important;
+  pointer-events: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.back-to-top-btn:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #003d80 100%) !important;
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.5) !important;
+}
+
+.back-to-top-btn:focus,
+.back-to-top-btn:focus-visible {
+  outline: 3px solid #007bff !important;
+  outline-offset: 3px !important;
+  border: none !important;
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0) scale(0.96) !important;
+}
+
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 20px !important;
+    right: 16px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .back-to-top-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
 }

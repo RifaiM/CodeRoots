@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NoviCodes Foundations Track - In-depth concepts, interactive glossary, code sandbox, and quizzes.">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Favicon & OpenGraph Metadata -->
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.png">
+    <meta property="og:image" content="./assets/og-image.jpg">
+    <meta property="og:title" content="NoviCodes Foundations Track">
+
+    <title>NoviCodes - Foundations Track</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./Global/root.css">
+    <link rel="stylesheet" href="./foundations.css">
+
+    <!-- SweetAlert2 for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Load Track Data Modules -->
+    <script src="./data/level1_html.js"></script>
+    <script src="./data/level2_css.js"></script>
+    <script src="./data/level3_js.js"></script>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="./dashboard.html" class="platform-logo" aria-label="NoviCodes Home">
+                <img src="./assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Foundations</span>
+                </div>
+            </a>
+
+            <!-- Header Right Stats -->
+            <div class="header-user-stats">
+                <div class="stat-badge xp-badge" title="Total Experience Points">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">1,250 XP</span>
+                </div>
+                <div class="stat-badge level-badge" title="Current Rank">
+                    <span class="badge-icon" id="userRankIcon">🌱</span>
+                    <span class="badge-label" id="userRankLabel">Web Novice</span>
+                </div>
+                <a href="./dashboard.html" class="back-dashboard-btn">
+                    <span>← <span class="btn-text-full">Dashboard</span><span class="btn-text-short">Home</span></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="foundations-main">
+        
+        <!-- Track Hero Banner -->
+        <section class="track-hero">
+            <div class="hero-inner">
+                <span class="track-badge-pill" id="trackBadgePill">🧱 Level 1 HTML</span>
+                <h1 id="trackTitle">Level 1: HTML Foundations</h1>
+                <p id="trackSubtitle">The Structural Blueprint & Skeleton of the World Wide Web</p>
+            </div>
+        </section>
+
+        <!-- 4-Part Segmented Module Tab Bar -->
+        <nav class="foundations-tab-bar" aria-label="Module Navigation">
+            <button class="tab-btn active" data-tab="concepts">
+                <span class="tab-icon">📖</span>
+                <span class="tab-label"><span class="desktop-text">Analogy & </span>Concepts</span>
+            </button>
+            <button class="tab-btn" data-tab="glossary">
+                <span class="tab-icon">📚</span>
+                <span class="tab-label"><span class="desktop-text">Terms & </span>Glossary</span>
+            </button>
+            <button class="tab-btn" data-tab="sandbox">
+                <span class="tab-icon">💻</span>
+                <span class="tab-label"><span class="desktop-text">Code </span>Sandbox</span>
+            </button>
+            <button class="tab-btn" data-tab="quiz">
+                <span class="tab-icon">🧪</span>
+                <span class="tab-label"><span class="desktop-text">Knowledge </span>Check</span>
+            </button>
+        </nav>
+
+        <!-- TAB PANELS -->
+
+        <!-- 1. Analogy & Concepts Panel -->
+        <section class="tab-panel active" id="panel-concepts">
+            <div class="concept-hero-card" id="heroAnalogyBox">
+                <!-- Injected dynamically via JS -->
+            </div>
+            <div class="concept-sections-grid" id="conceptSectionsList">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 2. Interactive Terms & Glossary Bank Panel -->
+        <section class="tab-panel" id="panel-glossary">
+            <div class="glossary-header-card">
+                <h2>📚 Interactive Terms & Glossary Bank</h2>
+                <p>Search and filter core web development terminology with real-world analogies.</p>
+                <div class="glossary-search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="glossarySearchInput" placeholder="Search terms (e.g. DOM, Tag, Flexbox, Variable)...">
+                </div>
+            </div>
+            <div class="glossary-cards-grid" id="glossaryCardsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 3. Code Sandbox & Live Preview Panel -->
+        <section class="tab-panel" id="panel-sandbox">
+            <div class="sandbox-instructions-card">
+                <span class="sandbox-tag">💡 Live Code Sandbox</span>
+                <p id="sandboxInstructions">Type or edit HTML/CSS/JS code in the left editor pane to see real-time updates in the preview pane!</p>
+            </div>
+            
+            <div class="sandbox-editor-workspace">
+                <!-- Left Editor Pane -->
+                <div class="workspace-pane editor-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">📝 Code Editor</span>
+                        <button class="reset-code-btn" id="resetSandboxBtn">🔄 Reset Code</button>
+                    </div>
+                    <textarea id="sandboxTextarea" spellcheck="false"></textarea>
+                </div>
+
+                <!-- Right Live Preview Pane -->
+                <div class="workspace-pane preview-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">👀 Live Result Preview</span>
+                        <span class="live-status-pill">🟢 Live Engine</span>
+                    </div>
+                    <iframe id="sandboxPreviewIframe" title="Live Preview Output" sandbox="allow-scripts allow-modals"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Knowledge Check & Quiz Panel -->
+        <section class="tab-panel" id="panel-quiz">
+            <div class="quiz-header-card">
+                <span class="quiz-badge">🧪 Knowledge Verification</span>
+                <h2>Validate Your Foundation Knowledge</h2>
+                <p>Answer the 3 concept questions correctly to earn your XP reward and unlock the next level track!</p>
+            </div>
+
+            <div class="quiz-questions-list" id="quizQuestionsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+            <div class="quiz-submit-bar">
+                <button class="complete-track-btn" id="submitQuizBtn">
+                    <span>✅ Complete Foundations Track & Return to Dashboard</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Foundations Master Controller -->
+    <script src="./foundations.js"></script>
+</body>
+</html>

@@ -448,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Only proceed if elements exist (some pages might not have line numbers)
   if (textarea) {
     function updateLineNumbers() {
+      if (!lineNumbers || !textarea) return;
       if (lineNumbers) {
         const lines = textarea.value.split('\n');
         const lineNumbersText = lines.map((_, index) => index + 1).join('\n');
@@ -456,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateCursorPosition() {
+      if (!currentLineSpan || !currentColSpan || !textarea) return;
       if (currentLineSpan && currentColSpan) {
         const cursorPosition = textarea.selectionStart;
         const textBeforeCursor = textarea.value.substring(0, cursorPosition);

@@ -38,8 +38,7 @@ class LessonNavigation {
     }
 
     canAccessLesson(lessonId) {
-        // Can access current lesson or any completed lesson
-        if (lessonId === this.currentLesson) return true;
+        return true; // DEVELOPMENT BYPASS: UNLOCK ALL LESSONS
         if (lessonId === 1) return true; // Always can access lesson 1
         
         // Can access if previous lesson is completed
@@ -170,46 +169,56 @@ class LessonNavigation {
             <style>
             .lesson-nav-container {
                 position: fixed;
-                top: 12px;
-                right: 20px;
-                z-index: 1000;
+                top: 10px;
+                right: 16px;
+                z-index: 99999;
             }
 
             .lesson-nav-btn {
-                background: var(--brand, #007BFF);
-                color: white;
-                border: none;
-                border-radius: 25px;
-                padding: 12px 16px;
-                font-size: 14px;
-                font-weight: 600;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(226, 232, 240, 0.9);
+                color: #0f172a;
+                border-radius: 20px;
+                padding: 0 16px;
+                height: 38px;
+                font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif;
+                font-size: 0.86rem;
+                font-weight: 700;
                 cursor: pointer;
-                display: flex;
+                display: inline-flex;
                 align-items: center;
-                gap: 8px;
-                box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-                transition: all 0.3s ease;
-                min-width: 160px;
-                position: relative;
+                gap: 6px;
+                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+                transition: all 0.2s ease;
+                white-space: nowrap;
+                box-sizing: border-box;
             }
 
             .lesson-nav-btn:hover {
-                background: #0056b3;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+                background: #ffffff;
+                border-color: #bfdbfe;
+                color: #2563eb;
+                transform: translateY(-1px);
+                box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
             }
 
             .nav-icon {
-                font-size: 16px;
+                display: inline-block;
+                font-size: 1rem;
             }
 
             .nav-text {
-                flex: 1;
-                text-align: left;
+                display: inline-block;
+                color: #0f172a;
+                font-weight: 700;
             }
 
             .nav-arrow {
-                font-size: 12px;
+                display: inline-block;
+                font-size: 0.72rem;
+                color: #475569;
                 transition: transform 0.3s ease;
             }
 
@@ -228,7 +237,7 @@ class LessonNavigation {
                 display: block;
                 height: 2px;
                 width: 16px;
-                background: white;
+                background: #0f172a;
                 border-radius: 2px;
                 position: absolute;
                 transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;

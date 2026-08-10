@@ -966,10 +966,7 @@ p {
 
 /* Mobile Responsive */
 @media (max-width: 860px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-  }
+  
 
   .lesson-header {
     padding: 16px;
@@ -1020,13 +1017,7 @@ p {
 }
 
 @media (max-width: 480px) {
-  .home-button {
-    top: 80px;
-    left: 15px;
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-  }
+  
 
   .lesson-header {
     padding: 12px 8px;
