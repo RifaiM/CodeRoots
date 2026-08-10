@@ -316,7 +316,7 @@ function updateProgress() {
 // Handle Level 0 Completion & Return to Dashboard (Smooth instant redirect)
 function handleLevel0Completion() {
     localStorage.setItem('level0_completed', 'true');
-    window.location.href = './dashboard.html';
+    window.location.href = '../index.html';
 }
 
 // Handle concept card clicks with enhanced feedback
@@ -598,7 +598,7 @@ document.getElementById('nextBtnPartB').addEventListener('click', function() {
         this.style.background = 'var(--success)';
         
         setTimeout(() => {
-            window.location.href = '/2. partB/lesson1/lesson1_remake.html';
+            window.location.href = '../2. partB/lesson1/lesson1_remake.html';
         }, 1000);
     } else {
         // Shake animation for disabled button
