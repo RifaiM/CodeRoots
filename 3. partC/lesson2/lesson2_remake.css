@@ -1,0 +1,509 @@
+/* ==========================================================================
+   NoviCodes Level 5 - Lesson 2: Component Mental Model & Virtual DOM
+   Isolated Stylesheet with Sleek Typography & Glassmorphic Component Grids
+   ========================================================================== */
+
+/* Main Container */
+.lesson-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 20px 60px 20px;
+  box-sizing: border-box;
+}
+
+/* Concept Hero Section */
+.concept-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.concept-hero h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.concept-hero p {
+  color: #475569;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+/* Analogy 2-Column Grid */
+.analogy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.analogy-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.analogy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+  border-color: #93c5fd;
+}
+
+.analogy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.analogy-card h4 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.syntax-chip {
+  background: #eff6ff;
+  color: #2563eb;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid #bfdbfe;
+}
+
+.analogy-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+/* Code Examples 2x2 Grid */
+.code-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.code-feature-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 16px;
+  color: #f8fafc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.feature-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.code-block {
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.code-block .keyword { color: #f472b6; font-weight: bold; }
+.code-block .function { color: #60a5fa; }
+.code-block .tag { color: #34d399; }
+.code-block .component { color: #f59e0b; font-weight: bold; }
+
+/* IDE Sandbox Section */
+.sandbox-section {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 28px;
+}
+
+.editor-header {
+  background: #1e293b;
+  padding: 12px 20px;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-title {
+  color: #f8fafc;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  background: #334155;
+  color: #f8fafc;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: #475569;
+}
+
+.control-btn.run-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.control-btn.run-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.editor-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 380px;
+}
+
+.code-editor-container {
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-header {
+  background: #090d16;
+  padding: 8px 16px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 700;
+  border-bottom: 1px solid #1e293b;
+}
+
+.code-editor-container textarea {
+  flex: 1;
+  background: #0f172a;
+  color: #f8fafc;
+  border: none;
+  padding: 14px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+}
+
+.preview-pane {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-pane .pane-header {
+  background: #1e293b;
+  color: #94a3b8;
+  border-bottom: 1px solid #334155;
+}
+
+#previewFrame {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  border: none;
+  background: #ffffff;
+}
+
+/* Requirements & Checklist Section */
+.requirements-section {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.requirements-section h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.task-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-checklist li {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.task-checklist li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.task-checklist li.completed {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #065f46;
+}
+
+.task-checklist li.completed::before {
+  content: '✓';
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.submit-project-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.submit-project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+}
+
+/* Mobile Media Queries (<= 768px, <= 480px) */
+@media (max-width: 768px) {
+  .lesson-content {
+    padding: 12px 10px 40px 10px;
+  }
+
+  .concept-hero {
+    padding: 16px 14px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .concept-hero h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .concept-hero p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .analogy-grid,
+  .code-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .analogy-card {
+    padding: 14px 12px;
+    border-radius: 12px;
+  }
+
+  .code-feature-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .editor-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .code-editor-container {
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+    padding: 10px;
+  }
+
+  .code-editor-container textarea {
+    font-size: 0.78rem;
+    line-height: 1.48;
+    min-height: 250px;
+  }
+
+  #previewFrame {
+    min-height: 250px;
+  }
+
+  .requirements-section {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .task-checklist li {
+    padding: 9px 12px;
+    font-size: 0.82rem;
+  }
+
+  .submit-project-btn {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lesson-content {
+    padding: 10px 8px 30px 8px;
+  }
+
+  .concept-hero {
+    padding: 14px 10px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .concept-hero h2 {
+    font-size: 1.15rem;
+  }
+
+  .concept-hero p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .analogy-card {
+    padding: 12px 10px;
+  }
+
+  .analogy-card h4 {
+    font-size: 0.90rem;
+  }
+
+  .analogy-card p {
+    font-size: 0.80rem;
+    line-height: 1.45;
+  }
+
+  .syntax-chip {
+    font-size: 0.70rem;
+    padding: 2px 6px;
+  }
+
+  .code-feature-card {
+    padding: 10px 8px;
+  }
+
+  .feature-title {
+    font-size: 0.82rem;
+  }
+
+  .code-block {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    line-height: 1.42;
+  }
+
+  .pane-header {
+    padding: 8px 10px;
+  }
+
+  .pane-header h3 {
+    font-size: 0.80rem;
+  }
+
+  .control-btn {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+
+  .code-editor-container textarea {
+    font-size: 0.76rem;
+    line-height: 1.42;
+    min-height: 220px;
+  }
+
+  #previewFrame {
+    min-height: 220px;
+  }
+
+  .requirements-section {
+    padding: 12px 10px;
+  }
+
+  .requirements-section h3 {
+    font-size: 1.05rem;
+  }
+
+  .task-checklist li {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+
+  .submit-project-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+}
