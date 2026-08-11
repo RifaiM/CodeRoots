@@ -1,4 +1,4 @@
-// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine with Dojo Code Inspector
+// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine with Real-Time Dojo Code Inspector & ESM Strip
 (function() {
     'use strict';
 
@@ -111,11 +111,13 @@ root.render(<App />);`;
                 return;
             }
 
-            // Transpile JSX outside iframe using Babel standalone if available
-            let compiledJS = userCode;
+            // Clean ESM import statements so standalone script execution never throws module errors
+            let cleanCode = userCode.replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
+
+            let compiledJS = cleanCode;
             if (typeof Babel !== 'undefined') {
                 try {
-                    const result = Babel.transform(userCode, { presets: ['react'] });
+                    const result = Babel.transform(cleanCode, { presets: ['react'] });
                     compiledJS = result.code;
                 } catch (babelErr) {
                     // Catch JSX/Babel syntax errors in real-time
@@ -131,6 +133,9 @@ root.render(<App />);`;
                     return;
                 }
             }
+
+            // Strip any remaining require/import statements in compiledJS
+            compiledJS = compiledJS.replace(/var\s+_[a-zA-Z0-9_$]+\s*=\s*require\([^)]+\);?/g, '');
 
             // Generate iframe srcdoc with React 18 & pre-compiled JS
             const htmlContent = `
@@ -297,9 +302,11 @@ root.render(<App />);`;
         }
 
         if (editor) {
+            let inputTimeout;
             editor.addEventListener('input', () => {
                 localStorage.setItem('partC_lesson2_remake_draft', editor.value);
-                runCode();
+                clearTimeout(inputTimeout);
+                inputTimeout = setTimeout(() => runCode(), 200);
             });
         }
 
