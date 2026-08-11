@@ -105,7 +105,7 @@
             this.updateChecklistItem('spread', hasSpread);
             this.updateChecklistItem('map', hasMap);
 
-            return hasArrow && hasDestructuring && hasMap;
+            return hasArrow && hasDestructuring && hasSpread && hasMap;
         }
 
         updateChecklistItem(taskKey, isCompleted) {
