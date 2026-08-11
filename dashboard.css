@@ -596,6 +596,37 @@ html, body {
   box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
 }
 
+/* Practical Dojo Navigation Link Highlight (Orange Accent) */
+#dojoNavLink.dojo-nav-highlight {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(180, 83, 9, 0.22) 100%) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-radius: 14px !important;
+  padding: 5px 12px !important;
+  font-weight: 800 !important;
+  transition: all 0.25s ease !important;
+}
+
+#dojoNavLink.dojo-nav-highlight:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35) !important;
+}
+
+/* React Framework Dojo Track Button */
+.react-track-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+}
+
+.react-track-btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4) !important;
+}
+
 .preview-btn {
   background: #f8fafc !important;
   color: #64748b !important;
