@@ -369,6 +369,69 @@
 }
 
 @media (max-width: 768px) {
+  .lesson-content {
+    padding: 12px 10px 40px 10px;
+  }
+
+  .concept-hero {
+    padding: 16px 14px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .concept-hero h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .concept-hero p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .analogy-grid,
+  .code-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .analogy-card {
+    padding: 14px 12px;
+    border-radius: 12px;
+  }
+
+  .analogy-card h4 {
+    font-size: 0.95rem;
+  }
+
+  .analogy-card p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .syntax-chip {
+    font-size: 0.74rem;
+    padding: 3px 8px;
+  }
+
+  .code-feature-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .feature-title {
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+  }
+
+  .code-block {
+    padding: 10px;
+    font-size: 0.78rem;
+    line-height: 1.48;
+  }
+
   .editor-workspace {
     grid-template-columns: 1fr;
   }
@@ -376,9 +439,131 @@
   .code-editor-container {
     border-right: none;
     border-bottom: 1px solid #1e293b;
+    padding: 10px;
+  }
+
+  .code-editor-container textarea {
+    font-size: 0.78rem;
+    line-height: 1.48;
+    min-height: 250px;
+  }
+
+  #previewFrame {
+    min-height: 250px;
   }
 
   .requirements-section {
     padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .task-checklist {
+    gap: 8px;
+    margin: 12px 0 18px 0;
+  }
+
+  .task-checklist li {
+    padding: 9px 12px;
+    font-size: 0.82rem;
+  }
+
+  .submit-project-btn {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Small Mobile Screens (<= 480px & 375px & 320px) */
+@media (max-width: 480px) {
+  .lesson-content {
+    padding: 10px 8px 30px 8px;
+  }
+
+  .concept-hero {
+    padding: 14px 10px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .concept-hero h2 {
+    font-size: 1.15rem;
+  }
+
+  .concept-hero p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .analogy-card {
+    padding: 12px 10px;
+  }
+
+  .analogy-card h4 {
+    font-size: 0.90rem;
+  }
+
+  .analogy-card p {
+    font-size: 0.80rem;
+    line-height: 1.45;
+  }
+
+  .syntax-chip {
+    font-size: 0.70rem;
+    padding: 2px 6px;
+  }
+
+  .code-feature-card {
+    padding: 10px 8px;
+  }
+
+  .feature-title {
+    font-size: 0.82rem;
+  }
+
+  .code-block {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    line-height: 1.42;
+  }
+
+  .pane-header {
+    padding: 8px 10px;
+  }
+
+  .pane-header h3 {
+    font-size: 0.80rem;
+  }
+
+  .control-btn {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+
+  .code-editor-container textarea {
+    font-size: 0.76rem;
+    line-height: 1.42;
+    min-height: 220px;
+  }
+
+  #previewFrame {
+    min-height: 220px;
+  }
+
+  .requirements-section {
+    padding: 12px 10px;
+  }
+
+  .requirements-section h3 {
+    font-size: 1.05rem;
+  }
+
+  .task-checklist li {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+
+  .submit-project-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 }
