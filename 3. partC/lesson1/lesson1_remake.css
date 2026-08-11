@@ -369,6 +369,39 @@
 }
 
 @media (max-width: 768px) {
+  .editor-header,
+  .interactive-workspace .pane-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+  }
+
+  .editor-title,
+  .interactive-workspace .pane-header h3 {
+    font-size: 0.85rem !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .editor-controls {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .control-btn {
+    padding: 8px 6px !important;
+    font-size: 0.76rem !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 12px !important;
+  }
+
   .lesson-content {
     padding: 12px 10px 40px 10px;
   }
@@ -475,6 +508,10 @@
 
 /* Small Mobile Screens (<= 480px & 375px & 320px) */
 @media (max-width: 480px) {
+  .btn-full-text {
+    display: none !important;
+  }
+
   .lesson-content {
     padding: 10px 8px 30px 8px;
   }
@@ -532,11 +569,6 @@
 
   .pane-header h3 {
     font-size: 0.80rem;
-  }
-
-  .control-btn {
-    padding: 5px 10px;
-    font-size: 0.74rem;
   }
 
   .code-editor-container textarea {
