@@ -1,34 +1,39 @@
 /* ==========================================================================
    NoviCodes Level 5: React & Framework Dojo - Navigation & Header Stylesheet
-   Isolated CSS Architecture for Level 5 (Part C)
+   Uniform Blue Header & Mobile Icon Architecture (Matching Level 4)
    ========================================================================== */
 
-/* Header Sticky Base */
-header:not(.platform-header):not(:has(p)) {
+/* Header Sticky Base - Uniform Blue Gradient */
+header:not(.platform-header):not(:has(p)),
+.lesson-header {
   position: sticky !important;
   top: 0 !important;
   z-index: 99990 !important;
-  background: #ffffff !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 10px 20px !important;
-  min-height: 58px !important;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  padding: 10px 180px !important;
+  min-height: 56px !important;
+  height: auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.25) !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
 
-header:not(.platform-header):not(:has(p)) h1 {
-  font-size: 1.1rem !important;
+header:not(.platform-header):not(:has(p)) h1,
+.lesson-header h1 {
+  margin: 0 auto !important;
+  padding: 0;
+  font-size: 1.25rem !important;
   font-weight: 700 !important;
-  color: #0f172a !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  color: #ffffff !important;
+  line-height: 1.3 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
   text-align: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Glassmorphic Home Button for Level 5 */
@@ -39,55 +44,87 @@ header:not(.platform-header):not(:has(p)) h1 {
   z-index: 99999 !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  background: #ffffff !important;
-  border: 1.5px solid #cbd5e1 !important;
-  color: #0f172a !important;
-  padding: 6px 14px !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
   border-radius: 20px !important;
-  font-size: 0.85rem !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+  font-size: 0.86rem !important;
   font-weight: 700 !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
   transition: all 0.2s ease !important;
+  white-space: nowrap !important;
 }
 
 .home-button:hover {
-  background: #f8fafc !important;
-  border-color: #94a3b8 !important;
+  background: #ffffff !important;
+  border-color: #bfdbfe !important;
+  color: #2563eb !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
 }
 
-.btn-text-short {
+.home-button .home-icon {
+  font-size: 1rem !important;
+  line-height: 1 !important;
+}
+
+.home-button .btn-text-full {
+  display: inline !important;
+}
+
+.home-button .btn-text-short {
   display: none !important;
 }
 
-/* Dropdown Pill Button */
+/* Navigation Dropdown Container & Buttons */
+.lesson-nav-container {
+  position: fixed !important;
+  top: 10px !important;
+  right: 16px !important;
+  z-index: 99999 !important;
+}
+
 .lesson-nav-btn {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  background: #ffffff !important;
-  border: 1.5px solid #cbd5e1 !important;
-  color: #0f172a !important;
-  padding: 6px 14px !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
   border-radius: 20px !important;
-  font-size: 0.85rem !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+  font-size: 0.86rem !important;
   font-weight: 700 !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
+  white-space: nowrap !important;
 }
 
 .lesson-nav-btn:hover {
-  background: #f8fafc !important;
-  border-color: #94a3b8 !important;
+  background: #ffffff !important;
+  border-color: #bfdbfe !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
 }
 
 /* Dropdown Menu Container */
 .lesson-nav-dropdown {
   position: absolute !important;
   top: 100% !important;
-  right: 16px !important;
+  right: 0 !important;
   margin-top: 8px !important;
   width: 320px !important;
   max-height: 480px !important;
@@ -133,68 +170,87 @@ header:not(.platform-header):not(:has(p)) h1 {
   cursor: not-allowed !important;
 }
 
+/* Mobile Media Queries (<= 768px down to 320px) - Matching Level 4 Pattern */
 @media (max-width: 768px) {
-  header:not(.platform-header):not(:has(p)) {
-    padding: 8px 55px !important;
-    min-height: 52px !important;
+  header:not(.platform-header):not(:has(p)),
+  .lesson-header {
+    min-height: 48px !important;
+    padding: 6px 48px !important;
   }
 
-  header:not(.platform-header):not(:has(p)) h1 {
-    font-size: 0.80rem !important;
-    max-width: calc(100vw - 130px) !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    text-align: center !important;
-  }
-
-  .home-button {
-    left: 10px !important;
-    top: 10px !important;
-    padding: 5px 10px !important;
+  header:not(.platform-header):not(:has(p)) h1,
+  .lesson-header h1 {
     font-size: 0.78rem !important;
+    line-height: 1.25 !important;
   }
 
-  .btn-text-full {
+  /* Home Button: Icon Only Pill on Mobile */
+  .home-button {
+    top: 9px !important;
+    left: 9px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+  }
+
+  .home-button .btn-text-full,
+  .home-button .btn-text-short {
     display: none !important;
   }
 
-  .btn-text-short {
-    display: inline !important;
+  /* Navigation Dropdown Container & Hamburger Pill */
+  .lesson-nav-container {
+    top: 9px !important;
+    right: 9px !important;
   }
 
   .lesson-nav-btn {
-    padding: 5px 10px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 10px !important;
     font-size: 0.78rem !important;
+    border-radius: 17px !important;
+  }
+
+  .nav-btn-text {
+    display: none !important;
   }
 
   .lesson-nav-dropdown {
     width: 280px !important;
-    right: 10px !important;
+    right: 0 !important;
   }
 }
 
 @media (max-width: 480px) {
-  header:not(.platform-header):not(:has(p)) {
-    padding: 8px 45px !important;
+  header:not(.platform-header):not(:has(p)),
+  .lesson-header {
+    padding: 5px 42px !important;
   }
 
-  header:not(.platform-header):not(:has(p)) h1 {
-    font-size: 0.75rem !important;
-    max-width: calc(100vw - 110px) !important;
+  header:not(.platform-header):not(:has(p)) h1,
+  .lesson-header h1 {
+    font-size: 0.74rem !important;
   }
 
   .home-button {
-    left: 6px !important;
-    padding: 4px 8px !important;
+    top: 8px !important;
+    left: 7px !important;
+    width: 34px !important;
+    height: 34px !important;
   }
 
-  .lesson-nav-btn {
-    padding: 4px 8px !important;
+  .lesson-nav-container {
+    top: 8px !important;
+    right: 7px !important;
   }
 
   .lesson-nav-dropdown {
     width: 260px !important;
-    right: 6px !important;
+    right: 0 !important;
   }
 }

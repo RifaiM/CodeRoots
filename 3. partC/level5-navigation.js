@@ -40,12 +40,11 @@
         // Create Navigation Pill Container
         const container = document.createElement('div');
         container.className = 'lesson-nav-container';
-        container.style.cssText = 'position: absolute; right: 16px; top: 50%; transform: translateY(-50%);';
 
         // Dropdown Toggle Button
         const btn = document.createElement('button');
         btn.className = 'lesson-nav-btn';
-        btn.innerHTML = `📚 Jump to Lesson <span class="nav-arrow">▼</span>`;
+        btn.innerHTML = `<span class="nav-btn-text">📚 Jump to Lesson</span> <span class="nav-arrow">☰</span>`;
 
         // Dropdown Menu
         const menu = document.createElement('div');
