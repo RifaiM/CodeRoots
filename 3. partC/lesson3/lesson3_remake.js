@@ -104,7 +104,7 @@ root.render(<ProfileCard />);`;
             let compiledJS = cleanCode;
             if (typeof Babel !== 'undefined') {
                 try {
-                    const result = Babel.transform(cleanCode, { presets: ['react'], sourceType: 'script' });
+                    const result = Babel.transform(cleanCode, { presets: [['react', { runtime: 'classic' }]], sourceType: 'script' });
                     compiledJS = result.code;
                 } catch (babelErr) {
                     // Catch JSX/Babel syntax errors in real-time

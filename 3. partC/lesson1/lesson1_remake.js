@@ -55,9 +55,9 @@
             if (resetBtn) resetBtn.addEventListener('click', () => this.resetCode());
             if (submitBtn) submitBtn.addEventListener('click', () => this.submitLesson());
 
-            // Auto-restore draft from localStorage if available
+            // Auto-restore draft from localStorage if available (only if non-empty)
             const savedDraft = localStorage.getItem('partC_lesson1_remake_draft');
-            if (savedDraft !== null && editor) {
+            if (savedDraft !== null && savedDraft.trim() !== '' && editor) {
                 editor.value = savedDraft;
             }
 
@@ -103,9 +103,10 @@
 
                 var htmlTail = [
                     '} catch (e) {',
-                    '  document.getElementById("output").innerHTML = "<div style=\\"padding:16px;color:#991b1b;font-family:sans-serif\\"><strong>\\u26a0\\ufe0f Dojo Code Inspector:</strong> " + String(e.message).replace(/</g, "\\x26lt;").replace(/>/g, "\\x26gt;") + "</div>";',
+                    '  var msg = String(e.message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");',
+                    '  document.getElementById("output").innerHTML = "<div style=\'padding:16px;color:#991b1b;font-family:sans-serif\'><strong>\u26a0\ufe0f Dojo Inspector: </strong>" + msg + "</div>";',
                     '}',
-                    '<\\/script>',
+                    '<\/script>',
                     '</body></html>'
                 ].join('\n');
 
