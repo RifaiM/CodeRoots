@@ -108,14 +108,10 @@ root.render(<ProfileCard />);`;
                     compiledJS = result.code;
                 } catch (babelErr) {
                     // Catch JSX/Babel syntax errors in real-time
-                    preview.srcdoc = `
-<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8" /></head>
-<body style="font-family: 'Segoe UI', sans-serif; background: #f8fafc; padding: 12px; margin: 0;">
-    ${formatDojoError(babelErr)}
-</body>
-</html>`;
+                    preview.srcdoc = '<!DOCTYPE html><html><head><meta charset="UTF-8" /></head>' +
+                        '<body style="font-family: \'Segoe UI\', sans-serif; background: #f8fafc; padding: 12px; margin: 0;">' +
+                        formatDojoError(babelErr) +
+                        '</body></html>';
                     validateRequirements('');
                     return;
                 }
@@ -125,109 +121,97 @@ root.render(<ProfileCard />);`;
             compiledJS = compiledJS.replace(/var\s+_[a-zA-Z0-9_$]+\s*=\s*require\([^)]+\);?/g, '');
 
             // Generate iframe srcdoc with React 18 & pre-compiled JS
-            const htmlContent = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+            var htmlParts = [
+                '<!DOCTYPE html><html><head><meta charset="UTF-8" />',
+                '<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin><\/script>',
+                '<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin><\/script>',
+                '<style>',
+                'body {',
+                '  font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;',
+                '  background: #f8fafc;',
+                '  color: #0f172a;',
+                '  margin: 0;',
+                '  padding: 16px;',
+                '  display: flex;',
+                '  justify-content: center;',
+                '}',
+                '.card {',
+                '  background: #ffffff;',
+                '  border: 1px solid #e2e8f0;',
+                '  border-radius: 16px;',
+                '  padding: 20px;',
+                '  max-width: 380px;',
+                '  width: 100%;',
+                '  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);',
+                '  text-align: center;',
+                '}',
+                '.avatar {',
+                '  width: 72px;',
+                '  height: 72px;',
+                '  border-radius: 50%;',
+                '  object-fit: cover;',
+                '  border: 3px solid #2563eb;',
+                '  margin-bottom: 12px;',
+                '}',
+                '.card h2 {',
+                '  margin: 0 0 4px 0;',
+                '  font-size: 1.2rem;',
+                '  color: #0f172a;',
+                '}',
+                '.subtitle {',
+                '  margin: 0 0 14px 0;',
+                '  font-size: 0.82rem;',
+                '  color: #64748b;',
+                '}',
+                'hr {',
+                '  border: none;',
+                '  border-top: 1px solid #f1f5f9;',
+                '  margin: 14px 0;',
+                '}',
+                '.card h3 {',
+                '  margin: 0 0 10px 0;',
+                '  font-size: 0.90rem;',
+                '  color: #1e293b;',
+                '  text-align: left;',
+                '}',
+                '.skill-list {',
+                '  list-style: none;',
+                '  padding: 0;',
+                '  margin: 0;',
+                '  display: flex;',
+                '  flex-wrap: wrap;',
+                '  gap: 8px;',
+                '}',
+                '.badge {',
+                '  background: #eff6ff;',
+                '  color: #2563eb;',
+                '  border: 1px solid #bfdbfe;',
+                '  border-radius: 14px;',
+                '  padding: 4px 12px;',
+                '  font-size: 0.78rem;',
+                '  font-weight: 700;',
+                '}',
+                '</style>',
+                '</head><body>',
+                '<div id="root"></div>',
+                '<script>',
+                'window.require = function(mod) {',
+                '  if (mod === "react") return window.React;',
+                '  if (mod === "react-dom" || mod === "react-dom/client") return window.ReactDOM;',
+                '  return window[mod] || {};',
+                '};',
+                'try {'
+            ].join('\n');
 
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            margin: 0;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-        }
+            var htmlTail = [
+                '} catch (err) {',
+                '  document.getElementById("root").innerHTML = "<div style=\'padding:16px;color:#991b1b;font-family:sans-serif\'><strong>⚠️ Runtime Error:</strong> " + String(err.message).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</div>";',
+                '}',
+                '<\/script>',
+                '</body></html>'
+            ].join('\n');
 
-        .card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 20px;
-            max-width: 380px;
-            width: 100%;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
-            text-align: center;
-        }
-
-        .avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #2563eb;
-            margin-bottom: 12px;
-        }
-
-        .card h2 {
-            margin: 0 0 4px 0;
-            font-size: 1.2rem;
-            color: #0f172a;
-        }
-
-        .subtitle {
-            margin: 0 0 14px 0;
-            font-size: 0.82rem;
-            color: #64748b;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #f1f5f9;
-            margin: 14px 0;
-        }
-
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 0.90rem;
-            color: #1e293b;
-            text-align: left;
-        }
-
-        .skill-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .badge {
-            background: #eff6ff;
-            color: #2563eb;
-            border: 1px solid #bfdbfe;
-            border-radius: 14px;
-            padding: 4px 12px;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-    </style>
-</head>
-<body>
-    <div id="root"></div>
-
-    <script>
-        window.require = function(mod) {
-            if (mod === 'react') return window.React;
-            if (mod === 'react-dom' || mod === 'react-dom/client') return window.ReactDOM;
-            return window[mod] || {};
-        };
-        try {
-            ${compiledJS}
-        } catch (err) {
-            document.getElementById('root').innerHTML = ${JSON.stringify(formatDojoError({ message: 'RUNTIME_ERR' }))}.replace('RUNTIME_ERR', String(err.message).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
-        }
-    </script>
-</body>
-</html>`;
-
-            preview.srcdoc = htmlContent;
+            preview.srcdoc = htmlParts + '\n' + compiledJS + '\n' + htmlTail;
             validateRequirements(userCode);
         }
 

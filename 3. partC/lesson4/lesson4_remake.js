@@ -120,14 +120,10 @@ root.render(<App />);`;
                     compiledJS = result.code;
                 } catch (babelErr) {
                     // Catch JSX/Babel syntax errors in real-time
-                    preview.srcdoc = `
-<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8" /></head>
-<body style="font-family: 'Segoe UI', sans-serif; background: #f8fafc; padding: 12px; margin: 0;">
-    ${formatDojoError(babelErr)}
-</body>
-</html>`;
+                    preview.srcdoc = '<!DOCTYPE html><html><head><meta charset="UTF-8" /></head>' +
+                        '<body style="font-family: \'Segoe UI\', sans-serif; background: #f8fafc; padding: 12px; margin: 0;">' +
+                        formatDojoError(babelErr) +
+                        '</body></html>';
                     validateRequirements('');
                     return;
                 }
@@ -137,112 +133,97 @@ root.render(<App />);`;
             compiledJS = compiledJS.replace(/var\s+_[a-zA-Z0-9_$]+\s*=\s*require\([^)]+\);?/g, '');
 
             // Generate iframe srcdoc with React 18 & pre-compiled JS
-            const htmlContent = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+            var htmlParts = [
+                '<!DOCTYPE html><html><head><meta charset="UTF-8" />',
+                '<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin><\/script>',
+                '<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin><\/script>',
+                '<style>',
+                'body {',
+                '  font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;',
+                '  background: #f8fafc;',
+                '  color: #0f172a;',
+                '  margin: 0;',
+                '  padding: 16px;',
+                '}',
+                '.app-container {',
+                '  max-width: 520px;',
+                '  margin: 0 auto;',
+                '}',
+                '.shop-header {',
+                '  text-align: center;',
+                '  margin-bottom: 20px;',
+                '}',
+                '.shop-header h2 {',
+                '  margin: 0 0 4px 0;',
+                '  font-size: 1.25rem;',
+                '  color: #0f172a;',
+                '}',
+                '.shop-header p {',
+                '  margin: 0;',
+                '  font-size: 0.82rem;',
+                '  color: #64748b;',
+                '}',
+                '.product-grid {',
+                '  display: grid;',
+                '  grid-template-columns: 1fr 1fr;',
+                '  gap: 12px;',
+                '}',
+                '.product-card {',
+                '  background: #ffffff;',
+                '  border: 1px solid #e2e8f0;',
+                '  border-radius: 14px;',
+                '  padding: 14px;',
+                '  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);',
+                '  position: relative;',
+                '}',
+                '.badge {',
+                '  display: inline-block;',
+                '  background: #eff6ff;',
+                '  color: #2563eb;',
+                '  font-size: 0.70rem;',
+                '  font-weight: 700;',
+                '  padding: 2px 8px;',
+                '  border-radius: 10px;',
+                '  margin-bottom: 8px;',
+                '}',
+                '.product-card h3 {',
+                '  margin: 0 0 6px 0;',
+                '  font-size: 0.92rem;',
+                '  color: #1e293b;',
+                '}',
+                '.price {',
+                '  margin: 0 0 8px 0;',
+                '  font-size: 1.05rem;',
+                '  font-weight: 800;',
+                '  color: #059669;',
+                '}',
+                '.status {',
+                '  font-size: 0.75rem;',
+                '  font-weight: 700;',
+                '}',
+                '.status.in-stock { color: #16a34a; }',
+                '.status.out-stock { color: #dc2626; }',
+                '</style>',
+                '</head><body>',
+                '<div id="root"></div>',
+                '<script>',
+                'window.require = function(mod) {',
+                '  if (mod === "react") return window.React;',
+                '  if (mod === "react-dom" || mod === "react-dom/client") return window.ReactDOM;',
+                '  return window[mod] || {};',
+                '};',
+                'try {'
+            ].join('\n');
 
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            margin: 0;
-            padding: 16px;
-        }
+            var htmlTail = [
+                '} catch (err) {',
+                '  document.getElementById("root").innerHTML = "<div style=\'padding:16px;color:#991b1b;font-family:sans-serif\'><strong>⚠️ Runtime Error:</strong> " + String(err.message).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</div>";',
+                '}',
+                '<\/script>',
+                '</body></html>'
+            ].join('\n');
 
-        .app-container {
-            max-width: 520px;
-            margin: 0 auto;
-        }
-
-        .shop-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .shop-header h2 {
-            margin: 0 0 4px 0;
-            font-size: 1.25rem;
-            color: #0f172a;
-        }
-
-        .shop-header p {
-            margin: 0;
-            font-size: 0.82rem;
-            color: #64748b;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 14px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-            position: relative;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #eff6ff;
-            color: #2563eb;
-            font-size: 0.70rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
-
-        .product-card h3 {
-            margin: 0 0 6px 0;
-            font-size: 0.92rem;
-            color: #1e293b;
-        }
-
-        .price {
-            margin: 0 0 8px 0;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: #059669;
-        }
-
-        .status {
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .status.in-stock { color: #16a34a; }
-        .status.out-stock { color: #dc2626; }
-    </style>
-</head>
-<body>
-    <div id="root"></div>
-
-    <script>
-        window.require = function(mod) {
-            if (mod === 'react') return window.React;
-            if (mod === 'react-dom' || mod === 'react-dom/client') return window.ReactDOM;
-            return window[mod] || {};
-        };
-        try {
-            ${compiledJS}
-        } catch (err) {
-            document.getElementById('root').innerHTML = ${JSON.stringify(formatDojoError({ message: 'RUNTIME_ERR' }))}.replace('RUNTIME_ERR', String(err.message).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
-        }
-    </script>
-</body>
-</html>`;
-
-            preview.srcdoc = htmlContent;
+            preview.srcdoc = htmlParts + '\n' + compiledJS + '\n' + htmlTail;
             validateRequirements(userCode);
         }
 

@@ -89,30 +89,27 @@
 
             const iframe = document.getElementById('previewFrame');
             if (iframe) {
-                const htmlContent = `
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <style>
-                            body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; padding: 16px; background: #ffffff; color: #0f172a; margin: 0; }
-                        </style>
-                    </head>
-                    <body>
-                        <div id="output"></div>
-                        <script>
-                            window.require = function(mod) { return window[mod] || {}; };
-                            try {
-                                ${cleanJs}
-                            } catch (e) {
-                                document.getElementById('output').innerHTML = ${JSON.stringify(formatDojoError({ message: 'PLACEHOLDER' }))}.replace('PLACEHOLDER', String(e.message).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
-                            }
-                        </script>
-                    </body>
-                    </html>
-                `;
+                // Build srcdoc via string concatenation (NOT template literals)
+                // so backticks in user ES6 code (template literals) never break the outer string
+                var htmlHead = [
+                    '<!DOCTYPE html><html><head><meta charset="UTF-8">',
+                    '<style>body { font-family: "Segoe UI", Tahoma, Geneva, sans-serif; padding: 16px; background: #ffffff; color: #0f172a; margin: 0; }</style>',
+                    '</head><body>',
+                    '<div id="output"></div>',
+                    '<script>',
+                    'window.require = function(mod) { return window[mod] || {}; };',
+                    'try {'
+                ].join('\n');
 
-                iframe.srcdoc = htmlContent;
+                var htmlTail = [
+                    '} catch (e) {',
+                    '  document.getElementById("output").innerHTML = "<div style=\\"padding:16px;color:#991b1b;font-family:sans-serif\\"><strong>\\u26a0\\ufe0f Dojo Code Inspector:</strong> " + String(e.message).replace(/</g, "\\x26lt;").replace(/>/g, "\\x26gt;") + "</div>";',
+                    '}',
+                    '<\\/script>',
+                    '</body></html>'
+                ].join('\n');
+
+                iframe.srcdoc = htmlHead + '\n' + cleanJs + '\n' + htmlTail;
             }
 
             // Evaluate checklist requirements
