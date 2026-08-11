@@ -1,4 +1,4 @@
-// Level 5: React & Framework Dojo - Navigation System matching Level 4 Architecture
+// Level 5: React & Framework Dojo - Navigation System 100% Identical to Level 4
 (function() {
     'use strict';
 
@@ -41,11 +41,11 @@
 
         const currentId = getCurrentLessonId();
 
-        // Create Navigation Pill Container
+        // Create Navigation Container
         const container = document.createElement('div');
         container.className = 'lesson-nav-container';
 
-        // Dropdown Toggle Button with Animated Hamburger Icon
+        // Dropdown Toggle Button matching Level 4
         const btn = document.createElement('button');
         btn.className = 'lesson-nav-btn';
         btn.id = 'lessonNavBtn';
@@ -60,7 +60,7 @@
             </span>
         `;
 
-        // Dropdown Menu Container
+        // Dropdown Menu Container matching Level 4
         const menu = document.createElement('div');
         menu.className = 'lesson-nav-dropdown';
         menu.id = 'lessonNavDropdown';
@@ -103,15 +103,13 @@
 
         menu.innerHTML = `
             <div class="nav-header">
-                <span class="nav-title">React Dojo Navigation</span>
-                <button class="nav-close" id="navCloseBtn" aria-label="Close Navigation">✕</button>
+                <span class="nav-title">Course Navigation</span>
             </div>
             <div class="nav-content">
                 ${lessonListHTML}
             </div>
         `;
 
-        // Toggle Open / Close Functions
         function toggleNav(e) {
             if (e) e.stopPropagation();
             const isOpen = menu.classList.contains('show');
@@ -134,10 +132,6 @@
 
         btn.addEventListener('click', toggleNav);
 
-        const closeBtn = menu.querySelector('#navCloseBtn');
-        if (closeBtn) closeBtn.addEventListener('click', closeNav);
-
-        // Click outside closes the dropdown menu
         document.addEventListener('click', (e) => {
             if (!container.contains(e.target)) {
                 closeNav();
