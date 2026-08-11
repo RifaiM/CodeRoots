@@ -19,10 +19,17 @@
             const runBtn = document.getElementById('runCode');
             const resetBtn = document.getElementById('resetCode');
             const submitBtn = document.getElementById('submitProject');
+            const editor = document.getElementById('jsCode');
 
             if (runBtn) runBtn.addEventListener('click', () => this.runCode());
             if (resetBtn) resetBtn.addEventListener('click', () => this.resetCode());
             if (submitBtn) submitBtn.addEventListener('click', () => this.submitLesson());
+
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    this.validateRequirements(editor.value);
+                });
+            }
 
             // Auto-run initial code on page load
             setTimeout(() => this.runCode(), 300);
@@ -32,6 +39,7 @@
             const jsVal = (document.getElementById('jsCode')?.value || '').trim();
 
             if (!jsVal) {
+                this.validateRequirements('');
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'warning',
@@ -88,24 +96,39 @@
                         if (editor) editor.value = '';
                         const iframe = document.getElementById('previewFrame');
                         if (iframe) iframe.srcdoc = '';
+
+                        // Instantly clear all green checkmarks
+                        this.validateRequirements('');
+
                         Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
                     }
                 });
+            } else {
+                const editor = document.getElementById('jsCode');
+                if (editor) editor.value = '';
+                this.validateRequirements('');
             }
         }
 
         validateRequirements(jsCode) {
-            const hasArrow = /=>/g.test(jsCode);
-            const hasDestructuring = /const\s*\{[^}]+\}\s*=/g.test(jsCode) || /let\s*\{[^}]+\}\s*=/g.test(jsCode);
-            const hasSpread = /\.\.\./g.test(jsCode);
-            const hasMap = /\.map\s*\(/g.test(jsCode);
+            const code = jsCode || '';
+            const hasArrow = /=>/g.test(code);
+            const hasDestructuring = /const\s*\{[^}]+\}\s*=/g.test(code) || /let\s*\{[^}]+\}\s*=/g.test(code);
+            const hasSpread = /\.\.\./g.test(code);
+            const hasMap = /\.map\s*\(/g.test(code);
 
             this.updateChecklistItem('arrow', hasArrow);
             this.updateChecklistItem('destructuring', hasDestructuring);
             this.updateChecklistItem('spread', hasSpread);
             this.updateChecklistItem('map', hasMap);
 
-            return hasArrow && hasDestructuring && hasSpread && hasMap;
+            const isAllValid = hasArrow && hasDestructuring && hasSpread && hasMap;
+            const submitBtn = document.getElementById('submitProject');
+            if (submitBtn) {
+                submitBtn.disabled = !isAllValid;
+            }
+
+            return isAllValid;
         }
 
         updateChecklistItem(taskKey, isCompleted) {
@@ -143,21 +166,24 @@
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Lesson 1 Passed! 🎉',
-                        text: 'Awesome job! You mastered ES6+ Arrow Functions, Destructuring & .map()!',
-                        confirmButtonColor: '#10b981',
-                        confirmButtonText: 'Next: Lesson 2 🚀'
+                        title: '🎉 Lesson 1 Complete!',
+                        text: 'You unlocked ES6+ Superpowers!',
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: '🚀 Go to Lesson 2'
                     }).then(() => {
                         window.location.href = '../lesson2/lesson2_remake.html';
                     });
+                } else {
+                    alert('🎉 Lesson 1 Complete!');
+                    window.location.href = '../lesson2/lesson2_remake.html';
                 }
             } else {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
-                        icon: 'info',
-                        title: 'Almost There!',
-                        text: 'Please make sure your code uses an arrow function () => {}, destructuring { name }, and .map()!',
-                        confirmButtonColor: '#2563eb'
+                        icon: 'error',
+                        title: 'Requirements Not Met!',
+                        text: 'Please make sure all 4 ES6+ Superpowers are used in your code!',
+                        confirmButtonColor: '#ef4444'
                     });
                 }
             }

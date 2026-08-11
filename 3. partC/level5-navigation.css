@@ -263,6 +263,7 @@ header:not(.platform-header):not(:has(p)) h1,
   display: flex !important;
   flex-direction: column !important;
   gap: 2px !important;
+  text-align: left;
 }
 
 .lesson-number {
