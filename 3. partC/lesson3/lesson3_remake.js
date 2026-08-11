@@ -51,14 +51,6 @@ root.render(<ProfileCard />);`;
             if (!userCode.trim()) {
                 validateRequirements('');
                 preview.srcdoc = '';
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Code Editor is Empty!',
-                        text: 'Please write your React JSX code before running preview! ⚡',
-                        confirmButtonColor: '#2563eb'
-                    });
-                }
                 return;
             }
 
@@ -168,7 +160,7 @@ root.render(<ProfileCard />);`;
         function validateRequirements(code) {
             const req1 = /\{[^}\n]+\}/.test(code); // Curly brace dynamic JS expression
             const req2 = /className\s*=/.test(code); // Using className attribute
-            const req3 = /<[a-z0-9]+\s+[^>]*\/>/i.test(code) || /<hr\s*\/?>/i.test(code) || /<img\s*[^>]*\/>/i.test(code); // Self closing tag
+            const req3 = /<(img|hr|br|input|source|embed)\b[^>]*\/>/i.test(code); // Self closing HTML/JSX tag (img, hr, br, input)
             const req4 = /\.map\s*\(/i.test(code); // Dynamic array .map() rendering
 
             updateChecklist('req1', req1);
@@ -191,7 +183,26 @@ root.render(<ProfileCard />);`;
             }
         }
 
-        if (runBtn) runBtn.addEventListener('click', runCode);
+        if (runBtn) {
+            runBtn.addEventListener('click', () => {
+                const userCode = (editor.value || '').trim();
+                if (!userCode) {
+                    validateRequirements('');
+                    preview.srcdoc = '';
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Code Editor is Empty!',
+                            text: 'Please write your React JSX code before running preview! ⚡',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
+                    return;
+                }
+                runCode();
+            });
+        }
+
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
                 if (typeof Swal !== 'undefined') {
@@ -224,7 +235,7 @@ root.render(<ProfileCard />);`;
         if (editor) {
             editor.addEventListener('input', () => {
                 localStorage.setItem('partC_lesson3_remake_draft', editor.value);
-                validateRequirements(editor.value);
+                runCode();
             });
         }
 
