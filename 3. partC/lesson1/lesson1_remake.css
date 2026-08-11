@@ -194,13 +194,15 @@
 }
 
 .control-btn {
+  box-sizing: border-box;
   padding: 6px 14px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid transparent;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1.2;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: all 0.2s ease;
