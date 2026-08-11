@@ -53,7 +53,21 @@ root.render(<App />);`;
         editor.value = defaultCode;
 
         function runCode() {
-            const userCode = editor.value;
+            const userCode = editor.value || '';
+
+            if (!userCode.trim()) {
+                validateRequirements('');
+                preview.srcdoc = '';
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Code Editor is Empty!',
+                        text: 'Please write your React component code before running preview! ⚡',
+                        confirmButtonColor: '#2563eb'
+                    });
+                }
+                return;
+            }
 
             // Generate iframe srcdoc with React 18, Babel standalone, and custom component styles
             const htmlContent = `
@@ -174,14 +188,34 @@ root.render(<App />);`;
         if (runBtn) runBtn.addEventListener('click', runCode);
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-                editor.value = defaultCode;
-                runCode();
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Reset Code?',
+                        text: 'Are you sure you want to clear your code in the editor?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ef4444',
+                        cancelButtonColor: '#64748b',
+                        confirmButtonText: 'Yes, reset code!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            editor.value = '';
+                            preview.srcdoc = '';
+                            validateRequirements('');
+                            Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
+                        }
+                    });
+                } else {
+                    editor.value = '';
+                    preview.srcdoc = '';
+                    validateRequirements('');
+                }
             });
         }
 
         if (editor) {
             editor.addEventListener('input', () => {
-                runCode();
+                validateRequirements(editor.value);
             });
         }
 
