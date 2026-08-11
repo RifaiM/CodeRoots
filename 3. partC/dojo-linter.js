@@ -18,10 +18,10 @@
         style.textContent = [
             /* Panel wrapper */
             '.dojo-lint-panel-wrap {',
-            '  margin-top: 6px;',
             '  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;',
             '  font-size: 0.82rem;',
-            '  transition: all 0.2s ease;',
+            '  height: 100%;',
+            '  overflow-y: auto;',
             '}',
 
             /* Error panel */
@@ -30,28 +30,12 @@
             '  border: 1px solid #fca5a5;',
             '  border-left: 4px solid #ef4444;',
             '  border-radius: 10px;',
-            '  padding: 12px 14px;',
+            '  padding: 16px 18px;',
+            '  margin: 12px;',
             '  animation: dojoLintSlideIn 0.15s ease;',
             '}',
 
-            /* Success panel */
-            '.dojo-lint-panel--success {',
-            '  background: linear-gradient(135deg, #f0fdf4 0%, #f7fff9 100%);',
-            '  border: 1px solid #86efac;',
-            '  border-left: 4px solid #22c55e;',
-            '  border-radius: 10px;',
-            '  padding: 9px 14px;',
-            '  display: flex;',
-            '  align-items: center;',
-            '  gap: 8px;',
-            '  animation: dojoLintSlideIn 0.15s ease;',
-            '}',
-
-            '.dojo-lint-panel--success .dojo-lint-ok-text {',
-            '  font-weight: 700;',
-            '  color: #15803d;',
-            '  font-size: 0.82rem;',
-            '}',
+            /* Success panel — not used (we just show the iframe) */
 
             /* Error header row */
             '.dojo-lint-header {',
@@ -221,6 +205,7 @@
 
     // ── Public API ─────────────────────────────────────────────────────────────
     window.DojoLinter = {
+        _iframeEl: null,
         _editorEl: null,
         _panelEl: null,
         _mode: 'jsx',
@@ -235,6 +220,9 @@
         init: function (editorId, panelId, options) {
             this._editorEl = document.getElementById(editorId);
             this._panelEl  = document.getElementById(panelId);
+            this._iframeEl = options && options.iframeId
+                ? document.getElementById(options.iframeId)
+                : document.getElementById('previewFrame');
             this._mode     = (options && options.mode) || 'jsx';
 
             if (!this._editorEl || !this._panelEl) return;
@@ -298,6 +286,8 @@
             if (this._editorEl) {
                 this._editorEl.classList.remove('dojo-lint-error', 'dojo-lint-success');
             }
+            // Show iframe again
+            if (this._iframeEl) this._iframeEl.style.display = '';
         },
 
         _renderError: function (opts) {
@@ -315,6 +305,8 @@
                     '<div class="dojo-lint-raw">' + opts.rawDisplay + '</div>' +
                   '</div>' +
                 '</div>';
+            // Hide iframe, show error panel in preview area instead
+            if (this._iframeEl) this._iframeEl.style.display = 'none';
             if (this._editorEl) {
                 this._editorEl.classList.add('dojo-lint-error');
                 this._editorEl.classList.remove('dojo-lint-success');
@@ -322,14 +314,9 @@
         },
 
         _renderSuccess: function () {
-            if (!this._panelEl) return;
-            this._panelEl.innerHTML =
-                '<div class="dojo-lint-panel-wrap">' +
-                  '<div class="dojo-lint-panel--success">' +
-                    '<span class="dojo-lint-icon">✅</span>' +
-                    '<span class="dojo-lint-ok-text">Code looks good!</span>' +
-                  '</div>' +
-                '</div>';
+            // Clear the panel and restore iframe — the rendered output IS the success state
+            if (this._panelEl) this._panelEl.innerHTML = '';
+            if (this._iframeEl) this._iframeEl.style.display = '';
             if (this._editorEl) {
                 this._editorEl.classList.add('dojo-lint-success');
                 this._editorEl.classList.remove('dojo-lint-error');
