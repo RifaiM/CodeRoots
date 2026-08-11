@@ -56,12 +56,11 @@ body.devtype-page {
 }
 
 .devtype-title-wrap h1 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff !important;
+  text-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,25 +68,69 @@ body.devtype-page {
 }
 
 .devtype-title-wrap p {
-  color: #94a3b8;
-  font-size: 0.88rem;
-  margin: 4px 0 0 0;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 6px 0 0 0;
 }
 
-/* Mode Selection Bar */
-.mode-selector-bar {
+/* Timer & Mode Selection Bar */
+.selectors-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.mode-selector-bar,
+.timer-selector-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
-.mode-btn {
+.timer-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-right: 4px;
+}
+
+.mode-btn,
+.timer-btn {
   background: #1e293b;
   border: 1px solid #334155;
-  color: #94a3b8;
+  color: #cbd5e1;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover,
+.timer-btn:hover {
+  color: #ffffff;
+  background: #334155;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.timer-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-color: #34d399;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.82rem;

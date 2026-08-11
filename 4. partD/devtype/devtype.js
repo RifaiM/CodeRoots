@@ -1,4 +1,4 @@
-// NoviCodes DevType Dojo - Code Typing Speedrun Logic Engine
+// NoviCodes DevType Dojo - Monkeytype-Style Code Typing Speedrun Engine with VS Code Tab Support
 (function() {
     'use strict';
 
@@ -6,28 +6,40 @@
         html: [
             `<div class="card">\n  <h2>Hello World</h2>\n  <p>Building web apps is awesome!</p>\n</div>`,
             `<form action="/submit" method="POST">\n  <label for="email">Email Address</label>\n  <input type="email" id="email" required />\n  <button type="submit">Submit</button>\n</form>`,
-            `<header class="navbar">\n  <a href="/home" class="logo">DevDojo</a>\n  <nav>\n    <a href="/about">About</a>\n    <a href="/contact">Contact</a>\n  </nav>\n</header>`
+            `<header class="navbar">\n  <a href="/home" class="logo">DevDojo</a>\n  <nav>\n    <a href="/about">About</a>\n    <a href="/contact">Contact</a>\n  </nav>\n</header>`,
+            `<main class="container">\n  <section class="hero">\n    <h1>Welcome to NoviCodes</h1>\n    <p>Zero barrier open source learning.</p>\n  </section>\n</main>`,
+            `<ul class="features-list">\n  <li class="item active">Item One</li>\n  <li class="item">Item Two</li>\n  <li class="item">Item Three</li>\n</ul>`,
+            `<article class="blog-post">\n  <img src="banner.jpg" alt="Banner" />\n  <h3>Modern Web Frameworks</h3>\n  <p>Learn React and component architecture.</p>\n</article>`
         ],
         css: [
             `.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 20px;\n  padding: 24px;\n}`,
             `.btn-primary {\n  background: linear-gradient(135deg, #007bff, #0056b3);\n  color: #ffffff;\n  border-radius: 20px;\n  cursor: pointer;\n}`,
-            `@media (max-width: 768px) {\n  .grid {\n    grid-template-columns: 1fr;\n    gap: 12px;\n  }\n}`
+            `@media (max-width: 768px) {\n  .grid {\n    grid-template-columns: 1fr;\n    gap: 12px;\n  }\n}`,
+            `.card-hero {\n  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);\n  backdrop-filter: blur(12px);\n  border: 1px solid #cbd5e1;\n}`,
+            `.nav-item:hover {\n  background: #f1f5f9;\n  color: #2563eb;\n  transition: all 0.2s ease;\n}`
         ],
         js: [
             `const calculateTotal = (items) => {\n  return items.reduce((acc, item) => acc + item.price, 0);\n};`,
             `const fetchUserData = async (userId) => {\n  const response = await fetch(\`/api/user/\${userId}\`);\n  return await response.json();\n};`,
-            `const user = { name: "Rifai", role: "Dev" };\nconst { name, role } = user;\nconst updated = { ...user, xp: 1500 };`
+            `const user = { name: "Rifai", role: "Dev" };\nconst { name, role } = user;\nconst updated = { ...user, xp: 1500 };`,
+            `const skills = ["HTML", "CSS", "JS"];\nconst badges = skills.map(skill => \`<span class="badge">\${skill}</span>\`);`,
+            `document.addEventListener("DOMContentLoaded", () => {\n  const btn = document.getElementById("submitBtn");\n  btn.addEventListener("click", handleSubmit);\n});`
         ],
         react: [
             `const [count, setCount] = useState(0);\nconst increment = () => setCount(prev => prev + 1);`,
             `useEffect(() => {\n  document.title = \`Count: \${count}\`;\n}, [count]);`,
-            `function UserCard({ name, role }) {\n  return (\n    <div className="card">\n      <h3>{name}</h3>\n      <p>{role}</p>\n    </div>\n  );\n}`
+            `function UserCard({ name, role }) {\n  return (\n    <div className="card">\n      <h3>{name}</h3>\n      <p>{role}</p>\n    </div>\n  );\n}`,
+            `const { data, loading, error } = useFetch("/api/data");\nif (loading) return <p>Loading...</p>;`,
+            `const AuthContext = createContext(null);\nconst useAuth = () => useContext(AuthContext);`
         ]
     };
 
     class DevTypeEngine {
         constructor() {
             this.currentMode = 'js';
+            this.timeLimit = 30; // seconds (0 = infinite snippet)
+            this.timeRemaining = 30;
+            this.currentSnippetIndex = 0;
             this.currentText = '';
             this.charIndex = 0;
             this.mistakes = 0;
@@ -52,8 +64,12 @@
             this.wpmEl = document.getElementById('wpmVal');
             this.cpmEl = document.getElementById('cpmVal');
             this.accuracyEl = document.getElementById('accuracyVal');
+            this.timerLabelEl = document.getElementById('timerLabelVal');
+            this.timerValEl = document.getElementById('timerVal');
             this.highScoreEl = document.getElementById('highScoreVal');
-            this.restartBtn = document.getElementById('restartBtn');
+
+            this.retryBtn = document.getElementById('retryBtn');
+            this.nextBtn = document.getElementById('nextBtn');
 
             this.loadHighScore();
             this.bindEvents();
@@ -70,7 +86,17 @@
                 });
             });
 
-            // Focus hidden input when clicking anywhere on code display card
+            // Timer buttons
+            document.querySelectorAll('.timer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    this.timeLimit = parseInt(e.currentTarget.dataset.time, 10);
+                    this.restart();
+                });
+            });
+
+            // Focus hidden input when clicking code display card
             const card = document.querySelector('.typing-area-card');
             if (card) {
                 card.addEventListener('click', () => {
@@ -80,24 +106,30 @@
 
             if (this.hiddenInput) {
                 this.hiddenInput.addEventListener('input', (e) => this.handleInput(e));
+                
+                // VS Code Tab Key Handler: Inserts 2 spaces just like VS Code!
                 this.hiddenInput.addEventListener('keydown', (e) => {
                     if (e.key === 'Tab') {
+                        e.preventDefault();
+                        const start = this.hiddenInput.selectionStart;
+                        const end = this.hiddenInput.selectionEnd;
+                        const val = this.hiddenInput.value;
+
+                        // Insert 2 spaces
+                        this.hiddenInput.value = val.substring(0, start) + "  " + val.substring(end);
+                        this.hiddenInput.selectionStart = this.hiddenInput.selectionEnd = start + 2;
+
+                        // Trigger input event
+                        this.handleInput(e);
+                    } else if (e.key === 'Escape') {
                         e.preventDefault();
                         this.restart();
                     }
                 });
             }
 
-            if (this.restartBtn) {
-                this.restartBtn.addEventListener('click', () => this.restart());
-            }
-
-            // Keyboard shortcut Tab for restart
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    this.restart();
-                }
-            });
+            if (this.retryBtn) this.retryBtn.addEventListener('click', () => this.retryCurrentSnippet());
+            if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextSnippet());
         }
 
         loadHighScore() {
@@ -110,7 +142,21 @@
         loadMode(mode) {
             this.currentMode = mode;
             const pool = codeSnippets[mode] || codeSnippets.js;
-            this.currentText = pool[Math.floor(Math.random() * pool.length)];
+            this.currentSnippetIndex = Math.floor(Math.random() * pool.length);
+            this.currentText = pool[this.currentSnippetIndex];
+            this.resetState();
+            this.renderText();
+        }
+
+        nextSnippet() {
+            const pool = codeSnippets[this.currentMode] || codeSnippets.js;
+            this.currentSnippetIndex = (this.currentSnippetIndex + 1) % pool.length;
+            this.currentText = pool[this.currentSnippetIndex];
+            this.resetState();
+            this.renderText();
+        }
+
+        retryCurrentSnippet() {
             this.resetState();
             this.renderText();
         }
@@ -120,6 +166,7 @@
             this.mistakes = 0;
             this.startTime = null;
             this.isPlaying = false;
+            this.timeRemaining = this.timeLimit;
             if (this.timer) clearInterval(this.timer);
             this.timer = null;
 
@@ -127,6 +174,10 @@
             if (this.wpmEl) this.wpmEl.textContent = '0';
             if (this.cpmEl) this.cpmEl.textContent = '0';
             if (this.accuracyEl) this.accuracyEl.textContent = '100%';
+            
+            if (this.timerValEl) {
+                this.timerValEl.textContent = this.timeLimit > 0 ? `${this.timeLimit}s` : '∞';
+            }
         }
 
         renderText() {
@@ -148,7 +199,13 @@
             if (!this.isPlaying) {
                 this.isPlaying = true;
                 this.startTime = new Date();
-                this.timer = setInterval(() => this.updateStats(), 100);
+                
+                if (this.timeLimit > 0) {
+                    this.timeRemaining = this.timeLimit;
+                    this.timer = setInterval(() => this.tickTimer(), 1000);
+                } else {
+                    this.timer = setInterval(() => this.updateStats(), 200);
+                }
             }
 
             const val = this.hiddenInput.value;
@@ -180,8 +237,21 @@
             }
             this.mistakes = currentErrors;
 
-            // Check if finished
+            this.updateStats();
+
+            // Check if finished entire snippet
             if (val.length >= this.currentText.length) {
+                this.finishSpeedrun();
+            }
+        }
+
+        tickTimer() {
+            this.timeRemaining--;
+            if (this.timerValEl) this.timerValEl.textContent = `${this.timeRemaining}s`;
+
+            this.updateStats();
+
+            if (this.timeRemaining <= 0) {
                 this.finishSpeedrun();
             }
         }
@@ -189,15 +259,12 @@
         updateStats() {
             if (!this.startTime) return;
             const now = new Date();
-            const elapsedSeconds = (now - this.startTime) / 1000;
+            const elapsedSeconds = Math.max(0.5, (now - this.startTime) / 1000);
             const elapsedMinutes = elapsedSeconds / 60;
-
-            if (elapsedSeconds <= 0) return;
 
             const typedChars = this.hiddenInput.value.length;
             const correctChars = Math.max(0, typedChars - this.mistakes);
 
-            // Standard WPM = (correct chars / 5) / minutes
             const wpm = Math.round((correctChars / 5) / elapsedMinutes) || 0;
             const cpm = Math.round(correctChars / elapsedMinutes) || 0;
             const accuracy = typedChars > 0 ? Math.round((correctChars / typedChars) * 100) : 100;
@@ -234,16 +301,23 @@
                             ${isNewRecord ? '<p style="color: #10b981; font-weight: 800;">🏆 You set a new personal record!</p>' : ''}
                         </div>
                     `,
+                    showCancelButton: true,
                     confirmButtonColor: '#2563eb',
-                    confirmButtonText: '⚡ Try Another Snippet'
-                }).then(() => {
-                    this.loadMode(this.currentMode);
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: '⏭ Next Snippet',
+                    cancelButtonText: '🔄 Retry Same'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.nextSnippet();
+                    } else {
+                        this.retryCurrentSnippet();
+                    }
                 });
             }
         }
 
         restart() {
-            this.loadMode(this.currentMode);
+            this.retryCurrentSnippet();
         }
     }
 

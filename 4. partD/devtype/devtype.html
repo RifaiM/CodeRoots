@@ -25,12 +25,22 @@
             <div style="width: 100px;"></div>
         </header>
 
-        <!-- Mode Selection Bar -->
-        <div class="mode-selector-bar">
-            <button class="mode-btn" data-mode="html">🌐 HTML Tags</button>
-            <button class="mode-btn" data-mode="css">🎨 CSS Rules</button>
-            <button class="mode-btn active" data-mode="js">⚡ JS ES6+</button>
-            <button class="mode-btn" data-mode="react">⚛️ React Hooks</button>
+        <!-- Mode & Timer Selectors -->
+        <div class="selectors-container">
+            <div class="mode-selector-bar">
+                <button class="mode-btn" data-mode="html">🌐 HTML Tags</button>
+                <button class="mode-btn" data-mode="css">🎨 CSS Rules</button>
+                <button class="mode-btn active" data-mode="js">⚡ JS ES6+</button>
+                <button class="mode-btn" data-mode="react">⚛️ React Hooks</button>
+            </div>
+
+            <div class="timer-selector-bar">
+                <span class="timer-label">⏱️ Mode:</span>
+                <button class="timer-btn" data-time="15">15s</button>
+                <button class="timer-btn active" data-time="30">30s</button>
+                <button class="timer-btn" data-time="60">60s</button>
+                <button class="timer-btn" data-time="0">∞ Snippet</button>
+            </div>
         </div>
 
         <!-- Live Stats HUD -->
@@ -40,8 +50,8 @@
                 <div class="stat-value" id="wpmVal">0</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">⌨️ CPM</div>
-                <div class="stat-value" id="cpmVal">0</div>
+                <div class="stat-label">⏱️ Time</div>
+                <div class="stat-value" id="timerVal" style="color: #f59e0b;">30s</div>
             </div>
             <div class="stat-box">
                 <div class="stat-label">🎯 Accuracy</div>
@@ -59,14 +69,19 @@
             <textarea id="hiddenInput" spellcheck="false" autocomplete="off" capitalize="off"></textarea>
         </div>
 
-        <!-- Controls & Shortcut Hints -->
+        <!-- Monkeytype-Style Controls & Shortcut Hints -->
         <div class="controls-bar">
-            <button class="restart-btn" id="restartBtn">
-                <span>🔄 Restart Speedrun</span>
-            </button>
+            <div style="display: flex; gap: 10px;">
+                <button class="restart-btn" id="retryBtn">
+                    <span>🔄 Retry Snippet</span>
+                </button>
+                <button class="restart-btn" id="nextBtn" style="background: #2563eb; border-color: #3b82f6;">
+                    <span>⏭ Next Snippet</span>
+                </button>
+            </div>
 
             <div class="shortcut-hint">
-                Press <kbd>Tab</kbd> or <kbd>Esc</kbd> to restart anytime
+                Press <kbd>Tab</kbd> to indent code like VS Code | Press <kbd>Esc</kbd> to restart
             </div>
         </div>
     </main>
