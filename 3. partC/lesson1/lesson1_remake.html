@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson1_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Level 5 Lesson 1: ES6+ Superpowers for Frameworks</title>
+</head>
+<body>
+    <a href="../../dashboard.html" class="home-button" title="Back to Dashboard">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text-full">Dashboard</span>
+        <span class="btn-text-short">Home</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 5 - Lesson 1: ES6+ Superpowers for Frameworks</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Beginner Conceptual Hero -->
+        <section class="concept-hero">
+            <h2>🚀 Welcome to Level 5: React & Framework Dojo!</h2>
+            <p>
+                Congratulations on reaching Level 5! Before we build modern web applications with <strong>React</strong>, we need to unlock 4 modern JavaScript <strong>"Superpowers"</strong> that every framework developer uses every single minute.
+            </p>
+            <p>
+                Don't worry if frameworks sound intimidating — we will use <strong>simple real-world analogies</strong> so everything feels natural!
+            </p>
+
+            <!-- Analogy Cards Grid -->
+            <div class="analogy-grid">
+                <div class="analogy-card">
+                    <h4>⚡ 1. Arrow Functions <code>() => {}</code></h4>
+                    <p>
+                        <strong>Analogy:</strong> Instead of writing a long formal 10-line letter, an arrow function is a fast, clean recipe card shortcut.
+                    </p>
+                </div>
+                <div class="analogy-card">
+                    <h4>🎁 2. Object Destructuring <code>{ name }</code></h4>
+                    <p>
+                        <strong>Analogy:</strong> Unpacking your birthday present box directly onto your desk instead of reaching inside a huge bag every 5 seconds.
+                    </p>
+                </div>
+                <div class="analogy-card">
+                    <h4>📋 3. Spread Operator <code>...</code></h4>
+                    <p>
+                        <strong>Analogy:</strong> Photocopying a sheet of paper and adding a new bullet point without erasing or ruining the original document.
+                    </p>
+                </div>
+                <div class="analogy-card">
+                    <h4>🔄 4. Array <code>.map()</code> Method</h4>
+                    <p>
+                        <strong>Analogy:</strong> A magical factory stamp machine that takes raw ingredients and transforms each item into a shiny HTML card!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Code Examples -->
+            <h3 style="font-size: 1.1rem; color: #0f172a; margin-top: 24px;">💡 How These 4 Superpowers Look in Code:</h3>
+            
+            <div class="code-example-box">
+<span class="comment">// 1. Arrow Function</span>
+<span class="keyword">const</span> <span class="function">greet</span> = (name) => <span class="string">`Hello, ${name}!`</span>;
+
+<span class="comment">// 2. Object Destructuring</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Rifai"</span>, role: <span class="string">"Developer"</span> };
+<span class="keyword">const</span> { name, role } = user;
+
+<span class="comment">// 3. Spread Operator (Immutable Copy)</span>
+<span class="keyword">const</span> updatedUser = { ...user, xp: <span class="string">1500</span> };
+
+<span class="comment">// 4. Array .map() (Transforming items into HTML)</span>
+<span class="keyword">const</span> skills = [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JS"</span>];
+<span class="keyword">const</span> htmlCards = skills.map(skill => <span class="string">`&lt;div class="badge"&gt;${skill}&lt;/div&gt;`</span>);
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>💻 Level 5 Interactive ES6+ Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn run-btn" id="runCode">▶ Run Code</button>
+                    <button class="control-btn reset-btn" id="resetCode">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px; font-weight: 700;">script.js (Write your modern ES6+ code here):</div>
+                    <textarea id="jsCode" spellcheck="false">// 🛠️ Level 5 Lesson 1 Practice Task:
+
+// 1. Create a user object using destructuring:
+const developer = {
+    name: "Alex",
+    role: "Frontend Developer",
+    skills: ["HTML5", "CSS3", "JavaScript"]
+};
+
+// 2. Use destructuring to extract name & role:
+const { name, role, skills } = developer;
+
+// 3. Create an arrow function that returns a formatted card:
+const renderProfile = () => {
+    // 4. Use .map() to format skills into badges:
+    const skillBadges = skills.map(skill => `<span style="background:#2563eb; color:white; padding:4px 10px; border-radius:12px; margin-right:6px; font-size:12px;">${skill}</span>`).join('');
+
+    return `
+        <div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">
+            <h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 ${name}</h2>
+            <p style="margin: 0 0 14px 0; color: #64748b; font-weight: 600;">💻 ${role}</p>
+            <div>${skillBadges}</div>
+        </div>
+    `;
+};
+
+// 5. Output to the live preview canvas:
+document.body.innerHTML = renderProfile();
+</textarea>
+                </div>
+
+                <div class="preview-container">
+                    <div class="preview-bar">
+                        <span>🌐 Live Canvas Output</span>
+                    </div>
+                    <iframe id="previewFrame" title="Live Preview Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 1 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem;">Complete all 4 criteria to pass Level 5 Lesson 1 and unlock Lesson 2!</p>
+
+            <ul class="task-checklist">
+                <li data-task="arrow">⚡ Use an Arrow Function <code>() => {}</code></li>
+                <li data-task="destructuring">🎁 Use Object Destructuring <code>const { name } = ...</code></li>
+                <li data-task="spread">📋 Use the Spread Operator <code>...</code> or Immutable Update</li>
+                <li data-task="map">🔄 Use the Array <code>.map()</code> method to transform data</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject">🏆 Complete Lesson 1 & Unlock Lesson 2</button>
+        </section>
+    </main>
+
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson1_remake.js"></script>
+</body>
+</html>
