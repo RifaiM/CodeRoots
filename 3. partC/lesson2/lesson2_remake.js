@@ -1,4 +1,4 @@
-// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine with Real-Time Auto-Save Drafts
+// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine with Dojo Code Inspector
 (function() {
     'use strict';
 
@@ -64,14 +64,6 @@ root.render(<App />);`;
             if (!userCode.trim()) {
                 validateRequirements('');
                 preview.srcdoc = '';
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Code Editor is Empty!',
-                        text: 'Please write your React component code before running preview! ⚡',
-                        confirmButtonColor: '#2563eb'
-                    });
-                }
                 return;
             }
 
@@ -152,10 +144,44 @@ root.render(<App />);`;
     <div id="root"></div>
 
     <script type="text/babel">
+        function formatDojoError(err) {
+            var msg = err.message || '';
+            var friendlyTitle = 'Syntax Error Detected';
+            var friendlyHint = 'Check your JSX component syntax for missing brackets or tag spelling.';
+
+            if (/Adjacent JSX elements must be wrapped/i.test(msg)) {
+                friendlyTitle = 'Multiple Root Elements';
+                friendlyHint = 'Adjacent JSX elements must be wrapped in a single parent tag! Wrap items inside a &lt;div&gt;...&lt;/div&gt; or &lt;&gt;...&lt;/&gt; fragment.';
+            } else if (/Expected corresponding JSX closing tag for/i.test(msg)) {
+                var match = msg.match(/Expected corresponding JSX closing tag for <([a-zA-Z0-9]+)>/i);
+                var tag = match ? match[1] : 'element';
+                friendlyTitle = 'Mismatched Closing Tag';
+                friendlyHint = 'You opened a &lt;' + tag + '&gt; tag, but tried to close it with a misspelled closing tag! Make sure your closing tag matches &lt;/' + tag + '&gt;.';
+            } else if (/Unterminated JSX contents/i.test(msg) || /Unterminated string/i.test(msg)) {
+                friendlyTitle = 'Unclosed Tag or String';
+                friendlyHint = 'You opened a tag or string, but forgot to close it. Remember: all tags in React JSX (like &lt;img /&gt; or &lt;hr /&gt;) MUST be closed!';
+            } else if (/Objects are not valid as a React child/i.test(msg)) {
+                friendlyTitle = 'Cannot Render Full Object';
+                friendlyHint = 'You tried to render a full JavaScript Object directly inside JSX {}! Render specific properties instead, like {user.name}.';
+            } else if (/Nothing was returned from render/i.test(msg)) {
+                friendlyTitle = 'Component Missing Return';
+                friendlyHint = 'Your component function returned nothing! Make sure your component includes a return (...) statement.';
+            }
+
+            return '<div style="background: #fef2f2; border: 1px solid #fca5a5; border-left: 4px solid #ef4444; border-radius: 14px; padding: 18px; color: #991b1b; font-family: Segoe UI, sans-serif; box-shadow: 0 4px 12px rgba(239,68,68,0.15);">' +
+                '<div style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; margin-bottom: 8px; color: #7f1d1d;">' +
+                '<span>⚠️ Dojo Code Inspector</span>' +
+                '<span style="background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">' + friendlyTitle + '</span>' +
+                '</div>' +
+                '<div style="font-size: 0.85rem; line-height: 1.5; color: #7f1d1d; margin-bottom: 10px;">💡 <strong>Helpful Hint:</strong> ' + friendlyHint + '</div>' +
+                '<div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 0.78rem; color: #b91c1c; overflow-x: auto;"><code>' + msg.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></div>' +
+                '</div>';
+        }
+
         try {
             ${userCode}
         } catch (err) {
-            document.getElementById('root').innerHTML = '<div style="color: #ef4444; padding: 12px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; font-family: monospace; font-size: 0.82rem;">❌ Component Syntax Error: ' + err.message + '</div>';
+            document.getElementById('root').innerHTML = formatDojoError(err);
         }
     </script>
 </body>
@@ -191,7 +217,26 @@ root.render(<App />);`;
             }
         }
 
-        if (runBtn) runBtn.addEventListener('click', runCode);
+        if (runBtn) {
+            runBtn.addEventListener('click', () => {
+                const userCode = (editor.value || '').trim();
+                if (!userCode) {
+                    validateRequirements('');
+                    preview.srcdoc = '';
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Code Editor is Empty!',
+                            text: 'Please write your React component code before running preview! ⚡',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
+                    return;
+                }
+                runCode();
+            });
+        }
+
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
                 if (typeof Swal !== 'undefined') {
@@ -224,7 +269,7 @@ root.render(<App />);`;
         if (editor) {
             editor.addEventListener('input', () => {
                 localStorage.setItem('partC_lesson2_remake_draft', editor.value);
-                validateRequirements(editor.value);
+                runCode();
             });
         }
 

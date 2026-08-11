@@ -1,6 +1,34 @@
-// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine with Real-Time Auto-Save Drafts
+// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine with Dojo Code Inspector
 (function() {
     'use strict';
+
+    function formatDojoError(err) {
+        const msg = err.message || '';
+        let friendlyTitle = 'Syntax Error Detected';
+        let friendlyHint = 'Check your code syntax for missing brackets, quotes, or keywords.';
+
+        if (/Unexpected token/i.test(msg)) {
+            friendlyTitle = 'Unexpected Token Syntax Error';
+            friendlyHint = 'Look out for extra or missing characters like commas, semicolons, or unmatched brackets <code>()</code> / <code>{}</code>.';
+        } else if (/is not defined/i.test(msg)) {
+            friendlyTitle = 'Undefined Variable or Function';
+            friendlyHint = 'You referenced a variable or function that hasn\'t been declared yet. Check for spelling typos!';
+        }
+
+        return `
+        <div style="background: #fef2f2; border: 1px solid #fca5a5; border-left: 4px solid #ef4444; border-radius: 14px; padding: 18px; color: #991b1b; font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);">
+            <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; margin-bottom: 8px; color: #7f1d1d;">
+                <span>⚠️ Dojo Code Inspector</span>
+                <span style="background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">${friendlyTitle}</span>
+            </div>
+            <div style="font-size: 0.85rem; line-height: 1.5; color: #7f1d1d; margin-bottom: 10px;">
+                💡 <strong>Helpful Hint:</strong> ${friendlyHint}
+            </div>
+            <div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 0.78rem; color: #b91c1c; overflow-x: auto;">
+                <code>${msg.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
+            </div>
+        </div>`;
+    }
 
     class Lesson1Manager {
         constructor() {
@@ -34,7 +62,7 @@
             if (editor) {
                 editor.addEventListener('input', () => {
                     localStorage.setItem('partC_lesson1_remake_draft', editor.value);
-                    this.validateRequirements(editor.value);
+                    this.runCode();
                 });
             }
 
@@ -47,14 +75,8 @@
 
             if (!jsVal) {
                 this.validateRequirements('');
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Code Editor is Empty!',
-                        text: 'Please write your modern ES6+ code before running preview! ⚡',
-                        confirmButtonColor: '#2563eb'
-                    });
-                }
+                const iframe = document.getElementById('previewFrame');
+                if (iframe) iframe.srcdoc = '';
                 return;
             }
 
@@ -74,13 +96,37 @@
                             try {
                                 ${jsVal}
                             } catch (e) {
-                                document.body.innerHTML = '<div style="color: #ef4444; background: #fef2f2; padding: 14px; border-radius: 10px; font-family: monospace;">⚠️ JavaScript Error: ' + e.message + '</div>';
+                                document.body.innerHTML = ${JSON.stringify(formatDojoError({ message: '' }))}.replace('code></code>', 'code>' + String(e.message).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>');
                             }
                         </script>
                     </body>
                     </html>
                 `;
-                iframe.srcdoc = combined;
+
+                // Inject custom formatted Dojo Inspector error handler
+                const htmlContent = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <meta charset="UTF-8">
+                        <style>
+                            body { font-family: 'Segoe UI', sans-serif; padding: 16px; background: #ffffff; color: #0f172a; margin: 0; }
+                        </style>
+                    </head>
+                    <body>
+                        <div id="output"></div>
+                        <script>
+                            try {
+                                ${jsVal}
+                            } catch (e) {
+                                document.getElementById('output').innerHTML = ${JSON.stringify(formatDojoError({ message: 'PLACEHOLDER' }))}.replace('PLACEHOLDER', String(e.message).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+                            }
+                        </script>
+                    </body>
+                    </html>
+                `;
+
+                iframe.srcdoc = htmlContent;
             }
 
             // Evaluate checklist requirements
@@ -171,7 +217,6 @@
             const isValid = this.validateRequirements(jsVal);
 
             if (isValid) {
-                // Save Level 5 Lesson 1 Completion
                 localStorage.setItem('partC_lesson1_remake_complete', 'true');
 
                 if (typeof Swal !== 'undefined') {
