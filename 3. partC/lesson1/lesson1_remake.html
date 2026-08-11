@@ -32,51 +32,85 @@
                 Don't worry if frameworks sound intimidating — we will use <strong>simple real-world analogies</strong> so everything feels natural!
             </p>
 
-            <!-- Analogy Cards Grid -->
+            <!-- Analogy Cards Grid (Spacious 2x2 Grid) -->
             <div class="analogy-grid">
                 <div class="analogy-card">
-                    <h4>⚡ 1. Arrow Functions <code>() => {}</code></h4>
+                    <div class="card-header">
+                        <h4>⚡ 1. Arrow Functions</h4>
+                        <span class="syntax-chip">() => {}</span>
+                    </div>
                     <p>
-                        <strong>Analogy:</strong> Instead of writing a long formal 10-line letter, an arrow function is a fast, clean recipe card shortcut.
+                        <strong>Real-World Analogy:</strong> Instead of writing a long, formal 10-line letter every time, an arrow function is a fast, clean recipe card shortcut.
                     </p>
                 </div>
+                
                 <div class="analogy-card">
-                    <h4>🎁 2. Object Destructuring <code>{ name }</code></h4>
+                    <div class="card-header">
+                        <h4>🎁 2. Object Destructuring</h4>
+                        <span class="syntax-chip">{ name, role }</span>
+                    </div>
                     <p>
-                        <strong>Analogy:</strong> Unpacking your birthday present box directly onto your desk instead of reaching inside a huge bag every 5 seconds.
+                        <strong>Real-World Analogy:</strong> Unpacking your birthday present box directly onto your desk instead of reaching deep inside a heavy bag every 5 seconds.
                     </p>
                 </div>
+                
                 <div class="analogy-card">
-                    <h4>📋 3. Spread Operator <code>...</code></h4>
+                    <div class="card-header">
+                        <h4>📋 3. Spread Operator</h4>
+                        <span class="syntax-chip">...object</span>
+                    </div>
                     <p>
-                        <strong>Analogy:</strong> Photocopying a sheet of paper and adding a new bullet point without erasing or ruining the original document.
+                        <strong>Real-World Analogy:</strong> Photocopying a document and writing a new bullet point on the fresh sheet so you never ruin or erase the original paper!
                     </p>
                 </div>
+                
                 <div class="analogy-card">
-                    <h4>🔄 4. Array <code>.map()</code> Method</h4>
+                    <div class="card-header">
+                        <h4>🔄 4. Array .map() Method</h4>
+                        <span class="syntax-chip">array.map()</span>
+                    </div>
                     <p>
-                        <strong>Analogy:</strong> A magical factory stamp machine that takes raw ingredients and transforms each item into a shiny HTML card!
+                        <strong>Real-World Analogy:</strong> A magical factory stamp machine that takes raw items one-by-one and transforms each into a shiny HTML card!
                     </p>
                 </div>
             </div>
 
-            <!-- Code Examples -->
-            <h3 style="font-size: 1.1rem; color: #0f172a; margin-top: 24px;">💡 How These 4 Superpowers Look in Code:</h3>
+            <!-- Structured 2x2 Code Feature Cards Grid -->
+            <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 32px; margin-bottom: 16px;">💡 How These 4 Superpowers Look in Code:</h3>
             
-            <div class="code-example-box">
-<span class="comment">// 1. Arrow Function</span>
-<span class="keyword">const</span> <span class="function">greet</span> = (name) => <span class="string">`Hello, ${name}!`</span>;
+            <div class="code-feature-grid">
+                <!-- Feature 1 -->
+                <div class="code-feature-card">
+                    <div class="feature-title">⚡ 1. Arrow Function</div>
+                    <pre class="code-block"><code><span class="comment">// Fast, modern function syntax</span>
+<span class="keyword">const</span> <span class="function">greet</span> = (name) => {
+    <span class="keyword">return</span> <span class="string">`Hello, ${name}!`</span>;
+};</code></pre>
+                </div>
 
-<span class="comment">// 2. Object Destructuring</span>
-<span class="keyword">const</span> user = { name: <span class="string">"Rifai"</span>, role: <span class="string">"Developer"</span> };
-<span class="keyword">const</span> { name, role } = user;
+                <!-- Feature 2 -->
+                <div class="code-feature-card">
+                    <div class="feature-title">🎁 2. Object Destructuring</div>
+                    <pre class="code-block"><code><span class="comment">// Extract properties directly</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Alex"</span>, role: <span class="string">"Dev"</span> };
+<span class="keyword">const</span> { name, role } = user;</code></pre>
+                </div>
 
-<span class="comment">// 3. Spread Operator (Immutable Copy)</span>
-<span class="keyword">const</span> updatedUser = { ...user, xp: <span class="string">1500</span> };
+                <!-- Feature 3 -->
+                <div class="code-feature-card">
+                    <div class="feature-title">📋 3. Spread Operator</div>
+                    <pre class="code-block"><code><span class="comment">// Create new object with added data</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Alex"</span> };
+<span class="keyword">const</span> updated = { ...user, xp: <span class="string">1500</span> };</code></pre>
+                </div>
 
-<span class="comment">// 4. Array .map() (Transforming items into HTML)</span>
+                <!-- Feature 4 -->
+                <div class="code-feature-card">
+                    <div class="feature-title">🔄 4. Array .map() Method</div>
+                    <pre class="code-block"><code><span class="comment">// Transform items into HTML cards</span>
 <span class="keyword">const</span> skills = [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JS"</span>];
-<span class="keyword">const</span> htmlCards = skills.map(skill => <span class="string">`&lt;div class="badge"&gt;${skill}&lt;/div&gt;`</span>);
+<span class="keyword">const</span> cards = skills.map(item => <span class="string">`&lt;div&gt;${item}&lt;/div&gt;`</span>);</code></pre>
+                </div>
             </div>
         </section>
 
