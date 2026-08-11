@@ -322,11 +322,42 @@ body.devtype-page {
 
 @media (max-width: 768px) {
   .devtype-navbar {
-    padding: 8px 12px;
+    padding: 8px 12px !important;
+    min-height: 52px !important;
+  }
+
+  .nav-back-btn {
+    padding: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+  }
+
+  .nav-back-btn .btn-text {
+    display: none !important;
+  }
+
+  .nav-title {
+    font-size: 0.95rem !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
   }
 
   .nav-sub {
-    display: none;
+    display: none !important;
+  }
+
+  .high-score-badge {
+    padding: 4px 10px !important;
+    font-size: 0.76rem !important;
+    gap: 4px !important;
+  }
+
+  .high-score-badge strong {
+    font-size: 0.82rem !important;
   }
 
   .compact-controls-bar {
@@ -356,7 +387,7 @@ body.devtype-page {
   }
 
   .code-display {
-    font-size: 0.90rem;
+    font-size: 0.88rem;
     line-height: 1.55;
   }
 
@@ -376,5 +407,32 @@ body.devtype-page {
 
   .shortcut-text {
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .devtype-navbar {
+    padding: 6px 8px !important;
+    min-height: 48px !important;
+  }
+
+  .nav-back-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .nav-title {
+    font-size: 0.88rem !important;
+  }
+
+  .high-score-badge {
+    padding: 3px 8px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .high-score-badge strong {
+    font-size: 0.78rem !important;
   }
 }
