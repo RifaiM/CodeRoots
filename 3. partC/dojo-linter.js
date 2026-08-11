@@ -110,12 +110,10 @@
             /* Textarea states */
             'textarea.dojo-lint-error {',
             '  border-left: 3px solid #ef4444 !important;',
-            '  background: #fffafa !important;',
             '}',
 
             'textarea.dojo-lint-success {',
             '  border-left: 3px solid #22c55e !important;',
-            '  background: #fafffe !important;',
             '}',
 
             /* Slide-in animation */
