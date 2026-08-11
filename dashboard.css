@@ -571,6 +571,20 @@ html, body {
   transform: translateY(-2px);
 }
 
+.concept-btn {
+  background: linear-gradient(135deg, #0f766e 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.25) !important;
+  font-weight: 800 !important;
+}
+
+.concept-btn:hover {
+  background: linear-gradient(135deg, #0d9488 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35) !important;
+}
+
 .gold-btn {
   background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
   color: #ffffff !important;
