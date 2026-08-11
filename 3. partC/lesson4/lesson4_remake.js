@@ -174,17 +174,18 @@ root.render(<App />);`;
 
         function validateRequirements(code) {
             // req1: Passes custom props into child component e.g. <ProductCard name="..." price=...
-            const req1 = /<[A-Z][a-zA-Z0-9]*\s+[a-zA-Z0-9]+=/i.test(code);
+            const req1 = /<[A-Z][a-zA-Z0-9]*\s+[a-zA-Z0-9]+\s*=/i.test(code);
             
             // req2: Destructures props in component signature e.g. function ProductCard({ name, price })
             const req2 = /function\s+[A-Z][a-zA-Z0-9]*\s*\(\s*\{[^}]+\}\s*\)/i.test(code) || /const\s+[A-Z][a-zA-Z0-9]*\s*=\s*\(\s*\{[^}]+\}\s*\)/i.test(code);
 
             // req3: Renders passed prop values inside JSX curly braces e.g. {name} or {price}
-            const req3 = /\{[a-zA-Z0-9_$]+\}/.test(code);
+            const req3 = /<[a-z0-9]+\b[^>]*>[\s\S]*?\{[a-zA-Z0-9_$]+\}[\s\S]*?<\/[a-z0-9]+>/i.test(code) || /className\s*=\s*\{/i.test(code);
 
-            // req4: Renders multiple instances of child component e.g. at least two <ProductCard ... />
-            const matches = code.match(/<[A-Z][a-zA-Z0-9]*\s+[^>]*\/>/g) || [];
-            const req4 = matches.length >= 2;
+            // req4: Renders multiple instances of child component (e.g. at least 2 child component calls like <ProductCard ...)
+            const allComponentTags = code.match(/<[A-Z][a-zA-Z0-9]*\b/g) || [];
+            const childTags = allComponentTags.filter(tag => tag !== '<App');
+            const req4 = childTags.length >= 2;
 
             updateChecklist('req1', req1);
             updateChecklist('req2', req2);
