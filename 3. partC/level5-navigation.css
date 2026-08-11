@@ -135,16 +135,24 @@ header:not(.platform-header):not(:has(p)) h1 {
 
 @media (max-width: 768px) {
   header:not(.platform-header):not(:has(p)) {
-    padding: 8px 12px !important;
+    padding: 8px 55px !important;
+    min-height: 52px !important;
   }
 
   header:not(.platform-header):not(:has(p)) h1 {
-    font-size: 0.82rem !important;
+    font-size: 0.80rem !important;
+    max-width: calc(100vw - 130px) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: center !important;
   }
 
   .home-button {
     left: 10px !important;
+    top: 10px !important;
     padding: 5px 10px !important;
+    font-size: 0.78rem !important;
   }
 
   .btn-text-full {
@@ -155,8 +163,38 @@ header:not(.platform-header):not(:has(p)) h1 {
     display: inline !important;
   }
 
+  .lesson-nav-btn {
+    padding: 5px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
   .lesson-nav-dropdown {
     width: 280px !important;
     right: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header:not(.platform-header):not(:has(p)) {
+    padding: 8px 45px !important;
+  }
+
+  header:not(.platform-header):not(:has(p)) h1 {
+    font-size: 0.75rem !important;
+    max-width: calc(100vw - 110px) !important;
+  }
+
+  .home-button {
+    left: 6px !important;
+    padding: 4px 8px !important;
+  }
+
+  .lesson-nav-btn {
+    padding: 4px 8px !important;
+  }
+
+  .lesson-nav-dropdown {
+    width: 260px !important;
+    right: 6px !important;
   }
 }
