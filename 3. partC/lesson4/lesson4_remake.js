@@ -1,4 +1,4 @@
-// Level 5 - Lesson 4: React Props & Reusable Data Flow Engine with Real-Time Dojo Code Inspector & ESM Strip
+// Level 5 - Lesson 4: React Props & Reusable Data Flow Engine with Real-Time Dojo Code Inspector & ESM Polyfills
 (function() {
     'use strict';
 
@@ -110,13 +110,13 @@ root.render(<App />);`;
                 return;
             }
 
-            // Clean ESM import statements so standalone script execution never throws module errors
-            let cleanCode = userCode.replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
+            // Clean top-level ESM import statements to prevent script module errors
+            let cleanCode = userCode.replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/gi, '');
 
             let compiledJS = cleanCode;
             if (typeof Babel !== 'undefined') {
                 try {
-                    const result = Babel.transform(cleanCode, { presets: ['react'] });
+                    const result = Babel.transform(cleanCode, { presets: ['react'], sourceType: 'script' });
                     compiledJS = result.code;
                 } catch (babelErr) {
                     // Catch JSX/Babel syntax errors in real-time
@@ -133,7 +133,7 @@ root.render(<App />);`;
                 }
             }
 
-            // Strip any remaining require/import statements in compiledJS
+            // Strip any leftover CJS require/export wrappers
             compiledJS = compiledJS.replace(/var\s+_[a-zA-Z0-9_$]+\s*=\s*require\([^)]+\);?/g, '');
 
             // Generate iframe srcdoc with React 18 & pre-compiled JS
@@ -228,6 +228,11 @@ root.render(<App />);`;
     <div id="root"></div>
 
     <script>
+        window.require = function(mod) {
+            if (mod === 'react') return window.React;
+            if (mod === 'react-dom' || mod === 'react-dom/client') return window.ReactDOM;
+            return window[mod] || {};
+        };
         try {
             ${compiledJS}
         } catch (err) {

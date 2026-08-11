@@ -1,9 +1,9 @@
-// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine with Dojo Code Inspector
+// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine with Dojo Code Inspector & Import Polyfill
 (function() {
     'use strict';
 
     function formatDojoError(err) {
-        const msg = err.message || '';
+        const msg = err.message || String(err);
         let friendlyTitle = 'Syntax Error Detected';
         let friendlyHint = 'Check your code syntax for missing brackets, quotes, or keywords.';
 
@@ -15,8 +15,10 @@
             friendlyHint = 'You referenced a variable or function that hasn\'t been declared yet. Check for spelling typos!';
         }
 
+        const cleanMsg = msg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
         return `
-        <div style="background: #fef2f2; border: 1px solid #fca5a5; border-left: 4px solid #ef4444; border-radius: 14px; padding: 18px; color: #991b1b; font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);">
+        <div style="background: #fef2f2; border: 1px solid #fca5a5; border-left: 4px solid #ef4444; border-radius: 14px; padding: 18px; color: #991b1b; font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); margin: 10px;">
             <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; margin-bottom: 8px; color: #7f1d1d;">
                 <span>⚠️ Dojo Code Inspector</span>
                 <span style="background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">${friendlyTitle}</span>
@@ -24,8 +26,8 @@
             <div style="font-size: 0.85rem; line-height: 1.5; color: #7f1d1d; margin-bottom: 10px;">
                 💡 <strong>Helpful Hint:</strong> ${friendlyHint}
             </div>
-            <div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 0.78rem; color: #b91c1c; overflow-x: auto;">
-                <code>${msg.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
+            <div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 0.78rem; color: #b91c1c; overflow-x: auto; white-space: pre-wrap;">
+                <code>${cleanMsg}</code>
             </div>
         </div>`;
     }
@@ -60,9 +62,11 @@
             }
 
             if (editor) {
+                let inputTimeout;
                 editor.addEventListener('input', () => {
                     localStorage.setItem('partC_lesson1_remake_draft', editor.value);
-                    this.runCode();
+                    clearTimeout(inputTimeout);
+                    inputTimeout = setTimeout(() => this.runCode(), 200);
                 });
             }
 
@@ -71,53 +75,35 @@
         }
 
         runCode() {
-            const jsVal = (document.getElementById('jsCode')?.value || '').trim();
+            const rawJs = (document.getElementById('jsCode')?.value || '').trim();
 
-            if (!jsVal) {
+            if (!rawJs) {
                 this.validateRequirements('');
                 const iframe = document.getElementById('previewFrame');
                 if (iframe) iframe.srcdoc = '';
                 return;
             }
 
+            // Convert import statements into global assignments to avoid ESM SyntaxError in script tags
+            let cleanJs = rawJs.replace(/import\s+.*?from\s+['"][^'"]+['"];?/g, '');
+
             const iframe = document.getElementById('previewFrame');
             if (iframe) {
-                const combined = `
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <style>
-                            body { font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; background: #ffffff; color: #0f172a; margin: 0; }
-                        </style>
-                    </head>
-                    <body>
-                        <script>
-                            try {
-                                ${jsVal}
-                            } catch (e) {
-                                document.body.innerHTML = ${JSON.stringify(formatDojoError({ message: '' }))}.replace('code></code>', 'code>' + String(e.message).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>');
-                            }
-                        </script>
-                    </body>
-                    </html>
-                `;
-
-                // Inject custom formatted Dojo Inspector error handler
                 const htmlContent = `
                     <!DOCTYPE html>
                     <html>
                     <head>
                         <meta charset="UTF-8">
                         <style>
-                            body { font-family: 'Segoe UI', sans-serif; padding: 16px; background: #ffffff; color: #0f172a; margin: 0; }
+                            body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; padding: 16px; background: #ffffff; color: #0f172a; margin: 0; }
                         </style>
                     </head>
                     <body>
                         <div id="output"></div>
                         <script>
+                            window.require = function(mod) { return window[mod] || {}; };
                             try {
-                                ${jsVal}
+                                ${cleanJs}
                             } catch (e) {
                                 document.getElementById('output').innerHTML = ${JSON.stringify(formatDojoError({ message: 'PLACEHOLDER' }))}.replace('PLACEHOLDER', String(e.message).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
                             }
@@ -130,7 +116,7 @@
             }
 
             // Evaluate checklist requirements
-            this.validateRequirements(jsVal);
+            this.validateRequirements(rawJs);
         }
 
         resetCode() {
