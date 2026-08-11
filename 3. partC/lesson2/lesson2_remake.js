@@ -102,6 +102,11 @@ root.render(<App />);`;
             editor.value = defaultCode;
         }
 
+        // Activate Dojo Linter (JSX mode)
+        if (typeof DojoLinter !== 'undefined') {
+            DojoLinter.init('codeEditor', 'dojoLintPanel', { mode: 'jsx' });
+        }
+
         function runCode() {
             const userCode = editor.value || '';
 

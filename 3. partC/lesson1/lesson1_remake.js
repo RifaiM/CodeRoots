@@ -51,7 +51,21 @@
             const submitBtn = document.getElementById('submitProject');
             const editor = document.getElementById('jsCode');
 
-            if (runBtn) runBtn.addEventListener('click', () => this.runCode());
+            if (runBtn) runBtn.addEventListener('click', () => {
+                const val = (document.getElementById('jsCode')?.value || '').trim();
+                if (!val) {
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Code Editor is Empty!',
+                            text: 'Please write your ES6+ code before running the preview! ⚡',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
+                    return;
+                }
+                this.runCode();
+            });
             if (resetBtn) resetBtn.addEventListener('click', () => this.resetCode());
             if (submitBtn) submitBtn.addEventListener('click', () => this.submitLesson());
 
@@ -72,6 +86,11 @@
 
             // Auto-run initial code on page load
             setTimeout(() => this.runCode(), 300);
+
+            // Activate Dojo Linter (JS mode — no JSX)
+            if (typeof DojoLinter !== 'undefined') {
+                DojoLinter.init('jsCode', 'dojoLintPanel', { mode: 'js' });
+            }
         }
 
         runCode() {
