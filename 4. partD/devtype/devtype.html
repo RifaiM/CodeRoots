@@ -10,32 +10,37 @@
     <title>DevType Dojo - Code Typing Speedrun | NoviCodes</title>
 </head>
 <body class="devtype-page">
-    <main class="devtype-container">
-        <!-- Header & Back Button -->
-        <header class="devtype-header">
-            <a href="../../index.html" class="back-dash-btn">
-                <span>🏠 Dashboard</span>
-            </a>
+    <!-- Compact Top Navbar -->
+    <header class="devtype-navbar">
+        <a href="../../index.html" class="nav-back-btn">
+            <span>🏠 Dashboard</span>
+        </a>
 
-            <div class="devtype-title-wrap">
-                <h1>⌨️ DevType Dojo</h1>
-                <p>Code Typing Speedrun & Symbol Muscle Memory Trainer</p>
-            </div>
+        <div class="nav-title">
+            <span>⌨️ DevType Dojo</span>
+            <span class="nav-sub">Code Typing Speedrun</span>
+        </div>
 
-            <div style="width: 100px;"></div>
-        </header>
+        <div class="high-score-badge">
+            <span>🏆 Best:</span>
+            <strong id="highScoreVal">0 WPM</strong>
+        </div>
+    </header>
 
-        <!-- Mode & Timer Selectors -->
-        <div class="selectors-container">
+    <main class="devtype-viewport-container">
+        <!-- Compact Control Bar (Mode & Timer Selectors in One Row) -->
+        <div class="compact-controls-bar">
             <div class="mode-selector-bar">
-                <button class="mode-btn" data-mode="html">🌐 HTML Tags</button>
-                <button class="mode-btn" data-mode="css">🎨 CSS Rules</button>
+                <button class="mode-btn" data-mode="html">🌐 HTML</button>
+                <button class="mode-btn" data-mode="css">🎨 CSS</button>
                 <button class="mode-btn active" data-mode="js">⚡ JS ES6+</button>
-                <button class="mode-btn" data-mode="react">⚛️ React Hooks</button>
+                <button class="mode-btn" data-mode="react">⚛️ React</button>
             </div>
+
+            <div class="timer-divider"></div>
 
             <div class="timer-selector-bar">
-                <span class="timer-label">⏱️ Mode:</span>
+                <span class="timer-label">⏱️ Time:</span>
                 <button class="timer-btn" data-time="15">15s</button>
                 <button class="timer-btn active" data-time="30">30s</button>
                 <button class="timer-btn" data-time="60">60s</button>
@@ -43,44 +48,44 @@
             </div>
         </div>
 
-        <!-- Live Stats HUD -->
-        <div class="stats-hud">
-            <div class="stat-box">
-                <div class="stat-label">🚀 Speed (WPM)</div>
-                <div class="stat-value" id="wpmVal">0</div>
+        <!-- Live Stats HUD Bar -->
+        <div class="stats-hud-bar">
+            <div class="hud-item">
+                <span class="hud-label">🚀 Speed</span>
+                <span class="hud-value" id="wpmVal">0 WPM</span>
             </div>
-            <div class="stat-box">
-                <div class="stat-label">⏱️ Time</div>
-                <div class="stat-value" id="timerVal" style="color: #f59e0b;">30s</div>
+            <div class="hud-item">
+                <span class="hud-label">⏱️ Time</span>
+                <span class="hud-value highlight-amber" id="timerVal">30s</span>
             </div>
-            <div class="stat-box">
-                <div class="stat-label">🎯 Accuracy</div>
-                <div class="stat-value" id="accuracyVal">100%</div>
+            <div class="hud-item">
+                <span class="hud-label">🎯 Accuracy</span>
+                <span class="hud-value" id="accuracyVal">100%</span>
             </div>
-            <div class="stat-box">
-                <div class="stat-label">🏆 High Score</div>
-                <div class="stat-value" id="highScoreVal" style="color: #10b981;">0</div>
+            <div class="hud-item">
+                <span class="hud-label">⌨️ CPM</span>
+                <span class="hud-value" id="cpmVal">0</span>
             </div>
         </div>
 
-        <!-- Code Typing Display Area -->
+        <!-- Main Code Typing Area -->
         <div class="typing-area-card" title="Click to start typing code!">
             <div class="code-display" id="codeDisplay"></div>
             <textarea id="hiddenInput" spellcheck="false" autocomplete="off" capitalize="off"></textarea>
         </div>
 
-        <!-- Monkeytype-Style Controls & Shortcut Hints -->
-        <div class="controls-bar">
-            <div style="display: flex; gap: 10px;">
-                <button class="restart-btn" id="retryBtn">
+        <!-- Action Controls & Shortcut Hint -->
+        <div class="action-footer">
+            <div class="action-buttons">
+                <button class="action-btn retry-btn" id="retryBtn">
                     <span>🔄 Retry Snippet</span>
                 </button>
-                <button class="restart-btn" id="nextBtn" style="background: #2563eb; border-color: #3b82f6;">
+                <button class="action-btn next-btn" id="nextBtn">
                     <span>⏭ Next Snippet</span>
                 </button>
             </div>
 
-            <div class="shortcut-hint">
+            <div class="shortcut-text">
                 Press <kbd>Tab</kbd> to indent code like VS Code | Press <kbd>Esc</kbd> to restart
             </div>
         </div>
