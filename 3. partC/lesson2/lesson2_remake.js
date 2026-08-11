@@ -1,4 +1,4 @@
-// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine
+// Level 5 - Lesson 2: The Component Mental Model & Virtual DOM Engine with Real-Time Auto-Save Drafts
 (function() {
     'use strict';
 
@@ -50,7 +50,13 @@ root.render(<App />);`;
 
         if (!editor || !preview) return;
 
-        editor.value = defaultCode;
+        // Auto-restore draft from localStorage if available
+        const savedDraft = localStorage.getItem('partC_lesson2_remake_draft');
+        if (savedDraft !== null) {
+            editor.value = savedDraft;
+        } else {
+            editor.value = defaultCode;
+        }
 
         function runCode() {
             const userCode = editor.value || '';
@@ -201,6 +207,7 @@ root.render(<App />);`;
                         if (result.isConfirmed) {
                             editor.value = '';
                             preview.srcdoc = '';
+                            localStorage.removeItem('partC_lesson2_remake_draft');
                             validateRequirements('');
                             Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
                         }
@@ -208,6 +215,7 @@ root.render(<App />);`;
                 } else {
                     editor.value = '';
                     preview.srcdoc = '';
+                    localStorage.removeItem('partC_lesson2_remake_draft');
                     validateRequirements('');
                 }
             });
@@ -215,6 +223,7 @@ root.render(<App />);`;
 
         if (editor) {
             editor.addEventListener('input', () => {
+                localStorage.setItem('partC_lesson2_remake_draft', editor.value);
                 validateRequirements(editor.value);
             });
         }

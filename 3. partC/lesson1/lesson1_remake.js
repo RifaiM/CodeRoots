@@ -1,4 +1,4 @@
-// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine
+// Level 5 - Lesson 1: ES6+ Superpowers Logic & Validation Engine with Real-Time Auto-Save Drafts
 (function() {
     'use strict';
 
@@ -25,8 +25,15 @@
             if (resetBtn) resetBtn.addEventListener('click', () => this.resetCode());
             if (submitBtn) submitBtn.addEventListener('click', () => this.submitLesson());
 
+            // Auto-restore draft from localStorage if available
+            const savedDraft = localStorage.getItem('partC_lesson1_remake_draft');
+            if (savedDraft !== null && editor) {
+                editor.value = savedDraft;
+            }
+
             if (editor) {
                 editor.addEventListener('input', () => {
+                    localStorage.setItem('partC_lesson1_remake_draft', editor.value);
                     this.validateRequirements(editor.value);
                 });
             }
@@ -97,6 +104,9 @@
                         const iframe = document.getElementById('previewFrame');
                         if (iframe) iframe.srcdoc = '';
 
+                        // Clear draft from localStorage
+                        localStorage.removeItem('partC_lesson1_remake_draft');
+
                         // Instantly clear all green checkmarks
                         this.validateRequirements('');
 
@@ -106,6 +116,7 @@
             } else {
                 const editor = document.getElementById('jsCode');
                 if (editor) editor.value = '';
+                localStorage.removeItem('partC_lesson1_remake_draft');
                 this.validateRequirements('');
             }
         }

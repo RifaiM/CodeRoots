@@ -318,8 +318,18 @@ header:not(.platform-header):not(:has(p)) h1,
     justify-content: center !important;
   }
 
-  .home-button .btn-text-full,
   .home-button .btn-text-short {
+    display: none !important;
+  }
+
+  .home-button .btn-text,
+  .home-button .btn-text-full {
+    display: inline !important;
+  }
+
+  .home-button .btn-text-short,
+  .home-button .btn-text-full,
+  .home-button .btn-text {
     display: none !important;
   }
 
