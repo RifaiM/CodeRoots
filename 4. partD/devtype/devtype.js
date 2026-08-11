@@ -1,4 +1,4 @@
-// NoviCodes DevType Dojo - Monkeytype-Style Code Typing Speedrun Engine with VS Code Tab Support
+// NoviCodes DevType Dojo - Expanded Snippets Engine with VS Code Tab Support
 (function() {
     'use strict';
 
@@ -9,28 +9,47 @@
             `<header class="navbar">\n  <a href="/home" class="logo">DevDojo</a>\n  <nav>\n    <a href="/about">About</a>\n    <a href="/contact">Contact</a>\n  </nav>\n</header>`,
             `<main class="container">\n  <section class="hero">\n    <h1>Welcome to NoviCodes</h1>\n    <p>Zero barrier open source learning.</p>\n  </section>\n</main>`,
             `<ul class="features-list">\n  <li class="item active">Item One</li>\n  <li class="item">Item Two</li>\n  <li class="item">Item Three</li>\n</ul>`,
-            `<article class="blog-post">\n  <img src="banner.jpg" alt="Banner" />\n  <h3>Modern Web Frameworks</h3>\n  <p>Learn React and component architecture.</p>\n</article>`
+            `<article class="blog-post">\n  <img src="banner.jpg" alt="Banner" />\n  <h3>Modern Web Frameworks</h3>\n  <p>Learn React and component architecture.</p>\n</article>`,
+            `<table class="data-table">\n  <thead>\n    <tr><th>ID</th><th>Name</th><th>Role</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>1</td><td>Rifai</td><td>Developer</td></tr>\n  </tbody>\n</table>`,
+            `<div class="modal-overlay">\n  <div class="modal-content">\n    <h3>Settings</h3>\n    <button class="close-btn">&times;</button>\n  </div>\n</div>`,
+            `<footer class="footer">\n  <p>&copy; 2026 CodeRoots DevDojo. All rights reserved.</p>\n</footer>`,
+            `<div class="badge-container">\n  <span class="badge primary">Active</span>\n  <span class="badge success">Verified</span>\n</div>`
         ],
         css: [
             `.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 20px;\n  padding: 24px;\n}`,
             `.btn-primary {\n  background: linear-gradient(135deg, #007bff, #0056b3);\n  color: #ffffff;\n  border-radius: 20px;\n  cursor: pointer;\n}`,
             `@media (max-width: 768px) {\n  .grid {\n    grid-template-columns: 1fr;\n    gap: 12px;\n  }\n}`,
             `.card-hero {\n  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);\n  backdrop-filter: blur(12px);\n  border: 1px solid #cbd5e1;\n}`,
-            `.nav-item:hover {\n  background: #f1f5f9;\n  color: #2563eb;\n  transition: all 0.2s ease;\n}`
+            `.nav-item:hover {\n  background: #f1f5f9;\n  color: #2563eb;\n  transition: all 0.2s ease;\n}`,
+            `.grid-layout {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 16px;\n}`,
+            `.badge-status {\n  display: inline-flex;\n  align-items: center;\n  padding: 4px 12px;\n  border-radius: 12px;\n  font-size: 0.78rem;\n}`,
+            `header.sticky-header {\n  position: sticky;\n  top: 0;\n  z-index: 9999;\n  background: rgba(15, 23, 42, 0.95);\n}`,
+            `@keyframes fadeIn {\n  from { opacity: 0; transform: translateY(-10px); }\n  to { opacity: 1; transform: translateY(0); }\n}`,
+            `.tooltip {\n  position: relative;\n  cursor: help;\n  border-bottom: 1px dashed #64748b;\n}`
         ],
         js: [
             `const calculateTotal = (items) => {\n  return items.reduce((acc, item) => acc + item.price, 0);\n};`,
             `const fetchUserData = async (userId) => {\n  const response = await fetch(\`/api/user/\${userId}\`);\n  return await response.json();\n};`,
             `const user = { name: "Rifai", role: "Dev" };\nconst { name, role } = user;\nconst updated = { ...user, xp: 1500 };`,
             `const skills = ["HTML", "CSS", "JS"];\nconst badges = skills.map(skill => \`<span class="badge">\${skill}</span>\`);`,
-            `document.addEventListener("DOMContentLoaded", () => {\n  const btn = document.getElementById("submitBtn");\n  btn.addEventListener("click", handleSubmit);\n});`
+            `document.addEventListener("DOMContentLoaded", () => {\n  const btn = document.getElementById("submitBtn");\n  btn.addEventListener("click", handleSubmit);\n});`,
+            `const filterActiveUsers = (users) => {\n  return users.filter(user => user.isActive && user.age >= 18);\n};`,
+            `const debounce = (func, delay = 300) => {\n  let timeout;\n  return (...args) => {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => func(...args), delay);\n  };\n};`,
+            `const formatCurrency = (amount) => {\n  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);\n};`,
+            `const getUniqueTags = (posts) => {\n  return [...new Set(posts.flatMap(post => post.tags))];\n};`,
+            `const checkStatus = (code) => {\n  return code === 200 ? "OK" : "Error";\n};`
         ],
         react: [
             `const [count, setCount] = useState(0);\nconst increment = () => setCount(prev => prev + 1);`,
             `useEffect(() => {\n  document.title = \`Count: \${count}\`;\n}, [count]);`,
             `function UserCard({ name, role }) {\n  return (\n    <div className="card">\n      <h3>{name}</h3>\n      <p>{role}</p>\n    </div>\n  );\n}`,
             `const { data, loading, error } = useFetch("/api/data");\nif (loading) return <p>Loading...</p>;`,
-            `const AuthContext = createContext(null);\nconst useAuth = () => useContext(AuthContext);`
+            `const AuthContext = createContext(null);\nconst useAuth = () => useContext(AuthContext);`,
+            `const memoizedValue = useMemo(() => {\n  return expensiveCalculation(data);\n}, [data]);`,
+            `const handleToggle = useCallback(() => {\n  setIsOpen(prev => !prev);\n}, []);`,
+            `function TodoItem({ item, onDelete }) {\n  return (\n    <li>\n      <span>{item.text}</span>\n      <button onClick={() => onDelete(item.id)}>Delete</button>\n    </li>\n  );\n}`,
+            `const inputRef = useRef(null);\nconst focusInput = () => inputRef.current?.focus();`,
+            `const [form, setForm] = useState({ name: "", email: "" });\nconst handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });`
         ]
     };
 
