@@ -435,4 +435,19 @@ body.devtype-page {
   .high-score-badge strong {
     font-size: 0.78rem !important;
   }
+
+  .action-btn {
+    font-size: 0.78rem !important;
+    padding: 8px 10px !important;
+    white-space: nowrap !important;
+    height: 36px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .btn-full-text {
+    display: none !important;
+  }
 }
