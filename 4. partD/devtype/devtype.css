@@ -1,0 +1,260 @@
+/* ==========================================================================
+   NoviCodes DevType Dojo - Code Typing Speedrun Stylesheet
+   Midnight IDE Glassmorphic Arcade UI
+   ========================================================================== */
+
+/* Main Page Layout */
+body.devtype-page {
+  background: #090d16;
+  color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.devtype-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 20px 60px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Header & Back Button */
+.devtype-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.back-dash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.back-dash-btn:hover {
+  background: #334155;
+  transform: translateY(-1px);
+}
+
+.devtype-title-wrap {
+  text-align: center;
+}
+
+.devtype-title-wrap h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.devtype-title-wrap p {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 4px 0 0 0;
+}
+
+/* Mode Selection Bar */
+.mode-selector-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  color: #ffffff;
+  background: #334155;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+/* Live Stats HUD */
+.stats-hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #38bdf8;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Code Typing Display Area */
+.typing-area-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-display {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #64748b;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: none;
+  min-height: 120px;
+}
+
+.code-display .char {
+  position: relative;
+  transition: color 0.1s ease;
+}
+
+.code-display .char.correct {
+  color: #4ade80;
+}
+
+.code-display .char.incorrect {
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.2);
+  border-radius: 2px;
+}
+
+.code-display .char.current {
+  color: #ffffff;
+  background: #2563eb;
+  border-radius: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Hidden Text Input Catching Keystrokes */
+#hiddenInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  left: -9999px;
+}
+
+/* Controls Bar (Restart Button & Shortcut) */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.restart-btn {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.restart-btn:hover {
+  background: #334155;
+  transform: translateY(-1px);
+}
+
+.shortcut-hint {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.shortcut-hint kbd {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+@media (max-width: 768px) {
+  .stats-hud {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .code-display {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .typing-area-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+}
