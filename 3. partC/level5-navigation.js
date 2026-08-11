@@ -1,23 +1,23 @@
-// Level 5: React & Framework Dojo - Dropdown Navigation Engine
+// Level 5: React & Framework Dojo - Navigation System matching Level 4 Uniformity
 (function() {
     'use strict';
 
     const level5Lessons = [
-        { id: 1, title: 'Lesson 1: ES6+ Superpowers' },
-        { id: 2, title: 'Lesson 2: Component Mental Model' },
-        { id: 3, title: 'Lesson 3: JSX Syntax & Rendering' },
-        { id: 4, title: 'Lesson 4: Props & Composition' },
-        { id: 5, title: 'Lesson 5: Interactivity with useState' },
-        { id: 6, title: 'Lesson 6: Complex State Management' },
-        { id: 7, title: 'Lesson 7: Side Effects & useEffect' },
-        { id: 8, title: 'Lesson 8: Fetching REST APIs' },
-        { id: 9, title: 'Lesson 9: Controlled Forms' },
-        { id: 10, title: 'Lesson 10: DOM Access with useRef' },
-        { id: 11, title: 'Lesson 11: SPA Routing' },
-        { id: 12, title: 'Lesson 12: Building Custom Hooks' },
-        { id: 13, title: 'Lesson 13: Context API & Global State' },
-        { id: 14, title: 'Lesson 14: Performance Optimization' },
-        { id: 15, title: 'Lesson 15: 🏆 Capstone Framework App' }
+        { id: 1, title: 'ES6+ Superpowers for Frameworks' },
+        { id: 2, title: 'The Component Mental Model' },
+        { id: 3, title: 'JSX Syntax & Dynamic Rendering' },
+        { id: 4, title: 'Component Props & Composition' },
+        { id: 5, title: 'Interactivity with useState' },
+        { id: 6, title: 'Complex & Nested State Management' },
+        { id: 7, title: 'Side Effects & useEffect Hook' },
+        { id: 8, title: 'Fetching REST APIs in React' },
+        { id: 9, title: 'Controlled Forms & Validation' },
+        { id: 10, title: 'DOM Access & useRef Hook' },
+        { id: 11, title: 'Single Page Application Routing' },
+        { id: 12, title: 'Building Custom Hooks' },
+        { id: 13, title: 'Context API & Global State' },
+        { id: 14, title: 'Performance Optimization & Memo' },
+        { id: 15, title: '🏆 Capstone Framework Web App' }
     ];
 
     function getCurrentLessonId() {
@@ -26,9 +26,13 @@
         return match ? parseInt(match[1], 10) : 1;
     }
 
-    function isLessonUnlocked(lessonId) {
-        if (lessonId <= 1) return true;
-        return localStorage.getItem(`partC_lesson${lessonId - 1}_remake_complete`) === 'true';
+    function isLessonCompleted(lessonId) {
+        return localStorage.getItem(`partC_lesson${lessonId}_remake_complete`) === 'true';
+    }
+
+    function canAccessLesson(lessonId) {
+        if (lessonId === 1) return true;
+        return isLessonCompleted(lessonId - 1);
     }
 
     function initLevel5Nav() {
@@ -37,41 +41,116 @@
 
         const currentId = getCurrentLessonId();
 
+        // Create Backdrop Overlay for Mobile
+        let overlay = document.querySelector('.lesson-nav-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'lesson-nav-overlay';
+            document.body.appendChild(overlay);
+        }
+
         // Create Navigation Pill Container
         const container = document.createElement('div');
         container.className = 'lesson-nav-container';
 
-        // Dropdown Toggle Button
+        // Dropdown Toggle Button with Animated Hamburger Icon
         const btn = document.createElement('button');
         btn.className = 'lesson-nav-btn';
-        btn.innerHTML = `<span class="nav-btn-text">📚 Jump to Lesson</span> <span class="nav-arrow">☰</span>`;
+        btn.id = 'lessonNavBtn';
+        btn.innerHTML = `
+            <span class="nav-icon">📚</span>
+            <span class="nav-btn-text">Jump to Lesson</span>
+            <span class="nav-arrow">▼</span>
+            <span class="nav-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        `;
 
-        // Dropdown Menu
+        // Dropdown Menu Container
         const menu = document.createElement('div');
         menu.className = 'lesson-nav-dropdown';
+        menu.id = 'lessonNavDropdown';
 
-        level5Lessons.forEach(lesson => {
-            const unlocked = isLessonUnlocked(lesson.id);
-            const item = document.createElement('a');
-            item.className = `lesson-nav-item ${lesson.id === currentId ? 'active' : ''} ${!unlocked ? 'locked' : ''}`;
-            
-            if (unlocked) {
-                item.href = `../lesson${lesson.id}/lesson${lesson.id}_remake.html`;
+        let lessonListHTML = level5Lessons.map(lesson => {
+            const isCompleted = isLessonCompleted(lesson.id);
+            const canAccess = canAccessLesson(lesson.id);
+            const isCurrent = lesson.id === currentId;
+
+            let statusIcon = '';
+            let className = 'nav-lesson-item';
+
+            if (isCurrent) {
+                statusIcon = '📍';
+                className += ' current';
+            } else if (isCompleted) {
+                statusIcon = '✅';
+                className += ' completed';
+            } else if (canAccess) {
+                statusIcon = '🔓';
+                className += ' available';
             } else {
-                item.href = 'javascript:void(0)';
-                item.onclick = () => alert(`🔒 Complete Lesson ${lesson.id - 1} to unlock ${lesson.title}!`);
+                statusIcon = '🔒';
+                className += ' locked';
             }
 
-            item.innerHTML = `<span>${lesson.title}</span> <span>${unlocked ? (lesson.id === currentId ? '📌' : '✅') : '🔒'}</span>`;
-            menu.appendChild(item);
-        });
+            const hrefAttr = canAccess ? `href="../lesson${lesson.id}/lesson${lesson.id}_remake.html"` : 'href="javascript:void(0)"';
+            const clickAttr = !canAccess ? `onclick="alert('🔒 Complete Lesson ${lesson.id - 1} to unlock Lesson ${lesson.id}!')"` : '';
 
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('show');
-        });
+            return `
+                <a class="${className}" ${hrefAttr} ${clickAttr}>
+                    <span class="lesson-status">${statusIcon}</span>
+                    <span class="lesson-info">
+                        <span class="lesson-number">Lesson ${lesson.id}</span>
+                        <span class="lesson-title">${lesson.title}</span>
+                    </span>
+                </a>
+            `;
+        }).join('');
 
-        document.addEventListener('click', () => menu.classList.remove('show'));
+        menu.innerHTML = `
+            <div class="nav-header">
+                <span class="nav-title">React Dojo Navigation</span>
+                <button class="nav-close" id="navCloseBtn" aria-label="Close Navigation">✕</button>
+            </div>
+            <div class="nav-content">
+                ${lessonListHTML}
+            </div>
+        `;
+
+        // Toggle Open / Close Functions
+        function toggleNav(e) {
+            if (e) e.stopPropagation();
+            const isOpen = menu.classList.contains('show');
+            if (isOpen) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        }
+
+        function openNav() {
+            btn.classList.add('active');
+            menu.classList.add('show');
+            overlay.classList.add('show');
+        }
+
+        function closeNav() {
+            btn.classList.remove('active');
+            menu.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        btn.addEventListener('click', toggleNav);
+        overlay.addEventListener('click', closeNav);
+
+        const closeBtn = menu.querySelector('#navCloseBtn');
+        if (closeBtn) closeBtn.addEventListener('click', closeNav);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeNav();
+        });
 
         container.appendChild(btn);
         container.appendChild(menu);

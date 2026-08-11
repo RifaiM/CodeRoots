@@ -1,6 +1,6 @@
 /* ==========================================================================
    NoviCodes Level 5: React & Framework Dojo - Navigation & Header Stylesheet
-   Uniform Blue Header & Mobile Icon Architecture (Matching Level 4)
+   Uniform Blue Header, Animated Hamburger & Modal Container (Matching Level 4)
    ========================================================================== */
 
 /* Header Sticky Base - Uniform Blue Gradient */
@@ -8,7 +8,7 @@ header:not(.platform-header):not(:has(p)),
 .lesson-header {
   position: sticky !important;
   top: 0 !important;
-  z-index: 99990 !important;
+  z-index: 999995 !important;
   background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
   color: #ffffff !important;
   padding: 10px 180px !important;
@@ -41,7 +41,7 @@ header:not(.platform-header):not(:has(p)) h1,
   position: fixed !important;
   top: 10px !important;
   left: 16px !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -75,27 +75,22 @@ header:not(.platform-header):not(:has(p)) h1,
   line-height: 1 !important;
 }
 
-.home-button .btn-text-full {
-  display: inline !important;
-}
-
-.home-button .btn-text-short {
-  display: none !important;
-}
-
 /* Navigation Dropdown Container & Buttons */
 .lesson-nav-container {
   position: fixed !important;
   top: 10px !important;
   right: 16px !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
 .lesson-nav-btn {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 8px !important;
   height: 38px !important;
   padding: 0 16px !important;
   border-radius: 20px !important;
@@ -120,57 +115,193 @@ header:not(.platform-header):not(:has(p)) h1,
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
 }
 
-/* Dropdown Menu Container */
+.nav-arrow {
+  font-size: 0.72rem;
+  color: #475569;
+  transition: transform 0.3s ease;
+}
+
+.lesson-nav-btn.active .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* Animated Hamburger Icon (Hidden on Desktop) */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.nav-hamburger span {
+  display: block;
+  height: 2px;
+  width: 16px;
+  background: #0f172a;
+  border-radius: 2px;
+  position: absolute;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.nav-hamburger span:nth-child(1) { transform: translateY(-5px); }
+.nav-hamburger span:nth-child(2) { transform: translateY(0); }
+.nav-hamburger span:nth-child(3) { transform: translateY(5px); }
+
+/* Perfect Centered Cross ✕ Morphing Animation when Active */
+.lesson-nav-btn.active .nav-hamburger span:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+
+.lesson-nav-btn.active .nav-hamburger span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.lesson-nav-btn.active .nav-hamburger span:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* Modal Dropdown Container (Matching Level 4) */
 .lesson-nav-dropdown {
   position: absolute !important;
   top: 100% !important;
   right: 0 !important;
-  margin-top: 8px !important;
   width: 320px !important;
-  max-height: 480px !important;
-  overflow-y: auto !important;
+  max-height: 420px !important;
   background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 16px !important;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15) !important;
-  padding: 8px !important;
-  display: none;
-  z-index: 999999 !important;
+  border: 1px solid #dde7ff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18) !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  margin-top: 8px !important;
+  overflow: hidden !important;
+  z-index: 9999999 !important;
 }
 
 .lesson-nav-dropdown.show {
-  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
 }
 
-.lesson-nav-item {
+.nav-header {
+  background: #f8fafc !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.nav-title {
+  font-weight: 800 !important;
+  color: #007bff !important;
+  font-size: 0.88rem !important;
+}
+
+.nav-close {
+  background: none !important;
+  border: none !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  color: #64748b !important;
+  padding: 2px !important;
+  width: 24px !important;
+  height: 24px !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  padding: 10px 14px !important;
-  border-radius: 10px !important;
-  text-decoration: none !important;
-  color: #334155 !important;
-  font-size: 0.88rem !important;
-  font-weight: 600 !important;
-  transition: background 0.15s ease !important;
+  justify-content: center !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
 }
 
-.lesson-nav-item:hover {
+.nav-close:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.nav-content {
+  max-height: 350px !important;
+  overflow-y: auto !important;
+  padding: 6px 0 !important;
+}
+
+.nav-lesson-item {
+  padding: 10px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: all 0.2s ease !important;
+  border-left: 3px solid transparent !important;
+  text-decoration: none !important;
+  color: #334155 !important;
+}
+
+.nav-lesson-item:hover {
   background: #f1f5f9 !important;
 }
 
-.lesson-nav-item.active {
+.nav-lesson-item.current {
   background: #eff6ff !important;
-  color: #2563eb !important;
-  font-weight: 700 !important;
+  border-left-color: #007bff !important;
 }
 
-.lesson-nav-item.locked {
+.nav-lesson-item.completed .lesson-number {
+  color: #10b981 !important;
+}
+
+.nav-lesson-item.locked {
   opacity: 0.6 !important;
   cursor: not-allowed !important;
 }
 
-/* Mobile Media Queries (<= 768px down to 320px) - Matching Level 4 Pattern */
+.lesson-status {
+  font-size: 1.05rem !important;
+  flex-shrink: 0 !important;
+}
+
+.lesson-info {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.lesson-number {
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+}
+
+.lesson-title {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+/* Backdrop Overlay for Mobile */
+.lesson-nav-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 999990 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease !important;
+}
+
+.lesson-nav-overlay.show {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mobile Media Queries (<= 768px down to 320px) - Matching Level 4 */
 @media (max-width: 768px) {
   header:not(.platform-header):not(:has(p)),
   .lesson-header {
@@ -180,11 +311,11 @@ header:not(.platform-header):not(:has(p)) h1,
 
   header:not(.platform-header):not(:has(p)) h1,
   .lesson-header h1 {
-    font-size: 0.78rem !important;
-    line-height: 1.25 !important;
+    font-size: 0.76rem !important;
+    line-height: 1.22 !important;
   }
 
-  /* Home Button: Icon Only Pill on Mobile */
+  /* Home Button: Icon Only Pill */
   .home-button {
     top: 9px !important;
     left: 9px !important;
@@ -202,22 +333,29 @@ header:not(.platform-header):not(:has(p)) h1,
     display: none !important;
   }
 
-  /* Navigation Dropdown Container & Hamburger Pill */
+  /* Show Hamburger Icon on Mobile */
+  .nav-arrow,
+  .nav-btn-text,
+  .nav-icon {
+    display: none !important;
+  }
+
+  .nav-hamburger {
+    display: flex !important;
+  }
+
   .lesson-nav-container {
     top: 9px !important;
     right: 9px !important;
   }
 
   .lesson-nav-btn {
+    width: 34px !important;
     height: 34px !important;
+    min-width: 34px !important;
     min-height: 34px !important;
-    padding: 0 10px !important;
-    font-size: 0.78rem !important;
-    border-radius: 17px !important;
-  }
-
-  .nav-btn-text {
-    display: none !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
   }
 
   .lesson-nav-dropdown {
@@ -234,7 +372,7 @@ header:not(.platform-header):not(:has(p)) h1,
 
   header:not(.platform-header):not(:has(p)) h1,
   .lesson-header h1 {
-    font-size: 0.74rem !important;
+    font-size: 0.72rem !important;
   }
 
   .home-button {
