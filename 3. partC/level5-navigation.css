@@ -1,6 +1,6 @@
 /* ==========================================================================
    NoviCodes Level 5: React & Framework Dojo - Navigation & Header Stylesheet
-   Uniform Blue Header, Animated Hamburger & Modal Container (Matching Level 4)
+   Crisp Dropdown & Animated Hamburger Architecture (100% Matching Level 4)
    ========================================================================== */
 
 /* Header Sticky Base - Uniform Blue Gradient */
@@ -8,7 +8,7 @@ header:not(.platform-header):not(:has(p)),
 .lesson-header {
   position: sticky !important;
   top: 0 !important;
-  z-index: 999995 !important;
+  z-index: 99990 !important;
   background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
   color: #ffffff !important;
   padding: 10px 180px !important;
@@ -41,7 +41,7 @@ header:not(.platform-header):not(:has(p)) h1,
   position: fixed !important;
   top: 10px !important;
   left: 16px !important;
-  z-index: 999999 !important;
+  z-index: 99999 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -80,7 +80,7 @@ header:not(.platform-header):not(:has(p)) h1,
   position: fixed !important;
   top: 10px !important;
   right: 16px !important;
-  z-index: 999999 !important;
+  z-index: 99999 !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
@@ -164,7 +164,7 @@ header:not(.platform-header):not(:has(p)) h1,
   transform: translateY(0) rotate(-45deg);
 }
 
-/* Modal Dropdown Container (Matching Level 4) */
+/* Modal Dropdown Container (Clean, Crisp Solid Background matching Level 4) */
 .lesson-nav-dropdown {
   position: absolute !important;
   top: 100% !important;
@@ -172,19 +172,21 @@ header:not(.platform-header):not(:has(p)) h1,
   width: 320px !important;
   max-height: 420px !important;
   background: #ffffff !important;
-  border: 1px solid #dde7ff !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18) !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25) !important;
   opacity: 0;
   visibility: hidden;
+  display: none;
   transform: translateY(-8px);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
   margin-top: 8px !important;
   overflow: hidden !important;
   z-index: 9999999 !important;
 }
 
 .lesson-nav-dropdown.show {
+  display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
@@ -192,7 +194,7 @@ header:not(.platform-header):not(:has(p)) h1,
 
 .nav-header {
   background: #f8fafc !important;
-  padding: 10px 14px !important;
+  padding: 12px 16px !important;
   border-bottom: 1px solid #e2e8f0 !important;
   display: flex !important;
   justify-content: space-between !important;
@@ -233,7 +235,7 @@ header:not(.platform-header):not(:has(p)) h1,
 }
 
 .nav-lesson-item {
-  padding: 10px 14px !important;
+  padding: 10px 16px !important;
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
@@ -282,23 +284,6 @@ header:not(.platform-header):not(:has(p)) h1,
   font-size: 0.85rem !important;
   font-weight: 700 !important;
   color: #0f172a !important;
-}
-
-/* Backdrop Overlay for Mobile */
-.lesson-nav-overlay {
-  position: fixed !important;
-  inset: 0 !important;
-  background: rgba(15, 23, 42, 0.4) !important;
-  backdrop-filter: blur(4px) !important;
-  z-index: 999990 !important;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.25s ease !important;
-}
-
-.lesson-nav-overlay.show {
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
 /* Mobile Media Queries (<= 768px down to 320px) - Matching Level 4 */

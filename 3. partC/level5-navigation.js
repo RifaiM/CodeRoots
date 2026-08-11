@@ -1,4 +1,4 @@
-// Level 5: React & Framework Dojo - Navigation System matching Level 4 Uniformity
+// Level 5: React & Framework Dojo - Navigation System matching Level 4 Architecture
 (function() {
     'use strict';
 
@@ -40,14 +40,6 @@
         if (!header) return;
 
         const currentId = getCurrentLessonId();
-
-        // Create Backdrop Overlay for Mobile
-        let overlay = document.querySelector('.lesson-nav-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'lesson-nav-overlay';
-            document.body.appendChild(overlay);
-        }
 
         // Create Navigation Pill Container
         const container = document.createElement('div');
@@ -133,20 +125,24 @@
         function openNav() {
             btn.classList.add('active');
             menu.classList.add('show');
-            overlay.classList.add('show');
         }
 
         function closeNav() {
             btn.classList.remove('active');
             menu.classList.remove('show');
-            overlay.classList.remove('show');
         }
 
         btn.addEventListener('click', toggleNav);
-        overlay.addEventListener('click', closeNav);
 
         const closeBtn = menu.querySelector('#navCloseBtn');
         if (closeBtn) closeBtn.addEventListener('click', closeNav);
+
+        // Click outside closes the dropdown menu
+        document.addEventListener('click', (e) => {
+            if (!container.contains(e.target)) {
+                closeNav();
+            }
+        });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeNav();
