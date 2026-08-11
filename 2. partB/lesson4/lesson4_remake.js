@@ -167,6 +167,10 @@ nav a:hover {
 const taskEditor = document.getElementById('task-code');
 const taskPreview = document.getElementById('task-preview');
 
+if (typeof DojoLinterHTML !== 'undefined') {
+    DojoLinterHTML.init('task-code', 'dojoLintPanel', { iframeId: 'task-preview' });
+}
+
 function renderTask() {
   const code = taskEditor.value;
   taskPreview.srcdoc = `<!DOCTYPE html>

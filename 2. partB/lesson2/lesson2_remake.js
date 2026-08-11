@@ -5,6 +5,9 @@
 // Enhanced code editor functionality
 document.addEventListener('DOMContentLoaded', function() {
     const textarea = document.getElementById('task-code');
+    if (typeof DojoLinterHTML !== 'undefined') {
+        DojoLinterHTML.init('task-code', 'dojoLintPanel', { iframeId: 'task-preview' });
+    }
     const lineNumbers = document.getElementById('line-numbers');
     const currentLineSpan = document.getElementById('current-line');
     const currentColSpan = document.getElementById('current-col');

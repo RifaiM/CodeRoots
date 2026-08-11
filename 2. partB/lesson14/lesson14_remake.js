@@ -98,6 +98,10 @@ const codeEditor = document.getElementById('code-editor');
 const previewFrame = document.getElementById('preview-frame');
 const lineCounter = document.getElementById('line-counter');
 
+if (typeof DojoLinterHTML !== 'undefined') {
+    DojoLinterHTML.init('code-editor', 'dojoLintPanel', { iframeId: 'preview-frame' });
+}
+
 // Project template for beginners
 const projectTemplate = `<!DOCTYPE html>
 <html lang="en">

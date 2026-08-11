@@ -3,6 +3,9 @@
 // ============================================================================
 
 const taskEditor = document.getElementById("task-editor");
+if (typeof DojoLinterHTML !== 'undefined') {
+    DojoLinterHTML.init('task-editor', 'dojoLintPanel', { iframeId: 'task-output' });
+}
 const lineDisplay = document.getElementById("current-line");
 const colDisplay = document.getElementById("current-col");
 

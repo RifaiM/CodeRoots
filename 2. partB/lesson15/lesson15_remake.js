@@ -83,6 +83,10 @@ function initHybridSystem() {
       addTabSupportWithNativeUndo(taskEditor);
   }
   
+  if (typeof DojoLinterHTML !== 'undefined') {
+      DojoLinterHTML.init('htmlCode', 'dojoLintPanel', { iframeId: 'previewFrame' });
+  }
+  
   const demoCode = document.getElementById('demo-code');
   if (demoCode) {
       addTabSupportWithNativeUndo(demoCode);

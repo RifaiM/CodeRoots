@@ -99,6 +99,10 @@ function updateDemo() {
 const taskEditor = document.getElementById('task-code');
 const taskPreview = document.getElementById('task-preview');
 
+if (typeof DojoLinterHTML !== 'undefined') {
+    DojoLinterHTML.init('task-code', 'dojoLintPanel', { iframeId: 'task-preview' });
+}
+
 /**
  * Renders the student's HTML code in the preview iframe
  * Updates in real-time as they type

@@ -944,6 +944,11 @@ class HTMLCodeEditor {
   
     // Initialize code editor
     codeEditor = new HTMLCodeEditor('task-code', 'line-numbers');
+
+    // Activate HTML Dojo Linter
+    if (typeof DojoLinterHTML !== 'undefined') {
+        DojoLinterHTML.init('task-code', 'dojoLintPanel', { iframeId: 'task-preview' });
+    }
   
   
     const nextBtn = document.getElementById('nextLessonBtn');

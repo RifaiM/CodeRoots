@@ -79,6 +79,9 @@ function addTabSupportWithNativeUndo(textarea) {
    const taskEditor = document.getElementById('task-editor');
    if (taskEditor) {
        addTabSupportWithNativeUndo(taskEditor);
+       if (typeof DojoLinterHTML !== 'undefined') {
+           DojoLinterHTML.init('task-editor', 'dojoLintPanel', { iframeId: 'task-output' });
+       }
    }
  }
 

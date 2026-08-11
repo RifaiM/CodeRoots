@@ -73,7 +73,11 @@ function addTabSupportWithNativeUndo(textarea) {
   function initHybridSystem() {
     const taskEditor = document.getElementById('code-editor');
     if (taskEditor) {
-        addTabSupportWithNativeUndo(taskEditor);}
+        addTabSupportWithNativeUndo(taskEditor);
+        if (typeof DojoLinterHTML !== 'undefined') {
+            DojoLinterHTML.init('code-editor', 'dojoLintPanel');
+        }
+    }
     
     const demoCode = document.getElementById('demo-code');
     if (demoCode) {

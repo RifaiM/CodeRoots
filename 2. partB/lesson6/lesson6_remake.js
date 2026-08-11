@@ -46,6 +46,10 @@ This section uses CSS classes to create a distinct visual appearance with backgr
 const taskEditor = document.getElementById('task-code');
 const taskPreview = document.getElementById('task-preview');
 
+if (typeof DojoLinterHTML !== 'undefined') {
+    DojoLinterHTML.init('task-code', 'dojoLintPanel', { iframeId: 'task-preview' });
+}
+
 // Undo/Redo system functions
 function saveState(textarea = null) {
   if (isUndoRedo) return;
