@@ -314,22 +314,22 @@ root.render(<FastProductOptimizer />);`;
                         window.showLessonCompletionModal(
                             10,
                             "Performance Optimization & Memoization",
-                            "Congratulations! You've completed Level 5: React & Modern Frontend Engineering!",
-                            "/index.html"
+                            "You've mastered useMemo, useCallback, and React performance optimization!",
+                            "/3. partC/lesson11/lesson11_remake.html"
                         );
                     } else {
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
                                 icon: 'success',
-                                title: '🎓 Level 5 Completed!',
-                                text: "Congratulations! You've mastered React & Modern Frontend Engineering!",
+                                title: '🎉 Lesson 10 Complete!',
+                                text: "Fantastic work! You've mastered React performance optimization and memoization!",
                                 confirmButtonColor: '#2563eb',
-                                confirmButtonText: 'Return to Dashboard'
+                                confirmButtonText: 'Continue to Lesson 11'
                             }).then(() => {
-                                window.location.href = '/index.html';
+                                window.location.href = '/3. partC/lesson11/lesson11_remake.html';
                             });
                         } else {
-                            alert("🎓 Level 5 Completed!");
+                            alert("🎉 Lesson 10 Complete!");
                         }
                     }
                 }
