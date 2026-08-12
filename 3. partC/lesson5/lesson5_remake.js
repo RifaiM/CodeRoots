@@ -133,13 +133,15 @@ root.render(<DojoCounterApp />);`;
             DojoLinter.init('codeEditor', 'dojoLintPanel', { mode: 'jsx' });
         }
 
-        function runCode() {
+        function runCode(isExplicit = false) {
             const userCode = editor.value || '';
 
             if (!userCode.trim()) {
                 validateRequirements('');
                 preview.srcdoc = '';
-                showError('🤨', 'Your code is empty!', 'Please write some React JSX code in the editor above.');
+                if (isExplicit) {
+                    showError('🤨', 'Your code is empty!', 'Please write some React JSX code in the editor above.');
+                }
                 return;
             }
 
@@ -197,10 +199,10 @@ root.render(<DojoCounterApp />);`;
         let runTimer = null;
         editor.addEventListener('input', () => {
             clearTimeout(runTimer);
-            runTimer = setTimeout(runCode, 400);
+            runTimer = setTimeout(() => runCode(false), 400);
         });
 
-        if (runBtn) runBtn.addEventListener('click', runCode);
+        if (runBtn) runBtn.addEventListener('click', () => runCode(true));
 
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
