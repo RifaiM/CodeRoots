@@ -180,8 +180,25 @@ function initUserProgress() {
             updateTrackCardState(card, statusIcon, btn, isLevel3Complete, isUnlocked, './foundations.html?track=js', 'JS Foundations');
         } else if (levelText === 'Level 4') {
             const isUnlocked = isLevel3Complete || isPracticeUnlocked;
-            const isFinished = completedCount >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, isUnlocked, './2. partB/lesson1/lesson1_remake.html', 'Practical Dojo');
+            const isFinished = l4Completed >= 15;
+            updateTrackCardState(card, statusIcon, btn, isFinished, isUnlocked, './2. partB/lesson1/lesson1_remake.html', 'Level 4 DOM Dojo');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                if (isFinished) btnSpan.textContent = '✅ Level 4 Completed';
+                else if (isUnlocked) btnSpan.textContent = '⚔️ Enter Level 4 Dojo';
+                else btnSpan.textContent = '🔒 Level 4 Locked';
+            }
+        } else if (levelText === 'Level 5') {
+            const isL4Finished = l4Completed >= 15;
+            const isUnlocked = isL4Finished || isPracticeUnlocked;
+            const isFinished = l5Completed >= 15;
+            updateTrackCardState(card, statusIcon, btn, isFinished, isUnlocked, './3. partC/lesson1/lesson1_remake.html', 'Level 5 React Dojo');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                if (isFinished) btnSpan.textContent = '✅ Level 5 Completed';
+                else if (isUnlocked) btnSpan.textContent = '⚛️ Enter Level 5 Dojo';
+                else btnSpan.textContent = '🔒 Level 5 Locked';
+            }
         }
     });
 
