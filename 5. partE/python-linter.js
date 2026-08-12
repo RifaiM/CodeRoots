@@ -1,11 +1,40 @@
-// Level 6: Python & Backend Dojo - Linter & IDE Sandbox Engine
-// 100% Uniform Execution, Checklist Validation & Error Handling Engine
+// Level 6: Python & Backend Dojo - Intelligent Linter & IDE Sandbox Engine
+// Live Real-Time Syntax Validation, Error Translation, and Empty Check Warnings
 (function() {
     'use strict';
+
+    const PYTHON_ERROR_RULES = [
+        {
+            test: /\bprin\b/i,
+            title: "Typo: 'prin' instead of 'print'",
+            hint: "Did you mean <code>print()</code>? In Python, printing output requires <code>print(...)</code>."
+        },
+        {
+            test: /\bdef\s+[\w_]+\s*\([^)]*$/m,
+            title: "Unclosed Function Signature",
+            hint: "Missing closing parenthesis <code>)</code> or colon <code>:</code> on function definition."
+        },
+        {
+            test: /=\s*$/m,
+            title: "Incomplete Assignment",
+            hint: "Variable assigned without a value. Example: <code>x = 10</code>."
+        },
+        {
+            test: /(?:if|elif|else|for|while|def|class)\b[^:\n]*$/m,
+            title: "Missing Colon ':'",
+            hint: "Python block statements require a colon <code>:</code> at the end of the line."
+        },
+        {
+            test: /['"][^'"]*$/m,
+            title: "Unclosed String",
+            hint: "Found an unclosed quotation mark. Make sure all strings have matching opening and closing quotes."
+        }
+    ];
 
     class PythonDojoLinter {
         constructor() {
             this.currentLesson = this.getCurrentLessonNumber();
+            this.debounceTimer = null;
             this.init();
         }
 
@@ -46,6 +75,12 @@
                         this.pyEditor.selectionStart = this.pyEditor.selectionEnd = start + 2;
                     }
                 });
+
+                // Live Preview Input Debounce Linter (300ms) matching Level 5
+                this.pyEditor.addEventListener('input', () => {
+                    clearTimeout(this.debounceTimer);
+                    this.debounceTimer = setTimeout(() => this.lintLiveCode(), 300);
+                });
             }
 
             if (this.runBtn) {
@@ -75,36 +110,117 @@
             }
         }
 
+        lintLiveCode() {
+            if (!this.pyEditor || !this.terminalScreen) return;
+            const code = this.pyEditor.value;
+
+            // Check if code is completely empty
+            if (!code.trim()) {
+                this.pyEditor.classList.add('dojo-lint-error');
+                this.pyEditor.classList.remove('dojo-lint-success');
+                this.terminalScreen.innerHTML = `
+                    <div class="terminal-error-line">
+                        ⚠️ Code Editor is Empty! Write your Python code above.
+                    </div>
+                `;
+                return;
+            }
+
+            // Check against live syntax linter rules
+            let foundError = null;
+            for (let i = 0; i < PYTHON_ERROR_RULES.length; i++) {
+                const rule = PYTHON_ERROR_RULES[i];
+                if (rule.test.test(code)) {
+                    foundError = rule;
+                    break;
+                }
+            }
+
+            if (foundError) {
+                this.pyEditor.classList.add('dojo-lint-error');
+                this.pyEditor.classList.remove('dojo-lint-success');
+                this.terminalScreen.innerHTML = `
+                    <div class="terminal-error-line">
+                        ❌ Python Syntax Warning: ${foundError.title}
+                    </div>
+                    <div style="color: #fde047; font-size: 0.80rem; margin-top: 6px; line-height: 1.4;">
+                        💡 ${foundError.hint}
+                    </div>
+                `;
+            } else {
+                this.pyEditor.classList.remove('dojo-lint-error');
+                this.pyEditor.classList.add('dojo-lint-success');
+            }
+        }
+
         executePython() {
             if (!this.pyEditor || !this.terminalScreen) return;
 
             const code = this.pyEditor.value.trim();
+
+            // 1. Empty Code Check -> Show Warning Modal matching Level 5
+            if (!code) {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: '⚠️ Code Required',
+                        text: 'Please write your Python code in the editor before running!',
+                        icon: 'warning',
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: 'Got It'
+                    });
+                }
+                this.terminalScreen.innerHTML = '<div class="terminal-error-line">⚠️ Cannot execute empty code editor. Write code above!</div>';
+                return;
+            }
+
             this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Running main.py...</div>';
 
-            const outputLines = [];
             const logs = [];
+            let syntaxErrorFound = null;
 
-            // Mock/Lightweight Python Evaluator & Output Collector
-            const customPrint = (...args) => {
-                const line = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
-                logs.push(line);
-            };
+            // Linter syntax check
+            for (let i = 0; i < PYTHON_ERROR_RULES.length; i++) {
+                const rule = PYTHON_ERROR_RULES[i];
+                if (rule.test.test(code)) {
+                    syntaxErrorFound = rule;
+                    break;
+                }
+            }
+
+            if (syntaxErrorFound) {
+                const errEl = document.createElement('div');
+                errEl.className = 'terminal-error-line';
+                errEl.textContent = `❌ Python SyntaxError: ${syntaxErrorFound.title}`;
+                this.terminalScreen.appendChild(errEl);
+
+                const hintEl = document.createElement('div');
+                hintEl.style.color = '#fde047';
+                hintEl.style.fontSize = '0.80rem';
+                hintEl.style.marginTop = '6px';
+                hintEl.innerHTML = `💡 ${syntaxErrorFound.hint}`;
+                this.terminalScreen.appendChild(hintEl);
+                return;
+            }
 
             try {
-                // Parse print statements and code structure
                 const lines = code.split('\n');
                 lines.forEach(line => {
                     const trimmed = line.trim();
                     if (trimmed.startsWith('print(') && trimmed.endsWith(')')) {
                         const inner = trimmed.substring(6, trimmed.length - 1);
                         try {
-                            // Simple string evaluation for quotes or variables
                             if ((inner.startsWith('"') && inner.endsWith('"')) || (inner.startsWith("'") && inner.endsWith("'"))) {
                                 logs.push(inner.substring(1, inner.length - 1));
                             } else if (inner.startsWith('f"') || inner.startsWith("f'")) {
-                                logs.push(inner.substring(2, inner.length - 1).replace(/\{.*?\}/g, 'Values'));
+                                // Simple f-string formatting resolution
+                                const formatted = inner.substring(2, inner.length - 1).replace(/\{(\w+)\}/g, (match, varName) => {
+                                    const varRegex = new RegExp(`\\b${varName}\\s*=\\s*(?:"([^"]+)"|'([^']+)'|(\\d+))`);
+                                    const m = code.match(varRegex);
+                                    return m ? (m[1] || m[2] || m[3]) : match;
+                                });
+                                logs.push(formatted);
                             } else {
-                                logs.push(`[Output]: ${inner}`);
+                                logs.push(inner);
                             }
                         } catch (e) {
                             logs.push(inner);
@@ -112,7 +228,6 @@
                     }
                 });
 
-                // Display outputs in terminal screen
                 if (logs.length > 0) {
                     logs.forEach(log => {
                         const lineEl = document.createElement('div');
