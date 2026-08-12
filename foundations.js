@@ -271,10 +271,11 @@ function initQuizEngine(trackData) {
             // Highlight selected button
             const parentCard = document.getElementById(`quiz-card-${qid}`);
             parentCard.querySelectorAll('.quiz-option-btn').forEach(b => {
-                b.classList.remove('selected-correct', 'selected-wrong');
+                b.classList.remove('selected', 'selected-correct', 'selected-wrong');
                 b.querySelector('.opt-radio').textContent = '⚪';
             });
 
+            btn.classList.add('selected');
             btn.querySelector('.opt-radio').textContent = '🔘';
         });
     });
@@ -313,7 +314,7 @@ function initQuizEngine(trackData) {
                         icon: 'warning',
                         title: 'Incomplete Quiz',
                         text: 'Please answer all 3 questions before submitting your verification!',
-                        confirmColor: '#2563eb'
+                        confirmButtonColor: '#2563eb'
                     });
                 } else {
                     alert('Please answer all 3 questions before submitting!');
@@ -331,15 +332,39 @@ function initQuizEngine(trackData) {
                     localStorage.setItem('level3_completed', 'true');
                 }
 
-                // Redirect to Dashboard
-                window.location.href = './dashboard.html';
+                const xpAmount = trackData.trackKey === 'js' ? 400 : 300;
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '🎉 Foundations Track Completed!',
+                        html: `
+                            <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; padding: 4px 0;">
+                                <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+                                    Awesome job! You answered <strong>${totalQuestions}/${totalQuestions}</strong> Knowledge Check questions correctly for <strong>${escapeHtml(trackData.title)}</strong>!
+                                </p>
+                                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 18px; border-radius: 12px; font-weight: 800; color: #166534; font-size: 0.95rem; display: inline-block;">
+                                    ⚡ +${xpAmount} XP Earned!
+                                </div>
+                            </div>
+                        `,
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: '🚀 Return to Dashboard',
+                        allowOutsideClick: false
+                    }).then(() => {
+                        window.location.href = './dashboard.html';
+                    });
+                } else {
+                    alert(`🎉 Track Completed! You earned +${xpAmount} XP!`);
+                    window.location.href = './dashboard.html';
+                }
             } else {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'info',
                         title: 'Keep Going!',
                         text: `You scored ${correctCount}/${totalQuestions}. Review the explanations above and select the correct answers!`,
-                        confirmColor: '#2563eb'
+                        confirmButtonColor: '#2563eb'
                     });
                 }
             }
