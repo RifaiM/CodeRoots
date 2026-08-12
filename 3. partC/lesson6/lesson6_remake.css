@@ -479,8 +479,20 @@
   }
 
   .requirements-section {
-    padding: 16px 12px;
-    border-radius: 16px;
+    padding: 16px 12px !important;
+    border-radius: 16px !important;
+  }
+
+  .requirements-section h3 {
+    font-size: 1.15rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .requirements-section p {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 14px !important;
+    color: #64748b !important;
   }
 
   .task-checklist {
@@ -584,11 +596,17 @@
   }
 
   .requirements-section {
-    padding: 12px 10px;
+    padding: 12px 10px !important;
   }
 
   .requirements-section h3 {
-    font-size: 1.05rem;
+    font-size: 1.02rem !important;
+  }
+
+  .requirements-section p {
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
   }
 
   .submit-project-btn {
