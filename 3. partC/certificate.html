@@ -357,10 +357,33 @@
             }
         }
 
+        /* Strict Print Styles: Hide all non-certificate UI elements */
         @media print {
-            body { background: white; color: black; }
-            .cert-header, .generator-card { display: none !important; }
-            .certificate-sheet { border-width: 6px; box-shadow: none; margin: 0; }
+            header, footer, nav, .cert-header, .generator-card, .home-btn, .input-group, .lesson-header {
+                display: none !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .cert-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .certificate-sheet {
+                border: 8px solid #0f172a !important;
+                outline: 2px solid #38bdf8 !important;
+                box-shadow: none !important;
+                margin: 0 auto !important;
+                padding: 40px !important;
+                page-break-inside: avoid !important;
+            }
         }
     </style>
 </head>
@@ -423,13 +446,22 @@
             }
         }
 
-        // Auto-fill student name from localStorage
+        // Live input update as user types
         document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('studentNameInput');
+            const display = document.getElementById('displayStudentName');
+
             const savedName = localStorage.getItem('user_full_name');
             if (savedName) {
-                document.getElementById('studentNameInput').value = savedName;
-                document.getElementById('displayStudentName').textContent = savedName;
+                input.value = savedName;
+                display.textContent = savedName;
             }
+
+            input.addEventListener('input', () => {
+                const val = input.value.trim();
+                display.textContent = val !== "" ? val : "Your Name Here";
+                localStorage.setItem('user_full_name', val);
+            });
 
             // Set current date
             const today = new Date().toISOString().split('T')[0];
