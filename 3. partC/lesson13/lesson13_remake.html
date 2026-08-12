@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson13_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 13: Context API & Global State Management | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 13: Context API & Global State Management</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>📡 Master React Context API & Global State Management</h2>
+            <p>
+                Passing props down through 5 layers of intermediate components just to reach a deeply nested child is called <strong>Prop Drilling</strong> — and it quickly leads to messy code! By using the <strong>React Context API</strong> (<code>createContext</code> and <code>useContext</code>), you can broadcast global state (like user auth, theme, and language) to any component in your app directly!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>📡 1. Satellite Broadcast</h4>
+                    <span class="syntax-chip">createContext()</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Satellite Wi-Fi! Instead of stringing long physical wires to every room (prop drilling), a central satellite broadcasts data through the air to any device.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🏰 2. Central Power Station</h4>
+                    <span class="syntax-chip">&lt;Context.Provider&gt;</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A power station! Wrapping your app with <code>&lt;Provider value={...}&gt;</code> energizes the entire component tree with shared state and updater functions.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🔌 3. Wall Outlet (useContext)</h4>
+                    <span class="syntax-chip">useContext(AuthContext)</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Plugging into a wall socket! Any child component can tap directly into global state with <code>useContext</code> without asking parent components to pass props down.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🚫 4. Banishing Prop Drilling</h4>
+                    <span class="syntax-chip">Clean Component Tree</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Direct elevator access! Skip climbing 5 flights of stairs (intermediate props) and take the express elevator straight to global state.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Create Context Object</div>
+                <div class="code-block"><span class="keyword">const</span> ThemeContext = React.<span class="function">createContext</span>(<span class="keyword">null</span>);</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Provide Context Value</div>
+                <div class="code-block"><span class="tag">&lt;ThemeContext.Provider</span> <span class="keyword">value</span>={{ theme, toggleTheme }}<span class="tag">&gt;</span>
+  <span class="tag">&lt;AppLayout /&gt;</span>
+<span class="tag">&lt;/ThemeContext.Provider&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🎨 3. Consume Context in Deep Child</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">UserBadge</span>() {
+  <span class="keyword">const</span> { theme, toggleTheme } = React.<span class="function">useContext</span>(ThemeContext);
+  <span class="keyword">return</span> <span class="tag">&lt;button</span> <span class="keyword">onClick</span>={toggleTheme}<span class="tag">&gt;</span>{theme}<span class="tag">&lt;/button&gt;</span>;
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Render Global Context Portal</div>
+                <div class="code-block"><span class="keyword">const</span> root = ReactDOM.<span class="function">createRoot</span>(
+  document.<span class="function">getElementById</span>(<span class="string">'root'</span>)
+);
+root.<span class="function">render</span>(<span class="tag">&lt;GlobalAppProvider /&gt;</span>);</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>📡 Level 5 Interactive React Context Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;Context</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">Context API & Provider Component Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Global Auth & Theme Context Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Context Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 13 Challenge: Global App Auth & Theme Context Portal</h3>
+            <p>Complete all 4 requirements in the React Context Sandbox above to finish Lesson 13:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Create a Context object using <code>React.createContext(...)</code> or <code>createContext(...)</code></li>
+                <li id="req2">Wrap your component tree with <code>&lt;Context.Provider value={...}&gt;</code> to supply global state</li>
+                <li id="req3">Consume the context inside a nested child component using <code>React.useContext(...)</code></li>
+                <li id="req4">Update and display global context state dynamically in your live JSX preview canvas</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Lesson 13 & Unlock Lesson 14 🚀</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson13_remake.js"></script>
+</body>
+</html>
