@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 1: Python Essentials & Syntax</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 1 – Python Essentials & Syntax</h1>
+    </header>
+
+    <main class="container">
+        <!-- 3-Step Progress Tracker -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="step active">
+                <div class="step-circle">2</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>🐍 Welcome to Level 6: Python & Backend Architecture!</span>
+            </h2>
+            <p>
+                Congratulations on reaching Level 6! Python is one of the world's most popular backend programming languages, known for its clean syntax, readability, and powerful standard library.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> Writing Python is like writing clear English instructions to your server! No brackets `{}` or semicolons `;` required — Python uses <strong>clean 2-space indentation</strong> to define structure.
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">📦 1. Variables & Types</div>
+                    <pre class="code-block"><code><span class="comment"># Define variables effortlessly</span>
+<span class="keyword">name</span> = <span class="string">"Alex"</span>
+<span class="keyword">xp</span> = <span class="number">1500</span>
+<span class="keyword">is_active</span> = <span class="keyword">True</span></code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">📢 2. Print Formatting (f-strings)</div>
+                    <pre class="code-block"><code><span class="comment"># Format variables directly in strings</span>
+<span class="keyword">print</span>(<span class="string">f"Developer: {name} (XP: {xp})"</span>)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 1 Task:
+# 1. Create a developer name variable:
+name = "Alex"
+
+# 2. Create a level variable:
+level = "Level 6 Python Master"
+
+# 3. Create an XP integer variable:
+xp = 2500
+
+# 4. Output user profile using f-string print:
+print(f"👤 Developer: {name}")
+print(f"🏆 Rank: {level}")
+print(f"⚡ XP Earned: {xp}")
+</textarea>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task Checklist Card -->
+        <section class="task-checklist-card">
+            <h3>🎯 Lesson 1 Completion Requirements</h3>
+            <ul class="checklist-items">
+                <li class="checklist-item" data-rule="variable">
+                    <span class="item-icon">⏳</span>
+                    <span>1. Define Python variables for `name`, `level`, and `xp`</span>
+                </li>
+                <li class="checklist-item" data-rule="print">
+                    <span class="item-icon">⏳</span>
+                    <span>2. Output formatted profile using `print()` statements</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
