@@ -13,7 +13,12 @@
             `<table class="data-table">\n  <thead>\n    <tr><th>ID</th><th>Name</th><th>Role</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>1</td><td>Rifai</td><td>Developer</td></tr>\n  </tbody>\n</table>`,
             `<div class="modal-overlay">\n  <div class="modal-content">\n    <h3>Settings</h3>\n    <button class="close-btn">&times;</button>\n  </div>\n</div>`,
             `<footer class="footer">\n  <p>&copy; 2026 CodeRoots DevDojo. All rights reserved.</p>\n</footer>`,
-            `<div class="badge-container">\n  <span class="badge primary">Active</span>\n  <span class="badge success">Verified</span>\n</div>`
+            `<div class="badge-container">\n  <span class="badge primary">Active</span>\n  <span class="badge success">Verified</span>\n</div>`,
+            `<picture>\n  <source srcset="hero-dark.webp" media="(prefers-color-scheme: dark)" />\n  <img src="hero-light.png" alt="Hero Banner" />\n</picture>`,
+            `<dialog id="favDialog">\n  <form method="dialog">\n    <h3>Confirm Action</h3>\n    <button value="cancel">Cancel</button>\n    <button value="confirm" class="btn-primary">Confirm</button>\n  </form>\n</dialog>`,
+            `<details class="accordion-item">\n  <summary>What is React 19?</summary>\n  <p>React 19 introduces Actions and Server Components.</p>\n</details>`,
+            `<nav class="pagination" aria-label="Page navigation">\n  <a href="?page=1" class="page-link">&laquo; Prev</a>\n  <span class="page-current">Page 2 of 10</span>\n  <a href="?page=3" class="page-link">Next &raquo;</a>\n</nav>`,
+            `<div class="toast-notification success">\n  <span class="toast-icon">✅</span>\n  <div class="toast-message">Project saved successfully!</div>\n  <button class="toast-close">&times;</button>\n</div>`
         ],
         css: [
             `.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 20px;\n  padding: 24px;\n}`,
@@ -25,7 +30,12 @@
             `.badge-status {\n  display: inline-flex;\n  align-items: center;\n  padding: 4px 12px;\n  border-radius: 12px;\n  font-size: 0.78rem;\n}`,
             `header.sticky-header {\n  position: sticky;\n  top: 0;\n  z-index: 9999;\n  background: rgba(15, 23, 42, 0.95);\n}`,
             `@keyframes fadeIn {\n  from { opacity: 0; transform: translateY(-10px); }\n  to { opacity: 1; transform: translateY(0); }\n}`,
-            `.tooltip {\n  position: relative;\n  cursor: help;\n  border-bottom: 1px dashed #64748b;\n}`
+            `.tooltip {\n  position: relative;\n  cursor: help;\n  border-bottom: 1px dashed #64748b;\n}`,
+            `.glassmorphic-card {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(16px);\n  -webkit-backdrop-filter: blur(16px);\n  border: 1px solid rgba(255, 255, 255, 0.25);\n}`,
+            `.hero-gradient-text {\n  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n}`,
+            `@supports (aspect-ratio: 16 / 9) {\n  .video-container {\n    aspect-ratio: 16 / 9;\n    width: 100%;\n    object-fit: cover;\n  }\n}`,
+            `.container {\n  display: grid;\n  grid-template-areas:\n    "header header"\n    "sidebar content"\n    "footer footer";\n  grid-template-columns: 240px 1fr;\n}`,
+            `:root {\n  --primary: #2563eb;\n  --surface: #0f172a;\n  --text-main: #f8fafc;\n  --border: rgba(255, 255, 255, 0.12);\n}`
         ],
         js: [
             `const calculateTotal = (items) => {\n  return items.reduce((acc, item) => acc + item.price, 0);\n};`,
@@ -37,7 +47,12 @@
             `const debounce = (func, delay = 300) => {\n  let timeout;\n  return (...args) => {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => func(...args), delay);\n  };\n};`,
             `const formatCurrency = (amount) => {\n  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);\n};`,
             `const getUniqueTags = (posts) => {\n  return [...new Set(posts.flatMap(post => post.tags))];\n};`,
-            `const checkStatus = (code) => {\n  return code === 200 ? "OK" : "Error";\n};`
+            `const checkStatus = (code) => {\n  return code === 200 ? "OK" : "Error";\n};`,
+            `const groupBy = (array, key) => {\n  return array.reduce((acc, obj) => {\n    (acc[obj[key]] = acc[obj[key]] || []).push(obj);\n    return acc;\n  }, {});\n};`,
+            `const copyToClipboard = async (text) => {\n  try {\n    await navigator.clipboard.writeText(text);\n    return true;\n  } catch (err) {\n    console.error("Clipboard copy failed:", err);\n    return false;\n  }\n};`,
+            `const toggleTheme = () => {\n  const current = document.documentElement.getAttribute("data-theme");\n  const next = current === "dark" ? "light" : "dark";\n  document.documentElement.setAttribute("data-theme", next);\n};`,
+            `const createStore = (initialState) => {\n  let state = initialState;\n  const listeners = new Set();\n  return {\n    getState: () => state,\n    subscribe: (fn) => (listeners.add(fn), () => listeners.delete(fn))\n  };\n};`,
+            `const parseQueryParams = (urlStr) => {\n  const params = new URLSearchParams(new URL(urlStr).search);\n  return Object.fromEntries(params.entries());\n};`
         ],
         react: [
             `const [count, setCount] = useState(0);\nconst increment = () => setCount(prev => prev + 1);`,
@@ -49,7 +64,12 @@
             `const handleToggle = useCallback(() => {\n  setIsOpen(prev => !prev);\n}, []);`,
             `function TodoItem({ item, onDelete }) {\n  return (\n    <li>\n      <span>{item.text}</span>\n      <button onClick={() => onDelete(item.id)}>Delete</button>\n    </li>\n  );\n}`,
             `const inputRef = useRef(null);\nconst focusInput = () => inputRef.current?.focus();`,
-            `const [form, setForm] = useState({ name: "", email: "" });\nconst handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });`
+            `const [form, setForm] = useState({ name: "", email: "" });\nconst handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });`,
+            `function SearchBar({ onSearch }) {\n  const [query, setQuery] = useState("");\n  const handleSubmit = e => {\n    e.preventDefault();\n    onSearch(query);\n  };\n  return <form onSubmit={handleSubmit}><input value={query} onChange={e => setQuery(e.target.value)} /></form>;\n}`,
+            `function ProtectedRoute({ isAuth, children }) {\n  if (!isAuth) {\n    return <Navigate to="/login" replace />;\n  }\n  return children;\n}`,
+            `const [optimisticLikes, addOptimisticLike] = useOptimistic(\n  likes,\n  (state, newLike) => [...state, newLike]\n);`,
+            `function ModalPortal({ children, isOpen }) {\n  if (!isOpen) return null;\n  return createPortal(children, document.getElementById("modal-root"));\n}`,
+            `const useLocalStorage = (key, initialValue) => {\n  const [value, setValue] = useState(() => {\n    return JSON.parse(localStorage.getItem(key)) ?? initialValue;\n  });\n  return [value, setValue];\n};`
         ]
     };
 
