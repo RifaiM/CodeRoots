@@ -274,7 +274,10 @@ body.devtype-page {
 }
 
 .action-btn {
-  padding: 8px 16px;
+  box-sizing: border-box;
+  height: 36px;
+  line-height: 1.2;
+  padding: 0 16px;
   border-radius: 20px;
   border: 1px solid #334155;
   font-size: 0.82rem;
@@ -282,6 +285,7 @@ body.devtype-page {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   transition: all 0.2s ease;
 }
