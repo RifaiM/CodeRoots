@@ -3,6 +3,28 @@
 (function () {
     'use strict';
 
+    // Helper to strip Python comments (#) while ignoring # inside quotes
+    function stripPythonComments(line) {
+        let inSingle = false;
+        let inDouble = false;
+        let result = '';
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            const prev = line[i - 1];
+
+            if (char === "'" && !inDouble && prev !== '\\') {
+                inSingle = !inSingle;
+            } else if (char === '"' && !inSingle && prev !== '\\') {
+                inDouble = !inDouble;
+            } else if (char === '#' && !inSingle && !inDouble) {
+                break;
+            }
+            result += char;
+        }
+        return result;
+    }
+
     // ─────────────────────────────────────────────────────────────────────────────
     // PYTHON ERROR RULES
     // Each rule has:
@@ -16,7 +38,7 @@
         // ── UNCLOSED STRINGS (all lessons) ────────────────────────────────────────
         {
             test: (code) => code.split('\n').some(line => {
-                const noComment = line.split('#')[0];
+                const noComment = stripPythonComments(line);
                 // Skip triple-quote lines
                 if (noComment.includes('"""') || noComment.includes("'''")) return false;
                 const dq = (noComment.match(/"/g) || []).length;
@@ -381,7 +403,7 @@
                         // Try to find the first line that triggered it
                         const lines = code.split('\n');
                         for (let i = 0; i < lines.length; i++) {
-                            const noComment = lines[i].split('#')[0];
+                            const noComment = stripPythonComments(lines[i]);
                             if (noComment.includes('"""') || noComment.includes("'''")) continue;
                             const dq = (noComment.match(/"/g) || []).length;
                             const sq = (noComment.match(/'/g) || []).length;
