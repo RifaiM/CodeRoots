@@ -435,7 +435,7 @@ ${code || ''}
 </html>`;
 }
 
-taskEditor.addEventListener('input', renderTask);
+if (taskEditor) { taskEditor.addEventListener('input', renderTask); }
 renderTask();
 
 // ===========================

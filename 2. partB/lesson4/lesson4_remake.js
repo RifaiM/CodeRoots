@@ -283,8 +283,10 @@ ${code || ''}
 </html>`;
 }
 
-taskEditor.addEventListener('input', renderTask);
-renderTask();
+if (taskEditor) { 
+    taskEditor.addEventListener('input', renderTask); 
+    renderTask();
+}
 
 // ===========================
 // ENHANCED CODE EDITOR FUNCTIONALITY

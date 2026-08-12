@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Add event listener for real-time preview updates
-  taskEditor.addEventListener('input', renderTask);
+  if (taskEditor) { taskEditor.addEventListener('input', renderTask); }
   renderTask(); // Initial render
   
   // =====================================

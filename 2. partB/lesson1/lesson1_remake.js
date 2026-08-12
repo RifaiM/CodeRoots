@@ -54,7 +54,7 @@ class HTMLCodeEditor {
       this.updateLineNumbers();
       this.updateCursorPosition();
       this.syncLineNumbers();
-      if (window.renderTask) window.renderTask();
+      if (window.renderTask) window.if (taskEditor) { renderTask(); }
     }
   
     updateCursorPosition() {
@@ -939,7 +939,7 @@ class HTMLCodeEditor {
   document.addEventListener('DOMContentLoaded', () => {
     updateDemo();
     initStructurePreview();
-    renderTask();
+    if (taskEditor) { renderTask(); }
   
   
     // Initialize code editor
