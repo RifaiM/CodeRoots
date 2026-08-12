@@ -272,6 +272,91 @@
             font-size: 0.75rem;
         }
 
+        /* Mobile Responsiveness Rules (<= 768px, 480px, 425px, 375px, 320px) */
+        @media (max-width: 768px) {
+            .cert-header {
+                padding: 12px 14px;
+            }
+            .cert-header h1 {
+                font-size: 0.95rem;
+            }
+            .home-btn {
+                padding: 6px 12px;
+                font-size: 0.78rem;
+            }
+            .cert-container {
+                padding: 0 10px;
+                margin: 16px auto;
+            }
+            .generator-card {
+                padding: 16px 14px;
+                border-radius: 16px;
+                margin-bottom: 16px;
+            }
+            .generator-card h2 {
+                font-size: 1.15rem;
+            }
+            .generator-card p {
+                font-size: 0.84rem;
+            }
+            .input-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .input-group input, .input-group button {
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 0.85rem;
+                padding: 10px 14px;
+            }
+            .certificate-sheet {
+                padding: 20px 12px;
+                border-width: 6px;
+                outline-width: 2px;
+                border-radius: 12px;
+                margin-top: 14px;
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .cert-badge {
+                font-size: 2.2rem;
+            }
+            .cert-main-title {
+                font-size: 1.25rem;
+                letter-spacing: 0px;
+            }
+            .cert-sub-title {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+                margin-bottom: 14px;
+            }
+            .cert-recipient-label {
+                font-size: 0.78rem;
+            }
+            .cert-recipient-name {
+                font-size: 1.25rem;
+                padding: 0 8px 4px 8px;
+                margin-bottom: 14px;
+                word-break: break-word;
+            }
+            .cert-body-text {
+                font-size: 0.80rem;
+                line-height: 1.5;
+                margin-bottom: 18px;
+            }
+            .cert-footer-grid {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+                text-align: center;
+                font-size: 0.75rem;
+            }
+            .signature-box, .verification-box {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
         @media print {
             body { background: white; color: black; }
             .cert-header, .generator-card { display: none !important; }

@@ -414,3 +414,43 @@ function showTrackPreview(title, description) {
         alert(`${title}\n\n${description}`);
     }
 }
+
+/**
+ * 6. Global Certificate Hub Selection Modal
+ */
+window.openCertificateHub = function() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '📜 NoviCodes Certificate Hub',
+            html: `
+                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;">
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.5;">
+                        Select an earned certificate to view, print, or download your official Proof of Work:
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="./2. partB/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem;">📜 Level 4 Certificate</div>
+                                <div style="font-size: 0.76rem; color: #64748b;">DOM Manipulation & Web Interactivity</div>
+                            </div>
+                            <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">View &rarr;</span>
+                        </a>
+
+                        <a href="./3. partC/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5 Certificate</div>
+                                <div style="font-size: 0.76rem; color: #0284c7;">React & Modern Frontend Engineering</div>
+                            </div>
+                            <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">View &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true
+        });
+    } else {
+        window.location.href = './3. partC/certificate.html';
+    }
+};
