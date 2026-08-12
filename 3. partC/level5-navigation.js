@@ -31,8 +31,7 @@
     }
 
     function canAccessLesson(lessonId) {
-        if (lessonId === 1) return true;
-        return isLessonCompleted(lessonId - 1);
+        return true;
     }
 
     function initLevel5Nav() {

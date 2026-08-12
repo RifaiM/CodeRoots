@@ -170,89 +170,38 @@ function initUserProgress() {
                 statusIcon.textContent = '🟢 Active Track';
             }
         } else if (levelText === 'Level 1') {
-            const isUnlocked = isLevel0Complete || isPracticeUnlocked;
-            updateTrackCardState(card, statusIcon, btn, isLevel1Complete, isUnlocked, './foundations.html?track=html', 'HTML Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel1Complete, true, './foundations.html?track=html', 'HTML Foundations');
         } else if (levelText === 'Level 2') {
-            const isUnlocked = isLevel1Complete || isPracticeUnlocked;
-            updateTrackCardState(card, statusIcon, btn, isLevel2Complete, isUnlocked, './foundations.html?track=css', 'CSS Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel2Complete, true, './foundations.html?track=css', 'CSS Foundations');
         } else if (levelText === 'Level 3') {
-            const isUnlocked = isLevel2Complete || isPracticeUnlocked;
-            updateTrackCardState(card, statusIcon, btn, isLevel3Complete, isUnlocked, './foundations.html?track=js', 'JS Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel3Complete, true, './foundations.html?track=js', 'JS Foundations');
         } else if (levelText === 'Level 4') {
-            const isUnlocked = isLevel3Complete || isPracticeUnlocked;
             const isFinished = l4Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, isUnlocked, './2. partB/lesson1/lesson1_remake.html', 'Level 4 DOM Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, './2. partB/lesson1/lesson1_remake.html', 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                if (isFinished) btnSpan.textContent = '✅ Level 4 Completed';
-                else if (isUnlocked) btnSpan.textContent = '⚔️ Enter Level 4 Dojo';
-                else btnSpan.textContent = '🔒 Level 4 Locked';
+                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : '⚔️ Enter Level 4 Dojo';
             }
         } else if (levelText === 'Level 5') {
-            const isL4Finished = l4Completed >= 15;
-            const isUnlocked = isL4Finished || isPracticeUnlocked;
             const isFinished = l5Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, isUnlocked, './3. partC/lesson1/lesson1_remake.html', 'Level 5 React Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, './3. partC/lesson1/lesson1_remake.html', 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                if (isFinished) btnSpan.textContent = '✅ Level 5 Completed';
-                else if (isUnlocked) btnSpan.textContent = '⚛️ Enter Level 5 Dojo';
-                else btnSpan.textContent = '🔒 Level 5 Locked';
+                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : '⚛️ Enter Level 5 Dojo';
             }
         }
     });
 
-    // Check Practical Dojo Unlock Status (Requires all 3 Foundations: HTML, CSS, JS)
-    let foundationsCompleted = 0;
-    if (isLevel1Complete) foundationsCompleted++;
-    if (isLevel2Complete) foundationsCompleted++;
-    if (isLevel3Complete) foundationsCompleted++;
-
-    const isDojoUnlocked = (isLevel1Complete && isLevel2Complete && isLevel3Complete) || isPracticeUnlocked;
-
-    // Navbar Practical Dojo Link Control
+    // Navbar Practical Dojo Link Control (100% Open Access)
     const dojoNavLinks = document.querySelectorAll('#dojoNavLink, a[href*="lesson1_remake.html"]');
     dojoNavLinks.forEach(dojoLink => {
-        if (!isDojoUnlocked) {
-            dojoLink.classList.add('dojo-locked');
-            dojoLink.innerHTML = '🔒 Practical Dojo';
-            dojoLink.title = `Locked: ${foundationsCompleted}/3 Foundations Completed`;
-            dojoLink.onclick = (e) => {
-                e.preventDefault();
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        title: '🔒 Practical Dojo Locked!',
-                        html: `
-                            <p style="color: #475569; font-size: 0.95rem; margin-bottom: 16px;">
-                                You must complete all 3 <strong>Foundations Tracks</strong> (Level 1 HTML, Level 2 CSS, and Level 3 JS) to unlock the <strong>Level 4 Practical Dojo</strong>!
-                            </p>
-                            <div style="background: #eff6ff; border: 1px solid #bfdbfe; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; color: #1e40af;">
-                                Foundations Progress: ${foundationsCompleted}/3 Completed
-                            </div>
-                        `,
-                        icon: 'warning',
-                        confirmButtonText: '🚀 Go to Foundations',
-                        confirmButtonColor: '#2563eb',
-                        showCancelButton: true,
-                        cancelButtonText: 'Close'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './foundations.html?track=html';
-                        }
-                    });
-                } else {
-                    alert(`🔒 Level 4 Practical Dojo is Locked!\nCompleted ${foundationsCompleted}/3 Foundations tracks.`);
-                }
-            };
-        } else {
-            dojoLink.classList.remove('dojo-locked');
-            dojoLink.innerHTML = '⚔️ Practical Dojo';
-            dojoLink.title = 'Practical Dojo Hub';
-            dojoLink.onclick = (e) => {
-                e.preventDefault();
-                openDojoHub();
-            };
-        }
+        dojoLink.classList.remove('dojo-locked');
+        dojoLink.innerHTML = '⚔️ Practical Dojo';
+        dojoLink.title = 'Practical Dojo Hub';
+        dojoLink.onclick = (e) => {
+            e.preventDefault();
+            openDojoHub();
+        };
     });
 
     // Update Main Resume CTA
@@ -488,7 +437,7 @@ window.openCertificateHub = function() {
 };
 
 /**
- * 7. Practical Dojo Level Selection Hub Modal
+ * 7. Practical Dojo Level Selection Hub Modal (100% Open Access)
  */
 window.openDojoHub = function() {
     let activeL4 = 1;
@@ -504,10 +453,6 @@ window.openDojoHub = function() {
             activeL5 = Math.min(i + 1, 15);
         }
     }
-
-    const isL4Complete = localStorage.getItem('partB_lesson15_remake_complete') === 'true';
-    const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-    const isL5Unlocked = isL4Complete || isPracticeUnlocked;
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -527,7 +472,6 @@ window.openDojoHub = function() {
                             <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        ${isL5Unlocked ? `
                         <a href="./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
                             <div style="text-align: left;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
@@ -535,15 +479,6 @@ window.openDojoHub = function() {
                             </div>
                             <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
-                        ` : `
-                        <div onclick="window.showLevel5LockedNotice()" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; opacity: 0.75; cursor: pointer;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">🔒 Level 5: React & Framework Dojo</div>
-                                <div style="font-size: 0.76rem; color: #94a3b8;">Complete Level 4 first</div>
-                            </div>
-                            <span style="font-weight: 700; color: #ef4444; font-size: 0.82rem;">Locked 🔒</span>
-                        </div>
-                        `}
                     </div>
                 </div>
             `,
@@ -552,54 +487,5 @@ window.openDojoHub = function() {
         });
     } else {
         window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
-    }
-};
-
-window.showLevel5LockedNotice = function() {
-    let activeL4 = 1;
-    for (let i = 1; i <= 15; i++) {
-        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
-            activeL4 = Math.min(i + 1, 15);
-        }
-    }
-
-    if (typeof Swal !== 'undefined') {
-        Swal.fire({
-            icon: 'lock',
-            title: '🔒 Level 4 Prerequisite Recommended',
-            html: `
-                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">
-                        <strong>Level 5 (React & Framework Dojo)</strong> builds directly on DOM manipulation concepts taught in Level 4. We recommend completing Level 4 first for the best learning experience!
-                    </p>
-                    <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 12px; border-radius: 10px; font-size: 0.84rem; color: #0369a1;">
-                        💡 Already an experienced React developer or testing? You can unlock all levels instantly below!
-                    </div>
-                </div>
-            `,
-            showDenyButton: true,
-            confirmButtonColor: '#2563eb',
-            denyButtonColor: '#10b981',
-            confirmButtonText: '⚔️ Go to Level 4 Dojo',
-            denyButtonText: '🔓 Enable Practice Mode (Unlock All)',
-            showCloseButton: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
-            } else if (result.isDenied) {
-                localStorage.setItem('practice_mode_unlocked', 'true');
-                Swal.fire({
-                    icon: 'success',
-                    title: '🔓 Practice Mode Enabled!',
-                    text: 'All Dojo levels and lessons are now fully unlocked.',
-                    timer: 1400,
-                    showConfirmButton: false
-                }).then(() => {
-                    location.reload();
-                });
-            }
-        });
-    } else {
-        alert('🔒 Level 5 Locked! Complete Level 4 first or enable Practice Mode.');
     }
 };
