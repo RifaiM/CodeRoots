@@ -27,8 +27,9 @@
             this.pyEditor = document.getElementById('pyCode');
             this.runBtn = document.getElementById('runCode');
             this.resetBtn = document.getElementById('resetCode');
+            this.submitBtn = document.getElementById('submitProject');
             this.terminalScreen = document.getElementById('terminalScreen');
-            this.checklistItems = document.querySelectorAll('.checklist-item');
+            this.checklistItems = document.querySelectorAll('.task-checklist li');
 
             if (this.pyEditor) {
                 this.initialCode = this.pyEditor.value;
@@ -54,6 +55,10 @@
             if (this.resetBtn) {
                 this.resetBtn.addEventListener('click', () => this.resetEditor());
             }
+
+            if (this.submitBtn) {
+                this.submitBtn.addEventListener('click', () => this.handleSubmit());
+            }
         }
 
         resetEditor() {
@@ -66,8 +71,6 @@
             if (this.checklistItems) {
                 this.checklistItems.forEach(item => {
                     item.classList.remove('completed');
-                    const icon = item.querySelector('.item-icon');
-                    if (icon) icon.textContent = '⏳';
                 });
             }
         }
@@ -140,12 +143,12 @@
             const totalTasks = this.checklistItems.length;
 
             this.checklistItems.forEach(item => {
-                const reqRule = item.dataset.rule;
+                const reqRule = item.dataset.task || item.dataset.rule;
                 let passed = false;
 
                 if (reqRule) {
-                    if (reqRule === 'variable' && (code.includes('=') && !code.startsWith('#'))) passed = true;
-                    if (reqRule === 'print' && code.includes('print(')) passed = true;
+                    if ((reqRule === 'variable' || reqRule === 'variables') && (code.includes('=') && !code.trim().startsWith('#'))) passed = true;
+                    if ((reqRule === 'print' || reqRule === 'output') && code.includes('print(')) passed = true;
                     if (reqRule === 'function' && code.includes('def ')) passed = true;
                     if (reqRule === 'list' && (code.includes('[') && code.includes(']'))) passed = true;
                     if (reqRule === 'dict' && (code.includes('{') && code.includes('}'))) passed = true;
@@ -153,25 +156,37 @@
                     if (reqRule === 'class' && code.includes('class ')) passed = true;
                     if (reqRule === 'try' && code.includes('try:') && code.includes('except')) passed = true;
                 } else {
-                    // Default fallback check: if code is non-empty and printed output exists
                     passed = code.length > 20;
                 }
 
                 if (passed) {
                     item.classList.add('completed');
-                    const icon = item.querySelector('.item-icon');
-                    if (icon) icon.textContent = '✅';
                     completedCount++;
                 }
             });
 
-            // If all checklist items pass, mark lesson completed!
             if (completedCount >= totalTasks && totalTasks > 0) {
                 const successMsg = document.createElement('div');
                 successMsg.className = 'terminal-success-line';
-                successMsg.textContent = '🎉 All Task Requirements Passed! (+200 XP)';
+                successMsg.textContent = '🎉 All Task Requirements Passed! Click Complete Lesson below to claim +200 XP.';
                 this.terminalScreen.appendChild(successMsg);
+            }
+        }
 
+        handleSubmit() {
+            this.executePython();
+            const uncompleted = Array.from(this.checklistItems).some(item => !item.classList.contains('completed'));
+
+            if (uncompleted) {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: '⚠️ Unfinished Requirements',
+                        text: 'Please complete all task criteria above before submitting!',
+                        icon: 'warning',
+                        confirmButtonColor: '#2563eb'
+                    });
+                }
+            } else {
                 this.markLessonComplete();
             }
         }

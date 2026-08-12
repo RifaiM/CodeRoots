@@ -647,6 +647,21 @@ html, body {
   border-radius: 18px !important;
 }
 
+/* Dedicated Level 6 Python Track Card Button */
+.track-btn.python-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.track-btn.python-btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.45) !important;
+}
+
 /* Pixel-Perfect Centered Modal Close Button */
 .responsive-profile-modal .swal2-close,
 .swal2-popup .swal2-close {
