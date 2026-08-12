@@ -25,6 +25,7 @@
         </div>
 
         <div class="high-score-badge">
+            <button onclick="showArcadeHelpModal()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; padding: 3px 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; margin-right: 8px; transition: all 0.2s ease;">❓ How it Works</button>
             <span>🏆 Best:</span>
             <strong id="highScoreVal">0 WPM</strong>
         </div>
@@ -34,20 +35,20 @@
         <!-- Compact Control Bar (Mode & Timer Selectors in One Row) -->
         <div class="compact-controls-bar">
             <div class="mode-selector-bar">
-                <button class="mode-btn" data-mode="html">🌐 HTML</button>
-                <button class="mode-btn" data-mode="css">🎨 CSS</button>
-                <button class="mode-btn active" data-mode="js">⚡ JS ES6+</button>
-                <button class="mode-btn" data-mode="react">⚛️ React</button>
+                <button class="mode-btn" data-mode="html" title="Practice HTML5 structure & tags">🌐 HTML</button>
+                <button class="mode-btn" data-mode="css" title="Practice CSS3 layout & styles">🎨 CSS</button>
+                <button class="mode-btn active" data-mode="js" title="Practice ES6+ JavaScript syntax">⚡ JS ES6+</button>
+                <button class="mode-btn" data-mode="react" title="Practice React 18/19 components & hooks">⚛️ React</button>
             </div>
 
             <div class="timer-divider"></div>
 
             <div class="timer-selector-bar">
-                <span class="timer-label">⏱️ Time:</span>
-                <button class="timer-btn" data-time="15">15s</button>
-                <button class="timer-btn active" data-time="30">30s</button>
-                <button class="timer-btn" data-time="60">60s</button>
-                <button class="timer-btn" data-time="0">∞ Snippet</button>
+                <span class="timer-label">⏱️ Mode:</span>
+                <button class="timer-btn" data-time="15" title="15 second speedrun sprint">15s</button>
+                <button class="timer-btn active" data-time="30" title="30 second standard speedrun">30s</button>
+                <button class="timer-btn" data-time="60" title="60 second endurance speedrun">60s</button>
+                <button class="timer-btn" data-time="0" title="Untimed Snippet Mode: Type full snippet with no countdown timer!">∞ Untimed</button>
             </div>
         </div>
 

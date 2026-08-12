@@ -362,3 +362,36 @@
 
     new DevTypeEngine();
 })();
+
+/**
+ * Arcade Mode Help & Mode Explanation Modal
+ */
+window.showArcadeHelpModal = function() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '🎮 How Arcade Mode Works',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 0; font-size: 0.9rem; color: #475569;">
+                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; border-radius: 12px; margin-bottom: 12px;">
+                        <strong style="color: #0f172a;">⏱️ Speedrun Timers (15s / 30s / 60s):</strong><br>
+                        Race against the clock! Type as many code characters as you can before time expires to achieve your highest WPM & accuracy.
+                    </div>
+                    <div style="background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px; border-radius: 12px; margin-bottom: 12px;">
+                        <strong style="color: #0369a1;">∞ Untimed Snippet Mode:</strong><br>
+                        No countdown timer! Type the full code snippet at your own comfortable pace to master syntax and muscle memory.
+                    </div>
+                    <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 12px; border-radius: 12px;">
+                        <strong style="color: #6d28d9;">⌨️ VS Code Shortcut Keys:</strong><br>
+                        • Press <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">Tab</kbd> to insert 2-space indentation.<br>
+                        • Press <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">Esc</kbd> to restart current snippet instantly.
+                    </div>
+                </div>
+            `,
+            confirmButtonColor: '#8b5cf6',
+            confirmButtonText: 'Got It, Let\'s Code!',
+            showCloseButton: true
+        });
+    } else {
+        alert('🎮 Speedrun Timers (15s/30s/60s): Race the clock.\n∞ Untimed Mode: Type full snippet at your own pace with no timer.');
+    }
+};
