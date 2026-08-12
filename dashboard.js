@@ -183,7 +183,8 @@ function initUserProgress() {
                 }
             }
             const isFinished = l4Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`, 'Level 4 DOM Dojo');
+            const targetUrl = isFinished ? './2. partB/lesson1/lesson1_remake.html' : `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : '⚔️ Enter Level 4 Dojo';
@@ -196,7 +197,8 @@ function initUserProgress() {
                 }
             }
             const isFinished = l5Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html`, 'Level 5 React Dojo');
+            const targetUrl = isFinished ? './3. partC/lesson1/lesson1_remake.html' : `./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html`;
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : '⚛️ Enter Level 5 Dojo';
@@ -211,7 +213,8 @@ function initUserProgress() {
                 }
             }
             const isFinished = l6Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html`, 'Level 6 Python Dojo');
+            const targetUrl = isFinished ? './5. partE/lesson1/lesson1_remake.html' : `./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html`;
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 6 Python Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : '🐍 Enter Level 6 Dojo';
