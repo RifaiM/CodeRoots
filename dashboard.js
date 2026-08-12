@@ -176,15 +176,27 @@ function initUserProgress() {
         } else if (levelText === 'Level 3') {
             updateTrackCardState(card, statusIcon, btn, isLevel3Complete, true, './foundations.html?track=js', 'JS Foundations');
         } else if (levelText === 'Level 4') {
+            let activeL4 = 1;
+            for (let i = 1; i <= 15; i++) {
+                if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+                    activeL4 = Math.min(i + 1, 15);
+                }
+            }
             const isFinished = l4Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, './2. partB/lesson1/lesson1_remake.html', 'Level 4 DOM Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`, 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : '⚔️ Enter Level 4 Dojo';
             }
         } else if (levelText === 'Level 5') {
+            let activeL5 = 1;
+            for (let i = 1; i <= 15; i++) {
+                if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
+                    activeL5 = Math.min(i + 1, 15);
+                }
+            }
             const isFinished = l5Completed >= 15;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, './3. partC/lesson1/lesson1_remake.html', 'Level 5 React Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html`, 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : '⚛️ Enter Level 5 Dojo';
@@ -192,8 +204,8 @@ function initUserProgress() {
         }
     });
 
-    // Navbar Practical Dojo Link Control (100% Open Access)
-    const dojoNavLinks = document.querySelectorAll('#dojoNavLink, a[href*="lesson1_remake.html"]');
+    // Navbar Practical Dojo Link Control (Only #dojoNavLink opens Hub Modal)
+    const dojoNavLinks = document.querySelectorAll('#dojoNavLink');
     dojoNavLinks.forEach(dojoLink => {
         dojoLink.classList.remove('dojo-locked');
         dojoLink.innerHTML = '⚔️ Practical Dojo';
