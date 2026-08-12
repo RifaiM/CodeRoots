@@ -285,6 +285,69 @@ textarea.py-editor:focus {
   margin-top: 8px;
 }
 
+/* Level 5 Exact Linter Error Panel Design (White & Soft Red Background Card) */
+.dojo-lint-panel-wrap {
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  padding: 6px;
+}
+
+.dojo-lint-panel--error {
+  background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%) !important;
+  border: 1px solid #fca5a5 !important;
+  border-left: 4px solid #ef4444 !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  margin: 8px 0 !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1) !important;
+}
+
+.dojo-lint-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 8px !important;
+}
+
+.dojo-lint-title {
+  font-weight: 800 !important;
+  color: #7f1d1d !important;
+  font-size: 0.88rem !important;
+}
+
+.dojo-lint-hint {
+  color: #92400e !important;
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 8px !important;
+  background: #ffffff !important;
+  border: 1px solid #fef3c7 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+.dojo-lint-raw {
+  font-family: "Fira Code", monospace !important;
+  font-size: 0.76rem !important;
+  color: #b91c1c !important;
+  background: #ffffff !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+textarea.py-editor.dojo-lint-error {
+  border-left: 4px solid #ef4444 !important;
+}
+
+textarea.py-editor.dojo-lint-success {
+  border-left: 4px solid #22c55e !important;
+}
+
 .terminal-error-line {
   color: #fb7185;
   font-weight: 700;

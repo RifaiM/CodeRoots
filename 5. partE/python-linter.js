@@ -136,7 +136,7 @@
             if (!this.pyEditor || !this.terminalScreen) return;
             const code = this.pyEditor.value;
 
-            // If empty, clear linter state cleanly without writing error text into terminal matching Level 5
+            // If empty, clear linter state cleanly matching Level 5
             if (!code.trim()) {
                 this.pyEditor.classList.remove('dojo-lint-error', 'dojo-lint-success');
                 this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
@@ -157,11 +157,15 @@
                 this.pyEditor.classList.add('dojo-lint-error');
                 this.pyEditor.classList.remove('dojo-lint-success');
                 this.terminalScreen.innerHTML = `
-                    <div class="terminal-error-line">
-                        ❌ Python Syntax Warning: ${foundError.title}
-                    </div>
-                    <div style="color: #fde047; font-size: 0.80rem; margin-top: 6px; line-height: 1.4;">
-                        💡 ${foundError.hint}
+                    <div class="dojo-lint-panel-wrap">
+                        <div class="dojo-lint-panel--error">
+                            <div class="dojo-lint-header">
+                                <span style="font-size: 1.1rem;">⚠️</span>
+                                <span class="dojo-lint-title">${foundError.title}</span>
+                            </div>
+                            <div class="dojo-lint-hint">💡 ${foundError.hint}</div>
+                            <div class="dojo-lint-raw">Python Syntax Error detected. Please review your code above.</div>
+                        </div>
                     </div>
                 `;
             } else {
@@ -205,17 +209,20 @@
             }
 
             if (syntaxErrorFound) {
-                const errEl = document.createElement('div');
-                errEl.className = 'terminal-error-line';
-                errEl.textContent = `❌ Python SyntaxError: ${syntaxErrorFound.title}`;
-                this.terminalScreen.appendChild(errEl);
-
-                const hintEl = document.createElement('div');
-                hintEl.style.color = '#fde047';
-                hintEl.style.fontSize = '0.80rem';
-                hintEl.style.marginTop = '6px';
-                hintEl.innerHTML = `💡 ${syntaxErrorFound.hint}`;
-                this.terminalScreen.appendChild(hintEl);
+                this.pyEditor.classList.add('dojo-lint-error');
+                this.pyEditor.classList.remove('dojo-lint-success');
+                this.terminalScreen.innerHTML = `
+                    <div class="dojo-lint-panel-wrap">
+                        <div class="dojo-lint-panel--error">
+                            <div class="dojo-lint-header">
+                                <span style="font-size: 1.1rem;">❌</span>
+                                <span class="dojo-lint-title">${syntaxErrorFound.title}</span>
+                            </div>
+                            <div class="dojo-lint-hint">💡 ${syntaxErrorFound.hint}</div>
+                            <div class="dojo-lint-raw">Python SyntaxError: ${syntaxErrorFound.title}</div>
+                        </div>
+                    </div>
+                `;
                 return;
             }
 
