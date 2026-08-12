@@ -2,6 +2,19 @@
 (function() {
     'use strict';
 
+    
+    function buildLineNumbers(lineNumberEl, editorEl, errorLine = null) {
+        if (!lineNumberEl || !editorEl) return;
+        const count = editorEl.value.split('\n').length;
+        let html = '';
+        for (let i = 1; i <= count; i++) {
+            const cls = (i === errorLine) ? ' class="ln-error"' : '';
+            html += `<span${cls}>${i}</span>`;
+        }
+        lineNumberEl.innerHTML = html;
+        lineNumberEl.scrollTop = editorEl.scrollTop;
+    }
+
     const defaultCode = `// 🎛️ Lesson 9: Lifting State Up & Cross-Component Communication!
 
 // 1. Child Component A: ProductSelector (Fires callback when item selected)

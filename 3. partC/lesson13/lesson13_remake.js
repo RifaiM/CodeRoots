@@ -2,6 +2,19 @@
 (function() {
     'use strict';
 
+    
+    function buildLineNumbers(lineNumberEl, editorEl, errorLine = null) {
+        if (!lineNumberEl || !editorEl) return;
+        const count = editorEl.value.split('\n').length;
+        let html = '';
+        for (let i = 1; i <= count; i++) {
+            const cls = (i === errorLine) ? ' class="ln-error"' : '';
+            html += `<span${cls}>${i}</span>`;
+        }
+        lineNumberEl.innerHTML = html;
+        lineNumberEl.scrollTop = editorEl.scrollTop;
+    }
+
     const defaultCode = `// 📡 Lesson 13: Context API & Global State Management (createContext & useContext)!
 
 // 1. Create Global Context Object
