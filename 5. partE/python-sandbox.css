@@ -229,14 +229,17 @@
   gap: 6px;
 }
 
-/* ── Line-numbered editor wrapper ─────────────────────────────────────────── */
+/* ── Line-numbered editor wrapper (FIXED height — scrolls, never grows) ───── */
 .editor-with-lines {
   display: flex;
   flex-direction: row;
-  flex: 1;
+  flex: 0 0 360px;         /* don't grow, don't shrink — always exactly 360px */
+  height: 360px;
+  min-height: 360px;
+  max-height: 360px;
   border: 1px solid #334155;
   border-radius: 10px;
-  overflow: hidden;        /* clip gutter + textarea together */
+  overflow: hidden;        /* clip gutter + textarea inside the fixed box */
   background: #0f172a;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -246,14 +249,15 @@
   box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
 }
 
-/* Error / success states applied to the wrapper */
+/* Error / success border on wrapper */
 .editor-with-lines.dojo-lint-error  { border-left: 4px solid #ef4444 !important; }
 .editor-with-lines.dojo-lint-success { border-left: 4px solid #22c55e !important; }
 
-/* ── Line numbers gutter ──────────────────────────────────────────────────── */
+/* ── Line numbers gutter ──────────────────────────────────────────────── */
 .line-numbers {
   flex-shrink: 0;
   width: 42px;
+  height: 360px;           /* explicit — matches wrapper */
   background: #0a0f1c;
   border-right: 1px solid #1e293b;
   padding: 14px 0;
@@ -263,7 +267,7 @@
   color: #334155;
   text-align: right;
   user-select: none;
-  overflow: hidden;        /* scroll synced via JS */
+  overflow-y: hidden;      /* scroll synced via JS, no scrollbar shown */
   box-sizing: border-box;
 }
 
@@ -273,18 +277,18 @@
   transition: color 0.15s;
 }
 
-/* Highlighted (error) line number */
+/* Error line highlight in gutter */
 .line-numbers span.ln-error {
   color: #ef4444;
   font-weight: 800;
   background: rgba(239, 68, 68, 0.12);
 }
 
-/* ── Textarea (no own border / border-radius — wrapper owns those) ────────── */
+/* ── Textarea (no border/radius — wrapper owns those) ──────────────────── */
 textarea.py-editor {
   flex: 1;
   min-width: 0;
-  height: 100%;            /* fill the fixed-height wrapper */
+  height: 360px;           /* explicit fixed height — browser will scroll */
   background: #0f172a;
   color: #f8fafc;
   border: none;
@@ -293,15 +297,10 @@ textarea.py-editor {
   font-family: 'Fira Code', monospace;
   font-size: 0.88rem;
   line-height: 1.5;
-  resize: none;            /* fixed height — scroll instead of grow */
+  resize: none;            /* no manual resize — fixed height */
   outline: none;
   box-sizing: border-box;
-  overflow-y: auto;        /* vertical scroll when code exceeds height */
-}
-
-/* Fixed editor height — no resize, no grow */
-.editor-with-lines {
-  height: 360px;           /* fixed — feels like a real IDE pane */
+  overflow-y: auto;        /* scrollbar appears when content exceeds 360px */
 }
 
 textarea.py-editor:focus { outline: none; }
