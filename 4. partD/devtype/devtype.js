@@ -377,7 +377,7 @@ window.showArcadeHelpModal = function() {
                         Race against the clock! Type as many code characters as you can before time expires to achieve your highest WPM & accuracy.
                     </div>
                     <div style="background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px; border-radius: 12px; margin-bottom: 12px;">
-                        <strong style="color: #0369a1;">∞ Untimed Snippet Mode:</strong><br>
+                        <strong style="color: #0369a1;">∞ No Timer Mode:</strong><br>
                         No countdown timer! Type the full code snippet at your own comfortable pace to master syntax and muscle memory.
                     </div>
                     <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 12px; border-radius: 12px;">
