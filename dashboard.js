@@ -218,8 +218,11 @@ function initUserProgress() {
         } else {
             dojoLink.classList.remove('dojo-locked');
             dojoLink.innerHTML = '⚔️ Practical Dojo';
-            dojoLink.title = 'Level 4 Practical Dojo Unlocked';
-            dojoLink.onclick = null;
+            dojoLink.title = 'Practical Dojo Hub';
+            dojoLink.onclick = (e) => {
+                e.preventDefault();
+                openDojoHub();
+            };
         }
     });
 
@@ -452,5 +455,73 @@ window.openCertificateHub = function() {
         });
     } else {
         window.location.href = './3. partC/certificate.html';
+    }
+};
+
+/**
+ * 7. Practical Dojo Level Selection Hub Modal
+ */
+window.openDojoHub = function() {
+    let activeL4 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+            activeL4 = Math.min(i + 1, 15);
+        }
+    }
+
+    let activeL5 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
+            activeL5 = Math.min(i + 1, 15);
+        }
+    }
+
+    const isL4Complete = localStorage.getItem('partB_lesson15_remake_complete') === 'true';
+    const isPracticeUnlocked = localStorage.getItem('practice_unlock_all') === 'true';
+    const isL5Unlocked = isL4Complete || isPracticeUnlocked;
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '⚔️ Practical Dojo Hub',
+            html: `
+                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;">
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.5;">
+                        Select a Practical Dojo level to jump into live interactive coding:
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
+                                <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
+                            </div>
+                            <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
+                        </a>
+
+                        ${isL5Unlocked ? `
+                        <a href="./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
+                                <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                            </div>
+                            <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
+                        </a>
+                        ` : `
+                        <div onclick="alert('🔒 Complete Level 4 to unlock Level 5 React Dojo!')" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; opacity: 0.7; cursor: pointer;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">🔒 Level 5: React & Framework Dojo</div>
+                                <div style="font-size: 0.76rem; color: #94a3b8;">Complete Level 4 first</div>
+                            </div>
+                            <span style="font-weight: 700; color: #94a3b8; font-size: 0.82rem;">Locked 🔒</span>
+                        </div>
+                        `}
+                    </div>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true
+        });
+    } else {
+        window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
     }
 };
