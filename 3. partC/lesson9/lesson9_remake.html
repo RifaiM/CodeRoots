@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson9_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 9: Lifting State Up & Cross-Component Communication | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 9: Lifting State Up & Cross-Component Communication</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>🎛️ Master Lifting State Up & Cross-Component Communication</h2>
+            <p>
+                In React, sibling components cannot talk directly to each other! When two or more components need to share data, we <strong>Lift State Up</strong> to their closest common parent component. The parent holds the shared state and passes callback functions down to children so user actions flow <strong>UP</strong> and updated state flows <strong>DOWN</strong>!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🎛️ 1. Central Switchboard</h4>
+                    <span class="syntax-chip">Parent State</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A central airport tower! Flight control (Parent Component) holds all flight data and coordinates communication between ground crew and pilots (Child Components).
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>📞 2. Callback Props</h4>
+                    <span class="syntax-chip">onSelect={handleSelect}</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A walkie-talkie button! The parent hands a walkie-talkie (callback prop) to a child. Pressing the button sends a message back UP to the parent control room!
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>📡 3. Sibling Data Sync</h4>
+                    <span class="syntax-chip">Sibling A &rarr; Parent &rarr; Sibling B</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A live scorekeeper! When Team A scores a point (Child Event), they notify the scorekeeper (Parent State), who instantly updates the giant stadium display (Sibling UI)!
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🌊 4. One-Way Data Flow</h4>
+                    <span class="syntax-chip">Props Down, Events Up</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A waterfall & elevator! Data flows gracefully DOWN via props like a waterfall, while events travel UP via callbacks like an elevator.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Declare Shared State in Parent</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">StoreParent</span>() {
+  <span class="keyword">const</span> [cart, setCart] = React.<span class="function">useState</span>([]);
+  <span class="keyword">const</span> handleAdd = (item) =&gt; <span class="function">setCart</span>([...cart, item]);
+  <span class="keyword">return</span> <span class="tag">&lt;StoreLayout</span> <span class="keyword">cart</span>={cart} <span class="keyword">onAdd</span>={handleAdd} <span class="tag">/&gt;</span>;
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Pass Callback Prop to Child</div>
+                <div class="code-block"><span class="tag">&lt;ItemSelector</span> 
+  <span class="keyword">items</span>={products} 
+  <span class="keyword">onAddToCart</span>={(item) =&gt; <span class="function">handleAddToCart</span>(item)} 
+<span class="tag">/&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">📞 3. Trigger Callback in Child</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">ItemCard</span>({ item, onAddToCart }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;button</span> <span class="keyword">onClick</span>={() =&gt; <span class="function">onAddToCart</span>(item)}<span class="tag">&gt;</span>Add<span class="tag">&lt;/button&gt;</span>
+  );
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Receive State in Sibling UI</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">CartSummary</span>({ cartItems }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;h3&gt;</span>Total Cart Items: {cartItems.length}<span class="tag">&lt;/h3&gt;</span>
+  );
+}</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>🎛️ Level 5 Interactive React Lifting State Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;State Flow</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">Lifting State Up Component & Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Multi-Widget Cart Preview Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Lifting State Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 9 Challenge: Tech Store Shopping Cart & Live Order Summary</h3>
+            <p>Complete all 4 requirements in the React Lifting State Sandbox above to finish Lesson 9:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Declare shared state inside parent component (e.g. <code>const [cart, setCart] = React.useState([])</code>)</li>
+                <li id="req2">Pass a callback function prop down to child selector component (e.g. <code>onAddToCart={handleAddToCart}</code>)</li>
+                <li id="req3">Invoke the callback prop inside child event handler (e.g. <code>onClick={() => onAddToCart(product)}</code>)</li>
+                <li id="req4">Display updated shared state dynamically inside sibling cart summary component</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Lesson 9 & Unlock Lesson 10 🚀</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson9_remake.js"></script>
+</body>
+</html>
