@@ -194,40 +194,37 @@
 }
 
 .control-btn {
-  box-sizing: border-box;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid transparent;
+  background: #334155;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  padding: 0 16px;
+  height: 32px;
+  line-height: 1.2;
+  border-radius: 16px;
   font-size: 0.78rem;
   font-weight: 700;
-  line-height: 1.2;
   cursor: pointer;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
-.run-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+.control-btn:hover {
+  background: #475569;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
-.run-btn:hover {
+.control-btn.run-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.control-btn.run-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
-}
-
-.reset-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.reset-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
 }
 
 .editor-workspace {

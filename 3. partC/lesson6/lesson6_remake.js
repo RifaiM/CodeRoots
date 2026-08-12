@@ -184,7 +184,14 @@ root.render(<ProfileBadgeGenerator />);`;
                 validateRequirements('');
                 preview.srcdoc = '';
                 if (isExplicit) {
-                    showError('🤨', 'Your code is empty!', 'Please write some React JSX code in the editor above.');
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Code Editor is Empty!',
+                            text: 'Please write your React controlled form code before running preview! ⚡',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
                 }
                 return;
             }
@@ -250,9 +257,28 @@ root.render(<ProfileBadgeGenerator />);`;
 
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-                editor.value = defaultCode;
-                localStorage.removeItem('partC_lesson6_remake_draft');
-                runCode(false);
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Reset Code?',
+                        text: 'Are you sure you want to clear your code in the editor?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ef4444',
+                        cancelButtonColor: '#64748b',
+                        confirmButtonText: 'Yes, reset code!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            editor.value = defaultCode;
+                            localStorage.removeItem('partC_lesson6_remake_draft');
+                            runCode(false);
+                            Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
+                        }
+                    });
+                } else {
+                    editor.value = defaultCode;
+                    localStorage.removeItem('partC_lesson6_remake_draft');
+                    runCode(false);
+                }
             });
         }
 
@@ -260,7 +286,14 @@ root.render(<ProfileBadgeGenerator />);`;
             submitBtn.addEventListener('click', () => {
                 const userCode = editor.value || '';
                 if (!userCode.trim()) {
-                    showError('🤨', 'Your code is empty!', 'Please write some code before submitting.');
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Code Editor is Empty!',
+                            text: 'Please write your React controlled form code before submitting! ⚡',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
                     return;
                 }
 
