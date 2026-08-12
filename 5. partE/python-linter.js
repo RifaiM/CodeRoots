@@ -164,8 +164,8 @@
 
         // ── COMMON LOGIC ERRORS ────────────────────────────────────────────────────
         {
-            // Assignment inside condition: `if x = 5:` (should be `==`)
-            test: /^\s*(?:if|elif|while)\b[^=\n]*=[^=\n]*:/m,
+            // Assignment inside condition: `if x = 5:` (should be `==`, not `=`, `>=`, `<=`, `!=`)
+            test: /^\s*(?:if|elif|while)\b[^:\n]*?(?<![=!<>])=(?![=])[^:\n]*:/m,
             title: "Assignment '=' inside condition — did you mean '=='?",
             hint: 'Use <code>==</code> for comparison in conditions, not <code>=</code>. Example: <code>if x == 5:</code>'
         },
