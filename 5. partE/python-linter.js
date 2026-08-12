@@ -1,5 +1,5 @@
 // Level 6: Python & Backend Dojo - Intelligent Linter & IDE Sandbox Engine
-// Live Real-Time Syntax Validation, Error Translation, and Empty Check Warnings
+// 100% Uniform with Level 5 (SweetAlert Modals for Empty & Reset, Clean Live Preview)
 (function() {
     'use strict';
 
@@ -88,7 +88,7 @@
             }
 
             if (this.resetBtn) {
-                this.resetBtn.addEventListener('click', () => this.resetEditor());
+                this.resetBtn.addEventListener('click', () => this.confirmReset());
             }
 
             if (this.submitBtn) {
@@ -96,12 +96,34 @@
             }
         }
 
+        confirmReset() {
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: '🔄 Reset Code?',
+                    text: 'Are you sure you want to reset the editor to the starter code?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2563eb',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Yes, Reset',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.resetEditor();
+                    }
+                });
+            } else {
+                this.resetEditor();
+            }
+        }
+
         resetEditor() {
             if (this.pyEditor && this.initialCode !== undefined) {
                 this.pyEditor.value = this.initialCode;
+                this.pyEditor.classList.remove('dojo-lint-error', 'dojo-lint-success');
             }
             if (this.terminalScreen) {
-                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal reset. Click ▶ Run Code to execute.</div>';
+                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
             }
             if (this.checklistItems) {
                 this.checklistItems.forEach(item => {
@@ -114,15 +136,10 @@
             if (!this.pyEditor || !this.terminalScreen) return;
             const code = this.pyEditor.value;
 
-            // Check if code is completely empty
+            // If empty, clear linter state cleanly without writing error text into terminal matching Level 5
             if (!code.trim()) {
-                this.pyEditor.classList.add('dojo-lint-error');
-                this.pyEditor.classList.remove('dojo-lint-success');
-                this.terminalScreen.innerHTML = `
-                    <div class="terminal-error-line">
-                        ⚠️ Code Editor is Empty! Write your Python code above.
-                    </div>
-                `;
+                this.pyEditor.classList.remove('dojo-lint-error', 'dojo-lint-success');
+                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
                 return;
             }
 
@@ -169,7 +186,7 @@
                         confirmButtonText: 'Got It'
                     });
                 }
-                this.terminalScreen.innerHTML = '<div class="terminal-error-line">⚠️ Cannot execute empty code editor. Write code above!</div>';
+                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
                 return;
             }
 
@@ -212,7 +229,6 @@
                             if ((inner.startsWith('"') && inner.endsWith('"')) || (inner.startsWith("'") && inner.endsWith("'"))) {
                                 logs.push(inner.substring(1, inner.length - 1));
                             } else if (inner.startsWith('f"') || inner.startsWith("f'")) {
-                                // Simple f-string formatting resolution
                                 const formatted = inner.substring(2, inner.length - 1).replace(/\{(\w+)\}/g, (match, varName) => {
                                     const varRegex = new RegExp(`\\b${varName}\\s*=\\s*(?:"([^"]+)"|'([^']+)'|(\\d+))`);
                                     const m = code.match(varRegex);
