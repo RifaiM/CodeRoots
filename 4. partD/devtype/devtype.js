@@ -86,6 +86,11 @@
             this.timer = null;
             this.isPlaying = false;
 
+            // Accumulated Multi-Snippet Counters (Monkeytype Mode)
+            this.accumulatedTypedChars = 0;
+            this.accumulatedCorrectChars = 0;
+            this.accumulatedMistakes = 0;
+
             this.init();
         }
 
@@ -121,7 +126,8 @@
                 btn.addEventListener('click', (e) => {
                     document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                     e.currentTarget.classList.add('active');
-                    this.loadMode(e.currentTarget.dataset.mode);
+                    this.currentMode = e.currentTarget.dataset.mode;
+                    this.loadMode(this.currentMode);
                 });
             });
 
@@ -131,126 +137,148 @@
                     document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
                     e.currentTarget.classList.add('active');
                     this.timeLimit = parseInt(e.currentTarget.dataset.time, 10);
-                    this.restart();
+                    this.resetSession();
                 });
             });
 
-            // Focus hidden input when clicking code display card
-            const card = document.querySelector('.typing-area-card');
-            if (card) {
-                card.addEventListener('click', () => {
-                    if (this.hiddenInput) this.hiddenInput.focus();
-                });
+            // Action Buttons
+            if (this.retryBtn) this.retryBtn.addEventListener('click', () => this.retryCurrentSnippet());
+            if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextSnippet());
+
+            // Typing & Focus Handling
+            if (this.codeDisplay) {
+                this.codeDisplay.addEventListener('click', () => this.focusInput());
             }
 
             if (this.hiddenInput) {
-                this.hiddenInput.addEventListener('input', (e) => this.handleInput(e));
-                
-                // VS Code Tab Key Handler: Inserts 2 spaces just like VS Code!
-                this.hiddenInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        e.preventDefault();
-                        const start = this.hiddenInput.selectionStart;
-                        const end = this.hiddenInput.selectionEnd;
-                        const val = this.hiddenInput.value;
-
-                        // Insert 2 spaces
-                        this.hiddenInput.value = val.substring(0, start) + "  " + val.substring(end);
-                        this.hiddenInput.selectionStart = this.hiddenInput.selectionEnd = start + 2;
-
-                        // Trigger input event
-                        this.handleInput(e);
-                    } else if (e.key === 'Escape') {
-                        e.preventDefault();
-                        this.restart();
-                    }
-                });
+                this.hiddenInput.addEventListener('input', () => this.handleTyping());
+                this.hiddenInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
             }
 
-            if (this.retryBtn) this.retryBtn.addEventListener('click', () => this.retryCurrentSnippet());
-            if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextSnippet());
+            // Keyboard Shortcuts (Esc to restart)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    this.resetSession();
+                }
+            });
         }
 
         loadHighScore() {
-            const saved = localStorage.getItem('devtype_highscore_wpm');
+            const saved = localStorage.getItem('devtype_highscore_wpm') || '0';
             if (this.highScoreEl) {
-                this.highScoreEl.textContent = saved ? saved : '0';
+                this.highScoreEl.textContent = `${saved} WPM`;
             }
         }
 
         loadMode(mode) {
-            this.currentMode = mode;
-            const pool = codeSnippets[mode] || codeSnippets.js;
-            this.currentSnippetIndex = Math.floor(Math.random() * pool.length);
-            this.currentText = pool[this.currentSnippetIndex];
-            this.resetState();
-            this.renderText();
+            const snippets = codeSnippets[mode] || codeSnippets.js;
+            this.currentSnippetIndex = Math.floor(Math.random() * snippets.length);
+            this.resetSession();
+        }
+
+        resetSession() {
+            clearInterval(this.timer);
+            this.isPlaying = false;
+            this.startTime = null;
+            this.timeRemaining = this.timeLimit > 0 ? this.timeLimit : 0;
+
+            // Reset accumulated score pools
+            this.accumulatedTypedChars = 0;
+            this.accumulatedCorrectChars = 0;
+            this.accumulatedMistakes = 0;
+
+            if (this.timerValEl) {
+                this.timerValEl.textContent = this.timeLimit > 0 ? `${this.timeRemaining}s` : '∞ Untimed';
+            }
+
+            if (this.wpmEl) this.wpmEl.textContent = '0 WPM';
+            if (this.cpmEl) this.cpmEl.textContent = '0';
+            if (this.accuracyEl) this.accuracyEl.textContent = '100%';
+
+            this.loadSnippet(this.currentSnippetIndex);
+        }
+
+        loadSnippet(index) {
+            const snippets = codeSnippets[this.currentMode] || codeSnippets.js;
+            this.currentSnippetIndex = index % snippets.length;
+            this.currentText = snippets[this.currentSnippetIndex];
+
+            if (this.hiddenInput) this.hiddenInput.value = '';
+            this.charIndex = 0;
+            this.mistakes = 0;
+
+            this.renderCodeDisplay();
+            this.focusInput();
         }
 
         nextSnippet() {
-            const pool = codeSnippets[this.currentMode] || codeSnippets.js;
-            this.currentSnippetIndex = (this.currentSnippetIndex + 1) % pool.length;
-            this.currentText = pool[this.currentSnippetIndex];
-            this.resetState();
-            this.renderText();
-        }
+            const snippets = codeSnippets[this.currentMode] || codeSnippets.js;
+            let nextIndex = Math.floor(Math.random() * snippets.length);
+            if (nextIndex === this.currentSnippetIndex && snippets.length > 1) {
+                nextIndex = (this.currentSnippetIndex + 1) % snippets.length;
+            }
+            this.currentSnippetIndex = nextIndex;
 
-        retryCurrentSnippet() {
-            this.resetState();
-            this.renderText();
-        }
-
-        resetState() {
-            this.charIndex = 0;
-            this.mistakes = 0;
-            this.startTime = null;
-            this.isPlaying = false;
-            this.timeRemaining = this.timeLimit;
-            if (this.timer) clearInterval(this.timer);
-            this.timer = null;
-
-            if (this.hiddenInput) this.hiddenInput.value = '';
-            if (this.wpmEl) this.wpmEl.textContent = '0';
-            if (this.cpmEl) this.cpmEl.textContent = '0';
-            if (this.accuracyEl) this.accuracyEl.textContent = '100%';
-            
-            if (this.timerValEl) {
-                this.timerValEl.textContent = this.timeLimit > 0 ? `${this.timeLimit}s` : '∞';
+            if (this.isPlaying) {
+                // If mid-game, load snippet without resetting timer or score accumulator!
+                this.loadSnippet(this.currentSnippetIndex);
+            } else {
+                this.resetSession();
             }
         }
 
-        renderText() {
-            if (!this.codeDisplay) return;
-            this.codeDisplay.innerHTML = '';
+        retryCurrentSnippet() {
+            this.resetSession();
+        }
 
-            this.currentText.split('').forEach((char, index) => {
-                const span = document.createElement('span');
-                span.className = 'char';
-                if (index === 0) span.classList.add('current');
-                span.textContent = char;
-                this.codeDisplay.appendChild(span);
-            });
-
+        focusInput() {
             if (this.hiddenInput) this.hiddenInput.focus();
         }
 
-        handleInput(e) {
+        renderCodeDisplay() {
+            if (!this.codeDisplay) return;
+            this.codeDisplay.innerHTML = '';
+
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < this.currentText.length; i++) {
+                const char = this.currentText[i];
+                const span = document.createElement('span');
+                span.className = 'char';
+                if (i === 0) span.classList.add('current');
+                span.textContent = char;
+                fragment.appendChild(span);
+            }
+            this.codeDisplay.appendChild(fragment);
+        }
+
+        handleKeyDown(e) {
+            // VS Code Tab Key Support (Insert 2 spaces)
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                if (!this.hiddenInput) return;
+
+                const start = this.hiddenInput.selectionStart;
+                const val = this.hiddenInput.value;
+                this.hiddenInput.value = val.substring(0, start) + '  ' + val.substring(start);
+                this.hiddenInput.selectionStart = this.hiddenInput.selectionEnd = start + 2;
+
+                this.handleTyping();
+            }
+        }
+
+        handleTyping() {
             if (!this.isPlaying) {
                 this.isPlaying = true;
                 this.startTime = new Date();
-                
+
                 if (this.timeLimit > 0) {
-                    this.timeRemaining = this.timeLimit;
                     this.timer = setInterval(() => this.tickTimer(), 1000);
-                } else {
-                    this.timer = setInterval(() => this.updateStats(), 200);
                 }
             }
 
             const val = this.hiddenInput.value;
             const chars = this.codeDisplay.querySelectorAll('.char');
-
-            this.charIndex = val.length;
 
             chars.forEach((span, index) => {
                 const typedChar = val[index];
@@ -269,7 +297,7 @@
                 }
             });
 
-            // Count mistakes
+            // Count mistakes in current snippet
             let currentErrors = 0;
             for (let i = 0; i < val.length; i++) {
                 if (val[i] !== this.currentText[i]) currentErrors++;
@@ -278,9 +306,29 @@
 
             this.updateStats();
 
-            // Check if finished entire snippet
+            // Check if finished current snippet
             if (val.length >= this.currentText.length) {
-                this.finishSpeedrun();
+                if (this.timeLimit > 0) {
+                    // Timed Mode (15s/30s/60s): Accumulate current snippet stats & load next snippet seamlessly!
+                    const currentTyped = val.length;
+                    const currentCorrect = Math.max(0, currentTyped - this.mistakes);
+
+                    this.accumulatedTypedChars += currentTyped;
+                    this.accumulatedCorrectChars += currentCorrect;
+                    this.accumulatedMistakes += this.mistakes;
+
+                    this.nextSnippet();
+                } else {
+                    // Untimed Mode (0s): Finish run immediately on snippet completion!
+                    const currentTyped = val.length;
+                    const currentCorrect = Math.max(0, currentTyped - this.mistakes);
+
+                    this.accumulatedTypedChars += currentTyped;
+                    this.accumulatedCorrectChars += currentCorrect;
+                    this.accumulatedMistakes += this.mistakes;
+
+                    this.finishSpeedrun();
+                }
             }
         }
 
@@ -301,14 +349,18 @@
             const elapsedSeconds = Math.max(0.5, (now - this.startTime) / 1000);
             const elapsedMinutes = elapsedSeconds / 60;
 
-            const typedChars = this.hiddenInput.value.length;
-            const correctChars = Math.max(0, typedChars - this.mistakes);
+            const currentVal = this.hiddenInput ? this.hiddenInput.value : '';
+            const currentTyped = currentVal.length;
+            const currentCorrect = Math.max(0, currentTyped - this.mistakes);
 
-            const wpm = Math.round((correctChars / 5) / elapsedMinutes) || 0;
-            const cpm = Math.round(correctChars / elapsedMinutes) || 0;
-            const accuracy = typedChars > 0 ? Math.round((correctChars / typedChars) * 100) : 100;
+            const totalTypedChars = this.accumulatedTypedChars + currentTyped;
+            const totalCorrectChars = this.accumulatedCorrectChars + currentCorrect;
 
-            if (this.wpmEl) this.wpmEl.textContent = wpm;
+            const wpm = Math.round((totalCorrectChars / 5) / elapsedMinutes) || 0;
+            const cpm = Math.round(totalCorrectChars / elapsedMinutes) || 0;
+            const accuracy = totalTypedChars > 0 ? Math.round((totalCorrectChars / totalTypedChars) * 100) : 100;
+
+            if (this.wpmEl) this.wpmEl.textContent = `${wpm} WPM`;
             if (this.cpmEl) this.cpmEl.textContent = cpm;
             if (this.accuracyEl) this.accuracyEl.textContent = `${accuracy}%`;
         }
@@ -325,26 +377,34 @@
             let isNewRecord = false;
             if (finalWpm > currentHigh) {
                 localStorage.setItem('devtype_highscore_wpm', finalWpm.toString());
-                if (this.highScoreEl) this.highScoreEl.textContent = finalWpm.toString();
+                if (this.highScoreEl) this.highScoreEl.textContent = `${finalWpm} WPM`;
                 isNewRecord = true;
             }
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
-                    icon: 'success',
-                    title: isNewRecord ? '🎉 NEW HIGH SCORE RECORD!' : '⚡ Speedrun Complete!',
+                    title: isNewRecord ? '🏆 NEW PERSONAL RECORD!' : '⏱️ Speedrun Complete!',
                     html: `
-                        <div style="font-size: 1.1rem; color: #1e293b; line-height: 1.6;">
-                            <p style="margin: 6px 0;">🚀 <strong>Speed:</strong> ${finalWpm} WPM</p>
-                            <p style="margin: 6px 0;">🎯 <strong>Accuracy:</strong> ${finalAccuracy}</p>
-                            ${isNewRecord ? '<p style="color: #10b981; font-weight: 800;">🏆 You set a new personal record!</p>' : ''}
+                        <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; padding: 6px 0;">
+                            <div style="display: flex; justify-content: center; gap: 20px; margin: 16px 0; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                                <div>
+                                    <div style="font-size: 0.76rem; color: #64748b; font-weight: 700;">SPEED</div>
+                                    <div style="font-size: 1.8rem; font-weight: 800; color: #2563eb;">${finalWpm} <span style="font-size:0.9rem;">WPM</span></div>
+                                </div>
+                                <div style="border-right: 1px solid #cbd5e1;"></div>
+                                <div>
+                                    <div style="font-size: 0.76rem; color: #64748b; font-weight: 700;">ACCURACY</div>
+                                    <div style="font-size: 1.8rem; font-weight: 800; color: #10b981;">${finalAccuracy}</div>
+                                </div>
+                            </div>
+                            ${isNewRecord ? '<p style="color: #10b981; font-weight: 800;">🏆 You set a new personal typing speed record!</p>' : ''}
                         </div>
                     `,
                     showCancelButton: true,
                     confirmButtonColor: '#2563eb',
                     cancelButtonColor: '#64748b',
-                    confirmButtonText: '⏭ Next Snippet',
-                    cancelButtonText: '🔄 Retry Same'
+                    confirmButtonText: '⏭ Next Speedrun',
+                    cancelButtonText: '🔄 Retry Session'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.nextSnippet();
