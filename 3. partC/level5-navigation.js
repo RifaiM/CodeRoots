@@ -101,12 +101,60 @@
             `;
         }).join('');
 
+        // Generate Certificate Drawer Section matching Level 4
+        let completedCount = level5Lessons.filter(lesson => isLessonCompleted(lesson.id)).length;
+        let allLessonsCompleted = level5Lessons.every(lesson => isLessonCompleted(lesson.id));
+        let isCourseCompleted = isLessonCompleted(15) || allLessonsCompleted;
+
+        let certHTML = '';
+        if (isCourseCompleted) {
+            certHTML = `
+                <div class="nav-section-divider">
+                    <span class="divider-text">Course Complete!</span>
+                </div>
+                <a class="nav-lesson-item certificate-item completed" href="../certificate.html" role="button" aria-label="Download your official course certificate">
+                    <span class="lesson-status">🏆</span>
+                    <span class="lesson-info">
+                        <span class="lesson-number certificate-label">Certificate</span>
+                        <span class="lesson-title">Download Your Certificate</span>
+                    </span>
+                </a>
+            `;
+        } else if (canAccessLesson(15)) {
+            certHTML = `
+                <div class="nav-section-divider">
+                    <span class="divider-text">Almost There!</span>
+                </div>
+                <a class="nav-lesson-item certificate-item available" href="../lesson15/lesson15_remake.html" role="button" aria-label="Complete final capstone project">
+                    <span class="lesson-status">🎯</span>
+                    <span class="lesson-info">
+                        <span class="lesson-number certificate-label">Final Step</span>
+                        <span class="lesson-title">Complete Capstone Project</span>
+                    </span>
+                </a>
+            `;
+        } else {
+            certHTML = `
+                <div class="nav-section-divider">
+                    <span class="divider-text">Progress: ${completedCount}/15</span>
+                </div>
+                <div class="nav-lesson-item certificate-item locked">
+                    <span class="lesson-status">🔒</span>
+                    <span class="lesson-info">
+                        <span class="lesson-number certificate-label">Certificate</span>
+                        <span class="lesson-title">Complete all lessons first</span>
+                    </span>
+                </div>
+            `;
+        }
+
         menu.innerHTML = `
             <div class="nav-header">
                 <span class="nav-title">Course Navigation</span>
             </div>
             <div class="nav-content">
                 ${lessonListHTML}
+                ${certHTML}
             </div>
         `;
 
