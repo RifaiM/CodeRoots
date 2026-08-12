@@ -56,7 +56,7 @@ root.render(<DojoCounterApp />);`;
                 icon: 'warning',
                 title: `${icon} ${title}`,
                 text: message,
-                confirmButtonColor: '#f59e0b',
+                confirmButtonColor: '#2563eb',
                 confirmButtonText: 'Got It!'
             });
         }

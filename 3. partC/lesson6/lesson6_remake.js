@@ -100,7 +100,7 @@ root.render(<ProfileBadgeGenerator />);`;
                 icon: 'warning',
                 title: `${icon} ${title}`,
                 text: message,
-                confirmButtonColor: '#0d9488',
+                confirmButtonColor: '#2563eb',
                 confirmButtonText: 'Got It!'
             });
         }
