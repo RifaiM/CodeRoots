@@ -1,0 +1,379 @@
+/* ==========================================================================
+   NOVICODES LEVEL 6: PYTHON & BACKEND DOJO (100% Uniform Design System)
+   Identical Layout, Typography, Colors & Mobile Responsiveness to Level 4 & 5
+   ========================================================================== */
+
+/* Main Container & Page Base */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 60px 16px;
+  box-sizing: border-box;
+}
+
+/* 3-Step Progress Tracker (1 Learn -> 2 Practice -> 3 Complete) */
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.step.active .step-circle {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Lesson Intro Card Container */
+.card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.35rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.intro-highlight {
+  background: #f0f7ff;
+  border-left: 4px solid #2563eb;
+  padding: 14px 16px;
+  border-radius: 0 12px 12px 0;
+  margin: 16px 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* 2x2 Feature Cards Grid */
+.code-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.code-feature-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.feature-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.code-block {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  margin: 0;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+
+.code-block .comment { color: #64748b; }
+.code-block .keyword { color: #38bdf8; font-weight: 700; }
+.code-block .function { color: #818cf8; }
+.code-block .string { color: #34d399; }
+.code-block .number { color: #f43f5e; }
+
+/* Interactive IDE Sandbox Workspace (Split 2-Pane Desktop) */
+.interactive-workspace {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  margin-bottom: 24px;
+}
+
+.pane-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pane-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.control-btn.run-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.control-btn.run-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+/* Workspace Split Layout */
+.editor-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #e2e8f0;
+  min-height: 380px;
+}
+
+.code-editor-container,
+.terminal-output-container {
+  background: #ffffff;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+textarea.py-editor {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+textarea.py-editor:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.terminal-screen {
+  flex: 1;
+  min-height: 320px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #38bdf8;
+  overflow-y: auto;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal-prompt {
+  color: #64748b;
+  font-size: 0.76rem;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+.terminal-output-line {
+  color: #f8fafc;
+  margin-bottom: 4px;
+}
+
+.terminal-success-line {
+  color: #34d399;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.terminal-error-line {
+  color: #fb7185;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Task Checklist Card */
+.task-checklist-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.task-checklist-card h3 {
+  margin: 0 0 14px 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.checklist-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #334155;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.checklist-item.completed {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.item-icon {
+  font-size: 1rem;
+}
+
+/* Tablet & Mobile Media Queries (<= 768px down to 320px) - 100% Uniform */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 12px 40px 12px;
+  }
+
+  .editor-workspace {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    background: transparent;
+  }
+
+  textarea.py-editor,
+  .terminal-screen {
+    min-height: 240px;
+  }
+
+  .progress-steps {
+    gap: 12px;
+  }
+
+  .step-label {
+    display: none;
+  }
+
+  .btn-full-text {
+    display: none;
+  }
+
+  .code-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .pane-header {
+    padding: 10px 14px;
+  }
+
+  textarea.py-editor,
+  .terminal-screen {
+    min-height: 200px;
+    font-size: 0.82rem;
+    padding: 10px;
+  }
+}
