@@ -30,6 +30,26 @@
         </div>`;
     }
 
+    function buildLineNumbers(lineNumberEl, editorEl, errorLine = null) {
+        if (!lineNumberEl || !editorEl) return;
+        const count = editorEl.value.split('\n').length;
+        let html = '';
+        for (let i = 1; i <= count; i++) {
+            const cls = (i === errorLine) ? ' class="ln-error"' : '';
+            html += `<span${cls}>${i}</span>`;
+        }
+        lineNumberEl.innerHTML = html;
+        lineNumberEl.scrollTop = editorEl.scrollTop;
+    }
+
+    function highlightErrorLine(lineNumberEl, editorEl, lineNum) {
+        buildLineNumbers(lineNumberEl, editorEl, lineNum);
+    }
+
+    function clearErrorHighlight(lineNumberEl, editorEl) {
+        buildLineNumbers(lineNumberEl, editorEl, null);
+    }
+
     const defaultCode = `// 🛠️ Level 5 Lesson 1 Practice Task:
 
 // 1. Create a user object:
@@ -100,18 +120,29 @@ document.getElementById('output').innerHTML = renderProfile();`;
             if (resetBtn) resetBtn.addEventListener('click', () => this.resetCode());
             if (submitBtn) submitBtn.addEventListener('click', () => this.submitLesson());
 
+            const lineNumberEl = document.getElementById('lineNumbers');
+
             // Auto-restore draft from localStorage if available (only if non-empty)
             const savedDraft = localStorage.getItem('partC_lesson1_remake_draft');
             if (savedDraft !== null && savedDraft.trim() !== '' && editor) {
                 editor.value = savedDraft;
             }
 
+            // Build initial line numbers
+            buildLineNumbers(lineNumberEl, editor);
+
             if (editor) {
                 let inputTimeout;
                 editor.addEventListener('input', () => {
+                    buildLineNumbers(lineNumberEl, editor);
                     localStorage.setItem('partC_lesson1_remake_draft', editor.value);
                     clearTimeout(inputTimeout);
                     inputTimeout = setTimeout(() => this.runCode(), 200);
+                });
+
+                // Sync gutter scroll with textarea scroll
+                editor.addEventListener('scroll', () => {
+                    if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
                 });
             }
 
@@ -180,7 +211,9 @@ document.getElementById('output').innerHTML = renderProfile();`;
                 }).then((result) => {
                     if (result.isConfirmed) {
                         const editor = document.getElementById('jsCode');
+                        const lineNumberEl = document.getElementById('lineNumbers');
                         if (editor) editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
 
                         // Clear draft from localStorage
                         localStorage.removeItem('partC_lesson1_remake_draft');
@@ -192,7 +225,9 @@ document.getElementById('output').innerHTML = renderProfile();`;
                 });
             } else {
                 const editor = document.getElementById('jsCode');
+                const lineNumberEl = document.getElementById('lineNumbers');
                 if (editor) editor.value = defaultCode;
+                buildLineNumbers(lineNumberEl, editor);
                 localStorage.removeItem('partC_lesson1_remake_draft');
                 this.runCode();
             }

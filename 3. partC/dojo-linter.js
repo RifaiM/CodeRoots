@@ -288,6 +288,15 @@
             }
             // Show iframe again
             if (this._iframeEl) this._iframeEl.style.display = '';
+
+            // Clear error line highlight
+            var lineNumberEl = document.getElementById('lineNumbers');
+            if (lineNumberEl && this._editorEl) {
+                var count = this._editorEl.value.split('\n').length;
+                var html = '';
+                for (var i = 1; i <= count; i++) html += '<span>' + i + '</span>';
+                lineNumberEl.innerHTML = html;
+            }
         },
 
         _renderError: function (opts) {
@@ -311,6 +320,19 @@
                 this._editorEl.classList.add('dojo-lint-error');
                 this._editorEl.classList.remove('dojo-lint-success');
             }
+
+            // Highlight the error line in the gutter
+            var lineNumberEl = document.getElementById('lineNumbers');
+            if (lineNumberEl && this._editorEl && opts.line) {
+                var count = this._editorEl.value.split('\n').length;
+                var html = '';
+                for (var i = 1; i <= count; i++) {
+                    var cls = (i === opts.line) ? ' class="ln-error"' : '';
+                    html += '<span' + cls + '>' + i + '</span>';
+                }
+                lineNumberEl.innerHTML = html;
+                lineNumberEl.scrollTop = this._editorEl.scrollTop;
+            }
         },
 
         _renderSuccess: function () {
@@ -320,6 +342,15 @@
             if (this._editorEl) {
                 this._editorEl.classList.add('dojo-lint-success');
                 this._editorEl.classList.remove('dojo-lint-error');
+            }
+
+            // Clear error line highlight
+            var lineNumberEl = document.getElementById('lineNumbers');
+            if (lineNumberEl && this._editorEl) {
+                var count = this._editorEl.value.split('\n').length;
+                var html = '';
+                for (var i = 1; i <= count; i++) html += '<span>' + i + '</span>';
+                lineNumberEl.innerHTML = html;
             }
         }
     };

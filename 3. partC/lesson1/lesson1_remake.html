@@ -135,7 +135,9 @@
             <div class="editor-workspace">
                 <div class="code-editor-container">
                     <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px; font-weight: 700;">script.js (Write your modern ES6+ code here):</div>
-                    <textarea id="jsCode" spellcheck="false">// 🛠️ Level 5 Lesson 1 Practice Task:
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="jsCode" spellcheck="false">// 🛠️ Level 5 Lesson 1 Practice Task:
 
 // 1. Create a user object:
 const developer = {
@@ -168,6 +170,7 @@ const renderProfile = () => {
 // 6. Output to the live preview canvas:
 document.body.innerHTML = renderProfile();
 </textarea>
+                    </div>
                 </div>
 
                 <div class="preview-container">
