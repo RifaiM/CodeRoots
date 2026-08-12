@@ -108,6 +108,7 @@ if (typeof DojoLinterHTML !== 'undefined') {
  * Updates in real-time as they type
  */
 function renderTask() {
+  if (!taskEditor || !taskPreview) return;
   const code = taskEditor.value;
   taskPreview.srcdoc = `<!DOCTYPE html>
     <html>
@@ -194,9 +195,11 @@ function renderTask() {
     </html>`;
 }
 
-// Set up real-time preview updates
-taskEditor.addEventListener('input', renderTask);
-renderTask(); // Initial render
+// Set up real-time preview updates safely
+if (taskEditor) {
+    taskEditor.addEventListener('input', renderTask);
+    renderTask(); // Initial render
+}
 
 // Enhanced code editor functionality for better user experience
 document.addEventListener('DOMContentLoaded', function() {
