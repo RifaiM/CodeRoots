@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson5_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 5: React State & Interactive Events (useState) | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 5: React State & Interactive Events (useState)</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>⚡ Master React State & Interactive Events with <code>useState</code></h2>
+            <p>
+                In standard JavaScript, changing a variable doesn't update what the user sees on screen. In React, components use <strong>State</strong>! When a component's state changes, React <strong>automatically re-renders</strong> the component to reflect the new state instantly. The <code>React.useState()</code> Hook gives your components memory and interactivity!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🧠 1. Memory of a Component</h4>
+                    <span class="syntax-chip">React.useState(initialValue)</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A digital scorekeeper! State is like a digital display board that holds a number. When a team scores, the scoreboard updates and everyone sees the new score immediately.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🎛️ 2. Value + Setter Function</h4>
+                    <span class="syntax-chip">const [count, setCount] = ...</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A TV screen + remote control! <code>count</code> is the current channel shown on screen, and <code>setCount</code> is the remote control button that changes the channel.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🖱️ 3. JSX Event Handlers</h4>
+                    <span class="syntax-chip">onClick={() => setCount(...)}</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Pressing a light switch! In React JSX, event attributes use camelCase like <code>onClick</code>, passing a function that triggers when the user clicks.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🔄 4. Reactive UI Re-rendering</h4>
+                    <span class="syntax-chip">State Change &rarr; Auto UI Update</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A live sports scoreboard! You never manually erase and redraw HTML. Calling <code>setCount(count + 1)</code> tells React: <em>"Hey, update this component on screen right now!"</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Declare State in Component</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">Counter</span>() {
+  <span class="keyword">const</span> [count, setCount] = React.<span class="function">useState</span>(<span class="number">0</span>);
+  <span class="keyword">return</span> <span class="tag">&lt;h2&gt;</span>Count: {count}<span class="tag">&lt;/h2&gt;</span>;
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Bind onClick Event Handler</div>
+                <div class="code-block"><span class="tag">&lt;button</span> <span class="keyword">onClick</span>={() =&gt; <span class="function">setCount</span>(count + <span class="number">1</span>)}<span class="tag">&gt;</span>
+  ➕ Increase
+<span class="tag">&lt;/button&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">💖 3. Toggle Boolean State</div>
+                <div class="code-block"><span class="keyword">const</span> [isLiked, setIsLiked] = React.<span class="function">useState</span>(<span class="keyword">false</span>);
+<span class="tag">&lt;button</span> <span class="keyword">onClick</span>={() =&gt; <span class="function">setIsLiked</span>(!isLiked)}<span class="tag">&gt;</span>
+  {isLiked ? <span class="string">"❤️ Liked"</span> : <span class="string">"🤍 Like"</span>}
+<span class="tag">&lt;/button&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Render State Component</div>
+                <div class="code-block"><span class="keyword">const</span> root = ReactDOM.<span class="function">createRoot</span>(
+  document.<span class="function">getElementById</span>(<span class="string">'root'</span>)
+);
+root.<span class="function">render</span>(<span class="tag">&lt;Counter /&gt;</span>);</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>⚡ Level 5 Interactive React State Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;State</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">React State & Component Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Component Render Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Component Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 5 Challenge: Interactive State Counter & Like Booster</h3>
+            <p>Complete all 4 requirements in the React State Sandbox above to finish Lesson 5:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Declare state using <code>React.useState(...)</code> (e.g. <code>const [likes, setLikes] = React.useState(0)</code>)</li>
+                <li id="req2">Display current state variable dynamically inside JSX using <code>{likes}</code> or <code>{count}</code></li>
+                <li id="req3">Add an event handler with <code>onClick</code> attribute on a button or element</li>
+                <li id="req4">Call the state setter function inside event handler (e.g. <code>setLikes(likes + 1)</code>)</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Lesson 5 & Unlock Lesson 6 🚀</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson5_remake.js"></script>
+</body>
+</html>
