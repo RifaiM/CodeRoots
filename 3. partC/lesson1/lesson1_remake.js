@@ -27,10 +27,41 @@
                 💡 <strong>Helpful Hint:</strong> ${friendlyHint}
             </div>
             <div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 0.78rem; color: #b91c1c; overflow-x: auto; white-space: pre-wrap;">
-                <code>${cleanMsg}</code>
-            </div>
         </div>`;
     }
+
+    const defaultCode = `// 🛠️ Level 5 Lesson 1 Practice Task:
+
+// 1. Create a user object:
+const developer = {
+    name: "Alex",
+    role: "Frontend Developer",
+    skills: ["HTML5", "CSS3", "JavaScript"]
+};
+
+// 2. Use Spread Operator (...) to create an immutable copy:
+const updatedDev = { ...developer, level: "Level 5 Master" };
+
+// 3. Use Object Destructuring to extract data:
+const { name, role, skills, level } = updatedDev;
+
+// 4. Use an Arrow Function to render UI:
+const renderProfile = () => {
+    // 5. Use .map() to format skills into badges:
+    const skillBadges = skills.map(skill => \`<span style="background:#2563eb; color:white; padding:4px 10px; border-radius:12px; margin-right:6px; font-size:12px;">\${skill}</span>\`).join('');
+
+    return \`
+        <div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">
+            <h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 \${name}</h2>
+            <p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;">💻 \${role}</p>
+            <p style="margin: 0 0 14px 0; color: #10b981; font-weight: 700; font-size: 13px;">🏆 \${level}</p>
+            <div>\${skillBadges}</div>
+        </div>
+    \`;
+};
+
+// Render output to screen
+document.getElementById('output').innerHTML = renderProfile();`;
 
     class Lesson1Manager {
         constructor() {
@@ -149,24 +180,21 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         const editor = document.getElementById('jsCode');
-                        if (editor) editor.value = '';
-                        const iframe = document.getElementById('previewFrame');
-                        if (iframe) iframe.srcdoc = '';
+                        if (editor) editor.value = defaultCode;
 
                         // Clear draft from localStorage
                         localStorage.removeItem('partC_lesson1_remake_draft');
 
-                        // Instantly clear all green checkmarks
-                        this.validateRequirements('');
+                        this.runCode();
 
                         Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
                     }
                 });
             } else {
                 const editor = document.getElementById('jsCode');
-                if (editor) editor.value = '';
+                if (editor) editor.value = defaultCode;
                 localStorage.removeItem('partC_lesson1_remake_draft');
-                this.validateRequirements('');
+                this.runCode();
             }
         }
 

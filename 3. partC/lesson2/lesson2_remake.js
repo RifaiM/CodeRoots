@@ -279,18 +279,16 @@ root.render(<App />);`;
                         confirmButtonText: 'Yes, reset code!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            editor.value = '';
-                            preview.srcdoc = '';
+                            editor.value = defaultCode;
                             localStorage.removeItem('partC_lesson2_remake_draft');
-                            validateRequirements('');
+                            runCode();
                             Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
                         }
                     });
                 } else {
-                    editor.value = '';
-                    preview.srcdoc = '';
+                    editor.value = defaultCode;
                     localStorage.removeItem('partC_lesson2_remake_draft');
-                    validateRequirements('');
+                    runCode();
                 }
             });
         }
