@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 6 • Lesson 3: Python Functions & Modular Code | CodeRoots</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Level 6 Stylesheets -->
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+
+    <!-- Pyodide Python WebAssembly Engine -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+
+    <!-- SweetAlert2 for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- Header Navigation bar matching Level 5 & 6 standards -->
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 3: Python Functions & Modular Code</h1>
+    </header>
+
+    <main class="container">
+        <!-- Hero Concept Card -->
+        <section class="card">
+            <h2>⚡ Lesson 3: Modular Code with Python Functions</h2>
+            <p>
+                In backend architecture, writing code repeatedly leads to bugs and maintenance nightmares. 
+                <strong>Functions</strong> are self-contained blocks of reusable logic that accept input parameters, 
+                process data, and return computed results back to your application.
+            </p>
+
+            <div class="intro-highlight">
+                💡 <strong>Backend Concept:</strong> Think of a function as a microservice endpoint. You send it arguments (inputs), it executes internal logic, and returns a response string or value using the <code>return</code> keyword!
+            </div>
+
+            <!-- 2-Column Code Feature Grid -->
+            <div class="code-feature-grid">
+                <article class="code-feature-card">
+                    <h3 class="feature-title">⚙️ Function Definition & Return</h3>
+                    <pre class="code-block"><span class="keyword">def</span> <span class="function">calculate_total</span>(base, bonus):
+    <span class="comment"># Compute and return calculated total</span>
+    total = base + bonus
+    <span class="keyword">return</span> total
+
+<span class="comment"># Call function & store return value</span>
+score = calculate_total(<span class="number">1000</span>, <span class="number">500</span>)
+<span class="function">print</span>(score) <span class="comment"># Output: 1500</span></pre>
+                </article>
+
+                <article class="code-feature-card">
+                    <h3 class="feature-title">📥 Default Parameters & Docstrings</h3>
+                    <pre class="code-block"><span class="keyword">def</span> <span class="function">format_user</span>(name, role=<span class="string">"Member"</span>):
+    <span class="string">"""Return formatted developer profile."""</span>
+    <span class="keyword">return</span> <span class="string">f"[{role}] {name}"</span>
+
+<span class="comment"># Uses default parameter role="Member"</span>
+<span class="function">print</span>(format_user(<span class="string">"Alex"</span>))
+<span class="comment"># Overrides default role</span>
+<span class="function">print</span>(format_user(<span class="string">"Sam"</span>, <span class="string">"Admin"</span>))</pre>
+                </article>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <header class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn reset-btn" id="resetCode">
+                        <span>🔄</span> <span class="btn-full-text">Reset Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶</span> <span class="btn-full-text">Run Code</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="editor-workspace">
+                <!-- Editor Pane -->
+                <div class="code-editor-container">
+                    <div class="editor-with-lines">
+                        <div class="line-numbers" id="lineNumbers"></div>
+                        <textarea class="py-editor" id="codeEditor" spellcheck="false" placeholder="# Write your Python function code here..."># 🛠️ Level 6 Lesson 3 Practice Task:
+
+# 1. Define a function with parameters and default values:
+def calculate_xp(base_xp, bonus=250):
+  """Calculate total user XP including bonus points."""
+  total = base_xp + bonus
+  return total
+
+# 2. Call function and store returned result:
+user_total_xp = calculate_xp(1500, 500)
+
+# 3. Define a helper function to format user profile:
+def format_profile(username, xp):
+  return f"👤 Developer: {username} | ⚡ Total XP: {xp}"
+
+# 4. Print results to terminal output:
+profile_card = format_profile("Alex", user_total_xp)
+print(profile_card)
+</textarea>
+                    </div>
+                </div>
+
+                <!-- Terminal Output Pane -->
+                <div class="terminal-screen">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Python 3.11 Execution Output</span>
+                    </div>
+                    <pre class="terminal-content" id="terminalOutput">&gt; Python 3.11 Pyodide Environment Ready.
+&gt; Click ▶ Run Code to execute your function code in main.py</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Requirements & Checklist -->
+        <section class="card requirements-section">
+            <h3>🎯 Practice Task: Build a Reusable XP & Profile Engine</h3>
+            <p>Modify or extend the code above to meet all 3 backend function requirements:</p>
+            
+            <ul class="task-checklist">
+                <li data-task="def">⚙️ Define reusable functions using the <code>def</code> keyword</li>
+                <li data-task="parameters">📥 Pass parameters into function definitions</li>
+                <li data-task="return">📤 Return values back from functions using <code>return</code></li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 3 & Unlock Lesson 4</button>
+        </section>
+    </main>
+
+    <!-- Navigation & Shared Linter Engines -->
+    <script src="../level6-navigation.js"></script>
+    <script src="../python-linter.js"></script>
+</body>
+</html>
