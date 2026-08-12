@@ -417,18 +417,18 @@ root.render(<CapstoneRoot />);`;
                             15,
                             "🏆 Capstone Framework Web App",
                             "Congratulations! You've mastered React & Modern Frontend Engineering and completed Level 5!",
-                            "/index.html"
+                            "/3. partC/certificate.html"
                         );
                     } else {
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
                                 icon: 'success',
                                 title: '🎓 Level 5 Completed!',
-                                text: "Congratulations! You've mastered React & Modern Frontend Engineering and claimed your Graduation Certificate!",
+                                text: "Congratulations! You've mastered React & Modern Frontend Engineering! Claim your official Level 5 Certificate now 📜",
                                 confirmButtonColor: '#2563eb',
-                                confirmButtonText: 'Return to Dashboard 🏠'
+                                confirmButtonText: 'Claim Level 5 Certificate 📜'
                             }).then(() => {
-                                window.location.href = '/index.html';
+                                window.location.href = '/3. partC/certificate.html';
                             });
                         } else {
                             alert("🎓 Level 5 Completed!");
