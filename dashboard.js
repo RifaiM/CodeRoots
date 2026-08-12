@@ -501,3 +501,165 @@ window.openDojoHub = function() {
         window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
     }
 };
+
+/**
+ * 8. User Profile & XP Breakdown Modal with Responsive Reset Option
+ */
+window.openUserProfileModal = function() {
+    const isL0 = localStorage.getItem('level0_completed') === 'true';
+    const isL1 = localStorage.getItem('level1_completed') === 'true';
+    const isL2 = localStorage.getItem('level2_completed') === 'true';
+    const isL3 = localStorage.getItem('level3_completed') === 'true';
+
+    let l4Completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === '1') {
+            l4Completed++;
+        }
+    }
+
+    let l5Completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
+            l5Completed++;
+        }
+    }
+
+    let totalXP = 0;
+    if (isL0) totalXP += 250;
+    if (isL1) totalXP += 300;
+    if (isL2) totalXP += 300;
+    if (isL3) totalXP += 400;
+    totalXP += (l4Completed * 100);
+    totalXP += (l5Completed * 150);
+
+    let rankTitle = '🌱 Web Novice';
+    let rankIcon = '🌱';
+    if (l5Completed >= 15) {
+        rankTitle = '🏆 Fullstack Master';
+        rankIcon = '🏆';
+    } else if (l5Completed > 0) {
+        rankTitle = '⚛️ React Engineer';
+        rankIcon = '⚛️';
+    } else if (l4Completed >= 15) {
+        rankTitle = '⚔️ Dojo Master';
+        rankIcon = '⚔️';
+    } else if (l4Completed > 0) {
+        rankTitle = '⚔️ DOM Challenger';
+        rankIcon = '⚔️';
+    } else if (isL1) {
+        rankTitle = '🛡️ Code Apprentice';
+        rankIcon = '🛡️';
+    } else if (isL0) {
+        rankTitle = '🌱 Web Novice';
+        rankIcon = '🌱';
+    }
+
+    const progressPct = Math.min(Math.round((totalXP / 5000) * 100), 100);
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '👤 Learner Profile & XP Breakdown',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; max-width: 100%; box-sizing: border-box;">
+                    
+                    <!-- Rank Banner -->
+                    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 16px 14px; border-radius: 14px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);">
+                        <div style="font-size: 2.2rem; margin-bottom: 4px;">${rankIcon}</div>
+                        <div style="font-size: 1.1rem; font-weight: 800;">${rankTitle}</div>
+                        <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${totalXP.toLocaleString()} / 5,000 Total XP</div>
+                        
+                        <!-- Progress Bar -->
+                        <div style="background: rgba(255,255,255,0.2); height: 8px; border-radius: 99px; margin-top: 12px; overflow: hidden;">
+                            <div style="background: #38bdf8; height: 100%; width: ${progressPct}%; border-radius: 99px; transition: width 0.4s ease;"></div>
+                        </div>
+                    </div>
+
+                    <!-- XP Breakdown Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
+                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 0: Web History</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: ${isL0 ? '#10b981' : '#64748b'};">${isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
+                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 1-3: Foundations</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${((isL1?300:0)+(isL2?300:0)+(isL3?400:0))} / 1,000 XP</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
+                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 4: DOM Dojo</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #2563eb;">${l4Completed * 100} / 1,500 XP</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
+                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${l5Completed * 150} / 2,250 XP</div>
+                        </div>
+                    </div>
+
+                    <!-- Reset Danger Action -->
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
+                        <button onclick="window.confirmResetProgress()" style="background: #fee2e2; border: 1px solid #fca5a5; color: #dc2626; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: all 0.2s ease;">
+                            🔄 Reset Course Progress
+                        </button>
+                    </div>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+            customClass: {
+                popup: 'responsive-profile-modal'
+            }
+        });
+    }
+};
+
+window.confirmResetProgress = function() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'warning',
+            title: '⚠️ Reset All Progress?',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
+                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 5.
+                    </p>
+                    <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
+                        🚨 This action cannot be undone!
+                    </div>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#2563eb',
+            confirmButtonText: '🚨 Yes, Reset Everything',
+            cancelButtonText: 'Cancel (Keep Progress)',
+            showCloseButton: true,
+            customClass: {
+                popup: 'responsive-profile-modal'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Clear all completion keys from LocalStorage
+                localStorage.removeItem('level0_completed');
+                localStorage.removeItem('level1_completed');
+                localStorage.removeItem('level2_completed');
+                localStorage.removeItem('level3_completed');
+
+                for (let i = 1; i <= 15; i++) {
+                    localStorage.removeItem(`partB_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`lesson_${i}_completed`);
+                    localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '🔄 Progress Reset!',
+                    text: 'Re-initializing NoviCodes...',
+                    timer: 1200,
+                    showConfirmButton: false
+                }).then(() => {
+                    location.reload();
+                });
+            }
+        });
+    }
+};

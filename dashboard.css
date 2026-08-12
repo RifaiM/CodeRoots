@@ -638,6 +638,21 @@ html, body {
   color: var(--text-title) !important;
 }
 
+/* Responsive Profile Modal for Mobile Screens (320px, 375px, 425px) */
+.responsive-profile-modal {
+  width: 92vw !important;
+  max-width: 480px !important;
+  padding: 16px 14px !important;
+  box-sizing: border-box !important;
+  border-radius: 18px !important;
+}
+
+@media (max-width: 425px) {
+  .responsive-profile-modal {
+    padding: 14px 10px !important;
+  }
+}
+
 /* ==========================================================================
    Certificate Showcase Promo Card
    ========================================================================== */
