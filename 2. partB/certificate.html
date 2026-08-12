@@ -89,39 +89,6 @@
             min-height: 100vh;
         }
 
-        .cert-header {
-            background: #1e293b;
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #334155;
-        }
-
-        .cert-header h1 {
-            font-size: 1.2rem;
-            margin: 0;
-            color: #10b981;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .home-btn {
-            background: #334155;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }
-
-        .home-btn:hover {
-            background: #475569;
-        }
-
         .cert-container {
             max-width: 900px;
             margin: 40px auto;
@@ -274,16 +241,6 @@
 
         /* Mobile Responsiveness Rules (<= 768px, 480px, 425px, 375px, 320px) */
         @media (max-width: 768px) {
-            .cert-header {
-                padding: 12px 14px;
-            }
-            .cert-header h1 {
-                font-size: 0.95rem;
-            }
-            .home-btn {
-                padding: 6px 12px;
-                font-size: 0.78rem;
-            }
             .cert-container {
                 padding: 0 10px;
                 margin: 16px auto;
@@ -357,10 +314,30 @@
             }
         }
 
-        /* Strict Print Styles: Hide all non-certificate UI elements */
+        /* Strict Print Styles: Eliminate ALL header & page elements from print output */
         @media print {
-            header, footer, nav, .cert-header, .generator-card, .home-btn, .input-group, .lesson-header {
+            header,
+            .lesson-header,
+            .home-button,
+            .generator-card,
+            .input-group,
+            nav,
+            footer,
+            #dojoJumpMenu,
+            .dojo-jump-menu-btn {
                 display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                max-height: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
             }
 
             body {
@@ -383,14 +360,20 @@
                 margin: 0 auto !important;
                 padding: 40px !important;
                 page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
         }
     </style>
 </head>
 <body>
-    <header class="cert-header">
-        <h1>⚔️ Level 4 DOM & Web Interactivity Certificate</h1>
-        <a href="../dashboard.html" class="home-btn">🏠 Dashboard</a>
+    <!-- Level Header Navigation (100% Uniform Layout & Styling) -->
+    <header class="lesson-header">
+        <a href="../dashboard.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 4: DOM & Web Interactivity Certificate</h1>
     </header>
 
     <main class="cert-container">
