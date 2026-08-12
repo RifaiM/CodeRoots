@@ -489,7 +489,7 @@ window.openDojoHub = function() {
     }
 
     const isL4Complete = localStorage.getItem('partB_lesson15_remake_complete') === 'true';
-    const isPracticeUnlocked = localStorage.getItem('practice_unlock_all') === 'true';
+    const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
     const isL5Unlocked = isL4Complete || isPracticeUnlocked;
 
     if (typeof Swal !== 'undefined') {
@@ -519,12 +519,12 @@ window.openDojoHub = function() {
                             <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
                         ` : `
-                        <div onclick="alert('🔒 Complete Level 4 to unlock Level 5 React Dojo!')" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; opacity: 0.7; cursor: pointer;">
+                        <div onclick="window.showLevel5LockedNotice()" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; opacity: 0.75; cursor: pointer;">
                             <div style="text-align: left;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">🔒 Level 5: React & Framework Dojo</div>
                                 <div style="font-size: 0.76rem; color: #94a3b8;">Complete Level 4 first</div>
                             </div>
-                            <span style="font-weight: 700; color: #94a3b8; font-size: 0.82rem;">Locked 🔒</span>
+                            <span style="font-weight: 700; color: #ef4444; font-size: 0.82rem;">Locked 🔒</span>
                         </div>
                         `}
                     </div>
@@ -535,5 +535,26 @@ window.openDojoHub = function() {
         });
     } else {
         window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+    }
+};
+
+window.showLevel5LockedNotice = function() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'lock',
+            title: '🔒 Level 5 Locked!',
+            html: `
+                <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
+                    You must complete <strong>all 15 lessons of Level 4 (DOM Interactivity Dojo)</strong> before unlocking <strong>Level 5 (React & Framework Dojo)</strong>!
+                </p>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 10px; margin-top: 12px; font-size: 0.85rem; color: #64748b;">
+                    💡 Tip: Toggle <strong>Unlock All</strong> in the top header if you want to preview all levels immediately for testing!
+                </div>
+            `,
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Got It!'
+        });
+    } else {
+        alert('🔒 Level 5 Locked! Complete Level 4 first.');
     }
 };
