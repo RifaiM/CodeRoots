@@ -546,6 +546,29 @@ textarea.py-editor:focus { outline: none; }
     padding: 16px 12px 40px 12px;
   }
 
+  .card {
+    padding: 16px 14px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .intro-highlight {
+    font-size: 0.85rem;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
   .interactive-workspace .pane-header {
     flex-direction: column !important;
     align-items: stretch !important;
@@ -567,8 +590,15 @@ textarea.py-editor:focus { outline: none; }
   }
 
   .control-btn {
-    width: 100% !important;
+    padding: 8px 6px !important;
+    font-size: 0.76rem !important;
+    white-space: nowrap !important;
+    text-align: center !important;
     justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 12px !important;
+    width: 100% !important;
   }
 
   .btn-full-text {
@@ -581,11 +611,66 @@ textarea.py-editor:focus { outline: none; }
     background: transparent;
   }
 
-  .code-feature-grid {
-    grid-template-columns: 1fr;
+  /* Fixed height & scaled font for editor, gutter, and terminal */
+  .editor-with-lines,
+  .line-numbers,
+  textarea.py-editor,
+  .terminal-screen {
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
   }
 
-  /* Checklist Items — Natural Block Flow (No awkward flex wrapping) */
+  .line-numbers {
+    padding: 10px 0 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.48 !important;
+  }
+
+  textarea.py-editor {
+    font-size: 0.78rem !important;
+    line-height: 1.48 !important;
+    padding: 10px 10px 10px 8px !important;
+  }
+
+  .terminal-screen {
+    font-size: 0.78rem !important;
+    line-height: 1.48 !important;
+    padding: 10px 12px !important;
+  }
+
+  .code-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .code-feature-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .feature-title {
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+  }
+
+  .code-block {
+    padding: 10px;
+    font-size: 0.78rem;
+    line-height: 1.48;
+  }
+
+  .requirements-section {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .requirements-section h3 {
+    font-size: 1.15rem;
+  }
+
+  /* Checklist Items — Natural Block Flow */
   .task-checklist {
     gap: 8px;
     margin: 12px 0 18px 0;
@@ -624,10 +709,26 @@ textarea.py-editor:focus { outline: none; }
   }
 }
 
+/* Small Mobile Screens (<= 480px & 375px & 320px) */
 @media (max-width: 480px) {
   .card {
-    padding: 16px;
-    border-radius: 12px;
+    padding: 14px 10px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .card h2 {
+    font-size: 1.15rem;
+  }
+
+  .card p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .intro-highlight {
+    font-size: 0.80rem;
+    padding: 10px 12px;
   }
 
   .code-feature-card {
@@ -644,6 +745,41 @@ textarea.py-editor:focus { outline: none; }
     line-height: 1.42;
   }
 
+  .editor-with-lines,
+  .line-numbers,
+  textarea.py-editor,
+  .terminal-screen {
+    height: 250px !important;
+    min-height: 250px !important;
+    max-height: 250px !important;
+  }
+
+  .line-numbers {
+    font-size: 0.76rem !important;
+    line-height: 1.42 !important;
+    padding: 8px 0 !important;
+  }
+
+  textarea.py-editor {
+    font-size: 0.76rem !important;
+    line-height: 1.42 !important;
+    padding: 8px 8px 8px 6px !important;
+  }
+
+  .terminal-screen {
+    font-size: 0.76rem !important;
+    line-height: 1.42 !important;
+    padding: 8px 10px !important;
+  }
+
+  .requirements-section {
+    padding: 12px 10px;
+  }
+
+  .requirements-section h3 {
+    font-size: 1.05rem;
+  }
+
   .task-checklist li {
     padding: 8px 10px !important;
     font-size: 0.78rem !important;
@@ -652,5 +788,10 @@ textarea.py-editor:focus { outline: none; }
 
   .task-checklist li code {
     font-size: 0.72rem !important;
+  }
+
+  .submit-project-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 }
