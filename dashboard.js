@@ -88,16 +88,21 @@ function initUserProgress() {
     const isLevel3Complete = localStorage.getItem('level3_completed') === 'true';
     const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
 
-    // Calculate Part B (Level 4) lesson completion count from LocalStorage
+    // Calculate Level 4 & Level 5 lesson completion counts from LocalStorage
+    let l4Completed = 0;
     for (let i = 1; i <= 15; i++) {
         try {
-            const isCompleted = localStorage.getItem(`lesson_${i}_completed`);
-            if (isCompleted === 'true' || isCompleted === '1') {
-                completedCount++;
-            }
-        } catch (e) {
-            console.warn('LocalStorage read error:', e);
-        }
+            const isComp = localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === '1';
+            if (isComp) l4Completed++;
+        } catch (e) {}
+    }
+
+    let l5Completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        try {
+            const isComp = localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true';
+            if (isComp) l5Completed++;
+        } catch (e) {}
     }
 
     // Calculate XP
@@ -106,7 +111,8 @@ function initUserProgress() {
     if (isLevel1Complete) totalXP += 300;
     if (isLevel2Complete) totalXP += 300;
     if (isLevel3Complete) totalXP += 400;
-    totalXP += (completedCount * 100);
+    totalXP += (l4Completed * 100);
+    totalXP += (l5Completed * 150);
     
     // Update Header UI Elements
     const xpBadge = document.querySelector('.xp-badge .badge-label');
@@ -121,12 +127,18 @@ function initUserProgress() {
     }
 
     if (rankLabel) {
-        if (completedCount >= 15) {
+        if (l5Completed >= 15) {
             if (rankIcon) rankIcon.textContent = '🏆';
-            rankLabel.textContent = 'Dojo Master';
-        } else if (isLevel3Complete) {
+            rankLabel.textContent = 'Fullstack Master';
+        } else if (l5Completed > 0) {
+            if (rankIcon) rankIcon.textContent = '⚛️';
+            rankLabel.textContent = 'React Engineer';
+        } else if (l4Completed >= 15) {
             if (rankIcon) rankIcon.textContent = '⚔️';
-            rankLabel.textContent = 'Dojo Challenger';
+            rankLabel.textContent = 'Dojo Master';
+        } else if (l4Completed > 0) {
+            if (rankIcon) rankIcon.textContent = '⚔️';
+            rankLabel.textContent = 'DOM Challenger';
         } else if (isLevel1Complete) {
             if (rankIcon) rankIcon.textContent = '🛡️';
             rankLabel.textContent = 'Code Apprentice';
