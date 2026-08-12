@@ -5,29 +5,19 @@
 
     const PYTHON_ERROR_RULES = [
         {
-            test: /\bprin\b/i,
-            title: "Typo: 'prin' instead of 'print'",
-            hint: "Did you mean <code>print()</code>? In Python, printing output requires <code>print(...)</code>."
+            test: /\bprin\s*\(/i,
+            title: "Typo: 'prin(' instead of 'print('",
+            hint: "Did you mean <code>print(...)</code>? In Python, printing output requires <code>print(...)</code>."
         },
         {
-            test: /\bdef\s+[\w_]+\s*\([^)]*$/m,
-            title: "Unclosed Function Signature",
-            hint: "Missing closing parenthesis <code>)</code> or colon <code>:</code> on function definition."
+            test: /\bdef\s+[\w_]+\s*\([^)]*\)\s*$/m,
+            title: "Missing Colon ':' on Function Definition",
+            hint: "Function definitions in Python require a colon <code>:</code> at the end of the line (e.g., <code>def my_func():</code>)."
         },
         {
-            test: /=\s*$/m,
-            title: "Incomplete Assignment",
-            hint: "Variable assigned without a value. Example: <code>x = 10</code>."
-        },
-        {
-            test: /(?:if|elif|else|for|while|def|class)\b[^:\n]*$/m,
+            test: /\b(?:if|elif|else|for|while|class)\b[^:\n]+$/m,
             title: "Missing Colon ':'",
             hint: "Python block statements require a colon <code>:</code> at the end of the line."
-        },
-        {
-            test: /['"][^'"]*$/m,
-            title: "Unclosed String",
-            hint: "Found an unclosed quotation mark. Make sure all strings have matching opening and closing quotes."
         }
     ];
 
@@ -81,6 +71,11 @@
                     clearTimeout(this.debounceTimer);
                     this.debounceTimer = setTimeout(() => this.lintLiveCode(), 300);
                 });
+
+                // Initial Linter & Task Checklist Evaluation on Page Settlement
+                setTimeout(() => {
+                    this.lintLiveCode();
+                }, 400);
             }
 
             if (this.runBtn) {
@@ -123,25 +118,24 @@
                 this.pyEditor.classList.remove('dojo-lint-error', 'dojo-lint-success');
             }
             if (this.terminalScreen) {
-                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
+                this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal reset. Click ▶ Run Code to execute main.py</div>';
             }
-            if (this.checklistItems) {
-                this.checklistItems.forEach(item => {
-                    item.classList.remove('completed');
-                });
-            }
+            this.lintLiveCode();
         }
 
         lintLiveCode() {
             if (!this.pyEditor || !this.terminalScreen) return;
             const code = this.pyEditor.value;
 
+            // Evaluate Task Checklist Requirements Live
+            this.validateChecklist(code, []);
+
             // If empty, clear linter state cleanly matching Level 5
             if (!code.trim()) {
                 this.pyEditor.classList.remove('dojo-lint-error', 'dojo-lint-success');
                 this.terminalScreen.innerHTML = '<div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>';
                 return;
-            }
+            }      }
 
             // Check against live syntax linter rules
             let foundError = null;
@@ -300,6 +294,8 @@
                 if (passed) {
                     item.classList.add('completed');
                     completedCount++;
+                } else {
+                    item.classList.remove('completed');
                 }
             });
 

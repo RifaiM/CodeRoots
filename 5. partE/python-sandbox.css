@@ -285,11 +285,13 @@ textarea.py-editor:focus {
   margin-top: 8px;
 }
 
-/* Level 5 Exact Linter Error Panel Design (White & Soft Red Background Card) */
+/* Level 5 Exact Linter Error Panel Design (Top Aligned, Soft Red & White Card) */
 .dojo-lint-panel-wrap {
   font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
   font-size: 0.82rem;
-  padding: 6px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .dojo-lint-panel--error {
@@ -298,7 +300,7 @@ textarea.py-editor:focus {
   border-left: 4px solid #ef4444 !important;
   border-radius: 10px !important;
   padding: 16px 18px !important;
-  margin: 8px 0 !important;
+  margin: 0 0 12px 0 !important;
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1) !important;
 }
 
