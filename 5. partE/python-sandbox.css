@@ -229,27 +229,83 @@
   gap: 6px;
 }
 
-textarea.py-editor {
+/* ── Line-numbered editor wrapper ─────────────────────────────────────────── */
+.editor-with-lines {
+  display: flex;
+  flex-direction: row;
   flex: 1;
-  width: 100%;
-  min-height: 320px;
-  background: #0f172a;
-  color: #f8fafc;
   border: 1px solid #334155;
   border-radius: 10px;
-  padding: 14px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  resize: vertical;
-  outline: none;
-  box-sizing: border-box;
+  overflow: hidden;        /* clip gutter + textarea together */
+  background: #0f172a;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-textarea.py-editor:focus {
+.editor-with-lines:focus-within {
   border-color: #38bdf8;
   box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
 }
+
+/* Error / success states applied to the wrapper */
+.editor-with-lines.dojo-lint-error  { border-left: 4px solid #ef4444 !important; }
+.editor-with-lines.dojo-lint-success { border-left: 4px solid #22c55e !important; }
+
+/* ── Line numbers gutter ──────────────────────────────────────────────────── */
+.line-numbers {
+  flex-shrink: 0;
+  width: 42px;
+  background: #0a0f1c;
+  border-right: 1px solid #1e293b;
+  padding: 14px 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #334155;
+  text-align: right;
+  user-select: none;
+  overflow: hidden;        /* scroll synced via JS */
+  box-sizing: border-box;
+}
+
+.line-numbers span {
+  display: block;
+  padding-right: 10px;
+  transition: color 0.15s;
+}
+
+/* Highlighted (error) line number */
+.line-numbers span.ln-error {
+  color: #ef4444;
+  font-weight: 800;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* ── Textarea (no own border / border-radius — wrapper owns those) ────────── */
+textarea.py-editor {
+  flex: 1;
+  min-width: 0;
+  min-height: 320px;
+  background: #0f172a;
+  color: #f8fafc;
+  border: none;
+  border-radius: 0;
+  padding: 14px 14px 14px 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  resize: none;            /* wrapper handles sizing; vertical resize added below */
+  outline: none;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* keep vertical resize on the wrapper itself via a resize handle */
+.editor-with-lines {
+  resize: vertical;
+  min-height: 320px;
+}
+
+textarea.py-editor:focus { outline: none; }
 
 .terminal-screen {
   flex: 1;
@@ -369,13 +425,7 @@ textarea.py-editor:focus {
   word-break: break-word !important;
 }
 
-textarea.py-editor.dojo-lint-error {
-  border-left: 4px solid #ef4444 !important;
-}
-
-textarea.py-editor.dojo-lint-success {
-  border-left: 4px solid #22c55e !important;
-}
+/* error/success border now on .editor-with-lines wrapper — see above */
 
 .terminal-error-line {
   color: #fb7185;

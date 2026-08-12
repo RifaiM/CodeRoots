@@ -74,7 +74,9 @@
             <div class="editor-workspace">
                 <div class="code-editor-container">
                     <div class="pane-label">📝 main.py (Write your Python code here):</div>
-                    <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 1 Practice Task:
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 1 Practice Task:
 
 # 1. Create a developer name variable:
 name = "Alex"
@@ -90,6 +92,7 @@ print(f"👤 Developer: {name}")
 print(f"🏆 Rank: {level}")
 print(f"⚡ XP Earned: {xp}")
 </textarea>
+                    </div>
                 </div>
 
                 <div class="terminal-output-container">

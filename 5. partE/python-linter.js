@@ -245,11 +245,16 @@
         }
 
         setup() {
-            this.editor   = document.getElementById('pyCode');
-            this.terminal = document.getElementById('terminalScreen');
+            this.editor        = document.getElementById('pyCode');
+            this.terminal      = document.getElementById('terminalScreen');
+            this.lineNumberEl  = document.getElementById('lineNumbers');
+            this.editorWrapper = this.editor ? this.editor.closest('.editor-with-lines') : null;
             if (!this.editor || !this.terminal) return;
 
             this.initialCode = this.editor.value;
+
+            // Build initial line numbers
+            this.buildLineNumbers();
 
             // Tab → 2 spaces
             this.editor.addEventListener('keydown', e => {
@@ -262,10 +267,18 @@
                 }
             });
 
-            // Live lint on every keystroke (300 ms debounce)
+            // Live lint + line numbers on every keystroke (300 ms debounce)
             this.editor.addEventListener('input', () => {
+                this.buildLineNumbers();              // instant — no debounce needed
                 clearTimeout(this.debounceTimer);
                 this.debounceTimer = setTimeout(() => this.lintCode(), 300);
+            });
+
+            // Sync scroll of gutter with textarea
+            this.editor.addEventListener('scroll', () => {
+                if (this.lineNumberEl) {
+                    this.lineNumberEl.scrollTop = this.editor.scrollTop;
+                }
             });
 
             // Buttons
@@ -280,16 +293,40 @@
             setTimeout(() => this.lintCode(), 350);
         }
 
+        // ── LINE NUMBERS ─────────────────────────────────────────────────────────
+        buildLineNumbers(errorLine = null) {
+            if (!this.lineNumberEl || !this.editor) return;
+            const count = this.editor.value.split('\n').length;
+            let html = '';
+            for (let i = 1; i <= count; i++) {
+                const cls = (i === errorLine) ? ' class="ln-error"' : '';
+                html += `<span${cls}>${i}</span>`;
+            }
+            this.lineNumberEl.innerHTML = html;
+            // Keep gutter scroll in sync
+            this.lineNumberEl.scrollTop = this.editor.scrollTop;
+        }
+
+        highlightErrorLine(lineNum) {
+            this.buildLineNumbers(lineNum);
+        }
+
+        clearErrorHighlight() {
+            this.buildLineNumbers(null);
+        }
+
         // ── LINT (called on every input + page load) ─────────────────────────────
         lintCode() {
             if (!this.editor || !this.terminal) return;
             const code = this.editor.value;
+            const wrap = this.editorWrapper;
 
             // Always re-evaluate checklist in real time
             this.validateChecklist(code);
 
             if (!code.trim()) {
-                this.editor.classList.remove('dojo-lint-error', 'dojo-lint-success');
+                if (wrap) wrap.classList.remove('dojo-lint-error', 'dojo-lint-success');
+                this.clearErrorHighlight();
                 this.setTerminalPrompt('> Terminal ready. Click ▶ Run Code to execute main.py');
                 return;
             }
@@ -297,19 +334,23 @@
             const result = this.findError(code);
             if (result) {
                 const { rule, lineNum } = result;
-                this.editor.classList.add('dojo-lint-error');
-                this.editor.classList.remove('dojo-lint-success');
+                if (wrap) {
+                    wrap.classList.add('dojo-lint-error');
+                    wrap.classList.remove('dojo-lint-success');
+                }
+                this.highlightErrorLine(lineNum);   // 📕 turns that line number red
                 this.terminal.innerHTML = errorPanelHTML(
                     '⚠️', rule.title, rule.hint,
                     'Fix the issue above, then run your code again.',
                     lineNum
                 );
             } else {
-                // ✅ Error is FIXED — immediately clear terminal back to ready state
-                this.editor.classList.remove('dojo-lint-error');
-                this.editor.classList.add('dojo-lint-success');
-                // Only restore prompt if the terminal currently shows an error panel
-                // (don't wipe output if the user just ran code successfully)
+                // ✅ Error fixed — immediately restore terminal + clear red highlight
+                if (wrap) {
+                    wrap.classList.remove('dojo-lint-error');
+                    wrap.classList.add('dojo-lint-success');
+                }
+                this.clearErrorHighlight();
                 if (this.terminal.querySelector('.dojo-lint-panel--error')) {
                     this.setTerminalPrompt('> ✅ Looks good! Click ▶ Run Code to execute main.py');
                 }
@@ -376,12 +417,16 @@
 
         executePython(code) {
             this.terminal.innerHTML = '<div class="terminal-prompt">> Running main.py…</div>';
+            const wrap = this.editorWrapper;
 
             const result = this.findError(code);
             if (result) {
                 const { rule, lineNum } = result;
-                this.editor.classList.add('dojo-lint-error');
-                this.editor.classList.remove('dojo-lint-success');
+                if (wrap) {
+                    wrap.classList.add('dojo-lint-error');
+                    wrap.classList.remove('dojo-lint-success');
+                }
+                this.highlightErrorLine(lineNum);
                 this.terminal.innerHTML = errorPanelHTML(
                     '❌', rule.title, rule.hint,
                     `Python SyntaxError: ${rule.title}`,
@@ -496,7 +541,10 @@
         doReset() {
             if (this.editor) {
                 this.editor.value = this.initialCode;
-                this.editor.classList.remove('dojo-lint-error', 'dojo-lint-success');
+                if (this.editorWrapper) {
+                    this.editorWrapper.classList.remove('dojo-lint-error', 'dojo-lint-success');
+                }
+                this.buildLineNumbers();
             }
             this.setTerminalPrompt('> Terminal reset. Click ▶ Run Code to execute main.py');
             this.lintCode();
