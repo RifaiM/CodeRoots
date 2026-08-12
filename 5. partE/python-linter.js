@@ -251,9 +251,18 @@
             this.editorWrapper = this.editor ? this.editor.closest('.editor-with-lines') : null;
             if (!this.editor || !this.terminal) return;
 
+            // ── localStorage draft key (unique per lesson, same convention as Level 5)
+            this.draftKey = `partE_lesson${this.lessonNum}_remake_draft`;
+
             this.initialCode = this.editor.value;
 
-            // Build initial line numbers
+            // ── Restore saved draft (only if non-empty — first-time users see starter code)
+            const savedDraft = localStorage.getItem(this.draftKey);
+            if (savedDraft !== null && savedDraft.trim() !== '') {
+                this.editor.value = savedDraft;
+            }
+
+            // Build initial line numbers (after possible draft restore)
             this.buildLineNumbers();
 
             // Tab → 2 spaces
@@ -267,9 +276,10 @@
                 }
             });
 
-            // Live lint + line numbers on every keystroke (300 ms debounce)
+            // Live lint + line numbers + draft save on every keystroke
             this.editor.addEventListener('input', () => {
-                this.buildLineNumbers();              // instant — no debounce needed
+                localStorage.setItem(this.draftKey, this.editor.value); // instant — no debounce
+                this.buildLineNumbers();
                 clearTimeout(this.debounceTimer);
                 this.debounceTimer = setTimeout(() => this.lintCode(), 300);
             });
@@ -541,6 +551,8 @@
         doReset() {
             if (this.editor) {
                 this.editor.value = this.initialCode;
+                // Clear saved draft — user is intentionally going back to starter code
+                if (this.draftKey) localStorage.removeItem(this.draftKey);
                 if (this.editorWrapper) {
                     this.editorWrapper.classList.remove('dojo-lint-error', 'dojo-lint-success');
                 }
@@ -761,6 +773,8 @@
         markComplete() {
             const key = `partE_lesson${this.lessonNum}_remake_complete`;
             localStorage.setItem(key, 'true');
+            // Clear the draft — lesson done, next visit should show fresh starter code
+            if (this.draftKey) localStorage.removeItem(this.draftKey);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
