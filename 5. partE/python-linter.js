@@ -202,14 +202,18 @@
     ];
 
     // ─────────────────────────────────────────────────────────────────────────────
-    // ERROR PANEL HTML
+    // ERROR PANEL HTML  (matches Level 5 dojo-linter style exactly)
     // ─────────────────────────────────────────────────────────────────────────────
-    function errorPanelHTML(icon, title, hint, raw) {
+    function errorPanelHTML(icon, title, hint, raw, lineNum) {
+        const locBadge = lineNum
+            ? `<span class="dojo-lint-location">📍 Line ${lineNum}</span>`
+            : '';
         return `<div class="dojo-lint-panel-wrap">
           <div class="dojo-lint-panel--error">
             <div class="dojo-lint-header">
-              <span style="font-size:1.1rem">${icon}</span>
+              <span class="dojo-lint-icon">${icon}</span>
               <span class="dojo-lint-title">${title}</span>
+              ${locBadge}
             </div>
             <div class="dojo-lint-hint">💡 ${hint}</div>
             <div class="dojo-lint-raw">${raw}</div>
@@ -290,27 +294,65 @@
                 return;
             }
 
-            const err = this.findError(code);
-            if (err) {
+            const result = this.findError(code);
+            if (result) {
+                const { rule, lineNum } = result;
                 this.editor.classList.add('dojo-lint-error');
                 this.editor.classList.remove('dojo-lint-success');
                 this.terminal.innerHTML = errorPanelHTML(
-                    '⚠️', err.title, err.hint,
-                    'Fix the issue above, then run your code again.'
+                    '⚠️', rule.title, rule.hint,
+                    'Fix the issue above, then run your code again.',
+                    lineNum
                 );
             } else {
+                // ✅ Error is FIXED — immediately clear terminal back to ready state
                 this.editor.classList.remove('dojo-lint-error');
                 this.editor.classList.add('dojo-lint-success');
+                // Only restore prompt if the terminal currently shows an error panel
+                // (don't wipe output if the user just ran code successfully)
+                if (this.terminal.querySelector('.dojo-lint-panel--error')) {
+                    this.setTerminalPrompt('> ✅ Looks good! Click ▶ Run Code to execute main.py');
+                }
             }
         }
 
-        // Supports both RegExp rules (.test) and function rules
+        // Supports both RegExp rules and function rules.
+        // Returns { rule, lineNum } or null.
         findError(code) {
             for (const rule of PYTHON_ERROR_RULES) {
-                const hit = typeof rule.test === 'function'
-                    ? rule.test(code)
-                    : rule.test.test(code);
-                if (hit) return rule;
+                let hit, lineNum = null;
+
+                if (typeof rule.test === 'function') {
+                    // Function-based rule: run custom logic
+                    // For the unclosed-string rule, also find which line
+                    hit = rule.test(code);
+                    if (hit) {
+                        // Try to find the first line that triggered it
+                        const lines = code.split('\n');
+                        for (let i = 0; i < lines.length; i++) {
+                            const noComment = lines[i].split('#')[0];
+                            if (noComment.includes('"""') || noComment.includes("'''")) continue;
+                            const dq = (noComment.match(/"/g) || []).length;
+                            const sq = (noComment.match(/'/g) || []).length;
+                            if ((dq % 2 !== 0) || (sq % 2 !== 0)) {
+                                lineNum = i + 1;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    // RegExp-based rule: reset lastIndex, then exec to get position
+                    rule.test.lastIndex = 0;
+                    const m = rule.test.exec(code);
+                    hit = m !== null;
+                    if (hit && m.index != null) {
+                        // Count newlines before match index to get line number
+                        lineNum = code.slice(0, m.index).split('\n').length;
+                    }
+                    rule.test.lastIndex = 0; // always reset after exec
+                }
+
+                if (hit) return { rule, lineNum };
             }
             return null;
         }
@@ -335,13 +377,15 @@
         executePython(code) {
             this.terminal.innerHTML = '<div class="terminal-prompt">> Running main.py…</div>';
 
-            const err = this.findError(code);
-            if (err) {
+            const result = this.findError(code);
+            if (result) {
+                const { rule, lineNum } = result;
                 this.editor.classList.add('dojo-lint-error');
                 this.editor.classList.remove('dojo-lint-success');
                 this.terminal.innerHTML = errorPanelHTML(
-                    '❌', err.title, err.hint,
-                    `Python SyntaxError: ${err.title}`
+                    '❌', rule.title, rule.hint,
+                    `Python SyntaxError: ${rule.title}`,
+                    lineNum
                 );
                 return;
             }

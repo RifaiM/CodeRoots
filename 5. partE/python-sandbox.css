@@ -312,10 +312,37 @@ textarea.py-editor:focus {
   margin-bottom: 8px !important;
 }
 
+.dojo-lint-icon {
+  font-size: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
 .dojo-lint-title {
   font-weight: 800 !important;
   color: #7f1d1d !important;
   font-size: 0.88rem !important;
+}
+
+/* 📍 Line X badge — matches Level 5 dojo-linter exactly */
+.dojo-lint-location {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  font-family: "Fira Code", monospace !important;
+  font-size: 0.73rem !important;
+  font-weight: 700 !important;
+  padding: 2px 8px !important;
+  border-radius: 20px !important;
+  margin-left: auto !important;
+  white-space: nowrap !important;
+}
+
+@keyframes dojoLintSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dojo-lint-panel--error {
+  animation: dojoLintSlideIn 0.15s ease !important;
 }
 
 .dojo-lint-hint {
