@@ -516,9 +516,19 @@ textarea.py-editor:focus { outline: none; }
   box-sizing: border-box;
 }
 
-.submit-project-btn:hover {
+.submit-project-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(37, 99, 235, 0.45);
+}
+
+.submit-project-btn:disabled {
+  background: #1e293b !important;
+  color: #64748b !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+  transform: none !important;
 }
 
 /* Tablet & Mobile Media Queries (<= 768px down to 320px) - 100% Uniform */

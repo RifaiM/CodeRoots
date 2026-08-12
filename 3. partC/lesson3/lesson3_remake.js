@@ -279,6 +279,7 @@ root.render(<ProfileCard />);`;
                     return;
                 }
                 runCode();
+        validateRequirements(editor.value || '');
             });
         }
 

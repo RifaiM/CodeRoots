@@ -279,6 +279,7 @@ root.render(<App />);`;
                     return;
                 }
                 runCode();
+        validateRequirements(editor.value || '');
             });
         }
 

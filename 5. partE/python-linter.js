@@ -321,8 +321,11 @@
             if (resetBtn)  resetBtn.addEventListener('click',  () => this.handleReset());
             if (submitBtn) submitBtn.addEventListener('click', () => this.handleSubmit());
 
-            // Auto-evaluate on page load
-            setTimeout(() => this.lintCode(), 350);
+            // Auto-evaluate & validate checklist on page load
+            setTimeout(() => {
+                this.validateChecklist(this.editor.value);
+                this.lintCode();
+            }, 350);
         }
 
         // ── LINE NUMBERS ─────────────────────────────────────────────────────────
@@ -351,6 +354,9 @@
         lintCode() {
             if (!this.editor || !this.terminal) return;
             const code = this.editor.value;
+
+            // Live update task checklist & submit button state
+            this.validateChecklist(code);
             const wrap = this.editorWrapper;
 
             // Always re-evaluate checklist in real time
@@ -590,6 +596,14 @@
                 const rule = item.dataset.task || item.dataset.rule || '';
                 item.classList.toggle('completed', this.checkRule(rule, code));
             });
+
+            const items = document.querySelectorAll('.task-checklist li');
+            const allDone = items.length > 0 && Array.from(items).every(i => i.classList.contains('completed'));
+            const submitBtn = document.getElementById('submitProject') || document.getElementById('submitProjectBtn');
+            if (submitBtn) {
+                submitBtn.disabled = !allDone;
+            }
+            return allDone;
         }
 
         checkRule(rule, code) {
@@ -760,24 +774,9 @@
         // ── SUBMIT BUTTON ─────────────────────────────────────────────────────────
         handleSubmit() {
             const code = (this.editor?.value || '').trim();
-            if (!code) {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Code Editor is Empty!',
-                        text: 'Please write your code before submitting!',
-                        confirmButtonColor: '#2563eb'
-                    });
-                }
-                return;
-            }
+            const allDone = this.validateChecklist(code);
 
-            this.validateChecklist(code);
-
-            const items   = document.querySelectorAll('.task-checklist li');
-            const allDone = items.length > 0 && Array.from(items).every(i => i.classList.contains('completed'));
-
-            if (!allDone) {
+            if (!code || !allDone) {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'error',

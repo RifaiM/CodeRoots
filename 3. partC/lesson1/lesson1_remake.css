@@ -410,9 +410,19 @@
   width: 100%;
 }
 
-.submit-project-btn:hover {
+.submit-project-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+}
+
+.submit-project-btn:disabled {
+  background: #334155 !important;
+  color: #64748b !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+  transform: none !important;
 }
 
 @media (max-width: 768px) {

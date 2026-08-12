@@ -306,6 +306,7 @@ root.render(<DojoCounterApp />);`;
 
         // Initial compile
         runCode();
+        validateRequirements(editor.value || '');
     }
 
     if (document.readyState === 'loading') {
