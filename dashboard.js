@@ -216,27 +216,6 @@ function initUserProgress() {
         };
     });
 
-    // Update Main Resume CTA
-    if (resumeBtn) {
-        if (!isLevel0Complete && !isPracticeUnlocked) {
-            resumeBtn.href = './1. partA/web_history.html';
-            resumeBtn.innerHTML = '<span>🚀 Level 0</span>';
-        } else if (!isLevel1Complete && !isPracticeUnlocked) {
-            resumeBtn.href = './foundations.html?track=html';
-            resumeBtn.innerHTML = '<span>🚀 Level 1 HTML</span>';
-        } else if (!isLevel2Complete && !isPracticeUnlocked) {
-            resumeBtn.href = './foundations.html?track=css';
-            resumeBtn.innerHTML = '<span>🚀 Level 2 CSS</span>';
-        } else if (!isLevel3Complete && !isPracticeUnlocked) {
-            resumeBtn.href = './foundations.html?track=js';
-            resumeBtn.innerHTML = '<span>🚀 Level 3 JS</span>';
-        } else {
-            const nextLesson = Math.min(completedCount + 1, 15);
-            resumeBtn.href = `./2. partB/lesson${nextLesson}/lesson${nextLesson}_remake.html`;
-            resumeBtn.innerHTML = completedCount >= 15 ? '<span>🏆 Certificate</span>' : '<span>🏆 Level 4 Dojo</span>';
-        }
-    }
-
     // Bind Unlock Toggle Button
     if (unlockToggleBtn) {
         if (unlockModeText) {
