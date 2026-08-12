@@ -201,6 +201,21 @@ function initUserProgress() {
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : '⚛️ Enter Level 5 Dojo';
             }
+        } else if (levelText === 'Level 6') {
+            let activeL6 = 1;
+            let l6Completed = 0;
+            for (let i = 1; i <= 15; i++) {
+                if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
+                    l6Completed++;
+                    activeL6 = Math.min(i + 1, 15);
+                }
+            }
+            const isFinished = l6Completed >= 15;
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, `./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html`, 'Level 6 Python Dojo');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : '🐍 Enter Level 6 Dojo';
+            }
         }
     });
 
