@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson6_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 6: React Controlled Form Inputs & Two-Way Binding | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 6: React Controlled Form Inputs & Two-Way Binding</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>📝 Master React Controlled Inputs & Two-Way Data Binding</h2>
+            <p>
+                In standard HTML forms, input elements store their own values. In React, we use <strong>Controlled Components</strong>! By binding an <code>&lt;input /&gt;</code> element's <code>value</code> attribute to React State and handling changes with <code>onChange={(e) => setName(e.target.value)}</code>, React state becomes the <strong>Single Source of Truth</strong> for all form data!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🔒 1. Controlled Component</h4>
+                    <span class="syntax-chip">value={state}</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A digital typewriter! Instead of ink directly hitting paper, every keypress sends a signal to a central computer (State), which then displays the letter on screen.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🔄 2. Two-Way Data Binding</h4>
+                    <span class="syntax-chip">State &harr; Input UI</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A live mirror! Whatever is stored in state appears inside the input box, and whatever the user types inside the input box updates state instantly!
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🎯 3. Event Target Value</h4>
+                    <span class="syntax-chip">e.target.value</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Reading a speech bubble! In React event handlers, <code>e.target</code> represents the input field, and <code>e.target.value</code> is the exact text the user typed.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>⚡ 4. Instant Live Preview</h4>
+                    <span class="syntax-chip">Real-time Form Sync</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> ID card printing machine! As you type your name into the computer form, the live badge preview updates letter by letter in real-time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Declare Form State</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">ProfileForm</span>() {
+  <span class="keyword">const</span> [name, setName] = React.<span class="function">useState</span>(<span class="string">""</span>);
+  <span class="keyword">return</span> <span class="tag">&lt;h3&gt;</span>Hello, {name || <span class="string">"Guest"</span>}<span class="tag">&lt;/h3&gt;</span>;
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Controlled Input Binding</div>
+                <div class="code-block"><span class="tag">&lt;input</span> 
+  <span class="keyword">type</span>=<span class="string">"text"</span> 
+  <span class="keyword">value</span>={name} 
+  <span class="keyword">onChange</span>={(e) =&gt; <span class="function">setName</span>(e.target.value)} 
+<span class="tag">/&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🎨 3. Controlled Select Dropdown</div>
+                <div class="code-block"><span class="keyword">const</span> [role, setRole] = React.<span class="function">useState</span>(<span class="string">"Developer"</span>);
+<span class="tag">&lt;select</span> <span class="keyword">value</span>={role} <span class="keyword">onChange</span>={(e) =&gt; <span class="function">setRole</span>(e.target.value)}<span class="tag">&gt;</span>
+  <span class="tag">&lt;option&gt;</span>Developer<span class="tag">&lt;/option&gt;</span>
+  <span class="tag">&lt;option&gt;</span>Designer<span class="tag">&lt;/option&gt;</span>
+<span class="tag">&lt;/select&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Render Form Component</div>
+                <div class="code-block"><span class="keyword">const</span> root = ReactDOM.<span class="function">createRoot</span>(
+  document.<span class="function">getElementById</span>(<span class="string">'root'</span>)
+);
+root.<span class="function">render</span>(<span class="tag">&lt;ProfileForm /&gt;</span>);</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>📝 Level 5 Interactive React Controlled Form Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;Form</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">Controlled Form Component & Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Form & Badge Preview Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Form Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 6 Challenge: Live Developer Badge & Feedback Generator</h3>
+            <p>Complete all 4 requirements in the React Controlled Form Sandbox above to finish Lesson 6:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Declare state for input data using <code>React.useState("")</code> (e.g. <code>const [name, setName] = React.useState("Alex")</code>)</li>
+                <li id="req2">Bind the input element's <code>value</code> attribute to your state variable (e.g. <code>value={name}</code>)</li>
+                <li id="req3">Attach an <code>onChange</code> event handler using <code>e.target.value</code> to update state on typing</li>
+                <li id="req4">Display the controlled input state value dynamically inside your JSX preview element (e.g. <code>{name}</code>)</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Lesson 6 & Unlock Lesson 7 🚀</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson6_remake.js"></script>
+</body>
+</html>
