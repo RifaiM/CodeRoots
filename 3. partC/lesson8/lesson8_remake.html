@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson8_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 8: Component Composition & props.children | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 8: Component Composition & props.children</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>🖼️ Master React Component Composition & <code>props.children</code></h2>
+            <p>
+                In React, components don't always know their children ahead of time! By using <strong>Component Composition</strong> and the special <code>props.children</code> prop, you can create flexible container components (like Cards, Modals, Drawers, and Layouts) that wrap and style <strong>any custom JSX content</strong> placed between their opening and closing tags!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🖼️ 1. Picture Frame (props.children)</h4>
+                    <span class="syntax-chip">{children}</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A picture frame! The frame component provides the border, background, and padding, but you can place <em>any picture (JSX content)</em> inside it!
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🍱 2. Bento Box (Layout Slots)</h4>
+                    <span class="syntax-chip">header={...}</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A meal bento box! You can pass different dishes (JSX components) into custom slot props like <code>header={...}</code> and <code>footer={...}</code>.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🧱 3. Lego Bricks (Composition)</h4>
+                    <span class="syntax-chip">Flexible Nesting</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Building with Lego! Instead of crafting giant monolithic files, assemble complex UIs by nesting smaller container components together.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🧰 4. Generic Shell Containers</h4>
+                    <span class="syntax-chip">Reusable Wrapper</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A shipping container! It doesn't care what cargo is inside — it standardizes protection, styling, and layout structure for all contents.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Container with props.children</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">CardShell</span>({ title, children }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="keyword">className</span>=<span class="string">"card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>{title}<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;div&gt;</span>{children}<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Nesting Custom JSX Content</div>
+                <div class="code-block"><span class="tag">&lt;CardShell</span> <span class="keyword">title</span>=<span class="string">"User Stats"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Active Members: <span class="tag">&lt;strong&gt;</span>1,250<span class="tag">&lt;/strong&gt;&lt;/p&gt;</span>
+  <span class="tag">&lt;button&gt;</span>View All<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/CardShell&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🎨 3. Custom Slot Props</div>
+                <div class="code-block"><span class="keyword">function</span> <span class="component">Modal</span>({ header, body }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;header&gt;</span>{header}<span class="tag">&lt;/header&gt;</span>
+      <span class="tag">&lt;main&gt;</span>{body}<span class="tag">&lt;/main&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Render Composed Tree</div>
+                <div class="code-block"><span class="keyword">const</span> root = ReactDOM.<span class="function">createRoot</span>(
+  document.<span class="function">getElementById</span>(<span class="string">'root'</span>)
+);
+root.<span class="function">render</span>(<span class="tag">&lt;DashboardApp /&gt;</span>);</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>🖼️ Level 5 Interactive React Composition Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;Composition</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">Component Composition & Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Dashboard Compositor Preview Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Composition Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 8 Challenge: Reusable Dev Dashboard Card Compositor</h3>
+            <p>Complete all 4 requirements in the React Composition Sandbox above to finish Lesson 8:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Declare a reusable container component that accepts <code>children</code> or <code>props.children</code></li>
+                <li id="req2">Render <code>{children}</code> inside the container component's JSX markup shell</li>
+                <li id="req3">Pass nested custom JSX elements between opening and closing container tags (e.g. <code>&lt;WidgetCard&gt;...&lt;/WidgetCard&gt;</code>)</li>
+                <li id="req4">Render the composed component tree live inside your JSX preview canvas</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Lesson 8 & Unlock Lesson 9 🚀</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson8_remake.js"></script>
+</body>
+</html>
