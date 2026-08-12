@@ -3,12 +3,15 @@
    Identical Layout, Typography, Colors & Mobile Responsiveness to Level 4 & 5
    ========================================================================== */
 
-/* Main Container & Page Base */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 16px 60px 16px;
-  box-sizing: border-box;
+/* Main Container & Page Base (100% Uniform with Level 4 & Level 5) */
+.container,
+.lesson-content {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 24px 16px 60px 16px !important;
+  box-sizing: border-box !important;
+  font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
+  color: #1e293b !important;
 }
 
 /* 3-Step Progress Tracker (1 Learn -> 2 Practice -> 3 Complete) */

@@ -541,3 +541,14 @@ iframe,
   border-color: #fca5a5 !important;
   transform: scale(1.08) !important;
 }
+
+/* Universal Lesson Container Max-Width Standardization (100% Uniform across Level 4, 5, 6) */
+main.container,
+main.lesson-content,
+.container,
+.lesson-content {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 24px 16px 60px 16px !important;
+  box-sizing: border-box !important;
+}
