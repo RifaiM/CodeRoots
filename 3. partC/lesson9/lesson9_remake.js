@@ -154,6 +154,7 @@ root.render(<TechStoreApp />);`;
 
     function initLesson9() {
         const editor = document.getElementById('codeEditor');
+        const lineNumberEl = document.getElementById('lineNumbers');
         const preview = document.getElementById('previewFrame');
         const runBtn = document.getElementById('runCodeBtn');
         const resetBtn = document.getElementById('resetCodeBtn');
@@ -167,11 +168,13 @@ root.render(<TechStoreApp />);`;
             editor.value = savedDraft;
         } else {
             editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
         }
 
         // Activate Dojo Linter (JSX mode)
         if (typeof DojoLinter !== 'undefined') {
             DojoLinter.init('codeEditor', 'dojoLintPanel', { mode: 'jsx' });
+        buildLineNumbers(lineNumberEl, editor);
         }
 
         function runCode(isExplicit = false) {
@@ -246,9 +249,14 @@ root.render(<TechStoreApp />);`;
         // Live code auto-compile on input with debounce
         let runTimer = null;
         editor.addEventListener('input', () => {
+                buildLineNumbers(lineNumberEl, editor);
             clearTimeout(runTimer);
             runTimer = setTimeout(() => runCode(false), 400);
         });
+
+            editor.addEventListener('scroll', () => {
+                if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
+            });
 
         if (runBtn) runBtn.addEventListener('click', () => runCode(true));
 
@@ -266,6 +274,7 @@ root.render(<TechStoreApp />);`;
                     }).then((result) => {
                         if (result.isConfirmed) {
                             editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
                             localStorage.removeItem('partC_lesson9_remake_draft');
                             runCode(false);
                             Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
@@ -273,6 +282,7 @@ root.render(<TechStoreApp />);`;
                     });
                 } else {
                     editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
                     localStorage.removeItem('partC_lesson9_remake_draft');
                     runCode(false);
                 }

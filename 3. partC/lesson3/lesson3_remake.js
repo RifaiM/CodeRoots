@@ -28,6 +28,19 @@ function ProfileCard() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<ProfileCard />);`;
 
+    
+    function buildLineNumbers(lineNumberEl, editorEl, errorLine = null) {
+        if (!lineNumberEl || !editorEl) return;
+        const count = editorEl.value.split('\n').length;
+        let html = '';
+        for (let i = 1; i <= count; i++) {
+            const cls = (i === errorLine) ? ' class="ln-error"' : '';
+            html += `<span${cls}>${i}</span>`;
+        }
+        lineNumberEl.innerHTML = html;
+        lineNumberEl.scrollTop = editorEl.scrollTop;
+    }
+
     function formatDojoError(err) {
         const msg = err.message || String(err);
         let friendlyTitle = 'Syntax Error Detected';
@@ -74,6 +87,7 @@ root.render(<ProfileCard />);`;
 
     function initLesson3() {
         const editor = document.getElementById('codeEditor');
+        const lineNumberEl = document.getElementById('lineNumbers');
         const preview = document.getElementById('previewFrame');
         const runBtn = document.getElementById('runCodeBtn');
         const resetBtn = document.getElementById('resetCodeBtn');
@@ -87,11 +101,13 @@ root.render(<ProfileCard />);`;
             editor.value = savedDraft;
         } else {
             editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
         }
 
         // Activate Dojo Linter (JSX mode)
         if (typeof DojoLinter !== 'undefined') {
             DojoLinter.init('codeEditor', 'dojoLintPanel', { mode: 'jsx' });
+        buildLineNumbers(lineNumberEl, editor);
         }
 
         function runCode() {
@@ -280,6 +296,7 @@ root.render(<ProfileCard />);`;
                     }).then((result) => {
                         if (result.isConfirmed) {
                             editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
                             localStorage.removeItem('partC_lesson3_remake_draft');
                             runCode();
                             Swal.fire({ icon: 'success', title: 'Code Reset!', timer: 1200, showConfirmButton: false });
@@ -287,6 +304,7 @@ root.render(<ProfileCard />);`;
                     });
                 } else {
                     editor.value = defaultCode;
+                        buildLineNumbers(lineNumberEl, editor);
                     localStorage.removeItem('partC_lesson3_remake_draft');
                     runCode();
                 }
@@ -296,9 +314,14 @@ root.render(<ProfileCard />);`;
         if (editor) {
             let inputTimeout;
             editor.addEventListener('input', () => {
+                buildLineNumbers(lineNumberEl, editor);
                 localStorage.setItem('partC_lesson3_remake_draft', editor.value);
                 clearTimeout(inputTimeout);
                 inputTimeout = setTimeout(() => runCode(), 200);
+            });
+
+            editor.addEventListener('scroll', () => {
+                if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
             });
         }
 
