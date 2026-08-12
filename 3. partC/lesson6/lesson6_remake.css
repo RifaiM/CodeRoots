@@ -501,11 +501,30 @@
   }
 
   .task-checklist li {
+    display: block !important;
     padding: 10px 12px !important;
     font-size: 0.82rem !important;
     line-height: 1.5 !important;
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
+  }
+
+  .task-checklist li::before {
+    display: inline-flex !important;
+    margin-right: 8px !important;
+    margin-top: -2px !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+  }
+
+  .task-checklist li code {
+    display: inline-block !important;
+    font-size: 0.76rem !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    padding: 2px 6px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .submit-project-btn {
