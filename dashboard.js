@@ -556,22 +556,50 @@ window.openDojoHub = function() {
 };
 
 window.showLevel5LockedNotice = function() {
+    let activeL4 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+            activeL4 = Math.min(i + 1, 15);
+        }
+    }
+
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             icon: 'lock',
-            title: '🔒 Level 5 Locked!',
+            title: '🔒 Level 4 Prerequisite Recommended',
             html: `
-                <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
-                    You must complete <strong>all 15 lessons of Level 4 (DOM Interactivity Dojo)</strong> before unlocking <strong>Level 5 (React & Framework Dojo)</strong>!
-                </p>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 10px; margin-top: 12px; font-size: 0.85rem; color: #64748b;">
-                    💡 Tip: Toggle <strong>Unlock All</strong> in the top header if you want to preview all levels immediately for testing!
+                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">
+                        <strong>Level 5 (React & Framework Dojo)</strong> builds directly on DOM manipulation concepts taught in Level 4. We recommend completing Level 4 first for the best learning experience!
+                    </p>
+                    <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 12px; border-radius: 10px; font-size: 0.84rem; color: #0369a1;">
+                        💡 Already an experienced React developer or testing? You can unlock all levels instantly below!
+                    </div>
                 </div>
             `,
+            showDenyButton: true,
             confirmButtonColor: '#2563eb',
-            confirmButtonText: 'Got It!'
+            denyButtonColor: '#10b981',
+            confirmButtonText: '⚔️ Go to Level 4 Dojo',
+            denyButtonText: '🔓 Enable Practice Mode (Unlock All)',
+            showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+            } else if (result.isDenied) {
+                localStorage.setItem('practice_mode_unlocked', 'true');
+                Swal.fire({
+                    icon: 'success',
+                    title: '🔓 Practice Mode Enabled!',
+                    text: 'All Dojo levels and lessons are now fully unlocked.',
+                    timer: 1400,
+                    showConfirmButton: false
+                }).then(() => {
+                    location.reload();
+                });
+            }
         });
     } else {
-        alert('🔒 Level 5 Locked! Complete Level 4 first.');
+        alert('🔒 Level 5 Locked! Complete Level 4 first or enable Practice Mode.');
     }
 };
