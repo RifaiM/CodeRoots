@@ -108,50 +108,294 @@ header:not(.platform-header):not(:has(p)) .completion-badge {
 
 /* Navigation Dropdown Container & Buttons */
 .lesson-nav-container {
-  position: fixed;
-  top: 10px;
-  right: 16px;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  position: fixed !important;
+  top: 10px !important;
+  right: 16px !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
 .lesson-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-  color: #0f172a;
-  font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.86rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+  font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
 }
 
 .lesson-nav-btn:hover {
-  background: #ffffff;
-  border-color: #bfdbfe;
-  color: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+  background: #ffffff !important;
+  border-color: #bfdbfe !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
 }
 
-/* Dark Slate Hamburger Lines */
+.nav-arrow {
+  font-size: 0.72rem !important;
+  color: #475569 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.lesson-nav-btn.active .nav-arrow {
+  transform: rotate(180deg) !important;
+}
+
+/* Animated Hamburger Icon */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
 .nav-hamburger span {
-  background: #0f172a;
-  background-color: #0f172a;
+  display: block;
+  height: 2px;
+  width: 16px;
+  background: #0f172a !important;
+  border-radius: 2px;
+  position: absolute;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.nav-hamburger span:nth-child(1) { transform: translateY(-5px); }
+.nav-hamburger span:nth-child(2) { transform: translateY(0); }
+.nav-hamburger span:nth-child(3) { transform: translateY(5px); }
+
+.lesson-nav-btn.active .nav-hamburger span:nth-child(1) {
+  transform: translateY(0) rotate(45deg) !important;
+}
+
+.lesson-nav-btn.active .nav-hamburger span:nth-child(2) {
+  opacity: 0 !important;
+  transform: scale(0) !important;
+}
+
+.lesson-nav-btn.active .nav-hamburger span:nth-child(3) {
+  transform: translateY(0) rotate(-45deg) !important;
+}
+
+/* Modal Dropdown Container */
+.lesson-nav-dropdown {
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  width: 320px !important;
+  max-height: 420px !important;
+  background: #ffffff !important;
+  border: 1px solid #dde7ff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
+  margin-top: 8px !important;
+  overflow: hidden !important;
+  z-index: 9999999 !important;
+}
+
+.lesson-nav-dropdown.show {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.nav-header {
+  background: #f8f9ff !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #eef2ff !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.nav-title {
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.nav-close {
+  background: none !important;
+  border: none !important;
+  font-size: 1.2rem !important;
+  color: #64748b !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  line-height: 1 !important;
+}
+
+.nav-close:hover {
+  color: #0f172a !important;
+}
+
+.nav-content {
+  max-height: 360px !important;
+  overflow-y: auto !important;
+  padding: 6px 0 !important;
+}
+
+.nav-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.nav-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.nav-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.nav-lesson-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 14px !important;
+  text-decoration: none !important;
+  color: #334155 !important;
+  transition: background-color 0.15s ease !important;
+  border-left: 3px solid transparent !important;
+}
+
+.nav-lesson-item:hover {
+  background: #f8fafc !important;
+}
+
+.nav-lesson-item.current {
+  background: #eff6ff !important;
+  border-left-color: #2563eb !important;
+  font-weight: 600 !important;
+}
+
+.nav-lesson-item.completed {
+  background: #f0fdf4 !important;
+  border-left-color: #16a34a !important;
+}
+
+.nav-lesson-item.locked {
+  opacity: 0.65 !important;
+  cursor: pointer !important;
+}
+
+.lesson-status {
+  font-size: 1rem !important;
+  margin-right: 10px !important;
+  width: 20px !important;
+  text-align: center !important;
+}
+
+.lesson-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.lesson-number {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #2563eb !important;
+  text-transform: uppercase !important;
+}
+
+.lesson-title {
+  font-size: 13px !important;
+  color: #1e293b !important;
+  line-height: 1.3 !important;
+}
+
+.nav-lesson-item.locked .lesson-title,
+.nav-lesson-item.locked .lesson-number {
+  color: #64748b !important;
+}
+
+/* Certificate Section Styles in Navigation Drawer */
+.nav-section-divider {
+  padding: 8px 14px;
+  border-top: 1px solid #cbd5e1;
+  margin-top: 6px;
+}
+
+.divider-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.certificate-item {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border-left: 3px solid #ffd700 !important;
+  margin: 4px 8px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+}
+
+.certificate-item.completed {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-left-color: #10b981 !important;
+  animation: certPulse 2s infinite ease-in-out;
+}
+
+.certificate-item.completed:hover {
+  background: rgba(16, 185, 129, 0.22) !important;
+  transform: translateX(2px);
+}
+
+.certificate-item.available {
+  background: rgba(37, 99, 235, 0.1) !important;
+  border-left-color: #2563eb !important;
+}
+
+.certificate-item.available:hover {
+  background: rgba(37, 99, 235, 0.2) !important;
+}
+
+.certificate-label {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #2563eb !important;
+}
+
+@keyframes certPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 /* Back-to-Top Floating Action Button */
@@ -266,69 +510,21 @@ header:not(.platform-header):not(:has(p)) .completion-badge {
     min-height: 34px !important;
     padding: 0 !important;
     border-radius: 50% !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
-  .back-to-top-btn {
-    bottom: 20px !important;
-    right: 16px !important;
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    max-width: 42px !important;
-    min-height: 42px !important;
-    max-height: 42px !important;
+  .nav-arrow,
+  .nav-btn-text,
+  .nav-text,
+  .nav-icon {
+    display: none !important;
   }
 
-  .back-to-top-btn svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
-}
-
-/* Small Mobile Media Queries (<= 480px) */
-@media (max-width: 480px) {
-  header:not(.platform-header):not(:has(p)),
-  .lesson-header {
-    height: auto !important;
-    padding: 5px 42px !important;
+  .nav-hamburger {
+    display: flex !important;
   }
 
-  header:not(.platform-header):not(:has(p)) h1,
-  .lesson-header h1 {
-    display: block !important;
-    line-height: 1.2 !important;
-    letter-spacing: -0.01em !important;
-    white-space: normal !important;
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-    text-align: center !important;
-  }
-
-  .home-button {
-    top: 8px;
-    left: 7px;
-    width: 34px;
-    height: 34px;
-    min-width: 30px;
-    min-height: 30px;
-  }
-
-  .lesson-nav-container {
-    top: 8px;
-    right: 7px;
-    gap: 3px;
-  }
-
-  .lesson-nav-btn {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    min-height: 34px;
-    padding: 0;
-    font-size: 0.72rem;
-    border-radius: 50%;
+  .lesson-nav-dropdown {
+    width: 280px !important;
+    right: 0 !important;
   }
 }
