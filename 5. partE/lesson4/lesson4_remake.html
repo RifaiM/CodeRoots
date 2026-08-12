@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 4: Python Data Structures</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 4 – Python Data Structures (Lists & Dicts)</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>📦 Python Data Structures: Lists & Dictionaries</span>
+            </h2>
+            <p>
+                Backend systems process complex collections of data, such as API responses, database records, and server logs. Python provides powerful built-in data structures: <strong>Lists <code>[]</code></strong> for ordered collections and <strong>Dictionaries <code>{}</code></strong> for key-value records.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> A Python List is like an array of database records; a Dictionary is like a JSON object sent back by a REST API endpoint!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">📦 1. Python Lists (Ordered Collections)</div>
+                    <pre class="code-block"><code><span class="comment"># Create a list of server hostnames</span>
+servers = [<span class="string">"web-01"</span>, <span class="string">"db-primary"</span>, <span class="string">"cache"</span>]
+
+<span class="comment"># Access items by 0-based index</span>
+<span class="keyword">print</span>(servers[<span class="number">0</span>]) <span class="comment"># Output: web-01</span>
+servers.<span class="function">append</span>(<span class="string">"api-gateway"</span>)</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">🔑 2. Python Dictionaries (Key-Value Objects)</div>
+                    <pre class="code-block"><code><span class="comment"># Create a dictionary representing user profile</span>
+user = {
+  <span class="string">"username"</span>: <span class="string">"Alex"</span>,
+  <span class="string">"role"</span>: <span class="string">"admin"</span>,
+  <span class="string">"level"</span>: <span class="number">6</span>
+}
+
+<span class="comment"># Access value by key</span>
+<span class="keyword">print</span>(user[<span class="string">"username"</span>])</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 4 Practice Task:
+
+# 1. Create a list of backend active services:
+services = ["auth-api", "user-db", "redis-cache", "gateway"]
+
+# 2. Create a dictionary representing a service configuration:
+config = {
+  "name": "auth-api",
+  "port": 8080,
+  "status": "active"
+}
+
+# 3. Print service configuration details:
+print(f"⚙️ Configured Service: {config['name']} on Port {config['port']}")
+
+# 4. Iterate over services list using a for loop:
+print("🚀 Launching backend services:")
+for service in services:
+  print(f"  └─ Service [{service}] status: ONLINE")
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 4 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 4 and unlock Lesson 5!</p>
+
+            <ul class="task-checklist">
+                <li data-task="list">📦 Create and manipulate Python lists [ ]</li>
+                <li data-task="dict">🔑 Store key-value data using Python dictionaries { }</li>
+                <li data-task="for">🔄 Iterate through data structures using a for loop</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 4 & Unlock Lesson 5</button>
+        </section>
+    </main>
+</body>
+</html>
