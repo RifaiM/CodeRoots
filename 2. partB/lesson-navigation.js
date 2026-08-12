@@ -174,7 +174,7 @@ class LessonNavigation {
     }
 
     mount() {
-        const header = document.querySelector('header.lesson-header');
+        const header = document.querySelector('header.lesson-header') || document.querySelector('header');
         if (!header) return;
 
         // Create navigation elements
