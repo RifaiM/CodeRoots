@@ -647,6 +647,44 @@ html, body {
   border-radius: 18px !important;
 }
 
+/* Pixel-Perfect Centered Modal Close Button */
+.responsive-profile-modal .swal2-close,
+.swal2-popup .swal2-close {
+  font-family: Arial, sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+.responsive-profile-modal .swal2-close:hover,
+.swal2-popup .swal2-close:hover {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+  transform: scale(1.08) !important;
+}
+
 @media (max-width: 425px) {
   .responsive-profile-modal {
     padding: 14px 10px !important;
