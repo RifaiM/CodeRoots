@@ -4,13 +4,28 @@
     'use strict';
 
     // ── Python Syntax Error Rules ───────────────────────────────────────────────
-    // Keep rules TIGHT to avoid false positives on normal string edits
+    // Keep rules TIGHT to avoid false positives on normal string edits.
+    // `test` can be a RegExp OR a function(code) => boolean.
     const PYTHON_ERROR_RULES = [
         {
             // Only flag "prin(" — not "print(" and not "principal" etc.
             test: /\bprin(?!t)\s*\(/i,
             title: "Typo: 'prin(' — did you mean 'print('?",
             hint: "In Python, the built-in output function is <code>print(...)</code>."
+        },
+        {
+            // Unclosed string: any line with an odd number of " or ' (excluding triple-quotes & comments)
+            test: (code) => code.split('\n').some(line => {
+                // Strip inline comment
+                const noComment = line.split('#')[0];
+                // Skip triple-quote lines (multi-line string openers) — 3 quotes = odd but valid
+                if (noComment.includes('"""') || noComment.includes("'''")) return false;
+                const dq = (noComment.match(/"/g) || []).length;
+                const sq = (noComment.match(/'/g) || []).length;
+                return (dq % 2 !== 0) || (sq % 2 !== 0);
+            }),
+            title: "Unclosed String",
+            hint: "Found an unclosed quote character. Make sure every <code>\"</code> or <code>'</code> has a matching closing quote on the same line."
         },
         {
             // Flag  def foo()  with no colon at end of line (no colon before newline/EOF)
@@ -135,7 +150,11 @@
 
         findError(code) {
             for (const rule of PYTHON_ERROR_RULES) {
-                if (rule.test.test(code)) return rule;
+                // Support both RegExp and function-based test rules
+                const matched = typeof rule.test === 'function'
+                    ? rule.test(code)
+                    : rule.test.test(code);
+                if (matched) return rule;
             }
             return null;
         }
