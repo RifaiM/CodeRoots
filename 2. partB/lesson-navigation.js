@@ -1,78 +1,73 @@
-// Enhanced Lesson Navigation System with Certificate Integration
-class LessonNavigation {
-    constructor() {
-        this.lessons = [
-            { id: 1, title: "Interactive HTML Page Structure", path: "/2. partB/lesson1/lesson1_remake.html" },
-            { id: 2, title: "Typography & Heading Hierarchy", path: "/2. partB/lesson2/lesson2_remake.html" },
-            { id: 3, title: "Interactive Links & Dynamic Media", path: "/2. partB/lesson3/lesson3_remake.html" },
-            { id: 4, title: "Lists & Dropdown Drawer Navigation", path: "/2. partB/lesson4/lesson4_remake.html" },
-            { id: 5, title: "Semantic HTML Web Architecture", path: "/2. partB/lesson5/lesson5_remake.html" },
-            { id: 6, title: "CSS Styling & Theme Engine", path: "/2. partB/lesson6/lesson6_remake.html" },
-            { id: 7, title: "CSS Box Model & Element Bounds", path: "/2. partB/lesson7/lesson7_remake.html" },
-            { id: 8, title: "Flexbox Layout & Alignment Engine", path: "/2. partB/lesson8/lesson8_remake.html" },
-            { id: 9, title: "CSS Positioning & Floating Modals", path: "/2. partB/lesson9/lesson9_remake.html" },
-            { id: 10, title: "JavaScript Logic & State Variables", path: "/2. partB/lesson10/lesson10_remake.html" },
-            { id: 11, title: "Live DOM Manipulation & Queries", path: "/2. partB/lesson11/lesson11_remake.html" },
-            { id: 12, title: "Event Listeners & User Interactions", path: "/2. partB/lesson12/lesson12_remake.html" },
-            { id: 13, title: "Controlled Forms & Live Input Validation", path: "/2. partB/lesson13/lesson13_remake.html" },
-            { id: 14, title: "Guided Dashboard Mini Application", path: "/2. partB/lesson14/lesson14_remake.html" },
-            { id: 15, title: "🏆 Capstone Practical Web Application", path: "/2. partB/lesson15/lesson15_remake.html" }
-        ];
-        this.currentLesson = this.getCurrentLessonId();
-        this.init();
-    }
+// Level 4: DOM Interactivity Dojo - Navigation System 100% Identical to Level 5
+(function() {
+    'use strict';
 
-    getCurrentLessonId() {
-        // Extract lesson number from current URL
+    const level4Lessons = [
+        { id: 1, title: "Interactive HTML Page Structure" },
+        { id: 2, title: "Typography & Heading Hierarchy" },
+        { id: 3, title: "Interactive Links & Dynamic Media" },
+        { id: 4, title: "Lists & Dropdown Drawer Navigation" },
+        { id: 5, title: "Semantic HTML Web Architecture" },
+        { id: 6, title: "CSS Styling & Theme Engine" },
+        { id: 7, title: "CSS Box Model & Element Bounds" },
+        { id: 8, title: "Flexbox Layout & Alignment Engine" },
+        { id: 9, title: "CSS Positioning & Floating Modals" },
+        { id: 10, title: "JavaScript Logic & State Variables" },
+        { id: 11, title: "Live DOM Manipulation & Queries" },
+        { id: 12, title: "Event Listeners & User Interactions" },
+        { id: 13, title: "Controlled Forms & Live Input Validation" },
+        { id: 14, title: "Guided Dashboard Mini Application" },
+        { id: 15, title: "🏆 Capstone Practical Web Application" }
+    ];
+
+    function getCurrentLessonId() {
         const path = window.location.pathname;
-        const match = path.match(/lesson(\d+)/);
-        return match ? parseInt(match[1]) : 1;
+        const match = path.match(/lesson(\d+)/i);
+        return match ? parseInt(match[1], 10) : 1;
     }
 
-    isLessonCompleted(lessonId) {
+    function isLessonCompleted(lessonId) {
         return localStorage.getItem(`partB_lesson${lessonId}_remake_complete`) === 'true';
     }
 
-    isCourseCompleted() {
-        return localStorage.getItem('partB_course_complete') === 'true';
-    }
-
-    canAccessLesson(lessonId) {
+    function canAccessLesson(lessonId) {
         return true;
     }
 
-    createNavigationHTML() {
-        return `
-            <div class="lesson-nav-container">
-                <button class="lesson-nav-btn" id="lessonNavBtn">
-                    <span class="nav-icon">📚</span>
-                    <span class="nav-text">Jump to Lesson</span>
-                    <span class="nav-arrow">▼</span>
-                    <span class="nav-hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </button>
-                <div class="lesson-nav-dropdown" id="lessonNavDropdown">
-                    <div class="nav-header">
-                        <span class="nav-title">Course Navigation</span>
-                        <button class="nav-close" id="navCloseBtn">&times;</button>
-                    </div>
-                    <div class="nav-content">
-                        ${this.generateLessonListHTML()}
-                        ${this.generateCertificateSection()}
-                    </div>
-                </div>
-            </div>
-        `;
-    }
+    function initLevel4Nav() {
+        const header = document.querySelector('header.lesson-header') || document.querySelector('header');
+        if (!header) return;
 
-    generateLessonListHTML() {
-        return this.lessons.map(lesson => {
-            const isCompleted = this.isLessonCompleted(lesson.id);
-            const canAccess = this.canAccessLesson(lesson.id);
-            const isCurrent = lesson.id === this.currentLesson;
+        const currentId = getCurrentLessonId();
+
+        // Create Navigation Container 100% Identical to Level 5
+        const container = document.createElement('div');
+        container.className = 'lesson-nav-container';
+
+        // Dropdown Toggle Button 100% Identical to Level 5
+        const btn = document.createElement('button');
+        btn.className = 'lesson-nav-btn';
+        btn.id = 'lessonNavBtn';
+        btn.innerHTML = `
+            <span class="nav-icon">📚</span>
+            <span class="nav-btn-text">Jump to Lesson</span>
+            <span class="nav-arrow">▼</span>
+            <span class="nav-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        `;
+
+        // Dropdown Menu Container 100% Identical to Level 5
+        const menu = document.createElement('div');
+        menu.className = 'lesson-nav-dropdown';
+        menu.id = 'lessonNavDropdown';
+
+        let lessonListHTML = level4Lessons.map(lesson => {
+            const isCompleted = isLessonCompleted(lesson.id);
+            const canAccess = canAccessLesson(lesson.id);
+            const isCurrent = lesson.id === currentId;
 
             let statusIcon = '';
             let className = 'nav-lesson-item';
@@ -104,17 +99,15 @@ class LessonNavigation {
                 </a>
             `;
         }).join('');
-    }
 
-    generateCertificateSection() {
-        const completedCount = this.getCompletedCount();
-        const isCourseCompleted = this.isCourseCompleted() || completedCount === 15;
-        const isLesson15Completed = this.isLessonCompleted(15);
-        
-        let sectionHTML = '';
-        
-        if (isCourseCompleted || isLesson15Completed) {
-            sectionHTML = `
+        // Generate Certificate Drawer Section 100% Identical to Level 5
+        let completedCount = level4Lessons.filter(lesson => isLessonCompleted(lesson.id)).length;
+        let allLessonsCompleted = level4Lessons.every(lesson => isLessonCompleted(lesson.id));
+        let isCourseCompleted = isLessonCompleted(15) || allLessonsCompleted;
+
+        let certHTML = '';
+        if (isCourseCompleted) {
+            certHTML = `
                 <div class="nav-section-divider">
                     <span class="divider-text">Course Complete!</span>
                 </div>
@@ -126,8 +119,8 @@ class LessonNavigation {
                     </span>
                 </a>
             `;
-        } else if (this.canAccessLesson(15)) {
-            sectionHTML = `
+        } else if (canAccessLesson(15)) {
+            certHTML = `
                 <div class="nav-section-divider">
                     <span class="divider-text">Almost There!</span>
                 </div>
@@ -140,7 +133,7 @@ class LessonNavigation {
                 </a>
             `;
         } else {
-            sectionHTML = `
+            certHTML = `
                 <div class="nav-section-divider">
                     <span class="divider-text">Progress: ${completedCount}/15</span>
                 </div>
@@ -153,93 +146,57 @@ class LessonNavigation {
                 </div>
             `;
         }
-        
-        return sectionHTML;
-    }
 
-    getCompletedCount() {
-        let count = 0;
-        for (let i = 1; i <= 15; i++) {
-            if (this.isLessonCompleted(i)) count++;
-        }
-        return count;
-    }
+        menu.innerHTML = `
+            <div class="nav-header">
+                <span class="nav-title">Course Navigation</span>
+            </div>
+            <div class="nav-content">
+                ${lessonListHTML}
+                ${certHTML}
+            </div>
+        `;
 
-    init() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.mount());
-        } else {
-            this.mount();
-        }
-    }
-
-    mount() {
-        const header = document.querySelector('header.lesson-header') || document.querySelector('header');
-        if (!header) return;
-
-        // Create navigation elements
-        const navContainer = document.createElement('div');
-        navContainer.innerHTML = this.createNavigationHTML();
-        
-        // Append to header
-        const navElement = navContainer.firstElementChild;
-        header.appendChild(navElement);
-
-        // Bind events
-        this.bindEvents(navElement);
-    }
-
-    bindEvents(navElement) {
-        const btn = navElement.querySelector('#lessonNavBtn');
-        const dropdown = navElement.querySelector('#lessonNavDropdown');
-        const closeBtn = navElement.querySelector('#navCloseBtn');
-
-        if (!btn || !dropdown) return;
-
-        const toggleDropdown = (e) => {
+        function toggleNav(e) {
             if (e) e.stopPropagation();
-            const isOpen = dropdown.classList.contains('show');
+            const isOpen = menu.classList.contains('show');
             if (isOpen) {
-                this.closeDropdown(btn, dropdown);
+                closeNav();
             } else {
-                this.openDropdown(btn, dropdown);
+                openNav();
             }
-        };
-
-        btn.addEventListener('click', toggleDropdown);
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.closeDropdown(btn, dropdown);
-            });
         }
 
-        // Close on click outside
+        function openNav() {
+            btn.classList.add('active');
+            menu.classList.add('show');
+        }
+
+        function closeNav() {
+            btn.classList.remove('active');
+            menu.classList.remove('show');
+        }
+
+        btn.addEventListener('click', toggleNav);
+
         document.addEventListener('click', (e) => {
-            if (!navElement.contains(e.target)) {
-                this.closeDropdown(btn, dropdown);
+            if (!container.contains(e.target)) {
+                closeNav();
             }
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.closeDropdown(btn, dropdown);
-            }
+            if (e.key === 'Escape') closeNav();
         });
+
+        container.appendChild(btn);
+        container.appendChild(menu);
+        header.appendChild(container);
     }
 
-    openDropdown(btn, dropdown) {
-        btn.classList.add('active');
-        dropdown.classList.add('show');
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLevel4Nav);
+    } else {
+        initLevel4Nav();
     }
-
-    closeDropdown(btn, dropdown) {
-        btn.classList.remove('active');
-        dropdown.classList.remove('show');
-    }
-}
-
-// Auto-initialize
-new LessonNavigation();
+})();
