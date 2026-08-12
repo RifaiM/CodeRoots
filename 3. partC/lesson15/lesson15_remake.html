@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level5-navigation.css">
+    <link rel="stylesheet" href="./lesson15_remake.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="../dojo-linter.js"></script>
+    <title>Level 5 - Lesson 15: 🏆 Capstone Framework Web App | NoviCodes</title>
+</head>
+<body>
+    <!-- Level 5 Header Navigation -->
+    <header class="lesson-header">
+        <a href="../../index.html" class="home-button">
+            <span class="home-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1>Level 5 - Lesson 15: 🏆 Capstone Framework Web App</h1>
+    </header>
+
+    <main class="lesson-content">
+        <!-- Concept Hero Banner -->
+        <section class="concept-hero">
+            <h2>🏆 Level 5 Capstone: Production-Grade React Developer Workspace</h2>
+            <p>
+                Congratulations on reaching the final challenge of Level 5! In this Capstone Project, you will synthesize everything you've learned into a single <strong>production-grade React Developer Productivity Dashboard</strong> incorporating Component Composition, State & Effect Hooks, Custom Persistence Hooks, Context API, Memoization, and DOM Refs!
+            </p>
+        </section>
+
+        <!-- Real-World Analogy Grid (2-Column Spacing) -->
+        <section class="analogy-grid">
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🏗️ 1. Master Architect</h4>
+                    <span class="syntax-chip">Full React Integration</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Constructing a skyscraper! Bring together blueprints (Components), electric grid (Context API), automated tools (Custom Hooks), and structural speed (Memoization).
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>📡 2. Global State & Theme</h4>
+                    <span class="syntax-chip">createContext + Provider</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A smart home control system! Broadcast user preferences and light themes across all rooms without stringing messy cables through walls.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>⚡ 3. High Performance Engine</h4>
+                    <span class="syntax-chip">useMemo + useRef</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> A high-speed processor! Filter hundreds of tasks instantly using <code>useMemo</code> and control terminal focus with laser precision via <code>useRef</code>.
+                </p>
+            </div>
+
+            <div class="analogy-card">
+                <div class="card-header">
+                    <h4>🎓 4. Level 5 Mastery & Certificate</h4>
+                    <span class="syntax-chip">React Engineer</span>
+                </div>
+                <p>
+                    <strong>Real-World Analogy:</strong> Earning your wings! Completing this Capstone unlocks the official Level 5 React & Modern Frontend Engineering Graduation Certificate.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Feature 2x2 Grid -->
+        <section class="code-feature-grid">
+            <div class="code-feature-card">
+                <div class="feature-title">📦 1. Global App Context Provider</div>
+                <div class="code-block"><span class="tag">&lt;AppContext.Provider</span> <span class="keyword">value</span>={{ tasks, theme, toggleTheme }}<span class="tag">&gt;</span>
+  <span class="tag">&lt;DashboardLayout /&gt;</span>
+<span class="tag">&lt;/AppContext.Provider&gt;</span></div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">⚡ 2. Custom Persistence Hook</div>
+                <div class="code-block"><span class="keyword">const</span> [tasks, setTasks] = <span class="function">useLocalStorage</span>(<span class="string">"dev_tasks"</span>, [
+  { id: 1, text: <span class="string">"Build Capstone App"</span>, done: <span class="keyword">true</span> }
+]);</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🎨 3. Memoized Search Filtering</div>
+                <div class="code-block"><span class="keyword">const</span> filteredTasks = React.<span class="function">useMemo</span>(() =&gt; {
+  <span class="keyword">return</span> tasks.<span class="function">filter</span>(t =&gt; t.text.<span class="function">includes</span>(query));
+}, [tasks, query]);</div>
+            </div>
+
+            <div class="code-feature-card">
+                <div class="feature-title">🚀 4. Direct DOM Focus Control</div>
+                <div class="code-block"><span class="keyword">const</span> inputRef = React.<span class="function">useRef</span>(<span class="keyword">null</span>);
+<span class="keyword">const</span> handleFocus = () =&gt; inputRef.current.<span class="function">focus</span>();</div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox -->
+        <section class="sandbox-section">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span>🏆 Level 5 Interactive Capstone React Sandbox</span>
+                </div>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCodeBtn">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCodeBtn">
+                        <span>⚡ Run</span><span class="btn-full-text">&nbsp;Capstone App</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-header">Capstone Project Component & Editor</div>
+                    <textarea id="codeEditor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="pane-header">Live Developer Productivity Dashboard Canvas</div>
+                    <div id="dojoLintPanel"></div>
+                    <iframe id="previewFrame" title="React Capstone Render Canvas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist -->
+        <section class="requirements-section">
+            <h3>🎯 Lesson 15 Capstone Challenge: Full React Developer Productivity App</h3>
+            <p>Complete all 4 requirements in the Capstone React Sandbox above to claim your Graduation Certificate:</p>
+
+            <ul class="task-checklist">
+                <li id="req1">Implement a Global Context Provider (<code>&lt;Context.Provider value={...}&gt;</code>) to share app theme or user state</li>
+                <li id="req2">Use state & effect hooks (<code>useState</code>, <code>useEffect</code>) or custom hooks (e.g. <code>useLocalStorage</code>) for data persistence</li>
+                <li id="req3">Optimize filtered data rendering using <code>React.useMemo(...)</code> or memoized calculation functions</li>
+                <li id="req4">Incorporate direct DOM references using <code>React.useRef(...)</code> to manage input focus or DOM actions</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProjectBtn" disabled>
+                <span>Complete Level 5 & View Graduation Certificate 🎓🏆</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Navigation Jump Menu Engine -->
+    <script src="../level5-navigation.js"></script>
+    <script src="./lesson15_remake.js"></script>
+</body>
+</html>
