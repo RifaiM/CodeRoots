@@ -284,7 +284,7 @@
 textarea.py-editor {
   flex: 1;
   min-width: 0;
-  min-height: 320px;
+  height: 100%;            /* fill the fixed-height wrapper */
   background: #0f172a;
   color: #f8fafc;
   border: none;
@@ -293,23 +293,22 @@ textarea.py-editor {
   font-family: 'Fira Code', monospace;
   font-size: 0.88rem;
   line-height: 1.5;
-  resize: none;            /* wrapper handles sizing; vertical resize added below */
+  resize: none;            /* fixed height — scroll instead of grow */
   outline: none;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: auto;        /* vertical scroll when code exceeds height */
 }
 
-/* keep vertical resize on the wrapper itself via a resize handle */
+/* Fixed editor height — no resize, no grow */
 .editor-with-lines {
-  resize: vertical;
-  min-height: 320px;
+  height: 360px;           /* fixed — feels like a real IDE pane */
 }
 
 textarea.py-editor:focus { outline: none; }
 
 .terminal-screen {
   flex: 1;
-  min-height: 320px;
+  height: 360px;           /* matches editor — equal split-pane height */
   background: #0f172a;
   border: 1px solid #334155;
   border-radius: 10px;
