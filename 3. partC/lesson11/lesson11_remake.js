@@ -179,6 +179,7 @@ root.render(<DevPortalRouter />);`;
             editor.value = savedDraft;
         } else {
             editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
         }
 
@@ -285,6 +286,7 @@ root.render(<DevPortalRouter />);`;
                     }).then((result) => {
                         if (result.isConfirmed) {
                             editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
                             localStorage.removeItem('partC_lesson11_remake_draft');
                             runCode(false);
@@ -293,6 +295,7 @@ root.render(<DevPortalRouter />);`;
                     });
                 } else {
                     editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
                     localStorage.removeItem('partC_lesson11_remake_draft');
                     runCode(false);

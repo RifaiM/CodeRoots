@@ -181,6 +181,7 @@ root.render(<TechStoreApp />);`;
             editor.value = savedDraft;
         } else {
             editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
         }
 
@@ -287,6 +288,7 @@ root.render(<TechStoreApp />);`;
                     }).then((result) => {
                         if (result.isConfirmed) {
                             editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
                             localStorage.removeItem('partC_lesson9_remake_draft');
                             runCode(false);
@@ -295,6 +297,7 @@ root.render(<TechStoreApp />);`;
                     });
                 } else {
                     editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
                     localStorage.removeItem('partC_lesson9_remake_draft');
                     runCode(false);

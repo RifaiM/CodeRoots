@@ -213,6 +213,7 @@ document.getElementById('output').innerHTML = renderProfile();`;
                         const editor = document.getElementById('jsCode');
                         const lineNumberEl = document.getElementById('lineNumbers');
                         if (editor) editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                         buildLineNumbers(lineNumberEl, editor);
 
                         // Clear draft from localStorage
@@ -227,6 +228,7 @@ document.getElementById('output').innerHTML = renderProfile();`;
                 const editor = document.getElementById('jsCode');
                 const lineNumberEl = document.getElementById('lineNumbers');
                 if (editor) editor.value = defaultCode;
+                        if (typeof DojoLinter !== 'undefined') DojoLinter.check(editor.value);
                 buildLineNumbers(lineNumberEl, editor);
                 localStorage.removeItem('partC_lesson1_remake_draft');
                 this.runCode();
