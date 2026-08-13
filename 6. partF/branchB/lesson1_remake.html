@@ -394,15 +394,21 @@ WHERE u.role = 'admin';</code>
                 <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Database Engine: SQLite / PostgreSQL</span>
             </div>
 
-            <textarea id="editor" class="terminal-editor" placeholder="-- Type or paste your SQL query here:
-SELECT name, email FROM users WHERE role = 'developer';"></textarea>
+            <textarea id="editor" class="terminal-editor" placeholder="-- Write your SQL query here..."></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" id="runBtn" onclick="executeSQLQuery()">⚡ Run SQL Query</button>
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
-            <div class="terminal-output" id="consoleOutput">> Ready. Type your SQL query and click "Run SQL Query" to execute...</div>
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
+
+            <div class="terminal-output" id="consoleOutput">> Ready. Write your SQL query and click Run SQL Query...</div>
+
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </section>
     </main>
 
@@ -425,92 +431,129 @@ SELECT name, email FROM users WHERE role = 'developer';"></textarea>
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchB_lesson1_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `-- SQL Fundamentals Practice
+-- Task: Write a SELECT query to retrieve developer profiles
+
+-- Hint: Use SELECT to choose columns, FROM to specify the table,
+-- and WHERE to filter rows by a condition.
+
+-- TODO: Write a query to get the name and email
+-- from the 'users' table where role = 'developer'
+SELECT
+    -- TODO: list the columns you want here
+FROM users
+WHERE
+    -- TODO: add your filter condition here
+    ;`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
-        // Load saved draft on load
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-        });
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
 
-        // Save draft on input
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'sql' });
+            Level7Linter.initChecklist([
+                { id: 'select',    label: 'Use <code>SELECT</code> to choose which columns to return',        regex: /\bSELECT\b/i },
+                { id: 'columns',   label: 'Select the <code>name</code> and <code>email</code> columns',     fn: (c) => /\bname\b/i.test(c) && /\bemail\b/i.test(c) },
+                { id: 'from',      label: 'Use <code>FROM users</code> to target the correct table',          regex: /\bFROM\s+users\b/i },
+                { id: 'where',     label: 'Use <code>WHERE</code> to filter rows by a condition',             regex: /\bWHERE\b/i },
+                { id: 'role',      label: "Filter by <code>role = 'developer'</code>",                       fn: (c) => /role\s*=\s*'developer'/i.test(c) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
+
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Type a new SQL query to test...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Write your SQL query and click Run...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text);
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '📋 SQL copied to clipboard!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 SQL copied!', showConfirmButton: false, timer: 1800 });
         }
 
         function executeSQLQuery() {
             const query = editor.value.trim();
             if (!query) {
-                consoleOutput.textContent = '❌ Error: Query editor is empty. Please enter an SQL query.';
+                consoleOutput.textContent = '❌ Error: Editor is empty. Write a SQL query first!';
                 return;
             }
 
-            const lowerQuery = query.toLowerCase();
-            if (lowerQuery.includes('select') && lowerQuery.includes('name') && lowerQuery.includes('email') && lowerQuery.includes('users') && lowerQuery.includes('developer')) {
-                consoleOutput.textContent = `[SQL EXECUTOR SUCCESS] 2 Rows Returned:\n----------------------------------------\n| name              | email               |\n----------------------------------------\n| Alex Rivera       | alex@novicodes.dev  |\n| Sarah Chen        | sarah@novicodes.dev |\n----------------------------------------\nQuery status: 200 OK (Execution time: 4ms)`;
-                
-                localStorage.setItem('partF_branchB_lesson1_completed', 'true');
-                if (typeof addXP === 'function') addXP(250);
+            Level7Linter.runChecklist(query);
 
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 1 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 1!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 2 🚀',
-                        confirmButtonColor: '#a855f7',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson2_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                consoleOutput.textContent = `❌ SQL Execution Error:\nExpected query selecting 'name' and 'email' from 'users' WHERE role = 'developer'.\n\nYour Query:\n${query}`;
+            const q = query.toLowerCase();
+            const hasSelect = /\bselect\b/.test(q);
+            const hasName   = /\bname\b/.test(q);
+            const hasEmail  = /\bemail\b/.test(q);
+            const hasFrom   = /\bfrom\s+users\b/.test(q);
+            const hasWhere  = /\bwhere\b/.test(q);
+            const hasRole   = /role\s*=\s*'developer'/.test(q);
+
+            if (!hasSelect) {
+                consoleOutput.textContent = '❌ Query Error: Missing SELECT keyword.\n💡 Hint: SQL queries start with SELECT to choose which columns to retrieve.';
+                consoleOutput.style.color = '#f87171';
+                return;
             }
+            if (!hasFrom) {
+                consoleOutput.textContent = '❌ Query Error: Missing FROM users clause.\n💡 Hint: Use FROM users to tell SQL which table to read from.';
+                consoleOutput.style.color = '#f87171';
+                return;
+            }
+            if (!hasWhere) {
+                consoleOutput.textContent = '⚠️ Warning: No WHERE clause — this would return ALL users, not just developers.\n💡 Hint: Add WHERE role = \'developer\' to filter the results.';
+                consoleOutput.style.color = '#fbbf24';
+                return;
+            }
+            if (!hasRole) {
+                consoleOutput.textContent = '⚠️ Warning: WHERE clause found but not filtering by role = \'developer\'.\n💡 Hint: Try WHERE role = \'developer\'';
+                consoleOutput.style.color = '#fbbf24';
+                return;
+            }
+            if (!hasName || !hasEmail) {
+                consoleOutput.textContent = '⚠️ Almost there! Make sure you SELECT both name AND email columns.\n💡 Example: SELECT name, email FROM users ...';
+                consoleOutput.style.color = '#fbbf24';
+                return;
+            }
+
+            consoleOutput.textContent = `[SQL ENGINE] Query parsed successfully ✓
+[SQL ENGINE] Executing against users table...
+
++-------------------+----------------------+
+| name              | email                |
++-------------------+----------------------+
+| Alex Rivera       | alex@novicodes.dev   |
+| Sarah Chen        | sarah@novicodes.dev  |
++-------------------+----------------------+
+2 rows returned (4ms) ✅`;
+            consoleOutput.style.color = '#34d399';
+
+            localStorage.setItem('partF_branchB_lesson1_completed', 'true');
+            if (typeof addXP === 'function') addXP(250);
+
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🎉 Lesson 1 Mastered! (+250 XP)',
+                    html: '<p style="color:#475569">You wrote your first real SQL query! Now learn to connect to a live cloud database.</p>',
+                    showDenyButton: true,
+                    confirmButtonText: 'Continue to Lesson 2 🚀',
+                    confirmButtonColor: '#a855f7',
+                    denyButtonText: 'Stay & Practice 🛠️',
+                    denyButtonColor: '#475569'
+                }).then((r) => { if (r.isConfirmed) window.location.href = './lesson2_remake.html'; });
+            }, 400);
         }
     </script>
 </body>

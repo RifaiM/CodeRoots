@@ -403,13 +403,19 @@ Proxy Status: Proxied (Orange Cloud)</code>
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Custom CNAME Hostname:</label>
             <input type="text" id="cnameInput" class="config-input" value="app.mycompany.com">
+            <textarea id="configInput" class="terminal-editor" style="display: none;"></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCloudflareDeploy()">🚀 Deploy to Cloudflare Pages</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin-bottom: 8px;"></div>
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </div>
     </div>
 
@@ -428,8 +434,17 @@ Proxy Status: Proxied (Orange Cloud)</code>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
     <script>
-        const DEFAULT_STARTER_CODE = ``;
+        const DEFAULT_STARTER_CODE = `# wrangler.toml — Cloudflare Pages Configuration
+# TODO: Fill in your project name and compatibility date
+
+name = "TODO: your-project-name"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-01-01"
+
+[vars]
+ENVIRONMENT = "production"`;
 
         const DRAFT_KEY = 'partF_branchA_lesson3_draft';
 
@@ -445,6 +460,13 @@ Proxy Status: Proxied (Orange Cloud)</code>
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
             }
+
+            Level7Linter.init('configInput', 'l7LintPanel', { mode: 'toml' });
+            Level7Linter.initChecklist([
+                { id: 'name',  label: 'Set project <code>name</code>',    fn: (c) => /name\s*=\s*".+"/.test(c) },
+                { id: 'out', label: 'Set <code>pages_build_output_dir</code>',  fn: (c) => /pages_build_output_dir\s*=\s*".+"/.test(c) },
+                { id: 'compat', label: 'Set <code>compatibility_date</code>',  fn: (c) => /compatibility_date\s*=\s*".+"/.test(c) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             const isCompleted = localStorage.getItem('partF_branchA_lesson3_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -490,14 +512,26 @@ Proxy Status: Proxied (Orange Cloud)</code>
             const redirectRule = document.getElementById('redirectRuleInput').value.trim();
             const pagesTarget = document.getElementById('pagesTargetInput').value.trim();
             const output = document.getElementById('terminalOutput');
+            const editorVal = document.getElementById('configInput') ? document.getElementById('configInput').value : '';
 
-            if (!redirectRule.includes('/*') || !redirectRule.includes('200')) {
-                output.textContent = '❌ Configuration Error: SPA _redirects rule must contain "/* /index.html 200".';
+            Level7Linter.runChecklist(editorVal);
+
+            if (!/name\s*=\s*".+"/.test(editorVal)) {
+                output.textContent = '❌ Error: You must set the project name.';
                 output.style.color = '#f87171';
                 return;
             }
+            if (!/pages_build_output_dir\s*=\s*".+"/.test(editorVal)) {
+                output.textContent = '⚠️  Progress: Set pages_build_output_dir to "dist" or similar.';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!/compatibility_date\s*=\s*".+"/.test(editorVal)) {
+                output.textContent = '⚠️  Progress: Set compatibility_date to a valid date like "2024-01-01".';
+                output.style.color = '#fbbf24';
+                return;
+            }
 
-            // Success State
             output.textContent = `[Cloudflare Pages Pipeline] Initializing build engine...
 ✓ Cloned GitHub repository
 ✓ Executed "npm run build" successfully
@@ -505,10 +539,11 @@ Proxy Status: Proxied (Orange Cloud)</code>
 ✓ Verified SPA routing fallback rule: "${redirectRule}"
 ✓ Proxied SSL CNAME active for https://${pagesTarget}
 
-🎉 SUCCESS: Live on Cloudflare Edge CDN with Unlimited Free Bandwidth!`;
+✅ SUCCESS: Live on Cloudflare Edge CDN with Unlimited Free Bandwidth!`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson3_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
@@ -521,9 +556,7 @@ Proxy Status: Proxied (Orange Cloud)</code>
                     confirmButtonText: 'Continue to Lesson 4 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './lesson4_remake.html';
-                    }
+                    if (result.isConfirmed) window.location.href = './lesson4_remake.html';
                 });
             }
         }

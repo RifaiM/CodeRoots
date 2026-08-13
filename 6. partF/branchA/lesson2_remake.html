@@ -412,13 +412,19 @@ vercel --prod</code>
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Output Directory:</label>
             <input type="text" id="outputDirInput" class="config-input" value="dist">
+            <textarea id="configInput" class="terminal-editor" style="display: none;"></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Production Deploy</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin-bottom: 8px;"></div>
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </div>
     </div>
 
@@ -437,8 +443,17 @@ vercel --prod</code>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
     <script>
-        const DEFAULT_STARTER_CODE = ``;
+        const DEFAULT_STARTER_CODE = `# vercel.json — Vercel Deployment Configuration
+# TODO: Fill in the build command and output directory below
+
+{
+  "buildCommand": "TODO: enter your build command (e.g. npm run build)",
+  "outputDirectory": "TODO: enter your output dir (e.g. dist)",
+  "framework": "vite",
+  "regions": ["sin1"]
+}`;
 
         const DRAFT_KEY = 'partF_branchA_lesson2_draft';
 
@@ -454,6 +469,12 @@ vercel --prod</code>
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
             }
+
+            Level7Linter.init('configInput', 'l7LintPanel', { mode: 'bash' });
+            Level7Linter.initChecklist([
+                { id: 'buildcmd',  label: 'Enter a valid build command (e.g. <code>npm run build</code>)',    fn: (c) => /npm\\s+run\\s+build|npm\\s+run\\s+export/.test(c) },
+                { id: 'outputdir', label: 'Set an output directory (<code>dist</code>, <code>build</code>, or <code>out</code>)',  fn: (c) => /\\b(dist|build|out)\\b/.test(c) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             const isCompleted = localStorage.getItem('partF_branchA_lesson2_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -499,45 +520,50 @@ vercel --prod</code>
             const buildCmd = document.getElementById('buildCommandInput').value.trim();
             const outputDir = document.getElementById('outputDirInput').value.trim();
             const output = document.getElementById('terminalOutput');
+            const editorVal = document.getElementById('configInput') ? document.getElementById('configInput').value : buildCmd;
 
-            if (buildCmd !== 'npm run build' && buildCmd !== 'npm run export') {
-                output.textContent = '❌ Build Error: Invalid build command! Use "npm run build".';
+            Level7Linter.runChecklist(buildCmd + '\n' + outputDir + '\n' + editorVal);
+
+            if (!buildCmd) {
+                output.textContent = '❌ Error: Please enter a build command. Hint: most projects use npm run build';
                 output.style.color = '#f87171';
                 return;
             }
-
-            if (outputDir !== 'dist' && outputDir !== 'build' && outputDir !== 'out') {
-                output.textContent = '⚠️ Build Warning: Output directory should be "dist", "build", or "out".';
+            if (buildCmd !== 'npm run build' && buildCmd !== 'npm run export') {
+                output.textContent = '❌ Build Error: "' + buildCmd + '" is not a recognized build command.\n💡 Hint: Use "npm run build" (Vite/React) or "npm run export" (static export).';
+                output.style.color = '#f87171';
+                return;
+            }
+            if (!outputDir || !['dist','build','out'].includes(outputDir)) {
+                output.textContent = '⚠️  Warning: Output directory "' + (outputDir || '(empty)') + '" is unexpected.\n💡 Hint: Vite uses "dist", Create React App uses "build", Next.js static uses "out".';
                 output.style.color = '#fbbf24';
                 return;
             }
 
-            // Success State
-            output.textContent = `[Vercel Build Service] Inspecting GitHub commit...
-[Building] Executing "${buildCmd}"...
+            output.textContent = `[Vercel] Inspecting latest GitHub commit...
+[Vercel] Running build: "${buildCmd}"
 ✓ Created optimized production build in /${outputDir}
-✓ Uploaded static assets to Vercel Global Edge Network
-✓ SSL / TLS Certificate issued for https://react-pro-app.vercel.app
+✓ Uploaded static assets to Vercel Edge Network (23 regions)
+✓ TLS certificate issued for https://my-app.vercel.app
 
-🎉 SUCCESS: Deployed live to https://react-pro-app.vercel.app [Latency: 14ms]`;
+✅ SUCCESS: Deployed → https://my-app.vercel.app [Latency: 12ms] 🎉`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson2_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 2 Completed! (+250 XP)',
-                    text: 'You successfully deployed your frontend to Vercel & Netlify!',
+                    text: 'You deployed your frontend to Vercel & Netlify!',
                     showDenyButton: true,
-                    confirmButtonColor: '#0284c7',
+                    confirmButtonColor: '#10b981',
                     denyButtonColor: '#475569',
                     confirmButtonText: 'Continue to Lesson 3 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './lesson3_remake.html';
-                    }
+                    if (result.isConfirmed) window.location.href = './lesson3_remake.html';
                 });
             }
         }

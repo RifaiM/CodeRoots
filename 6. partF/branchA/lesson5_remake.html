@@ -422,7 +422,12 @@ app.add_middleware(
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin-bottom: 8px;"></div>
             <div class="terminal-output" id="terminalOutput">CORS HTTP simulation logs will display here...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </div>
     </div>
 
@@ -441,8 +446,27 @@ app.add_middleware(
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
     <script>
-        const DEFAULT_STARTER_CODE = ``;
+        const DEFAULT_STARTER_CODE = `from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# TODO: Add your allowed frontend origins below
+allowed_origins = [
+    "http://localhost:3000",
+    # Add your production URL here
+]
+
+# TODO: Add the CORSMiddleware to your app
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)`;
 
         const DRAFT_KEY = 'partF_branchA_lesson5_draft';
 
@@ -458,6 +482,14 @@ app.add_middleware(
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
             }
+
+            Level7Linter.init('corsCodeInput', 'l7LintPanel', { mode: 'python' });
+            Level7Linter.initChecklist([
+                { id: 'import', label: 'Import <code>CORSMiddleware</code>',    fn: (c) => /import\s+CORSMiddleware/.test(c) },
+                { id: 'add',    label: 'Call <code>app.add_middleware</code>',   fn: (c) => /app\.add_middleware/.test(c) },
+                { id: 'orig',   label: 'Set <code>allow_origins</code>',         fn: (c) => /allow_origins/.test(c) },
+                { id: 'cred',   label: 'Set <code>allow_credentials=True</code>', fn: (c) => /allow_credentials\s*=\s*True/.test(c) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             const isCompleted = localStorage.getItem('partF_branchA_lesson5_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -500,18 +532,32 @@ app.add_middleware(
         }
 
         function runCorsTest() {
-            const frontendUrl = document.getElementById('frontendUrlInput').value.trim();
-            const backendUrl = document.getElementById('backendUrlInput').value.trim();
             const code = document.getElementById('corsCodeInput').value;
             const output = document.getElementById('terminalOutput');
 
-            if (!code.includes('CORSMiddleware') || !code.includes('allow_origins')) {
-                output.textContent = '❌ CORS Error: Missing CORSMiddleware or allow_origins definition!';
+            Level7Linter.runChecklist(code);
+
+            if (!/import\s+CORSMiddleware/.test(code)) {
+                output.textContent = '❌ Error: You must import CORSMiddleware.';
                 output.style.color = '#f87171';
                 return;
             }
+            if (!/app\.add_middleware/.test(code)) {
+                output.textContent = '⚠️  Progress: Call app.add_middleware().';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!/allow_origins/.test(code)) {
+                output.textContent = '⚠️  Progress: Pass allow_origins to the middleware.';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!/allow_credentials\s*=\s*True/.test(code)) {
+                output.textContent = '⚠️  Progress: Set allow_credentials=True.';
+                output.style.color = '#fbbf24';
+                return;
+            }
 
-            // Success State
             output.textContent = `[Browser OPTION Preflight Request]
 > OPTIONS /api/v1/users HTTP/1.1
 > Host: python-api.onrender.com
@@ -526,6 +572,7 @@ app.add_middleware(
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson5_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
@@ -538,9 +585,7 @@ app.add_middleware(
                     confirmButtonText: 'Continue to Lesson 6 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './lesson6_remake.html';
-                    }
+                    if (result.isConfirmed) window.location.href = './lesson6_remake.html';
                 });
             }
         }

@@ -425,7 +425,12 @@ git push -u origin main"></textarea>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin-bottom: 8px;"></div>
             <div class="terminal-output" id="terminalOutput">Terminal output will display here after execution...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </div>
     </div>
 
@@ -444,8 +449,26 @@ git push -u origin main"></textarea>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
     <script>
-        const DEFAULT_STARTER_CODE = ``;
+        const DEFAULT_STARTER_CODE = `# Step 1: Initialize a Git repository
+git init
+
+# Step 2: Create a .gitignore file
+echo "node_modules/" > .gitignore
+echo ".env" >> .gitignore
+
+# Step 3: Stage all files
+git add .
+
+# Step 4: Create your first commit
+git commit -m "feat: initial project setup"
+
+# Step 5: Link your GitHub remote & push
+# TODO: Replace <username> and <repo> with your actual values
+git remote add origin https://github.com/<username>/<repo>.git
+git branch -M main
+git push -u origin main`;
 
         const DRAFT_KEY = 'partF_branchA_lesson1_draft';
 
@@ -461,6 +484,15 @@ git push -u origin main"></textarea>
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
             }
+
+            Level7Linter.init('terminalInput', 'l7LintPanel', { mode: 'bash' });
+            Level7Linter.initChecklist([
+                { id: 'init',    label: 'Run <code>git init</code> to initialize the repo',      regex: /git\\s+init/ },
+                { id: 'ignore',  label: 'Create a <code>.gitignore</code> file',                  regex: /\\.gitignore/ },
+                { id: 'add',     label: 'Stage files with <code>git add .</code>',               regex: /git\\s+add/ },
+                { id: 'commit',  label: 'Create a commit with <code>git commit -m</code>',       regex: /git\\s+commit\\s+-m/ },
+                { id: 'push',    label: 'Push to GitHub with <code>git push</code>',             regex: /git\\s+push/ },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             const isCompleted = localStorage.getItem('partF_branchA_lesson1_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -503,34 +535,45 @@ git push -u origin main"></textarea>
         }
 
         function runGitSimulation() {
-            const input = document.getElementById('terminalInput').value.toLowerCase();
+            const input = document.getElementById('terminalInput').value;
+            const lower = input.toLowerCase();
             const output = document.getElementById('terminalOutput');
 
-            if (!input.includes('git init')) {
-                output.textContent = '❌ Error: You must initialize Git using "git init" first!';
+            Level7Linter.runChecklist(input);
+
+            if (!lower.includes('git init')) {
+                output.textContent = '❌ Error: Start with git init to initialize the repository!';
                 output.style.color = '#f87171';
                 return;
             }
-
-            if (!input.includes('git add') || !input.includes('git commit')) {
-                output.textContent = '⚠️ Progress: Git initialized! Now stage files ("git add .") and commit ("git commit -m \'...\'").';
+            if (!lower.includes('git add')) {
+                output.textContent = '⚠️  Progress: Repo initialized! Next: stage your files with git add .';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!lower.includes('git commit')) {
+                output.textContent = '⚠️  Progress: Files staged! Next: commit with git commit -m "your message"';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!lower.includes('git push')) {
+                output.textContent = '⚠️  Progress: Commit created! Next: push to GitHub with git push -u origin main';
                 output.style.color = '#fbbf24';
                 return;
             }
 
-            // Success State
-            output.textContent = `[Initialized empty Git repository in /project/.git/]
-[main (root-commit) a1b2c3d] feat: initial release for cloud shipping
- 4 files changed, 128 insertions(+)
- create mode 100644 index.html
- create mode 100644 style.css
- create mode 100644 .gitignore
-Branch 'main' set up to track remote branch 'main' from 'origin'.
-Everything up-to-date. Code successfully pushed to GitHub! 🚀`;
+            output.textContent = `[Git] Initialized empty repository in /project/.git/
+[Git] Staging all project files...
+[Git] [main (root-commit) a4f9c2e] feat: initial project setup
+  4 files changed, 128 insertions(+)
+  create mode 100644 index.html
+  create mode 100644 .gitignore
+[GitHub] Branch 'main' set up to track 'origin/main'.
+✅ SUCCESS: Code pushed to GitHub! Your project is now live on GitHub! 🚀`;
             output.style.color = '#34d399';
 
-            // Save Progress & Award XP
             localStorage.setItem('partF_branchA_lesson1_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
@@ -543,9 +586,7 @@ Everything up-to-date. Code successfully pushed to GitHub! 🚀`;
                     confirmButtonText: 'Continue to Lesson 2 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './lesson2_remake.html';
-                    }
+                    if (result.isConfirmed) window.location.href = './lesson2_remake.html';
                 });
             }
         }

@@ -417,6 +417,201 @@ SECRET_KEY = 'novi_secret_key'
 
 def authenticate_admin_request(auth_header):
     if not auth_header or not auth_header.startswith('Bearer '):
+                gap: 8px;
+            }
+            .panel-title {
+                text-align: center;
+                justify-content: center;
+                font-size: 0.96rem;
+            }
+            .lesson-badge {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .ide-panel {
+                padding: 16px;
+                border-radius: 14px;
+            }
+            .action-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 10px 14px;
+                font-size: 0.82rem;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                justify-content: center;
+            }
+            .code-box {
+                padding: 38px 12px 12px 12px;
+            }
+            .copy-btn {
+                top: 6px;
+                right: 6px;
+                padding: 3px 8px;
+                font-size: 0.68rem;
+            }
+            .code-box code {
+                white-space: pre-wrap;
+                word-break: break-all;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .ide-wrapper {
+                padding: 0 8px;
+            }
+            .ide-panel {
+                padding: 12px 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 9px 12px;
+                font-size: 0.78rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .panel-title {
+                font-size: 0.92rem;
+            }
+            .lesson-badge {
+                font-size: 0.70rem;
+                padding: 3px 6px;
+            }
+            .terminal-editor {
+                font-size: 0.78rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .ide-wrapper {
+                padding: 0 4px;
+            }
+            .ide-panel {
+                padding: 10px 8px;
+            }
+            .run-btn, .clear-btn {
+                padding: 8px 10px;
+                font-size: 0.74rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .code-box {
+                padding: 36px 8px 10px 8px;
+            }
+            .code-box code {
+                font-size: 0.74rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 7 • Track 7B</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
+                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Loading...</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="ide-wrapper">
+        <!-- Left Panel: Concept Guide & Instructions -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>🛡️ Branch 7B • Final Lesson 6</span>
+                </div>
+                <span class="lesson-badge">Auth Middleware & RBAC</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. Protected Route Middleware & RBAC</h4>
+                <p>Authentication Middleware intercept incoming HTTP requests, parse the <code>Authorization: Bearer &lt;token&gt;</code> header, decode claims, and verify user permissions (<strong>Role-Based Access Control</strong>).</p>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. Middleware Auth Gate Pattern</h4>
+                <p>Check for the token and enforce role policies before serving protected resources:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard(`def require_role(required_role):
+    def middleware(request):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return {'status': 401, 'error': 'Missing or invalid Bearer token'}
+        
+        token = auth_header.split(' ')[1]
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        if payload.get('role') != required_role:
+            return {'status': 403, 'error': 'Access Denied: Insufficient Permissions'}
+        
+        return {'status': 200, 'data': 'Protected Data Granted'}`)">📋 Copy</button>
+                    <code>def require_role(required_role):
+    def middleware(request):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return {'status': 401, 'error': 'Missing or invalid Bearer token'}
+        
+        token = auth_header.split(' ')[1]
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        if payload.get('role') != required_role:
+            return {'status': 403, 'error': 'Access Denied: Insufficient Permissions'}
+        
+        return {'status': 200, 'data': 'Protected Data Granted'}</code>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Your Capstone Task</h4>
+                <p>Write an authentication middleware function <code>authenticate_admin_request(auth_header)</code> that validates <code>Bearer token</code>, decodes payload using <code>HS256</code>, checks if <code>payload['role'] == 'admin'</code>, and returns <code>True</code>.</p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Capstone Auth Middleware Editor -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>🛡️ Capstone Auth Middleware Simulator</span>
+                </div>
+                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Apex Title: Database Architect</span>
+            </div>
+
+            <textarea id="editor" class="terminal-editor" placeholder="# Write your authentication middleware function below:
+import jwt
+
+SECRET_KEY = 'novi_secret_key'
+
+def authenticate_admin_request(auth_header):
+    if not auth_header or not auth_header.startswith('Bearer '):
         return False
     token = auth_header.split(' ')[1]
     payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
@@ -427,7 +622,12 @@ def authenticate_admin_request(auth_header):
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Write your authentication middleware and click "Deploy Middleware & Claim Rank"...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </section>
     </main>
 
@@ -450,10 +650,36 @@ def authenticate_admin_request(auth_header):
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchB_lesson6_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `from fastapi import HTTPException, Depends, status
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+
+# TODO: Write a function to get and verify the current user from a JWT token
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    # TODO: Decode the token using your SECRET_KEY
+    # Hint: Use jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    try:
+        payload = ...
+        user_id = payload.get("sub")
+        if user_id is None:
+            raise HTTPException(status_code=401, detail="Invalid token")
+        return {"user_id": user_id}
+    except Exception:
+        raise HTTPException(status_code=401, detail="Could not validate credentials")
+
+
+# TODO: Write a role-based access control dependency
+def require_role(required_role: str):
+    async def role_checker(current_user: dict = Depends(get_current_user)):
+        # TODO: Check if the user has the required role
+        # Raise HTTPException 403 if not authorized
+        ...
+    return role_checker`;
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
@@ -464,6 +690,15 @@ def authenticate_admin_request(auth_header):
             } else {
                 editor.value = DEFAULT_STARTER_CODE;
             }
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'python' });
+            Level7Linter.initChecklist([
+                { id: 'import',    label: 'Import <code>HTTPException</code> and <code>Depends</code> from FastAPI', regex: /from\s+fastapi\s+import/ },
+                { id: 'oauth2',    label: 'Use <code>OAuth2PasswordBearer</code> for token extraction',              regex: /OAuth2PasswordBearer/ },
+                { id: 'getuser',   label: 'Define a <code>get_current_user</code> dependency function',             regex: /get_current_user/ },
+                { id: 'depends',   label: 'Use <code>Depends()</code> to inject the token',                        regex: /Depends\s*\(/ },
+                { id: 'rbac',      label: 'Implement a <code>require_role()</code> RBAC checker',                  regex: /require_role/ },
+                { id: 'exception', label: 'Raise <code>HTTPException</code> when access is denied',                regex: /raise\s+HTTPException/ },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'runBtn' });
         });
 
         editor.addEventListener('input', () => {
@@ -498,6 +733,7 @@ def authenticate_admin_request(auth_header):
 
         function testAuthMiddleware() {
             const code = editor.value.trim();
+            Level7Linter.runChecklist(code);
             if (!code) {
                 consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your Auth Middleware function.';
                 return;
@@ -532,7 +768,17 @@ def authenticate_admin_request(auth_header):
                     });
                 }, 400);
             } else {
-                consoleOutput.textContent = `❌ Auth Middleware Error:\nExpected function 'authenticate_admin_request' checking Bearer headers, decoding JWT, and validating 'admin' role.\n\nYour Function:\n${code}`;
+                let errorMsg = '❌ Auth Middleware Error:\n';
+                if (!code.includes('Bearer')) {
+                    errorMsg += 'Missing Bearer check. Authorization header typically starts with Bearer.\n';
+                } else if (!code.includes('jwt.decode')) {
+                    errorMsg += 'Missing jwt.decode(). You must decode the token to read the claims.\n';
+                } else if (!code.includes('admin')) {
+                    errorMsg += 'Missing check for admin role.\n';
+                } else {
+                    errorMsg += 'Make sure you are implementing the authentication middleware properly.\n';
+                }
+                consoleOutput.textContent = errorMsg;
             }
         }
     </script>

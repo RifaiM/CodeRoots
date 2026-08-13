@@ -417,7 +417,12 @@ jobs:
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin-bottom: 8px;"></div>
             <div class="terminal-output" id="terminalOutput">CI/CD execution log output will display here...</div>
+            <div style="margin-top: 14px;">
+                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
+                <div id="l7TaskChecklist"></div>
+            </div>
         </div>
     </div>
 
@@ -436,8 +441,36 @@ jobs:
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
     <script>
-        const DEFAULT_STARTER_CODE = ``;
+        const DEFAULT_STARTER_CODE = `# .github/workflows/deploy.yml
+# TODO: Complete the GitHub Actions CI/CD workflow below
+
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # TODO: Add your install and build steps below
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build`;
 
         const DRAFT_KEY = 'partF_branchA_lesson6_draft';
 
@@ -453,6 +486,14 @@ jobs:
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
             }
+
+            Level7Linter.init('yamlInput', 'l7LintPanel', { mode: 'yaml' });
+            Level7Linter.initChecklist([
+                { id: 'push',    label: 'Has <code>on: push</code> trigger',    fn: (c) => /on:\s*[\s\S]*push:/m.test(c) || /on:\s*push/.test(c) || /on:\s*\[\s*'?push'?\s*\]/.test(c) },
+                { id: 'runs',    label: 'Has <code>runs-on: ubuntu-latest</code>', fn: (c) => /runs-on:\s*ubuntu-latest/.test(c) },
+                { id: 'checkout',label: 'Has <code>actions/checkout</code> step',  fn: (c) => /uses:\s*actions\/checkout/.test(c) },
+                { id: 'run',     label: 'Has a <code>run:</code> step',            fn: (c) => /\s+run:\s+/.test(c) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'claimRankBtn' });
 
             const isCompleted = localStorage.getItem('partF_branchA_lesson6_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -498,24 +539,41 @@ jobs:
             const input = document.getElementById('yamlInput').value;
             const output = document.getElementById('terminalOutput');
 
-            if (!input.includes('on:') || !input.includes('push') || !input.includes('jobs:')) {
-                output.textContent = '❌ YAML Syntax Error: Workflow must contain "on: push" and "jobs:" parameters!';
+            Level7Linter.runChecklist(input);
+
+            if (!/on:\s*[\s\S]*push:/m.test(input) && !/on:\s*push/.test(input) && !/on:\s*\[\s*'?push'?\s*\]/.test(input)) {
+                output.textContent = '❌ Error: You must have an "on: push" trigger.';
                 output.style.color = '#f87171';
                 return;
             }
+            if (!/runs-on:\s*ubuntu-latest/.test(input)) {
+                output.textContent = '⚠️  Progress: Set "runs-on: ubuntu-latest" for the job.';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!/uses:\s*actions\/checkout/.test(input)) {
+                output.textContent = '⚠️  Progress: Use the actions/checkout step to clone code.';
+                output.style.color = '#fbbf24';
+                return;
+            }
+            if (!/\s+run:\s+/.test(input)) {
+                output.textContent = '⚠️  Progress: Add a "run:" step to build your code.';
+                output.style.color = '#fbbf24';
+                return;
+            }
 
-            // Success State
-            output.textContent = `[GitHub Actions Runner] Setting up job "test-and-deploy"...
+            output.textContent = `[GitHub Actions Runner] Setting up job "deploy"...
 ✓ Run actions/checkout@v4
 ✓ Run actions/setup-node@v4
-✓ Executed "npm test" (12/12 unit tests passed)
+✓ Executed build step
 ✓ Deploying to Cloudflare Pages & Vercel Production
 ✓ Workflow completed successfully in 18s [Status: Success]
 
-🏆 CONGRATULATIONS! You have completed all 6 Lessons in Track 7A (Cloud Shipping & DevOps)!`;
+🏆 CONGRATULATIONS! You have completed all 6 Lessons in Track 7A!`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson6_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
