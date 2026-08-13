@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 15: Capstone Final Project: Production Backend API</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 15 – Capstone Final Project: Production Backend API</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>🎓 Capstone Final Project: Full Production Backend API</span>
+            </h2>
+            <p>
+                Welcome to the final capstone of <strong>Level 6: Python & Backend Architecture</strong>! In this final project, you bring together all backend concepts: Data Models, SQLite3 persistent storage, password hashing, FastAPI endpoint routes, and exception handling to build a production-grade <strong>Backend Microservice</strong>.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Graduation:</strong> Completing this final capstone demonstrates your ability to design, build, and deploy production-ready Python backend applications from scratch!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">🎓 1. Full Production Architecture</div>
+                    <pre class="code-block"><code><span class="keyword">class</span> <span class="function">UserModel</span>(object):
+  <span class="keyword">def</span> <span class="function">__init__</span>(self, username, role):
+    self.username = username
+    self.role = role
+
+<span class="keyword">@app.post</span>(<span class="string">"/register"</span>)
+<span class="keyword">def</span> <span class="function">create_user</span>(username, pw):
+  <span class="keyword">return</span> db.<span class="function">insert</span>(username, pw)</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">🏆 2. Level 6 Graduation & Certificate</div>
+                    <pre class="code-block"><code><span class="comment"># Output final success & unlock certificate</span>
+<span class="keyword">print</span>(<span class="string">"🎉 Capstone Backend Online!"</span>)
+<span class="keyword">print</span>(<span class="string">"🏆 Certificate Unlocked: Backend Engineer"</span>)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 15 Capstone Final Project: Production Backend Service
+
+import sqlite3
+import hashlib
+import json
+import base64
+
+# 1. Mock Production FastAPI Application Framework:
+class FastAPI:
+  def __init__(self, title="Production API"):
+    self.title = title
+    self.routes = {}
+
+  def get(self, path):
+    def decorator(func):
+      self.routes[f"GET {path}"] = func
+      return func
+    return decorator
+
+  def post(self, path):
+    def decorator(func):
+      self.routes[f"POST {path}"] = func
+      return func
+    return decorator
+
+# 2. Define Production User Data Model:
+class UserModel(object):
+  def __init__(self, user_id, username, role="developer"):
+    self.user_id = user_id
+    self.username = username
+    self.role = role
+
+# 3. Initialize FastAPI App & In-Memory Database:
+app = FastAPI(title="CodeRoots Level 6 Capstone Production Service")
+conn = sqlite3.connect(":memory:")
+cursor = conn.cursor()
+
+cursor.execute("CREATE TABLE users (id INT, username TEXT, pw_hash TEXT, role TEXT)")
+conn.commit()
+
+# Helper function to hash passwords securely:
+def create_pw_hash(password):
+  return hashlib.sha256(password.encode()).hexdigest()
+
+# 4. Implement Production CRUD Endpoints:
+@app.post("/register")
+def create_user(username, password):
+  pw_hash = create_pw_hash(password)
+  cursor.execute("INSERT INTO users VALUES (101, ?, ?, 'admin')", (username, pw_hash))
+  conn.commit()
+  return {"status": "created", "username": username}
+
+@app.get("/users")
+def read_users():
+  cursor.execute("SELECT id, username, role FROM users")
+  return cursor.fetchall()
+
+# 5. Execute Final Capstone Microservice Flow:
+print("🎉 Level 6 Final Capstone Microservice Starting...")
+print(f"📝 POST /register -> {create_user('Alex', 'SecurePass123')}")
+print(f"📖 GET /users -> {read_users()}")
+print("🏆 Congratulations! You have completed Level 6: Python & Backend Architecture!")
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 15 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 15 and claim your Level 6 Graduation Certificate!</p>
+
+            <ul class="task-checklist">
+                <li data-task="api">🚀 Deploy a production FastAPI microservice instance</li>
+                <li data-task="model">🧱 Define backend ORM data structures using Python model classes</li>
+                <li data-task="crud">🔐 Complete secure CRUD routes with authentication & exception handling</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Final Capstone & Claim Level 6 Certificate</button>
+        </section>
+    </main>
+</body>
+</html>
