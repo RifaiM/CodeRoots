@@ -643,45 +643,10 @@ if (isNaN(num) || num < 1 || num > 100) {
 
 Hint: Start with a complete HTML structure:
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Form</title>
-    <style>
-        /* Add your CSS styling here */
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .error { border-color: #e74c3c; }
-        .feedback { font-weight: 600; margin-top: 5px; }
-        .feedback.error { color: #e74c3c; }
-        .feedback.success { color: #27ae60; }
-    </style>
-</head>
-<body>
-    <form id='contactForm'>
-        <label>Name:</label>
-        <input type='text' id='name' placeholder='Enter your name'>
-        <div id='name-feedback' class='feedback'></div>
-        
-        <label>Email:</label>
-        <input type='email' id='email' placeholder='Enter your email'>
-        <div id='email-feedback' class='feedback'></div>
-        
-        <label>Message:</label>
-        <textarea id='message' placeholder='Enter your message'></textarea>
+<!DOCTYPE html>// 🛠️ Level 4 Lesson 13 Practice Task:
+// 1. Listen for form submit event and validate input value below:
+
+</textarea>
         <div id='message-feedback' class='feedback'></div>
         
         <button type='submit'>Send Message</button>
