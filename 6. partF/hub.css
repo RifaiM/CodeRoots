@@ -148,8 +148,8 @@ body {
 }
 
 .branch-card.card-cloud:hover { border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 16px 32px rgba(52, 211, 153, 0.15); }
-.branch-card.card-db:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 16px 32px rgba(56, 189, 248, 0.15); }
-.branch-card.card-next:hover { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 16px 32px rgba(168, 85, 247, 0.15); }
+.branch-card.card-db:hover { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 16px 32px rgba(168, 85, 247, 0.15); }
+.branch-card.card-next:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 16px 32px rgba(56, 189, 248, 0.15); }
 
 .branch-card-header {
     display: flex;
@@ -169,8 +169,8 @@ body {
 }
 
 .card-cloud .branch-icon-box { background: rgba(52, 211, 153, 0.15); color: #34d399; }
-.card-db .branch-icon-box { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-.card-next .branch-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.card-db .branch-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.card-next .branch-icon-box { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
 
 .branch-tag {
     font-size: 0.76rem;
@@ -182,8 +182,8 @@ body {
 }
 
 .card-cloud .branch-tag { background: rgba(52, 211, 153, 0.2); color: #34d399; }
-.card-db .branch-tag { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-.card-next .branch-tag { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+.card-db .branch-tag { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+.card-next .branch-tag { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
 
 .branch-title {
     font-size: 1.3rem;
@@ -237,8 +237,8 @@ body {
 }
 
 .card-cloud .branch-progress-fill { background: #34d399; }
-.card-db .branch-progress-fill { background: #38bdf8; }
-.card-next .branch-progress-fill { background: #a855f7; }
+.card-db .branch-progress-fill { background: #a855f7; }
+.card-next .branch-progress-fill { background: #38bdf8; }
 
 .branch-btn {
     display: flex;
@@ -258,8 +258,8 @@ body {
 }
 
 .card-cloud .branch-btn { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; }
-.card-db .branch-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; }
-.card-next .branch-btn { background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); color: #ffffff; }
+.card-db .branch-btn { background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); color: #ffffff; }
+.card-next .branch-btn { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #ffffff; }
 
 .branch-btn:hover {
     transform: translateY(-2px);
