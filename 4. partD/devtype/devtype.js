@@ -70,6 +70,57 @@
             `const [optimisticLikes, addOptimisticLike] = useOptimistic(\n  likes,\n  (state, newLike) => [...state, newLike]\n);`,
             `function ModalPortal({ children, isOpen }) {\n  if (!isOpen) return null;\n  return createPortal(children, document.getElementById("modal-root"));\n}`,
             `const useLocalStorage = (key, initialValue) => {\n  const [value, setValue] = useState(() => {\n    return JSON.parse(localStorage.getItem(key)) ?? initialValue;\n  });\n  return [value, setValue];\n};`
+        ],
+        python: [
+            `def calculate_discount(price, discount=0.1):\n    return round(price * (1 - discount), 2)`,
+            `from pydantic import BaseModel, EmailStr\n\nclass UserRegister(BaseModel):\n    username: str\n    email: EmailStr`,
+            `numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nevens = [n for n in numbers if n % 2 == 0]`,
+            `from fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\n@app.get("/api/users/{user_id}")\ndef get_user(user_id: int):\n    return {"id": user_id, "status": "active"}`,
+            `import bcrypt\n\ndef hash_password(plain_password: str) -> str:\n    salt = bcrypt.gensalt()\n    return bcrypt.hashpw(plain_password.encode('utf-8'), salt).decode('utf-8')`,
+            `from sqlalchemy import Column, Integer, String, create_engine\nfrom sqlalchemy.orm import declarative_base\n\nBase = declarative_base()\n\nclass User(Base):\n    __tablename__ = 'users'\n    id = Column(Integer, primary_key=True)\n    name = Column(String(50))`,
+            `with open("config.json", "r", encoding="utf-8") as f:\n    config_data = json.load(f)`,
+            `import jwt\nfrom datetime import datetime, timedelta\n\ndef create_access_token(data: dict):\n    to_encode = data.copy()\n    to_encode.update({"exp": datetime.utcnow() + timedelta(hours=24)})\n    return jwt.encode(to_encode, "SECRET_KEY", algorithm="HS256")`,
+            `class DatabaseConnection:\n    def __enter__(self):\n        print("Connecting to DB...")\n        return self\n    def __exit__(self, exc_type, exc_val, exc_tb):\n        print("Closed connection.")`,
+            `import asyncio\n\nasync def main():\n    print("Fetching async data...")\n    await asyncio.sleep(1)\n    print("Done!")`,
+            `def parse_query_params(url_str):\n    from urllib.parse import parse_qs, urlparse\n    return parse_qs(urlparse(url_str).query)`,
+            `def retry_api_call(max_retries=3):\n    for attempt in range(max_retries):\n        try:\n            return fetch_data()\n        except Exception as e:\n            if attempt == max_retries - 1:\n                raise e`,
+            `from dataclasses import dataclass\n\n@dataclass\nclass Product:\n    id: int\n    name: str\n    price: float\n    in_stock: bool = True`,
+            `def format_user_report(users):\n    return [f"User #{u['id']}: {u['name']} ({u['role']})" for u in users if u.get('active')]`,
+            `def handle_file_upload(file_bytes, destination_path):\n    with open(destination_path, "wb") as buffer:\n        buffer.write(file_bytes)\n    return {"status": "success", "size": len(file_bytes)}`
+        ],
+        sql: [
+            `SELECT u.id, u.username, u.email\nFROM users u\nWHERE u.role = 'developer'\nORDER BY u.created_at DESC;`,
+            `SELECT u.username, COUNT(p.id) AS total_posts\nFROM users u\nJOIN posts p ON u.id = p.user_id\nGROUP BY u.id, u.username;`,
+            `INSERT INTO users (username, email, password_hash, role)\nVALUES ('alex_dev', 'alex@novicodes.dev', '$2b$12$e8x...', 'admin');`,
+            `UPDATE users\nSET xp = xp + 250, updated_at = NOW()\nWHERE id = 42;`,
+            `CREATE TABLE orders (\n  id SERIAL PRIMARY KEY,\n  user_id INT REFERENCES users(id) ON DELETE CASCADE,\n  amount NUMERIC(10, 2) NOT NULL,\n  status VARCHAR(20) DEFAULT 'pending'\n);`,
+            `CREATE UNIQUE INDEX idx_users_email ON users(email);`,
+            `DELETE FROM audit_logs\nWHERE created_at < NOW() - INTERVAL '30 days';`,
+            `SELECT product_id, SUM(quantity) AS total_sold\nFROM order_items\nGROUP BY product_id\nHAVING SUM(quantity) > 100;`,
+            `WITH RecentOrders AS (\n  SELECT id, user_id, amount\n  FROM orders\n  WHERE status = 'completed'\n)\nSELECT r.id, u.email\nFROM RecentOrders r\nJOIN users u ON r.user_id = u.id;`,
+            `SELECT id, name, price,\n       RANK() OVER (PARTITION BY category ORDER BY price DESC) AS price_rank\nFROM products;`,
+            `BEGIN;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;`,
+            `SELECT u.username\nFROM users u\nWHERE EXISTS (\n  SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.status = 'active'\n);`,
+            `SELECT COALESCE(phone, 'N/A') AS contact_number\nFROM user_profiles;`,
+            `ALTER TABLE users\nADD COLUMN last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP;`,
+            `SELECT DATE_TRUNC('month', created_at) AS month,\n       COUNT(*) AS new_users\nFROM users\nGROUP BY month\nORDER BY month DESC;`
+        ],
+        nextjs: [
+            `export default function HomePage() {\n  return (\n    <main className="container">\n      <h1>Welcome to Next.js App Router</h1>\n    </main>\n  );\n}`,
+            `'use client';\n\nimport { useState } from 'react';\n\nexport default function Counter() {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;\n}`,
+            `'use server';\n\nimport { revalidatePath } from 'next/cache';\n\nexport async function updateUsername(formData) {\n  const name = formData.get('username');\n  await db.user.update({ where: { id: 1 }, data: { name } });\n  revalidatePath('/profile');\n}`,
+            `import { NextResponse } from 'next/server';\n\nexport async function GET(request) {\n  const data = await fetchUsers();\n  return NextResponse.json({ users: data });\n}`,
+            `import { notFound } from 'next/navigation';\n\nexport default async function Page({ params }) {\n  const post = await getPost(params.id);\n  if (!post) notFound();\n  return <article><h1>{post.title}</h1></article>;\n}`,
+            `import Image from 'next/image';\n\nexport default function HeroBanner() {\n  return <Image src="/hero.jpg" alt="Hero" width={1200} height={600} priority />;\n}`,
+            `import Link from 'next/link';\n\nexport default function Navbar() {\n  return (\n    <nav>\n      <Link href="/dashboard">Dashboard</Link>\n    </nav>\n  );\n}`,
+            `export const dynamic = 'force-dynamic';\nexport const revalidate = 3600;\n\nexport async function generateMetadata({ params }) {\n  return { title: \`Post #\${params.id} | NoviCodes\` };\n}`,
+            `import { redirect } from 'next/navigation';\n\nexport default async function DashboardPage() {\n  const session = await getSession();\n  if (!session) redirect('/login');\n  return <div>Welcome {session.user.name}</div>;\n}`,
+            `export default function GlobalError({ error, reset }) {\n  return (\n    <div>\n      <h2>Something went wrong!</h2>\n      <button onClick={() => reset()}>Try again</button>\n    </div>\n  );\n}`,
+            `export default function LoadingSkeleton() {\n  return (\n    <div className="animate-pulse flex space-x-4">\n      <div className="h-10 w-10 bg-slate-200 rounded-full"></div>\n    </div>\n  );\n}`,
+            `import { cookies } from 'next/headers';\n\nexport async function getAuthToken() {\n  const cookieStore = cookies();\n  return cookieStore.get('token')?.value;\n}`,
+            `import { usePathname, useRouter } from 'next/navigation';\n\nexport default function ActiveLink({ href, children }) {\n  const pathname = usePathname();\n  const isActive = pathname === href;\n  return <a className={isActive ? 'active' : ''} href={href}>{children}</a>;\n}`,
+            `export async function generateStaticParams() {\n  const posts = await getPosts();\n  return posts.map(post => ({ id: post.id.toString() }));\n}`,
+            `import { Suspense } from 'react';\n\nexport default function Dashboard() {\n  return (\n    <main>\n      <Suspense fallback={<p>Loading User Feed...</p>}>\n        <UserFeed />\n      </Suspense>\n    </main>\n  );\n}`
         ]
     };
 
@@ -134,10 +185,15 @@
             // Timer buttons
             document.querySelectorAll('.timer-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
-                    e.currentTarget.classList.add('active');
-                    this.timeLimit = parseInt(e.currentTarget.dataset.time, 10);
-                    this.resetSession();
+                    const timeVal = e.currentTarget.dataset.time;
+                    if (timeVal === 'custom') {
+                        this.promptCustomTimer(e.currentTarget);
+                    } else {
+                        document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.timeLimit = parseInt(timeVal, 10);
+                        this.resetSession();
+                    }
                 });
             });
 
@@ -162,6 +218,36 @@
                     this.resetSession();
                 }
             });
+        }
+
+        promptCustomTimer(btnEl) {
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: '⚙️ Custom Speedrun Timer',
+                    input: 'number',
+                    inputLabel: 'Enter custom timer duration in seconds (5 to 600 seconds):',
+                    inputValue: 45,
+                    showCancelButton: true,
+                    confirmButtonColor: '#2563eb',
+                    cancelButtonColor: '#475569',
+                    confirmButtonText: 'Set Timer ⏱️',
+                    inputValidator: (value) => {
+                        const num = parseInt(value, 10);
+                        if (!value || isNaN(num) || num < 5 || num > 600) {
+                            return 'Please enter a duration between 5 and 600 seconds!';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const customSecs = parseInt(result.value, 10);
+                        document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+                        btnEl.classList.add('active');
+                        btnEl.textContent = `⚙️ ${customSecs}s`;
+                        this.timeLimit = customSecs;
+                        this.resetSession();
+                    }
+                });
+            }
         }
 
         loadHighScore() {
