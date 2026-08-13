@@ -507,9 +507,18 @@ window.showCertLockWarning = function(levelName, count) {
     }
 };
 
+function getRelativeRootPrefix() {
+    const path = window.location.pathname;
+    if (path.includes('/1. partA/') || path.includes('/2. partB/') || path.includes('/3. partC/') || path.includes('/4. partD/') || path.includes('/5. partE/') || path.includes('/6. partF/')) {
+        return '../';
+    }
+    return './';
+}
+
 window.openCertificateHub = function() {
     const stats = window.getUserXPAndRank();
     const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+    const rootPrefix = getRelativeRootPrefix();
 
     const isL4Earned = isUnlocked || stats.l4Completed >= 15;
     const isL5Earned = isUnlocked || stats.l5Completed >= 15;
@@ -540,10 +549,10 @@ window.openCertificateHub = function() {
         }
     };
 
-    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', './2. partB/certificate.html', isL4Earned, stats.l4Completed, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
-    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', './3. partC/certificate.html', isL5Earned, stats.l5Completed, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
-    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', './5. partE/certificate.html', isL6Earned, stats.l6Completed, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
-    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', './6. partF/certificate.html', isL7Earned, stats.l7Completed, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
+    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
+    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
+    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -566,7 +575,7 @@ window.openCertificateHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = isL7Earned ? './6. partF/certificate.html' : './2. partB/certificate.html';
+        window.location.href = isL7Earned ? `${rootPrefix}6. partF/certificate.html` : `${rootPrefix}2. partB/certificate.html`;
     }
 };
 
@@ -574,6 +583,7 @@ window.openCertificateHub = function() {
  * 7. Practical Dojo Level Selection Hub Modal (100% Open Access)
  */
 window.openDojoHub = function() {
+    const rootPrefix = getRelativeRootPrefix();
     let activeL4 = 1;
     for (let i = 1; i <= 15; i++) {
         if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
@@ -605,7 +615,7 @@ window.openDojoHub = function() {
                     </p>
                     
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                        <a href="${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
                             <div style="text-align: left;">
                                 <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
                                 <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
@@ -613,7 +623,7 @@ window.openDojoHub = function() {
                             <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        <a href="./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                        <a href="${rootPrefix}3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
                             <div style="text-align: left;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
                                 <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
@@ -621,12 +631,20 @@ window.openDojoHub = function() {
                             <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        <a href="./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                        <a href="${rootPrefix}5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
                             <div style="text-align: left;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
                                 <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
                             </div>
                             <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
+                        </a>
+
+                        <a href="${rootPrefix}6. partF/hub.html" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
+                                <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
+                            </div>
+                            <span style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
                         </a>
                     </div>
                 </div>
@@ -635,7 +653,7 @@ window.openDojoHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+        window.location.href = `${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
     }
 };
 
