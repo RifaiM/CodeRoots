@@ -81,24 +81,32 @@ body {
 .brand-title .novi { color: #ffffff; }
 .brand-title .codes { color: #38bdf8; }
 
-.nav-back-btn {
+.hub-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hub-nav-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
     color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 6px 14px;
     border-radius: 20px;
     font-weight: 700;
     font-size: 0.84rem;
     text-decoration: none;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-.nav-back-btn:hover {
+.hub-nav-link:hover {
     background: rgba(255, 255, 255, 0.16);
     color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .user-xp-badge {
@@ -112,6 +120,12 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.user-xp-badge:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: rgba(168, 85, 247, 0.5);
 }
 
 /* 2. Hub Main Container */
@@ -395,6 +409,15 @@ body {
     }
 }
 
+@media (max-width: 576px) {
+    .hub-nav-link .nav-text {
+        display: none !important;
+    }
+    .hub-nav-link {
+        padding: 6px 10px;
+    }
+}
+
 @media (max-width: 475px) {
     .hub-hero h1 {
         font-size: 1.6rem;
@@ -408,14 +431,17 @@ body {
     .branch-title {
         font-size: 1.15rem;
     }
+    .brand-title {
+        font-size: 1.0rem;
+    }
 }
 
 @media (max-width: 375px) {
     .hub-header {
-        padding: 0 10px;
+        padding: 0 8px;
     }
-    .nav-back-btn span:last-child {
-        display: none; /* Show icon only on 375px & 320px navbar */
+    .brand-title {
+        display: none; /* Hide text logo on 375px & 320px navbar to prevent horizontal overflow */
     }
     .user-xp-badge span:last-child {
         font-size: 0.76rem;
@@ -428,7 +454,7 @@ body {
 
 @media (max-width: 320px) {
     .hub-container {
-        padding: 0 8px;
+        padding: 0 6px;
     }
     .branch-card {
         padding: 16px 12px;

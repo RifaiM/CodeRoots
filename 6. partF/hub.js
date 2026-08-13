@@ -69,7 +69,7 @@ function initHubProgress() {
     // Header User Stats
     if (typeof window.getUserXPAndRank === 'function') {
         const stats = window.getUserXPAndRank();
-        const rankLabel = document.getElementById('hubUserRank');
+        const rankLabel = document.getElementById('hubUserRankLabel');
         if (rankLabel) {
             rankLabel.textContent = `${stats.rankIcon} ${stats.rankTitle} • ${stats.totalXP.toLocaleString()} XP`;
         }

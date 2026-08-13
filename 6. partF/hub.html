@@ -22,9 +22,6 @@
     <!-- Header Bar -->
     <header class="hub-header">
         <div class="header-left">
-            <a href="../dashboard.html" class="nav-back-btn">
-                <span>🏠</span> <span>Dashboard</span>
-            </a>
             <a href="../dashboard.html" class="brand-link" aria-label="NoviCodes Home">
                 <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
                 <div class="brand-title">
@@ -32,9 +29,20 @@
                 </div>
             </a>
         </div>
+        <nav class="hub-nav-links" aria-label="Hub Navigation">
+            <a href="../dashboard.html" class="hub-nav-link" title="Return to Dashboard">
+                <span class="nav-icon">🏠</span> <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="javascript:void(0)" onclick="openDojoHub()" class="hub-nav-link" title="Practical Dojo Hub">
+                <span class="nav-icon">⚔️</span> <span class="nav-text">Dojo Hub</span>
+            </a>
+            <a href="javascript:void(0)" onclick="openCertificateHub()" class="hub-nav-link" title="Certificate Hub">
+                <span class="nav-icon">📜</span> <span class="nav-text">Certificates</span>
+            </a>
+        </nav>
         <div class="header-right">
-            <div class="user-xp-badge" id="hubUserRank">
-                <span>👑</span> <span>Loading XP...</span>
+            <div class="user-xp-badge" id="hubUserRank" onclick="openUserProfileModal()" title="View Learner Profile & XP Breakdown" style="cursor: pointer;">
+                <span class="badge-icon">⚡</span> <span id="hubUserRankLabel">Loading XP...</span>
             </div>
         </div>
     </header>
