@@ -92,21 +92,15 @@ import asyncio
 
 # 1. Define asynchronous coroutine for fetching user data:
 async def fetch_user_data(user_id):
-  print(f"📡 [REQ] Fetching data for User #{user_id}...")
-  # Simulate non-blocking network I/O delay:
-  await asyncio.sleep(1)
-  print(f"✅ [RESP] User #{user_id} data received successfully!")
-  return {"id": user_id, "username": f"user_{user_id}", "status": "online"}
+  # TODO: await asyncio.sleep(1) and return dict with "id", "username", "status"
+  pass
 
 # 2. Main async entrypoint function:
 async def main():
-  print("🚀 Starting Asynchronous Backend Gateway...")
-  # Execute non-blocking async coroutine:
-  user_info = await fetch_user_data(101)
-  print(f"👤 Active Session: {user_info['username']}")
+  # TODO: await fetch_user_data(101)
+  pass
 
-# 3. Run asyncio event loop:
-asyncio.run(main())
+# TODO: Run asyncio.run(main()) below
 </textarea>
                     </div>
                 </div>

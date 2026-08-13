@@ -83,7 +83,6 @@ app = FastAPI(title=<span class="string">"Backend API"</span>)</code></pre>
                         <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
                         <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 12 Practice Task:
 
-# 1. Mock FastAPI framework import & initialization:
 class FastAPI:
   def __init__(self, title="API Server"):
     self.title = title
@@ -95,26 +94,9 @@ class FastAPI:
       return func
     return decorator
 
-# Initialize FastAPI web app:
 app = FastAPI(title="CodeRoots Backend Gateway")
 
-# 2. Define root status endpoint route (@app.get):
-@app.get("/")
-def read_root():
-  return {"status": "online", "system": "CodeRoots API Gateway v1.0"}
-
-# 3. Define user profile endpoint route (@app.get):
-@app.get("/users/me")
-def read_current_user():
-  return {"id": 101, "username": "Alex", "role": "admin", "xp": 2500}
-
-# 4. Simulate API request handling:
-print("🚀 FastAPI App Initialized!")
-print("--- Simulating GET / Request ---")
-print(app.routes["GET /"]())
-
-print("\n--- Simulating GET /users/me Request ---")
-print(app.routes["GET /users/me"]())
+# TODO: Define @app.get("/") and @app.get("/users/me") routes below
 </textarea>
                     </div>
                 </div>

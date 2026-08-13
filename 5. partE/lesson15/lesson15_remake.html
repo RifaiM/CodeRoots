@@ -88,64 +88,14 @@
 
 import sqlite3
 import hashlib
-import json
-import base64
 
-# 1. Mock Production FastAPI Application Framework:
-class FastAPI:
-  def __init__(self, title="Production API"):
-    self.title = title
-    self.routes = {}
-
-  def get(self, path):
-    def decorator(func):
-      self.routes[f"GET {path}"] = func
-      return func
-    return decorator
-
-  def post(self, path):
-    def decorator(func):
-      self.routes[f"POST {path}"] = func
-      return func
-    return decorator
-
-# 2. Define Production User Data Model:
 class UserModel(object):
   def __init__(self, user_id, username, role="developer"):
     self.user_id = user_id
     self.username = username
     self.role = role
 
-# 3. Initialize FastAPI App & In-Memory Database:
-app = FastAPI(title="CodeRoots Level 6 Capstone Production Service")
-conn = sqlite3.connect(":memory:")
-cursor = conn.cursor()
-
-cursor.execute("CREATE TABLE users (id INT, username TEXT, pw_hash TEXT, role TEXT)")
-conn.commit()
-
-# Helper function to hash passwords securely:
-def create_pw_hash(password):
-  return hashlib.sha256(password.encode()).hexdigest()
-
-# 4. Implement Production CRUD Endpoints:
-@app.post("/register")
-def create_user(username, password):
-  pw_hash = create_pw_hash(password)
-  cursor.execute("INSERT INTO users VALUES (101, ?, ?, 'admin')", (username, pw_hash))
-  conn.commit()
-  return {"status": "created", "username": username}
-
-@app.get("/users")
-def read_users():
-  cursor.execute("SELECT id, username, role FROM users")
-  return cursor.fetchall()
-
-# 5. Execute Final Capstone Microservice Flow:
-print("🎉 Level 6 Final Capstone Microservice Starting...")
-print(f"📝 POST /register -> {create_user('Alex', 'SecurePass123')}")
-print(f"📖 GET /users -> {read_users()}")
-print("🏆 Congratulations! You have completed Level 6: Python & Backend Architecture!")
+# TODO: Implement create_pw_hash(password), @app.post("/register"), and @app.get("/users") endpoints
 </textarea>
                     </div>
                 </div>

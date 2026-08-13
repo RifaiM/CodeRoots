@@ -85,39 +85,11 @@ token = JWT.<span class="function">encode</span>(payload)</code></pre>
                         <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 13 Practice Task:
 
 import hashlib
-import json
-import base64
 
 # 1. Hash plain user password using hashlib (SHA-256):
 def hash_password(password):
-  # Convert password to SHA-256 hex digest:
-  return hashlib.sha256(password.encode()).hexdigest()
-
-# 2. Mock JWT generation & decoding:
-class JWT:
-  @staticmethod
-  def encode(payload, secret="secret_key"):
-    header = base64.b64encode(json.dumps({"alg": "HS256", "typ": "JWT"}).encode()).decode()
-    body = base64.b64encode(json.dumps(payload).encode()).decode()
-    signature = hashlib.sha256(f"{header}.{body}.{secret}".encode()).hexdigest()[:16]
-    return f"{header}.{body}.{signature}"
-
-  @staticmethod
-  def decode(token):
-    parts = token.split(".")
-    payload_json = base64.b64decode(parts[1]).decode()
-    return json.loads(payload_json)
-
-# 3. Create hashed user credentials:
-hashed_pw = hash_password("SuperSecretPass123")
-print(f"🔒 Hashed Password: {hashed_pw}")
-
-# 4. Generate & decode auth JWT token:
-user_token = JWT.encode({"user_id": 101, "role": "admin", "exp": 1700000000})
-print(f"🔑 Generated Auth Token: {user_token}")
-
-decoded_claims = JWT.decode(user_token)
-print(f"🎟️ Decoded Token Claims: User #{decoded_claims['user_id']} ({decoded_claims['role']})")
+  # TODO: Return SHA-256 hex digest of password below
+  pass
 </textarea>
                     </div>
                 </div>

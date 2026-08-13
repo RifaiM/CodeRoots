@@ -96,33 +96,8 @@ import sqlite3
 conn = sqlite3.connect(":memory:")
 cursor = conn.cursor()
 
-# 2. Create a users table using SQL execute:
-cursor.execute("""
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT NOT NULL,
-  role TEXT NOT NULL,
-  xp INTEGER DEFAULT 1000
-)
-""")
-
-# 3. Insert records into database:
-cursor.execute("INSERT INTO users (username, role, xp) VALUES ('Alex', 'admin', 2500)")
-cursor.execute("INSERT INTO users (username, role, xp) VALUES ('Sam', 'developer', 1200)")
-
-# 4. Commit transaction to save changes:
-conn.commit()
-
-# 5. Query database and display results:
-cursor.execute("SELECT id, username, role, xp FROM users")
-rows = cursor.fetchall()
-
-print("--- Database Users Table ---")
-for row in rows:
-  print(f"👤 ID #{row[0]} | Name: {row[1]} | Role: {row[2]} | XP: {row[3]}")
-
-# Close database connection:
-conn.close()
+# 2. Create users table, insert records, commit transaction, and query results:
+# TODO: Execute CREATE TABLE, INSERT INTO, conn.commit(), and SELECT query below
 </textarea>
                     </div>
                 </div>

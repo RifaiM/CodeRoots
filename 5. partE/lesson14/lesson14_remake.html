@@ -90,57 +90,13 @@ conn = sqlite3.<span class="function">connect</span>(<span class="string">":memo
 
 import sqlite3
 
-# 1. Mock FastAPI Web Framework:
-class FastAPI:
-  def __init__(self, title="Capstone API"):
-    self.title = title
-    self.routes = {}
-
-  def get(self, path):
-    def decorator(func):
-      self.routes[f"GET {path}"] = func
-      return func
-    return decorator
-
-  def post(self, path):
-    def decorator(func):
-      self.routes[f"POST {path}"] = func
-      return func
-    return decorator
-
-# 2. Define Backend Data Model Class:
 class TaskItem(object):
   def __init__(self, task_id, title, status="pending"):
     self.task_id = task_id
     self.title = title
     self.status = status
 
-# 3. Initialize App & In-Memory Database:
-app = FastAPI(title="Developer Task Engine")
-conn = sqlite3.connect(":memory:")
-cursor = conn.cursor()
-
-cursor.execute("CREATE TABLE tasks (id INT, title TEXT, status TEXT)")
-cursor.execute("INSERT INTO tasks VALUES (1, 'Setup DB Connection', 'completed')")
-conn.commit()
-
-# 4. CRUD Route Endpoints:
-@app.get("/tasks")
-def read_tasks():
-  cursor.execute("SELECT * FROM tasks")
-  return cursor.fetchall()
-
-@app.post("/tasks")
-def create_task(title):
-  cursor.execute("INSERT INTO tasks (title, status) VALUES (?, 'pending')", (title,))
-  conn.commit()
-  return {"status": "created", "title": title}
-
-# 5. Execute API Operations:
-print("🚀 Capstone Backend Engine Active!")
-print(f"📖 GET /tasks -> {read_tasks()}")
-print(f"📝 POST /tasks -> {create_task('Implement JWT Auth')}")
-print(f"📖 GET /tasks -> {read_tasks()}")
+# TODO: Initialize DB, define @app.get("/tasks") and @app.post("/tasks") CRUD route handlers
 </textarea>
                     </div>
                 </div>

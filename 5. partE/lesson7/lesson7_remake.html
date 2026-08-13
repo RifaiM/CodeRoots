@@ -80,27 +80,9 @@
                         <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
                         <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 7 Practice Task:
 
-# 1. Function to process user input safely:
-def parse_user_age(age_str):
-  try:
-    age = int(age_str)
-    if age < 0:
-      raise ValueError("Age cannot be negative!")
-    return age
-  except ValueError as err:
-    print(f"⚠️ Validation Error: {err}")
-    return None
-
-# 2. Test valid and invalid input scenarios:
-print("--- Testing Age Parser ---")
-valid_age = parse_user_age("25")
-print(f"Parsed Age: {valid_age}")
-
-invalid_age = parse_user_age("-5")
-print(f"Parsed Age: {invalid_age}")
-
-invalid_str = parse_user_age("twenty")
-print(f"Parsed Age: {invalid_str}")
+def parse_user_id(input_str):
+  # TODO: Use try / except ValueError block to parse int(input_str)
+  pass
 </textarea>
                     </div>
                 </div>
