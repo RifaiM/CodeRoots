@@ -164,16 +164,11 @@ window.getUserXPAndRank = function() {
 function initUserProgress() {
     let completedCount = 0;
     
-    // Check level completion states
-    const isLevel0Complete = localStorage.getItem('level0_completed') === 'true';
-    const isLevel1Complete = localStorage.getItem('level1_completed') === 'true';
-    const isLevel2Complete = localStorage.getItem('level2_completed') === 'true';
-    const isLevel3Complete = localStorage.getItem('level3_completed') === 'true';
+    // Get unified XP, Rank, and completion stats
+    const stats = window.getUserXPAndRank();
+    const { isL0: isLevel0Complete, isL1: isLevel1Complete, isL2: isLevel2Complete, isL3: isLevel3Complete, l4Completed, l5Completed, l6Completed } = stats;
     const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
 
-    // Get unified XP and Rank
-    const stats = window.getUserXPAndRank();
-    
     // Update Header UI Elements
     const xpBadge = document.querySelector('.xp-badge .badge-label');
     const rankIcon = document.getElementById('userRankIcon');
