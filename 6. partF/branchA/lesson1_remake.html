@@ -167,7 +167,7 @@
         }
 
         .run-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -179,13 +179,8 @@
             transition: all 0.2s ease;
         }
 
-        .run-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
         .next-btn {
-            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -198,6 +193,27 @@
             justify-content: center;
             font-size: 0.90rem;
             transition: all 0.2s ease;
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .next-btn:hover {
@@ -405,6 +421,7 @@ git push -u origin main"></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runGitSimulation()">⚡ Execute Git Workflow</button>
+                <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
                 <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
@@ -427,7 +444,28 @@ git push -u origin main"></textarea>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
+        const DEFAULT_STARTER_CODE = `# Type or paste your Git workflow commands here:
+git init
+echo node_modules/ > .gitignore
+git add .
+git commit -m "feat: initial commit"
+git push -u origin main`;
+
+        const DRAFT_KEY = 'partF_branchA_lesson1_draft';
+
         document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.getElementById('terminalInput');
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft && editor) {
+                editor.value = savedDraft;
+            }
+
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    localStorage.setItem(DRAFT_KEY, editor.value);
+                });
+            }
+
             const isCompleted = localStorage.getItem('partF_branchA_lesson1_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
             const nextBtn = document.getElementById('nextLessonBtn');
@@ -435,6 +473,24 @@ git push -u origin main"></textarea>
                 nextBtn.style.display = 'inline-flex';
             }
         });
+
+        function clearEditorContent() {
+            const editor = document.getElementById('terminalInput');
+            localStorage.removeItem(DRAFT_KEY);
+            if (editor) {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: '🧹 Editor reset to default template!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);

@@ -185,6 +185,27 @@
         }
 
         /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
@@ -378,6 +399,7 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runRenderDeploy()">🚀 Deploy Python API to Render</button>
+                <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
                 <a href="./lesson5_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
@@ -400,7 +422,29 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
+        const DEFAULT_STARTER_CODE = `# Render render.yaml configuration
+services:
+  - type: web
+    name: fastapi-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"`;
+
+        const DRAFT_KEY = 'partF_branchA_lesson4_draft';
+
         document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.getElementById('renderYamlInput');
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft && editor) {
+                editor.value = savedDraft;
+            }
+
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    localStorage.setItem(DRAFT_KEY, editor.value);
+                });
+            }
+
             const isCompleted = localStorage.getItem('partF_branchA_lesson4_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
             const nextBtn = document.getElementById('nextLessonBtn');
@@ -408,6 +452,24 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
                 nextBtn.style.display = 'inline-flex';
             }
         });
+
+        function clearEditorContent() {
+            const editor = document.getElementById('renderYamlInput');
+            localStorage.removeItem(DRAFT_KEY);
+            if (editor) {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: '🧹 Editor reset to default template!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);

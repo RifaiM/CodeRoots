@@ -188,6 +188,27 @@
         }
 
         /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
@@ -392,6 +413,7 @@ jobs:
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runWorkflowSimulation()">⚡ Trigger GitHub Action Workflow</button>
+                <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
                 <a href="../hub.html" class="claim-btn" id="claimRankBtn" style="display: none;">🎓 Return to Hub & Claim Rank 🏆</a>
             </div>
 
@@ -414,7 +436,35 @@ jobs:
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
+        const DEFAULT_STARTER_CODE = `name: Production CI/CD Workflow
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npm test
+      - run: echo 'Automated test suite passed!'`;
+
+        const DRAFT_KEY = 'partF_branchA_lesson6_draft';
+
         document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.getElementById('yamlInput');
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft && editor) {
+                editor.value = savedDraft;
+            }
+
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    localStorage.setItem(DRAFT_KEY, editor.value);
+                });
+            }
+
             const isCompleted = localStorage.getItem('partF_branchA_lesson6_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
             const claimBtn = document.getElementById('claimRankBtn');
@@ -422,6 +472,24 @@ jobs:
                 claimBtn.style.display = 'inline-flex';
             }
         });
+
+        function clearEditorContent() {
+            const editor = document.getElementById('yamlInput');
+            localStorage.removeItem(DRAFT_KEY);
+            if (editor) {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: '🧹 Editor reset to default template!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);

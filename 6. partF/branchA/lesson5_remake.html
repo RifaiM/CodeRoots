@@ -188,6 +188,27 @@
         }
 
         /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
@@ -397,6 +418,7 @@ app.add_middleware(
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCorsTest()">⚡ Test CORS Connection</button>
+                <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
                 <a href="./lesson6_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
@@ -419,7 +441,37 @@ app.add_middleware(
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
+        const DEFAULT_STARTER_CODE = `from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+origins = [
+    'https://my-app.vercel.app',
+    'https://my-app.pages.dev'
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=['*']
+)`;
+
+        const DRAFT_KEY = 'partF_branchA_lesson5_draft';
+
         document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.getElementById('corsCodeInput');
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft && editor) {
+                editor.value = savedDraft;
+            }
+
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    localStorage.setItem(DRAFT_KEY, editor.value);
+                });
+            }
+
             const isCompleted = localStorage.getItem('partF_branchA_lesson5_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
             const nextBtn = document.getElementById('nextLessonBtn');
@@ -427,6 +479,24 @@ app.add_middleware(
                 nextBtn.style.display = 'inline-flex';
             }
         });
+
+        function clearEditorContent() {
+            const editor = document.getElementById('corsCodeInput');
+            localStorage.removeItem(DRAFT_KEY);
+            if (editor) {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: '🧹 Editor reset to default template!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
