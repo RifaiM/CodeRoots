@@ -1,0 +1,217 @@
+/* Level 7: Specialization Hub Navigation Engine Styles (100% Identical to Level 4, 5 & 6) */
+
+.lesson-nav-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10000;
+}
+
+.lesson-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f8fafc;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.lesson-nav-btn:hover,
+.lesson-nav-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-nav-btn .nav-arrow {
+    font-size: 0.72rem;
+    transition: transform 0.2s ease;
+}
+
+.lesson-nav-btn.active .nav-arrow {
+    transform: rotate(180deg);
+}
+
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    width: 14px;
+}
+
+.nav-hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Dropdown Drawer Menu */
+.lesson-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 320px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10001;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+.lesson-nav-dropdown.show {
+    display: flex;
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-header {
+    background: rgba(30, 41, 59, 0.9);
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-content {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 8px 6px;
+}
+
+.nav-lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #cbd5e1;
+    transition: all 0.15s ease;
+    margin-bottom: 4px;
+    font-size: 0.82rem;
+}
+
+.nav-lesson-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.nav-lesson-item.current {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #c084fc;
+    font-weight: 700;
+}
+
+.nav-lesson-item.completed {
+    color: #34d399;
+}
+
+.nav-lesson-item.available {
+    color: #38bdf8;
+}
+
+.nav-lesson-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: #94a3b8;
+}
+
+.lesson-status {
+    font-size: 1.1rem;
+}
+
+.lesson-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-number {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+
+.lesson-title {
+    font-size: 0.84rem;
+    line-height: 1.3;
+}
+
+.nav-section-divider {
+    padding: 10px 14px 4px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 6px;
+}
+
+.divider-text {
+    font-size: 0.70rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Responsiveness (768px, 576px, 425px, 375px, 320px) */
+@media (max-width: 768px) {
+    .nav-arrow,
+    .nav-btn-text,
+    .nav-icon {
+        display: none !important;
+    }
+
+    .nav-hamburger {
+        display: flex !important;
+    }
+
+    .lesson-nav-btn {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        min-height: 34px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        justify-content: center !important;
+    }
+
+    .lesson-nav-dropdown {
+        width: 280px !important;
+        right: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-nav-dropdown {
+        width: 260px !important;
+        right: 0 !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .lesson-nav-dropdown {
+        width: 240px !important;
+        right: 0 !important;
+    }
+}
