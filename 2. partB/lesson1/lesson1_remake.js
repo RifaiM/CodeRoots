@@ -941,7 +941,7 @@ class HTMLCodeEditor {
   document.addEventListener('DOMContentLoaded', () => {
     updateDemo();
     initStructurePreview();
-    if (taskEditor) { renderTask(); }
+    if (document.getElementById('task-code')) { renderTask(); }
   
   
     // Initialize code editor
