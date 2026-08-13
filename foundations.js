@@ -386,11 +386,11 @@ function initQuizEngine(trackData) {
                         confirmButtonText: '🚀 Return to Dashboard',
                         allowOutsideClick: false
                     }).then(() => {
-                        window.location.href = './dashboard.html';
+                        window.location.href = './index.html';
                     });
                 } else {
                     alert(`🎉 Track Completed! You earned +${xpAmount} XP!`);
-                    window.location.href = './dashboard.html';
+                    window.location.href = './index.html';
                 }
             } else {
                 if (typeof Swal !== 'undefined') {
