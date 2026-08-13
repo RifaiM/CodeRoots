@@ -607,7 +607,7 @@
         }
 
         checkRule(rule, code) {
-            const c = code.replace(/#.*$/gm, ''); // strip comments for checks
+            const c = code.replace(/"""[\s\S]*?"""|'''[\s\S]*?'''|#.*$/gm, ''); // strip comments for checks
             switch (rule) {
                 // ── Lesson 1: Essentials ─────────────────────────────────────────
                 case 'variable':

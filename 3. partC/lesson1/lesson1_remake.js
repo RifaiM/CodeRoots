@@ -236,7 +236,9 @@ document.getElementById('output').innerHTML = renderProfile();`;
         }
 
         validateRequirements(jsCode) {
-            const code = jsCode || '';
+            const raw = jsCode || '';
+            // Strip JS comments so comments never trigger task checklist items
+            const code = raw.replace(/\/\/.*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
             const hasArrow = /=>/g.test(code);
             const hasDestructuring = /const\s*\{[^}]+\}\s*=/g.test(code) || /let\s*\{[^}]+\}\s*=/g.test(code);
             const hasSpread = /\.\.\./g.test(code);
