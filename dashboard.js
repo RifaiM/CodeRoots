@@ -567,16 +567,48 @@ window.openUserProfileModal = function() {
     const stats = window.getUserXPAndRank();
     const progressPct = Math.min(Math.round((stats.totalXP / stats.maxXP) * 100), 100);
 
+    const ranks = [
+        { title: 'Web Explorer', icon: '🌐', level: 'Level 0 • Web History' },
+        { title: 'Code Apprentice', icon: '🛡️', level: 'Level 1-3 • Foundations' },
+        { title: 'DOM Challenger', icon: '⚔️', level: 'Level 4 • DOM Dojo' },
+        { title: 'React Engineer', icon: '⚛️', level: 'Level 5 • Framework Dojo' },
+        { title: 'Python Backend Engineer', icon: '🐍', level: 'Level 6 • Backend Dojo' },
+        { title: 'Fullstack Master', icon: '🏆', level: 'Level 5 & 6 Complete' },
+        { title: 'Master Architect', icon: '👑', level: '100% All Levels Complete' }
+    ];
+
+    const currentRankTitle = stats.rankTitle;
+
+    const rankLadderHTML = ranks.map(r => {
+        const isCurrent = currentRankTitle === r.title || (r.title === 'DOM Challenger' && currentRankTitle === 'Dojo Master');
+        const bg = isCurrent ? 'background: #eff6ff; border: 1px solid #3b82f6;' : 'background: #f8fafc; border: 1px solid #e2e8f0;';
+        const badgeBg = isCurrent ? 'background: #2563eb; color: #ffffff;' : 'background: #e2e8f0; color: #64748b;';
+        const badgeText = isCurrent ? '✅ Active' : '🔒 Locked';
+
+        return `
+            <div style="${bg} padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 8px; text-align: left;">
+                    <span style="font-size: 1.1rem; flex-shrink: 0;">${r.icon}</span>
+                    <div>
+                        <div style="font-size: 0.84rem; font-weight: 800; color: ${isCurrent ? '#1e40af' : '#1e293b'};">${r.title}</div>
+                        <div style="font-size: 0.72rem; color: #64748b;">${r.level}</div>
+                    </div>
+                </div>
+                <span style="${badgeBg} font-size: 0.70rem; font-weight: 800; padding: 3px 8px; border-radius: 12px; white-space: nowrap;">${badgeText}</span>
+            </div>
+        `;
+    }).join('');
+
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: '👤 Learner Profile & XP Breakdown',
+            title: '👤 Learner Profile & Rank Roadmap',
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; max-width: 100%; box-sizing: border-box;">
                     
-                    <!-- Rank Banner -->
+                    <!-- Rank Banner (Single Icon on Top) -->
                     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 16px 14px; border-radius: 14px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);">
-                        <div style="font-size: 2.2rem; margin-bottom: 4px;">${stats.rankIcon}</div>
-                        <div style="font-size: 1.1rem; font-weight: 800;">${stats.rankIcon} ${stats.rankTitle}</div>
+                        <div style="font-size: 2.4rem; margin-bottom: 4px;">${stats.rankIcon}</div>
+                        <div style="font-size: 1.15rem; font-weight: 800;">${stats.rankTitle}</div>
                         <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} Total XP</div>
                         
                         <!-- Progress Bar -->
@@ -586,31 +618,41 @@ window.openUserProfileModal = function() {
                     </div>
 
                     <!-- XP Breakdown Grid -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
-                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 0: Web History</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: ${stats.isL0 ? '#10b981' : '#64748b'};">${stats.isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 14px;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 0: Web History</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: ${stats.isL0 ? '#10b981' : '#64748b'};">${stats.isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
-                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 1-3: Foundations</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${((stats.isL1?300:0)+(stats.isL2?300:0)+(stats.isL3?400:0))} / 1,000 XP</div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 1-3: Foundations</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${((stats.isL1?300:0)+(stats.isL2?300:0)+(stats.isL3?400:0))} / 1,000 XP</div>
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
-                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 4: DOM Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #2563eb;">${stats.l4Completed * 100} / 1,500 XP</div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 4: DOM Dojo</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #2563eb;">${stats.l4Completed * 100} / 1,500 XP</div>
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
-                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${stats.l5Completed * 150} / 2,250 XP</div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${stats.l5Completed * 150} / 2,250 XP</div>
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
-                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #10b981;">${stats.l6Completed * 200} / 3,000 XP</div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #10b981;">${stats.l6Completed * 200} / 3,000 XP</div>
+                        </div>
+                    </div>
+
+                    <!-- Developer Rank Progression Roadmap -->
+                    <div style="text-align: left; margin-bottom: 14px;">
+                        <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                            🗺️ Developer Rank Progression Roadmap
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; padding-right: 2px;">
+                            ${rankLadderHTML}
                         </div>
                     </div>
 
                     <!-- Reset Danger Action -->
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 10px; text-align: center;">
                         <button onclick="window.confirmResetProgress()" style="background: #fee2e2; border: 1px solid #fca5a5; color: #dc2626; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: all 0.2s ease;">
                             🔄 Reset Course Progress
                         </button>
