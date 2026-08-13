@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <title>Branch 7C • Lesson 4: API Routes & Dynamic Route Handlers | NoviCodes</title>
+    <meta name="description" content="Master Next.js App Router Route Handlers (route.ts), HTTP GET/POST endpoints, NextResponse JSON serialization, and dynamic route params.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../hub.css">
+    <link rel="stylesheet" href="../level7-navigation.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        .ide-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 24px auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .ide-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-badge {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .instruction-step {
+            margin-bottom: 20px;
+        }
+
+        .instruction-step h4 {
+            color: #f8fafc;
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .instruction-step p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 14px 72px 14px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+            color: #38bdf8;
+            position: relative;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        .code-box code {
+            display: block;
+            text-align: left;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: inherit;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .copy-btn:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        .terminal-editor {
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #f8fafc;
+            font-size: 0.88rem;
+            min-height: 220px;
+            resize: vertical;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .terminal-output {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            min-height: 120px;
+            margin-top: 14px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .run-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 868px) {
+            .ide-wrapper {
+                grid-template-columns: 1fr;
+                padding: 0 14px;
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .panel-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
+            }
+            .panel-title {
+                text-align: center;
+                justify-content: center;
+                font-size: 0.96rem;
+            }
+            .lesson-badge {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .ide-panel {
+                padding: 16px;
+                border-radius: 14px;
+            }
+            .action-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 10px 14px;
+                font-size: 0.82rem;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                justify-content: center;
+            }
+            .code-box {
+                padding: 38px 12px 12px 12px;
+            }
+            .copy-btn {
+                top: 6px;
+                right: 6px;
+                padding: 3px 8px;
+                font-size: 0.68rem;
+            }
+            .code-box code {
+                white-space: pre-wrap;
+                word-break: break-all;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .ide-wrapper {
+                padding: 0 8px;
+            }
+            .ide-panel {
+                padding: 12px 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 9px 12px;
+                font-size: 0.78rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .panel-title {
+                font-size: 0.92rem;
+            }
+            .lesson-badge {
+                font-size: 0.70rem;
+                padding: 3px 6px;
+            }
+            .terminal-editor {
+                font-size: 0.78rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .ide-wrapper {
+                padding: 0 4px;
+            }
+            .ide-panel {
+                padding: 10px 8px;
+            }
+            .run-btn, .clear-btn {
+                padding: 8px 10px;
+                font-size: 0.74rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .code-box {
+                padding: 36px 8px 10px 8px;
+            }
+            .code-box code {
+                font-size: 0.74rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 7 • Track 7C</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
+                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="ide-wrapper">
+        <!-- Left Panel: Concept Guide & Instructions -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>📡 Branch 7C • Lesson 4</span>
+                </div>
+                <span class="lesson-badge">Route Handlers (route.ts)</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. App Router REST API Endpoints</h4>
+                <p>Next.js App Router allows creating custom RESTful API endpoints by exporting named HTTP functions (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>) inside a <code>route.ts</code> file.</p>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. Route Handler Implementation (`app/api/users/route.ts`)</h4>
+                <p>Return JSON responses using <code>NextResponse.json()</code>:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard(`import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const users = [
+    { id: 1, name: 'Alex', role: 'Developer' },
+    { id: 2, name: 'Sarah', role: 'Architect' }
+  ];
+  return NextResponse.json({ status: 200, users });
+}`)">📋 Copy</button>
+                    <code>import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const users = [
+    { id: 1, name: 'Alex', role: 'Developer' },
+    { id: 2, name: 'Sarah', role: 'Architect' }
+  ];
+  return NextResponse.json({ status: 200, users });
+}</code>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Your Practical Task</h4>
+                <p>Write an async <code>GET</code> HTTP Route Handler function inside <code>app/api/status/route.ts</code> that returns a <code>NextResponse.json()</code> object containing <code>{ status: "ok", version: "15.0" }</code>.</p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Route Handler Editor Sandbox -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>📡 Route Handler Editor (`app/api/status/route.ts`)</span>
+                </div>
+                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Response: NextResponse.json()</span>
+            </div>
+
+            <textarea id="editor" class="terminal-editor" placeholder="// Write your API Route Handler below:
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  return NextResponse.json({ status: 'ok', version: '15.0' });
+}"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" id="runBtn" onclick="testRouteHandler()">📡 Test API Endpoint (GET)</button>
+                <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
+            </div>
+
+            <div class="terminal-output" id="consoleOutput">> Ready. Write your GET Route Handler and click "Test API Endpoint (GET)"...</div>
+        </section>
+    </main>
+
+    <!-- Main Dashboard Engine & Navigation -->
+    <script src="../../dashboard.js"></script>
+    <script src="../level7-navigation.js"></script>
+
+    <script>
+        const DRAFT_KEY = 'partF_branchC_lesson4_draft';
+        const DEFAULT_STARTER_CODE = '';
+        const editor = document.getElementById('editor');
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft) {
+                editor.value = savedDraft;
+            } else {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+        });
+
+        editor.addEventListener('input', () => {
+            localStorage.setItem(DRAFT_KEY, editor.value);
+        });
+
+        function clearEditorContent() {
+            localStorage.removeItem(DRAFT_KEY);
+            editor.value = DEFAULT_STARTER_CODE;
+            consoleOutput.textContent = '> Editor cleared. Write an API Route Handler to test...';
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: '🧹 Editor cleared!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '📋 Route Handler code copied!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function testRouteHandler() {
+            const code = editor.value.trim();
+            if (!code) {
+                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your GET Route Handler function.';
+                return;
+            }
+
+            if (code.includes('NextResponse') && code.includes('GET') && code.includes('status') && code.includes('15.0')) {
+                consoleOutput.textContent = `[HTTP ROUTE HANDLER LOGS]\n[1/3] Dispatching GET Request to /api/status...\n[2/3] Executing Handler Function GET()...\n[3/3] HTTP Response Headers: Content-Type: application/json (200 OK)\nSerialized JSON Payload:\n{\n  "status": "ok",\n  "version": "15.0"\n}\n✅ [SUCCESS] Next.js Route Handler returned HTTP 200 OK response!`;
+                
+                localStorage.setItem('partF_branchC_lesson4_completed', 'true');
+                localStorage.setItem('partF_branchC_lesson4_complete', 'true');
+                if (typeof addXP === 'function') addXP(250);
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: '🎉 Lesson 4 Mastered!',
+                        html: `
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully built custom RESTful API Route Handlers in Next.js!</p>
+                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
+                                ⚡ Reward: +250 XP
+                            </div>
+                        `,
+                        icon: 'success',
+                        confirmButtonText: 'Continue to Lesson 5 🚀',
+                        confirmButtonColor: '#0ea5e9'
+                    }).then(() => {
+                        window.location.href = './lesson5_remake.html';
+                    });
+                }, 400);
+            } else {
+                consoleOutput.textContent = `❌ Route Handler Error:\nExpected GET async function returning NextResponse.json() containing status: 'ok' and version: '15.0'.\n\nYour Function:\n${code}`;
+            }
+        }
+    </script>
+</body>
+</html>
