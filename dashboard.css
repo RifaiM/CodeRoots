@@ -642,9 +642,49 @@ html, body {
 .responsive-profile-modal {
   width: 92vw !important;
   max-width: 480px !important;
+  max-height: 88vh !important;
   padding: 16px 14px !important;
   box-sizing: border-box !important;
   border-radius: 18px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
+.responsive-profile-modal .swal2-html-container {
+  max-height: calc(88vh - 70px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  padding: 2px 4px 10px 2px !important;
+  margin: 10px 0 0 0 !important;
+}
+
+/* Custom Thin Scrollbar for Profile Modal Container */
+.responsive-profile-modal::-webkit-scrollbar,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar,
+.responsive-profile-modal div::-webkit-scrollbar {
+  width: 6px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-track,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-track,
+.responsive-profile-modal div::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-thumb,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.responsive-profile-modal div::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-thumb:hover,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb:hover,
+.responsive-profile-modal div::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* Dedicated Level 6 Python Track Card Button */

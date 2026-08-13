@@ -646,7 +646,7 @@ window.openUserProfileModal = function() {
                         <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
                             🗺️ Developer Rank Progression Roadmap
                         </div>
-                        <div style="display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; padding-right: 2px;">
+                        <div style="display: flex; flex-direction: column; gap: 6px; touch-action: pan-y; -webkit-overflow-scrolling: touch; padding-right: 2px;">
                             ${rankLadderHTML}
                         </div>
                     </div>
