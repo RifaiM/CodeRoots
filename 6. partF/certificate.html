@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../Global/root.css">
+    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="./hub.css">
     <link rel="stylesheet" href="./level7-navigation.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Level 7: Full-Stack Systems & Apex Certificate | NoviCodes</title>
@@ -89,41 +90,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        .lesson-header {
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .home-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 8px;
-            background: #f1f5f9;
-            transition: all 0.2s ease;
-        }
-
-        .home-button:hover {
-            background: #e2e8f0;
-        }
-
-        .lesson-header h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            margin: 0;
-            color: #0f172a;
         }
 
         .cert-container {
@@ -310,7 +276,7 @@
             body {
                 background: #ffffff !important;
             }
-            .lesson-header, .generator-card, footer {
+            .platform-header, .generator-card, footer {
                 display: none !important;
             }
             .cert-container {
@@ -330,19 +296,42 @@
     </style>
 </head>
 <body>
-    <!-- Level Header Navigation (100% Uniform Layout & Styling) -->
-    <header class="lesson-header">
-        <a href="../index.html" class="home-button">
-            <span class="home-icon">🏠</span>
-            <span class="btn-text">Dashboard</span>
-        </a>
+    <!-- Sticky Platform Header (100% Uniform with Level 7 Hub & Lessons) -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 7 • Certificate Hub</span>
+                </div>
+            </a>
 
-        <h1>Level 7: Full-Stack Systems & Apex Engineering Certificate</h1>
+            <!-- Center Navigation Links -->
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../index.html" class="nav-link" title="Dashboard Home">
+                    <span class="nav-icon">🏠</span><span class="nav-text">&nbsp;Dashboard</span>
+                </a>
+                <a href="./hub.html" class="nav-link" title="Return to Level 7 Hub">
+                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link active" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
 
-        <a href="./hub.html" class="home-button" style="background: #2563eb; color: #ffffff;">
-            <span class="home-icon">🚀</span>
-            <span class="btn-text">Level 7 Hub</span>
-        </a>
+            <!-- Progress Badges & Quick Action -->
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Loading...</span>
+                </div>
+                <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon" id="userRankIcon">🌱</span>
+                    <span class="badge-label" id="userRankLabel">Web Novice</span>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main class="cert-container">
@@ -401,6 +390,8 @@
         <p style="margin: 0;">© 2026 NoviCodes • Official Course Certificate</p>
     </footer>
 
+    <!-- Main Dashboard Engine & Navigation -->
+    <script src="../dashboard.js"></script>
     <script>
         const certTrackDetails = {
             apex: {
