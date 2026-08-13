@@ -584,6 +584,8 @@ window.openCertificateHub = function() {
  */
 window.openDojoHub = function() {
     const rootPrefix = getRelativeRootPrefix();
+    const isCurrentHubPage = window.location.pathname.includes('/6. partF/hub.html');
+
     let activeL4 = 1;
     for (let i = 1; i <= 15; i++) {
         if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
@@ -604,6 +606,26 @@ window.openDojoHub = function() {
             activeL6 = Math.min(i + 1, 15);
         }
     }
+
+    const level7Item = isCurrentHubPage
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #c084fc; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
+                    <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
+                </div>
+                <span style="font-weight: 800; color: #7e22ce; font-size: 0.80rem; background: #f3e8ff; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}6. partF/hub.html" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
+                    <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
+                </div>
+                <span style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -639,13 +661,7 @@ window.openDojoHub = function() {
                             <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        <a href="${rootPrefix}6. partF/hub.html" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
-                                <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
-                            </div>
-                            <span style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
-                        </a>
+                        ${level7Item}
                     </div>
                 </div>
             `,
