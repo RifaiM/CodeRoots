@@ -1,258 +1,272 @@
-/* Level 7: Specialization Hub Navigation Engine Styles (High Contrast & Seamless Borderless Layout) */
+/* Level 7: Specialization Hub Navigation Engine Styles 
+   100% Uniform Design Matching Level 4, Level 5, and Level 6 */
 
 .lesson-nav-container {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 10000;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  z-index: 10000 !important;
 }
 
 /* Borderless Pill Styling for .platform-header */
 .platform-header .lesson-nav-btn,
 .lesson-nav-btn {
-    background: #f1f5f9 !important;
-    border: none !important;
-    color: #0f172a !important;
-    padding: 6px 14px !important;
-    border-radius: 10px !important;
-    font-size: 0.84rem !important;
-    font-weight: 800 !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    transition: all 0.2s ease !important;
-    outline: none !important;
-    box-shadow: none !important;
+  background: #f1f5f9 !important;
+  border: none !important;
+  color: #0f172a !important;
+  padding: 6px 14px !important;
+  border-radius: 10px !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .platform-header .lesson-nav-btn:hover,
 .platform-header .lesson-nav-btn.active,
 .lesson-nav-btn:hover,
 .lesson-nav-btn.active {
-    background: #e2e8f0 !important;
-    border: none !important;
-    color: #7e22ce !important;
+  background: #e2e8f0 !important;
+  border: none !important;
+  color: #2563eb !important;
 }
 
 .lesson-nav-btn .nav-btn-text {
-    color: #0f172a !important;
-    font-weight: 800 !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
 }
 
 .lesson-nav-btn .nav-arrow {
-    font-size: 0.72rem !important;
-    color: #64748b !important;
-    transition: transform 0.2s ease !important;
+  font-size: 0.72rem !important;
+  color: #64748b !important;
+  transition: transform 0.2s ease !important;
 }
 
 .lesson-nav-btn.active .nav-arrow {
-    transform: rotate(180deg) !important;
-    color: #7e22ce !important;
+  transform: rotate(180deg) !important;
+  color: #2563eb !important;
 }
 
 .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 3px;
-    width: 14px;
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  width: 14px;
 }
 
 .nav-hamburger span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: #0f172a !important;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #0f172a !important;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* Dropdown Drawer Menu */
+/* Modal Dropdown Container 100% Identical to Level 4, 5 & 6 */
 .lesson-nav-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: 320px;
-    background: #0f172a !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 14px !important;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5) !important;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 10001;
-    animation: dropdownFadeIn 0.2s ease-out;
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  width: 320px !important;
+  max-height: 400px !important;
+  background: #ffffff !important;
+  border: 1px solid #dde7ff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
+  margin-top: 6px !important;
+  overflow: hidden !important;
+  z-index: 9999999 !important;
 }
 
 .lesson-nav-dropdown.show {
-    display: flex !important;
-}
-
-@keyframes dropdownFadeIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
 }
 
 .nav-header {
-    background: rgba(30, 41, 59, 0.9) !important;
-    padding: 12px 16px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    font-weight: 800 !important;
-    font-size: 0.85rem !important;
-    color: #cbd5e1 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
+  background: #f8f9ff !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid #eef4ff !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  min-height: 36px !important;
+}
+
+.nav-title {
+  font-weight: 600 !important;
+  color: #2563eb !important;
+  font-size: 14px !important;
 }
 
 .nav-content {
-    max-height: 380px;
-    overflow-y: auto;
-    padding: 8px 6px;
+  max-height: 340px !important;
+  overflow-y: auto !important;
+  padding: 6px 0 !important;
 }
 
 .nav-lesson-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #cbd5e1 !important;
-    transition: all 0.15s ease;
-    margin-bottom: 4px;
-    font-size: 0.82rem;
+  padding: 10px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: all 0.2s ease !important;
+  border-left: 3px solid transparent !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
 }
 
-.nav-lesson-item:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
+.nav-lesson-item.available,
+.nav-lesson-item.completed,
+.nav-lesson-item.current {
+  cursor: pointer !important;
 }
 
 .nav-lesson-item.current {
-    background: rgba(168, 85, 247, 0.18) !important;
-    border: 1px solid rgba(168, 85, 247, 0.4) !important;
-    color: #c084fc !important;
-    font-weight: 700;
+  background: #e3f2fd !important;
+  border-left-color: #2563eb !important;
 }
 
-.nav-lesson-item.completed {
-    color: #34d399 !important;
+.nav-lesson-item.completed:hover {
+  background: #f0f8ff !important;
 }
 
-.nav-lesson-item.available {
-    color: #38bdf8 !important;
+.nav-lesson-item.available:hover {
+  background: #f8f9ff !important;
 }
 
 .nav-lesson-item.locked {
-    opacity: 0.5;
-    cursor: not-allowed;
-    color: #94a3b8 !important;
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
 }
 
 .lesson-status {
-    font-size: 1.1rem;
+  font-size: 16px !important;
+  width: 20px !important;
+  text-align: center !important;
 }
 
 .lesson-info {
-    display: flex;
-    flex-direction: column;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  text-align: left !important;
 }
 
 .lesson-number {
-    font-size: 0.72rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: #94a3b8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #2563eb !important;
+  text-align: left !important;
 }
 
 .lesson-title {
-    font-size: 0.84rem;
-    line-height: 1.3;
+  font-size: 13px !important;
+  color: #333333 !important;
+  line-height: 1.3 !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+}
+
+.nav-lesson-item.locked .lesson-title,
+.nav-lesson-item.locked .lesson-number {
+  color: #999999 !important;
 }
 
 .nav-section-divider {
-    padding: 10px 14px 4px 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 6px;
+  padding: 10px 14px 4px 14px !important;
+  border-top: 1px solid #eef4ff !important;
+  margin-top: 6px !important;
 }
 
 .divider-text {
-    font-size: 0.70rem;
-    font-weight: 800;
-    color: #94a3b8 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  font-size: 0.70rem !important;
+  font-weight: 800 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* Mobile Responsiveness (992px, 768px, 576px, 425px, 375px, 320px) */
 @media (max-width: 992px) {
-    /* 1. Header Nav Links (Hub, Dojo, Cert): Hide text, show ONLY nav-icon */
-    .header-nav-links .nav-link .nav-text {
-        display: none !important;
-    }
+  .header-nav-links .nav-link .nav-text {
+    display: none !important;
+  }
 
-    .header-nav-links .nav-link .nav-icon {
-        display: inline-block !important;
-        font-size: 1.05rem !important;
-        color: #0f172a !important;
-    }
+  .header-nav-links .nav-link .nav-icon {
+    display: inline-block !important;
+    font-size: 1.05rem !important;
+    color: #0f172a !important;
+  }
 
-    .platform-header .header-nav-links .nav-link {
-        background: #f1f5f9 !important;
-        border: none !important;
-        color: #0f172a !important;
-        padding: 0 !important;
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
-        border-radius: 10px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: none !important;
-    }
+  .platform-header .header-nav-links .nav-link {
+    background: #f1f5f9 !important;
+    border: none !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+  }
 
-    .platform-header .header-nav-links .nav-link:hover {
-        background: #e2e8f0 !important;
-    }
+  .platform-header .header-nav-links .nav-link:hover {
+    background: #e2e8f0 !important;
+  }
 
-    /* 2. Jump to Lesson Button: Hide book icon, text & arrow. Show ONLY hamburger */
-    .lesson-nav-btn .nav-icon,
-    .lesson-nav-btn .nav-btn-text,
-    .lesson-nav-btn .nav-arrow {
-        display: none !important;
-    }
+  .lesson-nav-btn .nav-icon,
+  .lesson-nav-btn .nav-btn-text,
+  .lesson-nav-btn .nav-arrow {
+    display: none !important;
+  }
 
-    .lesson-nav-btn .nav-hamburger {
-        display: flex !important;
-    }
+  .lesson-nav-btn .nav-hamburger {
+    display: flex !important;
+  }
 
-    .platform-header .lesson-nav-btn,
-    .lesson-nav-btn {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
-        padding: 0 !important;
-        border-radius: 10px !important;
-        justify-content: center !important;
-        background: #f1f5f9 !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
+  .platform-header .lesson-nav-btn,
+  .lesson-nav-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    justify-content: center !important;
+    background: #f1f5f9 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 
-    /* Centered Screen Overlay Positioning for Mobile Viewports */
-    .lesson-nav-dropdown {
-        position: fixed !important;
-        top: 64px !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) !important;
-        width: calc(100vw - 32px) !important;
-        max-width: 340px !important;
-        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important;
-    }
+  /* Centered Screen Overlay Positioning for Mobile Viewports */
+  .lesson-nav-dropdown {
+    position: fixed !important;
+    top: 64px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 32px) !important;
+    max-width: 340px !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25) !important;
+  }
 }
