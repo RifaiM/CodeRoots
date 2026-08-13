@@ -1,4 +1,4 @@
-/* Level 7: Specialization Hub Navigation Engine Styles (100% Identical to Level 4, 5 & 6) */
+/* Level 7: Specialization Hub Navigation Engine Styles (100% High Contrast for .platform-header) */
 
 .lesson-nav-container {
     position: relative;
@@ -8,36 +8,49 @@
     z-index: 10000;
 }
 
+/* Light/White Sticky Platform Header Specific Styling */
+.platform-header .lesson-nav-btn,
 .lesson-nav-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #f8fafc;
-    padding: 6px 14px;
-    border-radius: 10px;
-    font-size: 0.84rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-    outline: none;
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    padding: 6px 14px !important;
+    border-radius: 10px !important;
+    font-size: 0.84rem !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
 }
 
+.platform-header .lesson-nav-btn:hover,
+.platform-header .lesson-nav-btn.active,
 .lesson-nav-btn:hover,
 .lesson-nav-btn.active {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: #e2e8f0 !important;
+    border-color: #94a3b8 !important;
+    color: #7e22ce !important;
+    box-shadow: 0 4px 12px rgba(126, 34, 206, 0.15) !important;
+}
+
+.lesson-nav-btn .nav-btn-text {
+    color: #0f172a !important;
+    font-weight: 800 !important;
 }
 
 .lesson-nav-btn .nav-arrow {
-    font-size: 0.72rem;
-    transition: transform 0.2s ease;
+    font-size: 0.72rem !important;
+    color: #64748b !important;
+    transition: transform 0.2s ease !important;
 }
 
 .lesson-nav-btn.active .nav-arrow {
-    transform: rotate(180deg);
+    transform: rotate(180deg) !important;
+    color: #7e22ce !important;
 }
 
 .nav-hamburger {
@@ -51,7 +64,7 @@
     display: block;
     height: 2px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #0f172a !important;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -62,10 +75,10 @@
     top: calc(100% + 8px);
     right: 0;
     width: 320px;
-    background: #0f172a;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    background: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5) !important;
     display: none;
     flex-direction: column;
     overflow: hidden;
@@ -74,7 +87,7 @@
 }
 
 .lesson-nav-dropdown.show {
-    display: flex;
+    display: flex !important;
 }
 
 @keyframes dropdownFadeIn {
@@ -83,15 +96,15 @@
 }
 
 .nav-header {
-    background: rgba(30, 41, 59, 0.9);
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background: rgba(30, 41, 59, 0.9) !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-weight: 800 !important;
+    font-size: 0.85rem !important;
+    color: #cbd5e1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
 .nav-content {
@@ -107,36 +120,36 @@
     padding: 10px 12px;
     border-radius: 8px;
     text-decoration: none;
-    color: #cbd5e1;
+    color: #cbd5e1 !important;
     transition: all 0.15s ease;
     margin-bottom: 4px;
     font-size: 0.82rem;
 }
 
 .nav-lesson-item:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
 }
 
 .nav-lesson-item.current {
-    background: rgba(168, 85, 247, 0.15);
-    border: 1px solid rgba(168, 85, 247, 0.4);
-    color: #c084fc;
+    background: rgba(168, 85, 247, 0.18) !important;
+    border: 1px solid rgba(168, 85, 247, 0.4) !important;
+    color: #c084fc !important;
     font-weight: 700;
 }
 
 .nav-lesson-item.completed {
-    color: #34d399;
+    color: #34d399 !important;
 }
 
 .nav-lesson-item.available {
-    color: #38bdf8;
+    color: #38bdf8 !important;
 }
 
 .nav-lesson-item.locked {
     opacity: 0.5;
     cursor: not-allowed;
-    color: #94a3b8;
+    color: #94a3b8 !important;
 }
 
 .lesson-status {
@@ -152,7 +165,7 @@
     font-size: 0.72rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: #94a3b8 !important;
 }
 
 .lesson-title {
@@ -169,13 +182,35 @@
 .divider-text {
     font-size: 0.70rem;
     font-weight: 800;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-/* Mobile Responsiveness (768px, 576px, 425px, 375px, 320px) */
-@media (max-width: 768px) {
+/* Mobile Responsiveness (992px, 768px, 576px, 425px, 375px, 320px) */
+@media (max-width: 992px) {
+    .platform-header .header-nav-links .nav-link {
+        background: #f1f5f9 !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        min-height: 34px !important;
+        border-radius: 10px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .platform-header .header-nav-links .nav-link:hover {
+        background: #e2e8f0 !important;
+        border-color: #94a3b8 !important;
+    }
+
     .nav-arrow,
     .nav-btn-text,
     .nav-icon {
@@ -186,14 +221,17 @@
         display: flex !important;
     }
 
+    .platform-header .lesson-nav-btn,
     .lesson-nav-btn {
         width: 34px !important;
         height: 34px !important;
         min-width: 34px !important;
         min-height: 34px !important;
         padding: 0 !important;
-        border-radius: 50% !important;
+        border-radius: 10px !important;
         justify-content: center !important;
+        background: #f1f5f9 !important;
+        border: 1px solid #cbd5e1 !important;
     }
 
     .lesson-nav-dropdown {
