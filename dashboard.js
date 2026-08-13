@@ -821,27 +821,63 @@ window.confirmResetProgress = function() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                // Clear all completion keys from LocalStorage
+                // 1. Reset User XP
+                localStorage.removeItem('userXP');
+                localStorage.removeItem('novicodes_user_xp');
+                localStorage.removeItem('novicodes_xp');
+
+                // 2. Reset Level Completion Flags
                 localStorage.removeItem('level0_completed');
                 localStorage.removeItem('level1_completed');
                 localStorage.removeItem('level2_completed');
                 localStorage.removeItem('level3_completed');
+                localStorage.removeItem('level4_completed');
+                localStorage.removeItem('level5_completed');
+                localStorage.removeItem('level6_completed');
+                localStorage.removeItem('level7_completed');
 
-                for (let i = 1; i <= 15; i++) {
+                // 3. Reset Level 7 Track & Branch Completion Flags
+                localStorage.removeItem('partF_completed');
+                localStorage.removeItem('partF_complete');
+                localStorage.removeItem('partF_branchA_completed');
+                localStorage.removeItem('partF_branchA_complete');
+                localStorage.removeItem('partF_branchB_completed');
+                localStorage.removeItem('partF_branchB_complete');
+                localStorage.removeItem('partF_branchC_completed');
+                localStorage.removeItem('partF_branchC_complete');
+
+                // 4. Reset Lessons 1-20 (Levels 1-6)
+                for (let i = 1; i <= 20; i++) {
                     localStorage.removeItem(`partB_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`lesson_${i}_completed`);
+                    localStorage.removeItem(`partB_lesson${i}_remake_completed`);
                     localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partC_lesson${i}_remake_completed`);
+                    localStorage.removeItem(`partD_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partD_lesson${i}_remake_completed`);
                     localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partE_lesson${i}_remake_completed`);
+                    localStorage.removeItem(`lesson_${i}_completed`);
+                    localStorage.removeItem(`lesson_${i}_complete`);
                 }
 
+                // 5. Reset Level 7 Branch A, B, C Lessons & Keystroke Drafts
                 for (let i = 1; i <= 6; i++) {
                     localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
+
                     localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
+
                     localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
                 }
 
-                // Also clear practice-mode unlock so all levels re-lock correctly
+                // 6. Reset Practice Mode & Toggles
                 localStorage.removeItem('practice_mode_unlocked');
+                localStorage.removeItem('progression_mode');
 
                 Swal.fire({
                     icon: 'success',
