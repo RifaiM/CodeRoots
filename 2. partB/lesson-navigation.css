@@ -472,3 +472,6 @@ header:not(.platform-header):not(:has(p)) h1,
   70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
   100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
+
+
+.home-button .btn-text-short { display: none !important; }
