@@ -138,6 +138,9 @@
             font-size: 0.88rem;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .track-select-btn.active {
@@ -145,6 +148,22 @@
             color: #ffffff;
             border-color: #2563eb;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .track-select-btn.locked {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        .track-select-btn.locked::after {
+            content: '🔒';
+            font-size: 0.82rem;
+        }
+
+        .track-select-btn.unlocked::after {
+            content: '✅';
+            font-size: 0.82rem;
         }
 
         .input-group {
@@ -342,10 +361,10 @@
             </p>
 
             <div class="track-select-group">
-                <button class="track-select-btn active" onclick="selectCertTrack('apex', this)">👑 Full-Stack Architect Apex</button>
-                <button class="track-select-btn" onclick="selectCertTrack('7A', this)">☁️ Cloud Systems Architect (7A)</button>
-                <button class="track-select-btn" onclick="selectCertTrack('7B', this)">🛢️ Database Architect (7B)</button>
-                <button class="track-select-btn" onclick="selectCertTrack('7C', this)">⚡ Next.js Engineer (7C)</button>
+                <button class="track-select-btn" data-track="apex" onclick="selectCertTrack('apex', this)">👑 Full-Stack Architect Apex</button>
+                <button class="track-select-btn" data-track="7A" onclick="selectCertTrack('7A', this)">☁️ Cloud Systems Architect (7A)</button>
+                <button class="track-select-btn" data-track="7B" onclick="selectCertTrack('7B', this)">🛢️ Database Architect (7B)</button>
+                <button class="track-select-btn" data-track="7C" onclick="selectCertTrack('7C', this)">⚡ Next.js Engineer (7C)</button>
             </div>
 
             <div class="input-group">
@@ -420,9 +439,85 @@
             }
         };
 
+        function isTrackCompleted(trackKey) {
+            const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+            if (isPracticeUnlocked) return true;
+
+            if (trackKey === '7A') return localStorage.getItem('partF_branchA_completed') === 'true';
+            if (trackKey === '7B') return localStorage.getItem('partF_branchB_completed') === 'true';
+            if (trackKey === '7C') return localStorage.getItem('partF_branchC_completed') === 'true';
+            if (trackKey === 'apex') {
+                return localStorage.getItem('partF_branchA_completed') === 'true' &&
+                       localStorage.getItem('partF_branchB_completed') === 'true' &&
+                       localStorage.getItem('partF_branchC_completed') === 'true';
+            }
+            return false;
+        }
+
+        function showTrackLockedPopup(trackKey) {
+            let title = 'Track Locked! 📜';
+            let trackName = '';
+            let targetLessonUrl = './hub.html';
+            let targetButtonText = '🚀 Go to Level 7 Hub';
+
+            if (trackKey === '7A') {
+                trackName = 'Track 7A (Cloud Shipping & DevOps)';
+                targetLessonUrl = './branchA/lesson1_remake.html';
+                targetButtonText = '🚀 Take Me to Track 7A';
+            } else if (trackKey === '7B') {
+                trackName = 'Track 7B (Databases & Auth Architecture)';
+                targetLessonUrl = './branchB/lesson1_remake.html';
+                targetButtonText = '🚀 Take Me to Track 7B';
+            } else if (trackKey === '7C') {
+                trackName = 'Track 7C (Next.js & Modern Frameworks)';
+                targetLessonUrl = './branchC/lesson1_remake.html';
+                targetButtonText = '🚀 Take Me to Track 7C';
+            } else if (trackKey === 'apex') {
+                trackName = 'all 3 specialization tracks (7A, 7B, and 7C)';
+                title = 'Full-Stack Apex Certificate Locked! 👑';
+                targetLessonUrl = './hub.html';
+                targetButtonText = '🚀 Go to Level 7 Hub';
+            }
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'lock',
+                    title: title,
+                    html: `
+                        <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
+                            <p style="font-size: 1.05rem; color: #475569; margin-bottom: 16px;">
+                                You must complete <strong>${trackName}</strong> before claiming this official certificate!
+                            </p>
+                            <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 14px; border-radius: 12px; font-weight: 700; color: #be123c; font-size: 0.88rem; margin-bottom: 12px;">
+                                🔒 Complete all 6 lessons in this track to unlock!
+                            </div>
+                        </div>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonColor: '#2563eb',
+                    cancelButtonColor: '#475569',
+                    confirmButtonText: targetButtonText,
+                    cancelButtonText: 'Cancel',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = targetLessonUrl;
+                    }
+                });
+            } else {
+                alert(`⚠️ ${title}: Complete ${trackName} to unlock.`);
+            }
+        }
+
         let activeTrackKey = 'apex';
 
         function selectCertTrack(trackKey, btnEl) {
+            if (!isTrackCompleted(trackKey)) {
+                showTrackLockedPopup(trackKey);
+                return;
+            }
+
             activeTrackKey = trackKey;
             
             // Update active button UI
@@ -437,6 +532,35 @@
                 
                 const randomCode = Math.floor(100000 + Math.random() * 900000);
                 document.getElementById('certId').textContent = `${details.prefix}-${randomCode}`;
+            }
+        }
+
+        function updateTrackButtonStates() {
+            const tracks = ['apex', '7A', '7B', '7C'];
+            tracks.forEach(key => {
+                const btn = document.querySelector(`[data-track="${key}"]`);
+                if (btn) {
+                    const completed = isTrackCompleted(key);
+                    if (completed) {
+                        btn.classList.remove('locked');
+                        btn.classList.add('unlocked');
+                    } else {
+                        btn.classList.remove('unlocked');
+                        btn.classList.add('locked');
+                    }
+                }
+            });
+
+            // Auto-select first unlocked track
+            let defaultTrack = 'apex';
+            if (isTrackCompleted('apex')) defaultTrack = 'apex';
+            else if (isTrackCompleted('7A')) defaultTrack = '7A';
+            else if (isTrackCompleted('7B')) defaultTrack = '7B';
+            else if (isTrackCompleted('7C')) defaultTrack = '7C';
+
+            const defaultBtn = document.querySelector(`[data-track="${defaultTrack}"]`);
+            if (defaultBtn) {
+                selectCertTrack(defaultTrack, defaultBtn);
             }
         }
 
@@ -472,9 +596,8 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('issueDate').textContent = today;
 
-            // Generate initial unique cert ID
-            const randomCode = Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('certId').textContent = `NC-L7-APEX-${randomCode}`;
+            // Initialize track locks & select default completed track
+            updateTrackButtonStates();
         });
     </script>
 </body>
