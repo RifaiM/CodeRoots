@@ -55,48 +55,82 @@ document.addEventListener('DOMContentLoaded', () => {
  * Calculates XP and rank badge from LocalStorage
  */
 function updateHeaderStats() {
-    const isL0 = localStorage.getItem('level0_completed') === 'true';
-    const isL1 = localStorage.getItem('level1_completed') === 'true';
-    const isL2 = localStorage.getItem('level2_completed') === 'true';
-    const isL3 = localStorage.getItem('level3_completed') === 'true';
+    let stats;
+    if (typeof window.getUserXPAndRank === 'function') {
+        stats = window.getUserXPAndRank();
+    } else {
+        const isL0 = localStorage.getItem('level0_completed') === 'true';
+        const isL1 = localStorage.getItem('level1_completed') === 'true';
+        const isL2 = localStorage.getItem('level2_completed') === 'true';
+        const isL3 = localStorage.getItem('level3_completed') === 'true';
 
-    let completedCount = 0;
-    for (let i = 1; i <= 15; i++) {
-        const val = localStorage.getItem(`lesson_${i}_completed`);
-        if (val === 'true' || val === '1') completedCount++;
+        let l4Completed = 0;
+        for (let i = 1; i <= 15; i++) {
+            const val = localStorage.getItem(`partB_lesson${i}_remake_complete`) || localStorage.getItem(`lesson_${i}_completed`);
+            if (val === 'true' || val === '1') l4Completed++;
+        }
+
+        let l5Completed = 0;
+        for (let i = 1; i <= 15; i++) {
+            if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') l5Completed++;
+        }
+
+        let l6Completed = 0;
+        for (let i = 1; i <= 15; i++) {
+            if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') l6Completed++;
+        }
+
+        let totalXP = 0;
+        if (isL0) totalXP += 250;
+        if (isL1) totalXP += 300;
+        if (isL2) totalXP += 300;
+        if (isL3) totalXP += 400;
+        totalXP += (l4Completed * 100);
+        totalXP += (l5Completed * 150);
+        totalXP += (l6Completed * 200);
+
+        let rankTitle = 'Web Novice';
+        let rankIcon = '🌱';
+        if (l6Completed >= 15 && l5Completed >= 15) {
+            rankTitle = 'Master Architect';
+            rankIcon = '👑';
+        } else if (l6Completed > 0) {
+            rankTitle = 'Python Backend Engineer';
+            rankIcon = '🐍';
+        } else if (l5Completed >= 15) {
+            rankTitle = 'Fullstack Master';
+            rankIcon = '🏆';
+        } else if (l5Completed > 0) {
+            rankTitle = 'React Engineer';
+            rankIcon = '⚛️';
+        } else if (l4Completed >= 15) {
+            rankTitle = 'Dojo Master';
+            rankIcon = '⚔️';
+        } else if (l4Completed > 0) {
+            rankTitle = 'DOM Challenger';
+            rankIcon = '⚔️';
+        } else if (isL1) {
+            rankTitle = 'Code Apprentice';
+            rankIcon = '🛡️';
+        } else if (isL0) {
+            rankTitle = 'Web Novice';
+            rankIcon = '🌱';
+        } else {
+            rankTitle = 'Web Explorer';
+            rankIcon = '🌐';
+        }
+
+        stats = { totalXP, rankTitle, rankIcon };
     }
-
-    let totalXP = 0;
-    if (isL0) totalXP += 250;
-    if (isL1) totalXP += 300;
-    if (isL2) totalXP += 300;
-    if (isL3) totalXP += 400;
-    totalXP += (completedCount * 100);
 
     const xpLabel = document.getElementById('userXpLabel');
     const rankIcon = document.getElementById('userRankIcon');
     const rankLabel = document.getElementById('userRankLabel');
 
-    if (xpLabel) xpLabel.textContent = `${totalXP.toLocaleString()} XP`;
+    if (xpLabel) xpLabel.textContent = `${stats.totalXP.toLocaleString()} XP`;
 
-    if (rankLabel && rankIcon) {
-        if (completedCount >= 15) {
-            rankIcon.textContent = '🏆';
-            rankLabel.textContent = 'Dojo Master';
-        } else if (isL3) {
-            rankIcon.textContent = '⚔️';
-            rankLabel.textContent = 'Dojo Challenger';
-        } else if (isL1) {
-            rankIcon.textContent = '🛡️';
-            rankLabel.textContent = 'Code Apprentice';
-        } else if (isL0) {
-            rankIcon.textContent = '🌱';
-            rankLabel.textContent = 'Web Novice';
-        } else {
-            rankIcon.textContent = '🌐';
-            rankLabel.textContent = 'Web Explorer';
-        }
-    }
+    if (rankLabel) rankLabel.textContent = stats.rankTitle;
+    if (rankIcon) rankIcon.textContent = stats.rankIcon;
 }
 
 /**

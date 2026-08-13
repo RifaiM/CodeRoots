@@ -76,19 +76,14 @@ function escapeHTML(str) {
 }
 
 /**
- * 2. Progression Lock/Unlock Engine & XP Calculation
+ * Single source of truth for XP & Learner Rank calculation
  */
-function initUserProgress() {
-    let completedCount = 0;
-    
-    // Check level completion states
-    const isLevel0Complete = localStorage.getItem('level0_completed') === 'true';
-    const isLevel1Complete = localStorage.getItem('level1_completed') === 'true';
-    const isLevel2Complete = localStorage.getItem('level2_completed') === 'true';
-    const isLevel3Complete = localStorage.getItem('level3_completed') === 'true';
-    const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+window.getUserXPAndRank = function() {
+    const isL0 = localStorage.getItem('level0_completed') === 'true';
+    const isL1 = localStorage.getItem('level1_completed') === 'true';
+    const isL2 = localStorage.getItem('level2_completed') === 'true';
+    const isL3 = localStorage.getItem('level3_completed') === 'true';
 
-    // Calculate Level 4 & Level 5 lesson completion counts from LocalStorage
     let l4Completed = 0;
     for (let i = 1; i <= 15; i++) {
         try {
@@ -105,14 +100,79 @@ function initUserProgress() {
         } catch (e) {}
     }
 
-    // Calculate XP
+    let l6Completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        try {
+            const isComp = localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true';
+            if (isComp) l6Completed++;
+        } catch (e) {}
+    }
+
     let totalXP = 0;
-    if (isLevel0Complete) totalXP += 250;
-    if (isLevel1Complete) totalXP += 300;
-    if (isLevel2Complete) totalXP += 300;
-    if (isLevel3Complete) totalXP += 400;
+    if (isL0) totalXP += 250;
+    if (isL1) totalXP += 300;
+    if (isL2) totalXP += 300;
+    if (isL3) totalXP += 400;
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
+    totalXP += (l6Completed * 200);
+
+    let rankTitle = 'Web Novice';
+    let rankIcon = '🌱';
+    if (l6Completed >= 15 && l5Completed >= 15) {
+        rankTitle = 'Master Architect';
+        rankIcon = '👑';
+    } else if (l6Completed > 0) {
+        rankTitle = 'Python Backend Engineer';
+        rankIcon = '🐍';
+    } else if (l5Completed >= 15) {
+        rankTitle = 'Fullstack Master';
+        rankIcon = '🏆';
+    } else if (l5Completed > 0) {
+        rankTitle = 'React Engineer';
+        rankIcon = '⚛️';
+    } else if (l4Completed >= 15) {
+        rankTitle = 'Dojo Master';
+        rankIcon = '⚔️';
+    } else if (l4Completed > 0) {
+        rankTitle = 'DOM Challenger';
+        rankIcon = '⚔️';
+    } else if (isL1) {
+        rankTitle = 'Code Apprentice';
+        rankIcon = '🛡️';
+    } else if (isL0) {
+        rankTitle = 'Web Novice';
+        rankIcon = '🌱';
+    } else {
+        rankTitle = 'Web Explorer';
+        rankIcon = '🌐';
+    }
+
+    return {
+        isL0, isL1, isL2, isL3,
+        l4Completed, l5Completed, l6Completed,
+        totalXP,
+        maxXP: 8000,
+        rankTitle,
+        rankIcon
+    };
+};
+
+/**
+ * 2. Progression Lock/Unlock Engine & XP Calculation
+ */
+function initUserProgress() {
+    let completedCount = 0;
+    
+    // Check level completion states
+    const isLevel0Complete = localStorage.getItem('level0_completed') === 'true';
+    const isLevel1Complete = localStorage.getItem('level1_completed') === 'true';
+    const isLevel2Complete = localStorage.getItem('level2_completed') === 'true';
+    const isLevel3Complete = localStorage.getItem('level3_completed') === 'true';
+    const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
+    // Get unified XP and Rank
+    const stats = window.getUserXPAndRank();
     
     // Update Header UI Elements
     const xpBadge = document.querySelector('.xp-badge .badge-label');
@@ -123,32 +183,12 @@ function initUserProgress() {
     const unlockModeText = document.getElementById('unlockModeText');
 
     if (xpBadge) {
-        xpBadge.textContent = `${totalXP.toLocaleString()} XP`;
+        xpBadge.textContent = `${stats.totalXP.toLocaleString()} XP`;
     }
 
     if (rankLabel) {
-        if (l5Completed >= 15) {
-            if (rankIcon) rankIcon.textContent = '🏆';
-            rankLabel.textContent = 'Fullstack Master';
-        } else if (l5Completed > 0) {
-            if (rankIcon) rankIcon.textContent = '⚛️';
-            rankLabel.textContent = 'React Engineer';
-        } else if (l4Completed >= 15) {
-            if (rankIcon) rankIcon.textContent = '⚔️';
-            rankLabel.textContent = 'Dojo Master';
-        } else if (l4Completed > 0) {
-            if (rankIcon) rankIcon.textContent = '⚔️';
-            rankLabel.textContent = 'DOM Challenger';
-        } else if (isLevel1Complete) {
-            if (rankIcon) rankIcon.textContent = '🛡️';
-            rankLabel.textContent = 'Code Apprentice';
-        } else if (isLevel0Complete) {
-            if (rankIcon) rankIcon.textContent = '🌱';
-            rankLabel.textContent = 'Web Novice';
-        } else {
-            if (rankIcon) rankIcon.textContent = '🌐';
-            rankLabel.textContent = 'Web Explorer';
-        }
+        rankLabel.textContent = stats.rankTitle;
+        if (rankIcon) rankIcon.textContent = stats.rankIcon;
     }
 
     // Update Track Card Unlock States
@@ -529,71 +569,8 @@ window.openDojoHub = function() {
  * 8. User Profile & XP Breakdown Modal with Responsive Reset Option
  */
 window.openUserProfileModal = function() {
-    const isL0 = localStorage.getItem('level0_completed') === 'true';
-    const isL1 = localStorage.getItem('level1_completed') === 'true';
-    const isL2 = localStorage.getItem('level2_completed') === 'true';
-    const isL3 = localStorage.getItem('level3_completed') === 'true';
-
-    let l4Completed = 0;
-    for (let i = 1; i <= 15; i++) {
-        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === '1') {
-            l4Completed++;
-        }
-    }
-
-    let l5Completed = 0;
-    for (let i = 1; i <= 15; i++) {
-        if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
-            l5Completed++;
-        }
-    }
-
-    let l6Completed = 0;
-    for (let i = 1; i <= 15; i++) {
-        if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
-            l6Completed++;
-        }
-    }
-
-    let totalXP = 0;
-    if (isL0) totalXP += 250;
-    if (isL1) totalXP += 300;
-    if (isL2) totalXP += 300;
-    if (isL3) totalXP += 400;
-    totalXP += (l4Completed * 100);
-    totalXP += (l5Completed * 150);
-    totalXP += (l6Completed * 200);
-
-    let rankTitle = '🌱 Web Novice';
-    let rankIcon = '🌱';
-    if (l6Completed >= 15 && l5Completed >= 15) {
-        rankTitle = '👑 Master Architect';
-        rankIcon = '👑';
-    } else if (l6Completed > 0) {
-        rankTitle = '🐍 Python Backend Engineer';
-        rankIcon = '🐍';
-    } else if (l5Completed >= 15) {
-        rankTitle = '🏆 Fullstack Master';
-        rankIcon = '🏆';
-    } else if (l5Completed > 0) {
-        rankTitle = '⚛️ React Engineer';
-        rankIcon = '⚛️';
-    } else if (l4Completed >= 15) {
-        rankTitle = '⚔️ Dojo Master';
-        rankIcon = '⚔️';
-    } else if (l4Completed > 0) {
-        rankTitle = '⚔️ DOM Challenger';
-        rankIcon = '⚔️';
-    } else if (isL1) {
-        rankTitle = '🛡️ Code Apprentice';
-        rankIcon = '🛡️';
-    } else if (isL0) {
-        rankTitle = '🌱 Web Novice';
-        rankIcon = '🌱';
-    }
-
-    const maxXP = 8000;
-    const progressPct = Math.min(Math.round((totalXP / maxXP) * 100), 100);
+    const stats = window.getUserXPAndRank();
+    const progressPct = Math.min(Math.round((stats.totalXP / stats.maxXP) * 100), 100);
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -603,9 +580,9 @@ window.openUserProfileModal = function() {
                     
                     <!-- Rank Banner -->
                     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 16px 14px; border-radius: 14px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);">
-                        <div style="font-size: 2.2rem; margin-bottom: 4px;">${rankIcon}</div>
-                        <div style="font-size: 1.1rem; font-weight: 800;">${rankTitle}</div>
-                        <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${totalXP.toLocaleString()} / ${maxXP.toLocaleString()} Total XP</div>
+                        <div style="font-size: 2.2rem; margin-bottom: 4px;">${stats.rankIcon}</div>
+                        <div style="font-size: 1.1rem; font-weight: 800;">${stats.rankIcon} ${stats.rankTitle}</div>
+                        <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} Total XP</div>
                         
                         <!-- Progress Bar -->
                         <div style="background: rgba(255,255,255,0.2); height: 8px; border-radius: 99px; margin-top: 12px; overflow: hidden;">
@@ -617,23 +594,23 @@ window.openUserProfileModal = function() {
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 0: Web History</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: ${isL0 ? '#10b981' : '#64748b'};">${isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: ${stats.isL0 ? '#10b981' : '#64748b'};">${stats.isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
                         </div>
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 1-3: Foundations</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${((isL1?300:0)+(isL2?300:0)+(isL3?400:0))} / 1,000 XP</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${((stats.isL1?300:0)+(stats.isL2?300:0)+(stats.isL3?400:0))} / 1,000 XP</div>
                         </div>
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 4: DOM Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #2563eb;">${l4Completed * 100} / 1,500 XP</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #2563eb;">${stats.l4Completed * 100} / 1,500 XP</div>
                         </div>
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${l5Completed * 150} / 2,250 XP</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${stats.l5Completed * 150} / 2,250 XP</div>
                         </div>
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
-                            <div style="font-size: 0.88rem; font-weight: 800; color: #10b981;">${l6Completed * 200} / 3,000 XP</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #10b981;">${stats.l6Completed * 200} / 3,000 XP</div>
                         </div>
                     </div>
 
