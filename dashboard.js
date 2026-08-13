@@ -108,6 +108,16 @@ window.getUserXPAndRank = function() {
         } catch (e) {}
     }
 
+    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true') l7BranchA++;
+            if (localStorage.getItem(`partF_branchB_lesson${i}_complete`) === 'true') l7BranchB++;
+            if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true') l7BranchC++;
+        } catch (e) {}
+    }
+    const l7Completed = l7BranchA + l7BranchB + l7BranchC;
+
     let totalXP = 0;
     if (isL0) totalXP += 250;
     if (isL1) totalXP += 300;
@@ -116,10 +126,26 @@ window.getUserXPAndRank = function() {
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
+    totalXP += (l7Completed * 250);
 
     let rankTitle = 'Web Novice';
     let rankIcon = '🌱';
-    if (l6Completed >= 15 && l5Completed >= 15) {
+    if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+        rankTitle = 'Principal Polymath';
+        rankIcon = '👑';
+    } else if (l7BranchA >= 6) {
+        rankTitle = 'Cloud Specialist';
+        rankIcon = '☁️';
+    } else if (l7BranchB >= 6) {
+        rankTitle = 'Database Architect';
+        rankIcon = '🛢️';
+    } else if (l7BranchC >= 6) {
+        rankTitle = 'Next.js Engineer';
+        rankIcon = '⚡';
+    } else if (l7Completed > 0) {
+        rankTitle = 'Mastery Challenger';
+        rankIcon = '🚀';
+    } else if (l6Completed >= 15 && l5Completed >= 15) {
         rankTitle = 'Master Architect';
         rankIcon = '👑';
     } else if (l6Completed > 0) {
@@ -151,8 +177,9 @@ window.getUserXPAndRank = function() {
     return {
         isL0, isL1, isL2, isL3,
         l4Completed, l5Completed, l6Completed,
+        l7BranchA, l7BranchB, l7BranchC, l7Completed,
         totalXP,
-        maxXP: 8000,
+        maxXP: 8000 + (l7Completed * 250),
         rankTitle,
         rankIcon
     };
@@ -253,6 +280,14 @@ function initUserProgress() {
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : '🐍 Enter Level 6 Dojo';
+            }
+        } else if (levelText === 'Level 7') {
+            const stats = window.getUserXPAndRank();
+            const isFinished = (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6);
+            updateTrackCardState(card, statusIcon, btn, isFinished, true, './6. partF/hub.html', 'Level 7 Specialization Hub');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isFinished ? '✅ Level 7 Completed' : '🚀 Enter Level 7 Hub';
             }
         }
     });
@@ -465,6 +500,7 @@ window.openCertificateHub = function() {
     const isL4Earned = isUnlocked || stats.l4Completed >= 15;
     const isL5Earned = isUnlocked || stats.l5Completed >= 15;
     const isL6Earned = isUnlocked || stats.l6Completed >= 15;
+    const isL7Earned = isUnlocked || (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6 || stats.l7Completed >= 6);
 
     const renderCertItem = (title, sub, url, isEarned, completedCount, bgStyle, textStyle, btnColor) => {
         if (isEarned) {
@@ -482,7 +518,7 @@ window.openCertificateHub = function() {
                 <div onclick="window.showCertLockWarning('${title}', ${completedCount})" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
                     <div style="text-align: left;">
                         <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">${title}</div>
-                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount}/15 Lessons</div>
+                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount} Completed</div>
                     </div>
                     <span style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
                 </div>
@@ -493,6 +529,7 @@ window.openCertificateHub = function() {
     const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', './2. partB/certificate.html', isL4Earned, stats.l4Completed, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
     const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', './3. partC/certificate.html', isL5Earned, stats.l5Completed, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
     const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', './5. partE/certificate.html', isL6Earned, stats.l6Completed, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', './6. partF/certificate.html', isL7Earned, stats.l7Completed, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -507,6 +544,7 @@ window.openCertificateHub = function() {
                         ${l4Item}
                         ${l5Item}
                         ${l6Item}
+                        ${l7Item}
                     </div>
                 </div>
             `,
@@ -514,7 +552,7 @@ window.openCertificateHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = isL6Earned ? './5. partE/certificate.html' : './2. partB/certificate.html';
+        window.location.href = isL7Earned ? './6. partF/certificate.html' : './2. partB/certificate.html';
     }
 };
 
@@ -601,7 +639,10 @@ window.openUserProfileModal = function() {
         { title: 'React Engineer', icon: '⚛️', level: 'Level 5 • Framework Dojo' },
         { title: 'Python Backend Engineer', icon: '🐍', level: 'Level 6 • Backend Dojo' },
         { title: 'Fullstack Master', icon: '🏆', level: 'Level 5 & 6 Complete' },
-        { title: 'Master Architect', icon: '👑', level: '100% All Levels Complete' }
+        { title: 'Cloud Specialist', icon: '☁️', level: 'Level 7 • Cloud Shipping' },
+        { title: 'Database Architect', icon: '🛢️', level: 'Level 7 • Database & Auth' },
+        { title: 'Next.js Engineer', icon: '⚡', level: 'Level 7 • Next.js Framework' },
+        { title: 'Principal Polymath', icon: '👑', level: '100% Level 7 Mastery' }
     ];
 
     const currentRankTitle = stats.rankTitle;
@@ -666,6 +707,10 @@ window.openUserProfileModal = function() {
                             <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
                             <div style="font-size: 0.84rem; font-weight: 800; color: #10b981;">${stats.l6Completed * 200} / 3,000 XP</div>
                         </div>
+                        <div style="background: #faf5ff; border: 1px solid #e9d5ff; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Mastery Hub</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${stats.l7Completed * 250} / 4,500 XP</div>
+                        </div>
                     </div>
 
                     <!-- Developer Rank Progression Roadmap -->
@@ -703,7 +748,7 @@ window.confirmResetProgress = function() {
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                     <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 6.
+                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -732,6 +777,12 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`lesson_${i}_completed`);
                     localStorage.removeItem(`partC_lesson${i}_remake_complete`);
                     localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+                }
+
+                for (let i = 1; i <= 6; i++) {
+                    localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
                 }
 
                 // Also clear practice-mode unlock so all levels re-lock correctly
