@@ -492,15 +492,18 @@ function showTrackPreview(title, description) {
 /**
  * 6. Global Certificate Hub Selection Modal
  */
-/**
- * 6. Global Certificate Hub Selection Modal
- */
-window.showCertLockWarning = function(levelName, count) {
+window.showCertLockWarning = function(levelName, count, requiredCount = 15) {
+    const isLevel7 = levelName.includes('Level 7');
+    const titleText = `🔒 ${levelName} Locked`;
+    const messageText = isLevel7
+        ? `You must complete any 1 Specialization Track (6 Lessons in Cloud Shipping, Databases & Auth, or Next.js) before claiming your official Level 7 Certificate! (${count}/6 Completed)`
+        : `You must complete all 15 projects in ${levelName} before claiming your official Certificate! (${count}/${requiredCount} Completed)`;
+
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             icon: 'warning',
-            title: `🔒 ${levelName} Certificate Locked`,
-            text: `You must complete all 15 lessons in ${levelName} before claiming your official Certificate! (${count}/15 Completed)`,
+            title: titleText,
+            text: messageText,
             confirmButtonColor: '#2563eb',
             confirmButtonText: 'Got It!'
         });
@@ -528,7 +531,7 @@ window.openCertificateHub = function() {
     const isL6Earned = isUnlocked || stats.l6Completed >= 15;
     const isL7Earned = isUnlocked || (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6 || stats.l7Completed >= 6);
 
-    const renderCertItem = (title, sub, url, isEarned, completedCount, bgStyle, textStyle, btnColor) => {
+    const renderCertItem = (title, sub, url, isEarned, completedCount, maxCount, bgStyle, textStyle, btnColor) => {
         if (isEarned) {
             return `
                 <a href="${url}" style="display: flex; align-items: center; justify-content: space-between; ${bgStyle} padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
@@ -541,10 +544,10 @@ window.openCertificateHub = function() {
             `;
         } else {
             return `
-                <div onclick="window.showCertLockWarning('${title}', ${completedCount})" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
+                <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
                     <div style="text-align: left;">
                         <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">${title}</div>
-                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount} Completed</div>
+                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount}/${maxCount} Completed</div>
                     </div>
                     <span style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
                 </div>
@@ -552,10 +555,10 @@ window.openCertificateHub = function() {
         }
     };
 
-    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
-    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
-    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
-    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
+    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
+    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
+    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
