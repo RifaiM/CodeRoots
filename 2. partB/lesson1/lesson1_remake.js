@@ -9,6 +9,7 @@ class HTMLCodeEditor {
     }
   
     init() {
+      if (!this.textarea) return; // Safety: bail if DOM element missing (e.g. Access Denied overlay)
       // Handle special keys
       this.textarea.addEventListener('keydown', (e) => this.handleKeyDown(e));
       // Update line numbers and cursor position
@@ -21,6 +22,7 @@ class HTMLCodeEditor {
       this.updateEditor();
       this.updateCursorPosition();
     }
+
   
     updateLineNumbers() {
       if (!this.lineNumbers) return;

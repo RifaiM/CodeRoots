@@ -54,20 +54,29 @@
             }
 
             const renderAccessDenied = () => {
-                document.body.innerHTML = `
-                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; z-index: 10000; padding: 20px; box-sizing: border-box;">
-                        <div style="background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); text-align: center; max-width: 440px; width: 100%;">
-                            <div style="font-size: 3.5rem; margin-bottom: 16px;">🔒</div>
-                            <h1 style="color: #e11d48; margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 800;">Access Denied</h1>
-                            <p style="margin: 0 0 24px 0; line-height: 1.6; color: #475569; font-size: 1rem;">
-                                You must complete <strong>Lesson ${requiredLesson}</strong> before accessing <strong>Lesson ${currentId}</strong>.
-                            </p>
-                            <button onclick="window.location.href='../lesson${highestAccessible}/lesson${highestAccessible}_remake.html'" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); transition: transform 0.2s ease;">
-                                🚀 Take Me to Lesson ${highestAccessible}
-                            </button>
-                        </div>
-                    </div>
-                `;
+                // Inject animation keyframes once
+                if (!document.getElementById('_ad-styles-l5')) {
+                    const s = document.createElement('style');
+                    s.id = '_ad-styles-l5';
+                    s.textContent = '@keyframes _adFadeIn{from{opacity:0}to{opacity:1}}@keyframes _adSlideIn{from{opacity:0;transform:scale(.85) translateY(-20px)}to{opacity:1;transform:scale(1) translateY(0)}}';
+                    document.head.appendChild(s);
+                }
+                if (document.getElementById('_access-denied-overlay')) return;
+
+                // Full-screen overlay — appended ON TOP, never replaces body HTML
+                const overlay = document.createElement('div');
+                overlay.id = '_access-denied-overlay';
+                overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_adFadeIn 0.3s ease;font-family:system-ui,sans-serif;');
+
+                const card = document.createElement('div');
+                card.setAttribute('style', 'background:#ffffff;padding:40px 32px;border-radius:20px;box-shadow:0 24px 48px rgba(0,0,0,0.45);text-align:center;max-width:440px;width:100%;animation:_adSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);');
+                card.innerHTML = '<div style="font-size:3.5rem;margin-bottom:16px;">\uD83D\uDD12</div>'
+                    + '<h2 style="color:#e11d48;margin:0 0 12px;font-size:1.6rem;font-weight:800;">Access Denied</h2>'
+                    + '<p style="margin:0 0 24px;line-height:1.7;color:#475569;font-size:1rem;">You must complete <strong style="color:#1e293b;">Lesson ' + requiredLesson + '</strong> before accessing <strong style="color:#1e293b;">Lesson ' + currentId + '</strong>.</p>'
+                    + '<button onclick="window.location.href=\'../lesson' + highestAccessible + '/lesson' + highestAccessible + '_remake.html\'" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:14px 28px;border-radius:12px;font-weight:700;cursor:pointer;font-size:1rem;box-shadow:0 4px 14px rgba(37,99,235,0.4);" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'\'">\uD83D\uDE80 Take Me to Lesson ' + highestAccessible + '</button>';
+
+                overlay.appendChild(card);
+                document.body.appendChild(overlay);
             };
 
             if (document.readyState === 'loading') {
@@ -79,6 +88,7 @@
         }
         return true;
     }
+
 
     if (!checkAccessProtection()) return;
 

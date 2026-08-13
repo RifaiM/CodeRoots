@@ -31,6 +31,11 @@
     }
 
     function canAccessLesson(lessonId) {
+        if (lessonId === 1) return true;
+        if (localStorage.getItem('practice_mode_unlocked') === 'true') return true;
+        for (let i = 1; i < lessonId; i++) {
+            if (!isLessonCompleted(i)) return false;
+        }
         return true;
     }
 
