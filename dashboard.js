@@ -534,22 +534,22 @@ window.openCertificateHub = function() {
     const renderCertItem = (title, sub, url, isEarned, completedCount, maxCount, bgStyle, textStyle, btnColor) => {
         if (isEarned) {
             return `
-                <a href="${url}" style="display: flex; align-items: center; justify-content: space-between; ${bgStyle} padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                    <div style="text-align: left;">
+                <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; ${bgStyle} padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                    <div style="text-align: left; flex: 1;">
                         <div style="font-weight: 800; font-size: 0.92rem; ${textStyle}">${title}</div>
                         <div style="font-size: 0.76rem; color: #64748b;">${sub}</div>
                     </div>
-                    <span style="font-weight: 800; color: ${btnColor}; font-size: 0.85rem;">View &rarr;</span>
+                    <span class="badge-action" style="font-weight: 800; color: ${btnColor}; font-size: 0.85rem;">View &rarr;</span>
                 </a>
             `;
         } else {
             return `
-                <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
-                    <div style="text-align: left;">
+                <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
+                    <div style="text-align: left; flex: 1;">
                         <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">${title}</div>
                         <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount}/${maxCount} Completed</div>
                     </div>
-                    <span style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
+                    <span class="badge-action" style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
                 </div>
             `;
         }
@@ -616,21 +616,21 @@ window.openDojoHub = function() {
 
     const level7Item = isCurrentHubPage
         ? `
-            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #c084fc; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
-                <div style="text-align: left;">
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #c084fc; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
                     <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
                     <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
                 </div>
-                <span style="font-weight: 800; color: #7e22ce; font-size: 0.80rem; background: #f3e8ff; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+                <span class="badge-action" style="font-weight: 800; color: #7e22ce; font-size: 0.80rem; background: #f3e8ff; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
             </div>
         `
         : `
-            <a href="${rootPrefix}6. partF/hub.html" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                <div style="text-align: left;">
+            <a href="${rootPrefix}6. partF/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
                     <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
                     <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
                 </div>
-                <span style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
+                <span class="badge-action" style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
             </a>
         `;
 
@@ -644,28 +644,28 @@ window.openDojoHub = function() {
                     </p>
                     
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
+                        <a href="${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left; flex: 1;">
                                 <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
                                 <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
                             </div>
-                            <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
+                            <span class="badge-action" style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        <a href="${rootPrefix}3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
+                        <a href="${rootPrefix}3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left; flex: 1;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
                                 <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
                             </div>
-                            <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
+                            <span class="badge-action" style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
-                        <a href="${rootPrefix}5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
+                        <a href="${rootPrefix}5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left; flex: 1;">
                                 <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
                                 <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
                             </div>
-                            <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
+                            <span class="badge-action" style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
 
                         ${level7Item}
