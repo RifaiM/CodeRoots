@@ -466,16 +466,21 @@ DATABASE_URL=postgresql://db_master:Pass456@ep-prod-db.neon.tech/prod_db?sslmode
                     Swal.fire({
                         title: '🎉 Lesson 2 Mastered!',
                         html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully connected to a serverless Cloud PostgreSQL database!</p>
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 2!</p>
                             <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
                                 ⚡ Reward: +250 XP
                             </div>
                         `,
                         icon: 'success',
+                        showDenyButton: true,
                         confirmButtonText: 'Continue to Lesson 3 🚀',
-                        confirmButtonColor: '#a855f7'
-                    }).then(() => {
-                        window.location.href = './lesson3_remake.html';
+                        confirmButtonColor: '#a855f7',
+                        denyButtonText: 'Stay & Practice 🛠️',
+                        denyButtonColor: '#475569'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = './lesson3_remake.html';
+                        }
                     });
                 }, 400);
             } else {

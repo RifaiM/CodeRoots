@@ -496,19 +496,23 @@ def authenticate_admin_request(auth_header):
 
                 setTimeout(() => {
                     Swal.fire({
-                        title: '👑 APEX MASTERED!',
+                        title: '🎉 Lesson 6 Mastered!',
                         html: `
-                            <h3 style="color: #a855f7; margin-bottom: 8px;">🛢️ Database Architect Rank Earned!</h3>
-                            <p style="color: #475569; margin-bottom: 12px;">You completed all 6 Masterclasses in Databases & Auth Architecture!</p>
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 6!</p>
                             <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Total Reward: +250 XP | Official Certificate Unlocked
+                                ⚡ Reward: +250 XP
                             </div>
                         `,
                         icon: 'success',
+                        showDenyButton: true,
                         confirmButtonText: 'Return to Level 7 Hub 🚀',
-                        confirmButtonColor: '#a855f7'
-                    }).then(() => {
-                        window.location.href = '../hub.html';
+                        confirmButtonColor: '#a855f7',
+                        denyButtonText: 'Stay & Practice 🛠️',
+                        denyButtonColor: '#475569'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '../hub.html';
+                        }
                     });
                 }, 400);
             } else {

@@ -484,16 +484,21 @@ export async function addBookmark(formData) {
                     Swal.fire({
                         title: '🎉 Lesson 3 Mastered!',
                         html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully implemented Next.js Server Actions & Form Mutations!</p>
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 3!</p>
                             <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
                                 ⚡ Reward: +250 XP
                             </div>
                         `,
                         icon: 'success',
+                        showDenyButton: true,
                         confirmButtonText: 'Continue to Lesson 4 🚀',
-                        confirmButtonColor: '#0ea5e9'
-                    }).then(() => {
-                        window.location.href = './lesson4_remake.html';
+                        confirmButtonColor: '#0ea5e9',
+                        denyButtonText: 'Stay & Practice 🛠️',
+                        denyButtonColor: '#475569'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = './lesson4_remake.html';
+                        }
                     });
                 }, 400);
             } else {

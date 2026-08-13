@@ -484,16 +484,21 @@ def hash_user_password(raw_password):
                     Swal.fire({
                         title: '🎉 Lesson 4 Mastered!',
                         html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully implemented secure Bcrypt password hashing & salt generation!</p>
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 4!</p>
                             <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
                                 ⚡ Reward: +250 XP
                             </div>
                         `,
                         icon: 'success',
+                        showDenyButton: true,
                         confirmButtonText: 'Continue to Lesson 5 🚀',
-                        confirmButtonColor: '#a855f7'
-                    }).then(() => {
-                        window.location.href = './lesson5_remake.html';
+                        confirmButtonColor: '#a855f7',
+                        denyButtonText: 'Stay & Practice 🛠️',
+                        denyButtonColor: '#475569'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = './lesson5_remake.html';
+                        }
                     });
                 }, 400);
             } else {
