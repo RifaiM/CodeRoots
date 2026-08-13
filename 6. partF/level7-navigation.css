@@ -1,4 +1,4 @@
-/* Level 7: Specialization Hub Navigation Engine Styles (100% High Contrast for .platform-header) */
+/* Level 7: Specialization Hub Navigation Engine Styles (High Contrast & Seamless Borderless Layout) */
 
 .lesson-nav-container {
     position: relative;
@@ -8,11 +8,11 @@
     z-index: 10000;
 }
 
-/* Light/White Sticky Platform Header Specific Styling */
+/* Borderless Pill Styling for .platform-header */
 .platform-header .lesson-nav-btn,
 .lesson-nav-btn {
     background: #f1f5f9 !important;
-    border: 1px solid #cbd5e1 !important;
+    border: none !important;
     color: #0f172a !important;
     padding: 6px 14px !important;
     border-radius: 10px !important;
@@ -24,7 +24,7 @@
     gap: 8px !important;
     transition: all 0.2s ease !important;
     outline: none !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: none !important;
 }
 
 .platform-header .lesson-nav-btn:hover,
@@ -32,9 +32,8 @@
 .lesson-nav-btn:hover,
 .lesson-nav-btn.active {
     background: #e2e8f0 !important;
-    border-color: #94a3b8 !important;
+    border: none !important;
     color: #7e22ce !important;
-    box-shadow: 0 4px 12px rgba(126, 34, 206, 0.15) !important;
 }
 
 .lesson-nav-btn .nav-btn-text {
@@ -189,49 +188,60 @@
 
 /* Mobile Responsiveness (992px, 768px, 576px, 425px, 375px, 320px) */
 @media (max-width: 992px) {
+    /* 1. Header Nav Links (Hub, Dojo, Cert): Hide text, show ONLY nav-icon */
+    .header-nav-links .nav-link .nav-text {
+        display: none !important;
+    }
+
+    .header-nav-links .nav-link .nav-icon {
+        display: inline-block !important;
+        font-size: 1.05rem !important;
+        color: #0f172a !important;
+    }
+
     .platform-header .header-nav-links .nav-link {
         background: #f1f5f9 !important;
-        border: 1px solid #cbd5e1 !important;
+        border: none !important;
         color: #0f172a !important;
         padding: 0 !important;
-        width: 34px !important;
-        height: 34px !important;
-        min-width: 34px !important;
-        min-height: 34px !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
         border-radius: 10px !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 1.1rem !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+        box-shadow: none !important;
     }
 
     .platform-header .header-nav-links .nav-link:hover {
         background: #e2e8f0 !important;
-        border-color: #94a3b8 !important;
     }
 
-    .nav-arrow,
-    .nav-btn-text,
-    .nav-icon {
+    /* 2. Jump to Lesson Button: Hide book icon, text & arrow. Show ONLY hamburger */
+    .lesson-nav-btn .nav-icon,
+    .lesson-nav-btn .nav-btn-text,
+    .lesson-nav-btn .nav-arrow {
         display: none !important;
     }
 
-    .nav-hamburger {
+    .lesson-nav-btn .nav-hamburger {
         display: flex !important;
     }
 
     .platform-header .lesson-nav-btn,
     .lesson-nav-btn {
-        width: 34px !important;
-        height: 34px !important;
-        min-width: 34px !important;
-        min-height: 34px !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
         padding: 0 !important;
         border-radius: 10px !important;
         justify-content: center !important;
         background: #f1f5f9 !important;
-        border: 1px solid #cbd5e1 !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .lesson-nav-dropdown {
