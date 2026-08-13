@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 12: Building Web APIs with FastAPI</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 12 – Building Web APIs with FastAPI</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>⚡ Building High-Performance Web APIs with FastAPI</span>
+            </h2>
+            <p>
+                Modern backend development relies heavily on RESTful Web APIs to connect frontend clients (React, Mobile Apps) with databases. <strong>FastAPI</strong> is a leading Python web framework designed for high speed, automatic OpenAPI documentation, and asynchronous HTTP endpoint decorators like <strong><code>@app.get()</code></strong> and <strong><code>@app.post()</code></strong>.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> A Web API is like a restaurant waiter. The client (frontend) places an HTTP order (GET /users), the waiter delivers the request to the kitchen (backend server), and returns a structured JSON response back!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">⚡ 1. FastAPI App Initialization</div>
+                    <pre class="code-block"><code><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI
+
+<span class="comment"># Create web app instance</span>
+app = FastAPI(title=<span class="string">"Backend API"</span>)</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">🛣️ 2. Endpoint Routes (@app.get)</div>
+                    <pre class="code-block"><code><span class="comment"># Decorate function to handle GET /</span>
+<span class="keyword">@app.get</span>(<span class="string">"/"</span>)
+<span class="keyword">def</span> <span class="function">read_root</span>():
+  <span class="keyword">return</span> {<span class="string">"message"</span>: <span class="string">"API Active"</span>}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 12 Practice Task:
+
+# 1. Mock FastAPI framework import & initialization:
+class FastAPI:
+  def __init__(self, title="API Server"):
+    self.title = title
+    self.routes = {}
+
+  def get(self, path):
+    def decorator(func):
+      self.routes[f"GET {path}"] = func
+      return func
+    return decorator
+
+# Initialize FastAPI web app:
+app = FastAPI(title="CodeRoots Backend Gateway")
+
+# 2. Define root status endpoint route (@app.get):
+@app.get("/")
+def read_root():
+  return {"status": "online", "system": "CodeRoots API Gateway v1.0"}
+
+# 3. Define user profile endpoint route (@app.get):
+@app.get("/users/me")
+def read_current_user():
+  return {"id": 101, "username": "Alex", "role": "admin", "xp": 2500}
+
+# 4. Simulate API request handling:
+print("🚀 FastAPI App Initialized!")
+print("--- Simulating GET / Request ---")
+print(app.routes["GET /"]())
+
+print("\n--- Simulating GET /users/me Request ---")
+print(app.routes["GET /users/me"]())
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 12 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 12 and unlock Lesson 13!</p>
+
+            <ul class="task-checklist">
+                <li data-task="fastapi">⚡ Initialize a FastAPI web application instance</li>
+                <li data-task="route">🛣️ Create API endpoints using route decorators like @app.get()</li>
+                <li data-task="response">📤 Return JSON dictionary responses from API routes</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 12 & Unlock Lesson 13</button>
+        </section>
+    </main>
+</body>
+</html>
