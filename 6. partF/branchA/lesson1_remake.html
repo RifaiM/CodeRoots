@@ -385,7 +385,7 @@ git push -u origin main"></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runGitSimulation()">⚡ Execute Git Workflow</button>
-                <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+                <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Terminal output will display here after execution...</div>
@@ -460,6 +460,8 @@ Everything up-to-date. Code successfully pushed to GitHub! 🚀`;
                     text: 'You have mastered local Git tracking & GitHub remote pushing!',
                     confirmButtonColor: '#10b981',
                     confirmButtonText: 'Continue to Vercel Deploy 🚀'
+                }).then(() => {
+                    window.location.href = './lesson2_remake.html';
                 });
             }
         }

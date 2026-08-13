@@ -358,7 +358,7 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runRenderDeploy()">🚀 Deploy Python API to Render</button>
-                <a href="./lesson5_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+                <a href="./lesson5_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -424,6 +424,8 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
                     text: 'You successfully deployed your Python backend to Render!',
                     confirmButtonColor: '#10b981',
                     confirmButtonText: 'Next: Connecting FE & BE (CORS) ➔'
+                }).then(() => {
+                    window.location.href = './lesson5_remake.html';
                 });
             }
         }

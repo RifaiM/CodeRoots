@@ -373,7 +373,7 @@ vercel --prod</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Vercel Build</button>
-                <a href="./lesson3_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+                <a href="./lesson3_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -447,6 +447,8 @@ vercel --prod</code>
                     text: 'You successfully deployed your frontend to Vercel & Netlify!',
                     confirmButtonColor: '#0284c7',
                     confirmButtonText: 'Next: Cloudflare Pages & Edge ➔'
+                }).then(() => {
+                    window.location.href = './lesson3_remake.html';
                 });
             }
         }

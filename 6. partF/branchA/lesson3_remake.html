@@ -364,7 +364,7 @@ Proxy Status: Proxied (Orange Cloud)</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCloudflareDeploy()">🧡 Deploy to Cloudflare Pages</button>
-                <a href="./lesson4_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+                <a href="./lesson4_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -433,6 +433,8 @@ Proxy Status: Proxied (Orange Cloud)</code>
                     text: 'You mastered Cloudflare Pages & Global Edge Delivery!',
                     confirmButtonColor: '#d97706',
                     confirmButtonText: 'Next: Render Backend Deploy ➔'
+                }).then(() => {
+                    window.location.href = './lesson4_remake.html';
                 });
             }
         }

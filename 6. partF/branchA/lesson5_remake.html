@@ -377,7 +377,7 @@ app.add_middleware(
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCorsTest()">⚡ Test CORS Connection</button>
-                <a href="./lesson6_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+                <a href="./lesson6_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">CORS HTTP simulation logs will display here...</div>
@@ -448,6 +448,8 @@ app.add_middleware(
                     text: 'You mastered connecting Frontends & Backends with CORS security!',
                     confirmButtonColor: '#a855f7',
                     confirmButtonText: 'Next: GitHub Actions CI/CD ➔'
+                }).then(() => {
+                    window.location.href = './lesson6_remake.html';
                 });
             }
         }
