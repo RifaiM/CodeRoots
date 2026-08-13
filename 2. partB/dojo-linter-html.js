@@ -130,7 +130,10 @@
     // Helper: calculate Line & Column from character index
     function getLoc(code, index) {
         if (index == null || index < 0) return { line: null, col: null };
-        var sub = code.substring(0, index);
+        var cleanCode = code.replace(/\r\n/g, '\n');
+        // If index points directly to a leading newline character, move past it to the line content
+        if (cleanCode[index] === '\n') index++;
+        var sub = cleanCode.substring(0, index);
         var lines = sub.split('\n');
         var line = lines.length;
         var col = lines[lines.length - 1].length + 1;
