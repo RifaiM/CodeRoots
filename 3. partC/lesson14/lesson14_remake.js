@@ -262,20 +262,20 @@ root.render(<RefCommandStudio />);`;
 
         // Live code auto-compile on input with debounce
         let runTimer = null;
-        if (editor) { editor.addEventListener('input', () => { }
+        editor.addEventListener('input', () => {
                 buildLineNumbers(lineNumberEl, editor);
             clearTimeout(runTimer);
             runTimer = setTimeout(() => runCode(false), 400);
         });
 
-            if (editor) { editor.addEventListener('scroll', () => { }
+            editor.addEventListener('scroll', () => {
                 if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
             });
 
         if (runBtn) runBtn.addEventListener('click', () => runCode(true));
 
         if (resetBtn) {
-            if (resetBtn) { resetBtn.addEventListener('click', () => { }
+            resetBtn.addEventListener('click', () => {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         title: 'Reset Code?',
@@ -306,7 +306,7 @@ root.render(<RefCommandStudio />);`;
         }
 
         if (submitBtn) {
-            if (submitBtn) { submitBtn.addEventListener('click', () => { }
+            submitBtn.addEventListener('click', () => {
                 const userCode = editor.value || '';
                 if (!userCode.trim()) {
                     if (typeof Swal !== 'undefined') {

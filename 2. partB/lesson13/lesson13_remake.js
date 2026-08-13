@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 1; // 1 space per tab
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
   
-  if (textarea) { textarea.addEventListener('keydown', function(e) { }
+  textarea.addEventListener('keydown', function(e) {
       // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
       if (e.key === 'Tab') {
           e.preventDefault();
@@ -166,7 +166,7 @@ const validationData = {
           </form>
           <p><strong>JavaScript code:</strong></p>
           <code style="display: block; background: #f2f6ff; padding: 10px; border-radius: 4px;">
-            if (form) { form.addEventListener('submit', function(event) {<br> }
+            form.addEventListener('submit', function(event) {<br>
             &nbsp;&nbsp;if (input.value.trim() === '') {<br>
             &nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault(); // Stops submission!<br>
             &nbsp;&nbsp;&nbsp;&nbsp;alert("Please fill the field!");<br>
@@ -214,7 +214,7 @@ const validationData = {
   
     // Button controls
     buttons.forEach(button => {
-      if (button) { button.addEventListener('click', () => { }
+      button.addEventListener('click', () => {
         const step = button.dataset.step;
         
         // Update active button
@@ -304,11 +304,11 @@ const validationData = {
     }
   
     // Add event listeners for real-time validation
-    if (demoUsernameInput) { demoUsernameInput.addEventListener('input', () => validateDemoInput(demoUsernameInput, 'username')); }
-    if (demoEmailInput) { demoEmailInput.addEventListener('input', () => validateDemoInput(demoEmailInput, 'email')); }
+    demoUsernameInput.addEventListener('input', () => validateDemoInput(demoUsernameInput, 'username'));
+    demoEmailInput.addEventListener('input', () => validateDemoInput(demoEmailInput, 'email'));
   
     // Form submission handler
-    if (demoForm) { demoForm.addEventListener('submit', function(event) { }
+    demoForm.addEventListener('submit', function(event) {
       event.preventDefault();
       
       const usernameValid = validateDemoInput(demoUsernameInput, 'username');
@@ -363,7 +363,7 @@ const validationData = {
           const input = document.getElementById('demo-input');
           const output = document.getElementById('current-value');
           
-          if (input) { input.addEventListener('input', function() { }
+          input.addEventListener('input', function() {
             const value = this.value;
             output.textContent = value || '(nothing typed yet)';
           });
@@ -373,7 +373,7 @@ const validationData = {
           const input = document.getElementById('validation-input');
           const result = document.getElementById('validation-result');
           
-          if (input) { input.addEventListener('input', function() { }
+          input.addEventListener('input', function() {
             const value = this.value;
             if (value.length === 0) {
               result.innerHTML = 'Type something to see validation...';
@@ -396,7 +396,7 @@ const validationData = {
           const input = document.getElementById('prevent-input');
           const result = document.getElementById('prevent-result');
           
-          if (form) { form.addEventListener('submit', function(event) { }
+          form.addEventListener('submit', function(event) {
             if (input.value.trim() === '') {
               event.preventDefault();
               result.innerHTML = '🛑 Form submission prevented! Field was empty.';
@@ -419,7 +419,7 @@ const validationData = {
           const input = document.getElementById('feedback-input');
           const result = document.getElementById('feedback-result');
           
-          if (input) { input.addEventListener('input', function() { }
+          input.addEventListener('input', function() {
             const value = this.value.trim();
             if (value.length === 0) {
               result.innerHTML = 'Start typing an email...';
@@ -507,7 +507,7 @@ const validationData = {
     }
   }
   
-  if (taskEditor) { taskEditor.addEventListener('input', renderTask); }
+  taskEditor.addEventListener('input', renderTask);
   renderTask();
   
   function showHint() {

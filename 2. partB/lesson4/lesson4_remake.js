@@ -284,7 +284,7 @@ ${code || ''}
 }
 
 if (taskEditor) { 
-    if (taskEditor) { taskEditor.addEventListener('input', renderTask); }
+    taskEditor.addEventListener('input', renderTask); 
     renderTask();
 }
 
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Handle Tab key in textarea to insert tabs instead of changing focus
-    if (textarea) { textarea.addEventListener('keydown', function(e) { }
+    textarea.addEventListener('keydown', function(e) {
       if (e.key === 'Tab' && !e.shiftKey) {
         e.preventDefault(); // Prevent default tab behavior (focus change)
 
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Auto-indent on Enter key
-    if (textarea) { textarea.addEventListener('keydown', function(e) { }
+    textarea.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const start = this.selectionStart;
         const beforeCursor = this.value.substring(0, start);
@@ -415,18 +415,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Update line numbers and cursor position on input
-    if (textarea) { textarea.addEventListener('input', function() { }
+    textarea.addEventListener('input', function() {
       updateLineNumbers();
       updateCursorPosition();
     });
 
-    if (textarea) { textarea.addEventListener('click', updateCursorPosition); }
-    if (textarea) { textarea.addEventListener('keyup', updateCursorPosition); }
-    if (textarea) { textarea.addEventListener('focus', updateCursorPosition); }
+    textarea.addEventListener('click', updateCursorPosition);
+    textarea.addEventListener('keyup', updateCursorPosition);
+    textarea.addEventListener('focus', updateCursorPosition);
 
     // Sync scroll between textarea and line numbers
     if (lineNumbers) {
-      if (textarea) { textarea.addEventListener('scroll', function() { }
+      textarea.addEventListener('scroll', function() {
         lineNumbers.scrollTop = textarea.scrollTop;
       });
     }

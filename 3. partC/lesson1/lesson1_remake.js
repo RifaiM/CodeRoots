@@ -133,7 +133,7 @@ document.getElementById('output').innerHTML = renderProfile();`;
 
             if (editor) {
                 let inputTimeout;
-                if (editor) { editor.addEventListener('input', () => { }
+                editor.addEventListener('input', () => {
                     buildLineNumbers(lineNumberEl, editor);
                     localStorage.setItem('partC_lesson1_remake_draft', editor.value);
                     clearTimeout(inputTimeout);
@@ -141,7 +141,7 @@ document.getElementById('output').innerHTML = renderProfile();`;
                 });
 
                 // Sync gutter scroll with textarea scroll
-                if (editor) { editor.addEventListener('scroll', () => { }
+                editor.addEventListener('scroll', () => {
                     if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
                 });
             }

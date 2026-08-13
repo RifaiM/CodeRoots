@@ -939,8 +939,7 @@ class HTMLCodeEditor {
   document.addEventListener('DOMContentLoaded', () => {
     updateDemo();
     initStructurePreview();
-    const taskEditor = document.getElementById('task-code');
-    if (taskEditor && typeof renderTask === 'function') { renderTask(); }
+    if (taskEditor) { renderTask(); }
   
   
     // Initialize code editor
@@ -954,7 +953,7 @@ class HTMLCodeEditor {
   
     const nextBtn = document.getElementById('nextLessonBtn');
     if (nextBtn) {
-      if (nextBtn) { nextBtn.addEventListener('click', () => { }
+      nextBtn.addEventListener('click', () => {
         if (!nextBtn.disabled && window.showLessonCompletionModal) {
           window.showLessonCompletionModal(
             1,

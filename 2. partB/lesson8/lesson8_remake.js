@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 1; // 1 space per tab
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
   
-  if (textarea) { textarea.addEventListener('keydown', function(e) { }
+  textarea.addEventListener('keydown', function(e) {
       // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
       if (e.key === 'Tab') {
           e.preventDefault();
@@ -113,7 +113,7 @@ function initCursorTracking() {
   const events = ['keyup', 'mouseup', 'focus', 'input', 'click', 'select'];
   
   events.forEach(eventType => {
-      if (textarea) { textarea.addEventListener(eventType, function() { }
+      textarea.addEventListener(eventType, function() {
           updateCursorPosition(this);
       });
   });
@@ -500,7 +500,7 @@ function renderTask() {
 }
 
 // Add event listener for task editor input
-if (taskEditor) { taskEditor.addEventListener('input', function() { }
+taskEditor.addEventListener('input', function() {
   let value = this.value;
   
   // Clean unwanted scripts from input
@@ -1091,26 +1091,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Sync scrolling between textarea and placeholder
-  if (textarea) { textarea.addEventListener('scroll', function() { }
+  textarea.addEventListener('scroll', function() {
       if (textarea.value.length === 0) {
           placeholder.scrollTop = textarea.scrollTop;
           placeholder.scrollLeft = textarea.scrollLeft;
       }
   });
   
-  if (placeholder) { placeholder.addEventListener('scroll', function() { }
+  placeholder.addEventListener('scroll', function() {
       textarea.scrollTop = placeholder.scrollTop;
       textarea.scrollLeft = placeholder.scrollLeft;
   });
   
   // Focus textarea when clicking placeholder
-  if (placeholder) { placeholder.addEventListener('click', function(e) { }
+  placeholder.addEventListener('click', function(e) {
       textarea.focus();
       e.preventDefault();
   });
   
   // Update on input
-  if (textarea) { textarea.addEventListener('input', updatePlaceholder); }
+  textarea.addEventListener('input', updatePlaceholder);
   
   // Initial setup
   updatePlaceholder();
