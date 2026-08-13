@@ -378,7 +378,7 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runRenderDeploy()">🚀 Deploy Python API to Render</button>
-                <a href="javascript:void(0)" onclick="handleNextLesson('./lesson5_remake.html', 'partF_branchA_lesson4_complete')" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
+                <a href="./lesson5_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -400,26 +400,14 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
-        function handleNextLesson(targetUrl, lessonKey) {
-            const isCompleted = localStorage.getItem(lessonKey) === 'true';
+        document.addEventListener('DOMContentLoaded', () => {
+            const isCompleted = localStorage.getItem('partF_branchA_lesson4_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-
-            if (isCompleted || isUnlocked) {
-                window.location.href = targetUrl;
-            } else {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '🔒 Lesson Locked',
-                        text: 'Execute and complete the interactive exercise in this lesson first to unlock the next step! Or click "Unlock All" in the top navbar.',
-                        confirmButtonColor: '#2563eb',
-                        confirmButtonText: 'Got It!'
-                    });
-                } else {
-                    window.location.href = targetUrl;
-                }
+            const nextBtn = document.getElementById('nextLessonBtn');
+            if (nextBtn && (isCompleted || isUnlocked)) {
+                nextBtn.style.display = 'inline-flex';
             }
-        }
+        });
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
@@ -463,10 +451,15 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
                     icon: 'success',
                     title: '🎉 Lesson 4 Completed! (+250 XP)',
                     text: 'You successfully deployed your Python backend to Render!',
+                    showDenyButton: true,
                     confirmButtonColor: '#10b981',
-                    confirmButtonText: 'Next: Connecting FE & BE (CORS) ➔'
-                }).then(() => {
-                    window.location.href = './lesson5_remake.html';
+                    denyButtonColor: '#475569',
+                    confirmButtonText: 'Continue to Lesson 5 🚀',
+                    denyButtonText: 'Stay & Practice 🛠️'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = './lesson5_remake.html';
+                    }
                 });
             }
         }

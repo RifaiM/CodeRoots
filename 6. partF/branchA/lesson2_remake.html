@@ -393,7 +393,7 @@ vercel --prod</code>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Vercel Build</button>
-                <a href="javascript:void(0)" onclick="handleNextLesson('./lesson3_remake.html', 'partF_branchA_lesson2_complete')" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
+                <a href="./lesson3_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -415,26 +415,14 @@ vercel --prod</code>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
-        function handleNextLesson(targetUrl, lessonKey) {
-            const isCompleted = localStorage.getItem(lessonKey) === 'true';
+        document.addEventListener('DOMContentLoaded', () => {
+            const isCompleted = localStorage.getItem('partF_branchA_lesson2_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-
-            if (isCompleted || isUnlocked) {
-                window.location.href = targetUrl;
-            } else {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '🔒 Lesson Locked',
-                        text: 'Execute and complete the interactive exercise in this lesson first to unlock the next step! Or click "Unlock All" in the top navbar.',
-                        confirmButtonColor: '#2563eb',
-                        confirmButtonText: 'Got It!'
-                    });
-                } else {
-                    window.location.href = targetUrl;
-                }
+            const nextBtn = document.getElementById('nextLessonBtn');
+            if (nextBtn && (isCompleted || isUnlocked)) {
+                nextBtn.style.display = 'inline-flex';
             }
-        }
+        });
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
@@ -486,10 +474,15 @@ vercel --prod</code>
                     icon: 'success',
                     title: '🎉 Lesson 2 Completed! (+250 XP)',
                     text: 'You successfully deployed your frontend to Vercel & Netlify!',
+                    showDenyButton: true,
                     confirmButtonColor: '#0284c7',
-                    confirmButtonText: 'Next: Cloudflare Pages & Edge ➔'
-                }).then(() => {
-                    window.location.href = './lesson3_remake.html';
+                    denyButtonColor: '#475569',
+                    confirmButtonText: 'Continue to Lesson 3 🚀',
+                    denyButtonText: 'Stay & Practice 🛠️'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = './lesson3_remake.html';
+                    }
                 });
             }
         }

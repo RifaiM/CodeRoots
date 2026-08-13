@@ -397,7 +397,7 @@ app.add_middleware(
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCorsTest()">⚡ Test CORS Connection</button>
-                <a href="javascript:void(0)" onclick="handleNextLesson('./lesson6_remake.html', 'partF_branchA_lesson5_complete')" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
+                <a href="./lesson6_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">CORS HTTP simulation logs will display here...</div>
@@ -419,26 +419,14 @@ app.add_middleware(
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
-        function handleNextLesson(targetUrl, lessonKey) {
-            const isCompleted = localStorage.getItem(lessonKey) === 'true';
+        document.addEventListener('DOMContentLoaded', () => {
+            const isCompleted = localStorage.getItem('partF_branchA_lesson5_complete') === 'true';
             const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-
-            if (isCompleted || isUnlocked) {
-                window.location.href = targetUrl;
-            } else {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '🔒 Lesson Locked',
-                        text: 'Execute and complete the interactive exercise in this lesson first to unlock the next step! Or click "Unlock All" in the top navbar.',
-                        confirmButtonColor: '#2563eb',
-                        confirmButtonText: 'Got It!'
-                    });
-                } else {
-                    window.location.href = targetUrl;
-                }
+            const nextBtn = document.getElementById('nextLessonBtn');
+            if (nextBtn && (isCompleted || isUnlocked)) {
+                nextBtn.style.display = 'inline-flex';
             }
-        }
+        });
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
@@ -487,10 +475,15 @@ app.add_middleware(
                     icon: 'success',
                     title: '🎉 Lesson 5 Completed! (+250 XP)',
                     text: 'You mastered connecting Frontends & Backends with CORS security!',
+                    showDenyButton: true,
                     confirmButtonColor: '#a855f7',
-                    confirmButtonText: 'Next: GitHub Actions CI/CD ➔'
-                }).then(() => {
-                    window.location.href = './lesson6_remake.html';
+                    denyButtonColor: '#475569',
+                    confirmButtonText: 'Continue to Lesson 6 🚀',
+                    denyButtonText: 'Stay & Practice 🛠️'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = './lesson6_remake.html';
+                    }
                 });
             }
         }
