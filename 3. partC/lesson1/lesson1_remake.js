@@ -250,7 +250,7 @@ document.getElementById('output').innerHTML = renderProfile();`;
             const isAllValid = hasArrow && hasDestructuring && hasSpread && hasMap;
             const submitBtn = document.getElementById('submitProject');
             if (submitBtn) {
-                submitBtn.disabled = !isAllValid;
+                if (submitBtn) { submitBtn.disabled = !isAllValid; }
             }
 
             return isAllValid;

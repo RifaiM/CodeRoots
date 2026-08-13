@@ -743,8 +743,8 @@ document.addEventListener('DOMContentLoaded', function() {
       feedback.className = 'feedback success';
   
       // Enable next lesson button with animation
-      nextBtn.disabled = false;
-      nextBtn.style.animation = 'pulse 1s infinite';
+      if (nextBtn) { nextBtn.disabled = false; }
+      if (nextBtn) { nextBtn.style.animation = 'pulse 1s infinite'; }
   
       // Update progress tracker
       steps[1].classList.add('active');
@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize demo preview on page load
   updateDemo();
   
-  document.getElementById('nextLessonBtn').addEventListener('click', function() {
+  const _nb = document.getElementById('nextLessonBtn'); if (_nb) _nb.addEventListener('click', function() {
     if (!this.disabled) {
       if (window.showLessonCompletionModal) {
         window.showLessonCompletionModal(
@@ -924,9 +924,9 @@ document.addEventListener('DOMContentLoaded', function() {
           feedback.className = 'feedback success';
   
           // Enable next lesson button
-          nextBtn.disabled = false;
-          nextBtn.style.opacity = '1';
-          nextBtn.style.cursor = 'pointer';
+          if (nextBtn) { nextBtn.disabled = false; }
+          if (nextBtn) { nextBtn.style.opacity = '1'; }
+          if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
   
           // Update progress tracker
           if (steps[1]) steps[1].classList.add('active');

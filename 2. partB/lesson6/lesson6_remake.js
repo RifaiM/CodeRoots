@@ -950,10 +950,10 @@ function checkAnswer() {
     feedback.className = 'feedback success';
 
     // Enable next lesson button
-    nextBtn.disabled = false;
-    nextBtn.style.opacity = '1';
-    nextBtn.style.cursor = 'pointer';
-    nextBtn.style.animation = 'pulse 1.5s infinite';
+    if (nextBtn) { nextBtn.disabled = false; }
+    if (nextBtn) { nextBtn.style.opacity = '1'; }
+    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+    if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
 
     // Update progress
     stepsElements[1].classList.add('active');
@@ -1003,10 +1003,10 @@ function checkAnswer() {
     stepsElements[2].classList.remove('active');
 
     // Keep next lesson button disabled
-    nextBtn.disabled = true;
-    nextBtn.style.opacity = '0.5';
-    nextBtn.style.cursor = 'not-allowed';
-    nextBtn.style.animation = 'none';
+    if (nextBtn) { nextBtn.disabled = true; }
+    if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+    if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
+    if (nextBtn) { nextBtn.style.animation = 'none'; }
   }
 }
 
@@ -1039,7 +1039,7 @@ updateDemo();
 renderTask();
 
 // Next lesson functionality
-document.getElementById('nextLessonBtn').addEventListener('click', function() {
+const _nb = document.getElementById('nextLessonBtn'); if (_nb) _nb.addEventListener('click', function() {
   if (!this.disabled) {
     if (window.showLessonCompletionModal) {
       window.showLessonCompletionModal(
@@ -1055,14 +1055,14 @@ document.getElementById('nextLessonBtn').addEventListener('click', function() {
 });
 
 // Ensure next lesson button starts disabled
-document.getElementById('nextLessonBtn').disabled = true;
+const _nb2 = document.getElementById('nextLessonBtn'); if (_nb2) _nb2.disabled = true;
 
 // Check if lesson is already completed
 if (localStorage.getItem('lesson6_remake_complete') === 'true') {
   const nextBtn = document.getElementById('nextLessonBtn');
-  nextBtn.disabled = false;
-  nextBtn.style.opacity = '1';
-  nextBtn.style.cursor = 'pointer';
+  if (nextBtn) { nextBtn.disabled = false; }
+  if (nextBtn) { nextBtn.style.opacity = '1'; }
+  if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
 
   // Update progress steps
   const stepsElements = document.querySelectorAll('.step');
@@ -1102,9 +1102,9 @@ function checkAndRestoreCompletion() {
         feedback.className = 'feedback success';
 
         // Enable next lesson button
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
+        if (nextBtn) { nextBtn.disabled = false; }
+        if (nextBtn) { nextBtn.style.opacity = '1'; }
+        if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
 
         // Update progress tracker
         if (steps[1]) steps[1].classList.add('active');

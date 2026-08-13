@@ -956,10 +956,10 @@ function checkAnswer() {
     feedback.className = 'feedback success';
 
     // Enable next lesson button
-    nextBtn.disabled = false;
-    nextBtn.style.opacity = '1';
-    nextBtn.style.cursor = 'pointer';
-    nextBtn.style.animation = 'pulse 1.5s infinite';
+    if (nextBtn) { nextBtn.disabled = false; }
+    if (nextBtn) { nextBtn.style.opacity = '1'; }
+    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+    if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
 
     // Update progress
     stepsElements[1].classList.add('active');
@@ -1062,7 +1062,7 @@ function createCelebration() {
 updateDemo();
 renderTask();
 
-document.getElementById('nextLessonBtn').addEventListener('click', function() {
+const _nb = document.getElementById('nextLessonBtn'); if (_nb) _nb.addEventListener('click', function() {
   if (!this.disabled) {
     if (window.showLessonCompletionModal) {
       window.showLessonCompletionModal(
@@ -1109,9 +1109,9 @@ function checkAndRestoreCompletion() {
         feedback.className = 'feedback success';
 
         // Enable next lesson button
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
+        if (nextBtn) { nextBtn.disabled = false; }
+        if (nextBtn) { nextBtn.style.opacity = '1'; }
+        if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
 
         // Update progress tracker
         if (steps[1]) steps[1].classList.add('active');

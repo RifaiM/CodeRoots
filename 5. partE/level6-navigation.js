@@ -31,8 +31,56 @@
     }
 
     function canAccessLesson(lessonId) {
+        if (lessonId === 1) return true;
+        if (localStorage.getItem('practice_mode_unlocked') === 'true') return true;
+        for (let i = 1; i < lessonId; i++) {
+            if (!isLessonCompleted(i)) {
+                return false;
+            }
+        }
         return true;
     }
+
+    function checkAccessProtection() {
+        const currentId = getCurrentLessonId();
+        if (!canAccessLesson(currentId)) {
+            const requiredLesson = currentId - 1;
+            let highestAccessible = 1;
+            for (let i = 1; i <= 15; i++) {
+                if (!isLessonCompleted(i)) {
+                    highestAccessible = i;
+                    break;
+                }
+            }
+
+            const renderAccessDenied = () => {
+                document.body.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; z-index: 10000; padding: 20px; box-sizing: border-box;">
+                        <div style="background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); text-align: center; max-width: 440px; width: 100%;">
+                            <div style="font-size: 3.5rem; margin-bottom: 16px;">🔒</div>
+                            <h1 style="color: #e11d48; margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 800;">Access Denied</h1>
+                            <p style="margin: 0 0 24px 0; line-height: 1.6; color: #475569; font-size: 1rem;">
+                                You must complete <strong>Lesson ${requiredLesson}</strong> before accessing <strong>Lesson ${currentId}</strong>.
+                            </p>
+                            <button onclick="window.location.href='../lesson${highestAccessible}/lesson${highestAccessible}_remake.html'" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); transition: transform 0.2s ease;">
+                                🐍 Take Me to Lesson ${highestAccessible}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderAccessDenied);
+            } else {
+                renderAccessDenied();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    if (!checkAccessProtection()) return;
 
     function initLevel6Nav() {
         const header = document.querySelector('header.lesson-header') || document.querySelector('header');

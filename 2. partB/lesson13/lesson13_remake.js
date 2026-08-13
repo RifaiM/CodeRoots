@@ -712,10 +712,10 @@ const validationData = {
       feedback.className = 'feedback success';
       
       // Enable next lesson button
-      nextBtn.disabled = false;
-      nextBtn.style.opacity = '1';
-      nextBtn.style.cursor = 'pointer';
-      nextBtn.style.animation = 'pulse 1.5s infinite';
+      if (nextBtn) { nextBtn.disabled = false; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; }
+      if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+      if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
       
       // Update progress
       steps[1].classList.add('active');
@@ -817,14 +817,14 @@ const validationData = {
     // Check if lesson is already completed
     if (localStorage.getItem('lesson13_remake_complete') === 'true') {
       const nextBtn = document.getElementById('nextLessonBtn');
-      nextBtn.disabled = false;
-      nextBtn.style.opacity = '1';
-      nextBtn.style.cursor = 'pointer';
+      if (nextBtn) { nextBtn.disabled = false; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; }
+      if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
     }
   });
   
   // Next lesson functionality
-  document.getElementById('nextLessonBtn').addEventListener('click', function() {
+  const _nb = document.getElementById('nextLessonBtn'); if (_nb) _nb.addEventListener('click', function() {
     if (!this.disabled) {
       if (window.showLessonCompletionModal) {
         window.showLessonCompletionModal(
@@ -909,9 +909,9 @@ function checkAndRestoreCompletion() {
                     `;
                     
                     // Enable next lesson button
-                    nextBtn.disabled = false;
-                    nextBtn.style.opacity = '1';
-                    nextBtn.style.cursor = 'pointer';
+                    if (nextBtn) { nextBtn.disabled = false; }
+                    if (nextBtn) { nextBtn.style.opacity = '1'; }
+                    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
                     
                     // Update all requirement items to completed
                     const requirementItems = document.querySelectorAll('.requirement-item');

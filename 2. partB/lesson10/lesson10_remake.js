@@ -933,9 +933,9 @@ function checkAnswer() {
         // Prevent lesson completion
         const nextBtn = document.getElementById('next-lesson');
         if (nextBtn) {
-            nextBtn.disabled = true;
-            nextBtn.style.opacity = '0.5';
-            nextBtn.style.animation = 'none';
+            if (nextBtn) { nextBtn.disabled = true; }
+            if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+            if (nextBtn) { nextBtn.style.animation = 'none'; }
         }
     }
 }
@@ -975,10 +975,10 @@ function updateProgressStep(step) {
 function enableNextLesson() {
     const nextBtn = document.getElementById('next-lesson');
     if (nextBtn) {
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
-        nextBtn.style.animation = 'pulse 1.5s infinite';
+        if (nextBtn) { nextBtn.disabled = false; }
+        if (nextBtn) { nextBtn.style.opacity = '1'; }
+        if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+        if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
         lessonCompleted = true;
     }
 }
@@ -1109,10 +1109,10 @@ function checkAndRestoreCompletion() {
                     feedback.className = 'feedback success';
                     
                     // Enable next lesson button
-                    nextBtn.disabled = false;
-                    nextBtn.style.opacity = '1';
-                    nextBtn.style.cursor = 'pointer';
-                    nextBtn.style.animation = 'pulse 1.5s infinite';
+                    if (nextBtn) { nextBtn.disabled = false; }
+                    if (nextBtn) { nextBtn.style.opacity = '1'; }
+                    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+                    if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
                     
                     // Update progress tracker
                     updateProgressStep(3);
@@ -1131,10 +1131,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typeof Storage !== 'undefined' && localStorage.getItem(LESSON_STORAGE_KEY) === 'true') {
             const nextBtn = document.getElementById('next-lesson'); // Fixed ID
             if (nextBtn) {
-                nextBtn.disabled = false;
-                nextBtn.style.opacity = '1';
-                nextBtn.style.cursor = 'pointer';
-                nextBtn.style.animation = 'pulse 1.5s infinite';
+                if (nextBtn) { nextBtn.disabled = false; }
+                if (nextBtn) { nextBtn.style.opacity = '1'; }
+                if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+                if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
                 lessonCompleted = true;
             }
         }

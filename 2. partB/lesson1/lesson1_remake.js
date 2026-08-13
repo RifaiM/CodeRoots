@@ -54,7 +54,7 @@ class HTMLCodeEditor {
       this.updateLineNumbers();
       this.updateCursorPosition();
       this.syncLineNumbers();
-      if (window.renderTask) window.if (taskEditor) { renderTask(); }
+      if (typeof window.renderTask === 'function') { window.renderTask(); }
     }
   
     updateCursorPosition() {
@@ -579,10 +579,10 @@ class HTMLCodeEditor {
       feedback.className = 'feedback success';
   
       // Enable next lesson button with animation
-      nextBtn.disabled = false;
-      nextBtn.style.opacity = '1';
-      nextBtn.style.cursor = 'pointer';
-      nextBtn.style.animation = 'pulse 1s infinite';
+      if (nextBtn) { nextBtn.disabled = false; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; }
+      if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
+      if (nextBtn) { nextBtn.style.animation = 'pulse 1s infinite'; }
   
       // Update progress
       steps[1].classList.add('active');
@@ -1010,9 +1010,9 @@ class HTMLCodeEditor {
           feedback.className = 'feedback success';
   
           // Enable next lesson button
-          nextBtn.disabled = false;
-          nextBtn.style.opacity = '1';
-          nextBtn.style.cursor = 'pointer';
+          if (nextBtn) { nextBtn.disabled = false; }
+          if (nextBtn) { nextBtn.style.opacity = '1'; }
+          if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
   
           // Update progress tracker
           if (steps[1]) steps[1].classList.add('active');

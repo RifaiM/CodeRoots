@@ -619,10 +619,10 @@ function checkAnswer() {
     feedback.className = 'feedback success';
 
     // FIXED: Enable next lesson button properly
-    nextBtn.disabled = false;
-    nextBtn.style.opacity = '1'; // Remove the opacity override
-    nextBtn.style.cursor = 'pointer'; // Make it clearly clickable
-    nextBtn.style.animation = 'pulse 1.5s infinite';
+    if (nextBtn) { nextBtn.disabled = false; }
+    if (nextBtn) { nextBtn.style.opacity = '1'; // Remove the opacity override }
+    if (nextBtn) { nextBtn.style.cursor = 'pointer'; // Make it clearly clickable }
+    if (nextBtn) { nextBtn.style.animation = 'pulse 1.5s infinite'; }
 
     // Update progress tracker
     steps[1].classList.add('active');
@@ -663,10 +663,10 @@ function checkAnswer() {
     steps[1].classList.add('active');
 
     // FIXED: Make sure button stays disabled on errors
-    nextBtn.disabled = true;
-    nextBtn.style.opacity = '0.5';
-    nextBtn.style.cursor = 'not-allowed';
-    nextBtn.style.animation = 'none';
+    if (nextBtn) { nextBtn.disabled = true; }
+    if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+    if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
+    if (nextBtn) { nextBtn.style.animation = 'none'; }
   }
 }
 
@@ -802,9 +802,9 @@ function checkAndRestoreCompletion() {
         feedback.className = 'feedback success';
 
         // Enable next lesson button
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
+        if (nextBtn) { nextBtn.disabled = false; }
+        if (nextBtn) { nextBtn.style.opacity = '1'; }
+        if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
 
         // Update progress tracker
         if (steps[1]) steps[1].classList.add('active');
@@ -821,7 +821,7 @@ function checkAndRestoreCompletion() {
 // Initialize demo on page load
 updateDemo();
 
-document.getElementById('nextLessonBtn').addEventListener('click', function() {
+const _nb = document.getElementById('nextLessonBtn'); if (_nb) _nb.addEventListener('click', function() {
   if (!this.disabled) {
     if (window.showLessonCompletionModal) {
       window.showLessonCompletionModal(
@@ -840,9 +840,9 @@ document.getElementById('nextLessonBtn').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = document.getElementById('nextLessonBtn');
   // Always start disabled - force user to complete the exercise
-  nextBtn.disabled = true;
-  nextBtn.style.opacity = '0.5';
-  nextBtn.style.cursor = 'not-allowed';
+  if (nextBtn) { nextBtn.disabled = true; }
+  if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+  if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
 
   // Check for previous completion
   checkAndRestoreCompletion();

@@ -158,7 +158,7 @@ root.render(<DevNewsFetcher />);`;
         const allPassed = req1 && req2 && req3 && req4;
         const submitBtn = document.getElementById('submitProjectBtn');
         if (submitBtn) {
-            submitBtn.disabled = !allPassed;
+            if (submitBtn) { submitBtn.disabled = !allPassed; }
         }
 
         return allPassed;

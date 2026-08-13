@@ -1657,9 +1657,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const steps = document.querySelectorAll('.step');
 
     if (nextBtn) {
-      nextBtn.disabled = false;
-      nextBtn.style.opacity = '1';
-      nextBtn.style.cursor = 'pointer';
+      if (nextBtn) { nextBtn.disabled = false; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; }
+      if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
     }
 
     steps.forEach(step => step.classList.add('active'));

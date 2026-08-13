@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if lesson is already completed
     if (localStorage.getItem('lesson12_remake_complete') === 'true') {
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
+        if (nextBtn) { nextBtn.disabled = false; }
+        if (nextBtn) { nextBtn.style.opacity = '1'; }
+        if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
     }
     
     // Initialize code editor with better template
@@ -586,7 +586,7 @@ function addMiniDemoListeners(type) {
                 }
                 
                 // Enable/disable submit button
-                submitBtn.disabled = !isValid || emailValue === '' || passwordValue === '';
+                if (submitBtn) { submitBtn.disabled = !isValid || emailValue === '' || passwordValue === ''; }
                 submitBtn.style.opacity = submitBtn.disabled ? '0.5' : '1';
             }
             
@@ -839,9 +839,9 @@ document.getElementById('reset-code').addEventListener('click', function() {
         };
         updateProgress();
         
-        nextBtn.disabled = true;
-        nextBtn.style.opacity = '0.5';
-        nextBtn.style.cursor = 'not-allowed';
+        if (nextBtn) { nextBtn.disabled = true; }
+        if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+        if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
     };
 
     if (typeof Swal !== 'undefined') {
@@ -1873,9 +1873,9 @@ function showSyntaxErrors(syntaxIssues) {// Debug log
     feedback.innerHTML = syntaxFeedback;
     
     // Keep next button disabled
-    nextBtn.disabled = true;
-    nextBtn.style.opacity = '0.5';
-    nextBtn.style.cursor = 'not-allowed';
+    if (nextBtn) { nextBtn.disabled = true; }
+    if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+    if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
 }
 
 // Show success with warnings
@@ -1933,9 +1933,9 @@ function showSuccessWithWarnings(successMessages, warningMessages) {
     }, 100);
     
     // Enable next button
-    nextBtn.disabled = false;
-    nextBtn.style.opacity = '1';
-    nextBtn.style.cursor = 'pointer';
+    if (nextBtn) { nextBtn.disabled = false; }
+    if (nextBtn) { nextBtn.style.opacity = '1'; }
+    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
     
     // Store completion
     localStorage.setItem('partB_lesson12_remake_complete', 'true');
@@ -1994,9 +1994,9 @@ function showErrorsWithWarnings(errorMessages, successMessages, warningMessages)
     feedback.innerHTML = feedbackContent;
     
     // Keep next button disabled
-    nextBtn.disabled = true;
-    nextBtn.style.opacity = '0.5';
-    nextBtn.style.cursor = 'not-allowed';
+    if (nextBtn) { nextBtn.disabled = true; }
+    if (nextBtn) { nextBtn.style.opacity = '0.5'; }
+    if (nextBtn) { nextBtn.style.cursor = 'not-allowed'; }
 }
 
 // Next lesson button
@@ -2047,9 +2047,9 @@ function checkAndRestoreCompletion() {
                     `;
                     
                     // Enable next lesson button
-                    nextBtn.disabled = false;
-                    nextBtn.style.opacity = '1';
-                    nextBtn.style.cursor = 'pointer';
+                    if (nextBtn) { nextBtn.disabled = false; }
+                    if (nextBtn) { nextBtn.style.opacity = '1'; }
+                    if (nextBtn) { nextBtn.style.cursor = 'pointer'; }
                     
                     // Update all requirement items to completed
                     const requirementItems = document.querySelectorAll('.requirement-item');
