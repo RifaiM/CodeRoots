@@ -508,8 +508,11 @@ window.showCertLockWarning = function(levelName, count) {
 };
 
 function getRelativeRootPrefix() {
-    const path = window.location.pathname;
-    if (path.includes('/1. partA/') || path.includes('/2. partB/') || path.includes('/3. partC/') || path.includes('/4. partD/') || path.includes('/5. partE/') || path.includes('/6. partF/')) {
+    const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
+    if (rawPath.includes('/lesson')) {
+        return '../../';
+    }
+    if (rawPath.includes('parta') || rawPath.includes('partb') || rawPath.includes('partc') || rawPath.includes('partd') || rawPath.includes('parte') || rawPath.includes('partf')) {
         return '../';
     }
     return './';
@@ -584,7 +587,8 @@ window.openCertificateHub = function() {
  */
 window.openDojoHub = function() {
     const rootPrefix = getRelativeRootPrefix();
-    const isCurrentHubPage = window.location.pathname.includes('/6. partF/hub.html');
+    const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
+    const isCurrentHubPage = rawPath.includes('partf/hub.html') || rawPath.endsWith('/hub.html');
 
     let activeL4 = 1;
     for (let i = 1; i <= 15; i++) {
