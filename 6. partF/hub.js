@@ -11,7 +11,7 @@ function initHubProgress() {
     let count7A = 0;
     let active7A = 1;
     for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true') {
+        if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchA_lesson${i}_completed`) === 'true') {
             count7A++;
             active7A = Math.min(i + 1, 6);
         }
@@ -21,7 +21,7 @@ function initHubProgress() {
     let count7B = 0;
     let active7B = 1;
     for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchB_lesson${i}_complete`) === 'true') {
+        if (localStorage.getItem(`partF_branchB_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchB_lesson${i}_completed`) === 'true') {
             count7B++;
             active7B = Math.min(i + 1, 6);
         }
@@ -31,7 +31,7 @@ function initHubProgress() {
     let count7C = 0;
     let active7C = 1;
     for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true') {
+        if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchC_lesson${i}_completed`) === 'true') {
             count7C++;
             active7C = Math.min(i + 1, 6);
         }

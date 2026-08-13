@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <title>Branch 7B • Lesson 1: Relational Databases & SQL Fundamentals | NoviCodes</title>
+    <meta name="description" content="Master relational database architecture, table schemas, primary keys, foreign keys, and ANSI SQL queries (SELECT, INSERT, UPDATE, JOIN, WHERE).">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../hub.css">
+    <link rel="stylesheet" href="../level7-navigation.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        /* IDE Split Pane Layout */
+        .ide-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 24px auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .ide-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-badge {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        /* Instructions & Copyable Code Blocks */
+        .instruction-step {
+            margin-bottom: 20px;
+        }
+
+        .instruction-step h4 {
+            color: #f8fafc;
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .instruction-step p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 14px 72px 14px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+            color: #38bdf8;
+            position: relative;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        .code-box code {
+            display: block;
+            text-align: left;
+            white-space: pre;
+            color: inherit;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .copy-btn:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        /* Interactive SQL Code Area */
+        .terminal-editor {
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #f8fafc;
+            font-size: 0.88rem;
+            min-height: 220px;
+            resize: vertical;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .terminal-output {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            min-height: 120px;
+            margin-top: 14px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .run-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .ide-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">From Novice to Dev</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../../index.html" class="nav-link" title="Dashboard Home">
+                    <span class="nav-icon">🏠</span><span class="nav-text">&nbsp;Dashboard</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Practical Dojo</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" title="Learner XP">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Level 7 Track</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="ide-wrapper">
+        <!-- Left Panel: Concept Guide & Instructions -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>🛢️ Branch 7B • Lesson 1</span>
+                </div>
+                <span class="lesson-badge">SQL Fundamentals</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. Relational Database Concepts</h4>
+                <p>Relational Databases store data in structured <strong>Tables</strong> consisting of rows and columns. Tables are linked using <strong>Primary Keys</strong> (unique row IDs) and <strong>Foreign Keys</strong> (references to other tables).</p>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. ANSI SQL Syntax Essentials</h4>
+                <p>Use standard SQL commands to query and manipulate data:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard(`SELECT u.username, p.title 
+FROM users u 
+JOIN posts p ON u.id = p.user_id 
+WHERE u.role = 'admin';`)">📋 Copy</button>
+                    <code>SELECT u.username, p.title 
+FROM users u 
+JOIN posts p ON u.id = p.user_id 
+WHERE u.role = 'admin';</code>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Your Practical Task</h4>
+                <p>Write an SQL query to retrieve the <code>name</code> and <code>email</code> columns from the <code>users</code> table where <code>role = 'developer'</code>.</p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Interactive SQL Query Sandbox -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>⚡ SQL Query Sandbox</span>
+                </div>
+                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Database Engine: SQLite / PostgreSQL</span>
+            </div>
+
+            <textarea id="editor" class="terminal-editor" placeholder="-- Type or paste your SQL query here:
+SELECT name, email FROM users WHERE role = 'developer';"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" id="runBtn" onclick="executeSQLQuery()">⚡ Run SQL Query</button>
+                <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
+            </div>
+
+            <div class="terminal-output" id="consoleOutput">> Ready. Type your SQL query and click "Run SQL Query" to execute...</div>
+        </section>
+    </main>
+
+    <!-- Main Dashboard Engine & Navigation -->
+    <script src="../../dashboard.js"></script>
+    <script src="../level7-navigation.js"></script>
+
+    <script>
+        const DRAFT_KEY = 'partF_branchB_lesson1_draft';
+        const DEFAULT_STARTER_CODE = '';
+        const editor = document.getElementById('editor');
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        // Load saved draft on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft) {
+                editor.value = savedDraft;
+            } else {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+        });
+
+        // Save draft on input
+        editor.addEventListener('input', () => {
+            localStorage.setItem(DRAFT_KEY, editor.value);
+        });
+
+        function clearEditorContent() {
+            localStorage.removeItem(DRAFT_KEY);
+            editor.value = DEFAULT_STARTER_CODE;
+            consoleOutput.textContent = '> Editor cleared. Type a new SQL query to test...';
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: '🧹 Editor cleared!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '📋 SQL copied to clipboard!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function executeSQLQuery() {
+            const query = editor.value.trim();
+            if (!query) {
+                consoleOutput.textContent = '❌ Error: Query editor is empty. Please enter an SQL query.';
+                return;
+            }
+
+            const lowerQuery = query.toLowerCase();
+            if (lowerQuery.includes('select') && lowerQuery.includes('name') && lowerQuery.includes('email') && lowerQuery.includes('users') && lowerQuery.includes('developer')) {
+                consoleOutput.textContent = `[SQL EXECUTOR SUCCESS] 2 Rows Returned:\n----------------------------------------\n| name              | email               |\n----------------------------------------\n| Alex Rivera       | alex@novicodes.dev  |\n| Sarah Chen        | sarah@novicodes.dev |\n----------------------------------------\nQuery status: 200 OK (Execution time: 4ms)`;
+                
+                localStorage.setItem('partF_branchB_lesson1_completed', 'true');
+                if (typeof addXP === 'function') addXP(250);
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: '🎉 Lesson 1 Mastered!',
+                        html: `
+                            <p style="color: #475569; margin-bottom: 12px;">You successfully executed relational SQL queries!</p>
+                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
+                                ⚡ Reward: +250 XP
+                            </div>
+                        `,
+                        icon: 'success',
+                        confirmButtonText: 'Continue to Lesson 2 🚀',
+                        confirmButtonColor: '#a855f7'
+                    }).then(() => {
+                        window.location.href = './lesson2_remake.html';
+                    });
+                }, 400);
+            } else {
+                consoleOutput.textContent = `❌ SQL Execution Error:\nExpected query selecting 'name' and 'email' from 'users' WHERE role = 'developer'.\n\nYour Query:\n${query}`;
+            }
+        }
+    </script>
+</body>
+</html>

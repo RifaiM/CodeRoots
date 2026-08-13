@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <title>Branch 7B • Lesson 6: Protected Auth Middleware & RBAC | NoviCodes</title>
+    <meta name="description" content="Master backend authentication middleware, Authorization Bearer token validation, role-based access control (RBAC), and securing API routes.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../hub.css">
+    <link rel="stylesheet" href="../level7-navigation.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        .ide-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 24px auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .ide-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-badge {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .instruction-step {
+            margin-bottom: 20px;
+        }
+
+        .instruction-step h4 {
+            color: #f8fafc;
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .instruction-step p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 14px 72px 14px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+            color: #38bdf8;
+            position: relative;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        .code-box code {
+            display: block;
+            text-align: left;
+            white-space: pre;
+            color: inherit;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .copy-btn:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        .terminal-editor {
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #f8fafc;
+            font-size: 0.88rem;
+            min-height: 220px;
+            resize: vertical;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .terminal-output {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            min-height: 120px;
+            margin-top: 14px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .run-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .ide-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">From Novice to Dev</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../../index.html" class="nav-link" title="Dashboard Home">
+                    <span class="nav-icon">🏠</span><span class="nav-text">&nbsp;Dashboard</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Practical Dojo</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" title="Learner XP">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Level 7 Track</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="ide-wrapper">
+        <!-- Left Panel: Concept Guide & Instructions -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>🛡️ Branch 7B • Final Lesson 6</span>
+                </div>
+                <span class="lesson-badge">Auth Middleware & RBAC</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. Protected Route Middleware & RBAC</h4>
+                <p>Authentication Middleware intercept incoming HTTP requests, parse the <code>Authorization: Bearer &lt;token&gt;</code> header, decode claims, and verify user permissions (<strong>Role-Based Access Control</strong>).</p>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. Middleware Auth Gate Pattern</h4>
+                <p>Check for the token and enforce role policies before serving protected resources:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard(`def require_role(required_role):
+    def middleware(request):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return {'status': 401, 'error': 'Missing or invalid Bearer token'}
+        
+        token = auth_header.split(' ')[1]
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        if payload.get('role') != required_role:
+            return {'status': 403, 'error': 'Access Denied: Insufficient Permissions'}
+        
+        return {'status': 200, 'data': 'Protected Data Granted'}`)">📋 Copy</button>
+                    <code>def require_role(required_role):
+    def middleware(request):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return {'status': 401, 'error': 'Missing or invalid Bearer token'}
+        
+        token = auth_header.split(' ')[1]
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        if payload.get('role') != required_role:
+            return {'status': 403, 'error': 'Access Denied: Insufficient Permissions'}
+        
+        return {'status': 200, 'data': 'Protected Data Granted'}</code>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Your Capstone Task</h4>
+                <p>Write an authentication middleware function <code>authenticate_admin_request(auth_header)</code> that validates <code>Bearer token</code>, decodes payload using <code>HS256</code>, checks if <code>payload['role'] == 'admin'</code>, and returns <code>True</code>.</p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Capstone Auth Middleware Editor -->
+        <section class="ide-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>🛡️ Capstone Auth Middleware Simulator</span>
+                </div>
+                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Apex Title: Database Architect</span>
+            </div>
+
+            <textarea id="editor" class="terminal-editor" placeholder="# Write your authentication middleware function below:
+import jwt
+
+SECRET_KEY = 'novi_secret_key'
+
+def authenticate_admin_request(auth_header):
+    if not auth_header or not auth_header.startswith('Bearer '):
+        return False
+    token = auth_header.split(' ')[1]
+    payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+    return payload.get('role') == 'admin'"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" id="runBtn" onclick="testAuthMiddleware()">👑 Deploy Middleware & Claim Rank</button>
+                <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
+            </div>
+
+            <div class="terminal-output" id="consoleOutput">> Ready. Write your authentication middleware and click "Deploy Middleware & Claim Rank"...</div>
+        </section>
+    </main>
+
+    <!-- Main Dashboard Engine & Navigation -->
+    <script src="../../dashboard.js"></script>
+    <script src="../level7-navigation.js"></script>
+
+    <script>
+        const DRAFT_KEY = 'partF_branchB_lesson6_draft';
+        const DEFAULT_STARTER_CODE = '';
+        const editor = document.getElementById('editor');
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedDraft = localStorage.getItem(DRAFT_KEY);
+            if (savedDraft) {
+                editor.value = savedDraft;
+            } else {
+                editor.value = DEFAULT_STARTER_CODE;
+            }
+        });
+
+        editor.addEventListener('input', () => {
+            localStorage.setItem(DRAFT_KEY, editor.value);
+        });
+
+        function clearEditorContent() {
+            localStorage.removeItem(DRAFT_KEY);
+            editor.value = DEFAULT_STARTER_CODE;
+            consoleOutput.textContent = '> Editor cleared. Write your Auth Middleware code to deploy...';
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: '🧹 Editor cleared!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '📋 Middleware snippet copied!',
+                showConfirmButton: false,
+                timer: 1800
+            });
+        }
+
+        function testAuthMiddleware() {
+            const code = editor.value.trim();
+            if (!code) {
+                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your Auth Middleware function.';
+                return;
+            }
+
+            if (code.includes('authenticate_admin_request') && code.includes('Bearer') && code.includes('jwt.decode') && code.includes('admin')) {
+                consoleOutput.textContent = `[AUTH MIDDLEWARE PIPELINE]\n[Test 1] Missing Header -> 401 Unauthorized (PASSED)\n[Test 2] Invalid Token -> 401 Unauthorized (PASSED)\n[Test 3] User Token (Role: user) -> 403 Forbidden (PASSED)\n[Test 4] Admin Token (Role: admin) -> 200 OK Access Granted (PASSED)\n\n🏆 [APEX MASTERED] Fullstack Branch 7B Complete! Awarded Rank: 🛢️ Database Architect!`;
+                
+                localStorage.setItem('partF_branchB_lesson6_completed', 'true');
+                localStorage.setItem('partF_branchB_completed', 'true');
+                if (typeof addXP === 'function') addXP(250);
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: '👑 APEX MASTERED!',
+                        html: `
+                            <h3 style="color: #a855f7; margin-bottom: 8px;">🛢️ Database Architect Rank Earned!</h3>
+                            <p style="color: #475569; margin-bottom: 12px;">You completed all 6 Masterclasses in Databases & Auth Architecture!</p>
+                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
+                                ⚡ Total Reward: +250 XP | Official Certificate Unlocked
+                            </div>
+                        `,
+                        icon: 'success',
+                        confirmButtonText: 'Return to Level 7 Hub 🚀',
+                        confirmButtonColor: '#a855f7'
+                    }).then(() => {
+                        window.location.href = '../hub.html';
+                    });
+                }, 400);
+            } else {
+                consoleOutput.textContent = `❌ Auth Middleware Error:\nExpected function 'authenticate_admin_request' checking Bearer headers, decoding JWT, and validating 'admin' role.\n\nYour Function:\n${code}`;
+            }
+        }
+    </script>
+</body>
+</html>

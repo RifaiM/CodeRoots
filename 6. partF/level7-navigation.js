@@ -54,7 +54,8 @@
     }
 
     function isLessonCompleted(lessonItem) {
-        return localStorage.getItem(lessonItem.key) === 'true';
+        const altKey = lessonItem.key.replace('_complete', '_completed');
+        return localStorage.getItem(lessonItem.key) === 'true' || localStorage.getItem(altKey) === 'true';
     }
 
     function canAccessLesson(lessonIndex, lessonsList) {
