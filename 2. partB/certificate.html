@@ -30,7 +30,8 @@
             }
 
             function canAccessCertificate() {
-                return true;
+                const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+                return isPracticeUnlocked || countCompletedLessons() >= 15;
             }
 
             function showAccessDenied() {

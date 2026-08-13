@@ -446,7 +446,54 @@ function showTrackPreview(title, description) {
 /**
  * 6. Global Certificate Hub Selection Modal
  */
+window.showCertLockWarning = function(levelName, count) {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'warning',
+            title: `🔒 ${levelName} Certificate Locked`,
+            text: `You must complete all 15 lessons in ${levelName} before claiming your official Certificate! (${count}/15 Completed)`,
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Got It!'
+        });
+    }
+};
+
 window.openCertificateHub = function() {
+    const stats = window.getUserXPAndRank();
+    const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
+    const isL4Earned = isUnlocked || stats.l4Completed >= 15;
+    const isL5Earned = isUnlocked || stats.l5Completed >= 15;
+    const isL6Earned = isUnlocked || stats.l6Completed >= 15;
+
+    const renderCertItem = (title, sub, url, isEarned, completedCount, bgStyle, textStyle, btnColor) => {
+        if (isEarned) {
+            return `
+                <a href="${url}" style="display: flex; align-items: center; justify-content: space-between; ${bgStyle} padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                    <div style="text-align: left;">
+                        <div style="font-weight: 800; font-size: 0.92rem; ${textStyle}">${title}</div>
+                        <div style="font-size: 0.76rem; color: #64748b;">${sub}</div>
+                    </div>
+                    <span style="font-weight: 800; color: ${btnColor}; font-size: 0.85rem;">View &rarr;</span>
+                </a>
+            `;
+        } else {
+            return `
+                <div onclick="window.showCertLockWarning('${title}', ${completedCount})" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
+                    <div style="text-align: left;">
+                        <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">${title}</div>
+                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount}/15 Lessons</div>
+                    </div>
+                    <span style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
+                </div>
+            `;
+        }
+    };
+
+    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', './2. partB/certificate.html', isL4Earned, stats.l4Completed, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
+    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', './3. partC/certificate.html', isL5Earned, stats.l5Completed, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
+    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', './5. partE/certificate.html', isL6Earned, stats.l6Completed, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             title: '📜 NoviCodes Certificate Hub',
@@ -457,29 +504,9 @@ window.openCertificateHub = function() {
                     </p>
                     
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="./2. partB/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 800; font-size: 0.92rem;">📜 Level 4 Certificate</div>
-                                <div style="font-size: 0.76rem; color: #64748b;">DOM Manipulation & Web Interactivity</div>
-                            </div>
-                            <span style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">View &rarr;</span>
-                        </a>
-
-                        <a href="./3. partC/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5 Certificate</div>
-                                <div style="font-size: 0.76rem; color: #0284c7;">React & Modern Frontend Engineering</div>
-                            </div>
-                            <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">View &rarr;</span>
-                        </a>
-
-                        <a href="./5. partE/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6 Certificate</div>
-                                <div style="font-size: 0.76rem; color: #059669;">Python & Backend Architecture</div>
-                            </div>
-                            <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">View &rarr;</span>
-                        </a>
+                        ${l4Item}
+                        ${l5Item}
+                        ${l6Item}
                     </div>
                 </div>
             `,
@@ -487,7 +514,7 @@ window.openCertificateHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = './5. partE/certificate.html';
+        window.location.href = isL6Earned ? './5. partE/certificate.html' : './2. partB/certificate.html';
     }
 };
 
