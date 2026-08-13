@@ -27,21 +27,21 @@
         }
 
         .legal-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid #e2e8f0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            box-sizing: border-box;
+            position: sticky !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 64px !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            z-index: 10000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 20px !important;
+            box-sizing: border-box !important;
         }
 
         .home-link {
@@ -59,16 +59,23 @@
             transition: all 0.2s ease;
         }
 
-        .home-link:hover {
-            background: #2563eb;
-            color: #ffffff;
-            border-color: #2563eb;
-            transform: translateY(-1px);
+        .platform-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
         .legal-container {
             max-width: 800px;
-            margin: 100px auto 60px auto;
+            margin: 32px auto 60px auto;
             padding: 0 20px;
             box-sizing: border-box;
         }
@@ -219,7 +226,8 @@
         <a href="./dashboard.html" class="home-link">
             <span>🏠</span> <span>Dashboard</span>
         </a>
-        <a href="./dashboard.html" class="platform-logo" aria-label="NoviCodes Logo" style="text-decoration: none;">
+        <a href="./dashboard.html" class="platform-logo" aria-label="NoviCodes Logo">
+            <img src="./assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
             <div class="logo-text">
                 <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
             </div>
