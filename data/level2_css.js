@@ -91,7 +91,7 @@ h1 {
             category: "Layout Engine",
             definition: "The foundational design rule where every element consists of Content, Padding, Border, and Margin.",
             analogy: "A framed picture: Picture (Content), White matting (Padding), Wood frame (Border), Space to next picture (Margin).",
-            codeSnippet: "box-sizing: border-box;"
+            codeSnippet: "* { box-sizing: border-box; }"
         },
         {
             term: "Flexbox",
@@ -112,7 +112,56 @@ h1 {
             category: "Responsiveness",
             definition: "A CSS technique used to apply styles conditionally based on device viewport width or features.",
             analogy: "Wearing a winter coat when it snows vs shorts when sunny.",
-            codeSnippet: "@media (max-width: 768px) {\n  .nav { display: none; }\n}"
+            codeSnippet: "@media (max-width: 768px) {\n  .nav-menu { display: none; }\n}"
+        },
+        {
+            term: "CSS Specificity & The Cascade",
+            category: "Core Concept",
+            definition: "The scoring algorithm browsers use to decide which CSS property value is applied to an element when multiple rules conflict (!important > inline style > #id > .class > tag).",
+            analogy: "Rank authority in an organization: CEO order > Director order > Manager order.",
+            codeSnippet: "/* ID (#card) beats Class (.card) */\n#mainCard { background: red; }\n.card { background: blue; }"
+        },
+        {
+            term: "CSS Positioning (relative, absolute, fixed, sticky)",
+            category: "Layout Engine",
+            definition: "Defines how an element is positioned in the document flow: relative (offset from self), absolute (offset from positioned parent), fixed (locked to screen viewport), sticky (hybrid scroll lock).",
+            analogy: "Fixed: A tattoo on your arm. Sticky: A magnetic memo on your fridge that slides until it hits the top.",
+            codeSnippet: ".modal {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}"
+        },
+        {
+            term: "CSS Grid (2D Layout)",
+            category: "Layout Engine",
+            definition: "A powerful 2-dimensional layout system that manages both columns and rows simultaneously.",
+            analogy: "A multi-column grid layout in a newspaper or chessboard.",
+            codeSnippet: ".grid-container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}"
+        },
+        {
+            term: "CSS Variables (Custom Properties)",
+            category: "Architecture",
+            definition: "Entities defined by CSS authors that contain specific values to be reused throughout a document using var().",
+            analogy: "Setting master paint buckets in a house project: 'Primary Color = Navy Blue'.",
+            codeSnippet: ":root {\n  --primary-color: #2563eb;\n}\n.btn { background: var(--primary-color); }"
+        },
+        {
+            term: "Z-Index & Stacking Contexts",
+            category: "Layout Engine",
+            definition: "Controls the vertical stacking order of elements that overlap along the z-axis (depth). Only works on positioned elements (relative, absolute, fixed).",
+            analogy: "Arranging playing cards in a stack; higher z-index sits on top.",
+            codeSnippet: ".dropdown {\n  position: absolute;\n  z-index: 9999;\n}"
+        },
+        {
+            term: "Transitions & Micro-Animations",
+            category: "Interactivity",
+            definition: "Smooth property changes over a specified duration when states change (e.g. :hover, :focus).",
+            analogy: "A door gently swinging open slowly instead of instantly teleporting.",
+            codeSnippet: ".btn {\n  transition: all 0.2s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n}"
+        },
+        {
+            term: "Pseudo-Classes & Pseudo-Elements",
+            category: "Syntax",
+            definition: "Pseudo-classes (:hover, :focus, :nth-child) style elements based on user state. Pseudo-elements (::before, ::after) insert decorative content.",
+            analogy: "Pseudo-class: Highlights when touched. Pseudo-element: Automatic quotation marks added before a quote.",
+            codeSnippet: "button:hover { background: #1d4ed8; }\n.card::before { content: '★ '; }"
         }
     ],
 

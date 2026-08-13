@@ -102,7 +102,7 @@ window.LEVEL1_HTML_DATA = {
             category: "Best Practice",
             definition: "Using tags that clearly convey their meaning to browsers and accessibility tools (e.g., <header>, <article>, <nav> instead of generic <div>).",
             analogy: "Using labeled drawers in a workshop instead of random mystery boxes.",
-            codeSnippet: "<article>\n<h2>Article Title</h2>\n</article>"
+            codeSnippet: "<article>\n  <h2>Article Title</h2>\n</article>"
         },
         {
             term: "Void / Self-Closing Tag",
@@ -110,6 +110,48 @@ window.LEVEL1_HTML_DATA = {
             definition: "An HTML element that cannot contain text content and therefore has no closing tag (e.g., <img>, <input>, <br>).",
             analogy: "A single printed sticker placed directly on a wall.",
             codeSnippet: '<img src="photo.jpg" alt="My Photo">'
+        },
+        {
+            term: "Block vs Inline Elements",
+            category: "Layout Behavior",
+            definition: "Block elements (<div>, <p>, <h1>) take up full available width and start on a new line. Inline elements (<span>, <a>, <strong>) only wrap their text content on the same line.",
+            analogy: "Block elements are full-width bookshelves; Inline elements are books placed side-by-side on a shelf.",
+            codeSnippet: '<div style="display:block;">Full Row</div>\n<span style="display:inline;">Inline Word</span>'
+        },
+        {
+            term: "Relative vs Absolute File Paths",
+            category: "File Navigation",
+            definition: "Relative paths (./image.png or ../assets/photo.jpg) reference files relative to the current directory. Absolute paths (https://site.com/photo.jpg or /) reference from the domain root.",
+            analogy: "Relative: 'Walk 2 doors down the hall'. Absolute: '123 Main Street, Suite 400'.",
+            codeSnippet: '<img src="../assets/logo.jpg" alt="Logo">'
+        },
+        {
+            term: "Meta Viewport & Responsive Head",
+            category: "Mobile Optimization",
+            definition: "A essential <meta> tag placed inside <head> that forces mobile browsers to render the page at actual device width instead of desktop zoomed-out view.",
+            analogy: "Setting your camera lens zoom to 100% instead of looking through a telescope.",
+            codeSnippet: '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+        },
+        {
+            term: "OpenGraph SEO Meta Tags",
+            category: "SEO & Social Sharing",
+            definition: "Special meta tags (og:title, og:image, og:description) that define how your link appears when shared on WhatsApp, Twitter, Discord, or LinkedIn.",
+            analogy: "The printed cover and teaser snippet on the back of a book.",
+            codeSnippet: '<meta property="og:title" content="My Web App">\n<meta property="og:image" content="preview.jpg">'
+        },
+        {
+            term: "Form Controls & Input Validation",
+            category: "User Input",
+            definition: "Interactive elements (<form>, <input>, <button>) that collect user data with native browser validation attributes (required, pattern, type).",
+            analogy: "A printed job application form with required fields marked with an asterisk (*).",
+            codeSnippet: '<form>\n  <input type="email" required placeholder="name@email.com">\n  <button type="submit">Submit</button>\n</form>'
+        },
+        {
+            term: "Web Accessibility (a11y) & ARIA",
+            category: "Accessibility",
+            definition: "Designing HTML so people with visual or physical impairments can navigate using screen readers or keyboards using alt text, aria-labels, and focus states.",
+            analogy: "Building wheelchair ramps and tactile braille signs at a building entrance.",
+            codeSnippet: '<button aria-label="Close Modal" onclick="close()">✕</button>'
         }
     ],
 

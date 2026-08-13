@@ -73,14 +73,14 @@ myButton.addEventListener("click", function() {
         {
             term: "Variable (const / let)",
             category: "Syntax",
-            definition: "A named memory container used to store data values for later use.",
+            definition: "A named memory container used to store data values for later use. Use const for values that do not reassign, let for mutable variables.",
             analogy: "A labeled storage box holding items inside a closet.",
             codeSnippet: "const score = 100;\nlet lives = 3;"
         },
         {
             term: "Function",
             category: "Core Concept",
-            definition: "A self-contained block of code designed to perform a particular task.",
+            definition: "A self-contained block of code designed to perform a particular task when invoked.",
             analogy: "A recipe on a card that you can cook whenever you want.",
             codeSnippet: "function greet(name) {\n  return 'Hello ' + name;\n}"
         },
@@ -96,7 +96,63 @@ myButton.addEventListener("click", function() {
             category: "Logic",
             definition: "Statements used to perform different actions based on whether a condition is true or false.",
             analogy: "If it is raining, take an umbrella; else wear sunglasses.",
-            codeSnippet: "if (xp >= 1000) {\n  unlockBadge();\n}"
+            codeSnippet: "if (xp >= 1000) {\n  unlockBadge();\n} else {\n  keepLearning();\n}"
+        },
+        {
+            term: "Asynchronous JS (async / await / Promises)",
+            category: "Async & APIs",
+            definition: "Handling time-consuming operations (like fetching network APIs or database records) without freezing the user interface.",
+            analogy: "Ordering coffee at a cafe: receiving a buzzer (Promise) while waiting so you can talk to friends.",
+            codeSnippet: "async function fetchUser() {\n  const res = await fetch('/api/user');\n  const data = await res.json();\n}"
+        },
+        {
+            term: "Array Methods (.map, .filter, .reduce)",
+            category: "Data Manipulation",
+            definition: "Higher-order functions used to transform (.map), filter (.filter), or summarize (.reduce) collections of data functionally.",
+            analogy: ".filter is a coffee filter straining grounds; .map is painting every car in a parking lot a new color.",
+            codeSnippet: "const admins = users.filter(u => u.role === 'admin');\nconst names = users.map(u => u.name);"
+        },
+        {
+            term: "DOM Traversal & Selection",
+            category: "DOM & Interactivity",
+            definition: "Finding HTML elements on the page (querySelector) or navigating parent/child chains (closest, parentElement).",
+            analogy: "Finding a specific apartment by building number and floor.",
+            codeSnippet: "const card = btn.closest('.card');\nconst title = card.querySelector('h2');"
+        },
+        {
+            term: "Event Bubbling & e.preventDefault()",
+            category: "DOM & Interactivity",
+            definition: "Events trigger on target elements and bubble up through parents. e.preventDefault() cancels browser default actions (like page reload on form submit).",
+            analogy: "Submitting a form paper directly to a clerk instead of mailing it out.",
+            codeSnippet: "form.addEventListener('submit', (e) => {\n  e.preventDefault();\n  submitData();\n});"
+        },
+        {
+            term: "LocalStorage & Web Storage",
+            category: "Data Persistence",
+            definition: "A browser-based key-value store that persists data across page refreshes and browser sessions.",
+            analogy: "A notepad saved on your desk that stays there even when you turn off the lights.",
+            codeSnippet: "localStorage.setItem('user', JSON.stringify({ name: 'Alex' }));\nconst user = JSON.parse(localStorage.getItem('user'));"
+        },
+        {
+            term: "Scope & Lexical Closures",
+            category: "Architecture",
+            definition: "Scope controls variable accessibility. A closure is a function that remembers and accesses variables from its outer lexical environment even after outer function returns.",
+            analogy: "A backpack you keep carrying containing tools from your old room.",
+            codeSnippet: "function makeCounter() {\n  let count = 0;\n  return () => ++count;\n}"
+        },
+        {
+            term: "ES6 Destructuring & Spread Operator",
+            category: "Syntax",
+            definition: "Destructuring extracts properties from objects/arrays into distinct variables. The spread operator (...) unpacks items or merges objects.",
+            analogy: "Unpacking items from a box onto your desk individually.",
+            codeSnippet: "const { name, role } = user;\nconst updatedUser = { ...user, active: true };"
+        },
+        {
+            term: "Arrow Functions & Lexical 'this'",
+            category: "Syntax",
+            definition: "Concise syntax for writing function expressions (() => {}). Arrow functions do not bind their own 'this', inheriting 'this' lexically.",
+            analogy: "A handheld walkie-talkie borrowing the frequency of the base station.",
+            codeSnippet: "const add = (a, b) => a + b;"
         }
     ],
 
