@@ -469,10 +469,12 @@ function render404TrackPage(invalidKey) {
 
     const mainContainer = document.querySelector('.foundations-container');
     const heroSection = document.querySelector('.track-hero');
-    const tabNav = document.querySelector('.tab-navigation');
+    const tabBar = document.querySelector('.foundations-tab-bar');
 
     if (heroSection) heroSection.style.display = 'none';
-    if (tabNav) tabNav.style.display = 'none';
+    if (tabBar) tabBar.style.display = 'none';
+
+    const safeKey = String(invalidKey || '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
     if (mainContainer) {
         mainContainer.innerHTML = `
@@ -480,7 +482,7 @@ function render404TrackPage(invalidKey) {
                 <div style="font-size: 3.8rem; margin-bottom: 12px;">🔍 404</div>
                 <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Foundation Track Not Found</h2>
                 <p style="color: #64748b; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
-                    The foundation track <code style="background:#f1f5f9; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${escapeHTML(invalidKey)}"</code> does not exist on NoviCodes.
+                    The foundation track <code style="background:#fff1f2; border: 1px solid #fecdd3; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${safeKey}"</code> does not exist on NoviCodes.
                 </p>
                 <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
                     Explore Available Foundation Tracks:
