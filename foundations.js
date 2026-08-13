@@ -7,18 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Determine Active Track from Query Parameter (?track=html | css | js)
     const urlParams = new URLSearchParams(window.location.search);
-    const trackKey = (urlParams.get('track') || 'html').toLowerCase();
+    const rawTrackParam = urlParams.get('track');
+    const validTracks = ['html', 'css', 'js'];
+
+    if (rawTrackParam && !validTracks.includes(rawTrackParam.toLowerCase())) {
+        render404TrackPage(rawTrackParam);
+        return;
+    }
+
+    const trackKey = (rawTrackParam || 'html').toLowerCase();
 
     let trackData = window.LEVEL1_HTML_DATA;
     if (trackKey === 'css') {
         trackData = window.LEVEL2_CSS_DATA;
     } else if (trackKey === 'js') {
         trackData = window.LEVEL3_JS_DATA;
-    }
-
-    if (!trackData) {
-        console.error('Track data not found for key:', trackKey);
-        trackData = window.LEVEL1_HTML_DATA;
     }
 
     // 2. Hydrate Page Header & Hero Details
@@ -455,4 +458,40 @@ function initGlobalBackToTop() {
             behavior: 'smooth'
         });
     });
+}
+
+/**
+ * Renders interactive 404 error page for invalid track parameters
+ */
+function render404TrackPage(invalidKey) {
+    document.title = "NoviCodes - 404 Track Not Found";
+    updateHeaderStats();
+
+    const mainContainer = document.querySelector('.foundations-container');
+    const heroSection = document.querySelector('.track-hero');
+    const tabNav = document.querySelector('.tab-navigation');
+
+    if (heroSection) heroSection.style.display = 'none';
+    if (tabNav) tabNav.style.display = 'none';
+
+    if (mainContainer) {
+        mainContainer.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 18px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 650px; margin: 40px auto;">
+                <div style="font-size: 3.8rem; margin-bottom: 12px;">🔍 404</div>
+                <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Foundation Track Not Found</h2>
+                <p style="color: #64748b; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
+                    The foundation track <code style="background:#f1f5f9; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${escapeHTML(invalidKey)}"</code> does not exist on NoviCodes.
+                </p>
+                <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
+                    Explore Available Foundation Tracks:
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🏗️ HTML Track</a>
+                    <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🎨 CSS Track</a>
+                    <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">⚡ JS Track</a>
+                    <a href="./index.html" style="background: #f1f5f9; color: #0f172a; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem; border: 1px solid #cbd5e1;">🏠 Skill Tree</a>
+                </div>
+            </div>
+        `;
+    }
 }
