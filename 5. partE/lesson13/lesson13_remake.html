@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 13: Password Hashing & JWT Security</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 13 – Password Hashing & JWT Security</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>🔒 Password Hashing & JWT Authentication</span>
+            </h2>
+            <p>
+                Security is paramount in backend engineering. You must <strong>never store plain-text passwords</strong> in databases. Instead, passwords are cryptographic <strong>hashed (SHA-256 / bcrypt)</strong> with <code>hashlib</code>, and user sessions are authenticated statelessly using signed <strong>JSON Web Tokens (JWT)</strong> containing token claims.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> Password hashing is like a one-way paper shredder that transforms a password into a unique fingerprint hash. A JWT token is like a digital VIP event pass stamped with a cryptographically verified signature!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">🔒 1. Password Hashing (hashlib)</div>
+                    <pre class="code-block"><code><span class="keyword">import</span> hashlib
+
+<span class="comment"># Convert plain password to SHA-256 hash</span>
+pw = <span class="string">"MySecret123"</span>
+hashed = hashlib.<span class="function">sha256</span>(pw.encode()).<span class="function">hexdigest</span>()
+<span class="keyword">print</span>(hashed)</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">🔑 2. JWT Generation & Token Claims</div>
+                    <pre class="code-block"><code><span class="comment"># JSON Web Token structure</span>
+payload = {
+  <span class="string">"sub"</span>: <span class="string">"101"</span>,
+  <span class="string">"role"</span>: <span class="string">"admin"</span>
+}
+token = JWT.<span class="function">encode</span>(payload)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 13 Practice Task:
+
+import hashlib
+import json
+import base64
+
+# 1. Hash plain user password using hashlib (SHA-256):
+def hash_password(password):
+  # Convert password to SHA-256 hex digest:
+  return hashlib.sha256(password.encode()).hexdigest()
+
+# 2. Mock JWT generation & decoding:
+class JWT:
+  @staticmethod
+  def encode(payload, secret="secret_key"):
+    header = base64.b64encode(json.dumps({"alg": "HS256", "typ": "JWT"}).encode()).decode()
+    body = base64.b64encode(json.dumps(payload).encode()).decode()
+    signature = hashlib.sha256(f"{header}.{body}.{secret}".encode()).hexdigest()[:16]
+    return f"{header}.{body}.{signature}"
+
+  @staticmethod
+  def decode(token):
+    parts = token.split(".")
+    payload_json = base64.b64decode(parts[1]).decode()
+    return json.loads(payload_json)
+
+# 3. Create hashed user credentials:
+hashed_pw = hash_password("SuperSecretPass123")
+print(f"🔒 Hashed Password: {hashed_pw}")
+
+# 4. Generate & decode auth JWT token:
+user_token = JWT.encode({"user_id": 101, "role": "admin", "exp": 1700000000})
+print(f"🔑 Generated Auth Token: {user_token}")
+
+decoded_claims = JWT.decode(user_token)
+print(f"🎟️ Decoded Token Claims: User #{decoded_claims['user_id']} ({decoded_claims['role']})")
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 13 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 13 and unlock Lesson 14!</p>
+
+            <ul class="task-checklist">
+                <li data-task="hashing">🔒 Hash sensitive user passwords securely using hashlib</li>
+                <li data-task="jwt">🔑 Generate JSON Web Tokens (JWT) for authentication</li>
+                <li data-task="token">🎟️ Verify and decode access tokens for protected routes</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 13 & Unlock Lesson 14</button>
+        </section>
+    </main>
+</body>
+</html>
