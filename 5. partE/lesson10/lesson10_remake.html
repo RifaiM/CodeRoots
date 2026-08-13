@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 10: Asynchronous Python & Asyncio</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 10 – Asynchronous Python & Asyncio</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>⚡ Asynchronous Python & Asyncio Event Loops</span>
+            </h2>
+            <p>
+                Modern high-performance backend frameworks (such as FastAPI and Tornado) rely on <strong>asynchronous programming</strong>. Instead of blocking the server CPU while waiting for database queries or API responses, Python uses <strong><code>async def</code></strong> coroutines and <strong><code>await</code></strong> to process thousands of concurrent requests smoothly.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> Synchronous code is like a restaurant chef who cooks one dish from start to finish before taking the next order. Asynchronous code is like a chef who puts a steak in the oven, and while it bakes (await), prepares appetizers for other customers!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">⚡ 1. Async Coroutines (async def)</div>
+                    <pre class="code-block"><code><span class="keyword">import</span> asyncio
+
+<span class="comment"># Define asynchronous coroutine</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">fetch_data</span>():
+  <span class="keyword">print</span>(<span class="string">"Fetching DB record..."</span>)
+  <span class="keyword">await</span> asyncio.<span class="function">sleep</span>(<span class="number">1</span>)
+  <span class="keyword">return</span> {<span class="string">"status"</span>: <span class="number">200</span>}</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">⏳ 2. Event Loop Execution</div>
+                    <pre class="code-block"><code><span class="keyword">async</span> <span class="keyword">def</span> <span class="function">main</span>():
+  res = <span class="keyword">await</span> fetch_data()
+  <span class="keyword">print</span>(res)
+
+<span class="comment"># Run event loop</span>
+asyncio.<span class="function">run</span>(main())</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 10 Practice Task:
+
+import asyncio
+
+# 1. Define asynchronous coroutine for fetching user data:
+async def fetch_user_data(user_id):
+  print(f"📡 [REQ] Fetching data for User #{user_id}...")
+  # Simulate non-blocking network I/O delay:
+  await asyncio.sleep(1)
+  print(f"✅ [RESP] User #{user_id} data received successfully!")
+  return {"id": user_id, "username": f"user_{user_id}", "status": "online"}
+
+# 2. Main async entrypoint function:
+async def main():
+  print("🚀 Starting Asynchronous Backend Gateway...")
+  # Execute non-blocking async coroutine:
+  user_info = await fetch_user_data(101)
+  print(f"👤 Active Session: {user_info['username']}")
+
+# 3. Run asyncio event loop:
+asyncio.run(main())
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 10 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 10 and unlock Lesson 11!</p>
+
+            <ul class="task-checklist">
+                <li data-task="asyncio">⚡ Import asyncio module for concurrent backend tasks</li>
+                <li data-task="async_def">🔄 Define asynchronous coroutine functions using async def</li>
+                <li data-task="await">⏳ Await asynchronous coroutines using the await keyword</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 10 & Unlock Lesson 11</button>
+        </section>
+    </main>
+</body>
+</html>

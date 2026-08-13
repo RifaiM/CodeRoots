@@ -157,7 +157,7 @@
             hint: 'The correct keyword is <code>await</code>. Example: <code>result = await fetch_data()</code>'
         },
         {
-            test: /\basnyc\b|\basync(?!\s+def|\s+for|\s+with)/i,
+            test: /\basnyc\b(?!io)/i,
             title: "Typo: 'asnyc' — did you mean 'async'?",
             hint: 'The correct keyword is <code>async</code>. Example: <code>async def handler():</code>'
         },
