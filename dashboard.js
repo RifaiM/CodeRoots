@@ -665,6 +665,9 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`partE_lesson${i}_remake_complete`);
                 }
 
+                // Also clear practice-mode unlock so all levels re-lock correctly
+                localStorage.removeItem('practice_mode_unlocked');
+
                 Swal.fire({
                     icon: 'success',
                     title: '🔄 Progress Reset!',
