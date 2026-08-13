@@ -20,6 +20,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
+        body {
+            background: #0f172a !important;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
         /* IDE Split Pane Layout */
         .ide-wrapper {
             display: grid;
@@ -367,14 +376,7 @@
                 <h4>2. Basic Page Component (`app/dashboard/page.tsx`)</h4>
                 <p>Export a default React component function to render the route view:</p>
                 <div class="code-box">
-                    <button class="copy-btn" onclick="copyToClipboard(`export default function DashboardPage() {
-  return (
-    <main className=\"p-8 bg-slate-900 text-white min-h-screen\">
-      <h1 className=\"text-2xl font-bold\">⚡ Analytics Dashboard</h1>
-      <p className=\"text-slate-400 mt-2\">Welcome to Next.js App Router!</p>
-    </main>
-  );
-}`)">📋 Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
                     <code>export default function DashboardPage() {
   return (
     &lt;main className="p-8 bg-slate-900 text-white min-h-screen"&gt;
@@ -456,16 +458,22 @@ export default function HomePage() {
             });
         }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '📋 Component code copied!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+        
+        function copyCode(btn) {
+            const codeBox = btn.closest ? btn.closest('.code-box') : null;
+            const code = codeBox ? codeBox.querySelector('code').innerText : btn;
+            navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '📋 Code copied to clipboard!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        });
         }
 
         function testNextPage() {

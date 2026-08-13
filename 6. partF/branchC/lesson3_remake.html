@@ -20,6 +20,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
+        body {
+            background: #0f172a !important;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* IDE Split Pane Layout */
         .ide-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -69,6 +79,7 @@
             font-weight: 800;
         }
 
+        /* Instructions & Copyable Code Blocks */
         .instruction-step {
             margin-bottom: 20px;
         }
@@ -129,6 +140,7 @@
             color: #ffffff;
         }
 
+        /* Interactive Terminal Code Area */
         .terminal-editor {
             background: #090d16;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -205,6 +217,7 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
+        /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
         @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
@@ -363,14 +376,7 @@
                 <h4>2. Writing an Async Server Action</h4>
                 <p>Use <code>'use server'</code> inside an asynchronous function and revalidate cached pages with <code>revalidatePath()</code>:</p>
                 <div class="code-box">
-                    <button class="copy-btn" onclick="copyToClipboard(`import { revalidatePath } from 'next/cache';
-
-export async function addBookmark(formData: FormData) {
-  'use server';
-  const url = formData.get('url');
-  await db.bookmark.create({ data: { url } });
-  revalidatePath('/bookmarks');
-}`)">📋 Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
                     <code>import { revalidatePath } from 'next/cache';
 
 export async function addBookmark(formData: FormData) {
@@ -452,16 +458,22 @@ export async function addBookmark(formData) {
             });
         }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '📋 Server Action snippet copied!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+        
+        function copyCode(btn) {
+            const codeBox = btn.closest ? btn.closest('.code-box') : null;
+            const code = codeBox ? codeBox.querySelector('code').innerText : btn;
+            navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '📋 Code copied to clipboard!',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }
+        });
         }
 
         function testServerAction() {
