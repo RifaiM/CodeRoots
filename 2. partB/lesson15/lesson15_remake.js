@@ -8,7 +8,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 2; // Changed from 1 to 2 spaces for better readability
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
   
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
       // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
       if (e.key === 'Tab') {
           e.preventDefault();
@@ -277,37 +277,37 @@ class FinalChallenge {
       const resetBtn = document.getElementById('resetCode');
 
       if (submitBtn) {
-          submitBtn.addEventListener('click', () => this.submitProject());
+          if (submitBtn) { submitBtn.addEventListener('click', () => this.submitProject()); }
       }
 
       if (runBtn) {
-          runBtn.addEventListener('click', () => this.runCode());
+          if (runBtn) { runBtn.addEventListener('click', () => this.runCode()); }
       }
 
       if (resetBtn) {
-          resetBtn.addEventListener('click', () => this.resetCode());
+          if (resetBtn) { resetBtn.addEventListener('click', () => this.resetCode()); }
       }
 
       if (checkBtn) {
-          checkBtn.addEventListener('click', () => this.submitProject());
+          if (checkBtn) { checkBtn.addEventListener('click', () => this.submitProject()); }
       }
 
       if (previewBtn) {
-          previewBtn.addEventListener('click', () => this.showPreview());
+          if (previewBtn) { previewBtn.addEventListener('click', () => this.showPreview()); }
       }
 
       if (hintBtn) {
-          hintBtn.addEventListener('click', () => this.showHint());
+          if (hintBtn) { hintBtn.addEventListener('click', () => this.showHint()); }
       }
 
       if (completeBtn) {
-          completeBtn.addEventListener('click', () => this.completeCourse());
+          if (completeBtn) { completeBtn.addEventListener('click', () => this.completeCourse()); }
       }
 
       // File tabs listener
       const tabs = document.querySelectorAll('.file-tab');
       tabs.forEach(tab => {
-          tab.addEventListener('click', (e) => {
+          if (tab) { tab.addEventListener('click', (e) => { }
               tabs.forEach(t => t.classList.remove('active'));
               e.currentTarget.classList.add('active');
 
@@ -477,16 +477,16 @@ FinalChallenge.prototype.setupPreviewModalListeners = function() {
   const modal = document.getElementById('preview-modal');
 
   if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.hidePreview());
+      if (closeBtn) { closeBtn.addEventListener('click', () => this.hidePreview()); }
   }
 
   if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', () => this.openFullscreenPreview());
+      if (fullscreenBtn) { fullscreenBtn.addEventListener('click', () => this.openFullscreenPreview()); }
   }
 
   if (modal) {
       // Close on overlay click
-      modal.addEventListener('click', (e) => {
+      if (modal) { modal.addEventListener('click', (e) => { }
           if (e.target === modal || e.target.classList.contains('preview-overlay')) {
               this.hidePreview();
           }

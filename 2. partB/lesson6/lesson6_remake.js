@@ -172,22 +172,22 @@ function enhanceTextareaForCoding(textarea) {
   saveState(textarea);
 
   // Add cursor position tracking - BUT AVOID DUPLICATES
-  textarea.addEventListener('keyup', (e) => {
+  if (textarea) { textarea.addEventListener('keyup', (e) => { }
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'].includes(e.key)) {
       updateCursorPosition(textarea);
     }
   });
 
-  textarea.addEventListener('click', () => updateCursorPosition(textarea));
+  if (textarea) { textarea.addEventListener('click', () => updateCursorPosition(textarea)); }
 
   // Use input event for most updates, but debounce it slightly
   let updateTimeout;
-  textarea.addEventListener('input', () => {
+  if (textarea) { textarea.addEventListener('input', () => { }
     clearTimeout(updateTimeout);
     updateTimeout = setTimeout(() => updateCursorPosition(textarea), 1);
   });
 
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
     // Handle Ctrl+Z (Undo) and Ctrl+Y (Redo)
     if (e.ctrlKey || e.metaKey) {
       if (e.key === 'z' && !e.shiftKey) {
@@ -319,7 +319,7 @@ function enhanceTextareaForCoding(textarea) {
   });
 
   // Save state on regular input (for normal typing)
-  textarea.addEventListener('input', function(e) {
+  if (textarea) { textarea.addEventListener('input', function(e) { }
     if (!isUndoRedo) {
       clearTimeout(this.saveTimeout);
       this.saveTimeout = setTimeout(() => {
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Alternative simpler version if you just want basic Tab functionality:
 function simpleTabSupport(textarea) {
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
     if (e.key === 'Tab') {
       e.preventDefault();
       const start = this.selectionStart;
@@ -422,7 +422,7 @@ body {
 </html>`;
 }
 
-taskEditor.addEventListener('input', function() {
+if (taskEditor) { taskEditor.addEventListener('input', function() { }
   // Filter out any injected live server scripts
   let value = this.value;
   if (value.includes('Live reload enabled') || value.includes('websocket')) {
@@ -512,7 +512,7 @@ function showPropertyPopup(title, content) {
     popup.remove();
   });
 
-  popup.addEventListener('click', (e) => {
+  if (popup) { popup.addEventListener('click', (e) => { }
     if (e.target === popup) {
       popup.remove();
     }
@@ -586,7 +586,7 @@ function showBenefitInfo(element, benefit) {
     popup.remove();
   });
 
-  popup.addEventListener('click', (e) => {
+  if (popup) { popup.addEventListener('click', (e) => { }
     if (e.target === popup) {
       popup.remove();
     }

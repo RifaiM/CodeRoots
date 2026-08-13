@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Handle Tab key in textarea to insert tabs instead of changing focus
-    textarea.addEventListener('keydown', function(e) {
+    if (textarea) { textarea.addEventListener('keydown', function(e) { }
       if (e.key === 'Tab' && !e.shiftKey) {
         e.preventDefault(); // Prevent default tab behavior (focus change)
 
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Auto-indent on Enter key
-    textarea.addEventListener('keydown', function(e) {
+    if (textarea) { textarea.addEventListener('keydown', function(e) { }
       if (e.key === 'Enter') {
         const start = this.selectionStart;
         const beforeCursor = this.value.substring(0, start);
@@ -565,18 +565,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Update line numbers and cursor position on input
-    textarea.addEventListener('input', function() {
+    if (textarea) { textarea.addEventListener('input', function() { }
       updateLineNumbers();
       updateCursorPosition();
     });
 
-    textarea.addEventListener('click', updateCursorPosition);
-    textarea.addEventListener('keyup', updateCursorPosition);
-    textarea.addEventListener('focus', updateCursorPosition);
+    if (textarea) { textarea.addEventListener('click', updateCursorPosition); }
+    if (textarea) { textarea.addEventListener('keyup', updateCursorPosition); }
+    if (textarea) { textarea.addEventListener('focus', updateCursorPosition); }
 
     // Sync scroll between textarea and line numbers
     if (lineNumbers) {
-      textarea.addEventListener('scroll', function() {
+      if (textarea) { textarea.addEventListener('scroll', function() { }
         lineNumbers.scrollTop = textarea.scrollTop;
       });
     }

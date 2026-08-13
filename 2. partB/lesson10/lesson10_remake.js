@@ -9,8 +9,8 @@ if (typeof DojoLinterHTML !== 'undefined') {
 const lineDisplay = document.getElementById("current-line");
 const colDisplay = document.getElementById("current-col");
 
-taskEditor.addEventListener("keyup", updateCursorPos);
-taskEditor.addEventListener("click", updateCursorPos);
+if (taskEditor) { taskEditor.addEventListener("keyup", updateCursorPos); }
+if (taskEditor) { taskEditor.addEventListener("click", updateCursorPos); }
 
 function updateCursorPos() {
   const text = taskEditor.value.substr(0, taskEditor.selectionStart);
@@ -66,18 +66,18 @@ function setupCursorTracking(textarea) {
     
     // Add comprehensive event listeners
     events.forEach(event => {
-        textarea.addEventListener(event, throttledUpdate, { passive: true });
+        if (textarea) { textarea.addEventListener(event, throttledUpdate, { passive: true }); }
     });
     
     // Special handling for selection changes using document-level event
     let isActiveTextarea = false;
     
-    textarea.addEventListener('focus', () => {
+    if (textarea) { textarea.addEventListener('focus', () => { }
         isActiveTextarea = true;
         updateCursorPosition(textarea);
     });
     
-    textarea.addEventListener('blur', () => {
+    if (textarea) { textarea.addEventListener('blur', () => { }
         isActiveTextarea = false;
     });
     
@@ -100,7 +100,7 @@ function addTabSupportWithNativeUndo(textarea) {
     const INDENT_SIZE = 2;
     const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
     
-    textarea.addEventListener('keydown', function(e) {
+    if (textarea) { textarea.addEventListener('keydown', function(e) { }
         if (e.key === 'Tab') {
             e.preventDefault();
             
@@ -148,7 +148,7 @@ function addTabSupportWithNativeUndo(textarea) {
     });
     
     // Handle other navigation keys that might affect cursor position
-    textarea.addEventListener('keydown', function(e) {
+    if (textarea) { textarea.addEventListener('keydown', function(e) { }
         const navigationKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
         if (navigationKeys.includes(e.key)) {
             // Update cursor position after the key event is processed
@@ -402,7 +402,7 @@ console.log("programmingLanguages is Array:", Array.isArray(programmingLanguages
 function setupPlayground() {
     const textarea = document.getElementById('playground-code');
     if (textarea) {
-        textarea.addEventListener('input', function() {
+        if (textarea) { textarea.addEventListener('input', function() { }
             // Update cursor position immediately on input
             updateCursorPosition(this);
             
@@ -1051,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const taskEditor = document.getElementById('task-editor');
     if (taskEditor) {
-        taskEditor.addEventListener('input', updateTaskPreview);
+        if (taskEditor) { taskEditor.addEventListener('input', updateTaskPreview); }
         updateTaskPreview();
     }
 
@@ -1062,7 +1062,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupDemoTabs() {
     const demoTabs = document.querySelector('.demo-tabs');
     if (demoTabs) {
-        demoTabs.addEventListener('click', function(e) {
+        if (demoTabs) { demoTabs.addEventListener('click', function(e) { }
             if (e.target.classList.contains('demo-tab')) {
                 const demoType = e.target.getAttribute('data-demo');
                 if (demoType) {

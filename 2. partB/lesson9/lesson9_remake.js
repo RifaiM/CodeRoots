@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 1; // 1 space per tab
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
   
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
       // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
       if (e.key === 'Tab') {
           e.preventDefault();
@@ -126,7 +126,7 @@ function initPlayground() {
   const demoContainer = document.getElementById('demo-container');
 
   buttons.forEach(button => {
-    button.addEventListener('click', () => {
+    if (button) { button.addEventListener('click', () => { }
       const position = button.dataset.position;
       
       // Update active button
@@ -262,17 +262,17 @@ function updateLineColumnNumbers(textarea) {
   }
   
   // Add event listeners for various cursor position changes
-  textarea.addEventListener('click', updatePosition);
-  textarea.addEventListener('keyup', updatePosition);
-  textarea.addEventListener('keydown', updatePosition);
-  textarea.addEventListener('input', updatePosition);
-  textarea.addEventListener('paste', () => {
+  if (textarea) { textarea.addEventListener('click', updatePosition); }
+  if (textarea) { textarea.addEventListener('keyup', updatePosition); }
+  if (textarea) { textarea.addEventListener('keydown', updatePosition); }
+  if (textarea) { textarea.addEventListener('input', updatePosition); }
+  if (textarea) { textarea.addEventListener('paste', () => { }
     // Small delay to ensure paste content is processed
     setTimeout(updatePosition, 10);
   });
-  textarea.addEventListener('cut', updatePosition);
-  textarea.addEventListener('select', updatePosition);
-  textarea.addEventListener('focus', updatePosition);
+  if (textarea) { textarea.addEventListener('cut', updatePosition); }
+  if (textarea) { textarea.addEventListener('select', updatePosition); }
+  if (textarea) { textarea.addEventListener('focus', updatePosition); }
   
   // Initial update
   updatePosition();
@@ -1702,7 +1702,7 @@ function createCelebration() {
 
 // Event listeners
 if (taskEditor) {
-  taskEditor.addEventListener('input', renderTask);
+  if (taskEditor) { taskEditor.addEventListener('input', renderTask); }
 }
 
 // Initialize everything
@@ -1725,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = document.getElementById('nextLessonBtn');
   if (nextBtn) {
-    nextBtn.addEventListener('click', function() {
+    if (nextBtn) { nextBtn.addEventListener('click', function() { }
       if (!this.disabled) {
         if (window.showLessonCompletionModal) {
           window.showLessonCompletionModal(

@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set up real-time preview updates
   const taskCode = document.getElementById('task-code');
   if (taskCode) {
-    taskCode.addEventListener('input', renderTask); // Use renderTask, not updatePreview
+    if (taskCode) { taskCode.addEventListener('input', renderTask); // Use renderTask, not updatePreview }
 
     // Cursor position tracking - using the same approach as lesson 6
-    taskCode.addEventListener('keyup', (e) => {
+    if (taskCode) { taskCode.addEventListener('keyup', (e) => { }
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'].includes(e.key)) {
         updateCursorPosition(taskCode);
       }
     });
 
-    taskCode.addEventListener('click', () => updateCursorPosition(taskCode));
+    if (taskCode) { taskCode.addEventListener('click', () => updateCursorPosition(taskCode)); }
 
     // Use input event for most updates, but debounce it slightly
     let updateTimeout;
-    taskCode.addEventListener('input', () => {
+    if (taskCode) { taskCode.addEventListener('input', () => { }
       clearTimeout(updateTimeout);
       updateTimeout = setTimeout(() => updateCursorPosition(taskCode), 1);
     });
@@ -59,7 +59,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 1; // 1 space per tab
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
 
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
     // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
     if (e.key === 'Tab') {
       e.preventDefault();
@@ -259,7 +259,7 @@ body {
  * Event listener for task editor input
  * Filters out live server scripts and updates preview
  */
-taskEditor.addEventListener('input', function() {
+if (taskEditor) { taskEditor.addEventListener('input', function() { }
   // Filter out any injected live server scripts
   let value = this.value;
   if (value.includes('Live reload enabled') || value.includes('websocket')) {

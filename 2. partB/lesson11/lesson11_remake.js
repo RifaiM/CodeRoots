@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
    const INDENT_SIZE = 1; // 1 space per tab
    const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
    
-   textarea.addEventListener('keydown', function(e) {
+   if (textarea) { textarea.addEventListener('keydown', function(e) { }
        // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
        if (e.key === 'Tab') {
            e.preventDefault();
@@ -1261,7 +1261,7 @@ function createCelebration() {
 function setupDemoTabs() {
    const demoTabs = document.querySelector('.demo-tabs');
    if (demoTabs) {
-      demoTabs.addEventListener('click', function (e) {
+      if (demoTabs) { demoTabs.addEventListener('click', function (e) { }
          if (e.target.classList.contains('demo-tab')) {
             const demoType = e.target.getAttribute('data-demo');
             if (demoType) {
@@ -1331,14 +1331,14 @@ document.addEventListener('DOMContentLoaded', function () {
    // Update task editor on input
    const taskEditor = document.getElementById('task-editor');
    if (taskEditor) {
-      taskEditor.addEventListener('input', updateTaskPreview);
+      if (taskEditor) { taskEditor.addEventListener('input', updateTaskPreview); }
       updateTaskPreview();
    }
 
    // Auto-update playground
    const playgroundEditor = document.getElementById('playground-code');
    if (playgroundEditor) {
-      playgroundEditor.addEventListener('input', function () {
+      if (playgroundEditor) { playgroundEditor.addEventListener('input', function () { }
          clearTimeout(this.autoRunTimer);
          this.autoRunTimer = setTimeout(() => {
             runPlaygroundCode();

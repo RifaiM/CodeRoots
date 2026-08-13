@@ -260,20 +260,20 @@ root.render(<DevPortalRouter />);`;
 
         // Live code auto-compile on input with debounce
         let runTimer = null;
-        editor.addEventListener('input', () => {
+        if (editor) { editor.addEventListener('input', () => { }
                 buildLineNumbers(lineNumberEl, editor);
             clearTimeout(runTimer);
             runTimer = setTimeout(() => runCode(false), 400);
         });
 
-            editor.addEventListener('scroll', () => {
+            if (editor) { editor.addEventListener('scroll', () => { }
                 if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
             });
 
         if (runBtn) runBtn.addEventListener('click', () => runCode(true));
 
         if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
+            if (resetBtn) { resetBtn.addEventListener('click', () => { }
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         title: 'Reset Code?',
@@ -304,7 +304,7 @@ root.render(<DevPortalRouter />);`;
         }
 
         if (submitBtn) {
-            submitBtn.addEventListener('click', () => {
+            if (submitBtn) { submitBtn.addEventListener('click', () => { }
                 const userCode = editor.value || '';
                 if (!userCode.trim()) {
                     if (typeof Swal !== 'undefined') {

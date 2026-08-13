@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
   const INDENT_SIZE = 1; // 1 space per tab
   const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
   
-  textarea.addEventListener('keydown', function(e) {
+  if (textarea) { textarea.addEventListener('keydown', function(e) { }
       // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
       if (e.key === 'Tab') {
           e.preventDefault();
@@ -399,7 +399,7 @@ const projectTemplate = `<!DOCTYPE html>
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
-        themeToggle.addEventListener('click', function() {
+        if (themeToggle) { themeToggle.addEventListener('click', function() { }
             body.classList.toggle('dark-theme');
             
             if (body.classList.contains('dark-theme')) {
@@ -427,7 +427,7 @@ const projectTemplate = `<!DOCTYPE html>
         const contactForm = document.getElementById('contactForm');
         const formFeedback = document.getElementById('formFeedback');
         
-        contactForm.addEventListener('submit', function(e) {
+        if (contactForm) { contactForm.addEventListener('submit', function(e) { }
             e.preventDefault();
             
             const name = document.getElementById('name').value.trim();
@@ -472,7 +472,7 @@ const projectTemplate = `<!DOCTYPE html>
         
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            if (anchor) { anchor.addEventListener('click', function (e) { }
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -497,7 +497,7 @@ class ComponentTabs {
 
   init() {
     this.tabs.forEach(tab => {
-      tab.addEventListener('click', () => this.switchTab(tab));
+      if (tab) { tab.addEventListener('click', () => this.switchTab(tab)); }
     });
   }
 
@@ -529,7 +529,7 @@ class BuildStepsAccordion {
   init() {
     this.steps.forEach(step => {
       const header = step.querySelector('.step-header');
-      header.addEventListener('click', () => this.toggleStep(step));
+      if (header) { header.addEventListener('click', () => this.toggleStep(step)); }
     });
   }
 
@@ -1295,7 +1295,7 @@ Add this JavaScript inside <script> tags:
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-themeToggle.addEventListener('click', function() {
+if (themeToggle) { themeToggle.addEventListener('click', function() { }
     body.classList.toggle('dark-theme');
     
     if (body.classList.contains('dark-theme')) {
@@ -1308,7 +1308,7 @@ themeToggle.addEventListener('click', function() {
 // Form validation
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', function(e) {
+if (contactForm) { contactForm.addEventListener('submit', function(e) { }
     e.preventDefault(); // Prevent form submission
     
     const name = document.getElementById('name').value;
@@ -1481,8 +1481,8 @@ Remember: This is YOUR portfolio - make it personal and unique!
     `;
     body.textContent = helpContent;
 
-    closeBtn.addEventListener('click', () => modal.remove());
-    modal.addEventListener('click', (e) => {
+    if (closeBtn) { closeBtn.addEventListener('click', () => modal.remove()); }
+    if (modal) { modal.addEventListener('click', (e) => { }
       if (e.target === modal) modal.remove();
     });
 
@@ -1499,7 +1499,7 @@ Remember: This is YOUR portfolio - make it personal and unique!
 class LivePreview {
   constructor() {
     this.updatePreview();
-    codeEditor.addEventListener('input', () => {
+    if (codeEditor) { codeEditor.addEventListener('input', () => { }
       this.updatePreview();
       this.updateLineCounter();
     });

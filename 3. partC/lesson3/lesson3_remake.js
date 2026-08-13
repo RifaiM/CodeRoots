@@ -264,7 +264,7 @@ root.render(<ProfileCard />);`;
         }
 
         if (runBtn) {
-            runBtn.addEventListener('click', () => {
+            if (runBtn) { runBtn.addEventListener('click', () => { }
                 const userCode = (editor.value || '').trim();
                 if (!userCode) {
                     validateRequirements('');
@@ -285,7 +285,7 @@ root.render(<ProfileCard />);`;
         }
 
         if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
+            if (resetBtn) { resetBtn.addEventListener('click', () => { }
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         title: 'Reset Code?',
@@ -317,20 +317,20 @@ root.render(<ProfileCard />);`;
 
         if (editor) {
             let inputTimeout;
-            editor.addEventListener('input', () => {
+            if (editor) { editor.addEventListener('input', () => { }
                 buildLineNumbers(lineNumberEl, editor);
                 localStorage.setItem('partC_lesson3_remake_draft', editor.value);
                 clearTimeout(inputTimeout);
                 inputTimeout = setTimeout(() => runCode(), 200);
             });
 
-            editor.addEventListener('scroll', () => {
+            if (editor) { editor.addEventListener('scroll', () => { }
                 if (lineNumberEl) lineNumberEl.scrollTop = editor.scrollTop;
             });
         }
 
         if (submitBtn) {
-            submitBtn.addEventListener('click', () => {
+            if (submitBtn) { submitBtn.addEventListener('click', () => { }
                 localStorage.setItem('partC_lesson3_remake_complete', 'true');
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({

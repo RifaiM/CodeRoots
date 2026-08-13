@@ -7,7 +7,7 @@ function addTabSupportWithNativeUndo(textarea) {
     const INDENT_SIZE = 1; // 1 space per tab
     const INDENT_CHAR = ' '.repeat(INDENT_SIZE);
     
-    textarea.addEventListener('keydown', function(e) {
+    if (textarea) { textarea.addEventListener('keydown', function(e) { }
         // Handle Tab key ONLY - let browser handle all other keys including Ctrl+Z
         if (e.key === 'Tab') {
             e.preventDefault();
@@ -138,7 +138,7 @@ function initializeInteractiveDemos() {
     
     if (demoColorBtn && demoHoverBox && demoFeedback) {
         // Demo button click event
-        demoColorBtn.addEventListener('click', function() {
+        if (demoColorBtn) { demoColorBtn.addEventListener('click', function() { }
             const colors = ['#ffecb3', '#e1f5fe', '#f3e5f5', '#e8f5e8', '#fce4ec'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.style.backgroundColor = randomColor;
@@ -150,7 +150,7 @@ function initializeInteractiveDemos() {
         });
         
         // Demo hover events
-        demoHoverBox.addEventListener('mouseover', function() {
+        if (demoHoverBox) { demoHoverBox.addEventListener('mouseover', function() { }
             this.style.background = '#fff3e0';
             this.style.borderColor = '#ff9800';
             this.style.color = '#e65100';
@@ -159,7 +159,7 @@ function initializeInteractiveDemos() {
             demoFeedback.style.backgroundColor = '#ff9800';
         });
         
-        demoHoverBox.addEventListener('mouseout', function() {
+        if (demoHoverBox) { demoHoverBox.addEventListener('mouseout', function() { }
             this.style.background = '#e3f2fd';
             this.style.borderColor = '#2196f3';
             this.style.color = '#1976d2';
@@ -175,7 +175,7 @@ function initializeLearningExamples() {
     // Step 1: addEventListener example
     const step1Btn = document.getElementById('step1-btn');
     if (step1Btn) {
-        step1Btn.addEventListener('click', function() {
+        if (step1Btn) { step1Btn.addEventListener('click', function() { }
             const colors = ['lightblue', 'lightgreen', 'lightyellow', 'lightpink', 'lightcoral'];
             const currentColor = this.style.backgroundColor;
             const availableColors = colors.filter(color => color !== currentColor);
@@ -204,14 +204,14 @@ function initializeLearningExamples() {
             transform: demoTarget.style.transform || 'scale(1)'
         };
     
-        colorDemoBtn.addEventListener('click', function() {
+        if (colorDemoBtn) { colorDemoBtn.addEventListener('click', function() { }
             const colors = ['#ffcdd2', '#f8bbd9', '#e1bee7', '#d1c4e9', '#c5cae9'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             demoTarget.style.backgroundColor = randomColor;
             demoTarget.innerHTML = '🎨 My background color changed!';
         });
         
-        textDemoBtn.addEventListener('click', function() {
+        if (textDemoBtn) { textDemoBtn.addEventListener('click', function() { }
             const messages = [
                 '📝 Text changed successfully!',
                 '✨ Dynamic content update!',
@@ -223,7 +223,7 @@ function initializeLearningExamples() {
             demoTarget.style.fontWeight = 'bold';
         });
         
-        sizeDemoBtn.addEventListener('click', function() {
+        if (sizeDemoBtn) { sizeDemoBtn.addEventListener('click', function() { }
             const currentScale = getComputedStyle(demoTarget).transform;
             const isScaled = currentScale !== 'none' && currentScale.includes('1.2');
             
@@ -245,14 +245,14 @@ function initializeLearningExamples() {
             const colors = ['#e3f2fd', '#f3e5f5', '#e8f5e8'];
             const hoverColors = ['#1976d2', '#7b1fa2', '#388e3c'];
             
-            card.addEventListener('mouseover', function() {
+            if (card) { card.addEventListener('mouseover', function() { }
                 this.style.backgroundColor = colors[index];
                 this.style.borderColor = hoverColors[index];
                 this.style.color = hoverColors[index];
                 this.querySelector('p').innerHTML = 'Hovering! 🎯';
             });
             
-            card.addEventListener('mouseout', function() {
+            if (card) { card.addEventListener('mouseout', function() { }
                 this.style.backgroundColor = '';
                 this.style.borderColor = '#dde7ff';
                 this.style.color = '';
@@ -269,7 +269,7 @@ function initializeLearningExamples() {
     if (multiDemoBox && eventLog) {
         let eventCount = 0;
         
-        multiDemoBox.addEventListener('click', function() {
+        if (multiDemoBox) { multiDemoBox.addEventListener('click', function() { }
             eventCount++;
             const colors = ['#e57373', '#f06292', '#ba68c8', '#9575cd'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -277,19 +277,19 @@ function initializeLearningExamples() {
             eventLog.innerHTML = `Click event #${eventCount} detected! Border color changed.`;
         });
         
-        multiDemoBox.addEventListener('mouseover', function() {
+        if (multiDemoBox) { multiDemoBox.addEventListener('mouseover', function() { }
             this.style.transform = 'scale(1.05)';
             this.style.boxShadow = '0 12px 30px rgba(33, 150, 243, 0.4)';
             eventLog.innerHTML = 'Mouseover event detected! Element scaled and glowing.';
         });
         
-        multiDemoBox.addEventListener('mouseout', function() {
+        if (multiDemoBox) { multiDemoBox.addEventListener('mouseout', function() { }
             this.style.transform = 'scale(1)';
             this.style.boxShadow = '';
             eventLog.innerHTML = 'Mouseout event detected! Effects removed.';
         });
         
-        multiDemoBox.addEventListener('dblclick', function() {
+        if (multiDemoBox) { multiDemoBox.addEventListener('dblclick', function() { }
             this.style.borderColor = '#dde7ff';
             this.style.transform = 'scale(1)';
             this.style.boxShadow = '';
@@ -305,7 +305,7 @@ function initializePracticalExamples() {
     
     if (miniDemoBtns && miniDemoArea) {
         miniDemoBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+            if (btn) { btn.addEventListener('click', function() { }
                 const demoType = this.getAttribute('data-demo');
                 showMiniDemo(demoType, miniDemoArea);
             });
@@ -416,7 +416,7 @@ function addMiniDemoListeners(type) {
             if (cartBtn && cartStatus) {
                 // Add hover effects to product image if found
                 if (productImg) {
-                    productImg.addEventListener('mouseover', function() {
+                    if (productImg) { productImg.addEventListener('mouseover', function() { }
                         this.style.transform = 'scale(1.1)';
                         this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
                         this.style.transition = 'all 0.3s ease';
@@ -424,7 +424,7 @@ function addMiniDemoListeners(type) {
                         cartStatus.innerHTML = '<p style="color: #007bff; font-weight: bold;">📱 Hovering over product! Try clicking "Add to Cart"</p>';
                     });
                     
-                    productImg.addEventListener('mouseout', function() {
+                    if (productImg) { productImg.addEventListener('mouseout', function() { }
                         this.style.transform = 'scale(1)';
                         this.style.boxShadow = 'none';
                         // Reset status
@@ -435,7 +435,7 @@ function addMiniDemoListeners(type) {
                     cartStatus.innerHTML = '<p style="color: #856404;">⚠️ Product image not found for hover effects, but cart button works!</p>';
                 }
                 
-                cartBtn.addEventListener('click', function() {
+                if (cartBtn) { cartBtn.addEventListener('click', function() { }
                     cartStatus.innerHTML = '<p style="color: #4caf50; font-weight: bold;">✅ Item added to cart! Event listeners made this possible.</p>';
                     this.style.background = '#45a049';
                     this.innerHTML = 'Added!';
@@ -465,7 +465,7 @@ function addMiniDemoListeners(type) {
                 let likes = 0;
                 let isLiked = false;
                 
-                likeBtn.addEventListener('click', function() {
+                if (likeBtn) { likeBtn.addEventListener('click', function() { }
                     if (!isLiked) {
                         likes++;
                         this.style.background = '#ffebee';
@@ -484,7 +484,7 @@ function addMiniDemoListeners(type) {
             if (commentBtn && commentBox) {
                 let commentBoxVisible = false;
                 
-                commentBtn.addEventListener('click', function() {
+                if (commentBtn) { commentBtn.addEventListener('click', function() { }
                     if (!commentBoxVisible) {
                         commentBox.style.display = 'block';
                         this.style.background = '#e3f2fd';
@@ -507,7 +507,7 @@ function addMiniDemoListeners(type) {
             const gameStatus = document.getElementById('game-status');
             
             if (gameArea && player && gameStatus) {
-                gameArea.addEventListener('click', function(e) {
+                if (gameArea) { gameArea.addEventListener('click', function(e) { }
                     const rect = this.getBoundingClientRect();
                     const x = e.clientX - rect.left - 15; // Center the player
                     const y = e.clientY - rect.top - 15;
@@ -591,11 +591,11 @@ function addMiniDemoListeners(type) {
             }
             
             if (emailInput && passwordInput) {
-                emailInput.addEventListener('input', validateForm);
-                passwordInput.addEventListener('input', validateForm);
+                if (emailInput) { emailInput.addEventListener('input', validateForm); }
+                if (passwordInput) { passwordInput.addEventListener('input', validateForm); }
                 
                 if (submitBtn) {
-                    submitBtn.addEventListener('click', function() {
+                    if (submitBtn) { submitBtn.addEventListener('click', function() { }
                         if (typeof Swal !== 'undefined') {
                             Swal.fire('Form Submitted! 🎉', 'Event listeners handled validation and submission.', 'success');
                         } else {
@@ -686,18 +686,18 @@ function setDefaultTemplate() {
             // Your event listeners go here!
             // Example:
             let colorBtn = document.getElementById('colorButton');
-            colorBtn.addEventListener('click', function() {
+            if (colorBtn) { colorBtn.addEventListener('click', function() { }
                 document.body.style.backgroundColor = 'lightblue';
             });
     
             // Add your hover event listener here:
             let hoverBox = document.getElementById('hoverBox');
-            hoverBox.addEventListener('mouseover', function() {
+            if (hoverBox) { hoverBox.addEventListener('mouseover', function() { }
                 this.style.backgroundColor = 'yellow';
                 this.innerHTML = 'Mouse is over me!';
             });
             
-            hoverBox.addEventListener('mouseout', function() {
+            if (hoverBox) { hoverBox.addEventListener('mouseout', function() { }
                 this.style.backgroundColor = 'white';
                 this.innerHTML = 'Hover over me to see magic!';
             });
@@ -751,7 +751,7 @@ document.getElementById('show-hint').addEventListener('click', function() {
                 <h5 style="color: #007bff; margin-top: 0;">👂 Event Listeners:</h5>
                 <pre style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9rem;"><code>let button = document.getElementById('myButton');
 
-button.addEventListener('click', function() {
+if (button) { button.addEventListener('click', function() { }
     document.body.style.backgroundColor = 'lightblue';
 });</code></pre>
             </div>
@@ -762,7 +762,7 @@ button.addEventListener('click', function() {
     this.style.backgroundColor = 'yellow';
 });
 
-hoverBox.addEventListener('mouseout', function() {
+if (hoverBox) { hoverBox.addEventListener('mouseout', function() { }
     this.style.backgroundColor = 'white';
 });</code></pre>
             </div>
@@ -814,11 +814,11 @@ hoverBox.addEventListener('mouseout', function() {
     hintModal.appendChild(hintContent);
     document.body.appendChild(hintModal);
     
-    closeBtn.addEventListener('click', function() {
+    if (closeBtn) { closeBtn.addEventListener('click', function() { }
         document.body.removeChild(hintModal);
     });
     
-    hintModal.addEventListener('click', function(e) {
+    if (hintModal) { hintModal.addEventListener('click', function(e) { }
         if (e.target === hintModal) {
             document.body.removeChild(hintModal);
         }
@@ -1565,7 +1565,7 @@ function testSemicolonChecker() {
     const testCode = `
     <script>
         let btn = document.getElementById('test')
-        btn.addEventListener('click', function() {})
+        if (btn) { btn.addEventListener('click', function() {}) }
         document.body.style.backgroundColor = 'red'
     </script>
     `;const result = checkJavaScriptSyntaxFixed(testCode);return result;
@@ -1926,7 +1926,7 @@ function showSuccessWithWarnings(successMessages, warningMessages) {
     setTimeout(() => {
         const viewResultBtn = document.getElementById('view-result-btn');
         if (viewResultBtn) {
-            viewResultBtn.addEventListener('click', function() {
+            if (viewResultBtn) { viewResultBtn.addEventListener('click', function() { }
                 showCodeResult(code);
             });
         }
