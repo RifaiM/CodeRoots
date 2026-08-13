@@ -194,9 +194,68 @@
             white-space: pre-wrap;
         }
 
+        /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
         @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
+                padding: 0 14px;
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .ide-panel {
+                padding: 16px;
+                border-radius: 14px;
+            }
+            .code-box {
+                padding: 38px 12px 12px 12px;
+            }
+            .copy-btn {
+                top: 6px;
+                right: 6px;
+                padding: 3px 8px;
+                font-size: 0.68rem;
+            }
+            .code-box code {
+                white-space: pre-wrap;
+                word-break: break-all;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .ide-wrapper {
+                padding: 0 8px;
+            }
+            .ide-panel {
+                padding: 12px 10px;
+            }
+            .panel-title {
+                font-size: 0.92rem;
+            }
+            .lesson-badge {
+                font-size: 0.70rem;
+                padding: 3px 6px;
+            }
+            .terminal-editor, .config-input {
+                font-size: 0.78rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .ide-wrapper {
+                padding: 0 4px;
+            }
+            .ide-panel {
+                padding: 10px 8px;
+            }
+            .code-box {
+                padding: 36px 8px 10px 8px;
+            }
+            .code-box code {
+                font-size: 0.74rem;
             }
         }
     </style>
