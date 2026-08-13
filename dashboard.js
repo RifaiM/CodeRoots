@@ -333,16 +333,30 @@ function updateTrackCardState(card, statusIcon, btn, isCompleted, isUnlocked, li
         statusIcon.className = 'track-status-icon completed';
         statusIcon.textContent = '✅ Completed';
         card.classList.remove('locked');
-        btn.href = linkUrl;
         btn.classList.remove('disabled', 'locked-btn');
-        btn.onclick = null;
+        if (btn.tagName.toLowerCase() === 'a') {
+            btn.href = linkUrl;
+            btn.onclick = null;
+        } else {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = linkUrl;
+            };
+        }
     } else if (isUnlocked) {
         statusIcon.className = 'track-status-icon ready';
         statusIcon.textContent = '🟢 Unlocked';
         card.classList.remove('locked');
-        btn.href = linkUrl;
         btn.classList.remove('disabled', 'locked-btn');
-        btn.onclick = null;
+        if (btn.tagName.toLowerCase() === 'a') {
+            btn.href = linkUrl;
+            btn.onclick = null;
+        } else {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = linkUrl;
+            };
+        }
     } else {
         statusIcon.className = 'track-status-icon locked';
         statusIcon.textContent = '🔒 Locked';
