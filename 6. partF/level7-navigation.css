@@ -264,9 +264,16 @@
     top: 64px !important;
     left: 50% !important;
     right: auto !important;
-    transform: translateX(-50%) !important;
+    transform: translate(-50%, -8px) !important;
     width: calc(100vw - 32px) !important;
     max-width: 340px !important;
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .lesson-nav-dropdown.show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, 0) !important;
   }
 }
