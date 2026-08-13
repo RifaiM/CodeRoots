@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <title>Level 7: Mastery Specialization Hub | NoviCodes</title>
+    <meta name="description" content="NoviCodes Level 7 Specialization Hub. Choose your developer track: Cloud Shipping (Vercel/Cloudflare/Render), Databases & Auth (SQL/PostgreSQL/JWT), or Next.js SSR Frameworks.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../Global/root.css">
+    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="./hub.css">
+</head>
+<body>
+
+    <!-- Header Bar -->
+    <header class="hub-header">
+        <div class="header-left">
+            <a href="../dashboard.html" class="nav-back-btn">
+                <span>🏠</span> <span>Dashboard</span>
+            </a>
+            <a href="../dashboard.html" class="brand-link" aria-label="NoviCodes Home">
+                <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="brand-title">
+                    <span class="novi">Novi</span><span class="codes">Codes</span>
+                </div>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="user-xp-badge" id="hubUserRank">
+                <span>👑</span> <span>Loading XP...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="hub-container">
+        <!-- Hero Banner -->
+        <section class="hub-hero">
+            <span class="level7-badge">🚀 Level 7 Specialization Hub</span>
+            <h1>Choose Your Developer Mastery Track</h1>
+            <p>
+                Congratulations on reaching Level 7! Select your specialization branch below. Complete <strong>any 1 branch</strong> to earn your official Level 7 Certificate, or conquer all 3 to claim the <strong>Principal Polymath Rank</strong>!
+            </p>
+            <div class="hub-stats-row">
+                <span class="stat-pill">☁️ Track 7A: Cloud & DevOps</span>
+                <span class="stat-pill">🛢️ Track 7B: SQL & Auth</span>
+                <span class="stat-pill">⚡ Track 7C: Next.js SSR</span>
+            </div>
+        </section>
+
+        <!-- Branch Selector Grid -->
+        <section class="branch-grid">
+            
+            <!-- Branch 7A: Cloud Shipping & DevOps -->
+            <article class="branch-card card-cloud">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">☁️</div>
+                        <span class="branch-tag">Track 7A</span>
+                    </div>
+                    <h2 class="branch-title">Cloud Shipping & Free Hosting</h2>
+                    <p class="branch-desc">
+                        Master Git workflows and deploy live production web apps to Vercel, Cloudflare Pages, Netlify, and Render for $0/month forever.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">Git / GitHub</span>
+                        <span class="branch-meta-item">Vercel & Netlify</span>
+                        <span class="branch-meta-item">Cloudflare Pages</span>
+                        <span class="branch-meta-item">Render API</span>
+                        <span class="branch-meta-item">CI/CD</span>
+                    </div>
+                </div>
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7A"></div>
+                    </div>
+                    <a href="./branchA/lesson1_remake.html" class="branch-btn" id="btnBranch7A">
+                        <span>☁️ Launch Track 7A (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Branch 7B: Database Architecture & Auth -->
+            <article class="branch-card card-db">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">🛢️</div>
+                        <span class="branch-tag">Track 7B</span>
+                    </div>
+                    <h2 class="branch-title">Databases & Auth Architecture</h2>
+                    <p class="branch-desc">
+                        Learn relational SQL, managed cloud PostgreSQL (Neon/Supabase), SQLAlchemy ORMs, Bcrypt security, and JWT tokens.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">PostgreSQL / SQL</span>
+                        <span class="branch-meta-item">Supabase / Neon</span>
+                        <span class="branch-meta-item">SQLAlchemy</span>
+                        <span class="branch-meta-item">Bcrypt & JWT</span>
+                    </div>
+                </div>
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7B"></div>
+                    </div>
+                    <a href="./branchB/lesson1_remake.html" class="branch-btn" id="btnBranch7B">
+                        <span>🛢️ Launch Track 7B (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Branch 7C: Next.js & Modern Frameworks -->
+            <article class="branch-card card-next">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">⚡</div>
+                        <span class="branch-tag">Track 7C</span>
+                    </div>
+                    <h2 class="branch-title">Next.js & Server Components</h2>
+                    <p class="branch-desc">
+                        Master Server-Side Rendering (SSR), Next.js App Router, Server Components vs Client Components, and Vercel Deployments.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">Next.js App Router</span>
+                        <span class="branch-meta-item">SSR vs CSR</span>
+                        <span class="branch-meta-item">Server Actions</span>
+                        <span class="branch-meta-item">Vercel Deploy</span>
+                    </div>
+                </div>
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7C"></div>
+                    </div>
+                    <a href="./branchC/lesson1_remake.html" class="branch-btn" id="btnBranch7C">
+                        <span>⚡ Launch Track 7C (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <div class="footer-nav">
+            <a href="../dashboard.html">Skill Tree</a>
+            <a href="../1. partA/web_history.html">Web History</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Use</a>
+            <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        </div>
+        <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+    </footer>
+
+    <!-- JavaScript Engines -->
+    <script src="../dashboard.js"></script>
+    <script src="./hub.js"></script>
+</body>
+</html>

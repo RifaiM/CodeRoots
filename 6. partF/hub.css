@@ -1,0 +1,440 @@
+/* ==========================================================================
+   NoviCodes Level 7: Mastery Specialization Hub Stylesheet
+   Theme: Professional Engineering IDE / Dark-Glass Accent Theme
+   Responsiveness: 320px, 375px, 475px, 768px, 1200px+ Viewports
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+    --bg-primary: #0f172a;
+    --bg-card: rgba(30, 41, 59, 0.85);
+    --border-card: rgba(255, 255, 255, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-purple: #a855f7;
+    --accent-blue: #38bdf8;
+    --accent-green: #34d399;
+    --accent-gold: #fbbf24;
+}
+
+body {
+    background: #0b0f19;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.12) 0px, transparent 50%);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 1. Header Bar */
+.hub-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-card);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.brand-title {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #ffffff;
+}
+
+.brand-title .novi { color: #ffffff; }
+.brand-title .codes { color: #38bdf8; }
+
+.nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.84rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-back-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.user-xp-badge {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    color: #c084fc;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 2. Hub Main Container */
+.hub-container {
+    max-width: 1100px;
+    margin: 32px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+}
+
+/* Hero Section */
+.hub-hero {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1px solid var(--border-card);
+    border-radius: 24px;
+    padding: 40px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.hub-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.level7-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hub-hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    color: #ffffff;
+    line-height: 1.25;
+}
+
+.hub-hero p {
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    max-width: 720px;
+    margin: 0 auto 20px auto;
+    line-height: 1.6;
+}
+
+.hub-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.stat-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 14px;
+    font-size: 0.86rem;
+    color: #e2e8f0;
+    font-weight: 700;
+}
+
+/* 3. Branch Selector Grid */
+.branch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.branch-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.branch-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 16px 32px rgba(168, 85, 247, 0.15);
+}
+
+.branch-card.card-cloud:hover { border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 16px 32px rgba(52, 211, 153, 0.15); }
+.branch-card.card-db:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 16px 32px rgba(56, 189, 248, 0.15); }
+.branch-card.card-next:hover { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 16px 32px rgba(168, 85, 247, 0.15); }
+
+.branch-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.branch-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.card-cloud .branch-icon-box { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+.card-db .branch-icon-box { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+.card-next .branch-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+.branch-tag {
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-cloud .branch-tag { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+.card-db .branch-tag { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.card-next .branch-tag { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+
+.branch-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    color: #ffffff;
+}
+
+.branch-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    margin: 0 0 18px 0;
+    line-height: 1.6;
+}
+
+.branch-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.branch-meta-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+/* Branch Progress & Launch Button */
+.branch-footer {
+    margin-top: auto;
+}
+
+.branch-progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    border-radius: 99px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.branch-progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+.card-cloud .branch-progress-fill { background: #34d399; }
+.card-db .branch-progress-fill { background: #38bdf8; }
+.card-next .branch-progress-fill { background: #a855f7; }
+
+.branch-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+}
+
+.card-cloud .branch-btn { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; }
+.card-db .branch-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; }
+.card-next .branch-btn { background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); color: #ffffff; }
+
+.branch-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. Footer */
+.simple-footer {
+    border-top: 1px solid var(--border-card);
+    padding: 28px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    background: rgba(15, 23, 42, 0.95);
+    margin-top: auto;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+/* 5. Mobile Responsiveness (320px, 375px, 475px, 768px) */
+@media (max-width: 768px) {
+    .hub-header {
+        padding: 0 14px;
+        height: 56px;
+    }
+    .hub-container {
+        margin-top: 20px;
+        padding: 0 14px;
+    }
+    .hub-hero {
+        padding: 28px 16px;
+        border-radius: 18px;
+    }
+    .branch-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 475px) {
+    .hub-hero h1 {
+        font-size: 1.6rem;
+    }
+    .hub-hero p {
+        font-size: 0.90rem;
+    }
+    .branch-card {
+        padding: 20px 16px;
+    }
+    .branch-title {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .hub-header {
+        padding: 0 10px;
+    }
+    .nav-back-btn span:last-child {
+        display: none; /* Show icon only on 375px & 320px navbar */
+    }
+    .user-xp-badge span:last-child {
+        font-size: 0.76rem;
+    }
+    .stat-pill {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .hub-container {
+        padding: 0 8px;
+    }
+    .branch-card {
+        padding: 16px 12px;
+    }
+    .branch-meta-item {
+        font-size: 0.70rem;
+        padding: 3px 6px;
+    }
+}
