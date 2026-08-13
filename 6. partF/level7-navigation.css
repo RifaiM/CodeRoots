@@ -244,22 +244,15 @@
         box-shadow: none !important;
     }
 
+    /* Centered Screen Overlay Positioning for Mobile Viewports */
     .lesson-nav-dropdown {
-        width: 280px !important;
-        right: 0 !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .lesson-nav-dropdown {
-        width: 260px !important;
-        right: 0 !important;
-    }
-}
-
-@media (max-width: 360px) {
-    .lesson-nav-dropdown {
-        width: 240px !important;
-        right: 0 !important;
+        position: fixed !important;
+        top: 64px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: calc(100vw - 32px) !important;
+        max-width: 340px !important;
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important;
     }
 }
