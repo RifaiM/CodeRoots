@@ -467,33 +467,27 @@ function render404TrackPage(invalidKey) {
     document.title = "NoviCodes - 404 Track Not Found";
     updateHeaderStats();
 
-    const mainContainer = document.querySelector('.foundations-container');
-    const heroSection = document.querySelector('.track-hero');
-    const tabBar = document.querySelector('.foundations-tab-bar');
-
-    if (heroSection) heroSection.style.display = 'none';
-    if (tabBar) tabBar.style.display = 'none';
+    const mainContainer = document.querySelector('.foundations-main');
+    if (!mainContainer) return;
 
     const safeKey = String(invalidKey || '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-    if (mainContainer) {
-        mainContainer.innerHTML = `
-            <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 18px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 650px; margin: 40px auto;">
-                <div style="font-size: 3.8rem; margin-bottom: 12px;">🔍 404</div>
-                <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Foundation Track Not Found</h2>
-                <p style="color: #64748b; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
-                    The foundation track <code style="background:#fff1f2; border: 1px solid #fecdd3; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${safeKey}"</code> does not exist on NoviCodes.
-                </p>
-                <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
-                    Explore Available Foundation Tracks:
-                </div>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🏗️ HTML Track</a>
-                    <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🎨 CSS Track</a>
-                    <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">⚡ JS Track</a>
-                    <a href="./index.html" style="background: #f1f5f9; color: #0f172a; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem; border: 1px solid #cbd5e1;">🏠 Skill Tree</a>
-                </div>
+    mainContainer.innerHTML = `
+        <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 18px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 650px; margin: 40px auto 60px auto;">
+            <div style="font-size: 3.8rem; margin-bottom: 12px;">🔍 404</div>
+            <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Foundation Track Not Found</h2>
+            <p style="color: #64748b; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
+                The foundation track <code style="background:#fff1f2; border: 1px solid #fecdd3; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${safeKey}"</code> does not exist on NoviCodes.
+            </p>
+            <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
+                Explore Available Foundation Tracks:
             </div>
-        `;
-    }
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🏗️ HTML Track</a>
+                <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🎨 CSS Track</a>
+                <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">⚡ JS Track</a>
+                <a href="./index.html" style="background: #f1f5f9; color: #0f172a; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem; border: 1px solid #cbd5e1;">🏠 Skill Tree</a>
+            </div>
+        </div>
+    `;
 }
