@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <title>Branch 7A • Lesson 6: GitHub Actions CI/CD Workflows | NoviCodes</title>
+    <meta name="description" content="Master automated GitHub Actions CI/CD pipelines, automated testing, linting, secret management, and continuous delivery.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../hub.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        .ide-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 24px auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .ide-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .instruction-step {
+            margin-bottom: 20px;
+        }
+
+        .instruction-step h4 {
+            color: #f8fafc;
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .instruction-step p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+            color: #38bdf8;
+            position: relative;
+            margin-bottom: 12px;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .terminal-editor {
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #f8fafc;
+            font-size: 0.88rem;
+            min-height: 240px;
+            resize: vertical;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .claim-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .terminal-output {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            min-height: 140px;
+            margin-top: 14px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 868px) {
+            .ide-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../dashboard.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 7 • Track 7A</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
+                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- IDE Split Layout -->
+    <div class="ide-wrapper">
+        <!-- Left Panel: Step-by-Step Instructions -->
+        <div class="ide-panel">
+            <div class="panel-header">
+                <span class="panel-title">🤖 Lesson 6: GitHub Actions CI/CD Pipeline</span>
+                <span class="lesson-badge">☁️ Track 7A • Lesson 6/6 (FINAL)</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. Create Workflow File (`.github/workflows/deploy.yml`)</h4>
+                <p>GitHub Actions automatically triggers automated testing and deployment whenever new code is pushed to your `main` branch.</p>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. Configure Automated Test & Build Steps</h4>
+                <p>Define your workflow yaml configuration:</p>
+                <div class="code-box">
+                    <code>name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python / Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm test
+      - name: Deploy to Vercel / Cloudflare
+        run: echo "Automated Deploy Success!"</code>
+                    <button class="copy-btn" onclick="copyCode('name: CI/CD Pipeline\non: [push]')">Copy</button>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Repository Secrets Management</h4>
+                <p>Store encrypted deployment API tokens under GitHub <strong>Settings ➔ Secrets and variables ➔ Actions</strong> (e.g., `VERCEL_TOKEN` or `CLOUDFLARE_API_TOKEN`).</p>
+            </div>
+        </div>
+
+        <!-- Right Panel: Interactive GitHub Actions Workflow Sandbox -->
+        <div class="ide-panel">
+            <div class="panel-header">
+                <span class="panel-title">⚙️ GitHub Actions Workflow YAML</span>
+                <span style="font-size: 0.80rem; color: #94a3b8;">CI/CD Simulator</span>
+            </div>
+
+            <textarea id="yamlInput" class="terminal-editor" placeholder="name: Production CI/CD Workflow
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npm test
+      - run: echo 'Automated test suite passed!'"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" onclick="runWorkflowSimulation()">⚡ Trigger GitHub Action Workflow</button>
+                <a href="../hub.html" class="claim-btn" id="claimRankBtn" style="display: none;">🎓 Return to Hub & Claim Rank 🏆</a>
+            </div>
+
+            <div class="terminal-output" id="terminalOutput">CI/CD execution log output will display here...</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <div class="footer-nav">
+            <a href="../../dashboard.html">Skill Tree</a>
+            <a href="../../1. partA/web_history.html">Web History</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+            <a href="../../terms.html">Terms of Use</a>
+            <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        </div>
+        <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+    </footer>
+
+    <!-- JavaScript Engines -->
+    <script src="../../dashboard.js"></script>
+    <script>
+        function copyCode(text) {
+            navigator.clipboard.writeText(text);
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Copied to clipboard!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+
+        function runWorkflowSimulation() {
+            const input = document.getElementById('yamlInput').value;
+            const output = document.getElementById('terminalOutput');
+            const claimBtn = document.getElementById('claimRankBtn');
+
+            if (!input.includes('on:') || !input.includes('push') || !input.includes('jobs:')) {
+                output.textContent = '❌ YAML Syntax Error: Workflow must contain "on: push" and "jobs:" parameters!';
+                output.style.color = '#f87171';
+                return;
+            }
+
+            // Success State
+            output.textContent = `[GitHub Actions Runner] Setting up job "test-and-deploy"...
+✓ Run actions/checkout@v4
+✓ Run actions/setup-node@v4
+✓ Executed "npm test" (12/12 unit tests passed)
+✓ Deploying to Cloudflare Pages & Vercel Production
+✓ Workflow completed successfully in 18s [Status: Success]
+
+🏆 CONGRATULATIONS! You have completed all 6 Lessons in Track 7A (Cloud Shipping & DevOps)!`;
+            output.style.color = '#34d399';
+
+            localStorage.setItem('partF_branchA_lesson6_complete', 'true');
+            if (claimBtn) claimBtn.style.display = 'inline-flex';
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'success',
+                    title: '👑 Track 7A Completed! (+250 XP)',
+                    html: 'You earned the <strong>☁️ Cloud Specialist Apex Rank</strong> and unlocked your official Level 7 Certificate!',
+                    confirmButtonColor: '#a855f7',
+                    confirmButtonText: 'Claim Cloud Specialist Rank 🏆'
+                }).then(() => {
+                    window.location.href = '../hub.html';
+                });
+            }
+        }
+    </script>
+</body>
+</html>

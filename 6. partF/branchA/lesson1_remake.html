@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <title>Branch 7A • Lesson 1: Git & GitHub Workflow Mastery | NoviCodes</title>
+    <meta name="description" content="Master Git version control, repository initialization, commits, .gitignore, and pushing code live to GitHub.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../hub.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        /* IDE Split Pane Layout */
+        .ide-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 24px auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .ide-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-badge {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        /* Instructions & Copyable Code Blocks */
+        .instruction-step {
+            margin-bottom: 20px;
+        }
+
+        .instruction-step h4 {
+            color: #f8fafc;
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .instruction-step p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+            color: #34d399;
+            position: relative;
+            margin-bottom: 12px;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        /* Interactive Terminal Code Area */
+        .terminal-editor {
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #f8fafc;
+            font-size: 0.88rem;
+            min-height: 220px;
+            resize: vertical;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .terminal-output {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            min-height: 120px;
+            margin-top: 14px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .run-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.90rem;
+            transition: all 0.2s ease;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 868px) {
+            .ide-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../dashboard.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 7 • Track 7A</span>
+                </div>
+            </a>
+
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
+                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" onclick="openDojoHub()" title="Practical Dojo Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" onclick="openCertificateHub()" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- IDE Split Layout -->
+    <div class="ide-wrapper">
+        <!-- Left Panel: Step-by-Step Instructions -->
+        <div class="ide-panel">
+            <div class="panel-header">
+                <span class="panel-title">📚 Lesson 1: Git & GitHub Workflow</span>
+                <span class="lesson-badge">☁️ Track 7A • Lesson 1/6</span>
+            </div>
+
+            <div class="instruction-step">
+                <h4>1. Initialize Local Git Repository</h4>
+                <p>Every production cloud deployment starts with Git tracking. Initialize your project folder:</p>
+                <div class="code-box">
+                    <code>git init</code>
+                    <button class="copy-btn" onclick="copyCode('git init')">Copy</button>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>2. Create a .gitignore File</h4>
+                <p>Never push sensitive environment variables (`.env`) or heavy dependencies (`node_modules/`, `venv/`) to public repositories:</p>
+                <div class="code-box">
+                    <code>echo "node_modules/\n.env\n__pycache__/" > .gitignore</code>
+                    <button class="copy-btn" onclick="copyCode('echo &quot;node_modules/\\n.env\\n__pycache__/&quot; > .gitignore')">Copy</button>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>3. Stage and Commit Changes</h4>
+                <p>Stage your code files and create your first official commit:</p>
+                <div class="code-box">
+                    <code>git add .
+git commit -m "feat: initial release for cloud shipping"</code>
+                    <button class="copy-btn" onclick="copyCode('git add .\ngit commit -m &quot;feat: initial release for cloud shipping&quot;')">Copy</button>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <h4>4. Link Remote GitHub Repository & Push</h4>
+                <p>Link your remote GitHub repository and push your `main` branch live:</p>
+                <div class="code-box">
+                    <code>git remote add origin https://github.com/yourusername/my-app.git
+git branch -M main
+git push -u origin main</code>
+                    <button class="copy-btn" onclick="copyCode('git remote add origin https://github.com/yourusername/my-app.git\ngit branch -M main\ngit push -u origin main')">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Interactive Terminal Simulator -->
+        <div class="ide-panel">
+            <div class="panel-header">
+                <span class="panel-title">💻 Interactive Git Terminal</span>
+                <span style="font-size: 0.80rem; color: #94a3b8;">Execute Git Commands</span>
+            </div>
+
+            <textarea id="terminalInput" class="terminal-editor" placeholder="# Type or paste your Git workflow commands here:
+git init
+echo node_modules/ > .gitignore
+git add .
+git commit -m &quot;feat: initial commit&quot;
+git push -u origin main"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" onclick="runGitSimulation()">⚡ Execute Git Workflow</button>
+                <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
+            </div>
+
+            <div class="terminal-output" id="terminalOutput">Terminal output will display here after execution...</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <div class="footer-nav">
+            <a href="../../dashboard.html">Skill Tree</a>
+            <a href="../../1. partA/web_history.html">Web History</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+            <a href="../../terms.html">Terms of Use</a>
+            <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        </div>
+        <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+    </footer>
+
+    <!-- JavaScript Engines -->
+    <script src="../../dashboard.js"></script>
+    <script>
+        function copyCode(text) {
+            navigator.clipboard.writeText(text);
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Copied to clipboard!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+
+        function runGitSimulation() {
+            const input = document.getElementById('terminalInput').value.toLowerCase();
+            const output = document.getElementById('terminalOutput');
+            const nextBtn = document.getElementById('nextLessonBtn');
+
+            if (!input.includes('git init')) {
+                output.textContent = '❌ Error: You must initialize Git using "git init" first!';
+                output.style.color = '#f87171';
+                return;
+            }
+
+            if (!input.includes('git add') || !input.includes('git commit')) {
+                output.textContent = '⚠️ Progress: Git initialized! Now stage files ("git add .") and commit ("git commit -m \'...\'").';
+                output.style.color = '#fbbf24';
+                return;
+            }
+
+            // Success State
+            output.textContent = `[Initialized empty Git repository in /project/.git/]
+[main (root-commit) a1b2c3d] feat: initial release for cloud shipping
+ 4 files changed, 128 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 style.css
+ create mode 100644 .gitignore
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+Everything up-to-date. Code successfully pushed to GitHub! 🚀`;
+            output.style.color = '#34d399';
+
+            // Save Progress & Award XP
+            localStorage.setItem('partF_branchA_lesson1_complete', 'true');
+            if (nextBtn) nextBtn.style.display = 'inline-flex';
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🎉 Lesson 1 Completed! (+250 XP)',
+                    text: 'You have mastered local Git tracking & GitHub remote pushing!',
+                    confirmButtonColor: '#10b981',
+                    confirmButtonText: 'Continue to Vercel Deploy 🚀'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
