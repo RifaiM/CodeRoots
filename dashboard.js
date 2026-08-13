@@ -261,7 +261,7 @@ function initUserProgress() {
     const dojoNavLinks = document.querySelectorAll('#dojoNavLink');
     dojoNavLinks.forEach(dojoLink => {
         dojoLink.classList.remove('dojo-locked');
-        dojoLink.innerHTML = '⚔️ Practical Dojo';
+        dojoLink.innerHTML = '<span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Practical Dojo</span>';
         dojoLink.title = 'Practical Dojo Hub';
         dojoLink.onclick = (e) => {
             e.preventDefault();

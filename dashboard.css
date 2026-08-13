@@ -867,7 +867,24 @@ html, body {
 
 @media (max-width: 992px) {
   .header-nav-links {
-    display: none !important; /* Hide navbar text links on smaller screens to prioritize user stats */
+    display: flex !important;
+    gap: 4px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 5px 8px !important;
+    font-size: 0.95rem !important;
+    border-radius: 8px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-nav-links .nav-text {
+    display: none !important;
   }
 }
 
@@ -986,6 +1003,18 @@ html, body {
 
   .logo-tag {
     display: none !important;
+  }
+
+  .header-nav-links {
+    gap: 2px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 3px 5px !important;
+    font-size: 0.85rem !important;
+    min-width: 26px !important;
+    height: 26px !important;
+    border-radius: 6px !important;
   }
 
   .header-user-stats {
