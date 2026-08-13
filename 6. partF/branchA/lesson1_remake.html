@@ -234,6 +234,18 @@
                 padding: 16px;
                 border-radius: 14px;
             }
+            .action-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .run-btn, .next-btn, .claim-btn {
+                padding: 10px 14px;
+                font-size: 0.82rem;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                justify-content: center;
+            }
             .code-box {
                 padding: 38px 12px 12px 12px;
             }
@@ -257,6 +269,10 @@
             .ide-panel {
                 padding: 12px 10px;
             }
+            .run-btn, .next-btn, .claim-btn {
+                padding: 9px 12px;
+                font-size: 0.78rem;
+            }
             .panel-title {
                 font-size: 0.92rem;
             }
@@ -276,6 +292,10 @@
             }
             .ide-panel {
                 padding: 10px 8px;
+            }
+            .run-btn, .next-btn, .claim-btn {
+                padding: 8px 10px;
+                font-size: 0.74rem;
             }
             .code-box {
                 padding: 36px 8px 10px 8px;
@@ -385,7 +405,7 @@ git push -u origin main"></textarea>
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runGitSimulation()">⚡ Execute Git Workflow</button>
-                <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
+                <a href="javascript:void(0)" onclick="handleNextLesson('./lesson2_remake.html', 'partF_branchA_lesson1_complete')" class="next-btn" id="nextLessonBtn">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Terminal output will display here after execution...</div>
@@ -407,6 +427,27 @@ git push -u origin main"></textarea>
     <!-- JavaScript Engines -->
     <script src="../../dashboard.js"></script>
     <script>
+        function handleNextLesson(targetUrl, lessonKey) {
+            const isCompleted = localStorage.getItem(lessonKey) === 'true';
+            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
+            if (isCompleted || isUnlocked) {
+                window.location.href = targetUrl;
+            } else {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '🔒 Lesson Locked',
+                        text: 'Execute and complete the interactive exercise in this lesson first to unlock the next step! Or click "Unlock All" in the top navbar.',
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: 'Got It!'
+                    });
+                } else {
+                    window.location.href = targetUrl;
+                }
+            }
+        }
+
         function copyCode(text) {
             navigator.clipboard.writeText(text);
             if (typeof Swal !== 'undefined') {
