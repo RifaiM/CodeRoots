@@ -39,6 +39,32 @@
         return true;
     }
 
+    // SweetAlert2-backed locked lesson notification (lazy-loads Swal if not present)
+    window.__navLockedAlert = function(requiredLesson, lockedLesson) {
+        const fire = () => Swal.fire({
+            icon: 'warning',
+            title: '🔒 Lesson Locked',
+            html: `Complete <strong>Lesson ${requiredLesson}</strong> first to unlock Lesson ${lockedLesson}!`,
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Got it!',
+            timer: 5000,
+            timerProgressBar: true,
+            customClass: { popup: 'swal-nav-locked' }
+        });
+        if (typeof Swal !== 'undefined') {
+            fire();
+        } else {
+            // Level 4 pages don't bundle Swal — lazy-load from CDN on first click
+            if (!document.getElementById('_swal2-cdn')) {
+                const s = document.createElement('script');
+                s.id = '_swal2-cdn';
+                s.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+                s.onload = fire;
+                document.head.appendChild(s);
+            }
+        }
+    };
+
     function initLevel4Nav() {
         const header = document.querySelector('header.lesson-header') || document.querySelector('header');
         if (!header) return;
@@ -92,7 +118,7 @@
             }
 
             const hrefAttr = canAccess ? `href="../lesson${lesson.id}/lesson${lesson.id}_remake.html"` : 'href="javascript:void(0)"';
-            const clickAttr = !canAccess ? `onclick="alert('🔒 Complete Lesson ${lesson.id - 1} to unlock Lesson ${lesson.id}!')"` : '';
+            const clickAttr = !canAccess ? `onclick="window.__navLockedAlert(${lesson.id - 1}, ${lesson.id})"` : '';
 
             return `
                 <a class="${className}" ${hrefAttr} ${clickAttr}>

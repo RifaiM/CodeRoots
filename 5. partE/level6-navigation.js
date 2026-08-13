@@ -92,6 +92,27 @@
 
     if (!checkAccessProtection()) return;
 
+    // SweetAlert2-backed locked lesson notification
+    window.__navLockedAlert = function(requiredLesson, lockedLesson) {
+        const fire = () => Swal.fire({
+            icon: 'warning',
+            title: '🔒 Lesson Locked',
+            html: `Complete <strong>Lesson ${requiredLesson}</strong> first to unlock Lesson ${lockedLesson}!`,
+            confirmButtonColor: '#10b981',
+            confirmButtonText: 'Got it!',
+            timer: 5000,
+            timerProgressBar: true
+        });
+        if (typeof Swal !== 'undefined') {
+            fire();
+        } else {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+            s.onload = fire;
+            document.head.appendChild(s);
+        }
+    };
+
     function initLevel6Nav() {
         const header = document.querySelector('header.lesson-header') || document.querySelector('header');
         if (!header) return;
@@ -145,7 +166,7 @@
             }
 
             const hrefAttr = canAccess ? `href="../lesson${lesson.id}/lesson${lesson.id}_remake.html"` : 'href="javascript:void(0)"';
-            const clickAttr = !canAccess ? `onclick="alert('🔒 Complete Lesson ${lesson.id - 1} to unlock Lesson ${lesson.id}!')"` : '';
+            const clickAttr = !canAccess ? `onclick="window.__navLockedAlert(${lesson.id - 1}, ${lesson.id})"` : '';
 
             return `
                 <a class="${className}" ${hrefAttr} ${clickAttr}>
