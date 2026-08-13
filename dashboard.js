@@ -408,6 +408,9 @@ function showTrackPreview(title, description) {
 /**
  * 6. Global Certificate Hub Selection Modal
  */
+/**
+ * 6. Global Certificate Hub Selection Modal
+ */
 window.openCertificateHub = function() {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -434,6 +437,14 @@ window.openCertificateHub = function() {
                             </div>
                             <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">View &rarr;</span>
                         </a>
+
+                        <a href="./5. partE/certificate.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6 Certificate</div>
+                                <div style="font-size: 0.76rem; color: #059669;">Python & Backend Architecture</div>
+                            </div>
+                            <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">View &rarr;</span>
+                        </a>
                     </div>
                 </div>
             `,
@@ -441,7 +452,7 @@ window.openCertificateHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = './3. partC/certificate.html';
+        window.location.href = './5. partE/certificate.html';
     }
 };
 
@@ -460,6 +471,13 @@ window.openDojoHub = function() {
     for (let i = 1; i <= 15; i++) {
         if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
             activeL5 = Math.min(i + 1, 15);
+        }
+    }
+
+    let activeL6 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
+            activeL6 = Math.min(i + 1, 15);
         }
     }
 
@@ -487,6 +505,14 @@ window.openDojoHub = function() {
                                 <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
                             </div>
                             <span style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
+                        </a>
+
+                        <a href="./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
+                                <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                            </div>
+                            <span style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
                         </a>
                     </div>
                 </div>
@@ -522,6 +548,13 @@ window.openUserProfileModal = function() {
         }
     }
 
+    let l6Completed = 0;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
+            l6Completed++;
+        }
+    }
+
     let totalXP = 0;
     if (isL0) totalXP += 250;
     if (isL1) totalXP += 300;
@@ -529,10 +562,17 @@ window.openUserProfileModal = function() {
     if (isL3) totalXP += 400;
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
+    totalXP += (l6Completed * 200);
 
     let rankTitle = '🌱 Web Novice';
     let rankIcon = '🌱';
-    if (l5Completed >= 15) {
+    if (l6Completed >= 15 && l5Completed >= 15) {
+        rankTitle = '👑 Master Architect';
+        rankIcon = '👑';
+    } else if (l6Completed > 0) {
+        rankTitle = '🐍 Python Backend Engineer';
+        rankIcon = '🐍';
+    } else if (l5Completed >= 15) {
         rankTitle = '🏆 Fullstack Master';
         rankIcon = '🏆';
     } else if (l5Completed > 0) {
@@ -552,7 +592,8 @@ window.openUserProfileModal = function() {
         rankIcon = '🌱';
     }
 
-    const progressPct = Math.min(Math.round((totalXP / 5000) * 100), 100);
+    const maxXP = 8000;
+    const progressPct = Math.min(Math.round((totalXP / maxXP) * 100), 100);
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -564,7 +605,7 @@ window.openUserProfileModal = function() {
                     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 16px 14px; border-radius: 14px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);">
                         <div style="font-size: 2.2rem; margin-bottom: 4px;">${rankIcon}</div>
                         <div style="font-size: 1.1rem; font-weight: 800;">${rankTitle}</div>
-                        <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${totalXP.toLocaleString()} / 5,000 Total XP</div>
+                        <div style="font-size: 0.85rem; color: #93c5fd; margin-top: 2px;">${totalXP.toLocaleString()} / ${maxXP.toLocaleString()} Total XP</div>
                         
                         <!-- Progress Bar -->
                         <div style="background: rgba(255,255,255,0.2); height: 8px; border-radius: 99px; margin-top: 12px; overflow: hidden;">
@@ -589,6 +630,10 @@ window.openUserProfileModal = function() {
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
                             <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
                             <div style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${l5Completed * 150} / 2,250 XP</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 10px;">
+                            <div style="font-size: 0.72rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
+                            <div style="font-size: 0.88rem; font-weight: 800; color: #10b981;">${l6Completed * 200} / 3,000 XP</div>
                         </div>
                     </div>
 
@@ -617,7 +662,7 @@ window.confirmResetProgress = function() {
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                     <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 5.
+                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 6.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -645,6 +690,7 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`partB_lesson${i}_remake_complete`);
                     localStorage.removeItem(`lesson_${i}_completed`);
                     localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partE_lesson${i}_remake_complete`);
                 }
 
                 Swal.fire({
