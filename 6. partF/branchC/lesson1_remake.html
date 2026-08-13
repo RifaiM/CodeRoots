@@ -401,6 +401,20 @@ export default function HomePage() {
       <h1>Welcome to NoviCodes Next.js</h1>
     </main>
 
+  );
+}"></textarea>
+
+            <div class="action-bar">
+                <button class="run-btn" id="runBtn" onclick="testNextPage()">⚡ Render Route Component</button>
+                <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
+            </div>
+
+            <div class="terminal-output" id="consoleOutput">> Ready. Write your Next.js page component and click "Render Route Component"...</div>
+        </section>
+    </main>
+
+    <!-- Main Dashboard Engine & Navigation -->
+    
     <!-- Simple Footer -->
     <footer class="simple-footer">
         <div class="footer-nav">
@@ -413,17 +427,6 @@ export default function HomePage() {
         <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
     </footer>
 
-  );
-}"></textarea>
-
-            <div class="action-bar">
-                <button class="run-btn" id="runBtn" onclick="testNextPage()">⚡ Render Route Component</button>
-                <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
-            </div>
-
-            <div class="terminal-output" id="consoleOutput">> Ready. Write your Next.js page component and click "Render Route Component"...</div>
-        </section>
-    </main>
 
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
