@@ -99,6 +99,7 @@ body.devtype-page {
   padding: 20px 16px;
   width: 100%;
   box-sizing: border-box;
+  flex: 1 0 auto;
 }
 
 /* Single Compact Row Controls Bar */
