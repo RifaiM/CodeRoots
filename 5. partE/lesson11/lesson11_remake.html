@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../level6-navigation.css">
+    <link rel="stylesheet" href="../python-sandbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../level6-navigation.js" defer></script>
+    <script src="../python-linter.js" defer></script>
+    <title>Level 6 Lesson 11: Database Integration & SQLite3</title>
+</head>
+<body>
+    <a href="../../index.html" class="home-button">
+        <span class="home-icon">🏠</span>
+        <span class="btn-text">Dashboard</span>
+    </a>
+
+    <header class="lesson-header">
+        <h1>Level 6 • Lesson 11 – Database Integration & SQLite3</h1>
+    </header>
+
+    <main class="container">
+        <!-- Concept Card -->
+        <section class="card">
+            <h2>
+                <span>🗄️ Relational Databases & SQLite3 Integration</span>
+            </h2>
+            <p>
+                Production backends rely on <strong>Relational Database Management Systems (RDBMS)</strong> to store structured records permanently. Python includes <strong><code>sqlite3</code></strong> out of the box, letting you execute SQL queries, insert records, query database tables, and manage transactional <strong><code>commit()</code></strong> calls.
+            </p>
+            
+            <div class="intro-highlight">
+                <strong>Real-World Analogy:</strong> A database connection is like a secure hotline to your data warehouse. A <code>cursor</code> is like a forklift operator that executes SQL instructions (pick, store, update) inside the warehouse!
+            </div>
+
+            <!-- Code Examples Grid -->
+            <div class="code-feature-grid">
+                <div class="code-feature-card">
+                    <div class="feature-title">🗄️ 1. Connecting & Executing SQL</div>
+                    <pre class="code-block"><code><span class="keyword">import</span> sqlite3
+
+<span class="comment"># Connect to SQLite in-memory DB</span>
+conn = sqlite3.<span class="function">connect</span>(<span class="string">":memory:"</span>)
+cursor = conn.<span class="function">cursor</span>()
+
+<span class="comment"># Create SQL table</span>
+cursor.<span class="function">execute</span>(<span class="string">"CREATE TABLE users (id INT, name TEXT)"</span>)</code></pre>
+                </div>
+
+                <div class="code-feature-card">
+                    <div class="feature-title">💾 2. Committing Transactions & Querying</div>
+                    <pre class="code-block"><code><span class="comment"># Insert record & commit</span>
+cursor.<span class="function">execute</span>(<span class="string">"INSERT INTO users VALUES (1, 'Alex')"</span>)
+conn.<span class="function">commit</span>()
+
+<span class="comment"># Fetch records</span>
+cursor.<span class="function">execute</span>(<span class="string">"SELECT * FROM users"</span>)
+rows = cursor.<span class="function">fetchall</span>()</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive IDE Sandbox Workspace -->
+        <section class="interactive-workspace">
+            <div class="pane-header">
+                <h3>⚡ Level 6 Python Code Sandbox</h3>
+                <div class="editor-controls">
+                    <button class="control-btn" id="resetCode">
+                        <span>🔄 Reset</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                    <button class="control-btn run-btn" id="runCode">
+                        <span>▶ Run</span><span class="btn-full-text">&nbsp;Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="code-editor-container">
+                    <div class="pane-label">📝 main.py (Write your Python code here):</div>
+                    <div class="editor-with-lines">
+                        <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+                        <textarea id="pyCode" class="py-editor" spellcheck="false"># 🛠️ Level 6 Lesson 11 Practice Task:
+
+import sqlite3
+
+# 1. Connect to an in-memory SQLite database:
+conn = sqlite3.connect(":memory:")
+cursor = conn.cursor()
+
+# 2. Create a users table using SQL execute:
+cursor.execute("""
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL,
+  role TEXT NOT NULL,
+  xp INTEGER DEFAULT 1000
+)
+""")
+
+# 3. Insert records into database:
+cursor.execute("INSERT INTO users (username, role, xp) VALUES ('Alex', 'admin', 2500)")
+cursor.execute("INSERT INTO users (username, role, xp) VALUES ('Sam', 'developer', 1200)")
+
+# 4. Commit transaction to save changes:
+conn.commit()
+
+# 5. Query database and display results:
+cursor.execute("SELECT id, username, role, xp FROM users")
+rows = cursor.fetchall()
+
+print("--- Database Users Table ---")
+for row in rows:
+  print(f"👤 ID #{row[0]} | Name: {row[1]} | Role: {row[2]} | XP: {row[3]}")
+
+# Close database connection:
+conn.close()
+</textarea>
+                    </div>
+                </div>
+
+                <div class="terminal-output-container">
+                    <div class="pane-label">🖥️ Python Terminal & Output</div>
+                    <div id="terminalScreen" class="terminal-screen">
+                        <div class="terminal-prompt">> Terminal ready. Click ▶ Run Code to execute main.py</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements & Task Checklist Section -->
+        <section class="requirements-section">
+            <h3>📋 Lesson 11 Tasks & Criteria</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Complete all criteria to pass Level 6 Lesson 11 and unlock Lesson 12!</p>
+
+            <ul class="task-checklist">
+                <li data-task="sqlite">🗄️ Connect to an embedded database using import sqlite3</li>
+                <li data-task="cursor">🔌 Create database cursors using conn.cursor()</li>
+                <li data-task="execute">⚡ Execute SQL queries using cursor.execute()</li>
+                <li data-task="commit">💾 Commit database transactions using conn.commit()</li>
+            </ul>
+
+            <button class="submit-project-btn" id="submitProject" disabled>🏆 Complete Lesson 11 & Unlock Lesson 12</button>
+        </section>
+    </main>
+</body>
+</html>
