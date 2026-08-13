@@ -420,7 +420,6 @@ app.add_middleware(
             <div class="action-bar">
                 <button class="run-btn" onclick="runCorsTest()">⚡ Test CORS Connection</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="./lesson6_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">CORS HTTP simulation logs will display here...</div>
@@ -515,9 +514,10 @@ app.add_middleware(
         }
 
         function runCorsTest() {
+            const frontendUrl = document.getElementById('frontendUrlInput').value.trim();
+            const backendUrl = document.getElementById('backendUrlInput').value.trim();
             const code = document.getElementById('corsCodeInput').value;
             const output = document.getElementById('terminalOutput');
-            const nextBtn = document.getElementById('nextLessonBtn');
 
             if (!code.includes('CORSMiddleware') || !code.includes('allow_origins')) {
                 output.textContent = '❌ CORS Error: Missing CORSMiddleware or allow_origins definition!';
@@ -540,7 +540,6 @@ app.add_middleware(
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson5_complete', 'true');
-            if (nextBtn) nextBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({

@@ -423,7 +423,6 @@ git push -u origin main"></textarea>
             <div class="action-bar">
                 <button class="run-btn" onclick="runGitSimulation()">⚡ Execute Git Workflow</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="./lesson2_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Terminal output will display here after execution...</div>
@@ -511,7 +510,6 @@ git push -u origin main`;
         function runGitSimulation() {
             const input = document.getElementById('terminalInput').value.toLowerCase();
             const output = document.getElementById('terminalOutput');
-            const nextBtn = document.getElementById('nextLessonBtn');
 
             if (!input.includes('git init')) {
                 output.textContent = '❌ Error: You must initialize Git using "git init" first!';
@@ -538,7 +536,6 @@ Everything up-to-date. Code successfully pushed to GitHub! 🚀`;
 
             // Save Progress & Award XP
             localStorage.setItem('partF_branchA_lesson1_complete', 'true');
-            if (nextBtn) nextBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({

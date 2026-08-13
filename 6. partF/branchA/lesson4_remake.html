@@ -401,7 +401,6 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
             <div class="action-bar">
                 <button class="run-btn" onclick="runRenderDeploy()">🚀 Deploy Python API to Render</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="./lesson5_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -490,7 +489,6 @@ services:
         function runRenderDeploy() {
             const startCmd = document.getElementById('startCommandInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const nextBtn = document.getElementById('nextLessonBtn');
 
             if (!startCmd.includes('$PORT') && !startCmd.includes('8000')) {
                 output.textContent = '❌ Error: Start command must bind to dynamic "$PORT" variable!';
@@ -508,7 +506,6 @@ services:
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson4_complete', 'true');
-            if (nextBtn) nextBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({

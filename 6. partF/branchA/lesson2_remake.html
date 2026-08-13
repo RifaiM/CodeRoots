@@ -414,9 +414,8 @@ vercel --prod</code>
             <input type="text" id="outputDirInput" class="config-input" value="dist">
 
             <div class="action-bar">
-                <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Vercel Build</button>
+                <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Production Deploy</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="./lesson3_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -506,7 +505,6 @@ vercel --prod</code>
             const buildCmd = document.getElementById('buildCommandInput').value.trim();
             const outputDir = document.getElementById('outputDirInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const nextBtn = document.getElementById('nextLessonBtn');
 
             if (buildCmd !== 'npm run build' && buildCmd !== 'npm run export') {
                 output.textContent = '❌ Build Error: Invalid build command! Use "npm run build".';
@@ -531,7 +529,6 @@ vercel --prod</code>
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson2_complete', 'true');
-            if (nextBtn) nextBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({

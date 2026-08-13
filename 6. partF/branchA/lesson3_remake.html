@@ -405,9 +405,8 @@ Proxy Status: Proxied (Orange Cloud)</code>
             <input type="text" id="cnameInput" class="config-input" value="app.mycompany.com">
 
             <div class="action-bar">
-                <button class="run-btn" onclick="runCloudflareDeploy()">🧡 Deploy to Cloudflare Pages</button>
+                <button class="run-btn" onclick="runCloudflareDeploy()">🚀 Deploy to Cloudflare Pages</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="./lesson4_remake.html" class="next-btn" id="nextLessonBtn" style="display: none;">Next Lesson ➔</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">Build output logs will generate here upon triggering build...</div>
@@ -492,7 +491,6 @@ Proxy Status: Proxied (Orange Cloud)</code>
             const redirectRule = document.getElementById('redirectRuleInput').value.trim();
             const pagesTarget = document.getElementById('pagesTargetInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const nextBtn = document.getElementById('nextLessonBtn');
 
             if (!redirectRule.includes('/*') || !redirectRule.includes('200')) {
                 output.textContent = '❌ Configuration Error: SPA _redirects rule must contain "/* /index.html 200".';
@@ -512,7 +510,6 @@ Proxy Status: Proxied (Orange Cloud)</code>
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson3_complete', 'true');
-            if (nextBtn) nextBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({

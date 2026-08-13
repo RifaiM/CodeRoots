@@ -415,7 +415,6 @@ jobs:
             <div class="action-bar">
                 <button class="run-btn" onclick="runWorkflowSimulation()">⚡ Trigger GitHub Action Workflow</button>
                 <button class="clear-btn" onclick="clearEditorContent()">🧹 Clear</button>
-                <a href="../hub.html" class="claim-btn" id="claimRankBtn" style="display: none;">🎓 Return to Hub & Claim Rank 🏆</a>
             </div>
 
             <div class="terminal-output" id="terminalOutput">CI/CD execution log output will display here...</div>
@@ -510,7 +509,6 @@ jobs:
         function runWorkflowSimulation() {
             const input = document.getElementById('yamlInput').value;
             const output = document.getElementById('terminalOutput');
-            const claimBtn = document.getElementById('claimRankBtn');
 
             if (!input.includes('on:') || !input.includes('push') || !input.includes('jobs:')) {
                 output.textContent = '❌ YAML Syntax Error: Workflow must contain "on: push" and "jobs:" parameters!';
@@ -530,7 +528,6 @@ jobs:
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson6_complete', 'true');
-            if (claimBtn) claimBtn.style.display = 'inline-flex';
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
