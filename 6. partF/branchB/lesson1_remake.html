@@ -105,7 +105,8 @@
         .code-box code {
             display: block;
             text-align: left;
-            white-space: pre;
+            white-space: pre-wrap;
+            word-break: break-all;
             color: inherit;
         }
 
@@ -130,7 +131,7 @@
             color: #ffffff;
         }
 
-        /* Interactive SQL Code Area */
+        /* Interactive Terminal Code Area */
         .terminal-editor {
             background: #090d16;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -159,6 +160,7 @@
             margin-top: 14px;
             overflow-y: auto;
             white-space: pre-wrap;
+            word-break: break-all;
         }
 
         .action-bar {
@@ -206,9 +208,107 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        @media (max-width: 992px) {
+        /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
+        @media (max-width: 868px) {
             .ide-wrapper {
                 grid-template-columns: 1fr;
+                padding: 0 14px;
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .panel-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
+            }
+            .panel-title {
+                text-align: center;
+                justify-content: center;
+                font-size: 0.96rem;
+            }
+            .lesson-badge {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .ide-panel {
+                padding: 16px;
+                border-radius: 14px;
+            }
+            .action-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 10px 14px;
+                font-size: 0.82rem;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                justify-content: center;
+            }
+            .code-box {
+                padding: 38px 12px 12px 12px;
+            }
+            .copy-btn {
+                top: 6px;
+                right: 6px;
+                padding: 3px 8px;
+                font-size: 0.68rem;
+            }
+            .code-box code {
+                white-space: pre-wrap;
+                word-break: break-all;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .ide-wrapper {
+                padding: 0 8px;
+            }
+            .ide-panel {
+                padding: 12px 10px;
+            }
+            .run-btn, .clear-btn {
+                padding: 9px 12px;
+                font-size: 0.78rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .panel-title {
+                font-size: 0.92rem;
+            }
+            .lesson-badge {
+                font-size: 0.70rem;
+                padding: 3px 6px;
+            }
+            .terminal-editor {
+                font-size: 0.78rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .ide-wrapper {
+                padding: 0 4px;
+            }
+            .ide-panel {
+                padding: 10px 8px;
+            }
+            .run-btn, .clear-btn {
+                padding: 8px 10px;
+                font-size: 0.74rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .code-box {
+                padding: 36px 8px 10px 8px;
+            }
+            .code-box code {
+                font-size: 0.74rem;
             }
         }
     </style>
