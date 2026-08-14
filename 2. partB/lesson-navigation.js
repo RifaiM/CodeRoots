@@ -66,7 +66,7 @@
     };
 
     function initLevel4Nav() {
-        const header = document.querySelector('header.lesson-header') || document.querySelector('header');
+        const header = document.querySelector('header.platform-header') || document.querySelector('header.lesson-header') || document.querySelector('header');
         if (!header) return;
 
         const currentId = getCurrentLessonId();
