@@ -526,3 +526,308 @@ header:not(.platform-header):not(:has(p)) h1,
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
   z-index: 999999 !important;
 }
+
+
+/* ==========================================================================
+   Master Platform Header System (Universal across Levels 0 - 7 & All Lessons)
+   ========================================================================== */
+.platform-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99990 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 0 20px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  max-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.platform-header * {
+  box-sizing: border-box !important;
+}
+
+.header-inner {
+  max-width: 1240px !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* Logo */
+.platform-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-logo-img,
+.platform-logo img,
+.platform-logo .brand-logo-img {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  border-radius: 9px !important;
+  object-fit: cover !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+}
+
+.logo-text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.logo-title {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.title-novi { color: #0f172a !important; }
+.title-codes { color: #2563eb !important; }
+
+.logo-tag {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+}
+
+/* Center Lesson Badge & Navigation */
+.header-lesson-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.lesson-badge-pill {
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  max-width: 320px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: inline-block !important;
+}
+
+/* Inline Jump to Lesson Dropdown Button */
+.header-lesson-badge .lesson-nav-container,
+.platform-header .lesson-nav-container {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  z-index: 10000 !important;
+}
+
+.header-lesson-badge .lesson-nav-btn,
+.platform-header .lesson-nav-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  padding: 6px 14px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  border-radius: 20px !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+.header-lesson-badge .lesson-nav-btn:hover,
+.platform-header .lesson-nav-btn:hover {
+  background: #e2e8f0 !important;
+  color: #2563eb !important;
+  border-color: #93c5fd !important;
+}
+
+.header-lesson-badge .lesson-nav-dropdown,
+.platform-header .lesson-nav-dropdown {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  margin-top: 8px !important;
+  width: 320px !important;
+  max-height: 420px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
+  z-index: 999999 !important;
+}
+
+/* User Stats & Back Button */
+.header-user-stats {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+.stat-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 14px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  border-radius: 20px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border: 1px solid #bfdbfe !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.stat-badge:hover {
+  background: #dbeafe !important;
+  transform: translateY(-1px) !important;
+}
+
+.back-dashboard-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: #f8fafc !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 6px 14px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  border-radius: 20px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.back-dashboard-btn:hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Mobile Responsiveness for Platform Header */
+@media (max-width: 992px) {
+  .lesson-badge-pill {
+    max-width: 200px !important;
+  }
+}
+
+@media (max-width: 868px) {
+  .lesson-badge-pill {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .platform-header {
+    padding: 0 12px !important;
+  }
+  .header-inner {
+    gap: 8px !important;
+  }
+  .lesson-nav-btn .nav-btn-text,
+  .lesson-nav-btn .nav-arrow {
+    display: none !important;
+  }
+  .header-lesson-badge .lesson-nav-dropdown,
+  .platform-header .lesson-nav-dropdown {
+    position: fixed !important;
+    top: 64px !important;
+    left: 50% !important;
+    transform: translate(-50%, -8px) !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 340px !important;
+  }
+  .header-lesson-badge .lesson-nav-dropdown.show,
+  .platform-header .lesson-nav-dropdown.show {
+    transform: translate(-50%, 0) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-inner .logo-tag {
+    display: none !important;
+  }
+  .stat-badge {
+    padding: 4px 10px !important;
+    font-size: 0.78rem !important;
+    height: 30px !important;
+    min-height: 30px !important;
+  }
+  .back-dashboard-btn {
+    padding: 4px 10px !important;
+    font-size: 0.78rem !important;
+    height: 30px !important;
+    min-height: 30px !important;
+  }
+  .brand-logo-img {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+  .logo-title {
+    font-size: 1.05rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .platform-header {
+    padding: 0 6px !important;
+  }
+  .header-inner {
+    gap: 4px !important;
+  }
+  .stat-badge {
+    padding: 4px 6px !important;
+    font-size: 0.72rem !important;
+  }
+  .back-dashboard-btn {
+    padding: 4px 6px !important;
+    font-size: 0.72rem !important;
+  }
+}
