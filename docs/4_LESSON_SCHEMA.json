@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DevDojoLessonSchema",
+  "title": "NoviCodesLessonSchema",
   "type": "object",
   "required": [
     "trackId",
@@ -22,7 +22,9 @@
         "practical-l4",
         "frameworks-l5",
         "python-l6",
-        "cloud-l7"
+        "cloud-l7a",
+        "database-l7b",
+        "nextjs-l7c"
       ]
     },
     "lessonId": {

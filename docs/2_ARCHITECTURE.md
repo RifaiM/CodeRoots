@@ -1,8 +1,8 @@
-# DevDojo - Master System Architecture & $0 Stack Blueprint
+# NoviCodes - Master System Architecture & $0 Stack Blueprint
 
-**Version**: 2.0  
-**Status**: Approved  
-**Architectural Goal**: Build a high-performance, infinitely scalable interactive learning platform operating on a **100% Free Stack ($0/month)** using Client-Side Execution Engines and Edge Hosting.
+**Version**: 3.0  
+**Status**: Production-Ready  
+**Architectural Goal**: Build a high-performance, infinitely scalable interactive learning platform operating on a **100% Free Stack ($0/month)** using Client-Side Execution Engines, Static Edge CDN hosting, and zero backend compute requirements.
 
 ---
 
@@ -10,23 +10,31 @@
 
 ```
                                ┌─────────────────────────────────────────┐
-                               │   DevDojo Platform App Shell (Vite/Next)│
-                               │   (Dashboard, Skill Tree, Auth, Router) │
+                               │     NoviCodes Static App Shell          │
+                               │   (Dashboard, Skill Tree, DevKit, Nav)  │
                                └────────────────────┬────────────────────┘
                                                     │
                  ┌──────────────────────────────────┼──────────────────────────────────┐
                  ▼                                  ▼                                  ▼
    ┌──────────────────────────┐       ┌──────────────────────────┐       ┌──────────────────────────┐
-   │ HTML/CSS/JS Engine       │       │ React / Framework Engine │       │ Python WASM Engine       │
-   │ (Sandboxed <iframe>)     │       │ (Sandpack / WebWorker)   │       │ (Pyodide WebAssembly)    │
+   │ HTML/CSS/DOM Dojo        │       │ React.js Framework Dojo  │       │ Python Backend Dojo      │
+   │ (Sandboxed <iframe>)     │       │ (Client React Component) │       │ (Browser AST & Linter)   │
    └─────────────┬────────────┘       └─────────────┬────────────┘       └─────────────┬────────────┘
                  │                                  │                                  │
                  └──────────────────────────────────┼──────────────────────────────────┘
                                                     │
                                                     ▼
                                ┌─────────────────────────────────────────┐
-                               │  State Persistence & Cloud Sync         │
-                               │  (localStorage + Supabase Free Tier)    │
+                               │ Level 7 Multi-Branch Cloud Mastery Hub  │
+                               │ ├── 7A: Cloud Deployments (Vercel/Fly)  │
+                               │ ├── 7B: Neon DB, SQLAlchemy & Bcrypt    │
+                               │ └── 7C: Next.js 14/15 App Router        │
+                               └────────────────────┬────────────────────┘
+                                                    │
+                                                    ▼
+                               ┌─────────────────────────────────────────┐
+                               │  Client State & XP Progression Engine   │
+                               │  (localStorage + DevKit API + Modals)   │
                                └─────────────────────────────────────────┘
 ```
 
@@ -36,64 +44,52 @@
 
 | Domain | Selected Technology | Operational Cost | Rationale |
 |---|---|---|---|
-| **Hosting & Edge CDN** | **Cloudflare Pages** or **Vercel** | **$0.00** | Unlimited bandwidth on static SSG deployment; global edge routing. |
-| **App Shell Framework** | **Vite + React / Next.js** (TypeScript) | **$0.00** | Strict typings for lesson schemas and progress engines. |
-| **Code Editor Engine** | **Monaco Editor** / **CodeMirror 6** | **$0.00** | Full VS Code editing engine running 100% client-side. |
-| **Web Execution** | Native `<iframe>` Sandboxing | **$0.00** | Zero server load; instant execution inside user browser. |
-| **Framework Execution** | Babel Standalone / Sandpack | **$0.00** | Client-side JSX transpilation in WebWorkers. |
-| **Python Execution** | **Pyodide** (WebAssembly) | **$0.00** | Full CPython engine running inside browser WASM. Zero backend Python server required. |
-| **Database & Auth** | **Supabase Free Tier** + `localStorage` | **$0.00** | 50,000 MAU free tier for PostgreSQL DB and OAuth authentication. |
-| **Certificates** | `html2canvas` + `jspdf` | **$0.00** | In-browser client-side PDF compilation. |
+| **Hosting & Edge CDN** | **GitHub Pages / Cloudflare Pages / Vercel** | **$0.00** | Unlimited bandwidth on static SSG deployment; global edge routing. |
+| **Styling Architecture** | **Vanilla CSS + CSS Custom Properties** | **$0.00** | Zero build step required; ultra-fast load time and maximum design fidelity. |
+| **DOM Execution Sandbox** | Native Sandboxed `<iframe>` | **$0.00** | Zero server load; safe instant HTML/CSS/JS execution inside browser. |
+| **Python AST Validator** | Client-Side Syntax & AST Inspector | **$0.00** | Instant evaluation of Python scripts and FastAPI routes without backend container overhead. |
+| **Live Task Checklist** | Modular Character-Aware `Level7Linter` | **$0.00** | Quote-safe, comment-stripping regular expression & function checklist engine. |
+| **Client-Side Persistence** | `localStorage` Storage Engine | **$0.00** | Instant zero-login offline-capable progress persistence. |
+| **Developer Toolkit** | `window.NoviCodes` Global API | **$0.00** | Integrated test harness with `unlockAll`, `lockAll`, and `maxXP`. |
 
 ---
 
-## 🔒 3. In-Browser Execution & Security Architecture
-
-### 3.1 Sandboxed Web Preview (`<iframe>`)
-To prevent malicious script execution from disrupting the main dashboard, all user HTML/CSS/JS code runs inside an isolated iframe with strict security policies:
-
-```html
-<iframe 
-  id="sandbox-preview"
-  sandbox="allow-scripts allow-modals"
-  csp="default-src 'self' 'unsafe-inline' data: blob:;"
-></iframe>
-```
-
-### 3.2 Client-Side Python WebAssembly Engine (Pyodide)
-Python code is executed via the Pyodide WebAssembly bundle loaded on demand:
+## 🔒 3. Access Protection & Gating Engine Lifecycle
 
 ```
-[ User Python Code ] ──> [ Pyodide WASM Runtime ] ──> [ Browser WebWorker ] ──> [ Captured Stdout Output ]
+[ Learner Requests Lesson URL (e.g. lesson5_remake.html) ]
+                        │
+                        ▼
+      [ Navigation Engine Initializes in <head> ]
+                        │
+        ┌───────────────┴───────────────┐
+        ▼                               ▼
+[ Is practice_mode_unlocked = 'true'? ]  [ Is Lesson 1 or Lesson N-1 completed? ]
+        │ YES                           │ YES
+        ▼                               ▼
+[ Grant Full Access & Mount IDE ]  [ Grant Full Access & Mount IDE ]
+        │
+        │ NO
+        ▼
+[ Mount Dark Glass Restricted Overlay to DOM ]
+  ├── Hide Workspace Panels
+  ├── Display Dual CTAs: [ Take Me to Highest Available Lesson ] & [ Return to Dashboard ]
+  └── Terminate Execution (Prevent Editor Mounting)
 ```
-
-- **Zero Server Compute**: 100% executed on user GPU/CPU.
-- **Package Support**: Supports standard Python libraries (`math`, `json`, `re`, `datetime`).
 
 ---
 
-## 💾 4. Data Storage & Offline Capability
+## 💾 4. LocalStorage Schema & Key Registry
 
-```
-                        ┌───────────────────────────────┐
-                        │   User Completes Lesson Step  │
-                        └───────────────┬───────────────┘
-                                        │
-                                        ▼
-                        ┌───────────────────────────────┐
-                        │ Write to LocalStorage (Sync)  │
-                        └───────────────┬───────────────┘
-                                        │
-                       ┌────────────────┴────────────────┐
-                       │ Is User Logged In via Supabase? │
-                       └────────────────┬────────────────┘
-                                        │
-                      ┌─────────────────┴─────────────────┐
-                      YES                                 NO
-                      │                                   │
-                      ▼                                   ▼
-          ┌───────────────────────┐           ┌───────────────────────┐
-          │ Async Push to         │           │ Retain in Local       │
-          │ Supabase Postgres DB  │           │ Storage (Offline Ok)  │
-          └───────────────────────┘           └───────────────────────┘
-```
+| Storage Key | Type | Description |
+|---|---|---|
+| `practice_mode_unlocked` | `string` ("true") | Developer Mode bypass flag (unlocks all 79 lessons & certs). |
+| `level0_completed` | `string` ("true") | Level 0 Web History & Pillars completion. |
+| `level[1-3]_completed` | `string` ("true") | Levels 1, 2, 3 Foundations completion. |
+| `partB_lesson[1-15]_remake_complete` | `string` ("true") | Level 4 DOM Dojo lesson completion flags. |
+| `partC_lesson[1-15]_remake_complete` | `string` ("true") | Level 5 React Dojo lesson completion flags. |
+| `partE_lesson[1-15]_remake_complete` | `string` ("true") | Level 6 Python Dojo lesson completion flags. |
+| `partF_branch[A,B,C]_lesson[1-6]_complete` | `string` ("true") | Level 7 Mastery Track lesson completion flags. |
+| `novicodes_daily_quest_xp` | `string` (number) | Earned Daily Warmup Quest XP. |
+| `novicodes_streak_count` | `string` (number) | Active consecutive daily quest streak counter. |
+
