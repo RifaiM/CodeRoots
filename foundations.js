@@ -439,6 +439,11 @@ function initHtmlConceptWidgets() {
             }
         });
     });
+
+    // Auto-select first chunk on load
+    if (chunks.length > 0) {
+        chunks[0].click();
+    }
 }
 
 // ── 2. CSS Interactive Concept Widgets ──
@@ -452,6 +457,9 @@ function initCssConceptWidgets() {
     ];
 
     const readout = document.getElementById('boxModelReadout');
+    if (readout) {
+        readout.innerHTML = `<strong>💡 Hover over any Box Model layer above</strong> to see its purpose and computed spacing!`;
+    }
 
     layers.forEach(l => {
         const el = document.getElementById(l.id);
@@ -508,16 +516,31 @@ function initJsConceptWidgets() {
             <div id="triadContentBox" style="text-align: center;">
                 <h3 id="triadTitle" style="margin: 0 0 8px 0; color: ${hasCss ? '#0f172a' : '#000000'}; font-family: ${hasCss ? 'inherit' : 'monospace'}; font-size: ${hasCss ? '1.2rem' : '1rem'};">Live Interactive App</h3>
                 <p id="triadText" style="color: ${hasCss ? '#64748b' : '#333333'}; font-size: ${hasCss ? '0.9rem' : '0.85rem'}; margin-bottom: 14px;">Click the button below to test interactivity:</p>
-                <button id="triadActionBtn" style="${hasCss ? 'background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: bold; cursor: pointer;' : 'background: #e0e0e0; color: black; border: 1px solid black; padding: 2px 6px; cursor: pointer;'}">⚡ Click Me (Count: <span id="triadCountDisplay">${triadCount}</span>)</button>
+                <button id="triadActionBtn" style="${hasCss ? 'background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: transform 0.15s ease;' : 'background: #e0e0e0; color: black; border: 1px solid black; padding: 4px 8px; cursor: pointer;'}">⚡ Click Me (Count: <span id="triadCountDisplay">${triadCount}</span>)</button>
             </div>
         `;
 
         const newBtn = document.getElementById('triadActionBtn');
         const newCount = document.getElementById('triadCountDisplay');
-        if (newBtn && hasJs) {
+        if (newBtn) {
             newBtn.addEventListener('click', () => {
-                triadCount++;
-                if (newCount) newCount.textContent = triadCount;
+                if (hasJs) {
+                    triadCount++;
+                    if (newCount) newCount.textContent = triadCount;
+                    newBtn.style.transform = 'scale(1.1)';
+                    setTimeout(() => newBtn.style.transform = 'scale(1)', 120);
+                } else {
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '⚡ JavaScript is Disabled!',
+                            text: 'Without JavaScript, buttons are completely static and cannot calculate math or react to user clicks.',
+                            confirmButtonColor: '#2563eb'
+                        });
+                    } else {
+                        alert('JavaScript is disabled! Without JS, buttons cannot react to clicks.');
+                    }
+                }
             });
         }
     }
@@ -544,11 +567,15 @@ function initJsConceptWidgets() {
         });
     }
 
+    // Initial invocation so button click handler is active on page load!
+    updateTriad();
+
     // B. Live Event Reactor
     const btnClick = document.getElementById('eventBtnClick');
     const btnHover = document.getElementById('eventBtnHover');
     const btnTimer = document.getElementById('eventBtnTimer');
     const inputMirror = document.getElementById('eventInputMirror');
+    const mirrorOutput = document.getElementById('eventMirrorOutput');
     const logBox = document.getElementById('eventLiveLogBox');
 
     function appendLog(msg, color = '#34d399') {
@@ -587,7 +614,12 @@ function initJsConceptWidgets() {
 
     if (inputMirror) {
         inputMirror.addEventListener('input', (e) => {
-            appendLog(`input event: value="${e.target.value}"`, '#f472b6');
+            const val = e.target.value.trim();
+            if (mirrorOutput) {
+                mirrorOutput.textContent = val ? `Hello, ${val}! 👋` : '(Waiting for input...)';
+                mirrorOutput.style.color = val ? '#16a34a' : '#2563eb';
+            }
+            appendLog(`input event: value="${e.target.value}" (Length: ${e.target.value.length} chars)`, '#f472b6');
         });
     }
 

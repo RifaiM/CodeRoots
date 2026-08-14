@@ -58,18 +58,27 @@ window.LEVEL3_JS_DATA = {
                         <div class="event-reactor-grid">
                             <div class="event-action-buttons">
                                 <button class="reactor-btn" id="eventBtnClick">
-                                    <span>🖱️</span> Trigger Click Event
+                                    <span>🖱️</span> 1. Trigger Click Event
                                 </button>
                                 <button class="reactor-btn" id="eventBtnHover">
-                                    <span>👀</span> Hover Over Me
+                                    <span>👀</span> 2. Hover Over Me (Mouseenter)
                                 </button>
                                 <button class="reactor-btn" id="eventBtnTimer">
-                                    <span>⏱️</span> Run 2-Second Timer (setTimeout)
+                                    <span>⏱️</span> 3. Run 2-Second Timer (setTimeout)
                                 </button>
-                                <input type="text" id="eventInputMirror" placeholder="⌨️ Type here to fire input event..." style="padding: 10px 14px; border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 0.86rem; outline: none;">
+                                
+                                <div style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; margin-top: 4px;">
+                                    <label style="font-size: 0.78rem; font-weight: 800; color: #475569; display: block; margin-bottom: 6px;">
+                                        ⌨️ 4. Live Typing Event (Type your name below):
+                                    </label>
+                                    <input type="text" id="eventInputMirror" placeholder="e.g. Alex Dev" style="width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.86rem; outline: none; font-family: inherit;">
+                                    <div style="margin-top: 8px; font-size: 0.82rem; color: #0f172a; font-weight: 700; background: #eff6ff; padding: 6px 10px; border-radius: 6px; border: 1px solid #bfdbfe;">
+                                        🏷️ Live Greeting: <span id="eventMirrorOutput" style="color: #2563eb;">(Waiting for input...)</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="event-live-log-box" id="eventLiveLogBox">
-                                <div style="color: #94a3b8; font-style: italic;">// JavaScript Console Execution Output:</div>
+                                <div style="color: #94a3b8; font-style: italic;">// JavaScript Console Execution Log:</div>
                                 <div>&gt; Event engine initialized and listening...</div>
                             </div>
                         </div>
