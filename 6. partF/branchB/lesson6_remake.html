@@ -459,7 +459,7 @@ def authenticate_admin_request(auth_header):
 
         <script>
         const DRAFT_KEY = 'partF_branchB_lesson6_draft';
-        const DEFAULT_STARTER_CODE = `from fastapi import FastAPI, Depends, HTTPException, status
+        const DEFAULT_STARTER_CODE = `from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 import jwt
 
@@ -468,19 +468,14 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 SECRET_KEY = "auth-secret-key"
 ALGORITHM = "HS256"
 
-# Task 1: Write dependency to get and verify current user from JWT token
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    # TODO: Decode token using jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    # Extract 'sub' username. Raise HTTPException(401) on failure.
-    pass
+# 🛠️ Practice Task: Auth Middleware & RBAC Guard
+
+# 1. Implement get_current_user dependency (inject token with Depends(oauth2_scheme), decode with jwt.decode):
 
 
-# Task 2: Write role-based access control (RBAC) dependency factory
-def require_role(required_role: str):
-    async def role_checker(user: dict = Depends(get_current_user)):
-        # TODO: Check user role. If user.get("role") != required_role, raise HTTPException(403)
-        pass
-    return role_checker`;
+# 2. Implement require_role(required_role) RBAC guard factory:
+
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

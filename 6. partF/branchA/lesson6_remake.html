@@ -448,31 +448,16 @@ jobs:
     <script src="../level7-linter.js"></script>
         <script>
         const DEFAULT_STARTER_CODE = `# .github/workflows/deploy.yml
-# Task: Create an automated GitHub Actions CI/CD workflow
+# 🛠️ Practice Task: Configure automated GitHub Actions CI/CD pipeline
 
 name: Production CI/CD Workflow
 
-# TODO: Step 1: Configure workflow to trigger on push to 'main' branch
-on:
-  push:
-    branches:
-      - main
+# 1. Trigger workflow on push to main branch:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      # TODO: Step 2: Checkout the repository
-      # - uses: actions/checkout@v4
 
-      # TODO: Step 3: Set up Node.js runtime
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: "20"
+# 2. Define deploy job on ubuntu-latest with checkout, node setup, and npm test:
 
-      # TODO: Step 4: Add steps to install dependencies and run tests
-      # - run: npm install
-      # - run: npm test`;
+`;
 
         const DRAFT_KEY = 'partF_branchA_lesson6_draft';
 
@@ -488,11 +473,10 @@ jobs:
 
             Level7Linter.init('yamlInput', 'l7LintPanel', { mode: 'yaml' });
             Level7Linter.initChecklist([
-                { id: 'trigger',  label: 'Trigger on push to <code>main</code> branch',               hint: 'on: push: branches: [main]', fn: (c, s) => /on:s*
-s*push:/.test(s) && /main/.test(s) },
-                { id: 'runner',   label: 'Set runner to <code>runs-on: ubuntu-latest</code>',          hint: 'runs-on: ubuntu-latest', fn: (c, s) => /runs-on:s*ubuntu-latest/.test(s) },
-                { id: 'checkout', label: 'Add <code>uses: actions/checkout@v4</code> step',           hint: '- uses: actions/checkout@v4', fn: (c, s) => /actions/checkout/.test(s) },
-                { id: 'teststep', label: 'Run automated tests with <code>npm test</code> or build',    hint: '- run: npm test or npm run build', fn: (c, s) => /npms+test|npms+runs+build/.test(s) },
+                { id: 'trigger',  label: 'Trigger on push to <code>main</code> branch',               hint: 'on: push: branches: [main]', fn: (c, s) => /on:\s*\n\s*push:/.test(s) && /main/.test(s) },
+                { id: 'runner',   label: 'Set runner to <code>runs-on: ubuntu-latest</code>',          hint: 'runs-on: ubuntu-latest', fn: (c, s) => /runs-on:\s*ubuntu-latest/.test(s) },
+                { id: 'checkout', label: 'Add <code>uses: actions/checkout@v4</code> step',           hint: '- uses: actions/checkout@v4', fn: (c, s) => /actions\/checkout/.test(s) },
+                { id: 'teststep', label: 'Run automated tests with <code>npm test</code> or build',    hint: '- run: npm test or npm run build', fn: (c, s) => /npm\s+test|npm\s+run\s+build/.test(s) },
             ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
         });
 

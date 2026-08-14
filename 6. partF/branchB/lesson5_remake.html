@@ -456,25 +456,24 @@ def generate_user_token(user_id, role):
 
         <script>
         const DRAFT_KEY = 'partF_branchB_lesson5_draft';
-        const DEFAULT_STARTER_CODE = `import jwt
-from datetime import datetime, timedelta
+        const DEFAULT_STARTER_CODE = `from datetime import datetime, timedelta
+
+# 🛠️ Practice Task: JWT Access Token Creation
+
+# 1. Import jwt library:
+
 
 SECRET_KEY = "my-super-secret-key"
 ALGORITHM = "HS256"
 
-# Task: Implement create_access_token to sign JSON Web Tokens
+# 2. Implement create_access_token function:
 def create_access_token(data: dict, expires_in_minutes: int = 30) -> str:
     to_encode = data.copy()
 
-    # TODO: Calculate expiry timestamp with timedelta(minutes=expires_in_minutes)
-    expire = None
-
-    # TODO: Add 'exp' claim to the payload
-    # to_encode.update({"exp": expire})
-
-    # TODO: Sign token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    token = None
-    return token`;
+    # Calculate expiration timestamp: datetime.utcnow() + timedelta(minutes=expires_in_minutes)
+    # Add 'exp' claim to to_encode dictionary
+    # Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    pass`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

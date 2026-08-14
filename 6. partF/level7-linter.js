@@ -222,12 +222,39 @@
         return '';
     }
 
+    function cleanAllComments(code) {
+        if (!code) return '';
+        var lines = code.split('\n');
+        var cleaned = lines.map(function (line) {
+            var inSingle = false;
+            var inDouble = false;
+            var inBacktick = false;
+            var res = '';
+            for (var i = 0; i < line.length; i++) {
+                var ch = line[i];
+                var prev = line[i - 1];
+                if (ch === "'" && !inDouble && !inBacktick && prev !== '\\') {
+                    inSingle = !inSingle;
+                } else if (ch === '"' && !inSingle && !inBacktick && prev !== '\\') {
+                    inDouble = !inDouble;
+                } else if (ch === '`' && !inSingle && !inDouble && prev !== '\\') {
+                    inBacktick = !inBacktick;
+                } else if (!inSingle && !inDouble && !inBacktick) {
+                    if (ch === '#' || (ch === '/' && line[i + 1] === '/') || (ch === '-' && line[i + 1] === '-')) {
+                        break;
+                    }
+                }
+                res += ch;
+            }
+            return res;
+        });
+        return cleaned.join('\n').replace(/\/\*[\s\S]*?\*\//g, '');
+    }
+
     function evaluateTasks(code) {
         var str = (code !== undefined && code !== null) ? String(code) : getCurrentCode();
-        // Clean comments for logic checking (while preserving raw code for strings)
-        var stripped = str.replace(/\/\/[^\n]*/g, '')
-                          .replace(/#[^\n]*/g, '')
-                          .replace(/\/\*[\s\S]*?\*\//g, '');
+        // Clean all comments so comments can NEVER fulfill checklist rules
+        var stripped = cleanAllComments(str);
 
         var passedTasks = [];
         var failedTasks = [];
@@ -241,7 +268,8 @@
                     isPass = false;
                 }
             } else if (task.regex) {
-                isPass = task.regex.test(stripped) || task.regex.test(str);
+                // Strictly test against stripped code (not comments)
+                isPass = task.regex.test(stripped);
             }
 
             var itemObj = {

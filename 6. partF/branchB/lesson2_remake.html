@@ -428,16 +428,21 @@ DATABASE_URL=postgresql://db_master:Pass456@ep-prod-db.neon.tech/prod_db?sslmode
 
         <script>
         const DRAFT_KEY = 'partF_branchB_lesson2_draft';
-        const DEFAULT_STARTER_CODE = `# Cloud Database Connection Configuration
-# Task: Set up a PostgreSQL connection string for Neon / Supabase
+        const DEFAULT_STARTER_CODE = `# 🛠️ Practice Task: Cloud Database Connection Configuration
+# Set up a PostgreSQL connection string for Neon / Supabase
 
-# Format: postgresql://[username]:[password]@[host]/[database]?sslmode=require
-# TODO: Configure DATABASE_URL with:
-#   User: db_master, Password: Pass456, Host: ep-prod-db.neon.tech, Database: prod_db, SSL: require
+# Format: postgresql://[user]:[password]@[host]/[dbname]?sslmode=require
+# Requirements:
+#   User: db_master
+#   Password: Pass456
+#   Host: ep-prod-db.neon.tech
+#   Database: prod_db
+#   SSL mode: require
 
-DATABASE_URL = "postgresql://TODO_user:TODO_password@TODO_host/TODO_db?sslmode=require"
+# 1. Define DATABASE_URL variable:
 
-# Connection pool settings
+
+# 2. Connection pool settings:
 DB_POOL_SIZE = 5
 DB_MAX_OVERFLOW = 10`;
 

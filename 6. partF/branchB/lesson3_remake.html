@@ -450,24 +450,20 @@ class Product(Base):
 
         <script>
         const DRAFT_KEY = 'partF_branchB_lesson3_draft';
-        const DEFAULT_STARTER_CODE = `from sqlalchemy import Column, Integer, String, Float, Boolean
+        const DEFAULT_STARTER_CODE = `from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-# Task: Define a Product model mapped to table 'products'
-# TODO: Complete the model class below with columns: id, title, price
-class Product(Base):
-    __tablename__ = "TODO_table_name"  # Set to "products"
+# 🛠️ Practice Task: Define SQLAlchemy Product Model
+# Map to table 'products' with columns:
+#   - id: Integer, primary key
+#   - title: String, required
+#   - price: Integer
 
-    # Primary key column
-    id = Column(Integer, primary_key=True)
+# TODO: Define Product model class:
 
-    # TODO: Add a 'title' column (String, required)
-    # title = Column(...)
-
-    # TODO: Add a 'price' column (Integer)
-    # price = Column(...)`;
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

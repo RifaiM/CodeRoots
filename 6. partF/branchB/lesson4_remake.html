@@ -446,24 +446,23 @@ def hash_user_password(raw_password):
 
         <script>
         const DRAFT_KEY = 'partF_branchB_lesson4_draft';
-        const DEFAULT_STARTER_CODE = `import bcrypt
+        const DEFAULT_STARTER_CODE = `# 🛠️ Practice Task: Password Hashing & Verification with Bcrypt
 
-# Task: Implement password hashing and verification with bcrypt
+# 1. Import bcrypt library:
 
+
+# 2. Implement hash_password function:
 def hash_password(plain_password: str) -> str:
-    # 1. Generate salt: bcrypt.gensalt()
-    # 2. Hash password: bcrypt.hashpw(plain_password.encode('utf-8'), salt)
-    # 3. Return decoded string: hashed.decode('utf-8')
-    
-    # TODO: Generate salt and hash the password
-    salt = None
-    hashed = None
-    return ""
+    # Generate salt with bcrypt.gensalt()
+    # Hash password with bcrypt.hashpw(plain_password.encode('utf-8'), salt)
+    # Return decoded string with .decode('utf-8')
+    pass
 
 
+# 3. Implement verify_password function:
 def verify_password(plain_password: str, stored_hash: str) -> bool:
-    # TODO: Verify using bcrypt.checkpw(plain_password.encode('utf-8'), stored_hash.encode('utf-8'))
-    return False`;
+    # Verify using bcrypt.checkpw(plain_password.encode('utf-8'), stored_hash.encode('utf-8'))
+    pass`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

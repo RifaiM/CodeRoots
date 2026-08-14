@@ -453,20 +453,19 @@ app.add_middleware(
     <script src="../level7-linter.js"></script>
         <script>
         const DEFAULT_STARTER_CODE = `from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Task: Configure CORS middleware to connect your frontend and backend securely
+# 🛠️ Practice Task: Configure CORS Middleware for FastAPI
 
-# 1. Allowed frontend origins (e.g. Vercel / Cloudflare domains):
-# TODO: Add your frontend origin URLs to the list
-origins = [
-    # "https://my-app.vercel.app",
-]
+# 1. Import CORSMiddleware from fastapi.middleware.cors:
 
-# 2. Attach CORSMiddleware to the app
-# TODO: Call app.add_middleware() with CORSMiddleware, allow_origins=origins, allow_methods=["*"]
+
+# 2. Define allowed origins list with your frontend URL:
+
+
+# 3. Add CORSMiddleware to your FastAPI app:
+
 `;
 
         const DRAFT_KEY = 'partF_branchA_lesson5_draft';

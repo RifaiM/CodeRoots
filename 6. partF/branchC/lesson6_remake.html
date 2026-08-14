@@ -444,30 +444,14 @@ export default nextConfig;"></textarea>
         <script>
         const DRAFT_KEY = 'partF_branchC_lesson6_draft';
         const DEFAULT_STARTER_CODE = `// next.config.mjs — Next.js Production Build Configuration
-// Controls optimizations, image domains, and server settings
+// 🛠️ Practice Task: Configure Next.js production settings
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    // TODO: Enable React Strict Mode
-    reactStrictMode: true,
+// 1. Define nextConfig object with reactStrictMode, remotePatterns, and env:
 
-    // TODO: Configure allowed image domains with remotePatterns
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'TODO_image_host.com',
-            },
-        ],
-    },
 
-    // TODO: Set environment variables accessible to the browser
-    env: {
-        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    },
-};
+// 2. Export nextConfig as default export:
 
-export default nextConfig;`;
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

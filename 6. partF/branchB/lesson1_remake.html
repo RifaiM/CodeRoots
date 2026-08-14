@@ -439,20 +439,14 @@ WHERE u.role = 'admin';</code>
 
     <script>
         const DRAFT_KEY = 'partF_branchB_lesson1_draft';
-        const DEFAULT_STARTER_CODE = `-- SQL Fundamentals Practice
--- Task: Write a SELECT query to retrieve developer profiles
+        const DEFAULT_STARTER_CODE = `-- 🛠️ Practice Task: SQL Fundamentals
+-- Write a SELECT query to retrieve developer profiles from the 'users' table
 
--- Hint: Use SELECT to choose columns, FROM to specify the table,
--- and WHERE to filter rows by a condition.
+-- 1. Select the 'name' and 'email' columns:
+-- 2. From the 'users' table:
+-- 3. Filter rows where role is 'developer':
 
--- TODO: Write a query to get the name and email
--- from the 'users' table where role = 'developer'
-SELECT
-    -- TODO: list the columns you want here
-FROM users
-WHERE
-    -- TODO: add your filter condition here
-    ;`;
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
@@ -463,11 +457,11 @@ WHERE
 
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'sql' });
             Level7Linter.initChecklist([
-                { id: 'select',    label: 'Use <code>SELECT</code> to choose which columns to return',        regex: /\bSELECT\b/i },
-                { id: 'columns',   label: 'Select the <code>name</code> and <code>email</code> columns',     fn: (c) => /\bname\b/i.test(c) && /\bemail\b/i.test(c) },
-                { id: 'from',      label: 'Use <code>FROM users</code> to target the correct table',          regex: /\bFROM\s+users\b/i },
-                { id: 'where',     label: 'Use <code>WHERE</code> to filter rows by a condition',             regex: /\bWHERE\b/i },
-                { id: 'role',      label: "Filter by <code>role = 'developer'</code>",                       fn: (c) => /role\s*=\s*'developer'/i.test(c) },
+                { id: 'select',    label: 'Use <code>SELECT</code> to choose columns',                        hint: 'SELECT name, email ...', regex: /\bSELECT\b/i },
+                { id: 'columns',   label: 'Select the <code>name</code> and <code>email</code> columns',     hint: 'SELECT name, email', fn: (c, s) => /\bname\b/i.test(s) && /\bemail\b/i.test(s) },
+                { id: 'from',      label: 'Use <code>FROM users</code> table',                               hint: 'FROM users', regex: /\bFROM\s+users\b/i },
+                { id: 'where',     label: 'Use <code>WHERE</code> to filter rows',                            hint: 'WHERE role = \'developer\'', regex: /\bWHERE\b/i },
+                { id: 'role',      label: "Filter by <code>role = 'developer'</code>",                       hint: "WHERE role = 'developer'", fn: (c, s) => /role\s*=\s*'developer'/i.test(s) },
             ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             editor.addEventListener('input', () => {

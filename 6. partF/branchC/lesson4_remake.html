@@ -441,15 +441,15 @@ export async function GET() {
         <script>
         const DRAFT_KEY = 'partF_branchC_lesson4_draft';
         const DEFAULT_STARTER_CODE = `// app/api/status/route.js — Next.js API Route Handler
-// Route Handlers use named exports for HTTP methods (GET, POST, PUT, DELETE)
+// 🛠️ Practice Task: Create an API Route Handler with NextResponse
 
-import { NextResponse } from 'next/server';
+// 1. Import NextResponse from 'next/server':
 
-// Task: Export an async GET handler that returns JSON status
-export async function GET(request) {
-    // TODO: Return a NextResponse.json() containing { status: "ok", version: "15.0" }
-    return null;
-}`;
+
+// 2. Export async function GET(request):
+//    - Return NextResponse.json({ status: "ok", version: "15.0" })
+
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

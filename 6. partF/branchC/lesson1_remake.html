@@ -441,24 +441,18 @@ export default function HomePage() {
 
         <script>
         const DRAFT_KEY = 'partF_branchC_lesson1_draft';
-        const DEFAULT_STARTER_CODE = `// app/page.js — Root Page Component
-// In Next.js App Router, every page.js file is a route
+        const DEFAULT_STARTER_CODE = `// app/page.js — Next.js Root Page Component
+// 🛠️ Practice Task: Build an App Router Page Component
 
-// TODO: Add metadata for SEO (Server Component feature)
+// 1. Export metadata object with title and description:
 export const metadata = {
-    title: 'TODO: Your App Title',
-    description: 'TODO: Your app description',
+    title: 'My Next.js Application',
+    description: 'Built with Next.js App Router',
 };
 
-// TODO: Export a default function/async function as your page component
-export default function Home() {
-    // TODO: Return JSX markup for the page UI with an <h1> heading
-    return (
-        <main>
-            {/* TODO: Add your <h1> heading here */}
-        </main>
-    );
-}`;
+// 2. Export default function component that returns JSX with an <h1> heading:
+
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

@@ -449,35 +449,19 @@ export default async function PostsPage() {
 
         <script>
         const DRAFT_KEY = 'partF_branchC_lesson5_draft';
-        const DEFAULT_STARTER_CODE = `// app/posts/page.js — Server Component with Database Query
-// Direct server queries require NO separate API endpoints!
+        const DEFAULT_STARTER_CODE = `// app/posts/page.js — Server Component with Direct Data Fetching
+// 🛠️ Practice Task: Fetch data directly inside an async Server Component
 
-export const metadata = { title: 'Posts Feed | NoviCodes' };
+export const metadata = { title: 'Posts Feed' };
 
-// TODO: Create an async data fetching function
-async function getPosts() {
-    // Mock database query:
-    return [
-        { id: 1, title: 'Building Fullstack Apps with Next.js 15' },
-        { id: 2, title: 'React Server Components & Zero Bundle Size' },
-    ];
-}
+// 1. Define async function getPosts() returning mock array of posts:
 
-// TODO: Export default async function for the page component
-export default async function PostsPage() {
-    // TODO: Await getPosts()
-    const posts = [];
 
-    // TODO: Return JSX with a <main>, <h1>, and <ul> that maps over posts
-    return (
-        <main>
-            <h1>Recent Posts</h1>
-            <ul>
-                {/* TODO: posts.map(p => <li key={p.id}>{p.title}</li>) */}
-            </ul>
-        </main>
-    );
-}`;
+// 2. Export default async function PostsPage():
+//    - Await getPosts()
+//    - Return JSX with a <main>, <h1>, and <ul> mapping over posts
+
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');

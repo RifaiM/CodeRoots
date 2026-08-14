@@ -442,24 +442,20 @@ export async function addBookmark(formData) {
         <script>
         const DRAFT_KEY = 'partF_branchC_lesson3_draft';
         const DEFAULT_STARTER_CODE = `// actions.js — Next.js Server Actions
-// Server Actions run on the server and require 'use server'
+// 🛠️ Practice Task: Build a Server Action with form mutation & cache revalidation
 
-// TODO: Add 'use server' directive on line 1
-// 'use server';
+// 1. Add 'use server' directive on line 1:
 
-// TODO: Import revalidatePath from 'next/cache'
-// import { revalidatePath } from 'next/cache';
 
-// Task: Write an async Server Action to add a bookmark
-export async function addBookmark(formData) {
-    // TODO: Extract 'url' from formData with formData.get('url')
-    const url = null;
+// 2. Import revalidatePath from 'next/cache':
 
-    // TODO: Call revalidatePath('/bookmarks') to purge cache
-    // revalidatePath('/bookmarks');
 
-    return { success: true };
-}`;
+// 3. Export async function addBookmark(formData):
+//    - Extract 'url' using formData.get('url')
+//    - Call revalidatePath('/bookmarks')
+//    - Return { success: true }
+
+`;
 
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
