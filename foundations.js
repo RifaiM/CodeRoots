@@ -451,8 +451,8 @@ function initCssConceptWidgets() {
     // A. Box Model Explorer
     const layers = [
         { id: 'bmMarginLayer', name: 'Margin 🚚', desc: 'Outer space in the delivery truck separating this box from neighbor elements so they don\'t smash together.' },
-        { id: 'bmBorderLayer', name: 'Border 📦', desc: 'The visible cardboard box outline surrounding the bubble wrap (e.g. 2px solid #f59e0b).' },
-        { id: 'bmPaddingLayer', name: 'Padding 🫧', desc: 'The protective bubble wrap inside the box giving your text/image breathing room from the cardboard walls.' },
+        { id: 'bmBorderLayer', name: 'Border 📦', desc: 'The visible cardboard box outline surrounding the inner cushion (e.g. 2px solid #f59e0b).' },
+        { id: 'bmPaddingLayer', name: 'Padding 🛡️', desc: 'The protective inner cushion inside the box giving your text/image breathing room from the cardboard walls.' },
         { id: 'bmContentLayer', name: 'Content ☕', desc: 'The actual valuable item inside the box (your text headline, paragraph, photo, or button).' }
     ];
 
