@@ -252,8 +252,8 @@ window.confirmResetProgress = function() {
             title: '⚠️ Reset All Progress?',
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
-                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                    <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
+                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -271,7 +271,20 @@ window.confirmResetProgress = function() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                // 1. Reset Level 0 & Part A Concepts
+                // 1. Reset User XP & Stats
+                localStorage.removeItem('userXP');
+                localStorage.removeItem('novicodes_user_xp');
+                localStorage.removeItem('novicodes_xp');
+
+                // 2. Reset Daily Quests & Streaks
+                localStorage.removeItem('novicodes_streak_count');
+                localStorage.removeItem('novicodes_longest_streak');
+                localStorage.removeItem('novicodes_last_quest_date');
+                localStorage.removeItem('novicodes_daily_quest_xp');
+                localStorage.removeItem('novicodes_streak_bonus_xp');
+                localStorage.removeItem('novicodes_streak_freeze');
+
+                // 3. Reset Level 0 & Part A Concepts
                 localStorage.removeItem('level0_completed');
                 localStorage.removeItem('level0_quiz_completed');
                 localStorage.removeItem('level0_quiz_score');
@@ -280,17 +293,12 @@ window.confirmResetProgress = function() {
                 localStorage.removeItem('readCSS');
                 localStorage.removeItem('readJavaScript');
 
-                // 2. Reset Levels 1-3
+                // 4. Reset Levels 1-3
                 localStorage.removeItem('level1_completed');
                 localStorage.removeItem('level2_completed');
                 localStorage.removeItem('level3_completed');
 
-                // 3. Reset User XP & Stats
-                localStorage.removeItem('userXP');
-                localStorage.removeItem('novicodes_user_xp');
-                localStorage.removeItem('novicodes_xp');
-
-                // 4. Reset Levels 4-6 Lessons
+                // 5. Reset Levels 4-6 Lessons
                 for (let i = 1; i <= 15; i++) {
                     localStorage.removeItem(`partB_lesson${i}_remake_complete`);
                     localStorage.removeItem(`partB_lesson${i}_remake_completed`);
@@ -302,7 +310,7 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`partE_lesson${i}_remake_completed`);
                 }
 
-                // 5. Reset Level 7
+                // 6. Reset Level 7
                 for (let i = 1; i <= 6; i++) {
                     localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
                     localStorage.removeItem(`partF_branchA_lesson${i}_completed`);

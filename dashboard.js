@@ -425,24 +425,93 @@ window.NoviCodes = {
                 title: '🔓 Dev Mode: All Unlocked!',
                 text: 'All tracks, lessons, and certificates are unlocked for testing.',
                 confirmButtonColor: '#10b981'
-            }).then(() => location.reload());
+            }).then(() => window.location.reload());
         } else {
-            location.reload();
+            window.location.reload();
         }
     },
 
     lockAll: function() {
+        // 1. Reset Dev Unlock Flag
         localStorage.removeItem('practice_mode_unlocked');
-        console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
+        localStorage.removeItem('progression_mode');
+
+        // 2. Reset User XP & Streaks
+        localStorage.removeItem('userXP');
+        localStorage.removeItem('novicodes_user_xp');
+        localStorage.removeItem('novicodes_xp');
+        localStorage.removeItem('novicodes_streak_count');
+        localStorage.removeItem('novicodes_longest_streak');
+        localStorage.removeItem('novicodes_last_quest_date');
+        localStorage.removeItem('novicodes_daily_quest_xp');
+        localStorage.removeItem('novicodes_streak_bonus_xp');
+        localStorage.removeItem('novicodes_streak_freeze');
+
+        // 3. Reset Level Completion & Concept Flags
+        localStorage.removeItem('level0_completed');
+        localStorage.removeItem('level0_quiz_completed');
+        localStorage.removeItem('level0_quiz_score');
+        localStorage.removeItem('readWebsite');
+        localStorage.removeItem('readHTML');
+        localStorage.removeItem('readCSS');
+        localStorage.removeItem('readJavaScript');
+        localStorage.removeItem('level1_completed');
+        localStorage.removeItem('level2_completed');
+        localStorage.removeItem('level3_completed');
+        localStorage.removeItem('level4_completed');
+        localStorage.removeItem('level5_completed');
+        localStorage.removeItem('level6_completed');
+        localStorage.removeItem('level7_completed');
+
+        // 4. Reset Level 7 Track & Branch Completion Flags
+        localStorage.removeItem('partF_completed');
+        localStorage.removeItem('partF_complete');
+        localStorage.removeItem('partF_branchA_completed');
+        localStorage.removeItem('partF_branchA_complete');
+        localStorage.removeItem('partF_branchB_completed');
+        localStorage.removeItem('partF_branchB_complete');
+        localStorage.removeItem('partF_branchC_completed');
+        localStorage.removeItem('partF_branchC_complete');
+
+        // 5. Reset Lessons 1-20 (Levels 1-6)
+        for (let i = 1; i <= 20; i++) {
+            localStorage.removeItem(`partB_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partB_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partC_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partD_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partD_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partE_lesson${i}_remake_completed`);
+            localStorage.removeItem(`lesson_${i}_completed`);
+            localStorage.removeItem(`lesson_${i}_complete`);
+        }
+
+        // 6. Reset Level 7 Branch A, B, C Lessons & Keystroke Drafts
+        for (let i = 1; i <= 6; i++) {
+            localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+            localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
+            localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
+
+            localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+            localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
+            localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
+
+            localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
+            localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
+            localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
+        }
+
+        console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression & 0 XP RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
         if (typeof Swal !== 'undefined') {
             Swal.fire({
                 icon: 'info',
                 title: '🔒 Standard Mode Restored',
-                text: 'Sequential lesson locks have been re-enabled.',
+                text: 'Sequential progression and 0 XP have been restored.',
                 confirmButtonColor: '#2563eb'
-            }).then(() => location.reload());
+            }).then(() => window.location.reload());
         } else {
-            location.reload();
+            window.location.reload();
         }
     },
 
@@ -940,8 +1009,8 @@ window.confirmResetProgress = function() {
             title: '⚠️ Reset All Progress?',
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
-                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                    <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
+                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -964,7 +1033,15 @@ window.confirmResetProgress = function() {
                 localStorage.removeItem('novicodes_user_xp');
                 localStorage.removeItem('novicodes_xp');
 
-                // 2. Reset Level Completion & Concept Flags
+                // 2. Reset Daily Quests & Streaks
+                localStorage.removeItem('novicodes_streak_count');
+                localStorage.removeItem('novicodes_longest_streak');
+                localStorage.removeItem('novicodes_last_quest_date');
+                localStorage.removeItem('novicodes_daily_quest_xp');
+                localStorage.removeItem('novicodes_streak_bonus_xp');
+                localStorage.removeItem('novicodes_streak_freeze');
+
+                // 3. Reset Level Completion & Concept Flags
                 localStorage.removeItem('level0_completed');
                 localStorage.removeItem('level0_quiz_completed');
                 localStorage.removeItem('level0_quiz_score');
@@ -980,7 +1057,7 @@ window.confirmResetProgress = function() {
                 localStorage.removeItem('level6_completed');
                 localStorage.removeItem('level7_completed');
 
-                // 3. Reset Level 7 Track & Branch Completion Flags
+                // 4. Reset Level 7 Track & Branch Completion Flags
                 localStorage.removeItem('partF_completed');
                 localStorage.removeItem('partF_complete');
                 localStorage.removeItem('partF_branchA_completed');
@@ -990,7 +1067,7 @@ window.confirmResetProgress = function() {
                 localStorage.removeItem('partF_branchC_completed');
                 localStorage.removeItem('partF_branchC_complete');
 
-                // 4. Reset Lessons 1-20 (Levels 1-6)
+                // 5. Reset Lessons 1-20 (Levels 1-6)
                 for (let i = 1; i <= 20; i++) {
                     localStorage.removeItem(`partB_lesson${i}_remake_complete`);
                     localStorage.removeItem(`partB_lesson${i}_remake_completed`);
@@ -1004,7 +1081,7 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`lesson_${i}_complete`);
                 }
 
-                // 5. Reset Level 7 Branch A, B, C Lessons & Keystroke Drafts
+                // 6. Reset Level 7 Branch A, B, C Lessons & Keystroke Drafts
                 for (let i = 1; i <= 6; i++) {
                     localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
                     localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
@@ -1019,7 +1096,7 @@ window.confirmResetProgress = function() {
                     localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
                 }
 
-                // 6. Reset Practice Mode & Toggles
+                // 7. Reset Practice Mode & Toggles
                 localStorage.removeItem('practice_mode_unlocked');
                 localStorage.removeItem('progression_mode');
 

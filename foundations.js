@@ -299,8 +299,8 @@ window.confirmResetProgress = function() {
             title: '⚠️ Reset All Progress?',
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
-                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                    <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
+                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -319,6 +319,17 @@ window.confirmResetProgress = function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Clear all progress keys
+                localStorage.removeItem('userXP');
+                localStorage.removeItem('novicodes_user_xp');
+                localStorage.removeItem('novicodes_xp');
+
+                localStorage.removeItem('novicodes_streak_count');
+                localStorage.removeItem('novicodes_longest_streak');
+                localStorage.removeItem('novicodes_last_quest_date');
+                localStorage.removeItem('novicodes_daily_quest_xp');
+                localStorage.removeItem('novicodes_streak_bonus_xp');
+                localStorage.removeItem('novicodes_streak_freeze');
+
                 localStorage.removeItem('level0_completed');
                 localStorage.removeItem('level0_quiz_completed');
                 localStorage.removeItem('level0_quiz_score');
