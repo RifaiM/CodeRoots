@@ -159,9 +159,31 @@
         // Trigger Confetti Celebration
         triggerQuestConfetti();
 
-        // Refresh Header Badges
-        if (window.updateHeaderStats) window.updateHeaderStats();
-        if (window.updateDashboardHeader) window.updateDashboardHeader();
+        // Refresh Header Badges Live
+        if (typeof window.updateHeaderStats === 'function') {
+            window.updateHeaderStats();
+        } else if (typeof window.initUserProgress === 'function') {
+            window.initUserProgress();
+        }
+
+        // Direct DOM update guarantee & visual pop animation
+        const xpBadgeEl = document.querySelector('.xp-badge');
+        const xpLabelEl = document.querySelector('.xp-badge .badge-label') || document.getElementById('userXpLabel');
+        if (typeof window.getUserXPAndRank === 'function' && xpLabelEl) {
+            const stats = window.getUserXPAndRank();
+            xpLabelEl.textContent = `${stats.totalXP.toLocaleString()} XP`;
+            const rankLabel = document.getElementById('userRankLabel');
+            const rankIcon = document.getElementById('userRankIcon');
+            if (rankLabel) rankLabel.textContent = stats.rankTitle;
+            if (rankIcon) rankIcon.textContent = stats.rankIcon;
+        }
+
+        if (xpBadgeEl) {
+            xpBadgeEl.classList.remove('xp-reward-pulse');
+            void xpBadgeEl.offsetWidth; // Force CSS reflow
+            xpBadgeEl.classList.add('xp-reward-pulse');
+        }
+
         updateStreakHeaderBadge();
 
         // Show Celebration Modal

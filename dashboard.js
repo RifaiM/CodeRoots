@@ -193,6 +193,18 @@ window.getUserXPAndRank = function() {
 /**
  * 2. Progression Lock/Unlock Engine & XP Calculation
  */
+
+window.updateHeaderStats = function() {
+    const stats = window.getUserXPAndRank();
+    const xpBadge = document.querySelector('.xp-badge .badge-label');
+    const rankIcon = document.getElementById('userRankIcon');
+    const rankLabel = document.getElementById('userRankLabel');
+    if (xpBadge) xpBadge.textContent = `${stats.totalXP.toLocaleString()} XP`;
+    if (rankLabel) rankLabel.textContent = stats.rankTitle;
+    if (rankIcon) rankIcon.textContent = stats.rankIcon;
+};
+window.initUserProgress = initUserProgress;
+
 function initUserProgress() {
     let completedCount = 0;
     
