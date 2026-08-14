@@ -2,13 +2,12 @@
  * Level 7 Dojo Inspector — Multi-mode Code Linter & Validation Engine
  * NoviCodes Platform | Track 7A (DevOps) · 7B (Python/SQL/Auth) · 7C (Next.js)
  *
- * Usage in any Level 7 lesson:
- *   Level7Linter.init('editorId', 'lintPanelId', { mode: 'python' | 'sql' | 'nextjs' | 'yaml' | 'bash' });
- *   Level7Linter.check(codeString);
- *
- * Checklist Engine:
- *   Level7Linter.initChecklist(tasks, { editorId, submitBtnId, onAllPassed });
- *   Level7Linter.runChecklist(codeString);
+ * Capabilities:
+ *   - Real-time syntax inspection across 5 languages (Python, SQL, Next.js, YAML, Bash)
+ *   - Dynamic task checklist with live ⬜ / ✅ transitions on user input
+ *   - Supports single textarea editors or multi-input forms
+ *   - Comprehensive diagnostic feedback with actionable hints for terminal display
+ *   - SweetAlert diagnostic modals for incomplete tasks
  */
 (function () {
     'use strict';
@@ -40,12 +39,12 @@
             'textarea.l7-lint-ok-border{border-left:3px solid #22c55e!important}',
             /* Checklist styles */
             '.l7-checklist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}',
-            '.l7-checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:.88rem;color:#475569;font-weight:600;transition:all .25s ease}',
-            '.l7-checklist li .l7-check-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;transition:transform .2s ease}',
-            '.l7-checklist li.l7-done{background:#f0fdf4;border-color:#86efac;color:#166534}',
-            '.l7-checklist li.l7-done .l7-check-icon{transform:scale(1.15)}',
-            '.l7-checklist li code{background:#e2e8f0;padding:1px 6px;border-radius:5px;font-family:"Fira Code",monospace;font-size:.78rem}',
-            '.l7-checklist li.l7-done code{background:#dcfce7;color:#166534}',
+            '.l7-checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#0f172a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-size:.86rem;color:#94a3b8;font-weight:600;transition:all .2s ease}',
+            '.l7-checklist li .l7-check-icon{font-size:1.05rem;flex-shrink:0;margin-top:1px;transition:transform .2s ease}',
+            '.l7-checklist li.l7-done{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.35);color:#34d399}',
+            '.l7-checklist li.l7-done .l7-check-icon{transform:scale(1.1)}',
+            '.l7-checklist li code{background:rgba(255,255,255,0.08);color:#e2e8f0;padding:2px 6px;border-radius:5px;font-family:"Fira Code",monospace;font-size:.78rem}',
+            '.l7-checklist li.l7-done code{background:rgba(16,185,129,0.2);color:#a7f3d0}',
             /* Slide-in keyframe */
             '@keyframes l7SlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}'
         ].join('');
@@ -55,29 +54,24 @@
     // ─── Utility ──────────────────────────────────────────────────────────────
 
     function stripLineComments(code, commentChar) {
-        // Strip single-line comments (# for Python, -- for SQL, // for JS)
         var pattern = commentChar === '#'  ? /#[^\n]*/g
                     : commentChar === '--' ? /--[^\n]*/g
-                    :                       /\/\/[^\n]*/g;
+                    :                        /\/\/[^\n]*/g;
         return code.replace(pattern, '');
-    }
-
-    function countChar(str, ch) {
-        return (str.match(new RegExp('\\' + ch, 'g')) || []).length;
     }
 
     // ─── ERROR RULE BANKS ─────────────────────────────────────────────────────
 
     var PYTHON_RULES = [
-        { test: /\bprin(?!t)\s*\(/i,         title: "Typo: 'prin(' — did you mean 'print('?",   hint: 'The output function in Python is <code>print(...)</code>.' },
-        { test: /^\s*def\s+\w+\s*\([^)]*\)\s*$/m, title: "Missing colon on <code>def</code>",   hint: 'Function definitions must end with a colon: <code>def my_func():</code>' },
-        { test: /^\s*class\s+\w+[^:\n#]*$/m,  title: "Missing colon on <code>class</code>",     hint: 'Class definitions must end with a colon: <code>class MyClass:</code>' },
-        { test: /^\s*(?:if|elif)\b[^:\n#]+$/m,title: "Missing colon on <code>if/elif</code>",   hint: 'Conditionals need a colon: <code>if x > 0:</code>' },
-        { test: /^\s*else\s*[^:\n#]+$/m,      title: "Missing colon on <code>else</code>",      hint: '<code>else</code> must be followed by a colon: <code>else:</code>' },
-        { test: /^\s*for\b[^:\n#]+$/m,        title: "Missing colon on <code>for</code>",       hint: 'For loops need a colon: <code>for item in items:</code>' },
-        { test: /^\s*while\b[^:\n#]+$/m,      title: "Missing colon on <code>while</code>",     hint: 'While loops need a colon: <code>while x > 0:</code>' },
-        { test: /^\s*try\s*[^:\n#]+$/m,       title: "Missing colon on <code>try</code>",       hint: '<code>try</code> must be followed by a colon: <code>try:</code>' },
-        { test: /^\s*except[^:\n#]*$/m,       title: "Missing colon on <code>except</code>",    hint: '<code>except</code> must be followed by a colon: <code>except Exception as e:</code>' },
+        { test: /\bprin(?!t)\s*\(/i,          title: "Typo: 'prin(' — did you mean 'print('?",   hint: 'The output function in Python is <code>print(...)</code>.' },
+        { test: /^\s*def\s+\w+\s*\([^)]*\)\s*$/m,  title: "Missing colon on <code>def</code>",   hint: 'Function definitions must end with a colon: <code>def my_func():</code>' },
+        { test: /^\s*class\s+\w+[^:\n#]*$/m,   title: "Missing colon on <code>class</code>",     hint: 'Class definitions must end with a colon: <code>class MyClass:</code>' },
+        { test: /^\s*(?:if|elif)\b[^:\n#]+$/m, title: "Missing colon on <code>if/elif</code>",   hint: 'Conditionals need a colon: <code>if x > 0:</code>' },
+        { test: /^\s*else\s*[^:\n#]+$/m,       title: "Missing colon on <code>else</code>",      hint: '<code>else</code> must be followed by a colon: <code>else:</code>' },
+        { test: /^\s*for\b[^:\n#]+$/m,         title: "Missing colon on <code>for</code>",       hint: 'For loops need a colon: <code>for item in items:</code>' },
+        { test: /^\s*while\b[^:\n#]+$/m,       title: "Missing colon on <code>while</code>",     hint: 'While loops need a colon: <code>while x > 0:</code>' },
+        { test: /^\s*try\s*[^:\n#]+$/m,        title: "Missing colon on <code>try</code>",       hint: '<code>try</code> must be followed by a colon: <code>try:</code>' },
+        { test: /^\s*except[^:\n#]*$/m,        title: "Missing colon on <code>except</code>",    hint: '<code>except</code> must be followed by a colon: <code>except Exception as e:</code>' },
         {
             test: function(code) {
                 return code.split('\n').some(function(line) {
@@ -89,36 +83,24 @@
                 });
             },
             title: 'Unclosed String Detected',
-            hint: 'Every opening <code>"</code> or <code>\'</code> must have a matching closing quote on the same line.'
+            hint: 'Every opening quote must have a matching closing quote on the same line.'
         },
-        { test: /\bimport\s+\*\s+from\b/,     title: "Python doesn't use <code>import * from</code>", hint: 'Python import syntax is: <code>from module import something</code> or <code>import module</code>' },
+        { test: /\bimport\s+\*\s+from\b/,      title: "Python doesn't use <code>import * from</code>", hint: 'Use <code>from module import something</code> or <code>import module</code>' },
     ];
 
     var SQL_RULES = [
-        { test: /\bSELCT\b/i,  title: "Typo: 'SELCT' — did you mean 'SELECT'?", hint: 'SQL keyword is <code>SELECT</code>.' },
-        { test: /\bFORM\b/i,   title: "Typo: 'FORM' — did you mean 'FROM'?",   hint: 'SQL keyword is <code>FROM</code>.' },
-        { test: /\bWHER\b(?!E)/i, title: "Typo: 'WHER' — did you mean 'WHERE'?", hint: 'SQL keyword is <code>WHERE</code>.' },
+        { test: /\bSELCT\b/i,   title: "Typo: 'SELCT' — did you mean 'SELECT'?", hint: 'SQL keyword is <code>SELECT</code>.' },
+        { test: /\bFORM\b/i,    title: "Typo: 'FORM' — did you mean 'FROM'?",   hint: 'SQL keyword is <code>FROM</code>.' },
+        { test: /\bWHER\b(?!E)/i,  title: "Typo: 'WHER' — did you mean 'WHERE'?", hint: 'SQL keyword is <code>WHERE</code>.' },
         { test: /\bINSERT\s+INTO\b(?![\s\S]*VALUES\b)/i, title: "INSERT INTO is missing VALUES", hint: '<code>INSERT INTO table (...) VALUES (...);</code>' },
-        {
-            test: function(code) {
-                var stripped = stripLineComments(code, '--').trim();
-                // If there's meaningful SQL content (SELECT/INSERT/UPDATE/CREATE/DELETE), it should end with ;
-                if (/\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER)\b/i.test(stripped)) {
-                    return !/;\s*$/.test(stripped);
-                }
-                return false;
-            },
-            title: 'SQL statement may be missing a semicolon <code>;</code>',
-            hint: 'Most SQL statements should end with a semicolon: <code>SELECT * FROM users;</code>'
-        },
         {
             test: function(code) {
                 var opens = (code.match(/\(/g) || []).length;
                 var closes = (code.match(/\)/g) || []).length;
                 return opens !== closes;
             },
-            title: 'Unmatched parentheses',
-            hint: 'Check that every <code>(</code> has a matching <code>)</code>.'
+            title: 'Unmatched parentheses in SQL',
+            hint: 'Check that every opening <code>(</code> has a matching closing <code>)</code>.'
         },
     ];
 
@@ -130,56 +112,33 @@
                 return hasHooks && !hasDirective;
             },
             title: "Missing <code>'use client'</code> directive",
-            hint: 'React hooks like <code>useState</code> and <code>useEffect</code> require the <code>\'use client\'</code> directive at the very top of the file.'
+            hint: 'React hooks require the <code>\'use client\'</code> directive at the very top of the file.'
         },
         {
             test: function(code) {
                 var hasServerAction = /export\s+async\s+function/.test(code) && !/^\s*['"]use server['"]/m.test(code) && !/^\s*['"]use client['"]/m.test(code);
-                // Only flag if code looks like a server action file (has revalidatePath, redirect, db calls)
                 return hasServerAction && /\b(revalidatePath|revalidateTag|redirect|cookies|headers)\s*\(/.test(code);
             },
             title: "Missing <code>'use server'</code> directive for Server Action",
-            hint: 'Server Actions require <code>\'use server\'</code> at the top of the file or function. Example: <code>\'use server\'\\nexport async function myAction() { ... }</code>'
-        },
-        {
-            test: function(code) {
-                // Check for basic unmatched JSX tags (very simple check)
-                var opens = (code.match(/<[A-Z][A-Za-z]*\b[^/]*>/g) || []).length;
-                var selfClose = (code.match(/<[A-Z][A-Za-z]*\b[^>]*\/>/g) || []).length;
-                var closes = (code.match(/<\/[A-Z][A-Za-z]*>/g) || []).length;
-                return (opens - selfClose) > closes + 2; // allow some tolerance
-            },
-            title: 'Possible unmatched JSX component tags',
-            hint: 'Make sure every JSX component opening tag like <code>&lt;MyComponent&gt;</code> has a matching closing tag <code>&lt;/MyComponent&gt;</code> or is self-closing <code>&lt;MyComponent /&gt;</code>.'
-        },
-        {
-            test: /\bexport default async function\s+\w+\s*\(\s*\)\s*\{[^}]*\breturn\b[^}]*\}/,
-            title: "Async Server Components can't use hooks directly",
-            hint: 'Async Server Components (<code>async function Page()</code>) cannot use React hooks. Move hook logic into a separate Client Component with <code>\'use client\'</code>.'
-        },
+            hint: 'Server Actions require <code>\'use server\'</code> at the top of the file.'
+        }
     ];
 
     var YAML_RULES = [
         {
             test: function(code) {
                 return code.split('\n').some(function(line) {
-                    // Detect tab indentation (YAML uses spaces)
                     return /^\t/.test(line);
                 });
             },
             title: 'YAML uses spaces, not tabs for indentation',
-            hint: 'YAML is indentation-sensitive and requires <strong>spaces</strong> (not tabs). Check your editor settings and replace any tab characters with 2 or 4 spaces.'
-        },
-        {
-            test: /:\s*\n\s*-\s*\n/,
-            title: 'Possible empty YAML list item',
-            hint: 'A YAML list item under a key should have a value: <code>- name: my-step</code>'
-        },
+            hint: 'YAML is indentation-sensitive and requires spaces (2 or 4). Replace tab characters with spaces.'
+        }
     ];
 
     var BASH_RULES = [
-        { test: /git\s+init\s+\./,          title: "Incorrect: <code>git init .</code>",   hint: 'The correct command is just <code>git init</code> (no dot). The dot is used with other commands like <code>git add .</code>' },
-        { test: /git\s+commit\s+['"][^'"]+['"]/i, title: "Missing <code>-m</code> flag on git commit", hint: 'To add a commit message, use: <code>git commit -m "your message"</code>' },
+        { test: /git\s+init\s+\./,           title: "Incorrect: <code>git init .</code>",   hint: 'The correct command is just <code>git init</code> (no dot).' },
+        { test: /git\s+commit\s+['"][^'"]+['"]/i, title: "Missing <code>-m</code> flag on git commit", hint: 'Use <code>git commit -m "your message"</code>' }
     ];
 
     var RULE_BANKS = {
@@ -188,6 +147,7 @@
         nextjs: NEXTJS_RULES,
         yaml:   YAML_RULES,
         bash:   BASH_RULES,
+        toml:   []
     };
 
     // ─── Linter Core ──────────────────────────────────────────────────────────
@@ -220,9 +180,7 @@
 
         if (!trimmed) {
             panelEl.innerHTML = '';
-            if (editorEl) {
-                editorEl.classList.remove('l7-lint-error-border', 'l7-lint-ok-border');
-            }
+            if (editorEl) editorEl.classList.remove('l7-lint-error-border', 'l7-lint-ok-border');
             return true;
         }
 
@@ -239,7 +197,6 @@
             }
         }
 
-        // All rules passed
         panelEl.innerHTML = '';
         if (editorEl) {
             editorEl.classList.remove('l7-lint-error-border');
@@ -250,37 +207,72 @@
 
     // ─── Checklist Engine ─────────────────────────────────────────────────────
 
-    var _tasks       = [];
-    var _submitBtnId = null;
-    var _onAllPassed = null;
-    var _checkEditorId = null;
+    var _tasks         = [];
+    var _submitBtnId   = null;
+    var _onAllPassed   = null;
+    var _getCodeFn     = null;
+    var _checklistContId = null;
 
-    function runChecklist(code) {
-        var allPassed = true;
-        var stripped = (code || '').replace(/\/\/.*/g, '').replace(/#.*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
+    function getCurrentCode() {
+        if (typeof _getCodeFn === 'function') return _getCodeFn();
+        if (_editorId) {
+            var el = document.getElementById(_editorId);
+            if (el) return el.value || '';
+        }
+        return '';
+    }
 
-        _tasks.forEach(function(task) {
-            var passed = false;
+    function evaluateTasks(code) {
+        var str = (code !== undefined && code !== null) ? String(code) : getCurrentCode();
+        // Clean comments for logic checking (while preserving raw code for strings)
+        var stripped = str.replace(/\/\/[^\n]*/g, '')
+                          .replace(/#[^\n]*/g, '')
+                          .replace(/\/\*[\s\S]*?\*\//g, '');
+
+        var passedTasks = [];
+        var failedTasks = [];
+
+        _tasks.forEach(function (task) {
+            var isPass = false;
             if (typeof task.fn === 'function') {
-                passed = task.fn(code, stripped);
+                try {
+                    isPass = !!task.fn(str, stripped);
+                } catch (e) {
+                    isPass = false;
+                }
             } else if (task.regex) {
-                passed = task.regex.test(stripped) || task.regex.test(code);
+                isPass = task.regex.test(stripped) || task.regex.test(str);
             }
 
+            var itemObj = {
+                id: task.id,
+                label: task.label,
+                hint: task.hint || '',
+                passed: isPass
+            };
+
+            if (isPass) {
+                passedTasks.push(itemObj);
+            } else {
+                failedTasks.push(itemObj);
+            }
+
+            // Live DOM update if element exists
             var li = document.querySelector('.l7-checklist [data-task="' + task.id + '"]');
             if (li) {
-                if (passed) {
+                if (isPass) {
                     li.classList.add('l7-done');
-                    li.querySelector('.l7-check-icon').textContent = '✅';
+                    var icon = li.querySelector('.l7-check-icon');
+                    if (icon) icon.textContent = '✅';
                 } else {
                     li.classList.remove('l7-done');
-                    li.querySelector('.l7-check-icon').textContent = '⬜';
-                    allPassed = false;
+                    var icon2 = li.querySelector('.l7-check-icon');
+                    if (icon2) icon2.textContent = '⬜';
                 }
-            } else {
-                if (!passed) allPassed = false;
             }
         });
+
+        var allPassed = failedTasks.length === 0 && _tasks.length > 0;
 
         var submitBtn = document.getElementById(_submitBtnId);
         if (submitBtn) {
@@ -292,6 +284,14 @@
         if (allPassed && typeof _onAllPassed === 'function') {
             _onAllPassed();
         }
+
+        return {
+            allPassed: allPassed,
+            passedCount: passedTasks.length,
+            totalCount: _tasks.length,
+            passedTasks: passedTasks,
+            failedTasks: failedTasks
+        };
     }
 
     function buildChecklistHTML(tasks) {
@@ -307,7 +307,7 @@
          * Initialize the linter for an editor textarea
          * @param {string} editorId  - ID of the <textarea> element
          * @param {string} panelId   - ID of the lint panel container div
-         * @param {object} opts      - { mode: 'python'|'sql'|'nextjs'|'yaml'|'bash' }
+         * @param {object} opts      - { mode: 'python'|'sql'|'nextjs'|'yaml'|'bash'|'toml' }
          */
         init: function(editorId, panelId, opts) {
             _editorId = editorId;
@@ -321,56 +321,131 @@
                 clearTimeout(_debounceTimer);
                 _debounceTimer = setTimeout(function() {
                     checkCode(editorEl.value);
-                    if (_tasks.length > 0) runChecklist(editorEl.value);
-                }, 350);
+                    if (_tasks.length > 0) evaluateTasks(editorEl.value);
+                }, 200);
             });
 
-            // Initial check
+            // Initial evaluation on load
             setTimeout(function() {
-                if (editorEl.value) {
-                    checkCode(editorEl.value);
-                    if (_tasks.length > 0) runChecklist(editorEl.value);
-                }
-            }, 200);
-        },
-
-        /**
-         * Run a manual lint check (call after setting editor value)
-         * @param {string} code
-         */
-        check: function(code) {
-            checkCode(code);
-            if (_tasks.length > 0) runChecklist(code);
+                checkCode(editorEl.value);
+                if (_tasks.length > 0) evaluateTasks(editorEl.value);
+            }, 100);
         },
 
         /**
          * Initialize the live task checklist
-         * @param {Array}  tasks       - [{ id, label, regex?, fn? }, ...]
-         * @param {object} opts        - { containerId, submitBtnId, onAllPassed? }
+         * @param {Array}  tasks - [{ id, label, hint?, regex?, fn? }, ...]
+         * @param {object} opts  - { containerId, submitBtnId, inputIds?: Array, getCodeFn?: Function, onAllPassed? }
          */
         initChecklist: function(tasks, opts) {
-            _tasks       = tasks || [];
-            _submitBtnId = opts && opts.submitBtnId;
-            _onAllPassed = opts && opts.onAllPassed;
+            _tasks           = tasks || [];
+            _submitBtnId     = opts && opts.submitBtnId;
+            _onAllPassed     = opts && opts.onAllPassed;
+            _getCodeFn       = opts && opts.getCodeFn;
+            _checklistContId = opts && opts.containerId;
 
-            var container = opts && opts.containerId && document.getElementById(opts.containerId);
+            var container = _checklistContId && document.getElementById(_checklistContId);
             if (container && _tasks.length > 0) {
                 container.innerHTML = buildChecklistHTML(_tasks);
             }
+
+            // Bind to multi-input forms if provided
+            if (opts && opts.inputIds && Array.isArray(opts.inputIds)) {
+                opts.inputIds.forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el) {
+                        el.addEventListener('input', function() {
+                            evaluateTasks();
+                        });
+                    }
+                });
+            }
+
+            // Run initial evaluation
+            setTimeout(function() {
+                evaluateTasks();
+            }, 100);
         },
 
         /**
-         * Manually trigger checklist evaluation
-         * @param {string} code
+         * Evaluate tasks against code and update UI
+         * @param {string} [code]
+         * @returns {object} { allPassed, passedCount, totalCount, passedTasks, failedTasks }
+         */
+        evaluate: function(code) {
+            return evaluateTasks(code);
+        },
+
+        /**
+         * Compatibility runner (returns true if all tasks passed)
+         * @param {string} [code]
+         * @returns {boolean}
          */
         runChecklist: function(code) {
-            runChecklist(code);
+            var res = evaluateTasks(code);
+            return res.allPassed;
         },
 
         /**
-         * Get available modes
+         * Format diagnostic feedback for the terminal screen when tasks are incomplete
+         * @param {object} result - result from Level7Linter.evaluate()
+         * @returns {string}
          */
-        modes: ['python', 'sql', 'nextjs', 'yaml', 'bash'],
+        formatFeedback: function(result) {
+            if (!result || result.allPassed) return '';
+
+            var lines = [
+                '❌ [TASK REQUIREMENTS INCOMPLETE: ' + result.passedCount + '/' + result.totalCount + ' PASSED]',
+                '────────────────────────────────────────────────────────'
+            ];
+
+            if (result.passedTasks && result.passedTasks.length > 0) {
+                result.passedTasks.forEach(function(t) {
+                    var cleanLabel = t.label.replace(/<[^>]+>/g, '');
+                    lines.push('  ✅ ' + cleanLabel);
+                });
+            }
+
+            if (result.failedTasks && result.failedTasks.length > 0) {
+                result.failedTasks.forEach(function(t) {
+                    var cleanLabel = t.label.replace(/<[^>]+>/g, '');
+                    lines.push('  ⬜ ' + cleanLabel);
+                    if (t.hint) {
+                        lines.push('     💡 Hint: ' + t.hint);
+                    }
+                });
+            }
+
+            lines.push('────────────────────────────────────────────────────────');
+            lines.push('👉 Edit your code to complete the missing tasks, then click Run again!');
+            return lines.join('\n');
+        },
+
+        /**
+         * Show an informative modal/toast when user clicks Run with incomplete tasks
+         * @param {object} result
+         */
+        showIncompleteModal: function(result) {
+            if (typeof Swal === 'undefined') return;
+            var missing = (result && result.failedTasks) ? result.failedTasks.length : 0;
+            Swal.fire({
+                icon: 'warning',
+                title: 'Task Requirements Incomplete (' + result.passedCount + '/' + result.totalCount + ')',
+                html: '<p style="color:#64748b;font-size:0.92rem;margin:0 0 10px 0;">You have <strong>' + missing + ' task' + (missing > 1 ? 's' : '') + '</strong> remaining to pass this lesson.</p><p style="color:#475569;font-size:0.85rem;margin:0;">Check the 📋 <strong>Task Checklist</strong> and terminal logs for helpful hints!</p>',
+                confirmButtonColor: '#0ea5e9',
+                confirmButtonText: 'Let me fix it! 🛠️'
+            });
+        },
+
+        /**
+         * Run manual lint check
+         */
+        check: function(code) {
+            checkCode(code);
+            evaluateTasks(code);
+        },
+
+        modes: ['python', 'sql', 'nextjs', 'yaml', 'bash', 'toml']
     };
 
 })();

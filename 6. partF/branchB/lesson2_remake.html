@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7B • Lesson 2: Managed Cloud Databases (Supabase & Neon) | NoviCodes</title>
-    <meta name="description" content="Learn cloud database architecture with Supabase & Neon PostgreSQL, connection pooling, SSL connection strings, and environment variables.">
     <meta property="og:title" content="Cloud Database with Neon & Supabase | NoviCodes Track 7B">
     <meta property="og:description" content="Connect to a live PostgreSQL cloud database using Neon or Supabase in Track 7B.">
     <meta property="og:type" content="website">
+    <meta name="description" content="Learn cloud database architecture with Supabase & Neon PostgreSQL, connection pooling, SSL connection strings, and environment variables.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -390,201 +390,6 @@
                     <span>🔌 Cloud Database Connection Config</span>
                 </div>
                 <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Provider: Neon / Supabase Cloud</span>
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.88rem;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .clear-btn:hover {
-            background: rgba(255, 255, 255, 0.16);
-            color: #f8fafc;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Mobile Responsiveness (320px, 375px, 425px, 576px, 868px) */
-        @media (max-width: 868px) {
-            .ide-wrapper {
-                grid-template-columns: 1fr;
-                padding: 0 14px;
-                margin-top: 16px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .panel-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 8px;
-            }
-            .panel-title {
-                text-align: center;
-                justify-content: center;
-                font-size: 0.96rem;
-            }
-            .lesson-badge {
-                text-align: center;
-                margin: 0 auto;
-            }
-            .ide-panel {
-                padding: 16px;
-                border-radius: 14px;
-            }
-            .action-bar {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .run-btn, .clear-btn {
-                padding: 10px 14px;
-                font-size: 0.82rem;
-                width: 100%;
-                box-sizing: border-box;
-                text-align: center;
-                justify-content: center;
-            }
-            .code-box {
-                padding: 38px 12px 12px 12px;
-            }
-            .copy-btn {
-                top: 6px;
-                right: 6px;
-                padding: 3px 8px;
-                font-size: 0.68rem;
-            }
-            .code-box code {
-                white-space: pre-wrap;
-                word-break: break-all;
-                font-size: 0.78rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .ide-wrapper {
-                padding: 0 8px;
-            }
-            .ide-panel {
-                padding: 12px 10px;
-            }
-            .run-btn, .clear-btn {
-                padding: 9px 12px;
-                font-size: 0.78rem;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .panel-title {
-                font-size: 0.92rem;
-            }
-            .lesson-badge {
-                font-size: 0.70rem;
-                padding: 3px 6px;
-            }
-            .terminal-editor {
-                font-size: 0.78rem;
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .ide-wrapper {
-                padding: 0 4px;
-            }
-            .ide-panel {
-                padding: 10px 8px;
-            }
-            .run-btn, .clear-btn {
-                padding: 8px 10px;
-                font-size: 0.74rem;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .code-box {
-                padding: 36px 8px 10px 8px;
-            }
-            .code-box code {
-                font-size: 0.74rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Platform Header -->
-    <header class="platform-header">
-        <div class="header-inner">
-            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
-                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
-                <div class="logo-text">
-                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                    <span class="logo-tag">Level 7 • Track 7B</span>
-                </div>
-            </a>
-
-            <nav class="header-nav-links" aria-label="Main Navigation">
-                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
-                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
-                </a>
-                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
-                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
-                </a>
-                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
-                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
-                </a>
-            </nav>
-
-            <div class="header-user-stats" id="userStatsBar">
-                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
-                    <span class="badge-icon">⚡</span>
-                    <span class="badge-label">Loading...</span>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
-
-    <!-- Main Workspace -->
-    <main class="ide-wrapper">
-        <!-- Left Panel: Concept Guide & Instructions -->
-        <section class="ide-panel">
-            <div class="panel-header">
-                <div class="panel-title">
-                    <span>🐘 Branch 7B • Lesson 2</span>
-                </div>
-                <span class="lesson-badge">Cloud PostgreSQL (Neon & Supabase)</span>
-            </div>
-
-            <div class="instruction-step">
-                <h4>1. Serverless PostgreSQL Architecture</h4>
-                <p>Modern serverless databases like <strong>Neon</strong> and <strong>Supabase</strong> scale connections down to zero and offer instant connection pooling for serverless environments (Vercel, Netlify, AWS Lambda).</p>
-            </div>
-
-            <div class="instruction-step">
-                <h4>2. Database Connection URI Format</h4>
-                <p>Database connections use secure URI formats containing host, port, user, password, database name, and SSL parameters:</p>
-                <div class="code-box">
-                    <button class="copy-btn" onclick="copyToClipboard(`DATABASE_URL=postgresql://novi_user:SecretPass123@ep-cool-db.us-east-1.aws.neon.tech/novidb?sslmode=require`)">📋 Copy</button>
-                    <code>DATABASE_URL=postgresql://novi_user:SecretPass123@ep-cool-db.us-east-1.aws.neon.tech/novidb?sslmode=require</code>
-                </div>
-            </div>
-
-            <div class="instruction-step">
-                <h4>3. Your Practical Task</h4>
-                <p>Configure the <code>DATABASE_URL</code> environment variable using the PostgreSQL protocol for host <code>ep-prod-db.neon.tech</code>, user <code>db_master</code>, password <code>Pass456</code>, database <code>prod_db</code>, with <code>sslmode=require</code>.</p>
-            </div>
-        </section>
-
-        <!-- Right Panel: Connection String Tester -->
-        <section class="ide-panel">
-            <div class="panel-header">
-                <div class="panel-title">
-                    <span>🔌 Cloud Database Connection Config</span>
-                </div>
-                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Provider: Neon / Supabase Cloud</span>
             </div>
 
             <textarea id="editor" class="terminal-editor" placeholder="# Configure your database connection URL below:
@@ -597,10 +402,6 @@ DATABASE_URL=postgresql://db_master:Pass456@ep-prod-db.neon.tech/prod_db?sslmode
 
             <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Enter your DATABASE_URL connection string and click "Test DB Connection"...</div>
-            <div style="margin-top: 14px;">
-                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
-                <div id="l7TaskChecklist"></div>
-            </div>
         </section>
     </main>
 
@@ -625,119 +426,96 @@ DATABASE_URL=postgresql://db_master:Pass456@ep-prod-db.neon.tech/prod_db?sslmode
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
 
-    <script>
+        <script>
         const DRAFT_KEY = 'partF_branchB_lesson2_draft';
         const DEFAULT_STARTER_CODE = `# Cloud Database Connection Configuration
-# Task: Set up a PostgreSQL connection string for Neon/Supabase
-# A DATABASE_URL tells your app WHERE the database is and HOW to log in
+# Task: Set up a PostgreSQL connection string for Neon / Supabase
 
-# TODO: Fill in the connection string below following this format:
-# postgresql://[username]:[password]@[host]/[database]?sslmode=require
+# Format: postgresql://[username]:[password]@[host]/[database]?sslmode=require
+# TODO: Configure DATABASE_URL with:
+#   User: db_master, Password: Pass456, Host: ep-prod-db.neon.tech, Database: prod_db, SSL: require
 
-DATABASE_URL = "postgresql://TODO_username:TODO_password@TODO_host/TODO_dbname?sslmode=require"
+DATABASE_URL = "postgresql://TODO_user:TODO_password@TODO_host/TODO_db?sslmode=require"
 
-# TODO: Also configure the connection pool size
+# Connection pool settings
 DB_POOL_SIZE = 5
 DB_MAX_OVERFLOW = 10`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
+
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'python' });
             Level7Linter.initChecklist([
-                { id: 'dburl',    label: 'Define a <code>DATABASE_URL</code> variable',                   regex: /DATABASE_URL/  },
-                { id: 'protocol', label: 'Use the <code>postgresql://</code> protocol',                   regex: /postgresql:\/\// },
-                { id: 'sslmode',  label: 'Add <code>sslmode=require</code> for secure cloud connection',  regex: /sslmode=require/ },
-                { id: 'host',     label: 'Include a valid host (e.g. <code>.neon.tech</code> or <code>.supabase.co</code>)', fn: (c) => /\\.neon\\.tech|\\.supabase\\.co/.test(c) },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'runBtn' });
-        });
+                { id: 'dburl',    label: 'Define a <code>DATABASE_URL</code> variable',                   hint: 'Write DATABASE_URL = "postgresql://..."', regex: /\bDATABASE_URL\s*=/ },
+                { id: 'protocol', label: 'Use the <code>postgresql://</code> protocol',                   hint: 'Start connection string with postgresql://', regex: /postgresql:\/\// },
+                { id: 'creds',    label: 'Set user <code>db_master</code> and password <code>Pass456</code>', hint: 'Format as db_master:Pass456@', fn: (c, s) => /db_master:Pass456@/.test(s) },
+                { id: 'host',     label: 'Target host <code>ep-prod-db.neon.tech</code> and database <code>prod_db</code>', hint: 'Specify @ep-prod-db.neon.tech/prod_db', fn: (c, s) => /ep-prod-db\.neon\.tech\/prod_db/.test(s) },
+                { id: 'sslmode',  label: 'Add <code>sslmode=require</code> for secure cloud connection',  hint: 'Append ?sslmode=require to the URL', regex: /sslmode=require/ },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Configure a new DATABASE_URL to test...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Configure DATABASE_URL and click Test DB Connection...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text);
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '📋 Connection string copied!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied to clipboard!', showConfirmButton: false, timer: 1800 });
         }
 
         function testDatabaseConnection() {
             const config = editor.value.trim();
-            Level7Linter.runChecklist(config);
             if (!config) {
                 consoleOutput.textContent = '❌ Error: Config editor is empty. Please enter your DATABASE_URL connection string.';
+                consoleOutput.style.color = '#f87171';
                 return;
             }
 
-            if (config.includes('DATABASE_URL') && config.includes('postgresql://') && config.includes('db_master') && config.includes('Pass456') && config.includes('ep-prod-db.neon.tech') && config.includes('prod_db') && config.includes('sslmode=require')) {
-                consoleOutput.textContent = `[CLOUD DB CONNECTOR LOGS]\n[1/3] Resolving DNS for ep-prod-db.neon.tech...\n[2/3] Initiating TLS/SSL Handshake (TLS v1.3)... OK\n[3/3] Authenticating user 'db_master' on database 'prod_db'...\n✅ [SUCCESS] Connection established! Server: PostgreSQL 16.2 (Neon Serverless Pool active)`;
-                
-                localStorage.setItem('partF_branchB_lesson2_completed', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 2 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 2!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 3 🚀',
-                        confirmButtonColor: '#a855f7',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson3_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                let errorMsg = '❌ Connection Error:\n';
-                if (!config.includes('DATABASE_URL')) {
-                    errorMsg += 'Missing DATABASE_URL. A DATABASE_URL tells your app where the DB is and how to log in.\n';
-                } else if (!config.includes('postgresql://')) {
-                    errorMsg += 'Missing postgresql:// protocol. This tells the driver what type of database we are connecting to.\n';
-                } else if (!config.includes('sslmode=require')) {
-                    errorMsg += 'Missing sslmode=require. Cloud databases require SSL to encrypt traffic over the internet.\n';
-                } else if (!config.includes('.neon.tech') && !config.includes('.supabase.co')) {
-                    errorMsg += 'Missing a valid cloud database host (e.g. .neon.tech or .supabase.co).\n';
-                } else {
-                    errorMsg += 'Check your username, password, or database name. Keep trying!\n';
-                }
-                consoleOutput.textContent = errorMsg;
+            const evalResult = Level7Linter.evaluate(config);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
+                consoleOutput.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
+                return;
             }
+
+            consoleOutput.textContent = `[CLOUD DB CONNECTOR LOGS]
+[1/3] Resolving DNS for ep-prod-db.neon.tech...
+[2/3] Initiating TLS/SSL Handshake (TLS v1.3)... OK
+[3/3] Authenticating user 'db_master' on database 'prod_db'...
+✅ [SUCCESS] Connection established! Server: PostgreSQL 16.2 (Neon Serverless Pool active)`;
+            consoleOutput.style.color = '#34d399';
+
+            localStorage.setItem('partF_branchB_lesson2_completed', 'true');
+            localStorage.setItem('partF_branchB_lesson2_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
+
+            setTimeout(() => {
+                Swal.fire({
+                    title: '🎉 Lesson 2 Mastered! (+250 XP)',
+                    html: '<p style="color: #475569;">You connected a live cloud PostgreSQL database with SSL pooling!</p>',
+                    icon: 'success',
+                    showDenyButton: true,
+                    confirmButtonText: 'Continue to Lesson 3 🚀',
+                    confirmButtonColor: '#a855f7',
+                    denyButtonText: 'Stay & Practice 🛠️',
+                    denyButtonColor: '#475569'
+                }).then((result) => {
+                    if (result.isConfirmed) window.location.href = './lesson3_remake.html';
+                });
+            }, 400);
         }
     </script>
 </body>

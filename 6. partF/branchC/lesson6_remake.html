@@ -441,31 +441,27 @@ export default nextConfig;"></textarea>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
 
-    <script>
+        <script>
         const DRAFT_KEY = 'partF_branchC_lesson6_draft';
-        const DEFAULT_STARTER_CODE = `// next.config.mjs — Next.js Build Configuration
-// This file controls how Next.js builds and optimizes your app
+        const DEFAULT_STARTER_CODE = `// next.config.mjs — Next.js Production Build Configuration
+// Controls optimizations, image domains, and server settings
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // TODO: Enable React Strict Mode
+    reactStrictMode: true,
 
-    // TODO: Set the output mode
-    // 'export' = static HTML/CSS/JS (Vercel/Cloudflare)
-    // 'standalone' = Node.js server (Docker/Render/Fly.io)
-    output: 'TODO_output_mode',
-
-    // TODO: Configure allowed image domains for next/image
+    // TODO: Configure allowed image domains with remotePatterns
     images: {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'TODO_your_image_host.com',
+                hostname: 'TODO_image_host.com',
             },
         ],
     },
 
     // TODO: Set environment variables accessible to the browser
-    // Variables prefixed with NEXT_PUBLIC_ are safe to expose client-side
     env: {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -482,12 +478,12 @@ export default nextConfig;`;
 
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
             Level7Linter.initChecklist([
-                { id: 'config',  label: 'Define a <code>nextConfig</code> object', regex: /nextConfig/ },
-                { id: 'output',  label: 'Set <code>output</code> to <code>export</code> or <code>standalone</code>', fn: (c) => /output:\s*['"]export['"]|output:\s*['"]standalone['"]/.test(c) },
-                { id: 'images',  label: 'Configure <code>images.remotePatterns</code>', regex: /remotePatterns/ },
-                { id: 'env',     label: 'Set a <code>NEXT_PUBLIC_</code> env variable', regex: /NEXT_PUBLIC_/ },
-                { id: 'export',  label: 'Export config with <code>export default nextConfig</code>', regex: /export\s+default\s+nextConfig/ },
-            ], { containerId: 'l7TaskChecklist' });
+                { id: 'config',  label: 'Define a <code>nextConfig</code> object',                hint: 'const nextConfig = { ... };', regex: /const\s+nextConfig\s*=/ },
+                { id: 'strict',  label: 'Enable <code>reactStrictMode: true</code>',             hint: 'Set reactStrictMode: true inside nextConfig', fn: (c, s) => /reactStrictMode\s*:\s*true/.test(s) },
+                { id: 'images',  label: 'Configure <code>images.remotePatterns</code>',          hint: 'Configure images: { remotePatterns: [...] }', fn: (c, s) => /remotePatterns/.test(s) },
+                { id: 'env',     label: 'Configure a <code>NEXT_PUBLIC_</code> env variable',    hint: 'Set NEXT_PUBLIC_API_URL inside env: { ... }', fn: (c, s) => /NEXT_PUBLIC_/.test(s) },
+                { id: 'export',  label: 'Export with <code>export default nextConfig</code>',     hint: 'export default nextConfig;', regex: /export\s+default\s+nextConfig/ },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             editor.addEventListener('input', () => {
                 localStorage.setItem(DRAFT_KEY, editor.value);
@@ -506,30 +502,49 @@ export default nextConfig;`;
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 });
         }
 
-        function testNextConfig() {
+        function testVercelDeploy() {
             const code = editor.value.trim();
-            Level7Linter.runChecklist(code);
-            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your next.config.mjs first!'; consoleOutput.style.color = '#f87171'; return; }
-            const hasConfig  = /nextConfig/.test(code);
-            const hasOutput  = /output:\s*['"]export['"]|output:\s*['"]standalone['"]/.test(code);
-            const hasImages  = /remotePatterns/.test(code);
-            const hasEnv     = /NEXT_PUBLIC_/.test(code);
-            const hasExport  = /export\s+default\s+nextConfig/.test(code);
-            if (!hasConfig)  { consoleOutput.textContent = '❌ Error: Missing nextConfig object.\n💡 Hint: const nextConfig = { ... }; export default nextConfig;'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasOutput)  { consoleOutput.textContent = '❌ Error: Missing output mode.\n💡 Hint: output: "export" (static) or output: "standalone" (Node.js server).'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasImages)  { consoleOutput.textContent = '❌ Error: Missing images.remotePatterns.\n💡 Hint: images: { remotePatterns: [{ protocol: "https", hostname: "yourhost.com" }] }'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasEnv)     { consoleOutput.textContent = '⚠️ Warning: No NEXT_PUBLIC_ env variables.\n💡 Hint: env: { NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL }'; consoleOutput.style.color = '#fbbf24'; return; }
-            if (!hasExport)  { consoleOutput.textContent = '❌ Error: Missing export default nextConfig.\n💡 Hint: The last line must be: export default nextConfig;'; consoleOutput.style.color = '#f87171'; return; }
-            consoleOutput.textContent = '[NEXT.JS BUILD] Validating next.config.mjs...\n[Config] output: ✓\n[Config] images.remotePatterns: ✓\n[Config] env: ✓\n[Vercel] Deploying to Production...\n[CDN] Edge network: 30 regions\n\n✅ SUCCESS: Production config is valid!';
+            if (!code) {
+                consoleOutput.textContent = '❌ Editor is empty. Write your next.config.mjs first!';
+                consoleOutput.style.color = '#f87171';
+                return;
+            }
+
+            const evalResult = Level7Linter.evaluate(code);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
+                consoleOutput.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
+                return;
+            }
+
+            consoleOutput.textContent = `[NEXT.JS BUILD] Validating next.config.mjs...
+[Config] reactStrictMode: ✓
+[Config] images.remotePatterns: ✓
+[Config] env.NEXT_PUBLIC_*: ✓
+[Vercel] Deploying Full-Stack Next.js 15 Application to Production...
+[CDN] Edge network: 30 global regions active
+
+🏆 SUCCESS: Full-Stack Next.js 15 Production Build & Shipping Validated!`;
             consoleOutput.style.color = '#34d399';
+
             localStorage.setItem('partF_branchC_lesson6_completed', 'true');
             localStorage.setItem('partF_branchC_lesson6_complete', 'true');
             localStorage.setItem('partF_branchC_completed', 'true');
             if (typeof addXP === 'function') addXP(500);
-            setTimeout(() => { Swal.fire({ icon: 'success', title: '🏆 Track 7C Complete! (+500 XP)', html: '<p style="color:#475569">You mastered the full Next.js stack! Certificate awaits.</p>', confirmButtonText: 'View Certificate 🏅', confirmButtonColor: '#0ea5e9' }).then(r => { if (r.isConfirmed) window.location.href = '../certificate.html'; }); }, 400);
+
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🏆 Track 7C Complete! (+500 XP)',
+                    html: '<p style="color:#475569">You mastered Next.js 14/15 full-stack architecture, App Router, Server Actions, and Production Shipping!</p>',
+                    confirmButtonText: 'Claim Your Certificate 📜',
+                    confirmButtonColor: '#0ea5e9'
+                }).then((r) => { if (r.isConfirmed) window.location.href = '../certificate.html'; });
+            }, 400);
         }
     </script>
 </body>

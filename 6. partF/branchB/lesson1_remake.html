@@ -492,42 +492,15 @@ WHERE
             const query = editor.value.trim();
             if (!query) {
                 consoleOutput.textContent = '❌ Error: Editor is empty. Write a SQL query first!';
-                return;
-            }
-
-            Level7Linter.runChecklist(query);
-
-            const q = query.toLowerCase();
-            const hasSelect = /\bselect\b/.test(q);
-            const hasName   = /\bname\b/.test(q);
-            const hasEmail  = /\bemail\b/.test(q);
-            const hasFrom   = /\bfrom\s+users\b/.test(q);
-            const hasWhere  = /\bwhere\b/.test(q);
-            const hasRole   = /role\s*=\s*'developer'/.test(q);
-
-            if (!hasSelect) {
-                consoleOutput.textContent = '❌ Query Error: Missing SELECT keyword.\n💡 Hint: SQL queries start with SELECT to choose which columns to retrieve.';
                 consoleOutput.style.color = '#f87171';
                 return;
             }
-            if (!hasFrom) {
-                consoleOutput.textContent = '❌ Query Error: Missing FROM users clause.\n💡 Hint: Use FROM users to tell SQL which table to read from.';
+
+            const evalResult = Level7Linter.evaluate(query);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
                 consoleOutput.style.color = '#f87171';
-                return;
-            }
-            if (!hasWhere) {
-                consoleOutput.textContent = '⚠️ Warning: No WHERE clause — this would return ALL users, not just developers.\n💡 Hint: Add WHERE role = \'developer\' to filter the results.';
-                consoleOutput.style.color = '#fbbf24';
-                return;
-            }
-            if (!hasRole) {
-                consoleOutput.textContent = '⚠️ Warning: WHERE clause found but not filtering by role = \'developer\'.\n💡 Hint: Try WHERE role = \'developer\'';
-                consoleOutput.style.color = '#fbbf24';
-                return;
-            }
-            if (!hasName || !hasEmail) {
-                consoleOutput.textContent = '⚠️ Almost there! Make sure you SELECT both name AND email columns.\n💡 Example: SELECT name, email FROM users ...';
-                consoleOutput.style.color = '#fbbf24';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
@@ -544,6 +517,7 @@ WHERE
             consoleOutput.style.color = '#34d399';
 
             localStorage.setItem('partF_branchB_lesson1_completed', 'true');
+            localStorage.setItem('partF_branchB_lesson1_complete', 'true');
             if (typeof addXP === 'function') addXP(250);
 
             setTimeout(() => {

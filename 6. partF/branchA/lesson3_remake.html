@@ -403,11 +403,11 @@ Proxy Status: Proxied (Orange Cloud)</code>
             <input type="text" id="pagesTargetInput" class="config-input" value="my-cool-app.pages.dev">
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">SPA Redirect Rule (_redirects):</label>
-            <input type="text" id="redirectRuleInput" class="config-input" value="/* /index.html 200">
+            <input type="text" id="redirectRuleInput" class="config-input" placeholder="e.g. /* /index.html 200" value="">
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Custom CNAME Hostname:</label>
             <input type="text" id="cnameInput" class="config-input" value="app.mycompany.com">
-            <textarea id="configInput" class="terminal-editor" style="display: none;"></textarea>
+            
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runCloudflareDeploy()">🚀 Deploy to Cloudflare Pages</button>
@@ -439,117 +439,70 @@ Proxy Status: Proxied (Orange Cloud)</code>
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
-        const DEFAULT_STARTER_CODE = `# wrangler.toml — Cloudflare Pages Configuration
-# TODO: Fill in your project name and compatibility date
-
-name = "TODO: your-project-name"
-pages_build_output_dir = "dist"
-compatibility_date = "2024-01-01"
-
-[vars]
-ENVIRONMENT = "production"`;
-
-        const DRAFT_KEY = 'partF_branchA_lesson3_draft';
-
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const editor = document.getElementById('redirectsInput');
-            const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
-
-            if (editor) {
-                editor.addEventListener('input', () => {
-                    localStorage.setItem(DRAFT_KEY, editor.value);
-                });
-            }
-
-            Level7Linter.init('configInput', 'l7LintPanel', { mode: 'toml' });
             Level7Linter.initChecklist([
-                { id: 'name',  label: 'Set project <code>name</code>',    fn: (c) => /name\s*=\s*".+"/.test(c) },
-                { id: 'out', label: 'Set <code>pages_build_output_dir</code>',  fn: (c) => /pages_build_output_dir\s*=\s*".+"/.test(c) },
-                { id: 'compat', label: 'Set <code>compatibility_date</code>',  fn: (c) => /compatibility_date\s*=\s*".+"/.test(c) },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson3_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const nextBtn = document.getElementById('nextLessonBtn');
-            if (nextBtn && (isCompleted || isUnlocked)) {
-                nextBtn.style.display = 'inline-flex';
-            }
+                { id: 'redirect', label: 'Define SPA rewrite rule (e.g. <code>/* /index.html 200</code>)', hint: 'Enter "/* /index.html 200" to prevent 404s on refresh', fn: () => {
+                    const rule = (document.getElementById('redirectRuleInput')?.value || '').trim();
+                    return rule.includes('/*') && rule.includes('200');
+                }},
+                { id: 'target',   label: 'Set Pages Domain Target (<code>.pages.dev</code>)',              hint: 'Enter a domain like my-cool-app.pages.dev', fn: () => {
+                    const target = (document.getElementById('pagesTargetInput')?.value || '').trim();
+                    return target.includes('.pages.dev');
+                }},
+                { id: 'cname',    label: 'Configure custom CNAME hostname',                                hint: 'Enter your custom domain hostname (e.g. app.mycompany.com)', fn: () => {
+                    const cname = (document.getElementById('cnameInput')?.value || '').trim();
+                    return cname.length >= 3;
+                }},
+            ], { 
+                containerId: 'l7TaskChecklist', 
+                inputIds: ['redirectRuleInput', 'pagesTargetInput', 'cnameInput']
+            });
         });
 
         function clearEditorContent() {
-            const editor = document.getElementById('redirectsInput');
-            localStorage.removeItem(DRAFT_KEY);
-            if (editor) {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor reset to default template!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            const redirectInput = document.getElementById('redirectRuleInput');
+            if (redirectInput) redirectInput.value = '';
+            Level7Linter.evaluate();
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Inputs reset. Enter SPA redirect rule and click Deploy...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Inputs reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied!', showConfirmButton: false, timer: 1500 });
         }
 
         function runCloudflareDeploy() {
             const redirectRule = document.getElementById('redirectRuleInput').value.trim();
             const pagesTarget = document.getElementById('pagesTargetInput').value.trim();
+            const cname = document.getElementById('cnameInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const editorVal = document.getElementById('configInput') ? document.getElementById('configInput').value : '';
 
-            Level7Linter.runChecklist(editorVal);
-
-            if (!/name\s*=\s*".+"/.test(editorVal)) {
-                output.textContent = '❌ Error: You must set the project name.';
+            const evalResult = Level7Linter.evaluate();
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
                 output.style.color = '#f87171';
-                return;
-            }
-            if (!/pages_build_output_dir\s*=\s*".+"/.test(editorVal)) {
-                output.textContent = '⚠️  Progress: Set pages_build_output_dir to "dist" or similar.';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/compatibility_date\s*=\s*".+"/.test(editorVal)) {
-                output.textContent = '⚠️  Progress: Set compatibility_date to a valid date like "2024-01-01".';
-                output.style.color = '#fbbf24';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
             output.textContent = `[Cloudflare Pages Pipeline] Initializing build engine...
 ✓ Cloned GitHub repository
 ✓ Executed "npm run build" successfully
-✓ Published assets to 300+ Cloudflare Edge Data Centers
+✓ Published static assets to 300+ Cloudflare Global Edge Data Centers
 ✓ Verified SPA routing fallback rule: "${redirectRule}"
-✓ Proxied SSL CNAME active for https://${pagesTarget}
+✓ Proxied SSL CNAME active for https://${cname} -> https://${pagesTarget}
 
-✅ SUCCESS: Live on Cloudflare Edge CDN with Unlimited Free Bandwidth!`;
+🎉 SUCCESS: Live on Cloudflare Edge CDN with Unlimited Bandwidth!`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson3_complete', 'true');
+            localStorage.setItem('partF_branchA_lesson3_completed', 'true');
             if (typeof addXP === 'function') addXP(250);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 3 Completed! (+250 XP)',
@@ -562,7 +515,7 @@ ENVIRONMENT = "production"`;
                 }).then((result) => {
                     if (result.isConfirmed) window.location.href = './lesson4_remake.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>

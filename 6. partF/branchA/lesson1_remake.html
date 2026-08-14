@@ -454,36 +454,36 @@ git push -u origin main"></textarea>
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
-        const DEFAULT_STARTER_CODE = `# Step 1: Initialize a Git repository
-git init
+        <script>
+        const DEFAULT_STARTER_CODE = `# Git & GitHub Workflow Practice
+# Task: Execute the complete Git workflow to initialize and push your repository
 
-# Step 2: Create a .gitignore file
-echo "node_modules/" > .gitignore
-echo ".env" >> .gitignore
+# 1. Initialize Git repository:
+# TODO: run git init
 
-# Step 3: Stage all files
-git add .
 
-# Step 4: Create your first commit
-git commit -m "feat: initial project setup"
+# 2. Create a .gitignore file (ignore node_modules/ and .env):
+# TODO: echo "node_modules/" > .gitignore
 
-# Step 5: Link your GitHub remote & push
-# TODO: Replace <username> and <repo> with your actual values
-git remote add origin https://github.com/<username>/<repo>.git
-git branch -M main
-git push -u origin main`;
+
+# 3. Stage all files:
+# TODO: run git add .
+
+
+# 4. Create your initial commit:
+# TODO: git commit -m "feat: initial project setup"
+
+
+# 5. Link remote GitHub repo and push to main:
+# TODO: git push -u origin main`;
 
         const DRAFT_KEY = 'partF_branchA_lesson1_draft';
 
         document.addEventListener('DOMContentLoaded', () => {
             const editor = document.getElementById('terminalInput');
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
-
             if (editor) {
+                editor.value = savedDraft || DEFAULT_STARTER_CODE;
                 editor.addEventListener('input', () => {
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
@@ -491,19 +491,12 @@ git push -u origin main`;
 
             Level7Linter.init('terminalInput', 'l7LintPanel', { mode: 'bash' });
             Level7Linter.initChecklist([
-                { id: 'init',    label: 'Run <code>git init</code> to initialize the repo',      regex: /git\\s+init/ },
-                { id: 'ignore',  label: 'Create a <code>.gitignore</code> file',                  regex: /\\.gitignore/ },
-                { id: 'add',     label: 'Stage files with <code>git add .</code>',               regex: /git\\s+add/ },
-                { id: 'commit',  label: 'Create a commit with <code>git commit -m</code>',       regex: /git\\s+commit\\s+-m/ },
-                { id: 'push',    label: 'Push to GitHub with <code>git push</code>',             regex: /git\\s+push/ },
+                { id: 'init',   label: 'Initialize repo with <code>git init</code>',              hint: 'Type: git init', regex: /git\s+init/ },
+                { id: 'ignore', label: 'Create a <code>.gitignore</code> rule',                   hint: 'Type: echo "node_modules/" > .gitignore', regex: /\.gitignore/ },
+                { id: 'add',    label: 'Stage files with <code>git add .</code>',                 hint: 'Type: git add .', regex: /git\s+add/ },
+                { id: 'commit', label: 'Create a commit with <code>git commit -m</code>',        hint: 'Type: git commit -m "feat: initial commit"', regex: /git\s+commit\s+-m/ },
+                { id: 'push',   label: 'Push to GitHub with <code>git push</code>',              hint: 'Type: git push -u origin main', regex: /git\s+push/ },
             ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson1_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const nextBtn = document.getElementById('nextLessonBtn');
-            if (nextBtn && (isCompleted || isUnlocked)) {
-                nextBtn.style.display = 'inline-flex';
-            }
         });
 
         function clearEditorContent() {
@@ -512,57 +505,32 @@ git push -u origin main`;
             if (editor) {
                 editor.value = DEFAULT_STARTER_CODE;
             }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor cleared!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Terminal reset to starter template. Write your Git commands and click Execute...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Terminal reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied to clipboard!', showConfirmButton: false, timer: 1500 });
         }
 
         function runGitSimulation() {
-            const input = document.getElementById('terminalInput').value;
-            const lower = input.toLowerCase();
+            const input = document.getElementById('terminalInput').value.trim();
             const output = document.getElementById('terminalOutput');
 
-            Level7Linter.runChecklist(input);
-
-            if (!lower.includes('git init')) {
-                output.textContent = '❌ Error: Start with git init to initialize the repository!';
+            if (!input) {
+                output.textContent = '❌ Error: Terminal editor is empty. Enter your Git commands first!';
                 output.style.color = '#f87171';
                 return;
             }
-            if (!lower.includes('git add')) {
-                output.textContent = '⚠️  Progress: Repo initialized! Next: stage your files with git add .';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!lower.includes('git commit')) {
-                output.textContent = '⚠️  Progress: Files staged! Next: commit with git commit -m "your message"';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!lower.includes('git push')) {
-                output.textContent = '⚠️  Progress: Commit created! Next: push to GitHub with git push -u origin main';
-                output.style.color = '#fbbf24';
+
+            const evalResult = Level7Linter.evaluate(input);
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
+                output.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
@@ -573,13 +541,14 @@ git push -u origin main`;
   create mode 100644 index.html
   create mode 100644 .gitignore
 [GitHub] Branch 'main' set up to track 'origin/main'.
-✅ SUCCESS: Code pushed to GitHub! Your project is now live on GitHub! 🚀`;
+✅ SUCCESS: Code pushed to GitHub! Your repository is live on GitHub! 🚀`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson1_complete', 'true');
+            localStorage.setItem('partF_branchA_lesson1_completed', 'true');
             if (typeof addXP === 'function') addXP(250);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 1 Completed! (+250 XP)',
@@ -592,7 +561,7 @@ git push -u origin main`;
                 }).then((result) => {
                     if (result.isConfirmed) window.location.href = './lesson2_remake.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>

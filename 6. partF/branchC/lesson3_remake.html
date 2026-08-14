@@ -439,35 +439,26 @@ export async function addBookmark(formData) {
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
 
-    <script>
+        <script>
         const DRAFT_KEY = 'partF_branchC_lesson3_draft';
-        const DEFAULT_STARTER_CODE = `// actions.js — Next.js Server Action
-// Server Actions are async functions that run ONLY on the server
-// They require the 'use server' directive
+        const DEFAULT_STARTER_CODE = `// actions.js — Next.js Server Actions
+// Server Actions run on the server and require 'use server'
 
-// TODO: Add the 'use server' directive (first line)
-// 'use server'
+// TODO: Add 'use server' directive on line 1
+// 'use server';
 
-// TODO: Import revalidatePath to refresh cached pages after mutation
+// TODO: Import revalidatePath from 'next/cache'
 // import { revalidatePath } from 'next/cache';
 
-// TODO: Write an async Server Action to update a user's name
-export async function updateUserName(formData) {
-    // TODO: Extract the 'username' field from the form data
-    const name = formData.get('username');
+// Task: Write an async Server Action to add a bookmark
+export async function addBookmark(formData) {
+    // TODO: Extract 'url' from formData with formData.get('url')
+    const url = null;
 
-    // TODO: Validate the input
-    if (!name || name.trim().length < 2) {
-        return { error: 'Name must be at least 2 characters' };
-    }
+    // TODO: Call revalidatePath('/bookmarks') to purge cache
+    // revalidatePath('/bookmarks');
 
-    // TODO: Update the database (simulated here)
-    // await db.user.update({ where: { id: 1 }, data: { name } });
-
-    // TODO: Revalidate the profile page so the UI shows fresh data
-    // revalidatePath('/profile');
-
-    return { success: true, name };
+    return { success: true };
 }`;
 
         const editor = document.getElementById('editor');
@@ -479,12 +470,11 @@ export async function updateUserName(formData) {
 
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
             Level7Linter.initChecklist([
-                { id: 'directive',  label: "Add <code>'use server'</code> directive at the top", fn: (c) => /^\s*['"]use server['"]/m.test(c) },
-                { id: 'asyncfn',    label: 'Define the action as an <code>async function</code>', regex: /async\s+function/ },
-                { id: 'formdata',   label: 'Accept <code>formData</code> as a parameter', regex: /formData/ },
-                { id: 'formget',    label: 'Extract a field with <code>formData.get()</code>', regex: /formData\.get\s*\(/ },
-                { id: 'revalidate', label: 'Call <code>revalidatePath()</code> to refresh the cache', regex: /revalidatePath/ },
-            ], { containerId: 'l7TaskChecklist' });
+                { id: 'directive',  label: "Add <code>'use server'</code> directive at the top",   hint: "Write 'use server'; at the top of the file", fn: (c, s) => /^\s*['"]use server['"]/m.test(s) },
+                { id: 'asyncfn',    label: 'Define the action as an <code>async function</code>', hint: 'export async function addBookmark(formData) { ... }', regex: /async\s+function/ },
+                { id: 'formget',    label: 'Extract data using <code>formData.get(...)</code>',   hint: 'const url = formData.get("url");', fn: (c, s) => /formData\.get\s*\(/.test(s) },
+                { id: 'revalidate', label: 'Call <code>revalidatePath(...)</code> on mutation',   hint: 'revalidatePath("/bookmarks");', fn: (c, s) => /revalidatePath\s*\(/.test(s) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             editor.addEventListener('input', () => {
                 localStorage.setItem(DRAFT_KEY, editor.value);
@@ -494,7 +484,7 @@ export async function updateUserName(formData) {
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor reset. Write your Server Action and click Test...';
+            consoleOutput.textContent = '> Editor reset. Write your Server Action and click Execute...';
             Level7Linter.check(DEFAULT_STARTER_CODE);
             Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
@@ -503,29 +493,49 @@ export async function updateUserName(formData) {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 });
         }
 
         function testServerAction() {
             const code = editor.value.trim();
-            Level7Linter.runChecklist(code);
-            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your Server Action first!'; consoleOutput.style.color = '#f87171'; return; }
-            const hasDirective  = /^\s*['"]use server['"]/m.test(code);
-            const hasAsync      = /async\s+function/.test(code);
-            const hasFormData   = /formData/.test(code);
-            const hasFormGet    = /formData\.get\s*\(/.test(code);
-            const hasRevalidate = /revalidatePath/.test(code);
-            if (!hasDirective)  { consoleOutput.textContent = "❌ Error: Missing 'use server' directive.\n💡 Hint: Add 'use server' as the very first line — this marks the file as server-only code."; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasAsync)      { consoleOutput.textContent = '❌ Error: Server Action must be async.\n💡 Hint: export async function updateUser(formData) { ... }'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasFormData)   { consoleOutput.textContent = '❌ Error: Missing formData parameter.\n💡 Hint: Next.js passes HTML form data automatically to your Server Action.'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasFormGet)    { consoleOutput.textContent = '❌ Error: Missing formData.get() call.\n💡 Hint: Extract form fields with: const name = formData.get("username")'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasRevalidate) { consoleOutput.textContent = '⚠️ Warning: Missing revalidatePath().\n💡 Hint: After mutating data, call revalidatePath("/path") to show fresh data.'; consoleOutput.style.color = '#fbbf24'; return; }
-            consoleOutput.textContent = '[SERVER] Executing Server Action: updateUserName\n[DB] Mutation successful\n[Cache] revalidatePath called\n[RSC] Page re-rendered with fresh data\n\n✅ SUCCESS: Server Action executed correctly!';
+            if (!code) {
+                consoleOutput.textContent = '❌ Editor is empty. Write your Server Action first!';
+                consoleOutput.style.color = '#f87171';
+                return;
+            }
+
+            const evalResult = Level7Linter.evaluate(code);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
+                consoleOutput.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
+                return;
+            }
+
+            consoleOutput.textContent = `[SERVER] Executing Server Action: addBookmark
+[FormData] Parsed payload: { url: "https://novicodes.dev" }
+[Cache] Calling revalidatePath('/bookmarks')... Cache Purged ✓
+[RSC] Page payload re-rendered on server with fresh data
+
+✅ SUCCESS: Zero-API Server Action executed & page cache revalidated!`;
             consoleOutput.style.color = '#34d399';
+
             localStorage.setItem('partF_branchC_lesson3_completed', 'true');
             localStorage.setItem('partF_branchC_lesson3_complete', 'true');
             if (typeof addXP === 'function') addXP(250);
-            setTimeout(() => { Swal.fire({ icon: 'success', title: '🎉 Lesson 3 Mastered! (+250 XP)', html: '<p style="color:#475569">You wrote a real Next.js Server Action!</p>', showDenyButton: true, confirmButtonText: 'Continue to Lesson 4 🚀', confirmButtonColor: '#0ea5e9', denyButtonText: 'Stay & Practice 🛠️', denyButtonColor: '#475569' }).then(r => { if (r.isConfirmed) window.location.href = './lesson4_remake.html'; }); }, 400);
+
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🎉 Lesson 3 Mastered! (+250 XP)',
+                    html: '<p style="color:#475569">You wrote a real Next.js Server Action with zero API boilerplate!</p>',
+                    showDenyButton: true,
+                    confirmButtonText: 'Continue to Lesson 4 🚀',
+                    confirmButtonColor: '#0ea5e9',
+                    denyButtonText: 'Stay & Practice 🛠️',
+                    denyButtonColor: '#475569'
+                }).then((r) => { if (r.isConfirmed) window.location.href = './lesson4_remake.html'; });
+            }, 400);
         }
     </script>
 </body>

@@ -451,37 +451,31 @@ app.add_middleware(
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
+        <script>
         const DEFAULT_STARTER_CODE = `from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# TODO: Add your allowed frontend origins below
-allowed_origins = [
-    "http://localhost:3000",
-    # Add your production URL here
+# Task: Configure CORS middleware to connect your frontend and backend securely
+
+# 1. Allowed frontend origins (e.g. Vercel / Cloudflare domains):
+# TODO: Add your frontend origin URLs to the list
+origins = [
+    # "https://my-app.vercel.app",
 ]
 
-# TODO: Add the CORSMiddleware to your app
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)`;
+# 2. Attach CORSMiddleware to the app
+# TODO: Call app.add_middleware() with CORSMiddleware, allow_origins=origins, allow_methods=["*"]
+`;
 
         const DRAFT_KEY = 'partF_branchA_lesson5_draft';
 
         document.addEventListener('DOMContentLoaded', () => {
             const editor = document.getElementById('corsCodeInput');
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
-
             if (editor) {
+                editor.value = savedDraft || DEFAULT_STARTER_CODE;
                 editor.addEventListener('input', () => {
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
@@ -489,18 +483,11 @@ app.add_middleware(
 
             Level7Linter.init('corsCodeInput', 'l7LintPanel', { mode: 'python' });
             Level7Linter.initChecklist([
-                { id: 'import', label: 'Import <code>CORSMiddleware</code>',    fn: (c) => /import\s+CORSMiddleware/.test(c) },
-                { id: 'add',    label: 'Call <code>app.add_middleware</code>',   fn: (c) => /app\.add_middleware/.test(c) },
-                { id: 'orig',   label: 'Set <code>allow_origins</code>',         fn: (c) => /allow_origins/.test(c) },
-                { id: 'cred',   label: 'Set <code>allow_credentials=True</code>', fn: (c) => /allow_credentials\s*=\s*True/.test(c) },
+                { id: 'import',     label: 'Import <code>CORSMiddleware</code> from <code>fastapi.middleware.cors</code>', hint: 'from fastapi.middleware.cors import CORSMiddleware', regex: /from\s+fastapi\.middleware\.cors\s+import\s+CORSMiddleware/ },
+                { id: 'origins',    label: 'Define an <code>origins</code> list with allowed domains',                      hint: 'origins = ["https://my-app.vercel.app"]', fn: (c, s) => /origins\s*=\s*\[[\s\S]*?['"].+?['"][\s\S]*?\]/.test(s) },
+                { id: 'middleware', label: 'Call <code>app.add_middleware(CORSMiddleware, ...)</code>',                    hint: 'app.add_middleware(CORSMiddleware, allow_origins=origins, ...)', fn: (c, s) => /app\.add_middleware\s*\(\s*CORSMiddleware/.test(s) },
+                { id: 'alloworig',  label: 'Pass <code>allow_origins=origins</code> parameter',                             hint: 'Add allow_origins=origins inside add_middleware', fn: (c, s) => /allow_origins\s*=\s*origins/.test(s) },
             ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson5_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const nextBtn = document.getElementById('nextLessonBtn');
-            if (nextBtn && (isCompleted || isUnlocked)) {
-                nextBtn.style.display = 'inline-flex';
-            }
         });
 
         function clearEditorContent() {
@@ -509,89 +496,67 @@ app.add_middleware(
             if (editor) {
                 editor.value = DEFAULT_STARTER_CODE;
             }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor reset to default template!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Editor reset. Configure CORSMiddleware and click Test CORS Connection...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied!', showConfirmButton: false, timer: 1500 });
         }
 
         function runCorsTest() {
-            const code = document.getElementById('corsCodeInput').value;
+            const code = document.getElementById('corsCodeInput').value.trim();
             const output = document.getElementById('terminalOutput');
 
-            Level7Linter.runChecklist(code);
-
-            if (!/import\s+CORSMiddleware/.test(code)) {
-                output.textContent = '❌ Error: You must import CORSMiddleware.';
+            if (!code) {
+                output.textContent = '❌ Error: Code editor is empty. Enter your CORS middleware code!';
                 output.style.color = '#f87171';
                 return;
             }
-            if (!/app\.add_middleware/.test(code)) {
-                output.textContent = '⚠️  Progress: Call app.add_middleware().';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/allow_origins/.test(code)) {
-                output.textContent = '⚠️  Progress: Pass allow_origins to the middleware.';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/allow_credentials\s*=\s*True/.test(code)) {
-                output.textContent = '⚠️  Progress: Set allow_credentials=True.';
-                output.style.color = '#fbbf24';
+
+            const evalResult = Level7Linter.evaluate(code);
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
+                output.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
-            output.textContent = `[Browser OPTION Preflight Request]
+            output.textContent = `[CORS Test Engine] Dispatching Cross-Origin Preflight:
 > OPTIONS /api/v1/users HTTP/1.1
-> Host: python-api.onrender.com
 > Origin: https://my-app.vercel.app
+> Access-Control-Request-Method: GET
 
+[Server Response]
 < HTTP/1.1 200 OK
 < Access-Control-Allow-Origin: https://my-app.vercel.app
+< Access-Control-Allow-Credentials: true
 < Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-< Access-Control-Allow-Headers: Authorization, Content-Type
 
-🎉 SUCCESS: Cross-Origin request approved! Frontend successfully connected to Backend!`;
+✅ SUCCESS: CORS Preflight Handshake Verified! Frontend successfully connects to Backend API.`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson5_complete', 'true');
+            localStorage.setItem('partF_branchA_lesson5_completed', 'true');
             if (typeof addXP === 'function') addXP(250);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 5 Completed! (+250 XP)',
-                    text: 'You mastered connecting Frontends & Backends with CORS security!',
+                    text: 'You solved CORS security between decoupled frontend & backend!',
                     showDenyButton: true,
-                    confirmButtonColor: '#a855f7',
+                    confirmButtonColor: '#3b82f6',
                     denyButtonColor: '#475569',
                     confirmButtonText: 'Continue to Lesson 6 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
                     if (result.isConfirmed) window.location.href = './lesson6_remake.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>

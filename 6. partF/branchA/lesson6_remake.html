@@ -446,12 +446,13 @@ jobs:
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
+        <script>
         const DEFAULT_STARTER_CODE = `# .github/workflows/deploy.yml
-# TODO: Complete the GitHub Actions CI/CD workflow below
+# Task: Create an automated GitHub Actions CI/CD workflow
 
-name: Deploy to Production
+name: Production CI/CD Workflow
 
+# TODO: Step 1: Configure workflow to trigger on push to 'main' branch
 on:
   push:
     branches:
@@ -461,31 +462,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # TODO: Step 2: Checkout the repository
+      # - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+      # TODO: Step 3: Set up Node.js runtime
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20"
 
-      # TODO: Add your install and build steps below
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build`;
+      # TODO: Step 4: Add steps to install dependencies and run tests
+      # - run: npm install
+      # - run: npm test`;
 
         const DRAFT_KEY = 'partF_branchA_lesson6_draft';
 
         document.addEventListener('DOMContentLoaded', () => {
             const editor = document.getElementById('yamlInput');
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
-
             if (editor) {
+                editor.value = savedDraft || DEFAULT_STARTER_CODE;
                 editor.addEventListener('input', () => {
                     localStorage.setItem(DRAFT_KEY, editor.value);
                 });
@@ -493,18 +488,12 @@ jobs:
 
             Level7Linter.init('yamlInput', 'l7LintPanel', { mode: 'yaml' });
             Level7Linter.initChecklist([
-                { id: 'push',    label: 'Has <code>on: push</code> trigger',    fn: (c) => /on:\s*[\s\S]*push:/m.test(c) || /on:\s*push/.test(c) || /on:\s*\[\s*'?push'?\s*\]/.test(c) },
-                { id: 'runs',    label: 'Has <code>runs-on: ubuntu-latest</code>', fn: (c) => /runs-on:\s*ubuntu-latest/.test(c) },
-                { id: 'checkout',label: 'Has <code>actions/checkout</code> step',  fn: (c) => /uses:\s*actions\/checkout/.test(c) },
-                { id: 'run',     label: 'Has a <code>run:</code> step',            fn: (c) => /\s+run:\s+/.test(c) },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'claimRankBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson6_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const claimBtn = document.getElementById('claimRankBtn');
-            if (claimBtn && (isCompleted || isUnlocked)) {
-                claimBtn.style.display = 'inline-flex';
-            }
+                { id: 'trigger',  label: 'Trigger on push to <code>main</code> branch',               hint: 'on: push: branches: [main]', fn: (c, s) => /on:s*
+s*push:/.test(s) && /main/.test(s) },
+                { id: 'runner',   label: 'Set runner to <code>runs-on: ubuntu-latest</code>',          hint: 'runs-on: ubuntu-latest', fn: (c, s) => /runs-on:s*ubuntu-latest/.test(s) },
+                { id: 'checkout', label: 'Add <code>uses: actions/checkout@v4</code> step',           hint: '- uses: actions/checkout@v4', fn: (c, s) => /actions/checkout/.test(s) },
+                { id: 'teststep', label: 'Run automated tests with <code>npm test</code> or build',    hint: '- run: npm test or npm run build', fn: (c, s) => /npms+test|npms+runs+build/.test(s) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
         });
 
         function clearEditorContent() {
@@ -513,83 +502,62 @@ jobs:
             if (editor) {
                 editor.value = DEFAULT_STARTER_CODE;
             }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor reset to default template!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Editor reset. Write your GitHub Actions workflow and click Trigger...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied!', showConfirmButton: false, timer: 1500 });
         }
 
         function runWorkflowSimulation() {
-            const input = document.getElementById('yamlInput').value;
+            const yaml = document.getElementById('yamlInput').value.trim();
             const output = document.getElementById('terminalOutput');
 
-            Level7Linter.runChecklist(input);
-
-            if (!/on:\s*[\s\S]*push:/m.test(input) && !/on:\s*push/.test(input) && !/on:\s*\[\s*'?push'?\s*\]/.test(input)) {
-                output.textContent = '❌ Error: You must have an "on: push" trigger.';
+            if (!yaml) {
+                output.textContent = '❌ Error: YAML editor is empty. Enter your GitHub Actions workflow!';
                 output.style.color = '#f87171';
                 return;
             }
-            if (!/runs-on:\s*ubuntu-latest/.test(input)) {
-                output.textContent = '⚠️  Progress: Set "runs-on: ubuntu-latest" for the job.';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/uses:\s*actions\/checkout/.test(input)) {
-                output.textContent = '⚠️  Progress: Use the actions/checkout step to clone code.';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/\s+run:\s+/.test(input)) {
-                output.textContent = '⚠️  Progress: Add a "run:" step to build your code.';
-                output.style.color = '#fbbf24';
+
+            const evalResult = Level7Linter.evaluate(yaml);
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
+                output.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
-            output.textContent = `[GitHub Actions Runner] Setting up job "deploy"...
-✓ Run actions/checkout@v4
-✓ Run actions/setup-node@v4
-✓ Executed build step
-✓ Deploying to Cloudflare Pages & Vercel Production
-✓ Workflow completed successfully in 18s [Status: Success]
+            output.textContent = `[GitHub Actions Runner] Starting Job: deploy on ubuntu-latest...
+✓ Step 1: Set up Job runner environment (ubuntu-22.04)
+✓ Step 2: Run actions/checkout@v4 -> HEAD fetched (0.4s)
+✓ Step 3: Run actions/setup-node@v4 -> Node v20.11.0 active
+✓ Step 4: Run npm install -> 184 packages installed (1.2s)
+✓ Step 5: Run npm test -> 14/14 tests passed [100% Coverage]
+✓ Step 6: Continuous Delivery -> Production deployment complete!
 
-🏆 CONGRATULATIONS! You have completed all 6 Lessons in Track 7A!`;
+🏆 SUCCESS: Automated CI/CD Pipeline Passed flawlessly!`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson6_complete', 'true');
-            if (typeof addXP === 'function') addXP(250);
+            localStorage.setItem('partF_branchA_lesson6_completed', 'true');
+            localStorage.setItem('partF_branchA_completed', 'true');
+            if (typeof addXP === 'function') addXP(500);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
-                    title: '👑 Track 7A Completed! (+250 XP)',
-                    html: 'You earned the <strong>☁️ Cloud Specialist Apex Rank</strong> and unlocked your official Level 7 Certificate!',
-                    confirmButtonColor: '#a855f7',
-                    confirmButtonText: 'Claim Cloud Specialist Rank 🏆'
-                }).then(() => {
-                    window.location.href = '../hub.html';
+                    title: '🏆 Track 7A Complete! (+500 XP)',
+                    text: 'You mastered Cloud Shipping, Git Workflows, CDN Edge Hosting, and CI/CD Automation!',
+                    confirmButtonColor: '#10b981',
+                    confirmButtonText: 'Claim Your Certificate 📜'
+                }).then((result) => {
+                    if (result.isConfirmed) window.location.href = '../certificate.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>

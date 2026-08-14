@@ -397,11 +397,11 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
             </div>
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Start Command:</label>
-            <input type="text" id="startCommandInput" class="config-input" value="uvicorn main:app --host 0.0.0.0 --port $PORT">
+            <input type="text" id="startCommandInput" class="config-input" placeholder="e.g. uvicorn main:app --host 0.0.0.0 --port $PORT" value="">
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Environment Variables (SECRET_KEY):</label>
             <input type="text" id="secretKeyInput" class="config-input" value="SECRET_KEY=super_secure_jwt_token_2026">
-            <textarea id="renderYamlInput" class="terminal-editor" style="display: none;"></textarea>
+            
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runRenderDeploy()">🚀 Deploy Python API to Render</button>
@@ -433,129 +433,77 @@ Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT</code>
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
-        const DEFAULT_STARTER_CODE = `# render.yaml — Render Deployment Configuration
-# TODO: Configure your backend service below
-
-services:
-  - type: web
-    name: TODO: your-app-name
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
-    region: singapore`;
-
-        const DRAFT_KEY = 'partF_branchA_lesson4_draft';
-
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const editor = document.getElementById('renderYamlInput');
-            const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
-
-            if (editor) {
-                editor.addEventListener('input', () => {
-                    localStorage.setItem(DRAFT_KEY, editor.value);
-                });
-            }
-
-            Level7Linter.init('renderYamlInput', 'l7LintPanel', { mode: 'yaml' });
             Level7Linter.initChecklist([
-                { id: 'svc',   label: 'Has <code>services</code> key',    fn: (c) => /^services:/m.test(c) },
-                { id: 'build', label: 'Has <code>buildCommand</code>',    fn: (c) => /buildCommand:/.test(c) },
-                { id: 'start', label: 'Has <code>startCommand</code>',    fn: (c) => /startCommand:/.test(c) },
-                { id: 'reg',   label: 'Has <code>region</code>',          fn: (c) => /region:/.test(c) },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson4_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const nextBtn = document.getElementById('nextLessonBtn');
-            if (nextBtn && (isCompleted || isUnlocked)) {
-                nextBtn.style.display = 'inline-flex';
-            }
+                { id: 'startcmd', label: 'Set Start Command (<code>uvicorn</code> with <code>$PORT</code> binding)', hint: 'Enter: uvicorn main:app --host 0.0.0.0 --port $PORT', fn: () => {
+                    const cmd = (document.getElementById('startCommandInput')?.value || '').trim();
+                    return /uvicorn/.test(cmd) && /$PORT|--port/.test(cmd);
+                }},
+                { id: 'secret',   label: 'Configure <code>SECRET_KEY</code> Environment Variable',             hint: 'Define SECRET_KEY=your_token_string', fn: () => {
+                    const secret = (document.getElementById('secretKeyInput')?.value || '').trim();
+                    return /SECRET_KEYs*=s*.+/.test(secret);
+                }},
+            ], { 
+                containerId: 'l7TaskChecklist', 
+                inputIds: ['startCommandInput', 'secretKeyInput']
+            });
         });
 
         function clearEditorContent() {
-            const editor = document.getElementById('renderYamlInput');
-            localStorage.removeItem(DRAFT_KEY);
-            if (editor) {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor reset to default template!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            const startInput = document.getElementById('startCommandInput');
+            if (startInput) startInput.value = '';
+            Level7Linter.evaluate();
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Inputs reset. Enter start command and click Deploy...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Inputs reset!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied!', showConfirmButton: false, timer: 1500 });
         }
 
         function runRenderDeploy() {
             const startCmd = document.getElementById('startCommandInput').value.trim();
+            const secretKey = document.getElementById('secretKeyInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const editorVal = document.getElementById('renderYamlInput') ? document.getElementById('renderYamlInput').value : '';
 
-            Level7Linter.runChecklist(editorVal);
-
-            if (!/^services:/m.test(editorVal)) {
-                output.textContent = '❌ Error: You must include the "services:" key.';
+            const evalResult = Level7Linter.evaluate();
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
                 output.style.color = '#f87171';
-                return;
-            }
-            if (!/buildCommand:/.test(editorVal)) {
-                output.textContent = '⚠️  Progress: Add a buildCommand (like pip install -r requirements.txt).';
-                output.style.color = '#fbbf24';
-                return;
-            }
-            if (!/startCommand:/.test(editorVal)) {
-                output.textContent = '⚠️  Progress: Add a startCommand (like uvicorn main:app --host 0.0.0.0 --port $PORT).';
-                output.style.color = '#fbbf24';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
-            output.textContent = `[Render Build Service] Installing requirements.txt...
+            output.textContent = `[Render Build Service] Installing Python requirements.txt...
 ✓ Installed FastAPI, Uvicorn, Gunicorn
-✓ Bound application process to 0.0.0.0:$PORT
+✓ Bound application process via: "${startCmd}"
+✓ Environment variable SECRET_KEY securely loaded into container runtime
 ✓ Health Check passed on /health [HTTP 200 OK]
 
-🎉 SUCCESS: Live API active at https://python-api-backend.onrender.com`;
+🎉 SUCCESS: Live Backend API active at https://python-api-backend.onrender.com`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson4_complete', 'true');
+            localStorage.setItem('partF_branchA_lesson4_completed', 'true');
             if (typeof addXP === 'function') addXP(250);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 4 Completed! (+250 XP)',
-                    text: 'You successfully deployed your Python backend to Render!',
+                    text: 'You deployed a Python backend to Render with Docker runtime!',
                     showDenyButton: true,
-                    confirmButtonColor: '#10b981',
+                    confirmButtonColor: '#059669',
                     denyButtonColor: '#475569',
                     confirmButtonText: 'Continue to Lesson 5 🚀',
                     denyButtonText: 'Stay & Practice 🛠️'
                 }).then((result) => {
                     if (result.isConfirmed) window.location.href = './lesson5_remake.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>

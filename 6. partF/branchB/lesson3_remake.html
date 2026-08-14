@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7B • Lesson 3: Python ORM Architecture (SQLAlchemy) | NoviCodes</title>
-    <meta name="description" content="Master Object-Relational Mapping (ORM) in Python with SQLAlchemy & SQLModel, defining database models, engine sessions, and transactions.">
     <meta property="og:title" content="SQLAlchemy ORM Models | NoviCodes Track 7B">
     <meta property="og:description" content="Define Python ORM models with SQLAlchemy to map Python classes to database tables in Track 7B.">
     <meta property="og:type" content="website">
+    <meta name="description" content="Master Object-Relational Mapping (ORM) in Python with SQLAlchemy & SQLModel, defining database models, engine sessions, and transactions.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -412,201 +412,6 @@ class User(Base):
 
             <textarea id="editor" class="terminal-editor" placeholder="# Write your SQLAlchemy Product model below:
 class Product(Base):
-                margin-top: 16px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .panel-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 8px;
-            }
-            .panel-title {
-                text-align: center;
-                justify-content: center;
-                font-size: 0.96rem;
-            }
-            .lesson-badge {
-                text-align: center;
-                margin: 0 auto;
-            }
-            .ide-panel {
-                padding: 16px;
-                border-radius: 14px;
-            }
-            .action-bar {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .run-btn, .clear-btn {
-                padding: 10px 14px;
-                font-size: 0.82rem;
-                width: 100%;
-                box-sizing: border-box;
-                text-align: center;
-                justify-content: center;
-            }
-            .code-box {
-                padding: 38px 12px 12px 12px;
-            }
-            .copy-btn {
-                top: 6px;
-                right: 6px;
-                padding: 3px 8px;
-                font-size: 0.68rem;
-            }
-            .code-box code {
-                white-space: pre-wrap;
-                word-break: break-all;
-                font-size: 0.78rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .ide-wrapper {
-                padding: 0 8px;
-            }
-            .ide-panel {
-                padding: 12px 10px;
-            }
-            .run-btn, .clear-btn {
-                padding: 9px 12px;
-                font-size: 0.78rem;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .panel-title {
-                font-size: 0.92rem;
-            }
-            .lesson-badge {
-                font-size: 0.70rem;
-                padding: 3px 6px;
-            }
-            .terminal-editor {
-                font-size: 0.78rem;
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .ide-wrapper {
-                padding: 0 4px;
-            }
-            .ide-panel {
-                padding: 10px 8px;
-            }
-            .run-btn, .clear-btn {
-                padding: 8px 10px;
-                font-size: 0.74rem;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .code-box {
-                padding: 36px 8px 10px 8px;
-            }
-            .code-box code {
-                font-size: 0.74rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Platform Header -->
-    <header class="platform-header">
-        <div class="header-inner">
-            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
-                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
-                <div class="logo-text">
-                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                    <span class="logo-tag">Level 7 • Track 7B</span>
-                </div>
-            </a>
-
-            <nav class="header-nav-links" aria-label="Main Navigation">
-                <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
-                    <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
-                </a>
-                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
-                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
-                </a>
-                <a href="javascript:void(0)" class="nav-link" id="certificateNavLink" onclick="openCertificateHub()" title="Certificate Hub">
-                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
-                </a>
-            </nav>
-
-            <div class="header-user-stats" id="userStatsBar">
-                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
-                    <span class="badge-icon">⚡</span>
-                    <span class="badge-label">Loading...</span>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
-
-    <!-- Main Workspace -->
-    <main class="ide-wrapper">
-        <!-- Left Panel: Concept Guide & Instructions -->
-        <section class="ide-panel">
-            <div class="panel-header">
-                <div class="panel-title">
-                    <span>🐍 Branch 7B • Lesson 3</span>
-                </div>
-                <span class="lesson-badge">SQLAlchemy ORM</span>
-            </div>
-
-            <div class="instruction-step">
-                <h4>1. What is an ORM (Object-Relational Mapper)?</h4>
-                <p>An <strong>ORM</strong> allows developers to interact with relational database tables using native Python objects instead of writing raw SQL strings.</p>
-            </div>
-
-            <div class="instruction-step">
-                <h4>2. Defining SQLAlchemy Models</h4>
-                <p>Define database models by mapping class attributes to database columns using <code>Column</code>, <code>Integer</code>, and <code>String</code>:</p>
-                <div class="code-box">
-                    <button class="copy-btn" onclick="copyToClipboard(`from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
-
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True, nullable=False)
-    role = Column(String, default='user')`)">📋 Copy</button>
-                    <code>from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
-
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True, nullable=False)
-    role = Column(String, default='user')</code>
-                </div>
-            </div>
-
-            <div class="instruction-step">
-                <h4>3. Your Practical Task</h4>
-                <p>Define a SQLAlchemy model class named <code>Product</code> mapped to table <code>products</code> with an <code>id</code> (Integer primary key), <code>title</code> (String), and <code>price</code> (Integer).</p>
-            </div>
-        </section>
-
-        <!-- Right Panel: Python ORM Code Sandbox -->
-        <section class="ide-panel">
-            <div class="panel-header">
-                <div class="panel-title">
-                    <span>🐍 Python ORM Model Editor</span>
-                </div>
-                <span style="color: #94a3b8; font-size: 0.80rem; font-family: monospace;">Engine: SQLAlchemy 2.0</span>
-            </div>
-
-            <textarea id="editor" class="terminal-editor" placeholder="# Write your SQLAlchemy Product model below:
-class Product(Base):
     __tablename__ = 'products'
     id = Column(Integer, primary-key=True)
     title = Column(String, nullable=False)
@@ -619,10 +424,6 @@ class Product(Base):
 
             <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Type your SQLAlchemy model definition and click "Validate ORM Model"...</div>
-            <div style="margin-top: 14px;">
-                <div style="font-size: 0.80rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">📋 Task Checklist</div>
-                <div id="l7TaskChecklist"></div>
-            </div>
         </section>
     </main>
 
@@ -647,130 +448,100 @@ class Product(Base):
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
 
-    <script>
+        <script>
         const DRAFT_KEY = 'partF_branchB_lesson3_draft';
         const DEFAULT_STARTER_CODE = `from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-# TODO: Define your Product ORM model below
-# A model maps directly to a database table
+# Task: Define a Product model mapped to table 'products'
+# TODO: Complete the model class below with columns: id, title, price
 class Product(Base):
-    __tablename__ = "TODO_table_name"  # e.g. "products"
+    __tablename__ = "TODO_table_name"  # Set to "products"
 
-    # TODO: Add a primary key column (Integer, autoincrement)
+    # Primary key column
     id = Column(Integer, primary_key=True)
 
-    # TODO: Add a name column (String, required)
-    # name = Column(...)
+    # TODO: Add a 'title' column (String, required)
+    # title = Column(...)
 
-    # TODO: Add a price column (Float)
-    # price = Column(...)
+    # TODO: Add a 'price' column (Integer)
+    # price = Column(...)`;
 
-    # TODO: Add an in_stock column (Boolean, default True)
-    # in_stock = Column(...)`;
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
+
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'python' });
             Level7Linter.initChecklist([
-                { id: 'import',      label: 'Import <code>Column</code> and types from <code>sqlalchemy</code>',    regex: /from\s+sqlalchemy\s+import/ },
-                { id: 'base',        label: 'Create <code>declarative_base()</code> as Base',                       regex: /declarative_base\s*\(/ },
-                { id: 'classdef',    label: 'Define a class that extends <code>Base</code>',                        regex: /class\s+\w+\s*\(\s*Base\s*\)/ },
-                { id: 'tablename',   label: 'Set <code>__tablename__</code> for the database table name',           regex: /__tablename__/ },
-                { id: 'primarykey',  label: 'Add a <code>primary_key=True</code> column',                          regex: /primary_key\s*=\s*True/ },
-                { id: 'columns',     label: 'Add at least 2 more columns (name, price, etc.)',                      fn: (c) => (c.match(/Column\s*\(/g) || []).length >= 3 },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'runBtn' });
-        });
+                { id: 'classdef',   label: 'Define class <code>Product(Base):</code>',                 hint: 'Write class Product(Base):', regex: /class\s+Product\s*\(\s*Base\s*\)/ },
+                { id: 'tablename',  label: 'Set <code>__tablename__ = "products"</code>',              hint: 'Set __tablename__ = "products"', fn: (c, s) => /__tablename__\s*=\s*['"]products['"]/.test(s) },
+                { id: 'primarykey', label: 'Define <code>id = Column(Integer, primary_key=True)</code>', hint: 'Add id = Column(Integer, primary_key=True)', fn: (c, s) => /id\s*=\s*Column\s*\(\s*Integer\s*,\s*primary_key\s*=\s*True\s*\)/.test(s) },
+                { id: 'titlecol',   label: 'Add a <code>title = Column(String...)</code> column',      hint: 'Add title = Column(String)', fn: (c, s) => /title\s*=\s*Column\s*\(\s*String/.test(s) },
+                { id: 'pricecol',   label: 'Add a <code>price = Column(Integer...)</code> column',     hint: 'Add price = Column(Integer)', fn: (c, s) => /price\s*=\s*Column\s*\(\s*Integer/.test(s) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Write your SQLAlchemy model to validate...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Define the Product model and click Test ORM Models...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '📋 Python snippet copied!',
-                showConfirmButton: false,
-                timer: 1800
-            });
-        }
-
-        function testORMModel() {
+        function testORMModels() {
             const code = editor.value.trim();
-            Level7Linter.runChecklist(code);
             if (!code) {
-                consoleOutput.textContent = '❌ Error: Model editor is empty. Please enter your SQLAlchemy Product model.';
+                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your SQLAlchemy model.';
+                consoleOutput.style.color = '#f87171';
                 return;
             }
 
-            if (code.includes('Product') && code.includes('__tablename__') && code.includes('products') && code.includes('id') && code.includes('title') && code.includes('price')) {
-                consoleOutput.textContent = `[SQLALCHEMY ENGINE LOGS]\n[1/2] Compiling declarative table 'products'...\n[2/2] Generating DDL CREATE TABLE query:\nCREATE TABLE products (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n    title VARCHAR NOT NULL,\n    price INTEGER NOT NULL\n);\n✅ [SUCCESS] SQLAlchemy Model 'Product' compiled and validated successfully!`;
-                
-                localStorage.setItem('partF_branchB_lesson3_completed', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 3 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 3!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 4 🚀',
-                        confirmButtonColor: '#a855f7',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson4_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                let errorMsg = '❌ SQLAlchemy Compilation Error:\n';
-                if (!code.includes('from sqlalchemy')) {
-                    errorMsg += 'Missing sqlalchemy imports.\n';
-                } else if (!code.includes('class Product(Base):') && !code.includes('(Base):')) {
-                    errorMsg += 'Model must inherit from Base.\n';
-                } else if (!code.includes('__tablename__')) {
-                    errorMsg += 'Missing __tablename__ attribute.\n';
-                } else if (!code.includes('primary_key=True')) {
-                    errorMsg += 'Missing a primary_key=True column.\n';
-                } else {
-                    errorMsg += 'Make sure you have at least 3 columns defined with Column().\n';
-                }
-                consoleOutput.textContent = errorMsg;
+            const evalResult = Level7Linter.evaluate(code);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
+                consoleOutput.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
+                return;
             }
+
+            consoleOutput.textContent = `[SQLALCHEMY ORM ENGINE]
+[1/3] Compiling SQLAlchemy declarative base metadata...
+[2/3] Mapping Class 'Product' -> Table 'products'
+  - Column 'id' (INTEGER, PRIMARY KEY)
+  - Column 'title' (VARCHAR, NOT NULL)
+  - Column 'price' (INTEGER)
+[3/3] Emitting DDL: CREATE TABLE products (id SERIAL PRIMARY KEY, title VARCHAR, price INTEGER);
+✅ [SUCCESS] SQLAlchemy ORM Model compiled & mapped successfully!`;
+            consoleOutput.style.color = '#34d399';
+
+            localStorage.setItem('partF_branchB_lesson3_completed', 'true');
+            localStorage.setItem('partF_branchB_lesson3_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
+
+            setTimeout(() => {
+                Swal.fire({
+                    title: '🎉 Lesson 3 Mastered! (+250 XP)',
+                    html: '<p style="color: #475569;">You mapped database tables using clean SQLAlchemy 2.0 ORM models!</p>',
+                    icon: 'success',
+                    showDenyButton: true,
+                    confirmButtonText: 'Continue to Lesson 4 🚀',
+                    confirmButtonColor: '#a855f7',
+                    denyButtonText: 'Stay & Practice 🛠️',
+                    denyButtonColor: '#475569'
+                }).then((result) => {
+                    if (result.isConfirmed) window.location.href = './lesson4_remake.html';
+                });
+            }, 400);
         }
     </script>
 </body>

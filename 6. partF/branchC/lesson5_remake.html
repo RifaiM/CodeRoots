@@ -447,37 +447,34 @@ export default async function PostsPage() {
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
 
-    <script>
+        <script>
         const DRAFT_KEY = 'partF_branchC_lesson5_draft';
-        const DEFAULT_STARTER_CODE = `// app/dashboard/page.js — Server Component with DB Query
-// Server Components can query databases directly — no API layer needed!
-// This runs ONLY on the server, so DB credentials stay safe.
+        const DEFAULT_STARTER_CODE = `// app/posts/page.js — Server Component with Database Query
+// Direct server queries require NO separate API endpoints!
 
-// TODO: Import your database connection
-// import { db } from '@/lib/database';
+export const metadata = { title: 'Posts Feed | NoviCodes' };
 
-export const metadata = { title: 'Dashboard | NoviCodes' };
-
-// TODO: Create an async function to fetch users from the database
-async function getUsers() {
-    // In real Next.js, query your DB here:
-    // const users = await db.query('SELECT * FROM users LIMIT 10');
+// TODO: Create an async data fetching function
+async function getPosts() {
+    // Mock database query:
     return [
-        { id: 1, name: 'Alex Rivera', role: 'developer' },
-        { id: 2, name: 'Sarah Chen',  role: 'designer' },
+        { id: 1, title: 'Building Fullstack Apps with Next.js 15' },
+        { id: 2, title: 'React Server Components & Zero Bundle Size' },
     ];
 }
 
-// TODO: Export the default page component as async (it fetches data)
-export default async function DashboardPage() {
-    // TODO: Await the getUsers() function
-    const users = await getUsers();
+// TODO: Export default async function for the page component
+export default async function PostsPage() {
+    // TODO: Await getPosts()
+    const posts = [];
 
-    // TODO: Return JSX that maps over users and renders each one
+    // TODO: Return JSX with a <main>, <h1>, and <ul> that maps over posts
     return (
         <main>
-            <h1>Developer Dashboard</h1>
-            {/* TODO: Map over users and render each name + role */}
+            <h1>Recent Posts</h1>
+            <ul>
+                {/* TODO: posts.map(p => <li key={p.id}>{p.title}</li>) */}
+            </ul>
         </main>
     );
 }`;
@@ -491,12 +488,12 @@ export default async function DashboardPage() {
 
             Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
             Level7Linter.initChecklist([
-                { id: 'asyncpage', label: 'Make the page component <code>async</code>', regex: /export\s+default\s+async\s+function/ },
-                { id: 'fetchfn',   label: 'Define a data-fetching function (e.g. <code>getUsers()</code>)', fn: (c) => /async\s+function\s+get\w+/.test(c) },
-                { id: 'await',     label: 'Use <code>await</code> to fetch data before rendering', regex: /await\s+\w+\(/ },
-                { id: 'map',       label: 'Use <code>.map()</code> to render a list of items', regex: /\.map\s*\(/ },
-                { id: 'jsx',       label: 'Return JSX with a <code>&lt;main&gt;</code> and <code>&lt;h1&gt;</code>', fn: (c) => /<(main|section|div)/.test(c) && /<h1/.test(c) },
-            ], { containerId: 'l7TaskChecklist' });
+                { id: 'asyncpage', label: 'Make page component <code>async</code>',                hint: 'export default async function PostsPage() { ... }', regex: /export\s+default\s+async\s+function/ },
+                { id: 'fetchfn',   label: 'Define a data fetching function (e.g. <code>getPosts</code>)', hint: 'async function getPosts() { ... }', regex: /async\s+function\s+get\w+/ },
+                { id: 'await',     label: 'Use <code>await</code> to fetch data before rendering',  hint: 'const posts = await getPosts();', fn: (c, s) => /await\s+get\w+\s*\(/.test(s) },
+                { id: 'map',       label: 'Use <code>.map()</code> to render list items',           hint: '{posts.map(p => <li key={p.id}>{p.title}</li>)}', fn: (c, s) => /\.map\s*\(/.test(s) },
+                { id: 'jsx',       label: 'Return JSX with a <code>&lt;ul&gt;</code> list',        hint: 'Return <ul>{...}</ul> inside <main>', fn: (c, s) => /<ul[>\s]/.test(s) },
+            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
 
             editor.addEventListener('input', () => {
                 localStorage.setItem(DRAFT_KEY, editor.value);
@@ -506,7 +503,7 @@ export default async function DashboardPage() {
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor reset. Write your Server Component and click Test...';
+            consoleOutput.textContent = '> Editor reset. Write your DB Server Component and click Test...';
             Level7Linter.check(DEFAULT_STARTER_CODE);
             Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
@@ -515,29 +512,49 @@ export default async function DashboardPage() {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 });
         }
 
         function testDBComponent() {
             const code = editor.value.trim();
-            Level7Linter.runChecklist(code);
-            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your Server Component first!'; consoleOutput.style.color = '#f87171'; return; }
-            const hasAsync = /export\s+default\s+async\s+function/.test(code);
-            const hasFetch = /async\s+function\s+get\w+/.test(code);
-            const hasAwait = /await\s+\w+\(/.test(code);
-            const hasMap   = /\.map\s*\(/.test(code);
-            const hasJSX   = /<(main|section|div)/.test(code) && /<h1/.test(code);
-            if (!hasAsync) { consoleOutput.textContent = '❌ Error: Page must be async.\n💡 Hint: export default async function DashboardPage() — async lets you use await inside.'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasFetch) { consoleOutput.textContent = '❌ Error: Missing data-fetching function.\n💡 Hint: Define: async function getUsers() { return [...]; }'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasAwait) { consoleOutput.textContent = '❌ Error: Missing await call.\n💡 Hint: const users = await getUsers();'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasMap)   { consoleOutput.textContent = '❌ Error: Missing .map() to render the list.\n💡 Hint: users.map(u => <div key={u.id}>{u.name}</div>)'; consoleOutput.style.color = '#f87171'; return; }
-            if (!hasJSX)   { consoleOutput.textContent = '⚠️ Warning: Page structure incomplete.\n💡 Hint: Return a <main> with an <h1> heading and the user list.'; consoleOutput.style.color = '#fbbf24'; return; }
-            consoleOutput.textContent = '[SERVER] Running DashboardPage on server...\n[DB] getUsers() → 2 records fetched\n[SSR] Rendering user list as HTML\n[Response] Streaming to client (0 kB JS)\n\n✅ SUCCESS: DB-connected Server Component rendered!';
+            if (!code) {
+                consoleOutput.textContent = '❌ Editor is empty. Write your Server Component first!';
+                consoleOutput.style.color = '#f87171';
+                return;
+            }
+
+            const evalResult = Level7Linter.evaluate(code);
+            if (!evalResult.allPassed) {
+                consoleOutput.textContent = Level7Linter.formatFeedback(evalResult);
+                consoleOutput.style.color = '#f87171';
+                Level7Linter.showIncompleteModal(evalResult);
+                return;
+            }
+
+            consoleOutput.textContent = `[SERVER] Running PostsPage on server...
+[DB] getPosts() → 2 records fetched
+[SSR] Rendering HTML unordered list (<ul>)
+[Response] Streaming HTML to browser (0 kB client JS)
+
+✅ SUCCESS: Direct Database Query in React Server Component validated!`;
             consoleOutput.style.color = '#34d399';
+
             localStorage.setItem('partF_branchC_lesson5_completed', 'true');
             localStorage.setItem('partF_branchC_lesson5_complete', 'true');
             if (typeof addXP === 'function') addXP(250);
-            setTimeout(() => { Swal.fire({ icon: 'success', title: '🎉 Lesson 5 Mastered! (+250 XP)', html: '<p style="color:#475569">You connected a DB to Next.js without an API!</p>', showDenyButton: true, confirmButtonText: 'Continue to Lesson 6 🚀', confirmButtonColor: '#0ea5e9', denyButtonText: 'Stay & Practice 🛠️', denyButtonColor: '#475569' }).then(r => { if (r.isConfirmed) window.location.href = './lesson6_remake.html'; }); }, 400);
+
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🎉 Lesson 5 Mastered! (+250 XP)',
+                    html: '<p style="color:#475569">You connected a database directly in Next.js Server Components!</p>',
+                    showDenyButton: true,
+                    confirmButtonText: 'Continue to Lesson 6 🚀',
+                    confirmButtonColor: '#0ea5e9',
+                    denyButtonText: 'Stay & Practice 🛠️',
+                    denyButtonColor: '#475569'
+                }).then((r) => { if (r.isConfirmed) window.location.href = './lesson6_remake.html'; });
+            }, 400);
         }
     </script>
 </body>

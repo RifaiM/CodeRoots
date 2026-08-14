@@ -412,11 +412,11 @@ vercel --prod</code>
             <input type="text" id="repoUrlInput" class="config-input" value="https://github.com/myusername/react-pro-app.git">
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Build Command:</label>
-            <input type="text" id="buildCommandInput" class="config-input" value="npm run build">
+            <input type="text" id="buildCommandInput" class="config-input" placeholder="e.g. npm run build" value="">
 
             <label style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px;">Output Directory:</label>
-            <input type="text" id="outputDirInput" class="config-input" value="dist">
-            <textarea id="configInput" class="terminal-editor" style="display: none;"></textarea>
+            <input type="text" id="outputDirInput" class="config-input" placeholder="e.g. dist" value="">
+            
 
             <div class="action-bar">
                 <button class="run-btn" onclick="runVercelDeploy()">🚀 Trigger Production Deploy</button>
@@ -448,115 +448,70 @@ vercel --prod</code>
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
     <script src="../level7-linter.js"></script>
-    <script>
-        const DEFAULT_STARTER_CODE = `# vercel.json — Vercel Deployment Configuration
-# TODO: Fill in the build command and output directory below
-
-{
-  "buildCommand": "TODO: enter your build command (e.g. npm run build)",
-  "outputDirectory": "TODO: enter your output dir (e.g. dist)",
-  "framework": "vite",
-  "regions": ["sin1"]
-}`;
-
-        const DRAFT_KEY = 'partF_branchA_lesson2_draft';
-
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const editor = document.getElementById('configInput');
-            const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft && editor) {
-                editor.value = savedDraft;
-            }
+            const buildInput = document.getElementById('buildCommandInput');
+            const outputInput = document.getElementById('outputDirInput');
 
-            if (editor) {
-                editor.addEventListener('input', () => {
-                    localStorage.setItem(DRAFT_KEY, editor.value);
-                });
-            }
-
-            Level7Linter.init('configInput', 'l7LintPanel', { mode: 'bash' });
             Level7Linter.initChecklist([
-                { id: 'buildcmd',  label: 'Enter a valid build command (e.g. <code>npm run build</code>)',    fn: (c) => /npm\\s+run\\s+build|npm\\s+run\\s+export/.test(c) },
-                { id: 'outputdir', label: 'Set an output directory (<code>dist</code>, <code>build</code>, or <code>out</code>)',  fn: (c) => /\\b(dist|build|out)\\b/.test(c) },
-            ], { containerId: 'l7TaskChecklist', submitBtnId: 'nextLessonBtn' });
-
-            const isCompleted = localStorage.getItem('partF_branchA_lesson2_complete') === 'true';
-            const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-            const nextBtn = document.getElementById('nextLessonBtn');
-            if (nextBtn && (isCompleted || isUnlocked)) {
-                nextBtn.style.display = 'inline-flex';
-            }
+                { id: 'buildcmd',  label: 'Enter a valid build command (e.g. <code>npm run build</code>)', hint: 'Type "npm run build" or "npm run export"', fn: () => {
+                    const v = (document.getElementById('buildCommandInput')?.value || '').trim();
+                    return /npm\s+run\s+build|npm\s+run\s+export/.test(v);
+                }},
+                { id: 'outputdir', label: 'Set an output directory (<code>dist</code>, <code>build</code>, or <code>out</code>)', hint: 'Type "dist" (Vite), "build" (CRA), or "out" (Next.js)', fn: () => {
+                    const v = (document.getElementById('outputDirInput')?.value || '').trim();
+                    return /\b(dist|build|out)\b/.test(v);
+                }},
+            ], { 
+                containerId: 'l7TaskChecklist', 
+                inputIds: ['buildCommandInput', 'outputDirInput', 'repoUrlInput']
+            });
         });
 
         function clearEditorContent() {
-            const editor = document.getElementById('configInput');
-            localStorage.removeItem(DRAFT_KEY);
-            if (editor) {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'info',
-                    title: '🧹 Editor reset to default template!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            const buildInput = document.getElementById('buildCommandInput');
+            const outputInput = document.getElementById('outputDirInput');
+            if (buildInput) buildInput.value = '';
+            if (outputInput) outputInput.value = '';
+            Level7Linter.evaluate();
+            const output = document.getElementById('terminalOutput');
+            if (output) output.textContent = 'Inputs cleared. Enter build command and output directory...';
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Inputs cleared!', showConfirmButton: false, timer: 1800 });
         }
 
         function copyCode(text) {
             navigator.clipboard.writeText(text);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Copied!', showConfirmButton: false, timer: 1500 });
         }
 
         function runVercelDeploy() {
             const buildCmd = document.getElementById('buildCommandInput').value.trim();
             const outputDir = document.getElementById('outputDirInput').value.trim();
+            const repoUrl = document.getElementById('repoUrlInput').value.trim();
             const output = document.getElementById('terminalOutput');
-            const editorVal = document.getElementById('configInput') ? document.getElementById('configInput').value : buildCmd;
 
-            Level7Linter.runChecklist(buildCmd + '\n' + outputDir + '\n' + editorVal);
-
-            if (!buildCmd) {
-                output.textContent = '❌ Error: Please enter a build command. Hint: most projects use npm run build';
+            const evalResult = Level7Linter.evaluate();
+            if (!evalResult.allPassed) {
+                output.textContent = Level7Linter.formatFeedback(evalResult);
                 output.style.color = '#f87171';
-                return;
-            }
-            if (buildCmd !== 'npm run build' && buildCmd !== 'npm run export') {
-                output.textContent = '❌ Build Error: "' + buildCmd + '" is not a recognized build command.\n💡 Hint: Use "npm run build" (Vite/React) or "npm run export" (static export).';
-                output.style.color = '#f87171';
-                return;
-            }
-            if (!outputDir || !['dist','build','out'].includes(outputDir)) {
-                output.textContent = '⚠️  Warning: Output directory "' + (outputDir || '(empty)') + '" is unexpected.\n💡 Hint: Vite uses "dist", Create React App uses "build", Next.js static uses "out".';
-                output.style.color = '#fbbf24';
+                Level7Linter.showIncompleteModal(evalResult);
                 return;
             }
 
-            output.textContent = `[Vercel] Inspecting latest GitHub commit...
-[Vercel] Running build: "${buildCmd}"
+            output.textContent = `[Vercel Build Service] Inspecting latest commit on ${repoUrl || 'GitHub'}...
+[Vercel] Running build command: "${buildCmd}"
 ✓ Created optimized production build in /${outputDir}
 ✓ Uploaded static assets to Vercel Edge Network (23 regions)
-✓ TLS certificate issued for https://my-app.vercel.app
+✓ TLS certificate automatically issued for https://my-app.vercel.app
 
 ✅ SUCCESS: Deployed → https://my-app.vercel.app [Latency: 12ms] 🎉`;
             output.style.color = '#34d399';
 
             localStorage.setItem('partF_branchA_lesson2_complete', 'true');
+            localStorage.setItem('partF_branchA_lesson2_completed', 'true');
             if (typeof addXP === 'function') addXP(250);
 
-            if (typeof Swal !== 'undefined') {
+            setTimeout(() => {
                 Swal.fire({
                     icon: 'success',
                     title: '🎉 Lesson 2 Completed! (+250 XP)',
@@ -569,7 +524,7 @@ vercel --prod</code>
                 }).then((result) => {
                     if (result.isConfirmed) window.location.href = './lesson3_remake.html';
                 });
-            }
+            }, 400);
         }
     </script>
 </body>
