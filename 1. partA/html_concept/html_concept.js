@@ -75,21 +75,41 @@ const quizQuestions = [
             { text: '<head>', correct: false },
             { text: '<header>', correct: false }
         ],
-        explanation: '<h1> is the highest-level heading element, typically representing the main title of the page.'
+        explanation: '<h1> is the highest-level heading element, representing the primary title of the page.'
+    },
+    {
+        q: 'What is the syntax difference between an opening tag and a closing tag?',
+        options: [
+            { text: 'Closing tags contain a forward slash (e.g. </p>) before the tag name', correct: true },
+            { text: 'Closing tags are written in uppercase only', correct: false },
+            { text: 'Closing tags use curly braces {/p}', correct: false }
+        ],
+        explanation: 'Closing tags include a forward slash (/) immediately after the opening angle bracket to signal the end of the element.'
     }
 ];
 
 let currentQuizIdx = 0;
+let quizPassed = false;
 
 function initConceptQuiz() {
     loadQuizQuestion(0);
 }
 
 function loadQuizQuestion(idx) {
+    currentQuizIdx = idx;
     const qData = quizQuestions[idx];
+    const qBadge = document.getElementById('quizBadge');
     const qText = document.getElementById('quizQText');
     const optContainer = document.getElementById('quizOptionsContainer');
     const feedbackBox = document.getElementById('quizFeedbackBox');
+
+    const isAlreadyRead = localStorage.getItem('readHTML') === 'true';
+
+    if (qBadge) {
+        qBadge.textContent = isAlreadyRead && idx === 0 
+            ? `✅ Mastered (Question 1 of ${quizQuestions.length})` 
+            : `Question ${idx + 1} of ${quizQuestions.length}`;
+    }
 
     if (qText) qText.textContent = `${idx + 1}. ${qData.q}`;
     if (feedbackBox) {
@@ -109,16 +129,40 @@ function loadQuizQuestion(idx) {
 
                 if (opt.correct) {
                     btn.classList.add('correct');
-                    feedbackBox.className = 'quiz-feedback-box show correct';
-                    feedbackBox.innerHTML = `<strong>🎉 Correct!</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
                 } else {
                     btn.classList.add('incorrect');
-                    feedbackBox.className = 'quiz-feedback-box show incorrect';
-                    feedbackBox.innerHTML = `<strong>💡 Hint:</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
+                    allBtns.forEach(b => {
+                        const m = qData.options.find(o => o.text === b.textContent);
+                        if (m && m.correct) b.classList.add('correct');
+                    });
                 }
 
-                if (idx < quizQuestions.length - 1) {
-                    feedbackBox.innerHTML += `<button onclick="window.nextConceptQuestion()" style="background:#ea580c; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;">Next Question ➔</button>`;
+                const isLast = idx === quizQuestions.length - 1;
+                if (isLast) {
+                    quizPassed = true;
+                    updateCompletionButton();
+                }
+
+                feedbackBox.className = `quiz-feedback-box show ${opt.correct ? 'correct' : 'incorrect'}`;
+
+                if (!isLast) {
+                    feedbackBox.innerHTML = `
+                        <strong>${opt.correct ? '🎉 Correct!' : '💡 Key Concept:'}</strong>
+                        <p style="margin:4px 0 8px 0;">${qData.explanation}</p>
+                        <button onclick="window.nextConceptQuestion()" style="background:#ea580c; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.80rem;">Next Question ➔</button>
+                    `;
+                } else {
+                    feedbackBox.innerHTML = `
+                        <div style="padding: 2px 0;">
+                            <div style="font-size: 0.96rem; font-weight: 800; color: #16a34a; margin-bottom: 4px;">🎉 HTML Concept Check Passed! (3/3 Answered)</div>
+                            <p style="margin: 4px 0 10px 0; color: #334155;">
+                                Excellent! You understand markup tags, heading hierarchy, and DOM nesting. Claim your +50 XP below!
+                            </p>
+                            <button onclick="window.markConceptComplete()" style="background: #16a34a; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.84rem;">
+                                🌟 Claim +50 XP & Continue ➔
+                            </button>
+                        </div>
+                    `;
                 }
             });
             optContainer.appendChild(btn);
@@ -133,6 +177,12 @@ window.nextConceptQuestion = function() {
 
 // 3. Mark Complete & Navigate
 window.markConceptComplete = function() {
+    const isAlreadyRead = localStorage.getItem('readHTML') === 'true';
+    if (!quizPassed && !isAlreadyRead) {
+        showLockedModal();
+        return;
+    }
+
     localStorage.setItem('readHTML', 'true');
 
     if (typeof Swal !== 'undefined') {
@@ -164,9 +214,44 @@ window.markConceptComplete = function() {
     }
 };
 
-function checkIfAlreadyCompleted() {
-    if (localStorage.getItem('readHTML') === 'true') {
-        const btn = document.getElementById('markReadBtn');
-        if (btn) btn.innerHTML = '<span>✅ Completed (+50 XP Earned) • Next: CSS ➔</span>';
+function showLockedModal() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'info',
+            title: '🔒 Verification Required',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 8px;">
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 10px;">
+                        Please answer all 3 questions in <strong>Section 3: Concept Verification Check</strong> to prove your understanding before claiming this concept (+50 XP)!
+                    </p>
+                </div>
+            `,
+            confirmButtonColor: '#ea580c',
+            confirmButtonText: 'Take Verification Check 🚀'
+        });
     }
+}
+
+function updateCompletionButton() {
+    const isAlreadyRead = localStorage.getItem('readHTML') === 'true';
+    const btn = document.getElementById('markReadBtn');
+    if (!btn) return;
+
+    if (isAlreadyRead) {
+        btn.classList.remove('locked');
+        btn.innerHTML = '<span>✅ Concept Mastered (+50 XP Earned) • Next: CSS ➔</span>';
+        btn.onclick = () => { window.location.href = '../css_concept/css_concept.html'; };
+    } else if (quizPassed) {
+        btn.classList.remove('locked');
+        btn.innerHTML = '<span>✅ Mark Complete & Continue to CSS (+50 XP) ➔</span>';
+        btn.onclick = window.markConceptComplete;
+    } else {
+        btn.classList.add('locked');
+        btn.innerHTML = '<span>🔒 Complete Verification Check (Section 3) to Unlock (+50 XP)</span>';
+        btn.onclick = showLockedModal;
+    }
+}
+
+function checkIfAlreadyCompleted() {
+    updateCompletionButton();
 }

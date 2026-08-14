@@ -844,8 +844,14 @@ window.confirmResetProgress = function() {
                 localStorage.removeItem('novicodes_user_xp');
                 localStorage.removeItem('novicodes_xp');
 
-                // 2. Reset Level Completion Flags
+                // 2. Reset Level Completion & Concept Flags
                 localStorage.removeItem('level0_completed');
+                localStorage.removeItem('level0_quiz_completed');
+                localStorage.removeItem('level0_quiz_score');
+                localStorage.removeItem('readWebsite');
+                localStorage.removeItem('readHTML');
+                localStorage.removeItem('readCSS');
+                localStorage.removeItem('readJavaScript');
                 localStorage.removeItem('level1_completed');
                 localStorage.removeItem('level2_completed');
                 localStorage.removeItem('level3_completed');

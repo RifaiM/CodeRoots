@@ -320,6 +320,12 @@ window.confirmResetProgress = function() {
             if (result.isConfirmed) {
                 // Clear all progress keys
                 localStorage.removeItem('level0_completed');
+                localStorage.removeItem('level0_quiz_completed');
+                localStorage.removeItem('level0_quiz_score');
+                localStorage.removeItem('readWebsite');
+                localStorage.removeItem('readHTML');
+                localStorage.removeItem('readCSS');
+                localStorage.removeItem('readJavaScript');
                 localStorage.removeItem('level1_completed');
                 localStorage.removeItem('level2_completed');
                 localStorage.removeItem('level3_completed');

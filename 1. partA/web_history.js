@@ -271,30 +271,52 @@ window.confirmResetProgress = function() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
+                // 1. Reset Level 0 & Part A Concepts
                 localStorage.removeItem('level0_completed');
-                localStorage.removeItem('level1_completed');
-                localStorage.removeItem('level2_completed');
-                localStorage.removeItem('level3_completed');
-
+                localStorage.removeItem('level0_quiz_completed');
+                localStorage.removeItem('level0_quiz_score');
                 localStorage.removeItem('readWebsite');
                 localStorage.removeItem('readHTML');
                 localStorage.removeItem('readCSS');
                 localStorage.removeItem('readJavaScript');
 
+                // 2. Reset Levels 1-3
+                localStorage.removeItem('level1_completed');
+                localStorage.removeItem('level2_completed');
+                localStorage.removeItem('level3_completed');
+
+                // 3. Reset User XP & Stats
+                localStorage.removeItem('userXP');
+                localStorage.removeItem('novicodes_user_xp');
+                localStorage.removeItem('novicodes_xp');
+
+                // 4. Reset Levels 4-6 Lessons
                 for (let i = 1; i <= 15; i++) {
                     localStorage.removeItem(`partB_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partB_lesson${i}_remake_completed`);
                     localStorage.removeItem(`lesson_${i}_completed`);
+                    localStorage.removeItem(`lesson_${i}_complete`);
                     localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partC_lesson${i}_remake_completed`);
                     localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+                    localStorage.removeItem(`partE_lesson${i}_remake_completed`);
                 }
 
+                // 5. Reset Level 7
                 for (let i = 1; i <= 6; i++) {
                     localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
                     localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
                     localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
                 }
 
                 localStorage.removeItem('practice_mode_unlocked');
+                localStorage.removeItem('progression_mode');
 
                 Swal.fire({
                     icon: 'success',
@@ -478,6 +500,8 @@ function initPillarsProgress() {
     const isHTML = localStorage.getItem('readHTML') === 'true';
     const isCSS = localStorage.getItem('readCSS') === 'true';
     const isJS = localStorage.getItem('readJavaScript') === 'true';
+    const isQuizComplete = localStorage.getItem('level0_quiz_completed') === 'true';
+    const isL0 = localStorage.getItem('level0_completed') === 'true';
 
     const count = (isWebsite ? 1 : 0) + (isHTML ? 1 : 0) + (isCSS ? 1 : 0) + (isJS ? 1 : 0);
 
@@ -497,14 +521,55 @@ function initPillarsProgress() {
     if (progressCount) progressCount.textContent = `${count}/4`;
     if (progressFill) progressFill.style.width = `${(count / 4) * 100}%`;
 
-    const isL0 = localStorage.getItem('level0_completed') === 'true';
+    updateClaimButtonState(count, isQuizComplete, isL0);
+}
+
+function updateClaimButtonState(pillarCount, isQuizComplete, isL0) {
     const claimBtn = document.getElementById('claimLevel0Btn');
-    if (claimBtn) {
-        if (isL0) {
-            claimBtn.innerHTML = '<span>✅ Level 0 Completed (+250 XP Claimed) • Return to Dashboard</span>';
-        } else if (count === 4) {
-            claimBtn.innerHTML = '<span>🎉 All 4 Concepts Mastered! Claim Level 0 (+250 XP)</span>';
+    if (!claimBtn) return;
+
+    if (isL0) {
+        claimBtn.classList.remove('locked');
+        claimBtn.innerHTML = '<span>✅ Level 0 Completed (+250 XP Claimed) • Return to Dashboard</span>';
+        claimBtn.onclick = () => { window.location.href = '../index.html'; };
+    } else if (pillarCount === 4 && isQuizComplete) {
+        claimBtn.classList.remove('locked');
+        claimBtn.innerHTML = '<span>🎉 All Requirements Met! Claim Level 0 (+250 XP) ➔</span>';
+        claimBtn.onclick = window.claimLevel0Completion;
+    } else {
+        claimBtn.classList.add('locked');
+        if (pillarCount < 4 && !isQuizComplete) {
+            claimBtn.innerHTML = `<span>🔒 Complete 4 Pillars (${pillarCount}/4) & Knowledge Challenge to Unlock (+250 XP)</span>`;
+        } else if (pillarCount < 4) {
+            claimBtn.innerHTML = `<span>🔒 Explore Remaining Pillars (${pillarCount}/4) to Unlock (+250 XP)</span>`;
+        } else {
+            claimBtn.innerHTML = `<span>🔒 Complete Knowledge Challenge Below to Unlock (+250 XP)</span>`;
         }
+
+        claimBtn.onclick = () => {
+            if (typeof Swal !== 'undefined') {
+                const missing = [];
+                if (pillarCount < 4) missing.push(`• <strong>Explore 4 Core Pillars:</strong> ${pillarCount}/4 completed (+50 XP each)`);
+                if (!isQuizComplete) missing.push(`• <strong>Pass Knowledge Challenge:</strong> Complete the 5-question quiz below (+50 XP)`);
+
+                Swal.fire({
+                    icon: 'info',
+                    title: '🔒 Level 0 Requirements Remaining',
+                    html: `
+                        <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 8px;">
+                            <p style="color: #475569; font-size: 0.92rem; margin-bottom: 12px; line-height: 1.5;">
+                                Complete both milestones below to claim your official <strong>Level 0 (+250 XP)</strong> reward and unlock Level 1 Foundations:
+                            </p>
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; font-size: 0.88rem; color: #1e293b; line-height: 1.7;">
+                                ${missing.join('<br>')}
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonColor: '#2563eb',
+                    confirmButtonText: 'Got It! Let\'s Finish Up 🚀'
+                });
+            }
+        };
     }
 }
 
@@ -566,8 +631,10 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let quizAnswered = false;
+let quizScore = 0;
 
 function initQuizEngine() {
+    quizScore = 0;
     loadQuestion(0);
 }
 
@@ -581,7 +648,13 @@ function loadQuestion(idx) {
     const optContainer = document.getElementById('quizOptionsContainer');
     const feedbackBox = document.getElementById('quizFeedbackBox');
 
-    if (qBadge) qBadge.textContent = `Question ${idx + 1} of ${questions.length}`;
+    const isQuizComplete = localStorage.getItem('level0_quiz_completed') === 'true';
+
+    if (qBadge) {
+        qBadge.textContent = isQuizComplete && idx === 0 
+            ? `✅ Challenge Passed (Question 1 of ${questions.length})`
+            : `Question ${idx + 1} of ${questions.length}`;
+    }
     if (qText) qText.textContent = qData.q;
     if (feedbackBox) {
         feedbackBox.className = 'quiz-feedback-box';
@@ -604,6 +677,8 @@ function handleOptionClick(selectedBtn, isCorrect, explanation) {
     if (quizAnswered) return;
     quizAnswered = true;
 
+    if (isCorrect) quizScore++;
+
     const optButtons = document.querySelectorAll('.quiz-opt-btn');
     optButtons.forEach(btn => {
         btn.disabled = true;
@@ -619,16 +694,44 @@ function handleOptionClick(selectedBtn, isCorrect, explanation) {
         });
     }
 
+    const isFinalQuestion = currentQuestionIndex === questions.length - 1;
+
+    if (isFinalQuestion) {
+        localStorage.setItem('level0_quiz_completed', 'true');
+        localStorage.setItem('level0_quiz_score', quizScore.toString());
+        initPillarsProgress(); // Re-check and unlock claim button immediately!
+    }
+
     const feedbackBox = document.getElementById('quizFeedbackBox');
     if (feedbackBox) {
         feedbackBox.className = `quiz-feedback-box show ${isCorrect ? 'correct' : 'incorrect'}`;
-        feedbackBox.innerHTML = `
-            <strong>${isCorrect ? '🎉 Correct Answer!' : '💡 Key Concept:'}</strong>
-            <p style="margin: 4px 0 8px 0;">${explanation}</p>
-            <button onclick="window.nextQuestion()" style="background: ${isCorrect ? '#16a34a' : '#2563eb'}; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.80rem;">
-                ${currentQuestionIndex < questions.length - 1 ? 'Next Question ➡️' : '🔄 Restart Quiz'}
-            </button>
-        `;
+
+        if (!isFinalQuestion) {
+            feedbackBox.innerHTML = `
+                <strong>${isCorrect ? '🎉 Correct Answer!' : '💡 Key Concept:'}</strong>
+                <p style="margin: 4px 0 8px 0;">${explanation}</p>
+                <button onclick="window.nextQuestion()" style="background: ${isCorrect ? '#16a34a' : '#2563eb'}; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.80rem;">
+                    Next Question ➡️
+                </button>
+            `;
+        } else {
+            feedbackBox.innerHTML = `
+                <div style="padding: 4px 0;">
+                    <div style="font-size: 1rem; font-weight: 800; color: #16a34a; margin-bottom: 4px;">🎉 Level 0 Knowledge Challenge Completed!</div>
+                    <p style="margin: 4px 0 10px 0; color: #334155;">
+                        You scored <strong>${quizScore}/${questions.length} correct</strong>! You have mastered web history, browser evolution, and packet architecture.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button onclick="window.scrollToClaim()" style="background: #16a34a; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.84rem;">
+                            🌟 Continue to Claim Level 0 ➔
+                        </button>
+                        <button onclick="window.initQuizEngine()" style="background: #e2e8f0; color: #475569; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.82rem;">
+                            🔄 Retake Quiz
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
     }
 }
 
@@ -637,15 +740,35 @@ window.nextQuestion = function() {
     loadQuestion(nextIdx);
 };
 
+window.scrollToClaim = function() {
+    const claimSection = document.querySelector('.completion-banner');
+    if (claimSection) {
+        claimSection.scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
 /* ==========================================================================
    7. Claim Level 0 Completion & Return to Dashboard (+250 XP)
    ========================================================================== */
 window.claimLevel0Completion = function() {
+    const isWebsite = localStorage.getItem('readWebsite') === 'true';
+    const isHTML = localStorage.getItem('readHTML') === 'true';
+    const isCSS = localStorage.getItem('readCSS') === 'true';
+    const isJS = localStorage.getItem('readJavaScript') === 'true';
+    const isQuizComplete = localStorage.getItem('level0_quiz_completed') === 'true';
+    const count = (isWebsite ? 1 : 0) + (isHTML ? 1 : 0) + (isCSS ? 1 : 0) + (isJS ? 1 : 0);
+
+    if (count < 4 || !isQuizComplete) {
+        updateClaimButtonState(count, isQuizComplete, false);
+        return;
+    }
+
     localStorage.setItem('level0_completed', 'true');
     localStorage.setItem('readWebsite', 'true');
     localStorage.setItem('readHTML', 'true');
     localStorage.setItem('readCSS', 'true');
     localStorage.setItem('readJavaScript', 'true');
+    localStorage.setItem('level0_quiz_completed', 'true');
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -656,7 +779,7 @@ window.claimLevel0Completion = function() {
                     <div style="font-size: 3rem; margin-bottom: 8px;">🌱 ➔ 🛡️</div>
                     <div style="font-size: 1.15rem; font-weight: 800; color: #16a34a; margin-bottom: 6px;">+250 XP Earned!</div>
                     <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 14px;">
-                        Congratulations! You have mastered the history, architecture, and core pillars of web development. You have earned the <strong>Web Novice</strong> rank and unlocked Level 1 Foundations!
+                        Congratulations! You have mastered the history, architecture, and 4 core pillars of web development. You have earned the <strong>Web Novice</strong> rank and unlocked Level 1 Foundations!
                     </p>
                 </div>
             `,

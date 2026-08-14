@@ -862,6 +862,21 @@ body {
     background: #f8fafc;
 }
 
+.claim-level0-btn.locked {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px dashed rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    box-shadow: none;
+    opacity: 0.9;
+}
+
+.claim-level0-btn.locked:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
 /* --------------------------------------------------------------------------
    Mobile Responsive Breakpoints (868px, 576px, 420px, 375px, 320px)
    -------------------------------------------------------------------------- */

@@ -39,6 +39,58 @@
         return true;
     }
 
+    function checkAccessProtection() {
+        const currentId = getCurrentLessonId();
+        if (!canAccessLesson(currentId)) {
+            const requiredLesson = currentId - 1;
+            let highestAccessible = 1;
+            for (let i = 1; i <= 15; i++) {
+                if (!isLessonCompleted(i)) {
+                    highestAccessible = i;
+                    break;
+                }
+            }
+
+            const renderAccessDenied = () => {
+                if (!document.getElementById('_ad-styles-l4')) {
+                    const s = document.createElement('style');
+                    s.id = '_ad-styles-l4';
+                    s.textContent = '@keyframes _adFadeIn{from{opacity:0}to{opacity:1}}@keyframes _adSlideIn{from{opacity:0;transform:scale(.88) translateY(-16px)}to{opacity:1;transform:scale(1) translateY(0)}}@keyframes _adFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}';
+                    document.head.appendChild(s);
+                }
+                if (document.getElementById('_access-denied-overlay')) return;
+
+                const overlay = document.createElement('div');
+                overlay.id = '_access-denied-overlay';
+                overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:linear-gradient(135deg,#090d16 0%,#0f172a 50%,#1e293b 100%);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_adFadeIn 0.3s ease;font-family:\'Plus Jakarta Sans\',system-ui,-apple-system,sans-serif;');
+
+                const card = document.createElement('div');
+                card.setAttribute('style', 'position:relative;z-index:1;background:rgba(15,23,42,0.88);border:1px solid rgba(51,65,85,0.8);border-top:4px solid #2563eb;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:24px;padding:38px 28px;max-width:460px;width:90%;text-align:center;box-shadow:0 24px 50px rgba(0,0,0,0.5);animation:_adSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);box-sizing:border-box;');
+                card.innerHTML = '<div style="display:inline-block;background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);font-family:\'Fira Code\',monospace;font-size:0.80rem;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:0.5px;">🔒 PREREQUISITE REQUIRED</div>'
+                    + '<div style="font-size:3.6rem;margin-bottom:12px;line-height:1;filter:drop-shadow(0 8px 16px rgba(239,68,68,0.25));animation:_adFloat 3s ease-in-out infinite;">🔒</div>'
+                    + '<h2 style="color:#ffffff;margin:0 0 10px;font-size:1.55rem;font-weight:800;letter-spacing:-0.3px;">Access Restricted</h2>'
+                    + '<p style="margin:0 0 24px;line-height:1.6;color:#94a3b8;font-size:0.92rem;">You must complete <strong style="color:#f8fafc;">Lesson ' + requiredLesson + '</strong> before accessing <strong style="color:#f8fafc;">Lesson ' + currentId + '</strong> in Level 4 • DOM Dojo.</p>'
+                    + '<div style="display:flex;flex-direction:column;gap:10px;width:100%;box-sizing:border-box;">'
+                    + '<button onclick="window.location.href=\'../lesson' + highestAccessible + '/lesson' + highestAccessible + '_remake.html\'" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;border:none;border-radius:24px;font-family:inherit;font-size:0.90rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,0.35);transition:all 0.2s ease;box-sizing:border-box;" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'\'"><span>🚀 Take Me to Lesson ' + highestAccessible + ' ➔</span></button>'
+                    + '<a href="../../index.html" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:#1e293b;color:#f8fafc;border:1px solid #334155;border-radius:24px;font-family:inherit;font-size:0.86rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;" onmouseover="this.style.background=\'#334155\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.background=\'#1e293b\';this.style.transform=\'\'"><span>🏠 Return to Dashboard</span></a>'
+                    + '</div>';
+
+                overlay.appendChild(card);
+                document.body.appendChild(overlay);
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderAccessDenied);
+            } else {
+                renderAccessDenied();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    if (!checkAccessProtection()) return;
+
     // SweetAlert2-backed locked lesson notification (lazy-loads Swal if not present)
     window.__navLockedAlert = function(requiredLesson, lockedLesson) {
         const fire = () => Swal.fire({

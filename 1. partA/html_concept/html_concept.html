@@ -113,7 +113,10 @@
 
         <!-- 3. Mini Knowledge Check -->
         <section class="concept-card">
-            <h2><span>🧠</span> 3. Concept Verification Check</h2>
+            <div class="section-header-row">
+                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
+            </div>
             <p id="quizQText">Loading question...</p>
             <div class="quiz-options-list" id="quizOptionsContainer"></div>
             <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
@@ -123,8 +126,8 @@
         <section class="complete-card">
             <h3>🎉 Mastered HTML Fundamentals?</h3>
             <p>Claim your +50 XP and continue to Pillar 3: CSS Styling!</p>
-            <button class="mark-complete-btn" id="markReadBtn" onclick="markConceptComplete()">
-                <span>✅ Mark Complete & Continue to CSS (+50 XP) ➔</span>
+            <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
+                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
             </button>
         </section>
 
