@@ -412,19 +412,19 @@ function initHtmlConceptWidgets() {
     const explanations = {
         open: {
             title: '🏷️ Opening Tag (<a>)',
-            desc: 'Tells the web browser what kind of element to create. The angle brackets (<...>) act as container boundaries.'
+            desc: 'Tells the browser: "Hey, open a new link box!" The angle brackets (<...>) act as container boundaries.'
         },
         attr: {
-            title: '⚡ Attributes (href="..." target="...")',
-            desc: 'Provides configuration superpowers! href specifies destination URL, and target="_blank" opens the link in a new tab.'
+            title: '⚡ Attributes (href="https://novicodes.dev")',
+            desc: 'Like a luggage tag attached to a suitcase! href tells the link where to fly when clicked.'
         },
         content: {
             title: '📝 Element Content ("Explore Code Dojo")',
-            desc: 'The visible text or nested elements that live inside the container that users can read and click on.'
+            desc: 'The actual visible item packed inside the box that visitors read and click on.'
         },
         close: {
             title: '🛑 Closing Tag (</a>)',
-            desc: 'Marks the end boundary of the element using a forward slash (/) so the browser knows where the element stops.'
+            desc: 'Tells the browser: "The link box ends here! Tape it shut with a forward slash (/)." Everything after this is outside the link.'
         }
     };
 
@@ -450,15 +450,15 @@ function initHtmlConceptWidgets() {
 function initCssConceptWidgets() {
     // A. Box Model Explorer
     const layers = [
-        { id: 'bmMarginLayer', name: 'Margin', desc: 'Outer transparent buffer space separating this element from surrounding neighbor boxes.' },
-        { id: 'bmBorderLayer', name: 'Border', desc: 'Visible stroke outline or frame surrounding the padding and content (e.g. 2px solid #f59e0b).' },
-        { id: 'bmPaddingLayer', name: 'Padding', desc: 'Inner breathing room between the element border and the actual text/image content (like bubble wrap inside a package).' },
-        { id: 'bmContentLayer', name: 'Content', desc: 'The actual payload area where text, images, buttons, and child icons render.' }
+        { id: 'bmMarginLayer', name: 'Margin 🚚', desc: 'Outer space in the delivery truck separating this box from neighbor elements so they don\'t smash together.' },
+        { id: 'bmBorderLayer', name: 'Border 📦', desc: 'The visible cardboard box outline surrounding the bubble wrap (e.g. 2px solid #f59e0b).' },
+        { id: 'bmPaddingLayer', name: 'Padding 🫧', desc: 'The protective bubble wrap inside the box giving your text/image breathing room from the cardboard walls.' },
+        { id: 'bmContentLayer', name: 'Content ☕', desc: 'The actual valuable item inside the box (your text headline, paragraph, photo, or button).' }
     ];
 
     const readout = document.getElementById('boxModelReadout');
     if (readout) {
-        readout.innerHTML = `<strong>💡 Hover over any Box Model layer above</strong> to see its purpose and computed spacing!`;
+        readout.innerHTML = `<strong>💡 Hover over any Box Model layer above</strong> to see its purpose and real-world shipping box analogy!`;
     }
 
     layers.forEach(l => {
@@ -467,7 +467,7 @@ function initCssConceptWidgets() {
             el.addEventListener('mouseenter', (e) => {
                 e.stopPropagation();
                 if (readout) {
-                    readout.innerHTML = `<span style="color: #2563eb; font-weight: 800;">📦 ${l.name} Layer:</span> ${l.desc}`;
+                    readout.innerHTML = `<span style="color: #2563eb; font-weight: 800;">${l.name} Layer:</span> ${l.desc}`;
                 }
             });
         }
@@ -623,10 +623,31 @@ function initJsConceptWidgets() {
         });
     }
 
-    // C. Variable Memory Box
+    // C. Variable Memory Box (const vs let)
+    const btnConst = document.getElementById('btnTryBreakConst');
     const btnMem = document.getElementById('btnIncrementMemory');
+    const btnToggle = document.getElementById('btnToggleReady');
     const xpVal = document.getElementById('memXpVal');
+    const readyVal = document.getElementById('memReadyVal');
+
     let dynamicXp = 400;
+    let dynamicReady = true;
+
+    if (btnConst) {
+        btnConst.addEventListener('click', () => {
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'error',
+                    title: '🛑 TypeError: Assignment to constant variable!',
+                    html: '<strong>appName</strong> was declared using <code>const</code> (Permanent Sharpie 🔒).<br><br>In JavaScript, once a <code>const</code> variable is assigned, its value is locked forever and cannot be overwritten!',
+                    confirmButtonColor: '#ef4444'
+                });
+            } else {
+                alert('🛑 TypeError: Assignment to constant variable!\nconst appName is locked with permanent sharpie and cannot be changed.');
+            }
+            appendLog(`[ERROR] Uncaught TypeError: Assignment to constant variable 'appName'`, '#f87171');
+        });
+    }
 
     if (btnMem && xpVal) {
         btnMem.addEventListener('click', () => {
@@ -638,7 +659,20 @@ function initJsConceptWidgets() {
                 xpVal.style.color = '#0f172a';
                 xpVal.style.transform = 'scale(1)';
             }, 200);
-            appendLog(`learnerXP mutated in memory: ${dynamicXp} XP`, '#38bdf8');
+            appendLog(`let learnerXP updated on whiteboard: ${dynamicXp} XP`, '#38bdf8');
+        });
+    }
+
+    if (btnToggle && readyVal) {
+        btnToggle.addEventListener('click', () => {
+            dynamicReady = !dynamicReady;
+            readyVal.textContent = dynamicReady.toString();
+            readyVal.style.color = dynamicReady ? '#16a34a' : '#ea580c';
+            readyVal.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                readyVal.style.transform = 'scale(1)';
+            }, 200);
+            appendLog(`let isReady flipped on whiteboard: ${dynamicReady}`, '#4ade80');
         });
     }
 }
