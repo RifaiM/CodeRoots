@@ -1,240 +1,171 @@
 /**
  * NoviCodes - Level 3: JavaScript Foundations Data Module
- * Enriched with Deep Visual Analogies & Interactive Architectures
  */
 window.LEVEL3_JS_DATA = {
-    id: "level3_js",
-    title: "Level 3: JavaScript Foundations",
-    subtitle: "Programming Logic, DOM Manipulation & Web Interactivity",
-    badgeIcon: "⚡",
-    xpReward: 400,
-    trackKey: "js",
-    nextTrackUrl: "./2. partB/lesson1/lesson1_remake.html",
-    nextTrackName: "Level 4: Integrated Dojo",
-
-    // 1. Deep Concept Explanation & Analogy
-    concepts: {
-        heroAnalogy: {
-            title: "JavaScript is Like the Electrical Engine & Brain of a Website",
-            description: "If HTML is the physical brick house and CSS is the paint and interior design, JavaScript is the electrical grid, automated doors, lights, and smart home computer. JavaScript listens for user events (clicks, typing, gestures), calculates dynamic logic, updates screen content without reloading, and talks to remote cloud servers in real-time.",
-            icon: "⚡",
-            hasInteractiveDemo: true,
-            demoType: "js_triad"
+    "id": "level3_js",
+    "title": "Level 3: JavaScript Foundations",
+    "subtitle": "Programming Logic, DOM Manipulation & Web Interactivity",
+    "badgeIcon": "⚡",
+    "xpReward": 400,
+    "trackKey": "js",
+    "nextTrackUrl": "./2. partB/lesson1/lesson1_remake.html",
+    "nextTrackName": "Level 4: Integrated Dojo",
+    "concepts": {
+        "heroAnalogy": {
+            "title": "JavaScript is Like the Electrical Engine & Brain of a Website",
+            "description": "If HTML is the physical brick house and CSS is the paint and interior design, JavaScript is the electrical grid, automated doors, lights, and smart home computer. JavaScript listens for user events (clicks, typing, gestures), calculates dynamic logic, updates screen content without reloading, and talks to remote cloud servers in real-time.",
+            "icon": "⚡",
+            "hasInteractiveDemo": true,
+            "demoType": "js_triad"
         },
-        sections: [
+        "sections": [
             {
-                title: "1. The Web Development Triad in Action",
-                content: `
-                    <p>Toggle the 3 core web technologies below to witness how HTML, CSS, and JS interact to build modern apps:</p>
-                    
-                    <div class="concept-interactive-container" id="jsTriadWidget">
-                        <div class="triad-toggle-bar">
-                            <label class="triad-pill-checkbox checked" id="checkHtml">
-                                <input type="checkbox" checked style="display:none;"> 🧱 1. HTML (Structure)
-                            </label>
-                            <label class="triad-pill-checkbox checked" id="checkCss">
-                                <input type="checkbox" checked style="display:none;"> 🎨 2. CSS (Styling)
-                            </label>
-                            <label class="triad-pill-checkbox checked" id="checkJs">
-                                <input type="checkbox" checked style="display:none;"> ⚡ 3. JavaScript (Action)
-                            </label>
-                        </div>
-                        <div class="triad-preview-screen" id="triadPreviewScreen">
-                            <div id="triadContentBox" style="text-align: center;">
-                                <h3 id="triadTitle" style="margin: 0 0 8px 0; color: #0f172a;">Live Interactive App</h3>
-                                <p id="triadText" style="color: #64748b; font-size: 0.9rem; margin-bottom: 14px;">Click the button below to test interactivity:</p>
-                                <button id="triadActionBtn" style="background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: transform 0.2s ease;">⚡ Click Me (Count: <span id="triadCountDisplay">0</span>)</button>
-                            </div>
-                        </div>
-                    </div>
-                `
+                "title": "1. The Web Development Triad in Action",
+                "content": "\n                    <p>Toggle the 3 core web technologies below to witness how HTML, CSS, and JS interact to build modern apps:</p>\n                    \n                    <div class=\"concept-interactive-container\" id=\"jsTriadWidget\">\n                        <div class=\"triad-toggle-bar\">\n                            <label class=\"triad-pill-checkbox checked\" id=\"checkHtml\">\n                                <input type=\"checkbox\" checked style=\"display:none;\"> 🧱 1. HTML (Structure)\n                            </label>\n                            <label class=\"triad-pill-checkbox checked\" id=\"checkCss\">\n                                <input type=\"checkbox\" checked style=\"display:none;\"> 🎨 2. CSS (Styling)\n                            </label>\n                            <label class=\"triad-pill-checkbox checked\" id=\"checkJs\">\n                                <input type=\"checkbox\" checked style=\"display:none;\"> ⚡ 3. JavaScript (Action)\n                            </label>\n                        </div>\n                        <div class=\"triad-preview-screen\" id=\"triadPreviewScreen\">\n                            <div id=\"triadContentBox\" style=\"text-align: center;\">\n                                <h3 id=\"triadTitle\" style=\"margin: 0 0 8px 0; color: #0f172a;\">Live Interactive App</h3>\n                                <p id=\"triadText\" style=\"color: #64748b; font-size: 0.9rem; margin-bottom: 14px;\">Click the button below to test interactivity:</p>\n                                <button id=\"triadActionBtn\" style=\"background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: transform 0.2s ease;\">⚡ Click Me (Count: <span id=\"triadCountDisplay\">0</span>)</button>\n                            </div>\n                        </div>\n                    </div>\n                "
             },
             {
-                title: "2. Live Event Reactor: Listening and Reacting to Users",
-                content: `
-                    <p>JavaScript programs are <strong>Event-Driven</strong>. Click, hover, or type below to see JavaScript event listeners fire in real-time:</p>
-                    
-                    <div class="concept-interactive-container" id="jsEventReactorWidget">
-                        <div class="event-reactor-grid">
-                            <div class="event-action-buttons">
-                                <button class="reactor-btn" id="eventBtnClick">
-                                    <span>🖱️</span> 1. Trigger Click Event
-                                </button>
-                                <button class="reactor-btn" id="eventBtnHover">
-                                    <span>👀</span> 2. Hover Over Me (Mouseenter)
-                                </button>
-                                <button class="reactor-btn" id="eventBtnTimer">
-                                    <span>⏱️</span> 3. Run 2-Second Timer (setTimeout)
-                                </button>
-                                
-                                <div style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; margin-top: 4px;">
-                                    <label style="font-size: 0.78rem; font-weight: 800; color: #475569; display: block; margin-bottom: 6px;">
-                                        ⌨️ 4. Live Typing Event (Type your name below):
-                                    </label>
-                                    <input type="text" id="eventInputMirror" placeholder="e.g. Alex Dev" style="width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.86rem; outline: none; font-family: inherit;">
-                                    <div style="margin-top: 8px; font-size: 0.82rem; color: #0f172a; font-weight: 700; background: #eff6ff; padding: 6px 10px; border-radius: 6px; border: 1px solid #bfdbfe;">
-                                        🏷️ Live Greeting: <span id="eventMirrorOutput" style="color: #2563eb;">(Waiting for input...)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-live-log-box" id="eventLiveLogBox">
-                                <div style="color: #94a3b8; font-style: italic;">// JavaScript Console Execution Log:</div>
-                                <div>&gt; Event engine initialized and listening...</div>
-                            </div>
-                        </div>
-                    </div>
-                `
+                "title": "2. Live Event Reactor: Listening and Reacting to Users",
+                "content": "\n                    <p>JavaScript programs are <strong>Event-Driven</strong>. Click, hover, or type below to see JavaScript event listeners fire in real-time:</p>\n                    \n                    <div class=\"concept-interactive-container\" id=\"jsEventReactorWidget\">\n                        <div class=\"event-reactor-grid\">\n                            <div class=\"event-action-buttons\">\n                                <button class=\"reactor-btn\" id=\"eventBtnClick\">\n                                    <span>🖱️</span> 1. Trigger Click Event\n                                </button>\n                                <button class=\"reactor-btn\" id=\"eventBtnHover\">\n                                    <span>👀</span> 2. Hover Over Me (Mouseenter)\n                                </button>\n                                <button class=\"reactor-btn\" id=\"eventBtnTimer\">\n                                    <span>⏱️</span> 3. Run 2-Second Timer (setTimeout)\n                                </button>\n                                \n                                <div style=\"background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; margin-top: 4px;\">\n                                    <label style=\"font-size: 0.78rem; font-weight: 800; color: #475569; display: block; margin-bottom: 6px;\">\n                                        ⌨️ 4. Live Typing Event (Type your name below):\n                                    </label>\n                                    <input type=\"text\" id=\"eventInputMirror\" placeholder=\"e.g. Alex Dev\" style=\"width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.86rem; outline: none; font-family: inherit;\">\n                                    <div style=\"margin-top: 8px; font-size: 0.82rem; color: #0f172a; font-weight: 700; background: #eff6ff; padding: 6px 10px; border-radius: 6px; border: 1px solid #bfdbfe;\">\n                                        🏷️ Live Greeting: <span id=\"eventMirrorOutput\" style=\"color: #2563eb;\">(Waiting for input...)</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"event-live-log-box\" id=\"eventLiveLogBox\">\n                                <div style=\"color: #94a3b8; font-style: italic;\">// JavaScript Console Execution Log:</div>\n                                <div>&gt; Event engine initialized and listening...</div>\n                            </div>\n                        </div>\n                    </div>\n                "
             },
             {
-                title: "3. Variables & Memory Allocation: const vs let",
-                content: `
-                    <p>Variables are named memory storage boxes. <code>const</code> locks the value permanently, while <code>let</code> allows dynamic updates:</p>
-                    
-                    <div class="concept-interactive-container" id="jsMemoryWidget">
-                        <div class="memory-slots-row">
-                            <div class="memory-slot-card">
-                                <span class="slot-type-badge slot-const">const (Immutable)</span>
-                                <div class="slot-var-name">appName</div>
-                                <div class="slot-var-val">"NoviCodes"</div>
-                            </div>
-                            <div class="memory-slot-card">
-                                <span class="slot-type-badge slot-let">let (Mutable)</span>
-                                <div class="slot-var-name">learnerXP</div>
-                                <div class="slot-var-val" id="memXpVal">400</div>
-                            </div>
-                            <div class="memory-slot-card">
-                                <span class="slot-type-badge slot-let">let (Mutable)</span>
-                                <div class="slot-var-name">isReady</div>
-                                <div class="slot-var-val" id="memReadyVal">true</div>
-                            </div>
-                        </div>
-                        <div style="text-align: center; margin-top: 10px;">
-                            <button class="concept-toggle-btn" id="btnIncrementMemory" style="background: #2563eb; color: white;">
-                                ➕ Execute: learnerXP += 50;
-                            </button>
-                        </div>
-                    </div>
-                `
+                "title": "3. Variables & Memory Allocation: const vs let",
+                "content": "\n                    <p>Variables are named memory storage boxes. <code>const</code> locks the value permanently, while <code>let</code> allows dynamic updates:</p>\n                    \n                    <div class=\"concept-interactive-container\" id=\"jsMemoryWidget\">\n                        <div class=\"memory-slots-row\">\n                            <div class=\"memory-slot-card\">\n                                <span class=\"slot-type-badge slot-const\">const (Immutable)</span>\n                                <div class=\"slot-var-name\">appName</div>\n                                <div class=\"slot-var-val\">\"NoviCodes\"</div>\n                            </div>\n                            <div class=\"memory-slot-card\">\n                                <span class=\"slot-type-badge slot-let\">let (Mutable)</span>\n                                <div class=\"slot-var-name\">learnerXP</div>\n                                <div class=\"slot-var-val\" id=\"memXpVal\">400</div>\n                            </div>\n                            <div class=\"memory-slot-card\">\n                                <span class=\"slot-type-badge slot-let\">let (Mutable)</span>\n                                <div class=\"slot-var-name\">isReady</div>\n                                <div class=\"slot-var-val\" id=\"memReadyVal\">true</div>\n                            </div>\n                        </div>\n                        <div style=\"text-align: center; margin-top: 10px;\">\n                            <button class=\"concept-toggle-btn\" id=\"btnIncrementMemory\" style=\"background: #2563eb; color: white;\">\n                                ➕ Execute: learnerXP += 50;\n                            </button>\n                        </div>\n                    </div>\n                "
             }
         ]
     },
-
-    // 2. Interactive Terms & Glossary Bank
-    glossary: [
+    "glossary": [
         {
-            term: "JavaScript (JS)",
-            category: "Core Concept",
-            definition: "The high-level, interpreted programming language that powers dynamic client-side and server-side behavior.",
-            analogy: "The electrical wiring, sensors, and computer system of an automobile.",
-            codeSnippet: "console.log('Hello, World!');"
+            "term": "JavaScript (JS)",
+            "category": "Core Concept",
+            "definition": "The programming language of the web that adds dynamic interactivity, logic, and data handling to web pages.",
+            "analogy": "The engine, wiring, and computer system of a modern car.",
+            "codeSnippet": "console.log('Hello World!');"
         },
         {
-            term: "Event Listener",
-            category: "DOM Interactivity",
-            definition: "A procedure in JavaScript that waits for an event to occur (e.g. click, scroll, submit) and executes a callback function.",
-            analogy: "A doorbell waiting for a visitor to press the physical button before chiming.",
-            codeSnippet: "btn.addEventListener('click', () => { alert('Clicked!'); });"
+            "term": "Variable (const / let)",
+            "category": "Syntax",
+            "definition": "A named memory container used to store data values for later use. Use const for values that do not reassign, let for mutable variables.",
+            "analogy": "A labeled storage box holding items inside a closet.",
+            "codeSnippet": "const score = 100;\nlet lives = 3;"
         },
         {
-            term: "Variable (let & const)",
-            category: "Language Syntax",
-            definition: "Named containers for storing data values. 'const' cannot be reassigned, whereas 'let' can be modified.",
-            analogy: "A labeled storage container in an office.",
-            codeSnippet: "const maxXP = 12500;\nlet currentXP = 400;"
+            "term": "Function",
+            "category": "Core Concept",
+            "definition": "A self-contained block of code designed to perform a particular task when invoked.",
+            "analogy": "A recipe on a card that you can cook whenever you want.",
+            "codeSnippet": "function greet(name) {\n  return 'Hello ' + name;\n}"
         },
         {
-            term: "Function",
-            category: "Language Syntax",
-            definition: "A reusable block of code designed to perform a particular task when invoked.",
-            analogy: "A kitchen blender recipe: put in ingredients (inputs/arguments), run the motor, get a smoothie (output/return).",
-            codeSnippet: "function calculateXP(bonus) {\n  return 100 + bonus;\n}"
+            "term": "Event Listener",
+            "category": "DOM & Interactivity",
+            "definition": "A procedure in JavaScript that waits for an event to occur (such as a click or keypress) before executing code.",
+            "analogy": "A doorbell waiting for a visitor to press it before ringing.",
+            "codeSnippet": "btn.addEventListener('click', handleClick);"
         },
         {
-            term: "Async / Fetch API",
-            category: "Web Networking",
-            definition: "Asynchronous JavaScript methods allowing web pages to request data from servers in the background without refreshing the page.",
-            analogy: "Ordering food at a restaurant: you place the order and keep talking with friends until the food arrives.",
-            codeSnippet: "const res = await fetch('https://api.novicodes.dev/user');\nconst data = await res.json();"
+            "term": "Conditionals (if / else)",
+            "category": "Logic",
+            "definition": "Statements used to perform different actions based on whether a condition is true or false.",
+            "analogy": "If it is raining, take an umbrella; else wear sunglasses.",
+            "codeSnippet": "if (xp >= 1000) {\n  unlockBadge();\n} else {\n  keepLearning();\n}"
+        },
+        {
+            "term": "Asynchronous JS (async / await / Promises)",
+            "category": "Async & APIs",
+            "definition": "Handling time-consuming operations (like fetching network APIs or database records) without freezing the user interface.",
+            "analogy": "Ordering coffee at a cafe: receiving a buzzer (Promise) while waiting so you can talk to friends.",
+            "codeSnippet": "async function fetchUser() {\n  const res = await fetch('/api/user');\n  const data = await res.json();\n}"
+        },
+        {
+            "term": "Array Methods (.map, .filter, .reduce)",
+            "category": "Data Manipulation",
+            "definition": "Higher-order functions used to transform (.map), filter (.filter), or summarize (.reduce) collections of data functionally.",
+            "analogy": ".filter is a coffee filter straining grounds; .map is painting every car in a parking lot a new color.",
+            "codeSnippet": "const admins = users.filter(u => u.role === 'admin');\nconst names = users.map(u => u.name);"
+        },
+        {
+            "term": "DOM Traversal & Selection",
+            "category": "DOM & Interactivity",
+            "definition": "Finding HTML elements on the page (querySelector) or navigating parent/child chains (closest, parentElement).",
+            "analogy": "Finding a specific apartment by building number and floor.",
+            "codeSnippet": "const card = btn.closest('.card');\nconst title = card.querySelector('h2');"
+        },
+        {
+            "term": "Event Bubbling & e.preventDefault()",
+            "category": "DOM & Interactivity",
+            "definition": "Events trigger on target elements and bubble up through parents. e.preventDefault() cancels browser default actions (like page reload on form submit).",
+            "analogy": "Submitting a form paper directly to a clerk instead of mailing it out.",
+            "codeSnippet": "form.addEventListener('submit', (e) => {\n  e.preventDefault();\n  submitData();\n});"
+        },
+        {
+            "term": "LocalStorage & Web Storage",
+            "category": "Data Persistence",
+            "definition": "A browser-based key-value store that persists data across page refreshes and browser sessions.",
+            "analogy": "A notepad saved on your desk that stays there even when you turn off the lights.",
+            "codeSnippet": "localStorage.setItem('user', JSON.stringify({ name: 'Alex' }));\nconst user = JSON.parse(localStorage.getItem('user'));"
+        },
+        {
+            "term": "Scope & Lexical Closures",
+            "category": "Architecture",
+            "definition": "Scope controls variable accessibility. A closure is a function that remembers and accesses variables from its outer lexical environment even after outer function returns.",
+            "analogy": "A backpack you keep carrying containing tools from your old room.",
+            "codeSnippet": "function makeCounter() {\n  let count = 0;\n  return () => ++count;\n}"
+        },
+        {
+            "term": "ES6 Destructuring & Spread Operator",
+            "category": "Syntax",
+            "definition": "Destructuring extracts properties from objects/arrays into distinct variables. The spread operator (...) unpacks items or merges objects.",
+            "analogy": "Unpacking items from a box onto your desk individually.",
+            "codeSnippet": "const { name, role } = user;\nconst updatedUser = { ...user, active: true };"
+        },
+        {
+            "term": "Arrow Functions & Lexical 'this'",
+            "category": "Syntax",
+            "definition": "Concise syntax for writing function expressions (() => {}). Arrow functions do not bind their own 'this', inheriting 'this' lexically.",
+            "analogy": "A handheld walkie-talkie borrowing the frequency of the base station.",
+            "codeSnippet": "const add = (a, b) => a + b;"
         }
     ],
-
-    // 3. Code Sandbox Exercises
-    sandbox: {
-        title: "JavaScript Live Interactivity Studio",
-        starterCode: `<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; padding: 24px; text-align: center; background: #f8fafc; }
-    .card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; max-width: 320px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-    .counter { font-size: 3rem; font-weight: 800; color: #2563eb; margin: 12px 0; }
-    button { background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 0.95rem; margin: 4px; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h2 style="margin: 0; color: #0f172a;">⚡ Power Counter</h2>
-    <div class="counter" id="countDisplay">0</div>
-    <button id="btnInc">➕ Add 1</button>
-    <button id="btnReset" style="background: #e2e8f0; color: #0f172a;">🔄 Reset</button>
-  </div>
-
-  <script>
-    let count = 0;
-    const display = document.getElementById('countDisplay');
-    
-    document.getElementById('btnInc').addEventListener('click', () => {
-      count++;
-      display.textContent = count;
-      display.style.transform = 'scale(1.15)';
-      setTimeout(() => display.style.transform = 'scale(1)', 150);
-    });
-
-    document.getElementById('btnReset').addEventListener('click', () => {
-      count = 0;
-      display.textContent = count;
-    });
-  </script>
-</body>
-</html>`,
-        tasks: [
-            "Add a '➖ Minus 1' button that decrements the counter value",
-            "Change the counter text color when count reaches 10 or higher",
-            "Experiment with adding a prompt() to set a custom counter start value"
-        ]
+    "sandbox": {
+        "initialHTML": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <style>\n    body {\n      font-family: 'Plus Jakarta Sans', sans-serif;\n      margin: 0;\n      padding: 20px;\n      background: #f8fafc;\n      color: #0f172a;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      min-height: 100vh;\n      box-sizing: border-box;\n    }\n    .counter-card {\n      background: #ffffff;\n      padding: 24px;\n      border-radius: 16px;\n      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);\n      max-width: 400px;\n      width: 100%;\n      text-align: center;\n      box-sizing: border-box;\n    }\n    .xp-display {\n      font-size: 2.5rem;\n      font-weight: 800;\n      color: #2563eb;\n      margin: 16px 0;\n    }\n    .btn-action {\n      background: #2563eb;\n      color: white;\n      border: none;\n      padding: 10px 20px;\n      border-radius: 20px;\n      font-size: 1rem;\n      font-weight: 700;\n      cursor: pointer;\n      margin: 4px;\n    }\n  </style>\n</head>\n<body>\n\n  <div class=\"counter-card\">\n    <h2>Level 3 JavaScript Engine</h2>\n    <div class=\"xp-display\" id=\"xpCount\">0 XP</div>\n    \n    <button class=\"btn-action\" onclick=\"addXP()\">⚡ Add +50 XP</button>\n    <button class=\"btn-action\" onclick=\"resetXP()\" style=\"background:#ef4444;\">🔄 Reset</button>\n  </div>\n\n  <script>\n    let currentXP = 0;\n    function addXP() {\n      currentXP += 50;\n      document.getElementById('xpCount').textContent = currentXP + ' XP';\n    }\n    function resetXP() {\n      currentXP = 0;\n      document.getElementById('xpCount').textContent = '0 XP';\n    }\n  </script>\n\n</body>\n</html>",
+        "instructions": "Try modifying the JavaScript code! Change the XP increment from +50 to +100 inside `addXP()` or change the button styling."
     },
-
-    // 4. Quiz & Verification
-    quiz: {
-        title: "Level 3: JavaScript Verification Challenge",
-        questions: [
-            {
-                q: "Which keyword should you use to declare a variable whose value will NEVER be reassigned?",
-                options: [
-                    { text: "const", correct: true },
-                    { text: "let", correct: false },
-                    { text: "var", correct: false }
-                ],
-                explanation: "const creates a block-scoped immutable variable binding that cannot be reassigned."
-            },
-            {
-                q: "What method is used to attach a click event handler to an HTML button element?",
-                options: [
-                    { text: "element.addEventListener('click', callback)", correct: true },
-                    { text: "element.attachClickEvent(callback)", correct: false },
-                    { text: "element.listen('click')", correct: false }
-                ],
-                explanation: "addEventListener('click', callback) is the standard web API for handling events on DOM elements."
-            },
-            {
-                q: "What does DOM stand for?",
-                options: [
-                    { text: "Document Object Model", correct: true },
-                    { text: "Dynamic Object Manager", correct: false },
-                    { text: "Digital Ordinance Markup", correct: false }
-                ],
-                explanation: "The Document Object Model (DOM) is the tree representation of an HTML document in browser memory."
-            }
-        ]
-    }
+    "quizzes": [
+        {
+            "id": "q1",
+            "question": "Which JavaScript keyword is used to declare a variable whose value cannot be reassigned?",
+            "options": [
+                "var",
+                "let",
+                "const",
+                "static"
+            ],
+            "correctIndex": 2,
+            "explanation": "'const' creates a read-only reference to a value. Use 'let' if you intend to reassign the variable later."
+        },
+        {
+            "id": "q2",
+            "question": "What method is used to attach a click event handler to a DOM element in JavaScript?",
+            "options": [
+                "element.attachClick()",
+                "element.addEventListener('click', fn)",
+                "element.on('click')",
+                "element.listen('click')"
+            ],
+            "correctIndex": 1,
+            "explanation": "addEventListener('click', callback) is the standard method for registering event listeners on DOM elements."
+        },
+        {
+            "id": "q3",
+            "question": "What is the output of '10' + 5 in JavaScript?",
+            "options": [
+                "15",
+                "'105'",
+                "Error",
+                "NaN"
+            ],
+            "correctIndex": 1,
+            "explanation": "When adding a string ('10') and a number (5), JavaScript performs string concatenation, resulting in the string '105'."
+        }
+    ]
 };
