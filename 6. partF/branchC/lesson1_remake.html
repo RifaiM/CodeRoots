@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7C • Lesson 1: Next.js App Router Architecture | NoviCodes</title>
     <meta name="description" content="Master Next.js 14/15 App Router architecture, app/ directory structure, page.js, layout.js, loading.js, and nested file-based routing.">
+    <meta property="og:title" content="Next.js App Router Architecture | NoviCodes Track 7C">
+    <meta property="og:description" content="Learn Next.js 14 App Router file-based routing and Server Component architecture in Track 7C.">
+    <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,6 +349,7 @@
             </div>
         </div>
     </header>
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Next.js App Router Architecture | Track 7C</h1>
 
     <!-- Main Workspace -->
     <main class="ide-wrapper">
@@ -409,7 +413,9 @@ export default function HomePage() {
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Write your Next.js page component and click "Render Route Component"...</div>
+            <div id="l7TaskChecklist"></div>
         </section>
     </main>
 
@@ -431,95 +437,85 @@ export default function HomePage() {
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchC_lesson1_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `// app/page.js — Root Page Component
+// In Next.js App Router, every page.js file is a route
+// This file renders at the URL path matching its folder location
+
+// TODO: Add metadata for SEO (Server Component feature)
+export const metadata = {
+    title: 'TODO: Your App Title',
+    description: 'TODO: Your app description',
+};
+
+// TODO: Export a default async function as your page component
+export default async function Home() {
+    // TODO: Return JSX markup for the page UI
+    return (
+        <main>
+            <h1>TODO: Your page heading</h1>
+        </main>
+    );
+}`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-        });
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
+            Level7Linter.initChecklist([
+                { id: 'exportdefault', label: 'Use <code>export default</code> to export the page component', regex: /export\s+default/ },
+                { id: 'function',      label: 'Define the page as a <code>function</code> or <code>async function</code>', regex: /function\s+\w+/ },
+                { id: 'return',        label: 'Return JSX from the component using <code>return (...)</code>', regex: /return\s*\(/ },
+                { id: 'jsx',           label: 'Include at least one JSX element (e.g. <code>&lt;main&gt;</code>)', fn: (c) => /<(main|div|section|h1|h2|p)/.test(c) },
+            ], { containerId: 'l7TaskChecklist' });
+
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Type a new Next.js component to test...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Write your Next.js component and click Render...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
-        
         function copyCode(btn) {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
             if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '📋 Code copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
+                Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 });
             }
         }
 
         function testNextPage() {
             const code = editor.value.trim();
-            if (!code) {
-                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your Next.js page component.';
-                return;
-            }
-
-            if (code.includes('export default') && code.includes('HomePage') && code.includes('<main>') && code.includes('<h1>') && code.includes('Welcome to NoviCodes Next.js')) {
-                consoleOutput.textContent = `[NEXT.JS APP ROUTER COMPILER LOGS]\n[1/3] Compiling route / (app/page.tsx)...\n[2/3] Server-Side Rendered (SSR) HTML payload:\n<main><h1>Welcome to NoviCodes Next.js</h1></main>\n[3/3] Client hydration bundle size: 0.0 kB (Server Component Default)\n✅ [SUCCESS] Next.js App Router Component rendered flawlessly!`;
-                
-                localStorage.setItem('partF_branchC_lesson1_completed', 'true');
-                localStorage.setItem('partF_branchC_lesson1_complete', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 1 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 1!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 2 🚀',
-                        confirmButtonColor: '#0ea5e9',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson2_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                consoleOutput.textContent = `❌ Next.js Compiler Error:\nExpected export default function HomePage() returning <main><h1>Welcome to NoviCodes Next.js</h1></main>.\n\nYour Component:\n${code}`;
-            }
+            Level7Linter.runChecklist(code);
+            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your Next.js page component first!'; consoleOutput.style.color = '#f87171'; return; }
+            const hasExport = /export\s+default/.test(code);
+            const hasFunc   = /function\s+\w+/.test(code);
+            const hasReturn = /return\s*\(/.test(code);
+            const hasJSX    = /<(main|div|section|h1|h2|p)/.test(code);
+            if (!hasExport) { consoleOutput.textContent = '❌ Compiler Error: Missing export default.\n💡 Hint: Next.js discovers pages via export default. Add: export default function MyPage() { ... }'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasFunc)   { consoleOutput.textContent = '❌ Compiler Error: No function defined.\n💡 Hint: Define a React component: export default function HomePage() { ... }'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasReturn) { consoleOutput.textContent = '❌ Compiler Error: No return statement.\n💡 Hint: Return JSX: return ( <main>...</main> );'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasJSX)    { consoleOutput.textContent = '⚠️ Warning: No JSX elements found.\n💡 Hint: Return HTML-like JSX markup, e.g. <main><h1>Hello</h1></main>'; consoleOutput.style.color = '#fbbf24'; return; }
+            consoleOutput.textContent = '[NEXT.JS] Compiling route / ...\n[SSR] Generating HTML on server...\n[Hydration] Client bundle: 0 kB\n\n✅ SUCCESS: Page component compiled!';
+            consoleOutput.style.color = '#34d399';
+            localStorage.setItem('partF_branchC_lesson1_completed', 'true');
+            localStorage.setItem('partF_branchC_lesson1_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
+            setTimeout(() => { Swal.fire({ icon: 'success', title: '🎉 Lesson 1 Mastered! (+250 XP)', html: '<p style="color:#475569">You built your first Next.js App Router page!</p>', showDenyButton: true, confirmButtonText: 'Continue to Lesson 2 🚀', confirmButtonColor: '#0ea5e9', denyButtonText: 'Stay & Practice 🛠️', denyButtonColor: '#475569' }).then(r => { if (r.isConfirmed) window.location.href = './lesson2_remake.html'; }); }, 400);
         }
     </script>
 </body>

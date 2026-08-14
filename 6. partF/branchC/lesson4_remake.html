@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7C • Lesson 4: API Routes & Dynamic Route Handlers | NoviCodes</title>
     <meta name="description" content="Master Next.js App Router Route Handlers (route.ts), HTTP GET/POST endpoints, NextResponse JSON serialization, and dynamic route params.">
+    <meta property="og:title" content="Next.js API Route Handlers | NoviCodes Track 7C">
+    <meta property="og:description" content="Build REST API endpoints with Next.js Route Handlers using GET, POST and NextResponse in Track 7C.">
+    <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,6 +349,7 @@
             </div>
         </div>
     </header>
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Next.js API Route Handlers | Track 7C</h1>
 
     <!-- Main Workspace -->
     <main class="ide-wrapper">
@@ -407,7 +411,9 @@ export async function GET() {
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Write your GET Route Handler and click "Test API Endpoint (GET)"...</div>
+            <div id="l7TaskChecklist"></div>
         </section>
     </main>
 
@@ -430,95 +436,90 @@ export async function GET() {
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchC_lesson4_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `// app/api/users/route.js — Next.js API Route Handler
+// API Route Handlers use named exports for each HTTP method
+// GET, POST, PUT, DELETE, PATCH are all supported
+
+import { NextResponse } from 'next/server';
+
+// Sample data (in real apps this comes from a database)
+const users = [
+    { id: 1, name: 'Alex Rivera', role: 'developer' },
+    { id: 2, name: 'Sarah Chen',  role: 'designer' },
+];
+
+// TODO: Export a GET handler to return all users
+export async function GET(request) {
+    // TODO: Return a JSON response using NextResponse.json()
+    return NextResponse.json({ data: users });
+}
+
+// TODO: Export a POST handler to add a new user
+export async function POST(request) {
+    // TODO: Parse the request body with await request.json()
+    const body = await request.json();
+
+    // TODO: Return the created user with status 201
+    return NextResponse.json({ user: body }, { status: 201 });
+}`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-        });
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
+            Level7Linter.initChecklist([
+                { id: 'import',   label: 'Import <code>NextResponse</code> from <code>next/server</code>', regex: /from\s+['"]next\/server['"]/},
+                { id: 'get',      label: 'Export an async <code>GET</code> handler function', regex: /export\s+async\s+function\s+GET/ },
+                { id: 'post',     label: 'Export an async <code>POST</code> handler function', regex: /export\s+async\s+function\s+POST/ },
+                { id: 'response', label: 'Return a <code>NextResponse.json()</code> response', regex: /NextResponse\.json\s*\(/ },
+            ], { containerId: 'l7TaskChecklist' });
+
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Write an API Route Handler to test...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Write your API Route Handler and click Test...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
-        
         function copyCode(btn) {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '📋 Code copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
         }
 
-        function testRouteHandler() {
+        function testApiRoute() {
             const code = editor.value.trim();
-            if (!code) {
-                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your GET Route Handler function.';
-                return;
-            }
-
-            if (code.includes('NextResponse') && code.includes('GET') && code.includes('status') && code.includes('15.0')) {
-                consoleOutput.textContent = `[HTTP ROUTE HANDLER LOGS]\n[1/3] Dispatching GET Request to /api/status...\n[2/3] Executing Handler Function GET()...\n[3/3] HTTP Response Headers: Content-Type: application/json (200 OK)\nSerialized JSON Payload:\n{\n  "status": "ok",\n  "version": "15.0"\n}\n✅ [SUCCESS] Next.js Route Handler returned HTTP 200 OK response!`;
-                
-                localStorage.setItem('partF_branchC_lesson4_completed', 'true');
-                localStorage.setItem('partF_branchC_lesson4_complete', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 4 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 4!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 5 🚀',
-                        confirmButtonColor: '#0ea5e9',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson5_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                consoleOutput.textContent = `❌ Route Handler Error:\nExpected GET async function returning NextResponse.json() containing status: 'ok' and version: '15.0'.\n\nYour Function:\n${code}`;
-            }
+            Level7Linter.runChecklist(code);
+            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your API Route Handler first!'; consoleOutput.style.color = '#f87171'; return; }
+            const hasImport   = /from\s+['"]next\/server['"]/.test(code);
+            const hasGET      = /export\s+async\s+function\s+GET/.test(code);
+            const hasPOST     = /export\s+async\s+function\s+POST/.test(code);
+            const hasResponse = /NextResponse\.json\s*\(/.test(code);
+            if (!hasImport)   { consoleOutput.textContent = "❌ Error: Missing NextResponse import.\n💡 Hint: Add: import { NextResponse } from 'next/server'"; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasGET)      { consoleOutput.textContent = '❌ Error: Missing GET handler.\n💡 Hint: export async function GET(request) { return NextResponse.json({ data }); }'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasPOST)     { consoleOutput.textContent = '❌ Error: Missing POST handler.\n💡 Hint: export async function POST(request) { const body = await request.json(); ... }'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasResponse) { consoleOutput.textContent = '❌ Error: Missing NextResponse.json().\n💡 Hint: return NextResponse.json({ data: users });'; consoleOutput.style.color = '#f87171'; return; }
+            consoleOutput.textContent = '[API] GET /api/users → 200 OK\n  {"data":[{"id":1,"name":"Alex Rivera"},{"id":2,"name":"Sarah Chen"}]}\n[API] POST /api/users → 201 Created\n  {"user":{...}}\n\n✅ SUCCESS: Both API Route Handlers working correctly!';
+            consoleOutput.style.color = '#34d399';
+            localStorage.setItem('partF_branchC_lesson4_completed', 'true');
+            localStorage.setItem('partF_branchC_lesson4_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
+            setTimeout(() => { Swal.fire({ icon: 'success', title: '🎉 Lesson 4 Mastered! (+250 XP)', html: '<p style="color:#475569">You built a full REST API with Next.js Route Handlers!</p>', showDenyButton: true, confirmButtonText: 'Continue to Lesson 5 🚀', confirmButtonColor: '#0ea5e9', denyButtonText: 'Stay & Practice 🛠️', denyButtonColor: '#475569' }).then(r => { if (r.isConfirmed) window.location.href = './lesson5_remake.html'; }); }, 400);
         }
     </script>
 </body>

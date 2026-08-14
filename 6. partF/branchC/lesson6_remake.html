@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7C • Lesson 6: Full-Stack Vercel Deployment & Optimization | NoviCodes</title>
     <meta name="description" content="Master production build optimization (next build), environment variables, edge caching, automated Vercel CI/CD deployments, and claiming the Next.js Engineer rank.">
+    <meta property="og:title" content="Full-Stack Vercel Production Deployment | NoviCodes Track 7C">
+    <meta property="og:description" content="Configure next.config.mjs for production deployment to Vercel with output modes and env variables.">
+    <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,6 +349,7 @@
             </div>
         </div>
     </header>
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Full-Stack Vercel Production Deployment | Track 7C</h1>
 
     <!-- Main Workspace -->
     <main class="ide-wrapper">
@@ -410,7 +414,9 @@ export default nextConfig;"></textarea>
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Configure next.config.mjs and click "Ship to Production & Claim Rank"...</div>
+            <div id="l7TaskChecklist"></div>
         </section>
     </main>
 
@@ -433,97 +439,97 @@ export default nextConfig;"></textarea>
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchC_lesson6_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `// next.config.mjs — Next.js Build Configuration
+// This file controls how Next.js builds and optimizes your app
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+
+    // TODO: Set the output mode
+    // 'export' = static HTML/CSS/JS (Vercel/Cloudflare)
+    // 'standalone' = Node.js server (Docker/Render/Fly.io)
+    output: 'TODO_output_mode',
+
+    // TODO: Configure allowed image domains for next/image
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'TODO_your_image_host.com',
+            },
+        ],
+    },
+
+    // TODO: Set environment variables accessible to the browser
+    // Variables prefixed with NEXT_PUBLIC_ are safe to expose client-side
+    env: {
+        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    },
+};
+
+export default nextConfig;`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-        });
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
+            Level7Linter.initChecklist([
+                { id: 'config',  label: 'Define a <code>nextConfig</code> object', regex: /nextConfig/ },
+                { id: 'output',  label: 'Set <code>output</code> to <code>export</code> or <code>standalone</code>', fn: (c) => /output:\s*['"]export['"]|output:\s*['"]standalone['"]/.test(c) },
+                { id: 'images',  label: 'Configure <code>images.remotePatterns</code>', regex: /remotePatterns/ },
+                { id: 'env',     label: 'Set a <code>NEXT_PUBLIC_</code> env variable', regex: /NEXT_PUBLIC_/ },
+                { id: 'export',  label: 'Export config with <code>export default nextConfig</code>', regex: /export\s+default\s+nextConfig/ },
+            ], { containerId: 'l7TaskChecklist' });
+
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Configure next.config.mjs to ship...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Write your next.config.mjs and click Validate...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
-        
         function copyCode(btn) {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '📋 Code copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
         }
 
-        function testVercelDeploy() {
+        function testNextConfig() {
             const code = editor.value.trim();
-            if (!code) {
-                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your Next.js configuration.';
-                return;
-            }
-
-            if (code.includes('nextConfig') && code.includes('reactStrictMode') && code.includes('export default')) {
-                consoleOutput.textContent = `[VERCEL BUILD & DEPLOY LOGS]\n[1/4] Running 'next build'...\n  ▲ Next.js 14.2 Production Build\n  ✓ Compiled successfully (0 errors)\n  ✓ Collecting page data...\n  ✓ Generating static pages (6/6)\n[2/4] Optimizing Assets & Bundles... Complete\n[3/4] Provisioning Vercel Edge Network DNS: https://novicodes-nextjs.vercel.app\n[4/4] SSL Certificate Issued (200 OK)\n\n🏆 [APEX MASTERED] Fullstack Branch 7C Complete! Awarded Rank: ⚡ Next.js Engineer!`;
-                
-                localStorage.setItem('partF_branchC_lesson6_completed', 'true');
-                localStorage.setItem('partF_branchC_lesson6_complete', 'true');
-                localStorage.setItem('partF_branchC_completed', 'true');
-                localStorage.setItem('partF_branchC_complete', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 6 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 6!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Return to Level 7 Hub 🚀',
-                        confirmButtonColor: '#0ea5e9',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = '../hub.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                consoleOutput.textContent = `❌ Build Config Error:\nExpected nextConfig object with reactStrictMode: true exported as default.\n\nYour Config:\n${code}`;
-            }
+            Level7Linter.runChecklist(code);
+            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your next.config.mjs first!'; consoleOutput.style.color = '#f87171'; return; }
+            const hasConfig  = /nextConfig/.test(code);
+            const hasOutput  = /output:\s*['"]export['"]|output:\s*['"]standalone['"]/.test(code);
+            const hasImages  = /remotePatterns/.test(code);
+            const hasEnv     = /NEXT_PUBLIC_/.test(code);
+            const hasExport  = /export\s+default\s+nextConfig/.test(code);
+            if (!hasConfig)  { consoleOutput.textContent = '❌ Error: Missing nextConfig object.\n💡 Hint: const nextConfig = { ... }; export default nextConfig;'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasOutput)  { consoleOutput.textContent = '❌ Error: Missing output mode.\n💡 Hint: output: "export" (static) or output: "standalone" (Node.js server).'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasImages)  { consoleOutput.textContent = '❌ Error: Missing images.remotePatterns.\n💡 Hint: images: { remotePatterns: [{ protocol: "https", hostname: "yourhost.com" }] }'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasEnv)     { consoleOutput.textContent = '⚠️ Warning: No NEXT_PUBLIC_ env variables.\n💡 Hint: env: { NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL }'; consoleOutput.style.color = '#fbbf24'; return; }
+            if (!hasExport)  { consoleOutput.textContent = '❌ Error: Missing export default nextConfig.\n💡 Hint: The last line must be: export default nextConfig;'; consoleOutput.style.color = '#f87171'; return; }
+            consoleOutput.textContent = '[NEXT.JS BUILD] Validating next.config.mjs...\n[Config] output: ✓\n[Config] images.remotePatterns: ✓\n[Config] env: ✓\n[Vercel] Deploying to Production...\n[CDN] Edge network: 30 regions\n\n✅ SUCCESS: Production config is valid!';
+            consoleOutput.style.color = '#34d399';
+            localStorage.setItem('partF_branchC_lesson6_completed', 'true');
+            localStorage.setItem('partF_branchC_lesson6_complete', 'true');
+            localStorage.setItem('partF_branchC_completed', 'true');
+            if (typeof addXP === 'function') addXP(500);
+            setTimeout(() => { Swal.fire({ icon: 'success', title: '🏆 Track 7C Complete! (+500 XP)', html: '<p style="color:#475569">You mastered the full Next.js stack! Certificate awaits.</p>', confirmButtonText: 'View Certificate 🏅', confirmButtonColor: '#0ea5e9' }).then(r => { if (r.isConfirmed) window.location.href = '../certificate.html'; }); }, 400);
         }
     </script>
 </body>

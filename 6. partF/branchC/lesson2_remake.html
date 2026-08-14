@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <title>Branch 7C • Lesson 2: Server Components vs Client Components | NoviCodes</title>
     <meta name="description" content="Master React Server Components (RSC), zero client JS bundle, hydration, and when to specify the 'use client' directive for interactive state.">
+    <meta property="og:title" content="Server vs Client Components in Next.js | NoviCodes Track 7C">
+    <meta property="og:description" content="Master the difference between Server and Client Components in Next.js with the use client directive.">
+    <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,6 +349,7 @@
             </div>
         </div>
     </header>
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Server vs Client Components in Next.js | Track 7C</h1>
 
     <!-- Main Workspace -->
     <main class="ide-wrapper">
@@ -416,7 +420,9 @@ export default function CounterButton() {
                 <button class="clear-btn" id="clearBtn" onclick="clearEditorContent()">🧹 Clear</button>
             </div>
 
+            <div id="l7LintPanel" style="margin: 8px 0;"></div>
             <div class="terminal-output" id="consoleOutput">> Ready. Write your Client Component and click "Test Hydration & State"...</div>
+            <div id="l7TaskChecklist"></div>
         </section>
     </main>
 
@@ -439,95 +445,88 @@ export default function CounterButton() {
     <!-- Main Dashboard Engine & Navigation -->
     <script src="../../dashboard.js"></script>
     <script src="../level7-navigation.js"></script>
+    <script src="../level7-linter.js"></script>
 
     <script>
         const DRAFT_KEY = 'partF_branchC_lesson2_draft';
-        const DEFAULT_STARTER_CODE = '';
+        const DEFAULT_STARTER_CODE = `// CounterButton.js — Interactive Client Component
+// Client Components can use React hooks (useState, useEffect, etc.)
+// They REQUIRE the 'use client' directive at the very top of the file
+
+// TODO: Add the 'use client' directive (MUST be the very first line)
+
+// TODO: Import useState from React
+// import { useState } from 'react';
+
+// TODO: Define and export the CounterButton component
+export default function CounterButton() {
+    // TODO: Use useState to track the click count
+    // const [count, setCount] = useState(0);
+
+    // TODO: Return a button that increments count on click
+    return (
+        <button
+            // TODO: Add an onClick handler that increments count
+            style={{ padding: '10px 20px', borderRadius: '8px', cursor: 'pointer' }}
+        >
+            Clicked: {/* count */} times
+        </button>
+    );
+}`;
+
         const editor = document.getElementById('editor');
         const consoleOutput = document.getElementById('consoleOutput');
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedDraft = localStorage.getItem(DRAFT_KEY);
-            if (savedDraft) {
-                editor.value = savedDraft;
-            } else {
-                editor.value = DEFAULT_STARTER_CODE;
-            }
-        });
+            editor.value = savedDraft || DEFAULT_STARTER_CODE;
 
-        editor.addEventListener('input', () => {
-            localStorage.setItem(DRAFT_KEY, editor.value);
+            Level7Linter.init('editor', 'l7LintPanel', { mode: 'nextjs' });
+            Level7Linter.initChecklist([
+                { id: 'directive', label: "Add <code>'use client'</code> as the first directive", fn: (c) => /^\s*['"]use client['"]/m.test(c) },
+                { id: 'useState',  label: 'Import and use <code>useState</code> hook', regex: /useState/ },
+                { id: 'handler',   label: 'Attach an <code>onClick</code> event handler', regex: /onClick/ },
+                { id: 'export',    label: 'Export the component with <code>export default function</code>', regex: /export\s+default\s+function/ },
+            ], { containerId: 'l7TaskChecklist' });
+
+            editor.addEventListener('input', () => {
+                localStorage.setItem(DRAFT_KEY, editor.value);
+            });
         });
 
         function clearEditorContent() {
             localStorage.removeItem(DRAFT_KEY);
             editor.value = DEFAULT_STARTER_CODE;
-            consoleOutput.textContent = '> Editor cleared. Type a new Client Component to test...';
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'info',
-                title: '🧹 Editor cleared!',
-                showConfirmButton: false,
-                timer: 1800
-            });
+            consoleOutput.textContent = '> Editor reset. Write your Client Component and click Test...';
+            Level7Linter.check(DEFAULT_STARTER_CODE);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: '🧹 Editor reset!', showConfirmButton: false, timer: 1800 });
         }
 
-        
         function copyCode(btn) {
             const codeBox = btn.closest ? btn.closest('.code-box') : null;
             const code = codeBox ? codeBox.querySelector('code').innerText : btn;
             navigator.clipboard.writeText(typeof code === 'string' ? code : code.innerText);
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '📋 Code copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1800
-                });
-            }
+            if (typeof Swal !== 'undefined') { Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '📋 Code copied!', showConfirmButton: false, timer: 1800 }); }
         }
 
         function testClientComponent() {
             const code = editor.value.trim();
-            if (!code) {
-                consoleOutput.textContent = '❌ Error: Code editor is empty. Please enter your Client Component.';
-                return;
-            }
-
-            if (code.includes("'use client'") && code.includes('useState') && code.includes('CounterButton') && code.includes('onClick')) {
-                consoleOutput.textContent = `[REACT HYDRATION LOGS]\n[1/3] Parsing 'use client' directive... Client Boundary Confirmed!\n[2/3] Bundling React Hook: useState(0)...\n[3/3] Simulating onClick Event -> State updated: count = 1\n✅ [SUCCESS] React Client Component hydrated & state logic validated!`;
-                
-                localStorage.setItem('partF_branchC_lesson2_completed', 'true');
-                localStorage.setItem('partF_branchC_lesson2_complete', 'true');
-                if (typeof addXP === 'function') addXP(250);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: '🎉 Lesson 2 Mastered!',
-                        html: `
-                            <p style="color: #475569; margin-bottom: 12px;">You successfully completed Lesson 2!</p>
-                            <div style="background: #f1f5f9; padding: 12px; border-radius: 10px; font-weight: bold; color: #1e293b;">
-                                ⚡ Reward: +250 XP
-                            </div>
-                        `,
-                        icon: 'success',
-                        showDenyButton: true,
-                        confirmButtonText: 'Continue to Lesson 3 🚀',
-                        confirmButtonColor: '#0ea5e9',
-                        denyButtonText: 'Stay & Practice 🛠️',
-                        denyButtonColor: '#475569'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = './lesson3_remake.html';
-                        }
-                    });
-                }, 400);
-            } else {
-                consoleOutput.textContent = `❌ Next.js Hydration Error:\nExpected 'use client' directive, useState hook, and CounterButton component with onClick handler.\n\nYour Component:\n${code}`;
-            }
+            Level7Linter.runChecklist(code);
+            if (!code) { consoleOutput.textContent = '❌ Editor is empty. Write your Client Component first!'; consoleOutput.style.color = '#f87171'; return; }
+            const hasDirective = /^\s*['"]use client['"]/m.test(code);
+            const hasUseState  = /useState/.test(code);
+            const hasOnClick   = /onClick/.test(code);
+            const hasExport    = /export\s+default\s+function/.test(code);
+            if (!hasDirective) { consoleOutput.textContent = "❌ Error: Missing 'use client' directive.\n💡 Hint: The very first line of a Client Component must be: 'use client' — this tells Next.js to send this component's JS to the browser."; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasUseState)  { consoleOutput.textContent = '❌ Error: Missing useState hook.\n💡 Hint: Import it first: import { useState } from "react"; then inside your component: const [count, setCount] = useState(0);'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasOnClick)   { consoleOutput.textContent = '❌ Error: No onClick handler found.\n💡 Hint: Add an onClick prop: <button onClick={() => setCount(count + 1)}>'; consoleOutput.style.color = '#f87171'; return; }
+            if (!hasExport)    { consoleOutput.textContent = '❌ Error: Missing export default function.\n💡 Hint: Export your component: export default function CounterButton() { ... }'; consoleOutput.style.color = '#f87171'; return; }
+            consoleOutput.textContent = '[REACT] Client Component hydrated in browser\n[useState] Initial state: count = 0\n[Event] onClick registered on <button>\n\n✅ SUCCESS: CounterButton Client Component is ready!';
+            consoleOutput.style.color = '#34d399';
+            localStorage.setItem('partF_branchC_lesson2_completed', 'true');
+            localStorage.setItem('partF_branchC_lesson2_complete', 'true');
+            if (typeof addXP === 'function') addXP(250);
+            setTimeout(() => { Swal.fire({ icon: 'success', title: '🎉 Lesson 2 Mastered! (+250 XP)', html: '<p style="color:#475569">You understand Client vs Server Components!</p>', showDenyButton: true, confirmButtonText: 'Continue to Lesson 3 🚀', confirmButtonColor: '#0ea5e9', denyButtonText: 'Stay & Practice 🛠️', denyButtonColor: '#475569' }).then(r => { if (r.isConfirmed) window.location.href = './lesson3_remake.html'; }); }, 400);
         }
     </script>
 </body>
