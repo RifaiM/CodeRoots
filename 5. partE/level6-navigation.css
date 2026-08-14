@@ -461,3 +461,57 @@ header:not(.platform-header):not(:has(p)) h1,
   70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
   100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
+
+
+/* Modern Inline Header Jump to Lesson Dropdown */
+.header-lesson-badge .lesson-nav-container,
+.platform-header .lesson-nav-container {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  z-index: 10000 !important;
+}
+
+.header-lesson-badge .lesson-nav-btn,
+.platform-header .lesson-nav-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  padding: 5px 14px !important;
+  height: auto !important;
+  border-radius: 20px !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.header-lesson-badge .lesson-nav-btn:hover,
+.platform-header .lesson-nav-btn:hover {
+  background: #e2e8f0 !important;
+  color: #2563eb !important;
+  border-color: #93c5fd !important;
+}
+
+.header-lesson-badge .lesson-nav-dropdown,
+.platform-header .lesson-nav-dropdown {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  margin-top: 8px !important;
+  width: 320px !important;
+  max-height: 420px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
+  z-index: 999999 !important;
+}

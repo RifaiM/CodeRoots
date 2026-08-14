@@ -84,9 +84,31 @@
       </script>
   </head>
   <body>
-    <a href="../../index.html" class="home-button" title="Back to Dashboard"><span class="home-icon">🏠</span> <span class="btn-text">Dashboard</span></a>
-    <header>
-      <h1>Lesson 11 — DOM Manipulation</h1>
+    <!-- Standardized Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 4 • DOM Dojo</span>
+                </div>
+            </a>
+
+            <div class="header-lesson-badge">
+                <span class="lesson-badge-pill">Lesson 11/15 • Lesson 11 — DOM Manipulation</span>
+            </div>
+
+            <div class="header-user-stats">
+                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">0 XP</span>
+                </div>
+                <a href="../../index.html" class="back-dashboard-btn" title="Back to Dashboard">
+                    <span>← Dashboard</span>
+                </a>
+            </div>
+        </div>
     </header>
     <main class="container">
       
