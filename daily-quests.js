@@ -309,11 +309,17 @@
     function updateStreakHeaderBadge() {
         const streakData = window.getStreakData();
         const badge = document.getElementById('headerStreakBadge');
+        const numVal = document.querySelector('#userStreakLabel .streak-num-val');
+        const daysText = document.querySelector('#userStreakLabel .streak-days-text');
         const label = document.getElementById('userStreakLabel');
 
-        if (label) {
-            label.textContent = `${streakData.currentStreak} Day${streakData.currentStreak === 1 ? '' : 's'}`;
+        if (numVal && daysText) {
+            numVal.textContent = streakData.currentStreak;
+            daysText.textContent = streakData.currentStreak === 1 ? ' Day' : ' Days';
+        } else if (label) {
+            label.innerHTML = `<span class="streak-num-val">${streakData.currentStreak}</span><span class="streak-days-text">${streakData.currentStreak === 1 ? ' Day' : ' Days'}</span>`;
         }
+
         if (badge) {
             badge.style.display = 'inline-flex';
             if (streakData.isTodayCompleted) {
