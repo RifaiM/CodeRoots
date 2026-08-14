@@ -3,9 +3,17 @@
 <head>
     <!-- Basic document metadata -->
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <link rel="icon" type="image/png" href="../../assets/favicon.png"/>
-    <title>Part B — Lesson 6: CSS Basics</title>
+    <title>Level 4 Lesson 6: Click Events & Input | NoviCodes</title>
+    <meta name="description" content="Handle button clicks, read form input values, and trigger dynamic UI updates with beginner-friendly JavaScript code.">>
+    <link rel="canonical" href="https://novicodes.dev/2.%20partB/lesson6/lesson6_remake.html">
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Level 4 Lesson 6: Click Events & Input | NoviCodes">>
+    <meta property="og:description" content="Handle button clicks, read form input values, and trigger dynamic UI updates with beginner-friendly JavaScript code.">>
+    <meta property="og:image" content="../../assets/og-image.jpg">
+    <meta property="og:type" content="website">
     
     <!-- External stylesheets -->
     <link rel="stylesheet" href="../../Global/root.css">
@@ -55,7 +63,7 @@
                     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; z-index: 10000;">
                         <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); text-align: center; max-width: 450px; margin: 20px;">
                             <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
-                            <h1 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h1>
+                            <h2 style="color: #e74c3c; margin: 0 0 15px 0; font-size: 1.6em;">Access Denied</h2>
                             <p style="margin: 0 0 20px 0; line-height: 1.6; color: #555; font-size: 1.1em;">You must complete <strong>Lesson ${requiredLesson}</strong> before accessing Lesson ${currentLesson}.</p>
                             <button onclick="window.location.href='../lesson${nextLesson}/lesson${nextLesson}_remake.html'" style="background: linear-gradient(135deg, #007BFF, #0056b3); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1.1em;">Take Me to Lesson ${nextLesson}</button>
                         </div>
@@ -446,7 +454,7 @@ p {
         
 Hint: Start with this structure:
 
-<html>
+<html lang="en">
 <head>
     <style>
     h1 {
@@ -463,7 +471,7 @@ Hint: Start with this structure:
     </style>
 </head>
 <body>
-    <h1>My Styled Page</h1>
+    <div class="demo-heading">My Styled Page</div>
     <p class='special'>Special paragraph</p>
 
     <!-- Universal Back to Top Floating Action Button -->
