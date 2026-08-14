@@ -24,6 +24,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./Global/root.css">
+    <link rel="stylesheet" href="./dashboard.css">
     <link rel="stylesheet" href="./foundations.css">
 
     <!-- SweetAlert2 for notifications -->
@@ -49,11 +50,11 @@
 
             <!-- Header Right Stats -->
             <div class="header-user-stats">
-                <div class="stat-badge xp-badge" title="Total Experience Points">
+                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
                     <span class="badge-icon">⚡</span>
-                    <span class="badge-label" id="userXpLabel">1,250 XP</span>
+                    <span class="badge-label" id="userXpLabel">0 XP</span>
                 </div>
-                <div class="stat-badge level-badge" title="Current Rank">
+                <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
                     <span class="badge-icon" id="userRankIcon">🌱</span>
                     <span class="badge-label" id="userRankLabel">Web Novice</span>
                 </div>
