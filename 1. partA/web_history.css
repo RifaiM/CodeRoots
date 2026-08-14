@@ -920,9 +920,43 @@ body {
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 600px) {
     .header-user-stats .level-badge {
-        display: none;
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-text-full {
+        display: none !important;
+    }
+    .btn-text-short {
+        display: inline !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .platform-header {
+        padding: 0 8px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.95rem !important;
+    }
+    .logo-tag {
+        display: none !important;
+    }
+    .header-user-stats {
+        gap: 4px !important;
+    }
+    .stat-badge {
+        padding: 0 6px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
+    }
+    .back-dashboard-btn {
+        padding: 0 8px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
     }
     .history-container {
         padding: 0 10px;
@@ -954,18 +988,37 @@ body {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 340px) {
     .platform-header {
-        padding: 0 8px !important;
+        padding: 0 6px !important;
+    }
+    .brand-logo-img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.86rem !important;
+    }
+    .header-user-stats {
+        gap: 3px !important;
+    }
+    .stat-badge.xp-badge {
+        padding: 0 5px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+    .back-dashboard-btn {
+        padding: 0 6px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+    .btn-text-short {
+        display: none !important;
     }
     .history-container {
         padding: 0 6px;
     }
     .history-hero h1 {
         font-size: 1.35rem;
-    }
-    .stat-badge {
-        padding: 4px 8px;
-        font-size: 0.76rem;
     }
 }

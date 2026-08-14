@@ -1,0 +1,164 @@
+/**
+ * Foundations Academy Hub Controller (Levels 0–3)
+ * Tracks Level 0, Level 1, Level 2, and Level 3 progress and updates smart resume CTA.
+ */
+
+(function() {
+    'use strict';
+
+    const foundationsTracks = [
+        {
+            id: 0,
+            level: 'Level 0',
+            title: 'Web Architecture & History',
+            xp: 100,
+            url: './web_history.html',
+            key: 'level0_completed',
+            cardId: 'cardL0',
+            pillId: 'pillL0',
+            actionId: 'actionL0',
+            prevTrackKey: null
+        },
+        {
+            id: 1,
+            level: 'Level 1',
+            title: 'HTML5 Structural Foundations',
+            xp: 400,
+            url: '../foundations.html?track=html',
+            key: 'level1_completed',
+            cardId: 'cardL1',
+            pillId: 'pillL1',
+            actionId: 'actionL1',
+            prevTrackKey: 'level0_completed'
+        },
+        {
+            id: 2,
+            level: 'Level 2',
+            title: 'Modern CSS3 Styling & Layouts',
+            xp: 400,
+            url: '../foundations.html?track=css',
+            key: 'level2_completed',
+            cardId: 'cardL2',
+            pillId: 'pillL2',
+            actionId: 'actionL2',
+            prevTrackKey: 'level1_completed'
+        },
+        {
+            id: 3,
+            level: 'Level 3',
+            title: 'Modern JavaScript (ES6+) Foundations',
+            xp: 400,
+            url: '../foundations.html?track=js',
+            key: 'level3_completed',
+            cardId: 'cardL3',
+            pillId: 'pillL3',
+            actionId: 'actionL3',
+            prevTrackKey: 'level2_completed'
+        }
+    ];
+
+    function isTrackComplete(key) {
+        return localStorage.getItem(key) === 'true';
+    }
+
+    function canAccessTrack(track) {
+        if (track.id === 0) return true;
+        if (localStorage.getItem('practice_mode_unlocked') === 'true') return true;
+        if (!track.prevTrackKey) return true;
+        return isTrackComplete(track.prevTrackKey);
+    }
+
+    function initFoundationsHub() {
+        let completedCount = 0;
+        let nextAccessibleTrack = foundationsTracks[0];
+        let foundNext = false;
+
+        foundationsTracks.forEach(track => {
+            const completed = isTrackComplete(track.key);
+            const accessible = canAccessTrack(track);
+
+            if (completed) {
+                completedCount++;
+            } else if (accessible && !foundNext) {
+                nextAccessibleTrack = track;
+                foundNext = true;
+            }
+
+            const card = document.getElementById(track.cardId);
+            const pill = document.getElementById(track.pillId);
+            const action = document.getElementById(track.actionId);
+
+            if (card && pill && action) {
+                if (completed) {
+                    card.href = track.url;
+                    pill.className = 'track-status-pill completed';
+                    pill.textContent = '✅ Completed';
+                    action.innerHTML = 'Review Track ➔';
+                } else if (accessible) {
+                    card.href = track.url;
+                    pill.className = 'track-status-pill available';
+                    pill.textContent = '⚡ Up Next';
+                    action.innerHTML = 'Start Track ➔';
+                } else {
+                    card.href = 'javascript:void(0)';
+                    card.onclick = (e) => {
+                        e.preventDefault();
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: '🔒 Track Locked',
+                                text: `Please complete ${track.id === 1 ? 'Level 0' : `Level ${track.id - 1}`} before unlocking this track.`,
+                                confirmButtonColor: '#2563eb'
+                            });
+                        }
+                    };
+                    pill.className = 'track-status-pill locked';
+                    pill.textContent = '🔒 Locked';
+                    action.innerHTML = 'Locked';
+                }
+            }
+        });
+
+        // Progress Bar
+        const total = foundationsTracks.length;
+        const pct = Math.round((completedCount / total) * 100);
+
+        const progressFill = document.getElementById('heroProgressFill');
+        const progressText = document.getElementById('heroProgressText');
+        const statCompleted = document.getElementById('statCompletedTracks');
+
+        if (progressFill) progressFill.style.width = `${pct}%`;
+        if (progressText) progressText.textContent = `${completedCount} of ${total} Tracks Completed (${pct}%)`;
+        if (statCompleted) statCompleted.textContent = `${completedCount} / ${total}`;
+
+        // Smart Resume CTA
+        const resumeBtn = document.getElementById('heroResumeBtn');
+        if (resumeBtn) {
+            if (completedCount === total) {
+                resumeBtn.href = '../2. partB/hub.html';
+                resumeBtn.innerHTML = '<span>⚔️ Enter Level 4: DOM Dojo ➔</span>';
+            } else if (completedCount === 0) {
+                resumeBtn.href = './web_history.html';
+                resumeBtn.innerHTML = '<span>🚀 Start Level 0: Web History ➔</span>';
+            } else {
+                resumeBtn.href = nextAccessibleTrack.url;
+                resumeBtn.innerHTML = `<span>⚡ Continue ${nextAccessibleTrack.level}: ${nextAccessibleTrack.title} ➔</span>`;
+            }
+        }
+
+        // Header User Stats
+        if (typeof window.getUserXPAndRank === 'function') {
+            const stats = window.getUserXPAndRank();
+            const xpLabel = document.getElementById('userXpLabel');
+            if (xpLabel) xpLabel.textContent = `${stats.totalXP.toLocaleString()} XP`;
+
+            const rankLabel = document.getElementById('userRankLabel');
+            if (rankLabel) rankLabel.textContent = stats.rankTitle;
+
+            const rankIcon = document.getElementById('userRankIcon');
+            if (rankIcon) rankIcon.textContent = stats.rankIcon;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', initFoundationsHub);
+})();

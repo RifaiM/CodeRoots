@@ -1,0 +1,501 @@
+/* ==========================================================================
+   NoviCodes Level 6: Python Backend Dojo Landing Hub Stylesheet
+   Theme: Soft Light Clean Theme with Python Emerald / Teal Accents (AAA Contrast)
+   Responsiveness: 320px, 375px, 425px, 768px, 1024px+
+   ========================================================================== */
+
+:root {
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ffffff;
+    --border-card: #e2e8f0;
+    --text-title: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --accent-color: #059669;
+    --accent-hover: #047857;
+    --accent-light: #ecfdf5;
+    --accent-border: #a7f3d0;
+    --accent-glow: rgba(5, 150, 105, 0.12);
+    --success-green: #059669;
+    --success-light: #ecfdf5;
+    --success-border: #a7f3d0;
+}
+
+body {
+    background-color: var(--bg-page) !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    color: var(--text-body) !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container */
+.hub-container {
+    max-width: 1100px;
+    margin: 32px auto 60px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+}
+
+/* 1. Hero Section */
+.hub-hero {
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border: 1px solid var(--border-card);
+    border-top: 5px solid var(--accent-color);
+    border-radius: 24px;
+    padding: 42px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.hub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    color: var(--accent-color);
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hub-hero h1 {
+    font-size: clamp(1.65rem, 4vw, 2.6rem);
+    font-weight: 800;
+    margin: 0 0 14px 0;
+    color: var(--text-title);
+    line-height: 1.25;
+}
+
+.hub-hero p {
+    color: var(--text-body);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    line-height: 1.65;
+}
+
+/* Progress Bar Container */
+.hero-progress-wrap {
+    max-width: 480px;
+    margin: 0 auto 26px auto;
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.hero-progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-title);
+    margin-bottom: 8px;
+}
+
+.hero-progress-bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.hero-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #34d399, #059669);
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero Action CTA */
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 14px 32px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(5, 150, 105, 0.45);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* 2. Stats Row */
+.hub-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.hub-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 18px;
+    padding: 20px 22px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.hub-stat-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-title);
+    margin-bottom: 4px;
+}
+
+.hub-stat-lbl {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 3. Curriculum Section & Chapters */
+.curriculum-section {
+    margin-bottom: 44px;
+}
+
+.chapter-block {
+    margin-bottom: 34px;
+}
+
+.chapter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-card);
+}
+
+.chapter-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chapter-num {
+    background: var(--accent-light);
+    color: var(--accent-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.80rem;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--accent-border);
+}
+
+.chapter-title {
+    font-size: 1.22rem;
+    font-weight: 800;
+    color: var(--text-title) !important;
+    margin: 0;
+}
+
+.chapter-badge {
+    font-size: 0.80rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Lesson Cards Grid */
+.lesson-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 16px;
+}
+
+.lesson-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 18px;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    position: relative;
+}
+
+.lesson-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px var(--accent-glow);
+}
+
+.lesson-card.completed {
+    border-color: var(--success-border);
+    background: #ffffff;
+}
+
+.lesson-card.completed:hover {
+    border-color: var(--success-green);
+    box-shadow: 0 10px 24px rgba(5, 150, 105, 0.12);
+}
+
+.lesson-card.locked {
+    opacity: 0.65;
+    background: #f8fafc;
+    border-color: var(--border-card);
+}
+
+.lesson-card.locked:hover {
+    transform: none;
+    border-color: #cbd5e1;
+    box-shadow: none;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lesson-idx {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.lesson-status-pill {
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.lesson-status-pill.completed {
+    background: var(--success-light);
+    color: var(--success-green);
+    border: 1px solid var(--success-border);
+}
+
+.lesson-status-pill.available {
+    background: var(--accent-light);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-border);
+}
+
+.lesson-status-pill.locked {
+    background: #f1f5f9;
+    color: var(--text-muted);
+    border: 1px solid #e2e8f0;
+}
+
+.lesson-card-title {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text-title) !important;
+    margin: 0 0 14px 0;
+    line-height: 1.45;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.xp-tag {
+    font-size: 0.80rem;
+    font-weight: 800;
+    color: #d97706;
+}
+
+.card-action-text {
+    font-size: 0.80rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 4. Certificate Box */
+.certificate-preview-box {
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 22px;
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 44px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+}
+
+.cert-info-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cert-trophy-icon {
+    font-size: 2.8rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+.cert-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-title);
+    margin: 0 0 4px 0;
+}
+
+.cert-desc {
+    font-size: 0.90rem;
+    color: var(--text-body);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cert-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 0.90rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.cert-action-btn.unlocked {
+    background: var(--success-green);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+}
+
+.cert-action-btn.unlocked:hover {
+    background: #047857;
+    transform: translateY(-2px);
+}
+
+.cert-action-btn.locked {
+    background: #f1f5f9;
+    color: var(--text-muted) !important;
+    border: 1px solid var(--border-card);
+    cursor: not-allowed;
+}
+
+/* Responsive Breakpoints (320px - 425px) */
+@media (max-width: 768px) {
+    .hub-hero {
+        padding: 30px 20px;
+    }
+    
+    .certificate-preview-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cert-info-wrap {
+        flex-direction: column;
+    }
+
+    .cert-action-btn {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 425px) {
+    .hub-container {
+        padding: 0 14px;
+        margin-top: 20px;
+    }
+
+    .hub-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-cta-btn {
+        width: 100%;
+        padding: 14px 16px;
+        box-sizing: border-box;
+        font-size: 0.95rem;
+    }
+
+    .hub-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .hub-stat-card {
+        padding: 14px 12px;
+    }
+
+    .hub-stat-val {
+        font-size: 1.2rem;
+    }
+
+    .lesson-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chapter-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 340px) {
+    .hub-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -42,10 +42,13 @@
 
             <!-- Center Navigation Links -->
             <nav class="header-nav-links" aria-label="Main Navigation">
-                <a href="../index.html" class="nav-link active" title="Dashboard Home">
+                <a href="../index.html" class="nav-link" title="Dashboard Home">
                     <span class="nav-icon">🏠</span><span class="nav-text">&nbsp;Dashboard</span>
                 </a>
-                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" id="dojoNavLink" onclick="openDojoHub()" title="Practical Dojo Hub">
+                <a href="../1. partA/hub.html" class="nav-link" title="Foundations Academy">
+                    <span class="nav-icon">📚</span><span class="nav-text">&nbsp;Foundations</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight active" onclick="openDojoHub()" title="Practical Dojo Hub">
                     <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Practical Dojo</span>
                 </a>
             </nav>
@@ -54,7 +57,7 @@
             <div class="header-user-stats" id="userStatsBar">
                 <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
                     <span class="badge-icon">⚡</span>
-                    <span class="badge-label">Loading...</span>
+                    <span class="badge-label" id="userXpLabel">Loading...</span>
                 </div>
                 <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
                     <span class="badge-icon" id="userRankIcon">🌱</span>
@@ -74,9 +77,9 @@
                 Congratulations on reaching Level 7! Select your specialization branch below. Complete <strong>any 1 branch</strong> to earn your official Level 7 Certificate, or conquer all 3 to claim the <strong>Principal Polymath Rank</strong>!
             </p>
             <div class="hub-stats-row">
-                <span class="stat-pill">☁️ Track 7A: Cloud & DevOps</span>
-                <span class="stat-pill">🛢️ Track 7B: SQL & Auth</span>
-                <span class="stat-pill">⚡ Track 7C: Next.js SSR</span>
+                <span class="stat-pill">☁️ Track 7A: Cloud & DevOps (1,500 XP)</span>
+                <span class="stat-pill">🛢️ Track 7B: SQL & Auth (1,500 XP)</span>
+                <span class="stat-pill">⚡ Track 7C: Next.js SSR (1,500 XP)</span>
             </div>
         </section>
 
@@ -101,7 +104,60 @@
                         <span class="branch-meta-item">Render API</span>
                         <span class="branch-meta-item">CI/CD</span>
                     </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#34d399;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="./branchA/lesson1_remake.html" class="syllabus-item" id="item7A_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">Git & GitHub Workflow</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_1">⚡ Up Next</span>
+                            </a>
+                            <a href="./branchA/lesson2_remake.html" class="syllabus-item locked" id="item7A_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Vercel & Netlify Deployments</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_2">🔒 Locked</span>
+                            </a>
+                            <a href="./branchA/lesson3_remake.html" class="syllabus-item locked" id="item7A_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">Cloudflare Pages & Workers</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_3">🔒 Locked</span>
+                            </a>
+                            <a href="./branchA/lesson4_remake.html" class="syllabus-item locked" id="item7A_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">Render & Fly.io Web Services</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_4">🔒 Locked</span>
+                            </a>
+                            <a href="./branchA/lesson5_remake.html" class="syllabus-item locked" id="item7A_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">FastAPI CORS Security</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_5">🔒 Locked</span>
+                            </a>
+                            <a href="./branchA/lesson6_remake.html" class="syllabus-item locked" id="item7A_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">GitHub Actions CI/CD Pipeline</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="branch-footer">
                     <div class="branch-progress-bar">
                         <div class="branch-progress-fill" id="fillBranch7A"></div>
@@ -129,7 +185,60 @@
                         <span class="branch-meta-item">SQLAlchemy</span>
                         <span class="branch-meta-item">Bcrypt & JWT</span>
                     </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#38bdf8;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="./branchB/lesson1_remake.html" class="syllabus-item" id="item7B_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">SQL Fundamentals & Queries</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_1">⚡ Up Next</span>
+                            </a>
+                            <a href="./branchB/lesson2_remake.html" class="syllabus-item locked" id="item7B_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Cloud PostgreSQL (Neon/Supabase)</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_2">🔒 Locked</span>
+                            </a>
+                            <a href="./branchB/lesson3_remake.html" class="syllabus-item locked" id="item7B_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">SQLAlchemy ORM Models</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_3">🔒 Locked</span>
+                            </a>
+                            <a href="./branchB/lesson4_remake.html" class="syllabus-item locked" id="item7B_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">Bcrypt Password Hashing</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_4">🔒 Locked</span>
+                            </a>
+                            <a href="./branchB/lesson5_remake.html" class="syllabus-item locked" id="item7B_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">JWT Token Authentication</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_5">🔒 Locked</span>
+                            </a>
+                            <a href="./branchB/lesson6_remake.html" class="syllabus-item locked" id="item7B_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">Auth Middleware & RBAC</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="branch-footer">
                     <div class="branch-progress-bar">
                         <div class="branch-progress-fill" id="fillBranch7B"></div>
@@ -157,7 +266,60 @@
                         <span class="branch-meta-item">Server Actions</span>
                         <span class="branch-meta-item">Vercel Deploy</span>
                     </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#a855f7;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="./branchC/lesson1_remake.html" class="syllabus-item" id="item7C_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">App Router Architecture</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_1">⚡ Up Next</span>
+                            </a>
+                            <a href="./branchC/lesson2_remake.html" class="syllabus-item locked" id="item7C_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Server vs Client Components</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_2">🔒 Locked</span>
+                            </a>
+                            <a href="./branchC/lesson3_remake.html" class="syllabus-item locked" id="item7C_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">Server Actions & Forms</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_3">🔒 Locked</span>
+                            </a>
+                            <a href="./branchC/lesson4_remake.html" class="syllabus-item locked" id="item7C_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">API Route Handlers</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_4">🔒 Locked</span>
+                            </a>
+                            <a href="./branchC/lesson5_remake.html" class="syllabus-item locked" id="item7C_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">RSC Direct DB Queries</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_5">🔒 Locked</span>
+                            </a>
+                            <a href="./branchC/lesson6_remake.html" class="syllabus-item locked" id="item7C_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">Next.js Production Config</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="branch-footer">
                     <div class="branch-progress-bar">
                         <div class="branch-progress-fill" id="fillBranch7C"></div>
@@ -172,15 +334,29 @@
     </main>
 
     <!-- Footer -->
-    <footer class="simple-footer">
-        <div class="footer-nav">
-            <a href="../index.html#roadmap">Skill Tree</a>
-            <a href="../1. partA/web_history.html">Web History</a>
-            <a href="../privacy.html">Privacy Policy</a>
-            <a href="../terms.html">Terms of Use</a>
-            <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+    <footer class="platform-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="../index.html" class="platform-logo" aria-label="NoviCodes Footer Logo">
+                    <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                    <div class="logo-text">
+                        <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                        <span class="logo-tag">From Novice to Dev</span>
+                    </div>
+                </a>
+                <p style="margin-top: 10px;">From Novice to Fullstack Web Developer. Zero-barrier, open-source environment for learners worldwide.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">Dashboard</a>
+                <a href="../1. partA/hub.html">Foundations</a>
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms of Use</a>
+                <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            </div>
         </div>
-        <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+        <div class="footer-bottom">
+            <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+        </div>
     </footer>
 
     <!-- JavaScript Engines -->

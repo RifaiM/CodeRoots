@@ -274,14 +274,8 @@ function initUserProgress() {
                 unit: 'Foundations'
             }, './foundations.html?track=js', 'JS Foundations');
         } else if (levelText === 'Level 4') {
-            let activeL4 = 1;
-            for (let i = 1; i <= 15; i++) {
-                if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
-                    activeL4 = Math.min(i + 1, 15);
-                }
-            }
             const isFinished = l4Completed >= 15;
-            const targetUrl = isFinished ? './2. partB/lesson1/lesson1_remake.html' : `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+            const targetUrl = './2. partB/hub.html';
             updateTrackCardState(card, statusIcon, btn, isFinished, {
                 count: l4Completed,
                 total: 15,
@@ -290,17 +284,11 @@ function initUserProgress() {
             }, targetUrl, 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : (l4Completed > 0 ? `⚔️ Continue Lesson ${activeL4} ➔` : '⚔️ Enter Level 4 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : (l4Completed > 0 ? `⚔️ Continue Dojo (${l4Completed}/15) ➔` : '⚔️ Enter Level 4 Dojo');
             }
         } else if (levelText === 'Level 5') {
-            let activeL5 = 1;
-            for (let i = 1; i <= 15; i++) {
-                if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
-                    activeL5 = Math.min(i + 1, 15);
-                }
-            }
             const isFinished = l5Completed >= 15;
-            const targetUrl = isFinished ? './3. partC/lesson1/lesson1_remake.html' : `./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html`;
+            const targetUrl = './3. partC/hub.html';
             updateTrackCardState(card, statusIcon, btn, isFinished, {
                 count: l5Completed,
                 total: 15,
@@ -309,19 +297,17 @@ function initUserProgress() {
             }, targetUrl, 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : (l5Completed > 0 ? `⚛️ Continue Lesson ${activeL5} ➔` : '⚛️ Enter Level 5 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : (l5Completed > 0 ? `⚛️ Continue Dojo (${l5Completed}/15) ➔` : '⚛️ Enter Level 5 Dojo');
             }
         } else if (levelText === 'Level 6') {
-            let activeL6 = 1;
             let l6CompletedCount = 0;
             for (let i = 1; i <= 15; i++) {
                 if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
                     l6CompletedCount++;
-                    activeL6 = Math.min(i + 1, 15);
                 }
             }
             const isFinished = l6CompletedCount >= 15;
-            const targetUrl = isFinished ? './5. partE/lesson1/lesson1_remake.html' : `./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html`;
+            const targetUrl = './5. partE/hub.html';
             updateTrackCardState(card, statusIcon, btn, isFinished, {
                 count: l6CompletedCount,
                 total: 15,
@@ -330,7 +316,7 @@ function initUserProgress() {
             }, targetUrl, 'Level 6 Python Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : (l6CompletedCount > 0 ? `🐍 Continue Lesson ${activeL6} ➔` : '🐍 Enter Level 6 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : (l6CompletedCount > 0 ? `🐍 Continue Dojo (${l6CompletedCount}/15) ➔` : '🐍 Enter Level 6 Dojo');
             }
         } else if (levelText === 'Level 7') {
             const stats = window.getUserXPAndRank();
@@ -798,7 +784,10 @@ window.openCertificateHub = function() {
 window.openDojoHub = function() {
     const rootPrefix = getRelativeRootPrefix();
     const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
-    const isCurrentHubPage = rawPath.includes('partf/hub.html') || rawPath.endsWith('/hub.html');
+    const isL4 = rawPath.includes('partb/hub.html') || rawPath.includes('2. partb/hub.html');
+    const isL5 = rawPath.includes('partc/hub.html') || rawPath.includes('3. partc/hub.html');
+    const isL6 = rawPath.includes('parte/hub.html') || rawPath.includes('5. parte/hub.html');
+    const isL7 = rawPath.includes('partf/hub.html') || rawPath.includes('6. partf/hub.html');
 
     let activeL4 = 1;
     for (let i = 1; i <= 15; i++) {
@@ -821,7 +810,67 @@ window.openDojoHub = function() {
         }
     }
 
-    const level7Item = isCurrentHubPage
+    const itemL4 = isL4
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #eff6ff; border: 2px solid #3b82f6; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #1d4ed8;">⚔️ Level 4: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.76rem; color: #2563eb;">15 Projects • Active Lesson ${activeL4}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #1d4ed8; font-size: 0.80rem; background: #dbeafe; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}2. partB/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL5 = isL5
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 2px solid #0284c7; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
+                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #0369a1; font-size: 0.80rem; background: #e0f2fe; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}3. partC/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
+                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL6 = isL6
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 2px solid #059669; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
+                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #047857; font-size: 0.80rem; background: #d1fae5; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}5. partE/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
+                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #059669; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL7 = isL7
         ? `
             <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #c084fc; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
                 <div style="text-align: left; flex: 1;">
@@ -851,31 +900,10 @@ window.openDojoHub = function() {
                     </p>
                     
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left; flex: 1;">
-                                <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
-                                <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
-                            </div>
-                            <span class="badge-action" style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Continue &rarr;</span>
-                        </a>
-
-                        <a href="${rootPrefix}3. partC/lesson${activeL5}/lesson${activeL5}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left; flex: 1;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
-                                <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
-                            </div>
-                            <span class="badge-action" style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Continue &rarr;</span>
-                        </a>
-
-                        <a href="${rootPrefix}5. partE/lesson${activeL6}/lesson${activeL6}_remake.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
-                            <div style="text-align: left; flex: 1;">
-                                <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
-                                <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
-                            </div>
-                            <span class="badge-action" style="font-weight: 800; color: #059669; font-size: 0.85rem;">Continue &rarr;</span>
-                        </a>
-
-                        ${level7Item}
+                        ${itemL4}
+                        ${itemL5}
+                        ${itemL6}
+                        ${itemL7}
                     </div>
                 </div>
             `,
@@ -883,7 +911,7 @@ window.openDojoHub = function() {
             showCloseButton: true
         });
     } else {
-        window.location.href = `${rootPrefix}2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
+        window.location.href = `${rootPrefix}2. partB/hub.html`;
     }
 };
 

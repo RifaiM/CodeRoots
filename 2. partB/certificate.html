@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../Global/root.css">
+    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="./hub.css">
     <link rel="stylesheet" href="./lesson-navigation.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Level 4 Certificate: DOM & Web Interactivity | NoviCodes</title>
@@ -93,8 +94,8 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #0f172a;
-            color: #f8fafc;
+            background: #f8fafc;
+            color: #0f172a;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -107,22 +108,23 @@
         }
 
         .generator-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-bottom: 32px;
         }
 
         .generator-card h2 {
             margin-top: 0;
-            color: #f8fafc;
-            font-size: 1.5rem;
+            color: #0f172a;
+            font-size: 1.4rem;
+            font-weight: 800;
         }
 
         .generator-card p {
-            color: #94a3b8;
+            color: #64748b;
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -137,9 +139,9 @@
             flex: 1;
             padding: 12px 16px;
             border-radius: 12px;
-            border: 1px solid #475569;
-            background: #0f172a;
-            color: #ffffff;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
             font-family: inherit;
             font-size: 1rem;
             outline: none;
@@ -377,19 +379,47 @@
     </style>
 </head>
 <body>
-    <!-- Level Header Navigation (100% Uniform Layout & Styling) -->
-    <header class="lesson-header">
-        <a href="../index.html" class="home-button">
-            <span class="home-icon">🏠</span>
-            <span class="btn-text">Dashboard</span>
-        </a>
+    <!-- Sticky Platform Header (100% Uniform with Level 7 Hub & Lessons) -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+                <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 4 • Certificate Hub</span>
+                </div>
+            </a>
 
-        <h1>Level 4: DOM & Web Interactivity Certificate</h1>
+            <!-- Center Navigation Links -->
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../index.html" class="nav-link" title="Dashboard Home">
+                    <span class="nav-icon">🏠</span><span class="nav-text">&nbsp;Dashboard</span>
+                </a>
+                <a href="./hub.html" class="nav-link" title="Return to Level 4 Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Level 4 Hub</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link active" title="Certificate Hub">
+                    <span class="nav-icon">📜</span><span class="nav-text">&nbsp;Certificate</span>
+                </a>
+            </nav>
+
+            <!-- Progress Badges & Quick Action -->
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">Loading...</span>
+                </div>
+                <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon" id="userRankIcon">🌱</span>
+                    <span class="badge-label" id="userRankLabel">Web Novice</span>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main class="cert-container">
         <div class="generator-card">
-            <h2>🎉 Claim Your Official Level 4 Certificate</h2>
+            <h1>🎉 Claim Your Official Level 4 Certificate</h1>
             <p>
                 Enter your full legal name below to personalize your official <strong>Level 4 DOM Manipulation & Web Interactivity Master Certificate</strong>. You can print or download your certificate directly!
             </p>
@@ -427,6 +457,34 @@
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="platform-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="../index.html" class="platform-logo" aria-label="NoviCodes Footer Logo">
+                    <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                    <div class="logo-text">
+                        <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                        <span class="logo-tag">From Novice to Dev</span>
+                    </div>
+                </a>
+                <p style="margin-top: 10px;">From Novice to Fullstack Web Developer. Zero-barrier, open-source environment for learners worldwide.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">Dashboard</a>
+                <a href="../1. partA/hub.html">Foundations</a>
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms of Use</a>
+                <a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Engines -->
+    <script src="../dashboard.js"></script>
     <script>
         function updateCertificateName() {
             const input = document.getElementById('studentNameInput');
@@ -466,14 +524,5 @@
             document.getElementById('certId').textContent = `NC-L4-${randomCode}`;
         });
     </script>
-
-            <footer style="text-align: center; padding: 24px 16px; font-size: 0.84rem; color: #64748b; font-family: sans-serif; background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 40px;">
-                <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; font-weight: 700;">
-                    <a href="../privacy.html" target="_blank" style="color: #2563eb; text-decoration: none;">Privacy Policy</a>
-                    <a href="../terms.html" target="_blank" style="color: #2563eb; text-decoration: none;">Terms of Use</a>
-                    <a href="../index.html" style="color: #2563eb; text-decoration: none;">Dashboard</a>
-                </div>
-                <p style="margin: 0;">© 2026 NoviCodes • Official Course Certificate</p>
-            </footer>
-            </body>
+</body>
 </html>

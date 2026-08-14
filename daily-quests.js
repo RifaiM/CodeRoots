@@ -365,7 +365,7 @@
         let milestonesHTML = milestones.map(m => {
             const isUnlocked = streakData.currentStreak >= m.days || streakData.longestStreak >= m.days;
             return `
-                <div style="display:flex; align-items:center; justify-content:space-between; padding:12px; background:${isUnlocked ? '#eff6ff' : '#f8fafc'}; border:1px solid ${isUnlocked ? '#bfdbfe' : '#e2e8f0'}; border-radius:10px; margin-bottom:8px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:12px; background:${isUnlocked ? '#eff6ff' : '#f8fafc'}; border:1px solid ${isUnlocked ? '#bfdbfe' : '#e2e8f0'}; border-radius:10px;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="font-size:1.4rem;">${m.icon}</span>
                         <div>
@@ -407,7 +407,7 @@
                     <div style="text-align:left; margin-bottom:8px; font-weight:800; font-size:0.86rem; color:#475569;">
                         🎯 Milestone Streak Bonuses:
                     </div>
-                    <div style="max-height: 180px; overflow-y: auto; padding-right: 4px; margin-bottom: 8px;">
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;">
                         ${milestonesHTML}
                     </div>
 

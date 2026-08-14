@@ -1,77 +1,109 @@
-/* ==========================================================================
-   Level 7 Specialization Hub Engine
-   ========================================================================== */
+/**
+ * Level 7 Specialization Hub Engine
+ * Dynamically tracks 7A, 7B, 7C branch progress, active lesson URLs, and individual syllabus lock/completion states.
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHubProgress();
 });
 
 function initHubProgress() {
-    // 1. Calculate Branch 7A progress (Cloud & DevOps)
-    let count7A = 0;
-    let active7A = 1;
-    for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchA_lesson${i}_completed`) === 'true') {
-            count7A++;
-            active7A = Math.min(i + 1, 6);
+    const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
+    // Helper to update a branch's syllabus
+    function updateBranch(branchKey, countElId, btnId, prefix, totalLessons = 6) {
+        let completedCount = 0;
+        let activeLesson = 1;
+        let foundActive = false;
+
+        for (let i = 1; i <= totalLessons; i++) {
+            const isCompleted = localStorage.getItem(`partF_${branchKey}_lesson${i}_complete`) === 'true' || 
+                                localStorage.getItem(`partF_${branchKey}_lesson${i}_completed`) === 'true';
+            
+            const isAccessible = i === 1 || isPracticeUnlocked || 
+                                 localStorage.getItem(`partF_${branchKey}_lesson${i - 1}_complete`) === 'true' || 
+                                 localStorage.getItem(`partF_${branchKey}_lesson${i - 1}_completed`) === 'true';
+
+            if (isCompleted) {
+                completedCount++;
+            } else if (isAccessible && !foundActive) {
+                activeLesson = i;
+                foundActive = true;
+            }
+
+            // Update individual syllabus item in DOM
+            const itemEl = document.getElementById(`item${prefix}_${i}`);
+            const statEl = document.getElementById(`stat${prefix}_${i}`);
+
+            if (itemEl && statEl) {
+                if (isCompleted) {
+                    itemEl.className = 'syllabus-item completed';
+                    itemEl.href = `./${branchKey.toLowerCase().replace('branch', 'branch')}/lesson${i}_remake.html`;
+                    statEl.textContent = '✅ Completed';
+                    statEl.style.color = '#34d399';
+                } else if (isAccessible) {
+                    itemEl.className = 'syllabus-item available';
+                    itemEl.href = `./${branchKey.toLowerCase().replace('branch', 'branch')}/lesson${i}_remake.html`;
+                    statEl.textContent = '⚡ Up Next';
+                    statEl.style.color = '#38bdf8';
+                } else {
+                    itemEl.className = 'syllabus-item locked';
+                    itemEl.href = 'javascript:void(0)';
+                    itemEl.onclick = (e) => {
+                        e.preventDefault();
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: '🔒 Lesson Locked',
+                                text: `Please complete Lesson ${i - 1} before accessing Lesson ${i}.`,
+                                confirmButtonColor: '#7e22ce'
+                            });
+                        }
+                    };
+                    statEl.textContent = '🔒 Locked';
+                    statEl.style.color = '#94a3b8';
+                }
+            }
+        }
+
+        if (completedCount >= totalLessons) {
+            activeLesson = totalLessons;
+        }
+
+        // Update fill bar
+        const fillEl = document.getElementById(countElId);
+        if (fillEl) fillEl.style.width = `${(completedCount / totalLessons) * 100}%`;
+
+        // Update action button
+        const btnEl = document.getElementById(btnId);
+        if (btnEl) {
+            btnEl.href = `./${branchKey.toLowerCase().replace('branch', 'branch')}/lesson${activeLesson}_remake.html`;
+            const icon = prefix === '7A' ? '☁️' : prefix === '7B' ? '🛢️' : '⚡';
+            btnEl.querySelector('span').textContent = completedCount >= totalLessons 
+                ? `✅ Track ${prefix} Completed` 
+                : `${icon} Launch Track ${prefix} (Lesson ${activeLesson}/6)`;
         }
     }
 
-    // 2. Calculate Branch 7B progress (Databases & Auth)
-    let count7B = 0;
-    let active7B = 1;
-    for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchB_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchB_lesson${i}_completed`) === 'true') {
-            count7B++;
-            active7B = Math.min(i + 1, 6);
-        }
-    }
+    // 1. Branch 7A
+    updateBranch('branchA', 'fillBranch7A', 'btnBranch7A', '7A');
 
-    // 3. Calculate Branch 7C progress (Next.js & SSR)
-    let count7C = 0;
-    let active7C = 1;
-    for (let i = 1; i <= 6; i++) {
-        if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true' || localStorage.getItem(`partF_branchC_lesson${i}_completed`) === 'true') {
-            count7C++;
-            active7C = Math.min(i + 1, 6);
-        }
-    }
+    // 2. Branch 7B
+    updateBranch('branchB', 'fillBranch7B', 'btnBranch7B', '7B');
 
-    // Update Progress Fill Bars
-    const fill7A = document.getElementById('fillBranch7A');
-    if (fill7A) fill7A.style.width = `${(count7A / 6) * 100}%`;
-
-    const fill7B = document.getElementById('fillBranch7B');
-    if (fill7B) fill7B.style.width = `${(count7B / 6) * 100}%`;
-
-    const fill7C = document.getElementById('fillBranch7C');
-    if (fill7C) fill7C.style.width = `${(count7C / 6) * 100}%`;
-
-    // Update Target Links & Button Text
-    const btn7A = document.getElementById('btnBranch7A');
-    if (btn7A) {
-        btn7A.href = `./branchA/lesson${active7A}_remake.html`;
-        btn7A.querySelector('span').textContent = count7A >= 6 ? '✅ Track 7A Completed' : `☁️ Launch Track 7A (Lesson ${active7A}/6)`;
-    }
-
-    const btn7B = document.getElementById('btnBranch7B');
-    if (btn7B) {
-        btn7B.href = `./branchB/lesson${active7B}_remake.html`;
-        btn7B.querySelector('span').textContent = count7B >= 6 ? '✅ Track 7B Completed' : `🛢️ Launch Track 7B (Lesson ${active7B}/6)`;
-    }
-
-    const btn7C = document.getElementById('btnBranch7C');
-    if (btn7C) {
-        btn7C.href = `./branchC/lesson${active7C}_remake.html`;
-        btn7C.querySelector('span').textContent = count7C >= 6 ? '✅ Track 7C Completed' : `⚡ Launch Track 7C (Lesson ${active7C}/6)`;
-    }
+    // 3. Branch 7C
+    updateBranch('branchC', 'fillBranch7C', 'btnBranch7C', '7C');
 
     // Header User Stats
     if (typeof window.getUserXPAndRank === 'function') {
         const stats = window.getUserXPAndRank();
-        const rankLabel = document.getElementById('hubUserRankLabel');
-        if (rankLabel) {
-            rankLabel.textContent = `${stats.rankIcon} ${stats.rankTitle} • ${stats.totalXP.toLocaleString()} XP`;
-        }
+        const xpLabel = document.getElementById('userXpLabel') || document.querySelector('.xp-badge .badge-label');
+        if (xpLabel) xpLabel.textContent = `${stats.totalXP.toLocaleString()} XP`;
+
+        const rankLabel = document.getElementById('userRankLabel') || document.querySelector('.level-badge .badge-label');
+        if (rankLabel) rankLabel.textContent = stats.rankTitle;
+
+        const rankIcon = document.getElementById('userRankIcon') || document.querySelector('.level-badge .badge-icon');
+        if (rankIcon) rankIcon.textContent = stats.rankIcon;
     }
 }

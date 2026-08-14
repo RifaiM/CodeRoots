@@ -926,7 +926,37 @@
   }
 }
 
+@media (max-width: 600px) {
+  .header-user-stats .level-badge {
+    display: none !important;
+  }
+}
+
 @media (max-width: 480px) {
+  .platform-header {
+    padding: 0 12px !important;
+  }
+
+  .header-inner {
+    gap: 8px !important;
+  }
+
+  .header-user-stats {
+    gap: 6px !important;
+  }
+
+  .stat-badge {
+    padding: 0 8px !important;
+    height: 32px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .back-dashboard-btn {
+    padding: 0 10px !important;
+    height: 32px !important;
+    font-size: 0.78rem !important;
+  }
+
   .btn-text-full {
     display: none !important;
   }
@@ -937,9 +967,26 @@
 }
 
 @media (max-width: 420px) {
+  .platform-header {
+    padding: 0 8px !important;
+  }
+
+  .header-inner {
+    gap: 6px !important;
+  }
+
+  .platform-logo {
+    gap: 8px !important;
+  }
+
+  .brand-logo-img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
   .platform-header .logo-title {
     display: inline-block !important;
-    font-size: 0.92rem !important;
+    font-size: 0.95rem !important;
     line-height: 1 !important;
   }
 
@@ -948,15 +995,58 @@
   }
 
   .header-user-stats {
-    gap: 3px !important;
+    gap: 4px !important;
   }
 
   .stat-badge {
-    padding: 0 4px !important;
+    padding: 0 6px !important;
+    font-size: 0.75rem !important;
+    height: 30px !important;
+  }
+
+  .back-dashboard-btn {
+    padding: 0 8px !important;
+    font-size: 0.75rem !important;
+    height: 30px !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .platform-header {
+    padding: 0 6px !important;
+  }
+
+  .header-inner {
+    gap: 4px !important;
+  }
+
+  .brand-logo-img {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .platform-header .logo-title {
+    font-size: 0.86rem !important;
+  }
+
+  .header-user-stats {
+    gap: 3px !important;
+  }
+
+  .stat-badge.xp-badge {
+    padding: 0 5px !important;
+    font-size: 0.70rem !important;
+    height: 28px !important;
   }
 
   .back-dashboard-btn {
     padding: 0 6px !important;
+    font-size: 0.70rem !important;
+    height: 28px !important;
+  }
+
+  .btn-text-short {
+    display: none !important;
   }
 }
 
