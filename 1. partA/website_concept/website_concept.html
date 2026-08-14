@@ -3,234 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon & Tab Icon -->
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     
-    <!-- External Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../../Global/root.css">
-    <link rel="stylesheet" href="../partA-navigation.css">
-    <link rel="stylesheet" href="./website_concept.css">
-    
-    <title>What is a Website? Fundamentals Guide | NoviCodes</title>
-    <meta name="description" content="A beginner-friendly breakdown of how browsers, web servers, DNS, IP addresses, and hosting work together.">
+    <title>Pillar 1: What is a Website? Fundamentals Guide | NoviCodes</title>
+    <meta name="description" content="A beginner-friendly breakdown of how browsers, web servers, DNS, IP addresses, and URLs work together to deliver digital experiences.">
     <link rel="canonical" href="https://novicodes.dev/1.%20partA/website_concept/website_concept.html">
+    
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="What is a Website? Fundamentals Guide | NoviCodes">
-    <meta property="og:description" content="A beginner-friendly breakdown of how browsers, web servers, DNS, IP addresses, and hosting work together.">
+    <meta property="og:title" content="Pillar 1: What is a Website? Fundamentals Guide | NoviCodes">
+    <meta property="og:description" content="A beginner-friendly breakdown of how browsers, web servers, DNS, IP addresses, and URLs work together to deliver digital experiences.">
     <meta property="og:image" content="../../assets/og-image.jpg">
     <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="./website_concept.css">
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <!-- Home Navigation Button -->
-    <a href="../../index.html" class="home-button" title="Back to Dashboard">
-        <span class="home-icon">🏠</span> 
-        <span class="btn-text-full">Dashboard</span>
-        <span class="btn-text-short">Home</span>
-    </a>
 
-    <!-- Page Header -->
-    <header>
-        <h1>🌐 What is a Website?</h1>
+    <!-- Sticky Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Home">
+                <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Pillar 1 • Concept</span>
+                </div>
+            </a>
+
+            <div class="header-right">
+                <div class="stat-badge" title="Level 0 XP Progress">
+                    <span>⚡</span> <span id="userXpLabel">50 XP Track</span>
+                </div>
+                <a href="../web_history.html" class="nav-back-btn" title="Back to Web History Roadmap">
+                    <span>← Web History</span>
+                </a>
+            </div>
+        </div>
     </header>
 
     <!-- Main Container -->
-    <main class="container">
-        <div class="concept-hero-subtitle">
-            <p>Discover the digital world that connects billions of people</p>
-        </div>
+    <main class="concept-container">
         
-        <!-- Main Concept Section -->
-        <section class="content-section">
-            <div class="icon-header">
-                <div class="concept-icon">🌐</div>
-                <h2>Understanding Websites</h2>
-            </div>
-            
-            <p style="font-size: 1.1rem; margin-bottom: 25px;">
-                A website is like a digital building made of interconnected pages, hosted on powerful computers called servers, 
-                and accessed through the internet. Just as you visit physical places, you "visit" websites using web addresses (URLs).
+        <!-- Hero Banner -->
+        <section class="concept-hero">
+            <span class="concept-badge-pill">🌐 Pillar 1 of 4 • 50 XP</span>
+            <h1>What is a Website?</h1>
+            <p>
+                Discover the digital architecture connecting clients, internet routing, and cloud servers to deliver modern web apps to billions of users.
             </p>
-            
-            <!-- Interactive Demo -->
-            <div class="interactive-demo">
-                <div class="demo-header">
-                    <span>🏗️</span> Website Architecture
-                </div>
-                
-                <!-- Website Components Grid -->
-                <div class="website-components">
-                    <!-- Web Pages Component -->
-                    <div class="component">
-                        <span class="component-icon">📄</span>
-                        <h3>Web Pages</h3>
-                        <p>Individual documents containing text, images, and media - like rooms in a digital building</p>
-                    </div>
-                    
-                    <!-- Links Component -->
-                    <div class="component">
-                        <span class="component-icon">🔗</span>
-                        <h3>Links</h3>
-                        <p>Connections between pages - like hallways that let you navigate from room to room</p>
-                    </div>
-                    
-                    <!-- Web Server Component -->
-                    <div class="component">
-                        <span class="component-icon">🖥️</span>
-                        <h3>Web Server</h3>
-                        <p>The computer that stores and serves your website to visitors around the world</p>
-                    </div>
-                    
-                    <!-- Domain Name Component -->
-                    <div class="component">
-                        <span class="component-icon">🌍</span>
-                        <h3>Domain Name</h3>
-                        <p>The unique address (like google.com) that people type to find your website</p>
-                    </div>
-                </div>
+        </section>
+
+        <!-- 1. The Core Architecture -->
+        <section class="concept-card">
+            <h2><span>🏗️</span> 1. The 3 Core Components of the Web</h2>
+            <p>
+                Every website on earth operates on a <strong>Client-Server model</strong>. Click each component below to inspect its role:
+            </p>
+
+            <div class="inspector-grid">
+                <button class="inspector-node-btn active" data-target="client">
+                    <span class="inspector-icon">💻</span>
+                    <span class="inspector-title">1. The Client</span>
+                </button>
+                <button class="inspector-node-btn" data-target="internet">
+                    <span class="inspector-icon">🌐</span>
+                    <span class="inspector-title">2. Internet & DNS</span>
+                </button>
+                <button class="inspector-node-btn" data-target="server">
+                    <span class="inspector-icon">🖥️</span>
+                    <span class="inspector-title">3. The Web Server</span>
+                </button>
+            </div>
+
+            <div class="inspector-detail-box" id="inspectorDetailBox">
+                <strong>💻 The Client (Web Browser)</strong>
+                <p style="margin: 6px 0 0 0;">
+                    The client is your personal device (laptop, smartphone, or tablet) running a web browser like Chrome, Safari, or Firefox. The browser makes requests, downloads code files, builds the visual DOM layout, and executes JavaScript.
+                </p>
             </div>
         </section>
 
-        <!-- How Websites Work Section -->
-        <section class="content-section">
-            <div class="icon-header">
-                <div class="concept-icon">⚡</div>
-                <h2>How Websites Work</h2>
-            </div>
-            
-            <p style="margin-bottom: 25px;">
-                When you visit a website, here's the amazing journey that happens in milliseconds:
+        <!-- 2. URL Anatomy Breakdown -->
+        <section class="concept-card">
+            <h2><span>🔗</span> 2. Anatomy of a Web Address (URL)</h2>
+            <p>
+                A URL (Uniform Resource Locator) is like a postal address telling the internet where to locate a file:
             </p>
-            
-            <!-- Journey Steps -->
-            <div class="journey-steps">
-                <!-- Step 1: Type Address -->
-                <div class="journey-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>You Type the Address</h4>
-                        <p>You enter a URL like "google.com" in your browser's address bar</p>
-                    </div>
-                </div>
-                
-                <!-- Step 2: Browser Finds Server -->
-                <div class="journey-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Browser Finds the Server</h4>
-                        <p>Your browser asks the internet "Where can I find google.com?" and gets the server's location</p>
-                    </div>
-                </div>
-                
-                <!-- Step 3: Server Sends Website -->
-                <div class="journey-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Server Sends the Website</h4>
-                        <p>The web server sends back the website's files (HTML, CSS, images) to your browser</p>
-                    </div>
-                </div>
-                
-                <!-- Step 4: Browser Displays Page -->
-                <div class="journey-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Browser Displays the Page</h4>
-                        <p>Your browser reads the files and displays the beautiful website you see</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Fun Facts Section -->
-        <section class="fun-facts">
-            <h3><span>🤯</span>Mind-Blowing Website Facts</h3>
-            
-            <!-- Facts Grid -->
-            <div class="facts-grid">
-                <!-- Fact 1: Total Websites -->
-                <div class="fact-item">
-                    <span class="fact-number">1.7B+</span>
-                    <div class="fact-label">Websites exist on the internet today</div>
-                </div>
-                
-                <!-- Fact 2: Internet Users -->
-                <div class="fact-item">
-                    <span class="fact-number">4.9B+</span>
-                    <div class="fact-label">People use the internet worldwide</div>
-                </div>
-                
-                <!-- Fact 3: Web History -->
-                <div class="fact-item">
-                    <span class="fact-number">30</span>
-                    <div class="fact-label">Years since the first website went live</div>
-                </div>
-                
-                <!-- Fact 4: First Impression -->
-                <div class="fact-item">
-                    <span class="fact-number">0.05s</span>
-                    <div class="fact-label">Time it takes to form an opinion about a website</div>
-                </div>
+            <div class="url-bar-container">
+                <span class="url-chunk chunk-proto">https://</span>
+                <span class="url-chunk chunk-domain">novicodes.dev</span>
+                <span class="url-chunk chunk-path">/courses/html</span>
             </div>
-        </section>
 
-        <!-- Why This Matters Section -->
-        <section class="content-section">
-            <div class="icon-header">
-                <div class="concept-icon">💡</div>
-                <h2>Why Understanding Websites Matters</h2>
-            </div>
-            
-            <p style="font-size: 1.1rem; margin-bottom: 20px;">
-                Websites are the foundation of our digital world. They're how we:
-            </p>
-            
-            <!-- Benefits List -->
-            <ul style="font-size: 1rem; line-height: 1.8; color: #555;">
-                <li><strong>Share information</strong> - From news to personal blogs</li>
-                <li><strong>Connect with others</strong> - Social media and communication</li>
-                <li><strong>Do business</strong> - Shopping, banking, and services</li>
-                <li><strong>Learn and grow</strong> - Educational resources and tutorials</li>
-                <li><strong>Express creativity</strong> - Art, music, and personal portfolios</li>
+            <ul style="color: var(--text-secondary); font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li><strong>Protocol (https://)</strong>: The secure communication rule between client and server.</li>
+                <li><strong>Domain Name (novicodes.dev)</strong>: The human-readable name mapped to a server's IP address.</li>
+                <li><strong>Path (/courses/html)</strong>: The specific route or folder on the server you are visiting.</li>
             </ul>
-            
-            <p style="font-style: italic; margin-top: 20px; color: #666;">
-                By learning to build websites, you're gaining the power to shape the digital world!
-            </p>
         </section>
 
-        <!-- Call-to-Action Section -->
-        <section class="action-section">
-            <h3 style="margin-top: 0; color: var(--success); font-size: 1.5rem;">
-                🎉 Congratulations! You now understand what websites are!
-            </h3>
-            
-            <p style="margin: 15px 0 25px 0; font-size: 1.1rem;">
-                You've learned the fundamental concept that powers our entire digital world. 
-                This knowledge will help you understand everything else in web development.
-            </p>
-            
-            <!-- Complete Button -->
-            <button id="markReadBtn" class="mark-btn">
-                ✅ Mark as Complete & Continue Learning
+        <!-- 3. Mini Knowledge Check -->
+        <section class="concept-card">
+            <h2><span>🧠</span> 3. Concept Verification Check</h2>
+            <p id="quizQText">Loading question...</p>
+            <div class="quiz-options-list" id="quizOptionsContainer"></div>
+            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+        </section>
+
+        <!-- 4. Complete & Continue -->
+        <section class="complete-card">
+            <h3>🎉 Mastered This Concept?</h3>
+            <p>Claim your +50 XP and continue to Pillar 2: HTML Structure!</p>
+            <button class="mark-complete-btn" id="markReadBtn" onclick="markConceptComplete()">
+                <span>✅ Mark Complete & Continue to HTML (+50 XP) ➔</span>
             </button>
-            
-            <!-- Return Navigation Info -->
-            <p class="back-info">
-                You'll return to the main page to continue your journey through HTML, CSS, and JavaScript!
-            </p>
         </section>
-        
-    </div>
 
-    <!-- JavaScript -->
-    <script src="/1. partA/website_concept/website_concept.js"></script>
-<!-- Level 0 Concept Platform Footer -->
-    <footer style="text-align: center; padding: 24px 16px; font-size: 0.88rem; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 40px; width: 100%; box-sizing: border-box;">
+    </main>
+
+    <!-- Platform Footer -->
+    <footer style="text-align: center; padding: 24px 16px; font-size: 0.88rem; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 40px; width: 100%; box-sizing: border-box;" id="footer">
         <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; font-weight: 700; flex-wrap: wrap;">
             <a href="../../privacy.html" target="_blank" style="color: #2563eb; text-decoration: none;">Privacy Policy</a>
             <a href="../../terms.html" target="_blank" style="color: #2563eb; text-decoration: none;">Terms of Use</a>
@@ -238,5 +142,8 @@
         </div>
         <p style="margin: 0; color: #64748b; font-size: 0.82rem;">© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
     </footer>
+
+    <!-- Master Script -->
+    <script src="./website_concept.js"></script>
 </body>
 </html>

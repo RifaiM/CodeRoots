@@ -1,261 +1,171 @@
-// Interactive demo functionality
-const styles = {
-    color: {
-        title: 'color: #e91e63; text-shadow: 2px 2px 4px rgba(233,30,99,0.3);',
-        text: 'color: #667eea; font-weight: 600;',
-        bg: 'background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);'
-    },
-    size: {
-        title: 'font-size: 2.5rem; font-weight: 800; transform: scale(1.1);',
-        text: 'font-size: 1.3rem; line-height: 1.8;',
-        bg: ''
-    },
-    background: {
-        title: 'color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);',
-        text: 'color: rgba(255,255,255,0.9);',
-        bg: 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;'
-    },
-    animation: {
-        title: 'animation: bounce 1s ease-in-out infinite;',
-        text: 'animation: fadeInUp 1s ease-out;',
-        bg: 'background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientShift 3s ease infinite;'
-    }
-};
+/**
+ * NoviCodes - Concept 3: CSS Styling Controller
+ */
 
-function changeStyle(type) {
-    const preview = document.getElementById('demoPreview');
-    const title = document.getElementById('demoTitle');
-    const text = document.getElementById('demoText');
+document.addEventListener('DOMContentLoaded', () => {
+    updateHeaderStats();
+    initStylerPlayground();
+    initConceptQuiz();
+    checkIfAlreadyCompleted();
+});
 
-    if (type === 'reset') {
-        preview.style.cssText = '';
-        title.style.cssText = '';
-        text.style.cssText = '';
-        title.textContent = 'Click buttons above to style me!';
-        text.textContent = 'Watch how CSS transforms this content instantly';
-        return;
-    }
-
-    const style = styles[type];
-    if (style) {
-        preview.style.cssText = style.bg;
-        title.style.cssText = style.title;
-        text.style.cssText = style.text;
-        
-        title.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)} styling applied!`;
-        text.textContent = `CSS has transformed this content with ${type} properties`;
+function updateHeaderStats() {
+    if (typeof window.getUserXPAndRank === 'function') {
+        const stats = window.getUserXPAndRank();
+        const xpLabel = document.getElementById('userXpLabel');
+        if (xpLabel) xpLabel.textContent = `${stats.totalXP.toLocaleString()} XP`;
     }
 }
 
-// Add CSS animations
-const animationStyles = document.createElement('style');
-animationStyles.textContent = `
-    @keyframes bounce {
-        0%, 20%, 60%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-20px); }
-        80% { transform: translateY(-10px); }
-    }
-    
-    @keyframes fadeInUp {
-        from { 
-            opacity: 0; 
-            transform: translateY(20px); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
-    }
-    
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-`;
-document.head.appendChild(animationStyles);
+// 1. Live Styler Playground
+function initStylerPlayground() {
+    const demoCard = document.getElementById('demoElementCard');
+    const colorBtn = document.getElementById('styleToggleColor');
+    const radiusBtn = document.getElementById('styleToggleRadius');
+    const shadowBtn = document.getElementById('styleToggleShadow');
 
-// Add interactive click effects to power cards
-document.querySelectorAll('.power-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const icon = this.querySelector('.power-icon');
-        const originalIcon = icon.innerHTML;
-        
-        // Change icon temporarily
-        const icons = {
-            '🌈': '✨', '🎨': '🎨', '📦': '⚡', 
-            '📱': '🚀', '✨': '🎯', '🎯': '💫'
-        };
-        
-        icon.innerHTML = icons[originalIcon] || '🎉';
-        
-        // Reset after animation
-        setTimeout(() => {
-            icon.innerHTML = originalIcon;
-        }, 1000);
-    });
-});
+    if (!demoCard) return;
 
-// Interactive concept icon
-const conceptIcons = ['🎨', '🌈', '✨', '🎭', '🎪'];
-let iconIndex = 0;
+    let isPink = false;
+    let isRounded = false;
+    let hasGlow = false;
 
-document.querySelectorAll('.concept-icon').forEach(icon => {
-    icon.addEventListener('click', function() {
-        iconIndex = (iconIndex + 1) % conceptIcons.length;
-        this.innerHTML = conceptIcons[iconIndex];
-        this.style.animation = 'rainbow 2s linear';
-        
-        setTimeout(() => {
-            this.style.animation = '';
-        }, 2000);
-    });
-});
-
-// Add floating animation to power cards
-document.querySelectorAll('.power-card').forEach((card, index) => {
-    card.style.animation = `float 3s ease-in-out infinite`;
-    card.style.animationDelay = `${index * 0.2}s`;
-});
-
-// CSS for floating animation
-const floatStyle = document.createElement('style');
-floatStyle.textContent = `
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
-    }
-`;
-document.head.appendChild(floatStyle);
-
-// Animate example items on scroll
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.opacity = '1';
-        }
-    });
-}, observerOptions);
-
-// Initialize animations for example items
-document.querySelectorAll('.example-item').forEach((item, index) => {
-    item.style.transform = 'translateY(30px)';
-    item.style.opacity = '0.5';
-    item.style.transition = 'all 0.6s ease';
-    item.style.transitionDelay = `${index * 0.1}s`;
-    observer.observe(item);
-});
-
-// Mark as read functionality
-document.getElementById('markReadBtn').addEventListener('click', function() {
-    this.innerHTML = '🎨 CSS Mastered! Returning to main page...';
-    this.style.background = 'var(--success)';
-    
-    // Store completion
-    try {
-        const keyMap = { website: 'readWebsite', html: 'readHTML', css: 'readCSS', javascript: 'readJavaScript' };
-        const k = keyMap['css'];
-        if (k) localStorage.setItem(k, 'true');
-    } catch (e) { }
-
-    // Add to session disabled list
-    try {
-        let arr = [];
-        try { arr = JSON.parse(sessionStorage.getItem('disabledLessons') || '[]'); } catch (e) { arr = []; }
-        if (!Array.isArray(arr)) arr = [];
-        if (arr.indexOf('css') === -1) arr.push('css');
-        sessionStorage.setItem('disabledLessons', JSON.stringify(arr));
-    } catch (e) { }
-
-    setTimeout(() => {
-        window.location.href = '../web_history.html#before-code';
-    }, 1500);
-});
-
-// Add color-changing effect to header
-let colorIndex = 0;
-const colors = ['hue-rotate(0deg)', 'hue-rotate(60deg)', 'hue-rotate(120deg)', 'hue-rotate(180deg)', 'hue-rotate(240deg)', 'hue-rotate(300deg)'];
-
-setInterval(() => {
-    colorIndex = (colorIndex + 1) % colors.length;
-    document.querySelector('header::before') 
-}, 2000);
-
-// Auto-demo functionality - cycle through styles
-let autoDemoIndex = 0;
-const demoTypes = ['color', 'size', 'background', 'animation'];
-
-function autoDemo() {
-    setTimeout(() => {
-        changeStyle(demoTypes[autoDemoIndex]);
-        autoDemoIndex = (autoDemoIndex + 1) % demoTypes.length;
-        
-        if (autoDemoIndex === 0) {
-            setTimeout(() => changeStyle('reset'), 2000);
-        }
-        
-        autoDemo();
-    }, 4000);
-}
-
-// Animation control functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const animationDemo = document.getElementById('animationDemo');
-    const playButton = document.getElementById('playAnimationBtn');
-    let isPlaying = false;
-    
-    if (animationDemo && playButton) {
-        playButton.addEventListener('click', function() {
-            if (!isPlaying) {
-                // Start animation
-                animationDemo.classList.add('playing');
-                playButton.textContent = 'Stop Animation';
-                playButton.classList.add('stop');
-                isPlaying = true;
-            } else {
-                // Stop animation
-                animationDemo.classList.remove('playing');
-                playButton.textContent = 'Play Animation';
-                playButton.classList.remove('stop');
-                isPlaying = false;
-            }
+    if (colorBtn) {
+        colorBtn.addEventListener('click', () => {
+            isPink = !isPink;
+            colorBtn.classList.toggle('active', isPink);
+            demoCard.style.background = isPink ? 'linear-gradient(135deg, #db2777 0%, #9333ea 100%)' : '#ffffff';
+            demoCard.style.color = isPink ? '#ffffff' : '#0f172a';
         });
     }
-});
 
-// Universal Back to Top Button Auto-Initializer
-function initBackToTopButton() {
-    if (document.getElementById('globalBackToTopBtn')) return;
+    if (radiusBtn) {
+        radiusBtn.addEventListener('click', () => {
+            isRounded = !isRounded;
+            radiusBtn.classList.toggle('active', isRounded);
+            demoCard.style.borderRadius = isRounded ? '24px' : '8px';
+        });
+    }
 
-    const btn = document.createElement('button');
-    btn.id = 'globalBackToTopBtn';
-    btn.className = 'back-to-top-btn';
-    btn.setAttribute('aria-label', 'Scroll back to top of page');
-    btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
-    document.body.appendChild(btn);
-
-    const toggleVisibility = () => {
-        if (window.scrollY > 250) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
-    };
-
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    if (shadowBtn) {
+        shadowBtn.addEventListener('click', () => {
+            hasGlow = !hasGlow;
+            shadowBtn.classList.toggle('active', hasGlow);
+            demoCard.style.boxShadow = hasGlow ? '0 10px 25px rgba(219, 39, 119, 0.45)' : 'none';
+        });
+    }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBackToTopButton);
-} else {
-    initBackToTopButton();
+// 2. Mini Knowledge Check
+const quizQuestions = [
+    {
+        q: 'What does CSS stand for?',
+        options: [
+            { text: 'Cascading Style Sheets', correct: true },
+            { text: 'Creative Styling Syntax', correct: false },
+            { text: 'Computer Screen Standards', correct: false }
+        ],
+        explanation: 'CSS stands for Cascading Style Sheets. "Cascading" refers to how styles inherit and flow down from parent to child rules.'
+    },
+    {
+        q: 'In the CSS Box Model, which layer creates space OUTSIDE the element border?',
+        options: [
+            { text: 'Margin', correct: true },
+            { text: 'Padding', correct: false },
+            { text: 'Content', correct: false }
+        ],
+        explanation: 'Margin creates transparent buffer space OUTSIDE the border, while Padding creates space INSIDE the border around content.'
+    }
+];
+
+let currentQuizIdx = 0;
+
+function initConceptQuiz() {
+    loadQuizQuestion(0);
+}
+
+function loadQuizQuestion(idx) {
+    const qData = quizQuestions[idx];
+    const qText = document.getElementById('quizQText');
+    const optContainer = document.getElementById('quizOptionsContainer');
+    const feedbackBox = document.getElementById('quizFeedbackBox');
+
+    if (qText) qText.textContent = `${idx + 1}. ${qData.q}`;
+    if (feedbackBox) {
+        feedbackBox.className = 'quiz-feedback-box';
+        feedbackBox.innerHTML = '';
+    }
+
+    if (optContainer) {
+        optContainer.innerHTML = '';
+        qData.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-opt-btn';
+            btn.textContent = opt.text;
+            btn.addEventListener('click', () => {
+                const allBtns = optContainer.querySelectorAll('.quiz-opt-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                if (opt.correct) {
+                    btn.classList.add('correct');
+                    feedbackBox.className = 'quiz-feedback-box show correct';
+                    feedbackBox.innerHTML = `<strong>🎉 Correct!</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
+                } else {
+                    btn.classList.add('incorrect');
+                    feedbackBox.className = 'quiz-feedback-box show incorrect';
+                    feedbackBox.innerHTML = `<strong>💡 Hint:</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
+                }
+
+                if (idx < quizQuestions.length - 1) {
+                    feedbackBox.innerHTML += `<button onclick="window.nextConceptQuestion()" style="background:#db2777; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;">Next Question ➔</button>`;
+                }
+            });
+            optContainer.appendChild(btn);
+        });
+    }
+}
+
+window.nextConceptQuestion = function() {
+    currentQuizIdx = (currentQuizIdx + 1) % quizQuestions.length;
+    loadQuizQuestion(currentQuizIdx);
+};
+
+// 3. Mark Complete & Navigate
+window.markConceptComplete = function() {
+    localStorage.setItem('readCSS', 'true');
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'success',
+            title: '🎉 Concept 3 Mastered!',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
+                    <div style="font-size: 1.15rem; font-weight: 800; color: #db2777; margin-bottom: 6px;">+50 XP Earned!</div>
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5;">
+                        You have mastered CSS styling and the Box Model! Ready for the final pillar: <strong>JavaScript Interactivity</strong>?
+                    </p>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: '⚡ Next: JavaScript Concept ➔',
+            cancelButtonText: '🗺️ Back to Web History',
+            confirmButtonColor: '#db2777',
+            cancelButtonColor: '#64748b'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../javascript_concept/javascript_concept.html';
+            } else {
+                window.location.href = '../web_history.html';
+            }
+        });
+    } else {
+        window.location.href = '../javascript_concept/javascript_concept.html';
+    }
+};
+
+function checkIfAlreadyCompleted() {
+    if (localStorage.getItem('readCSS') === 'true') {
+        const btn = document.getElementById('markReadBtn');
+        if (btn) btn.innerHTML = '<span>✅ Completed (+50 XP Earned) • Next: JavaScript ➔</span>';
+    }
 }

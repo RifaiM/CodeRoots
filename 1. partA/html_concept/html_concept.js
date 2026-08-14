@@ -1,194 +1,172 @@
-// Add interactive click effects
-document.querySelectorAll('.element-card').forEach(card => {
-    card.addEventListener('click', function() {
-        // Create ripple effect
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(231, 76, 60, 0.3);
-            pointer-events: none;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            width: 100px;
-            height: 100px;
-            left: 50%;
-            top: 50%;
-            margin-left: -50px;
-            margin-top: -50px;
-        `;
-        
-        this.style.position = 'relative';
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
+/**
+ * NoviCodes - Concept 2: HTML Structure Controller
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateHeaderStats();
+    initTagSandbox();
+    initConceptQuiz();
+    checkIfAlreadyCompleted();
 });
 
-// Add CSS for ripple animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes ripple {
-        to {
-            transform: scale(2);
-            opacity: 0;
-        }
+function updateHeaderStats() {
+    if (typeof window.getUserXPAndRank === 'function') {
+        const stats = window.getUserXPAndRank();
+        const xpLabel = document.getElementById('userXpLabel');
+        if (xpLabel) xpLabel.textContent = `${stats.totalXP.toLocaleString()} XP`;
     }
-`;
-document.head.appendChild(style);
+}
 
-// Interactive concept icon
-const conceptIcon = document.querySelector('.concept-icon');
-const htmlTags = ['📄', '🏷️', '<>', '{}', '#'];
-let tagIndex = 0;
-
-conceptIcon.addEventListener('click', function() {
-    tagIndex = (tagIndex + 1) % htmlTags.length;
-    this.innerHTML = htmlTags[tagIndex];
-    this.style.animation = 'bounce 0.5s ease';
-    
-    setTimeout(() => {
-        this.style.animation = '';
-    }, 500);
-});
-
-// Add bounce animation CSS
-const bounceStyle = document.createElement('style');
-bounceStyle.textContent = `
-    @keyframes bounce {
-        0%, 20%, 60%, 100% { transform: translateY(0) scale(1); }
-        40% { transform: translateY(-10px) scale(1.1); }
-        80% { transform: translateY(-5px) scale(1.05); }
+// 1. Tag Sandbox
+const tagSamples = {
+    h1: {
+        code: `&lt;h1&gt;Welcome to NoviCodes&lt;/h1&gt;`,
+        preview: `<h1 style="margin:0; font-size:1.6rem; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif;">Welcome to NoviCodes</h1>`
+    },
+    p: {
+        code: `&lt;p&gt;HTML creates the semantic blueprint of every webpage.&lt;/p&gt;`,
+        preview: `<p style="margin:0; font-size:0.95rem; color:#475569; font-family:'Plus Jakarta Sans',sans-serif;">HTML creates the semantic blueprint of every webpage.</p>`
+    },
+    button: {
+        code: `&lt;button class="btn"&gt;🚀 Start Building&lt;/button&gt;`,
+        preview: `<button style="background:#ea580c; color:white; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;">🚀 Start Building</button>`
+    },
+    img: {
+        code: `&lt;img src="assets/logo.jpg" alt="Logo" width="48" height="48"&gt;`,
+        preview: `<img src="../../assets/logo.jpg" alt="Logo" style="width:48px; height:48px; border-radius:8px; object-fit:cover;">`
     }
-`;
-document.head.appendChild(bounceStyle);
-
-// Mark as read functionality
-document.getElementById('markReadBtn').addEventListener('click', function() {
-    this.innerHTML = '🎉 HTML Mastered! Returning to main page...';
-    this.style.background = 'var(--success)';
-    
-    // Store completion
-    try {
-        const keyMap = { website: 'readWebsite', html: 'readHTML', css: 'readCSS', javascript: 'readJavaScript' };
-        const k = keyMap['html'];
-        if (k) localStorage.setItem(k, 'true');
-    } catch (e) { }
-
-    // Add to session disabled list
-    try {
-        let arr = [];
-        try { arr = JSON.parse(sessionStorage.getItem('disabledLessons') || '[]'); } catch (e) { arr = []; }
-        if (!Array.isArray(arr)) arr = [];
-        if (arr.indexOf('html') === -1) arr.push('html');
-        sessionStorage.setItem('disabledLessons', JSON.stringify(arr));
-    } catch (e) { }
-
-    setTimeout(() => {
-        window.location.href = '../web_history.html#before-code';
-    }, 1500);
-});
-
-// Animate analogy items on scroll
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.opacity = '1';
-        }
-    });
-}, observerOptions);
+function initTagSandbox() {
+    const tagButtons = document.querySelectorAll('.tag-btn');
+    const codePane = document.getElementById('tagCodePane');
+    const previewPane = document.getElementById('tagPreviewPane');
 
-// Initialize animations
-document.querySelectorAll('.analogy-item').forEach((item, index) => {
-    item.style.transform = 'translateY(30px)';
-    item.style.opacity = '0.5';
-    item.style.transition = 'all 0.6s ease';
-    item.style.transitionDelay = `${index * 0.1}s`;
-    observer.observe(item);
-});
+    tagButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tagButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-// Add floating animation to HTML elements
-document.querySelectorAll('.element-card').forEach((card, index) => {
-    card.style.animation = `float 4s ease-in-out infinite`;
-    card.style.animationDelay = `${index * 0.3}s`;
-});
-
-// CSS for floating animation
-const floatStyle = document.createElement('style');
-floatStyle.textContent = `
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-3px); }
-    }
-`;
-document.head.appendChild(floatStyle);
-
-// Add typing effect to code demo
-const codeContent = document.querySelector('.code-content');
-const originalContent = codeContent.innerHTML;
-
-function typeCode() {
-    codeContent.innerHTML = '';
-    let i = 0;
-    const text = originalContent.replace(/<[^>]*>/g, ''); // Remove HTML for typing effect
-    
-    function type() {
-        if (i < originalContent.length) {
-            codeContent.innerHTML = originalContent.substring(0, i);
-            i++;
-            setTimeout(type, 50);
-        }
-    }
-    type();
-}
-
-// Trigger typing effect when section is visible
-const codeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            setTimeout(typeCode, 500);
-            codeObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-codeObserver.observe(document.querySelector('.code-demo'));
-
-// Universal Back to Top Button Auto-Initializer
-function initBackToTopButton() {
-    if (document.getElementById('globalBackToTopBtn')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'globalBackToTopBtn';
-    btn.className = 'back-to-top-btn';
-    btn.setAttribute('aria-label', 'Scroll back to top of page');
-    btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
-    document.body.appendChild(btn);
-
-    const toggleVisibility = () => {
-        if (window.scrollY > 250) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
-    };
-
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+            const key = btn.dataset.tag;
+            const data = tagSamples[key];
+            if (data) {
+                if (codePane) codePane.innerHTML = `<code>${data.code}</code>`;
+                if (previewPane) previewPane.innerHTML = data.preview;
+            }
+        });
     });
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBackToTopButton);
-} else {
-    initBackToTopButton();
+// 2. Mini Knowledge Check
+const quizQuestions = [
+    {
+        q: 'What does HTML stand for?',
+        options: [
+            { text: 'HyperText Markup Language', correct: true },
+            { text: 'High Tech Modern Layout', correct: false },
+            { text: 'Hyperlink Text Management Logic', correct: false }
+        ],
+        explanation: 'HTML stands for HyperText Markup Language — the standard markup language used to structure web pages.'
+    },
+    {
+        q: 'Which tag represents the top-level main heading on a webpage?',
+        options: [
+            { text: '<h1>', correct: true },
+            { text: '<head>', correct: false },
+            { text: '<header>', correct: false }
+        ],
+        explanation: '<h1> is the highest-level heading element, typically representing the main title of the page.'
+    }
+];
+
+let currentQuizIdx = 0;
+
+function initConceptQuiz() {
+    loadQuizQuestion(0);
+}
+
+function loadQuizQuestion(idx) {
+    const qData = quizQuestions[idx];
+    const qText = document.getElementById('quizQText');
+    const optContainer = document.getElementById('quizOptionsContainer');
+    const feedbackBox = document.getElementById('quizFeedbackBox');
+
+    if (qText) qText.textContent = `${idx + 1}. ${qData.q}`;
+    if (feedbackBox) {
+        feedbackBox.className = 'quiz-feedback-box';
+        feedbackBox.innerHTML = '';
+    }
+
+    if (optContainer) {
+        optContainer.innerHTML = '';
+        qData.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-opt-btn';
+            btn.textContent = opt.text;
+            btn.addEventListener('click', () => {
+                const allBtns = optContainer.querySelectorAll('.quiz-opt-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                if (opt.correct) {
+                    btn.classList.add('correct');
+                    feedbackBox.className = 'quiz-feedback-box show correct';
+                    feedbackBox.innerHTML = `<strong>🎉 Correct!</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
+                } else {
+                    btn.classList.add('incorrect');
+                    feedbackBox.className = 'quiz-feedback-box show incorrect';
+                    feedbackBox.innerHTML = `<strong>💡 Hint:</strong> <p style="margin:4px 0 8px 0;">${qData.explanation}</p>`;
+                }
+
+                if (idx < quizQuestions.length - 1) {
+                    feedbackBox.innerHTML += `<button onclick="window.nextConceptQuestion()" style="background:#ea580c; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;">Next Question ➔</button>`;
+                }
+            });
+            optContainer.appendChild(btn);
+        });
+    }
+}
+
+window.nextConceptQuestion = function() {
+    currentQuizIdx = (currentQuizIdx + 1) % quizQuestions.length;
+    loadQuizQuestion(currentQuizIdx);
+};
+
+// 3. Mark Complete & Navigate
+window.markConceptComplete = function() {
+    localStorage.setItem('readHTML', 'true');
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'success',
+            title: '🎉 Concept 2 Mastered!',
+            html: `
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
+                    <div style="font-size: 1.15rem; font-weight: 800; color: #ea580c; margin-bottom: 6px;">+50 XP Earned!</div>
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5;">
+                        You have mastered HTML tags and DOM hierarchy! Ready to explore <strong>Pillar 3: CSS Styling</strong>?
+                    </p>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: '🎨 Next: CSS Concept ➔',
+            cancelButtonText: '🗺️ Back to Web History',
+            confirmButtonColor: '#ea580c',
+            cancelButtonColor: '#64748b'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../css_concept/css_concept.html';
+            } else {
+                window.location.href = '../web_history.html';
+            }
+        });
+    } else {
+        window.location.href = '../css_concept/css_concept.html';
+    }
+};
+
+function checkIfAlreadyCompleted() {
+    if (localStorage.getItem('readHTML') === 'true') {
+        const btn = document.getElementById('markReadBtn');
+        if (btn) btn.innerHTML = '<span>✅ Completed (+50 XP Earned) • Next: CSS ➔</span>';
+    }
 }
