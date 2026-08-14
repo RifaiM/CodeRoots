@@ -363,6 +363,11 @@
         if (typeof Swal !== 'undefined') {
             Swal.fire({
                 title: '🔥 Daily Coding Streak & Rewards',
+                customClass: {
+                    popup: 'responsive-profile-modal responsive-streak-modal'
+                },
+                scrollbarPadding: false,
+                showCloseButton: true,
                 html: `
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
                         <div style="background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; padding:14px; text-align:center;">
@@ -380,13 +385,15 @@
                     <div style="text-align:left; margin-bottom:8px; font-weight:800; font-size:0.86rem; color:#475569;">
                         🎯 Milestone Streak Bonuses:
                     </div>
-                    ${milestonesHTML}
+                    <div style="max-height: 180px; overflow-y: auto; padding-right: 4px; margin-bottom: 8px;">
+                        ${milestonesHTML}
+                    </div>
 
-                    <div style="background:#f1f5f9; border-radius:10px; padding:10px 14px; margin-top:14px; font-size:0.80rem; color:#64748b; text-align:center;">
+                    <div style="background:#f1f5f9; border-radius:10px; padding:10px 14px; margin-top:10px; font-size:0.80rem; color:#64748b; text-align:center;">
                         🛡️ <strong>Streak Saver Active:</strong> Complete a 2-minute quest every 24 hours to keep your flame blazing!
                     </div>
                 `,
-                confirmButtonText: 'Got It!',
+                confirmButtonText: '⚡ Got It!',
                 confirmButtonColor: '#2563eb'
             });
         }

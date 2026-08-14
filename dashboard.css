@@ -1193,7 +1193,6 @@ html, body {
 .daily-quest-section {
     max-width: 1200px;
     margin: 0 auto 36px auto;
-    padding: 0 20px;
     box-sizing: border-box;
 }
 
@@ -1500,9 +1499,6 @@ html, body {
 }
 
 @media (max-width: 420px) {
-    .daily-quest-section {
-        padding: 0 12px;
-    }
     .quest-title {
         font-size: 1.1rem;
     }
@@ -1693,4 +1689,61 @@ html, body {
     font-size: 0.65rem !important;
     gap: 2px !important;
   }
+}
+
+
+/* ==========================================================================
+   SweetAlert2 Modal Internal Scrollbar Precision Fix
+   Prevents double viewport scrollbars and places scrollbar strictly inside modal
+   ========================================================================== */
+
+.swal2-container {
+    overflow-y: hidden !important;
+}
+
+.swal2-popup.responsive-streak-modal,
+.swal2-popup.responsive-profile-modal {
+    max-height: 90vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container,
+.swal2-popup.responsive-profile-modal .swal2-html-container {
+    max-height: calc(90vh - 130px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-right: 6px !important;
+    box-sizing: border-box !important;
+}
+
+/* Custom Sleek Webkit Scrollbar Inside Modal Container */
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-track,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar-track,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-track,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 8px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+    border-radius: 8px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-thumb:hover,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8 !important;
 }
