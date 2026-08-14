@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabNavigation();
 
     // 4. Hydrate 1. Concepts Panel
-    hydrateConceptsPanel(trackData.concepts);
+    hydrateConceptsPanel(trackData.concepts, trackKey);
 
     // 5. Hydrate 2. Glossary Panel
     hydrateGlossaryPanel(trackData.glossary);
@@ -370,9 +370,9 @@ function initTabNavigation() {
 }
 
 /**
- * Hydrates 1. Concepts Panel
+ * Hydrates 1. Concepts Panel with Interactive Analogies & Live Simulators
  */
-function hydrateConceptsPanel(conceptsData) {
+function hydrateConceptsPanel(conceptsData, trackKey) {
     const heroBox = document.getElementById('heroAnalogyBox');
     const listContainer = document.getElementById('conceptSectionsList');
 
@@ -391,6 +391,224 @@ function hydrateConceptsPanel(conceptsData) {
             <div>${section.content}</div>
         </div>
     `).join('');
+
+    // Mount Interactive Concept Engines based on Active Track
+    setTimeout(() => {
+        if (trackKey === 'html') {
+            initHtmlConceptWidgets();
+        } else if (trackKey === 'css') {
+            initCssConceptWidgets();
+        } else if (trackKey === 'js') {
+            initJsConceptWidgets();
+        }
+    }, 50);
+}
+
+// ── 1. HTML Interactive Concept Widgets ──
+function initHtmlConceptWidgets() {
+    const chunks = document.querySelectorAll('.tag-anatomy-card .anatomy-chunk');
+    const detailBox = document.getElementById('anatomyDetailBox');
+
+    const explanations = {
+        open: {
+            title: '🏷️ Opening Tag (<a>)',
+            desc: 'Tells the web browser what kind of element to create. The angle brackets (<...>) act as container boundaries.'
+        },
+        attr: {
+            title: '⚡ Attributes (href="..." target="...")',
+            desc: 'Provides configuration superpowers! href specifies destination URL, and target="_blank" opens the link in a new tab.'
+        },
+        content: {
+            title: '📝 Element Content ("Explore Code Dojo")',
+            desc: 'The visible text or nested elements that live inside the container that users can read and click on.'
+        },
+        close: {
+            title: '🛑 Closing Tag (</a>)',
+            desc: 'Marks the end boundary of the element using a forward slash (/) so the browser knows where the element stops.'
+        }
+    };
+
+    chunks.forEach(chunk => {
+        chunk.addEventListener('click', () => {
+            chunks.forEach(c => c.classList.remove('active'));
+            chunk.classList.add('active');
+            const part = chunk.dataset.part;
+            const info = explanations[part];
+            if (info && detailBox) {
+                detailBox.innerHTML = `<strong>${info.title}</strong><p style="margin: 6px 0 0 0;">${info.desc}</p>`;
+            }
+        });
+    });
+}
+
+// ── 2. CSS Interactive Concept Widgets ──
+function initCssConceptWidgets() {
+    // A. Box Model Explorer
+    const layers = [
+        { id: 'bmMarginLayer', name: 'Margin', desc: 'Outer transparent buffer space separating this element from surrounding neighbor boxes.' },
+        { id: 'bmBorderLayer', name: 'Border', desc: 'Visible stroke outline or frame surrounding the padding and content (e.g. 2px solid #f59e0b).' },
+        { id: 'bmPaddingLayer', name: 'Padding', desc: 'Inner breathing room between the element border and the actual text/image content (like bubble wrap inside a package).' },
+        { id: 'bmContentLayer', name: 'Content', desc: 'The actual payload area where text, images, buttons, and child icons render.' }
+    ];
+
+    const readout = document.getElementById('boxModelReadout');
+
+    layers.forEach(l => {
+        const el = document.getElementById(l.id);
+        if (el) {
+            el.addEventListener('mouseenter', (e) => {
+                e.stopPropagation();
+                if (readout) {
+                    readout.innerHTML = `<span style="color: #2563eb; font-weight: 800;">📦 ${l.name} Layer:</span> ${l.desc}`;
+                }
+            });
+        }
+    });
+
+    // B. Flexbox Playground
+    const flexViewport = document.getElementById('flexSandboxViewport');
+    const flexBtns = document.querySelectorAll('#cssFlexboxWidget .concept-toggle-btn');
+
+    flexBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.dataset.flexDir) {
+                flexBtns.forEach(b => { if (b.dataset.flexDir) b.classList.remove('active'); });
+                btn.classList.add('active');
+                if (flexViewport) flexViewport.style.flexDirection = btn.dataset.flexDir;
+            } else if (btn.dataset.flexJustify) {
+                flexBtns.forEach(b => { if (b.dataset.flexJustify) b.classList.remove('active'); });
+                btn.classList.add('active');
+                if (flexViewport) flexViewport.style.justifyContent = btn.dataset.flexJustify;
+            }
+        });
+    });
+}
+
+// ── 3. JavaScript Interactive Concept Widgets ──
+function initJsConceptWidgets() {
+    // A. Triad Harmonizer
+    const checkHtml = document.getElementById('checkHtml');
+    const checkCss = document.getElementById('checkCss');
+    const checkJs = document.getElementById('checkJs');
+    const screen = document.getElementById('triadPreviewScreen');
+
+    let triadCount = 0;
+    let hasHtml = true;
+    let hasCss = true;
+    let hasJs = true;
+
+    function updateTriad() {
+        if (!screen) return;
+        if (!hasHtml) {
+            screen.innerHTML = '<div style="color: #94a3b8; text-align: center; padding: 30px 0; font-style: italic;">(HTML is unchecked — No structural content exists!)</div>';
+            return;
+        }
+
+        screen.innerHTML = `
+            <div id="triadContentBox" style="text-align: center;">
+                <h3 id="triadTitle" style="margin: 0 0 8px 0; color: ${hasCss ? '#0f172a' : '#000000'}; font-family: ${hasCss ? 'inherit' : 'monospace'}; font-size: ${hasCss ? '1.2rem' : '1rem'};">Live Interactive App</h3>
+                <p id="triadText" style="color: ${hasCss ? '#64748b' : '#333333'}; font-size: ${hasCss ? '0.9rem' : '0.85rem'}; margin-bottom: 14px;">Click the button below to test interactivity:</p>
+                <button id="triadActionBtn" style="${hasCss ? 'background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: bold; cursor: pointer;' : 'background: #e0e0e0; color: black; border: 1px solid black; padding: 2px 6px; cursor: pointer;'}">⚡ Click Me (Count: <span id="triadCountDisplay">${triadCount}</span>)</button>
+            </div>
+        `;
+
+        const newBtn = document.getElementById('triadActionBtn');
+        const newCount = document.getElementById('triadCountDisplay');
+        if (newBtn && hasJs) {
+            newBtn.addEventListener('click', () => {
+                triadCount++;
+                if (newCount) newCount.textContent = triadCount;
+            });
+        }
+    }
+
+    if (checkHtml) {
+        checkHtml.addEventListener('click', () => {
+            hasHtml = !hasHtml;
+            checkHtml.classList.toggle('checked', hasHtml);
+            updateTriad();
+        });
+    }
+    if (checkCss) {
+        checkCss.addEventListener('click', () => {
+            hasCss = !hasCss;
+            checkCss.classList.toggle('checked', hasCss);
+            updateTriad();
+        });
+    }
+    if (checkJs) {
+        checkJs.addEventListener('click', () => {
+            hasJs = !hasJs;
+            checkJs.classList.toggle('checked', hasJs);
+            updateTriad();
+        });
+    }
+
+    // B. Live Event Reactor
+    const btnClick = document.getElementById('eventBtnClick');
+    const btnHover = document.getElementById('eventBtnHover');
+    const btnTimer = document.getElementById('eventBtnTimer');
+    const inputMirror = document.getElementById('eventInputMirror');
+    const logBox = document.getElementById('eventLiveLogBox');
+
+    function appendLog(msg, color = '#34d399') {
+        if (!logBox) return;
+        const entry = document.createElement('div');
+        entry.style.color = color;
+        entry.textContent = `> [${new Date().toLocaleTimeString()}] ${msg}`;
+        logBox.appendChild(entry);
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    if (btnClick) {
+        let clickN = 0;
+        btnClick.addEventListener('click', () => {
+            clickN++;
+            appendLog(`click event fired! (Total clicks: ${clickN})`, '#38bdf8');
+        });
+    }
+
+    if (btnHover) {
+        btnHover.addEventListener('mouseenter', () => {
+            appendLog(`mouseenter event triggered on hover button`, '#facc15');
+        });
+    }
+
+    if (btnTimer) {
+        btnTimer.addEventListener('click', () => {
+            appendLog(`setTimeout() registered. Timer running...`, '#c084fc');
+            btnTimer.disabled = true;
+            setTimeout(() => {
+                appendLog(`⏰ setTimeout timer completed after 2000ms!`, '#4ade80');
+                btnTimer.disabled = false;
+            }, 2000);
+        });
+    }
+
+    if (inputMirror) {
+        inputMirror.addEventListener('input', (e) => {
+            appendLog(`input event: value="${e.target.value}"`, '#f472b6');
+        });
+    }
+
+    // C. Variable Memory Box
+    const btnMem = document.getElementById('btnIncrementMemory');
+    const xpVal = document.getElementById('memXpVal');
+    let dynamicXp = 400;
+
+    if (btnMem && xpVal) {
+        btnMem.addEventListener('click', () => {
+            dynamicXp += 50;
+            xpVal.textContent = dynamicXp;
+            xpVal.style.color = '#2563eb';
+            xpVal.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                xpVal.style.color = '#0f172a';
+                xpVal.style.transform = 'scale(1)';
+            }, 200);
+            appendLog(`learnerXP mutated in memory: ${dynamicXp} XP`, '#38bdf8');
+        });
+    }
 }
 
 /**

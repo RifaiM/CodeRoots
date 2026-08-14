@@ -1015,3 +1015,367 @@
     max-height: 42px !important;
   }
 }
+
+
+/* ==========================================================================
+   Enriched Foundations Interactive Analogy & Concepts Widgets
+   ========================================================================== */
+
+.concept-interactive-container {
+    background: #f8fafc;
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 16px;
+    box-sizing: border-box;
+}
+
+.interactive-control-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.concept-toggle-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-title);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.concept-toggle-btn:hover {
+    background: #eff6ff;
+    border-color: var(--brand-blue);
+    color: var(--brand-blue);
+}
+
+.concept-toggle-btn.active {
+    background: var(--brand-blue) !important;
+    color: #ffffff !important;
+    border-color: var(--brand-blue) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* 2. HTML Tag Anatomy Breakdown */
+.tag-anatomy-card {
+    background: #0f172a;
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    font-family: 'Fira Code', Consolas, monospace;
+    font-size: clamp(0.85rem, 2.5vw, 1.15rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.anatomy-chunk {
+    padding: 4px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.anatomy-chunk:hover,
+.anatomy-chunk.active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chunk-open-tag { background: #3b82f6; color: #ffffff; }
+.chunk-attr { background: #f59e0b; color: #000000; }
+.chunk-content { background: #10b981; color: #ffffff; }
+.chunk-close-tag { background: #ef4444; color: #ffffff; }
+
+.anatomy-detail-display {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: #1e3a8a;
+    line-height: 1.6;
+}
+
+/* 3. Blueprint vs Rendered Live Canvas */
+.blueprint-viewport-box {
+    background: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 140px;
+    transition: all 0.3s ease;
+}
+
+.blueprint-mode {
+    background: #0f172a !important;
+    border-color: #3b82f6 !important;
+    color: #38bdf8 !important;
+    font-family: 'Fira Code', monospace !important;
+}
+
+.blueprint-tag-box {
+    border: 1px dashed #60a5fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* 4. CSS Interactive Box Model Explorer */
+.box-model-interactive-canvas {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.box-model-visual-frame {
+    width: 100%;
+    max-width: 480px;
+    background: #fed7aa;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 0.78rem;
+    color: #9a3412;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.15);
+}
+
+.bm-layer-border {
+    background: #fef08a;
+    border-radius: 12px;
+    padding: 18px;
+    color: #854d0e;
+    margin-top: 8px;
+}
+
+.bm-layer-padding {
+    background: #bbf7d0;
+    border-radius: 10px;
+    padding: 18px;
+    color: #166534;
+    margin-top: 8px;
+}
+
+.bm-layer-content {
+    background: #bfdbfe;
+    border-radius: 8px;
+    padding: 20px;
+    color: #1e40af;
+    margin-top: 8px;
+}
+
+.box-model-readout {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-title);
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 5. CSS Flexbox Playground */
+.flex-sandbox-viewport {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 160px;
+    display: flex;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flex-item-block {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.88rem;
+    padding: 16px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* 6. JS Web Trio Live Harmonizer */
+.triad-toggle-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.triad-pill-checkbox {
+    background: #ffffff;
+    border: 2px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.triad-pill-checkbox.checked {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.triad-preview-screen {
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 24px;
+    min-height: 140px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* 7. JS Event Reactor Sandbox */
+.event-reactor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.event-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reactor-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.reactor-btn:hover {
+    background: #f8fafc;
+    border-color: #3b82f6;
+    color: #2563eb;
+}
+
+.event-live-log-box {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 14px;
+    color: #34d399;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.80rem;
+    line-height: 1.6;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* 8. JS Variable Memory Box */
+.memory-slots-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+}
+
+.memory-slot-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+}
+
+.slot-type-badge {
+    font-size: 0.70rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.slot-const { background: #fee2e2; color: #b91c1c; }
+.slot-let { background: #dbeafe; color: #1e40af; }
+
+.slot-var-name {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.slot-var-val {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 4px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .event-reactor-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .concept-interactive-container {
+        padding: 14px 10px;
+    }
+    .tag-anatomy-card {
+        padding: 16px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .triad-pill-checkbox {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .concept-toggle-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

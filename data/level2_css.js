@@ -1,5 +1,6 @@
 /**
  * NoviCodes - Level 2: CSS Foundations Data Module
+ * Enriched with Deep Visual Analogies & Interactive Architectures
  */
 window.LEVEL2_CSS_DATA = {
     id: "level2_css",
@@ -14,63 +15,76 @@ window.LEVEL2_CSS_DATA = {
     // 1. Deep Concept Explanation & Analogy
     concepts: {
         heroAnalogy: {
-            title: "CSS is Like Interior Design, Paint, and Architecture",
-            description: "If HTML builds the raw wooden frame of a house, CSS (Cascading Style Sheets) is the interior designer. CSS paints the walls, selects carpet colors, arranges furniture layout (Flexbox & Grid), and ensures the house looks stunning on small mobile screens and giant desktop displays alike.",
-            icon: "🎨"
+            title: "CSS is Like Interior Design, Architecture & Styling",
+            description: "If HTML builds the raw structural wood frame of a house, CSS (Cascading Style Sheets) is the interior designer and architect. CSS paints the walls, selects typography, defines responsive fluid layouts (Flexbox & Grid), and creates delightful micro-interactions and smooth animations that make web apps feel alive.",
+            icon: "🎨",
+            hasInteractiveDemo: true,
+            demoType: "css_styler"
         },
         sections: [
             {
-                title: "1. Selectors & Properties: Styling Elements",
+                title: "1. The CSS Box Model: The 4 Protective Layers",
                 content: `
-                    <p>CSS works by selecting HTML elements and applying style rules (property-value pairs):</p>
+                    <p>Every HTML element on a webpage is considered a rectangular box consisting of 4 nested layers. Hover over each layer below to see how it works in real-time:</p>
+                    
+                    <div class="concept-interactive-container" id="cssBoxModelWidget">
+                        <div class="box-model-interactive-canvas">
+                            <div class="box-model-visual-frame" id="bmMarginLayer" data-layer="margin">
+                                MARGIN (Outer Buffer Space between Elements)
+                                <div class="bm-layer-border" id="bmBorderLayer" data-layer="border">
+                                    BORDER (Visible Decorative Frame Line)
+                                    <div class="bm-layer-padding" id="bmPaddingLayer" data-layer="padding">
+                                        PADDING (Inner Breathing Space around Content)
+                                        <div class="bm-layer-content" id="bmContentLayer" data-layer="content">
+                                            CONTENT (Text, Images, Icons)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-model-readout" id="boxModelReadout">
+                                <strong>💡 Hover over any Box Model layer above</strong> to see its purpose and computed spacing!
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "2. CSS Selectors & Specificity: Who Wins the Styling Battle?",
+                content: `
+                    <p>When multiple CSS rules target the same element, the browser uses a scoring system called <strong>Specificity</strong> to decide which style takes priority:</p>
                     <div class="code-explain-box">
-                        <pre><code>/* Element Selector */
-h1 {
-  color: #2563eb;
-  font-size: 2rem;
-}
+                        <pre><code>/* 1. Element Selector (Lowest Priority - Score: 1) */
+p { color: #333333; }
 
-/* Class Selector (starts with .) */
-.highlight-card {
-  background-color: #eff6ff;
-  border-radius: 12px;
-  padding: 16px;
-}</code></pre>
+/* 2. Class Selector (Medium Priority - Score: 10) */
+.highlight-text { color: #2563eb; font-weight: bold; }
+
+/* 3. ID Selector (High Priority - Score: 100) */
+#hero-headline { color: #db2777; font-size: 2.5rem; }
+
+/* 4. Inline Style (Highest Priority - Score: 1000) */
+&lt;p style="color: #10b981;"&gt;Inline Green Text&lt;/p&gt;</code></pre>
                     </div>
-                    <p>Class selectors (<code>.classname</code>) allow you to apply the exact same styling rules across multiple elements on a web page!</p>
+                    <p><strong>💡 Pro Tip:</strong> Always prefer <strong>Class Selectors (<code>.classname</code>)</strong> for reusable UI components, and avoid overusing IDs or <code>!important</code>!</p>
                 `
             },
             {
-                title: "2. The Box Model: Margin, Border, Padding",
+                title: "3. Flexbox Engine: Instant 1-Dimensional Alignment",
                 content: `
-                    <p>Every HTML element on a webpage is considered a rectangular box consisting of four layers:</p>
-                    <ul>
-                        <li><strong>Content</strong>: The text or image inside the box.</li>
-                        <li><strong>Padding</strong>: The space <em>inside</em> the box between content and border.</li>
-                        <li><strong>Border</strong>: The line surrounding the padding and content.</li>
-                        <li><strong>Margin</strong>: The space <em>outside</em> the border separating elements from neighbors.</li>
-                    </ul>
-                    <div class="code-explain-box">
-                        <pre><code>.box {
-  width: 200px;
-  padding: 20px;   /* Inside spacing */
-  border: 2px solid #2563eb;
-  margin: 16px;    /* Outside spacing */
-}</code></pre>
-                    </div>
-                `
-            },
-            {
-                title: "3. Flexbox Layout: Alignment Made Simple",
-                content: `
-                    <p>Flexbox (Flexible Box Layout) makes it super easy to align items horizontally or vertically inside a container:</p>
-                    <div class="code-explain-box">
-                        <pre><code>.container {
-  display: flex;
-  justify-content: space-between; /* Horizontal alignment */
-  align-items: center;            /* Vertical alignment */
-  gap: 12px;
-}</code></pre>
+                    <p>Flexbox revolutionized web layouts by making horizontal and vertical alignment frictionless. Test the live alignment controls below:</p>
+                    
+                    <div class="concept-interactive-container" id="cssFlexboxWidget">
+                        <div class="interactive-control-bar">
+                            <button class="concept-toggle-btn active" data-flex-dir="row">↔️ Row</button>
+                            <button class="concept-toggle-btn" data-flex-dir="column">↕️ Column</button>
+                            <button class="concept-toggle-btn" data-flex-justify="center">🎯 Center</button>
+                            <button class="concept-toggle-btn" data-flex-justify="space-between">↔️ Space Between</button>
+                        </div>
+                        <div class="flex-sandbox-viewport" id="flexSandboxViewport">
+                            <div class="flex-item-block">1</div>
+                            <div class="flex-item-block">2</div>
+                            <div class="flex-item-block">3</div>
+                        </div>
                     </div>
                 `
             }
@@ -82,197 +96,126 @@ h1 {
         {
             term: "CSS (Cascading Style Sheets)",
             category: "Core Concept",
-            definition: "The style sheet language used to specify document presentation, colors, layout, fonts, and responsiveness.",
-            analogy: "Paint, wallpaper, lighting, and interior design of a house.",
+            definition: "The style sheet language used to describe the presentation, colors, fonts, and layout of an HTML document.",
+            analogy: "The paint, upholstery, lighting, and interior decoration of a building.",
             codeSnippet: "body { background: #f8fafc; color: #0f172a; }"
         },
         {
             term: "Box Model",
             category: "Layout Engine",
-            definition: "The foundational design rule where every element consists of Content, Padding, Border, and Margin.",
-            analogy: "A framed picture: Picture (Content), White matting (Padding), Wood frame (Border), Space to next picture (Margin).",
-            codeSnippet: "* { box-sizing: border-box; }"
+            definition: "The fundamental concept that every HTML element consists of Margin, Border, Padding, and Content.",
+            analogy: "A framed picture: Content is photo, Padding is white mat border, Border is wood frame, Margin is wall space around the frame.",
+            codeSnippet: ".card { margin: 16px; padding: 20px; border: 1px solid #ccc; }"
         },
         {
-            term: "Flexbox",
+            term: "Flexbox (Flexible Box Layout)",
             category: "Layout Engine",
-            definition: "A 1-dimensional layout module that provides space distribution and alignment capabilities among items in a container.",
-            analogy: "Organizing books neatly side-by-side on a shelf.",
-            codeSnippet: "display: flex;\njustify-content: center;\nalign-items: center;"
+            definition: "A 1-dimensional layout model providing powerful alignment and space distribution among items in a container.",
+            analogy: "A dynamic conveyor belt that stretches and positions products neatly in a row.",
+            codeSnippet: ".container { display: flex; justify-content: center; align-items: center; }"
         },
         {
-            term: "CSS Selector",
-            category: "Syntax",
-            definition: "A pattern used to select the HTML elements you want to style.",
-            analogy: "Calling out someone by name ('John') vs calling out a role ('Students').",
-            codeSnippet: ".button-primary { background: #2563eb; }"
-        },
-        {
-            term: "Media Query (@media)",
-            category: "Responsiveness",
-            definition: "A CSS technique used to apply styles conditionally based on device viewport width or features.",
-            analogy: "Wearing a winter coat when it snows vs shorts when sunny.",
-            codeSnippet: "@media (max-width: 768px) {\n  .nav-menu { display: none; }\n}"
-        },
-        {
-            term: "CSS Specificity & The Cascade",
+            term: "Specificity",
             category: "Core Concept",
-            definition: "The scoring algorithm browsers use to decide which CSS property value is applied to an element when multiple rules conflict (!important > inline style > #id > .class > tag).",
-            analogy: "Rank authority in an organization: CEO order > Director order > Manager order.",
-            codeSnippet: "/* ID (#card) beats Class (.card) */\n#mainCard { background: red; }\n.card { background: blue; }"
-        },
-        {
-            term: "CSS Positioning (relative, absolute, fixed, sticky)",
-            category: "Layout Engine",
-            definition: "Defines how an element is positioned in the document flow: relative (offset from self), absolute (offset from positioned parent), fixed (locked to screen viewport), sticky (hybrid scroll lock).",
-            analogy: "Fixed: A tattoo on your arm. Sticky: A magnetic memo on your fridge that slides until it hits the top.",
-            codeSnippet: ".modal {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}"
-        },
-        {
-            term: "CSS Grid (2D Layout)",
-            category: "Layout Engine",
-            definition: "A powerful 2-dimensional layout system that manages both columns and rows simultaneously.",
-            analogy: "A multi-column grid layout in a newspaper or chessboard.",
-            codeSnippet: ".grid-container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}"
+            definition: "The algorithm browsers use to determine which CSS rule applies when multiple rules match the same element.",
+            analogy: "A hierarchy of authority: Specific orders from a manager override general guidelines.",
+            codeSnippet: "/* ID (#) beats Class (.) which beats Tag (p) */\n#header { color: blue; }"
         },
         {
             term: "CSS Variables (Custom Properties)",
-            category: "Architecture",
-            definition: "Entities defined by CSS authors that contain specific values to be reused throughout a document using var().",
-            analogy: "Setting master paint buckets in a house project: 'Primary Color = Navy Blue'.",
-            codeSnippet: ":root {\n  --primary-color: #2563eb;\n}\n.btn { background: var(--primary-color); }"
-        },
-        {
-            term: "Z-Index & Stacking Contexts",
-            category: "Layout Engine",
-            definition: "Controls the vertical stacking order of elements that overlap along the z-axis (depth). Only works on positioned elements (relative, absolute, fixed).",
-            analogy: "Arranging playing cards in a stack; higher z-index sits on top.",
-            codeSnippet: ".dropdown {\n  position: absolute;\n  z-index: 9999;\n}"
-        },
-        {
-            term: "Transitions & Micro-Animations",
-            category: "Interactivity",
-            definition: "Smooth property changes over a specified duration when states change (e.g. :hover, :focus).",
-            analogy: "A door gently swinging open slowly instead of instantly teleporting.",
-            codeSnippet: ".btn {\n  transition: all 0.2s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n}"
-        },
-        {
-            term: "Pseudo-Classes & Pseudo-Elements",
-            category: "Syntax",
-            definition: "Pseudo-classes (:hover, :focus, :nth-child) style elements based on user state. Pseudo-elements (::before, ::after) insert decorative content.",
-            analogy: "Pseudo-class: Highlights when touched. Pseudo-element: Automatic quotation marks added before a quote.",
-            codeSnippet: "button:hover { background: #1d4ed8; }\n.card::before { content: '★ '; }"
+            category: "Modern Architecture",
+            definition: "Entities defined by CSS authors that contain specific values to be reused throughout a document (e.g. var(--brand-color)).",
+            analogy: "Named paint swatches at a store: change the swatch once, and all painted rooms update automatically.",
+            codeSnippet: ":root { --brand: #2563eb; }\nbutton { background: var(--brand); }"
         }
     ],
 
-    // 3. Code Sandbox Starter Template
+    // 3. Code Sandbox Exercises
     sandbox: {
-        initialHTML: `<!DOCTYPE html>
-<html lang="en">
+        title: "CSS Live Design Studio",
+        starterCode: `<!DOCTYPE html>
+<html>
 <head>
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      color: #0f172a;
+      background: #f8fafc;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      box-sizing: border-box;
+      margin: 0;
     }
-    .hero-card {
+    .profile-card {
       background: #ffffff;
-      padding: 24px;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
-      border: 2px solid #bfdbfe;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
-      max-width: 480px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .gradient-title {
-      background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.8rem;
-      margin-top: 0;
-    }
-    .flex-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .btn {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
       transition: transform 0.2s ease;
+      max-width: 300px;
     }
-    .btn:hover {
-      transform: translateY(-2px);
+    .profile-card:hover {
+      transform: translateY(-4px);
+    }
+    .badge {
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <div class="hero-card">
-    <h1 class="gradient-title">Level 2 CSS Styling</h1>
-    <p>CSS transforms raw HTML into beautiful, modern web user interfaces!</p>
-    <div class="flex-row">
-      <button class="btn">Primary Button</button>
-      <button class="btn" style="background:#059669;">Emerald Button</button>
-    </div>
+  <div class="profile-card">
+    <div style="font-size: 2.5rem; margin-bottom: 8px;">🚀</div>
+    <span class="badge">CSS Master</span>
+    <h2 style="margin: 12px 0 6px 0; color: #0f172a;">Developer Alex</h2>
+    <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Level 2 CSS Graduate crafting beautiful user experiences!</p>
   </div>
-
 </body>
 </html>`,
-        instructions: "Experiment with CSS properties! Try changing `.hero-card` border-radius, gradient colors, or button hover effects in the editor."
+        tasks: [
+            "Change the background color of .profile-card to a dark theme (#0f172a)",
+            "Change the text color of the <h2> and <p> elements to match",
+            "Experiment with increasing the border-radius and box-shadow"
+        ]
     },
 
-    // 4. Knowledge Check Quizzes
-    quizzes: [
-        {
-            id: "q1",
-            question: "Which layer of the CSS Box Model represents the space INSIDE the element between content and border?",
-            options: [
-                "Margin",
-                "Padding",
-                "Border",
-                "Outline"
-            ],
-            correctIndex: 1,
-            explanation: "Padding is the space inside an element between its content and its border. Margin is the space outside the border."
-        },
-        {
-            id: "q2",
-            question: "Which CSS property activates Flexbox layout on a container?",
-            options: [
-                "display: flex;",
-                "layout: flexbox;",
-                "position: flex;",
-                "align: flex;"
-            ],
-            correctIndex: 0,
-            explanation: "Setting 'display: flex;' on a parent container turns it into a flex container, aligning all direct child elements."
-        },
-        {
-            id: "q3",
-            question: "How do you target an HTML element with class='card' in CSS?",
-            options: [
-                "#card",
-                ".card",
-                "card",
-                "*card"
-            ],
-            correctIndex: 1,
-            explanation: "Class selectors in CSS are prefixed with a dot (.card). ID selectors are prefixed with a hash (#card)."
-        }
-    ]
+    // 4. Quiz & Verification
+    quiz: {
+        title: "Level 2: CSS Verification Challenge",
+        questions: [
+            {
+                q: "Which property in the CSS Box Model creates transparent space OUTSIDE the border?",
+                options: [
+                    { text: "Margin", correct: true },
+                    { text: "Padding", correct: false },
+                    { text: "Content", correct: false }
+                ],
+                explanation: "Margin provides space outside the border separating the element from other elements on the page."
+            },
+            {
+                q: "How do you select an HTML element with class='highlight' in CSS?",
+                options: [
+                    { text: ".highlight", correct: true },
+                    { text: "#highlight", correct: false },
+                    { text: "highlight", correct: false }
+                ],
+                explanation: "Class selectors in CSS begin with a period (.) followed by the class name."
+            },
+            {
+                q: "Which Flexbox property aligns items along the primary horizontal main axis?",
+                options: [
+                    { text: "justify-content", correct: true },
+                    { text: "align-items", correct: false },
+                    { text: "flex-direction", correct: false }
+                ],
+                explanation: "justify-content aligns flex items along the main axis (horizontal in row mode)."
+            }
+        ]
+    }
 };

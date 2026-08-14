@@ -1,5 +1,6 @@
 /**
  * NoviCodes - Level 1: HTML Foundations Data Module
+ * Enriched with Deep Visual Analogies & Interactive Architectures
  */
 window.LEVEL1_HTML_DATA = {
     id: "level1_html",
@@ -14,54 +15,79 @@ window.LEVEL1_HTML_DATA = {
     // 1. Deep Concept Explanation & Analogy
     concepts: {
         heroAnalogy: {
-            title: "HTML is Like the Structural Frame of a House",
-            description: "Imagine building a modern house. Before painting walls or adding furniture, carpenters erect wooden beams, walls, doors, and windows. HTML (HyperText Markup Language) is the blueprint and structural frame of every website on Earth. It defines what exists on the page: headings, paragraphs, images, buttons, and text fields.",
-            icon: "🏠"
+            title: "HTML is Like the Structural Frame & Blueprint of a House",
+            description: "Imagine building a modern home. Before applying paint or installing furniture, carpenters build wooden framing, load-bearing walls, doorway openings, and window frames. HTML (HyperText Markup Language) is the exact digital equivalent: it tells the browser what content exists on the page (headings, paragraphs, images, buttons, and input fields) and how they are organized into a semantic hierarchy.",
+            icon: "🏠",
+            hasInteractiveDemo: true,
+            demoType: "html_blueprint"
         },
         sections: [
             {
-                title: "1. Tags: The Building Blocks of HTML",
+                title: "1. Anatomy of an HTML Tag: Labeled Shipping Containers",
                 content: `
-                    <p>An HTML element is created using <strong>tags</strong> wrapped in angle brackets: <code>&lt;tagname&gt;</code>. Most elements have an opening tag, content inside, and a closing tag with a slash: <code>&lt;/tagname&gt;</code>.</p>
-                    <div class="code-explain-box">
-                        <pre><code>&lt;h1&gt;Welcome to NoviCodes&lt;/h1&gt;
-&lt;p&gt;This is a paragraph of text on our web page.&lt;/p&gt;</code></pre>
+                    <p>Think of HTML tags like <strong>labeled shipping containers</strong>. An <code>&lt;h1&gt;</code> container tells the browser: <em>"Treat this content as a major primary headline!"</em>. An <code>&lt;img&gt;</code> container tells it: <em>"Display a photo here!"</em>.</p>
+                    
+                    <div class="concept-interactive-container" id="htmlTagAnatomyWidget">
+                        <div class="tag-anatomy-card">
+                            <span class="anatomy-chunk chunk-open-tag" data-part="open">&lt;a</span>
+                            <span class="anatomy-chunk chunk-attr" data-part="attr">href="https://novicodes.dev" target="_blank"</span>
+                            <span class="anatomy-chunk chunk-open-tag" data-part="open">&gt;</span>
+                            <span class="anatomy-chunk chunk-content" data-part="content">Explore Code Dojo</span>
+                            <span class="anatomy-chunk chunk-close-tag" data-part="close">&lt;/a&gt;</span>
+                        </div>
+                        <div class="anatomy-detail-display" id="anatomyDetailBox">
+                            <strong>👆 Click any part of the tag above</strong> to inspect its role, syntax rules, and real-world analogy!
+                        </div>
                     </div>
-                    <p>Think of tags like labeled boxes. An <code>&lt;h1&gt;</code> box tells the web browser: <em>"Hey, render this text as a big, important headline!"</em></p>
                 `
             },
             {
-                title: "2. Attributes: Giving Extra Superpowers to Tags",
+                title: "2. Attributes: Giving Configuration Superpowers to Tags",
                 content: `
-                    <p>Tags can have <strong>attributes</strong> inside their opening tag to provide additional information or behavior. Attributes always follow the format <code>name="value"</code>.</p>
+                    <p>Tags can be configured with <strong>attributes</strong> placed inside the opening tag. Attributes always follow the <code>name="value"</code> syntax:</p>
                     <div class="code-explain-box">
-                        <pre><code>&lt;a href="https://novicodes.com" target="_blank"&gt;Visit NoviCodes&lt;/a&gt;
-&lt;img src="assets/logo.jpg" alt="NoviCodes Logo" width="100"&gt;</code></pre>
+                        <pre><code>&lt;!-- href specifies the destination URL --&gt;
+&lt;a href="https://novicodes.dev" target="_blank"&gt;Visit NoviCodes&lt;/a&gt;
+
+&lt;!-- src specifies image path, alt provides accessibility text --&gt;
+&lt;img src="assets/logo.jpg" alt="NoviCodes Brand Logo" width="48" height="48"&gt;
+
+&lt;!-- type dictates input behavior, placeholder shows hint text --&gt;
+&lt;input type="email" placeholder="Enter your developer email..." required&gt;</code></pre>
                     </div>
-                    <ul>
-                        <li><code>href</code> tells the <code>&lt;a&gt;</code> link tag where to navigate when clicked.</li>
-                        <li><code>src</code> tells the <code>&lt;img&gt;</code> tag where the picture file lives.</li>
-                        <li><code>alt</code> describes the image for screen readers or if the image fails to load.</li>
-                    </ul>
+                    <p><strong>💡 Real-World Analogy:</strong> Think of attributes like luggage tags: the bag is the HTML tag, and the luggage tag specifies the destination address (<code>href</code>) and passenger name (<code>id</code>).</p>
                 `
             },
             {
-                title: "3. Document Skeleton & Boilerplate",
+                title: "3. Semantic HTML: The Architectural Floor Plan",
                 content: `
-                    <p>Every standard HTML document has a mandatory skeleton structure that web browsers expect:</p>
+                    <p>Modern web development uses <strong>Semantic Tags</strong> that clearly describe their meaning to both browsers, search engine web crawlers (SEO), and screen readers for accessibility:</p>
                     <div class="code-explain-box">
-                        <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;My First Web Page&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+                        <pre><code>&lt;header&gt;  &lt;!-- Top branding, logo, and title --&gt;
+&lt;nav&gt;     &lt;!-- Navigation links and menus --&gt;
+&lt;main&gt;    &lt;!-- The primary unique content of the page --&gt;
+&lt;article&gt; &lt;!-- Standalone readable story or blog post --&gt;
+&lt;aside&gt;   &lt;!-- Related sidebar widgets or links --&gt;
+&lt;footer&gt;  &lt;!-- Copyright, legal links, and footer info --&gt;</code></pre>
                     </div>
-                    <p>The <code>&lt;head&gt;</code> contains invisible metadata (title, fonts, styles), while the <code>&lt;body&gt;</code> contains everything visible to visitors!</p>
+                    <p><strong>💡 Pro Tip:</strong> Using semantic HTML instead of generic <code>&lt;div&gt;</code> tags boosts your SEO rank on Google and makes your app accessible to visually impaired developers!</p>
+                `
+            },
+            {
+                title: "4. The DOM Tree: Parents, Children, and Siblings",
+                content: `
+                    <p>When the browser parses HTML, it creates a hierarchical family tree called the <strong>Document Object Model (DOM)</strong>:</p>
+                    <div class="code-explain-box">
+                        <pre><code>&lt;html&gt; (Root Parent)
+  ├── &lt;head&gt; (Invisible metadata, fonts, stylesheets)
+  └── &lt;body&gt; (Visible viewport container)
+        ├── &lt;header&gt;
+        │     └── &lt;h1&gt;Welcome&lt;/h1&gt; (Child of header)
+        └── &lt;main&gt;
+              ├── &lt;p&gt;Paragraph 1&lt;/p&gt; (Sibling of Paragraph 2)
+              └── &lt;p&gt;Paragraph 2&lt;/p&gt;</code></pre>
+                    </div>
+                    <p>Understanding this parent-child tree structure is the secret key to mastering CSS Selectors in Level 2 and JavaScript DOM manipulation in Level 3!</p>
                 `
             }
         ]
@@ -100,153 +126,77 @@ window.LEVEL1_HTML_DATA = {
         {
             term: "Semantic HTML",
             category: "Best Practice",
-            definition: "Using tags that clearly convey their meaning to browsers and accessibility tools (e.g., <header>, <article>, <nav> instead of generic <div>).",
-            analogy: "Using labeled drawers in a workshop instead of random mystery boxes.",
-            codeSnippet: "<article>\n  <h2>Article Title</h2>\n</article>"
+            definition: "Using HTML tags that clearly convey their meaning (e.g. <header>, <main>, <article>, <footer>) rather than generic <div> tags.",
+            analogy: "Labeling rooms in a building as 'Kitchen' and 'Lobby' rather than just 'Room 1' and 'Room 2'.",
+            codeSnippet: "<main>\n  <article>Story Content</article>\n</main>"
         },
         {
-            term: "Void / Self-Closing Tag",
-            category: "Syntax",
-            definition: "An HTML element that cannot contain text content and therefore has no closing tag (e.g., <img>, <input>, <br>).",
-            analogy: "A single printed sticker placed directly on a wall.",
-            codeSnippet: '<img src="photo.jpg" alt="My Photo">'
-        },
-        {
-            term: "Block vs Inline Elements",
-            category: "Layout Behavior",
-            definition: "Block elements (<div>, <p>, <h1>) take up full available width and start on a new line. Inline elements (<span>, <a>, <strong>) only wrap their text content on the same line.",
-            analogy: "Block elements are full-width bookshelves; Inline elements are books placed side-by-side on a shelf.",
-            codeSnippet: '<div style="display:block;">Full Row</div>\n<span style="display:inline;">Inline Word</span>'
-        },
-        {
-            term: "Relative vs Absolute File Paths",
-            category: "File Navigation",
-            definition: "Relative paths (./image.png or ../assets/photo.jpg) reference files relative to the current directory. Absolute paths (https://site.com/photo.jpg or /) reference from the domain root.",
-            analogy: "Relative: 'Walk 2 doors down the hall'. Absolute: '123 Main Street, Suite 400'.",
-            codeSnippet: '<img src="../assets/logo.jpg" alt="Logo">'
-        },
-        {
-            term: "Meta Viewport & Responsive Head",
-            category: "Mobile Optimization",
-            definition: "A essential <meta> tag placed inside <head> that forces mobile browsers to render the page at actual device width instead of desktop zoomed-out view.",
-            analogy: "Setting your camera lens zoom to 100% instead of looking through a telescope.",
-            codeSnippet: '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
-        },
-        {
-            term: "OpenGraph SEO Meta Tags",
-            category: "SEO & Social Sharing",
-            definition: "Special meta tags (og:title, og:image, og:description) that define how your link appears when shared on WhatsApp, Twitter, Discord, or LinkedIn.",
-            analogy: "The printed cover and teaser snippet on the back of a book.",
-            codeSnippet: '<meta property="og:title" content="My Web App">\n<meta property="og:image" content="preview.jpg">'
-        },
-        {
-            term: "Form Controls & Input Validation",
-            category: "User Input",
-            definition: "Interactive elements (<form>, <input>, <button>) that collect user data with native browser validation attributes (required, pattern, type).",
-            analogy: "A printed job application form with required fields marked with an asterisk (*).",
-            codeSnippet: '<form>\n  <input type="email" required placeholder="name@email.com">\n  <button type="submit">Submit</button>\n</form>'
-        },
-        {
-            term: "Web Accessibility (a11y) & ARIA",
-            category: "Accessibility",
-            definition: "Designing HTML so people with visual or physical impairments can navigate using screen readers or keyboards using alt text, aria-labels, and focus states.",
-            analogy: "Building wheelchair ramps and tactile braille signs at a building entrance.",
-            codeSnippet: '<button aria-label="Close Modal" onclick="close()">✕</button>'
+            term: "<head> vs <body>",
+            category: "Structure",
+            definition: "<head> contains invisible browser instructions (title, favicon, stylesheets), while <body> contains all visible UI elements.",
+            analogy: "The brain (head) vs the visible physical body.",
+            codeSnippet: "<head><title>App</title></head>\n<body><h1>Visible</h1></body>"
         }
     ],
 
-    // 3. Code Sandbox Starter Template
+    // 3. Code Sandbox Exercises
     sandbox: {
-        initialHTML: `<!DOCTYPE html>
-<html lang="en">
+        title: "HTML Live Blueprint Studio",
+        starterCode: `<!DOCTYPE html>
+<html>
 <head>
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f8fafc;
-      color: #0f172a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
-    .card {
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
-      max-width: 450px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    h1 { color: #2563eb; margin-top: 0; }
-    .badge {
-      display: inline-block;
-      background: #eff6ff;
-      color: #2563eb;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; color: #0f172a; }
+    h1 { color: #2563eb; }
+    .card { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 16px; }
   </style>
 </head>
 <body>
-
+  <h1>🧱 My First HTML Blueprint</h1>
   <div class="card">
-    <span class="badge">🌱 Level 1 HTML Sandbox</span>
-    <h1>My First NoviCodes Web Page</h1>
-    <p>HTML creates structural elements like headlines, paragraphs, and buttons!</p>
-    
-    <!-- Try editing text or adding new tags below! -->
-    <button onclick="alert('HTML Structure Working!')">Click Me!</button>
+    <p>Welcome to <strong>NoviCodes</strong>! Edit this HTML code to see live changes instantly.</p>
+    <button style="background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer;">Click Me!</button>
   </div>
-
 </body>
 </html>`,
-        instructions: "Try modifying the headline text inside <h1>, adding a new <p> paragraph, or adding an <a> link element in the editor to see instant live rendering!"
+        tasks: [
+            "Change the <h1> text to your own developer name",
+            "Add a new paragraph <p> with your coding goals",
+            "Add an image tag <img> or a new <button>"
+        ]
     },
 
-    // 4. Knowledge Check Quizzes & Practical Exercise
-    quizzes: [
-        {
-            id: "q1",
-            question: "What does HTML stand for?",
-            options: [
-                "HyperText Markup Language",
-                "High Tech Modern Language",
-                "Hyperlink Text Management Protocol",
-                "Home Tool Markup Logic"
-            ],
-            correctIndex: 0,
-            explanation: "HTML stands for HyperText Markup Language. 'HyperText' refers to links that connect web pages, and 'Markup Language' refers to using tags to annotate document structure."
-        },
-        {
-            id: "q2",
-            question: "Which HTML tag is used to define the main top-level headline of a page?",
-            options: [
-                "<head>",
-                "<title>",
-                "<h1>",
-                "<header>"
-            ],
-            correctIndex: 2,
-            explanation: "The <h1> tag represents the highest level heading on a web page. <h2> through <h6> represent subheadings in descending visual order."
-        },
-        {
-            id: "q3",
-            question: "What attribute is required on an <img> tag to specify the image filepath?",
-            options: [
-                "href",
-                "src",
-                "link",
-                "path"
-            ],
-            correctIndex: 1,
-            explanation: "The 'src' (source) attribute specifies the path or URL to the image file."
-        }
-    ]
+    // 4. Quiz & Verification
+    quiz: {
+        title: "Level 1: HTML Verification Challenge",
+        questions: [
+            {
+                q: "What does HTML stand for?",
+                options: [
+                    { text: "HyperText Markup Language", correct: true },
+                    { text: "High Tech Modern Language", correct: false },
+                    { text: "Hyperlink Text Management Logic", correct: false }
+                ],
+                explanation: "HTML stands for HyperText Markup Language — the global standard for structuring content on the web."
+            },
+            {
+                q: "Which tag is used to create a clickable hyperlink?",
+                options: [
+                    { text: "<a> with an href attribute", correct: true },
+                    { text: "<link> with a src attribute", correct: false },
+                    { text: "<href> with a url attribute", correct: false }
+                ],
+                explanation: "The <a> (anchor) tag with the href attribute defines a hyperlink to another webpage or file."
+            },
+            {
+                q: "Where does the <title> tag belong in a standard HTML document?",
+                options: [
+                    { text: "Inside the <head> element", correct: true },
+                    { text: "Inside the <body> element", correct: false },
+                    { text: "Directly after the </html> closing tag", correct: false }
+                ],
+                explanation: "The <title> tag belongs inside <head> and specifies the title shown on the browser tab."
+            }
+        ]
+    }
 };
