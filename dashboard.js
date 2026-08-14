@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGSAPAnimations();
     initMobileSegmentedFilter();
     initGlobalBackToTop();
+    initHashNavigation();
 });
 
 /**
@@ -892,3 +893,18 @@ window.confirmResetProgress = function() {
         });
     }
 };
+
+
+/**
+ * Hash Navigation Smooth Scroll on Page Load
+ */
+function initHashNavigation() {
+    if (window.location.hash) {
+        setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
+    }
+}
