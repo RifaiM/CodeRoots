@@ -3,184 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon & Tab Icon -->
     <link rel="icon" type="image/png" href="../assets/favicon.png">
     
-    <!-- External Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../Global/root.css">
-    <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="./partA-navigation.css">
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <title>Journey Through Web History | NoviCodes</title>
-    <meta name="description" content="Explore the fascinating history of the World Wide Web from ARPANET and Tim Berners-Lee to modern web apps.">
+    <title>Level 0: Journey Through Web History & Digital Architecture | NoviCodes</title>
+    <meta name="description" content="Explore the evolution of the web from Tim Berners-Lee and 1991 Web 1.0 to modern fullstack architectures, interactive browser timelines, and core web pillars.">
     <link rel="canonical" href="https://novicodes.dev/1.%20partA/web_history.html">
+    
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Journey Through Web History | NoviCodes">
-    <meta property="og:description" content="Explore the fascinating history of the World Wide Web from ARPANET and Tim Berners-Lee to modern web apps.">
+    <meta property="og:title" content="Level 0: Journey Through Web History & Digital Architecture | NoviCodes">
+    <meta property="og:description" content="Explore the evolution of the web from Tim Berners-Lee and 1991 Web 1.0 to modern fullstack architectures, interactive browser timelines, and core web pillars.">
     <meta property="og:image" content="../assets/og-image.jpg">
     <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../Global/root.css">
+    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="./web_history.css">
+    
+    <!-- SweetAlert2 for notifications and modals -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <!-- Home Navigation Button -->
-    <a href="../index.html" class="home-button" title="Back to Dashboard">
-        <span class="home-icon">🏠</span> 
-        <span class="btn-text-full">Dashboard</span>
-        <span class="btn-text-short">Home</span>
-    </a>
 
-    <!-- Page Header -->
-    <header>
-        <h1>🌐 Journey Through Web History</h1>
+    <!-- Sticky Platform Header -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <a href="../index.html" class="platform-logo" aria-label="NoviCodes Home">
+                <img src="../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">Level 0 • Web History</span>
+                </div>
+            </a>
+
+            <!-- Header Right Stats -->
+            <div class="header-user-stats">
+                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">0 XP</span>
+                </div>
+                <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
+                    <span class="badge-icon" id="userRankIcon">🌱</span>
+                    <span class="badge-label" id="userRankLabel">Web Novice</span>
+                </div>
+                <a href="../index.html" class="back-dashboard-btn" title="Back to Dashboard Home">
+                    <span>← Dashboard</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="container">
-        <div class="concept-hero-subtitle">
-            <p>Discover how the web evolved from simple documents to interactive experiences</p>
-        </div>
+    <!-- Main Content Container -->
+    <main class="history-container">
         
-        <!-- Timeline Section -->
-        <section class="section timeline-section">
-            <h2 style="color: #333;">
-                <span class="emoji">⏰</span>Evolution of Web Browsers
-            </h2>
+        <!-- Hero Banner -->
+        <section class="history-hero">
+            <span class="hero-pill-badge">🌱 Level 0 • Zero Coding Required • 250 XP</span>
+            <h1>Journey Through Web History & Digital Architecture</h1>
             <p>
-                Travel through time and see how web browsers shaped our digital world. 
-                Each browser brought revolutionary features that changed how we experience the internet.
+                Discover how the World Wide Web evolved from plain scientific documents into the powerhouse running our global digital world. Master the history and mechanics before writing your first line of code!
             </p>
-            
-            <!-- Timeline Container (Dynamic Auto-Play Carousel) -->
-            <div class="timeline-container" id="timelineContainer">
-                <!-- Browser timeline cards will be inserted here dynamically -->
-            </div>
         </section>
 
-        <!-- Interactive Quiz Section -->
-        <section class="quiz-container">
-            <h2>
-                <span class="emoji">🧠</span>Test Your Knowledge
-            </h2>
-            
-            <!-- Quiz Question Display -->
-            <div class="quiz-question" id="quizQuestion">
-                Which browser was the first to introduce tabbed browsing as a standard feature?
+        <!-- 1. The Web Era Time Machine -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>⏱️</span> 1. The Web Era Time Machine</h2>
+                <span class="quiz-badge">Interactive Simulator</span>
             </div>
-            
-            <!-- Quiz Answer Options -->
-            <div class="quiz-options" id="quizOptions">
-                <button class="quiz-option" data-answer="false">Internet Explorer</button>
-                <button class="quiz-option" data-answer="false">Netscape Navigator</button>
-                <button class="quiz-option" data-answer="true">Firefox</button>
-                <button class="quiz-option" data-answer="false">Safari</button>
-            </div>
-            
-            <!-- Quiz Feedback Area -->
-            <div class="quiz-feedback" id="quizFeedback"></div>
-            
-            <!-- Quiz Information -->
-            <span class="span-info">*Next question loads after correct answer</span>
-        </section>
+            <p class="section-subtitle">
+                Click across the eras below to see how web technology, rendering speeds, and user interfaces evolved from 1991 to today:
+            </p>
 
-        <!-- Learning Progress Section -->
-        <section class="progress-section" id="progressSection">
-            <div class="progress-header-wrap">
-                <h2>
-                    <span class="emoji">🎯</span>Your Learning Journey
-                </h2>
-                <button id="resetProgressBtn" class="reset-progress-btn" title="Reset Part A learning progress">
-                    🔄 Reset Progress
+            <div class="era-tabs-nav" role="tablist">
+                <button class="era-tab-btn active" data-era="1991" role="tab">
+                    <span>📜</span> 1991: Web 1.0 (Read-Only)
+                </button>
+                <button class="era-tab-btn" data-era="2004" role="tab">
+                    <span>📻</span> 2004: Web 2.0 (Dynamic & Social)
+                </button>
+                <button class="era-tab-btn" data-era="2026" role="tab">
+                    <span>⚡</span> 2026: Modern Web (Fullstack Edge)
                 </button>
             </div>
-            
-            <!-- Progress Text Display -->
-            <div class="progress-text">
-                Master the fundamentals before building: 
-                <span id="progressCount">0</span>/4 concepts completed
+
+            <div class="era-preview-viewport">
+                <div class="viewport-browser-bar">
+                    <div class="browser-dots">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                    </div>
+                    <div class="browser-url-input" id="browserUrlInput">
+                        http://info.cern.ch/hypertext/WWW/TheProject.html
+                    </div>
+                </div>
+                <div class="era-screen-content" id="eraScreenContent">
+                    <div class="screen-1991">
+                        <h2>WorldWideWeb - Executive Summary</h2>
+                        <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+                        <p>Everything there is online at CERN is linked directly or indirectly to this document.</p>
+                        <ul>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire('Hypertext Link', 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', 'info')">What is Hypertext?</a></li>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire('Tim Berners-Lee', 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', 'info')">Technical Project Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Progress Bar Visualization -->
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            
-            <p>Understanding these core concepts will make your coding journey smoother and more enjoyable!</p>
         </section>
 
-        <!-- Core Concepts Section -->
-        <section class="section" id="before-code">
-            <h2 style="color: #333;">
-                <span class="emoji">🎓</span>Before You Start Coding
-            </h2>
-            <p>
-                These fundamental concepts are the foundation of every website. 
-                Think of them like the ingredients in a recipe – once you understand each one, 
-                you'll be ready to build something amazing.
+        <!-- 2. How the Internet Actually Works in 4 Steps -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🌐</span> 2. How the Internet Works in 4 Steps</h2>
+                <span class="quiz-badge">Packet Journey</span>
+            </div>
+            <p class="section-subtitle">
+                What happens when you type <code>novicodes.dev</code> and press Enter? Watch a data packet travel across the world in milliseconds:
             </p>
-            
-            <!-- Concepts Grid Layout -->
-            <div class="concepts-grid">
-                <!-- Website Concept Card -->
-                <a href="./website_concept/website_concept.html" class="concept-card" data-concept="website">
-                    <div class="concept-icon">🌐</div>
-                    <h3>What is a Website?</h3>
-                    <p>
-                        Discover the magic behind websites - how they work, how they're served, 
-                        and why they've revolutionized communication.
-                    </p>
+
+            <div class="packet-flow-grid">
+                <div class="flow-step-card active" id="flowStep1">
+                    <div class="flow-step-num">1</div>
+                    <div class="flow-icon">💻</div>
+                    <div class="flow-title">1. URL Typed</div>
+                    <p class="flow-desc">Your browser creates an HTTP/HTTPS GET request for the web address.</p>
+                </div>
+                <div class="flow-step-card" id="flowStep2">
+                    <div class="flow-step-num">2</div>
+                    <div class="flow-icon">🧭</div>
+                    <div class="flow-title">2. DNS Lookup</div>
+                    <p class="flow-desc">DNS translates the domain name into an IP address (e.g. 142.250.190.46).</p>
+                </div>
+                <div class="flow-step-card" id="flowStep3">
+                    <div class="flow-step-num">3</div>
+                    <div class="flow-icon">🖧</div>
+                    <div class="flow-title">3. Server Response</div>
+                    <p class="flow-desc">The web server receives the request and returns HTML, CSS, & JS bundles.</p>
+                </div>
+                <div class="flow-step-card" id="flowStep4">
+                    <div class="flow-step-num">4</div>
+                    <div class="flow-icon">🎨</div>
+                    <div class="flow-title">4. DOM Rendering</div>
+                    <p class="flow-desc">Your browser builds the DOM tree, applies styles, and executes JavaScript.</p>
+                </div>
+            </div>
+
+            <div class="packet-action-row">
+                <button class="simulate-packet-btn" id="simulatePacketBtn">
+                    <span>🚀 Send Test Data Packet</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Browser Evolution Timeline -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🧭</span> 3. Evolution of Web Browsers</h2>
+                <div class="filter-pills-row">
+                    <button class="filter-pill-btn active" data-filter="all">All (1990 - 2026)</button>
+                    <button class="filter-pill-btn" data-filter="pioneers">Pioneers (1990-1994)</button>
+                    <button class="filter-pill-btn" data-filter="wars">Browser Wars (1995-2004)</button>
+                    <button class="filter-pill-btn" data-filter="modern">Modern Era (2008-2026)</button>
+                </div>
+            </div>
+            <p class="section-subtitle">
+                Web browsers are the software vehicles that navigate the internet. Explore the revolutionary milestones that shaped today's web standards:
+            </p>
+
+            <div class="timeline-cards-row" id="timelineCardsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 4. The 4 Core Pillars of Web Development -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🎓</span> 4. The 4 Core Pillars of Web Development</h2>
+                <span class="quiz-badge">Progress: <span id="pillarProgressCount">0/4</span> Concepts</span>
+            </div>
+            <p class="section-subtitle">
+                Every modern website on earth is built upon these 4 foundational building blocks. Explore each pillar below to earn +50 XP per topic:
+            </p>
+
+            <div class="pillars-grid">
+                <!-- Pillar 1 -->
+                <a href="./website_concept/website_concept.html" class="pillar-card" id="cardWebsite">
+                    <div class="pillar-icon-box">🌐</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">What is a Website?</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">How files, web servers, and clients communicate to render digital experiences.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
                 </a>
-                
-                <!-- HTML Concept Card -->
-                <a href="./html_concept/html_concept.html" class="concept-card" data-concept="html">
-                    <div class="concept-icon">📝</div>
-                    <h3>HTML Structure</h3>
-                    <p>
-                        The skeleton of every webpage. Learn how HTML creates the foundation 
-                        that holds all content together.
-                    </p>
+
+                <!-- Pillar 2 -->
+                <a href="./html_concept/html_concept.html" class="pillar-card" id="cardHTML">
+                    <div class="pillar-icon-box">🧱</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">HTML Structure</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The architectural blueprint and skeleton that holds all headings, text, and media.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
                 </a>
-                
-                <!-- CSS Concept Card -->
-                <a href="./css_concept/css_concept.html" class="concept-card" data-concept="css">
-                    <div class="concept-icon">🎨</div>
-                    <h3>CSS Styling</h3>
-                    <p>
-                        The artist's palette of the web. Transform plain HTML into beautiful, 
-                        engaging visual experiences.
-                    </p>
+
+                <!-- Pillar 3 -->
+                <a href="./css_concept/css_concept.html" class="pillar-card" id="cardCSS">
+                    <div class="pillar-icon-box">🎨</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">CSS Styling</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The visual artist's palette creating colors, typography, flexbox, grid, and animations.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
                 </a>
-                
-                <!-- JavaScript Concept Card -->
-                <a href="./javascript_concept/javascript_concept.html" class="concept-card" data-concept="javascript">
-                    <div class="concept-icon">⚡</div>
-                    <h3>JavaScript Interactivity</h3>
-                    <p>
-                        The brain that makes websites think and respond. Add life to your pages 
-                        with dynamic interactions.
-                    </p>
+
+                <!-- Pillar 4 -->
+                <a href="./javascript_concept/javascript_concept.html" class="pillar-card" id="cardJS">
+                    <div class="pillar-icon-box">⚡</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">JavaScript Interactivity</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The intelligent engine powering real-time events, data APIs, and responsive logic.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
                 </a>
             </div>
         </section>
 
-    </div>
+        <!-- 5. Level 0 Knowledge Challenge (Quiz) -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🧠</span> 5. Level 0 Knowledge Challenge</h2>
+                <span class="quiz-badge" id="quizQBadge">Question 1 of 5</span>
+            </div>
+            <p class="section-subtitle">
+                Test your understanding of web history and internet architecture concepts:
+            </p>
 
-    <!-- Call-to-Action Footer -->
+            <div class="quiz-box">
+                <h3 class="quiz-question-text" id="quizQText">Loading question...</h3>
+                <div class="quiz-options-list" id="quizOptionsContainer">
+                    <!-- Dynamic Options -->
+                </div>
+                <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+            </div>
+        </section>
+
+        <!-- 6. Claim Level 0 Completion -->
+        <section class="completion-banner">
+            <h2>🎉 Ready to Complete Level 0?</h2>
+            <p>Claim your +250 XP reward and unlock Level 1: HTML Foundations on your Dashboard roadmap!</p>
+            <button class="claim-level0-btn" id="claimLevel0Btn" onclick="claimLevel0Completion()">
+                <span>🌟 Complete Level 0 & Claim +250 XP</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
     <footer style="text-align: center; padding: 24px 16px; font-size: 0.88rem; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 40px; width: 100%; box-sizing: border-box;" id="footer">
         <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; font-weight: 700; flex-wrap: wrap;">
-            <a href="../privacy.html" style="color: #2563eb; text-decoration: none;">Privacy Policy</a>
-            <a href="../terms.html" style="color: #2563eb; text-decoration: none;">Terms of Use</a>
+            <a href="../privacy.html" target="_blank" style="color: #2563eb; text-decoration: none;">Privacy Policy</a>
+            <a href="../terms.html" target="_blank" style="color: #2563eb; text-decoration: none;">Terms of Use</a>
             <a href="../index.html" style="color: #2563eb; text-decoration: none;">Dashboard</a>
         </div>
-        <p style="margin: 0; color: #64748b; font-size: 0.82rem;">© 2026 NoviCodes • 100% Free & Open-Source under MIT License</p>
+        <p style="margin: 0; color: #64748b; font-size: 0.82rem;">© 2026 NoviCodes • Level 0 Web History & Digital Architecture</p>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="../index.js"></script>
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Master Web History Script -->
+    <script src="./web_history.js"></script>
 </body>
 </html>
