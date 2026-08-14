@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalBackToTop();
     initFAQAccordion();
     initHashNavigation();
+    initDevKitShortcuts();
 });
 
 /**
@@ -219,8 +220,6 @@ function initUserProgress() {
     const rankIcon = document.getElementById('userRankIcon');
     const rankLabel = document.getElementById('userRankLabel');
     const resumeBtn = document.getElementById('resumeLessonBtn');
-    const unlockToggleBtn = document.getElementById('unlockToggleBtn');
-    const unlockModeText = document.getElementById('unlockModeText');
 
     if (xpBadge) {
         xpBadge.textContent = `${stats.totalXP.toLocaleString()} XP`;
@@ -242,19 +241,38 @@ function initUserProgress() {
         const levelText = badge.textContent.trim();
 
         if (levelText === 'Level 0') {
-            if (isLevel0Complete) {
-                statusIcon.className = 'track-status-icon completed';
-                statusIcon.textContent = '✅ Completed';
-            } else {
-                statusIcon.className = 'track-status-icon ready';
-                statusIcon.textContent = '🟢 Active Track';
+            const p1 = localStorage.getItem('readWebsite') === 'true';
+            const p2 = localStorage.getItem('readHTML') === 'true';
+            const p3 = localStorage.getItem('readCSS') === 'true';
+            const p4 = localStorage.getItem('readJavaScript') === 'true';
+            const pillarsCount = (p1 ? 1 : 0) + (p2 ? 1 : 0) + (p3 ? 1 : 0) + (p4 ? 1 : 0);
+
+            updateTrackCardState(card, statusIcon, btn, isLevel0Complete, {
+                count: pillarsCount,
+                total: 4,
+                xpReward: 250,
+                unit: 'Pillars'
+            }, './1. partA/web_history.html', 'Level 0 Web History');
+
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isLevel0Complete ? '✅ Level 0 Completed' : (pillarsCount > 0 ? `📖 Continue Pillar ${Math.min(pillarsCount + 1, 4)} ➔` : '📖 Read Web History & Concepts');
             }
         } else if (levelText === 'Level 1') {
-            updateTrackCardState(card, statusIcon, btn, isLevel1Complete, true, './foundations.html?track=html', 'HTML Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel1Complete, {
+                xpReward: 300,
+                unit: 'Foundations'
+            }, './foundations.html?track=html', 'HTML Foundations');
         } else if (levelText === 'Level 2') {
-            updateTrackCardState(card, statusIcon, btn, isLevel2Complete, true, './foundations.html?track=css', 'CSS Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel2Complete, {
+                xpReward: 300,
+                unit: 'Foundations'
+            }, './foundations.html?track=css', 'CSS Foundations');
         } else if (levelText === 'Level 3') {
-            updateTrackCardState(card, statusIcon, btn, isLevel3Complete, true, './foundations.html?track=js', 'JS Foundations');
+            updateTrackCardState(card, statusIcon, btn, isLevel3Complete, {
+                xpReward: 400,
+                unit: 'Foundations'
+            }, './foundations.html?track=js', 'JS Foundations');
         } else if (levelText === 'Level 4') {
             let activeL4 = 1;
             for (let i = 1; i <= 15; i++) {
@@ -264,10 +282,15 @@ function initUserProgress() {
             }
             const isFinished = l4Completed >= 15;
             const targetUrl = isFinished ? './2. partB/lesson1/lesson1_remake.html' : `./2. partB/lesson${activeL4}/lesson${activeL4}_remake.html`;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 4 DOM Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: l4Completed,
+                total: 15,
+                xpReward: 1500,
+                unit: 'Lessons'
+            }, targetUrl, 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : '⚔️ Enter Level 4 Dojo';
+                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : (l4Completed > 0 ? `⚔️ Continue Lesson ${activeL4} ➔` : '⚔️ Enter Level 4 Dojo');
             }
         } else if (levelText === 'Level 5') {
             let activeL5 = 1;
@@ -278,34 +301,49 @@ function initUserProgress() {
             }
             const isFinished = l5Completed >= 15;
             const targetUrl = isFinished ? './3. partC/lesson1/lesson1_remake.html' : `./3. partC/lesson${activeL5}/lesson${activeL5}_remake.html`;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 5 React Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: l5Completed,
+                total: 15,
+                xpReward: 2250,
+                unit: 'Lessons'
+            }, targetUrl, 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : '⚛️ Enter Level 5 Dojo';
+                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : (l5Completed > 0 ? `⚛️ Continue Lesson ${activeL5} ➔` : '⚛️ Enter Level 5 Dojo');
             }
         } else if (levelText === 'Level 6') {
             let activeL6 = 1;
-            let l6Completed = 0;
+            let l6CompletedCount = 0;
             for (let i = 1; i <= 15; i++) {
                 if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
-                    l6Completed++;
+                    l6CompletedCount++;
                     activeL6 = Math.min(i + 1, 15);
                 }
             }
-            const isFinished = l6Completed >= 15;
+            const isFinished = l6CompletedCount >= 15;
             const targetUrl = isFinished ? './5. partE/lesson1/lesson1_remake.html' : `./5. partE/lesson${activeL6}/lesson${activeL6}_remake.html`;
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, targetUrl, 'Level 6 Python Dojo');
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: l6CompletedCount,
+                total: 15,
+                xpReward: 3000,
+                unit: 'Lessons'
+            }, targetUrl, 'Level 6 Python Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : '🐍 Enter Level 6 Dojo';
+                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : (l6CompletedCount > 0 ? `🐍 Continue Lesson ${activeL6} ➔` : '🐍 Enter Level 6 Dojo');
             }
         } else if (levelText === 'Level 7') {
             const stats = window.getUserXPAndRank();
             const isFinished = (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6);
-            updateTrackCardState(card, statusIcon, btn, isFinished, true, './6. partF/hub.html', 'Level 7 Specialization Hub');
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: stats.l7Completed,
+                total: 18,
+                xpReward: 1500,
+                unit: 'Specialization'
+            }, './6. partF/hub.html', 'Level 7 Specialization Hub');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 7 Completed' : '🚀 Enter Level 7 Hub';
+                btnSpan.textContent = isFinished ? '✅ Level 7 Completed' : (stats.l7Completed > 0 ? `🚀 Continue Hub (${stats.l7Completed}/18) ➔` : '🚀 Enter Level 7 Hub');
             }
         }
     });
@@ -321,78 +359,160 @@ function initUserProgress() {
             openDojoHub();
         };
     });
+}
 
-    // Bind Unlock Toggle Button
-    if (unlockToggleBtn) {
-        if (unlockModeText) {
-            unlockModeText.textContent = isPracticeUnlocked ? 'Unlocked' : 'Unlock All';
-        }
-        unlockToggleBtn.onclick = () => {
-            const newState = !isPracticeUnlocked;
-            localStorage.setItem('practice_mode_unlocked', newState ? 'true' : 'false');
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    title: newState ? '🔓 Practice Mode Unlocked!' : '🔒 Locked Mode Restored!',
-                    text: newState ? 'All tracks are now unlocked for testing & practice.' : 'Standard progression locks are restored.',
-                    icon: 'info',
-                    confirmButtonColor: '#2563eb'
-                }).then(() => {
-                    location.reload();
-                });
-            } else {
-                location.reload();
-            }
+function updateTrackCardState(card, statusIcon, btn, isCompleted, progressInfo, linkUrl, trackName) {
+    card.classList.remove('locked');
+    btn.classList.remove('disabled', 'locked-btn');
+
+    if (isCompleted) {
+        statusIcon.className = 'track-status-icon completed';
+        statusIcon.textContent = progressInfo && progressInfo.total ? `✅ Mastered (${progressInfo.total}/${progressInfo.total})` : (progressInfo && progressInfo.xpReward ? `✅ Mastered (+${progressInfo.xpReward} XP)` : '✅ Mastered');
+    } else if (progressInfo && progressInfo.count > 0) {
+        statusIcon.className = 'track-status-icon in-progress';
+        statusIcon.textContent = `🔥 In Progress: ${progressInfo.count}/${progressInfo.total}`;
+    } else if (progressInfo && progressInfo.xpReward) {
+        statusIcon.className = 'track-status-icon ready';
+        statusIcon.textContent = `⚡ +${progressInfo.xpReward.toLocaleString()} XP`;
+    } else {
+        statusIcon.className = 'track-status-icon ready';
+        statusIcon.textContent = '🟢 Active Track';
+    }
+
+    if (btn.tagName.toLowerCase() === 'a') {
+        btn.href = linkUrl;
+        btn.onclick = null;
+    } else {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            window.location.href = linkUrl;
         };
     }
 }
 
-function updateTrackCardState(card, statusIcon, btn, isCompleted, isUnlocked, linkUrl, trackName) {
-    if (isCompleted) {
-        statusIcon.className = 'track-status-icon completed';
-        statusIcon.textContent = '✅ Completed';
-        card.classList.remove('locked');
-        btn.classList.remove('disabled', 'locked-btn');
-        if (btn.tagName.toLowerCase() === 'a') {
-            btn.href = linkUrl;
-            btn.onclick = null;
-        } else {
-            btn.onclick = (e) => {
-                e.preventDefault();
-                window.location.href = linkUrl;
-            };
+/**
+ * 2.5 NoviCodes Developer Toolkit (Console API & Shortcuts)
+ */
+window.NoviCodes = {
+    unlockAll: function() {
+        localStorage.setItem('practice_mode_unlocked', 'true');
+        localStorage.setItem('level0_completed', 'true');
+        localStorage.setItem('readWebsite', 'true');
+        localStorage.setItem('readHTML', 'true');
+        localStorage.setItem('readCSS', 'true');
+        localStorage.setItem('readJavaScript', 'true');
+        localStorage.setItem('level0_quiz_completed', 'true');
+        localStorage.setItem('level1_completed', 'true');
+        localStorage.setItem('level2_completed', 'true');
+        localStorage.setItem('level3_completed', 'true');
+
+        for (let i = 1; i <= 15; i++) {
+            localStorage.setItem(`partB_lesson${i}_remake_complete`, 'true');
+            localStorage.setItem(`partC_lesson${i}_remake_complete`, 'true');
+            localStorage.setItem(`partE_lesson${i}_remake_complete`, 'true');
         }
-    } else if (isUnlocked) {
-        statusIcon.className = 'track-status-icon ready';
-        statusIcon.textContent = '🟢 Unlocked';
-        card.classList.remove('locked');
-        btn.classList.remove('disabled', 'locked-btn');
-        if (btn.tagName.toLowerCase() === 'a') {
-            btn.href = linkUrl;
-            btn.onclick = null;
-        } else {
-            btn.onclick = (e) => {
-                e.preventDefault();
-                window.location.href = linkUrl;
-            };
+
+        for (let i = 1; i <= 6; i++) {
+            localStorage.setItem(`partF_branchA_lesson${i}_complete`, 'true');
+            localStorage.setItem(`partF_branchB_lesson${i}_complete`, 'true');
+            localStorage.setItem(`partF_branchC_lesson${i}_complete`, 'true');
         }
-    } else {
-        statusIcon.className = 'track-status-icon locked';
-        statusIcon.textContent = '🔒 Locked';
-        card.classList.add('locked');
-        btn.removeAttribute('href');
-        btn.classList.add('disabled', 'locked-btn');
-        btn.onclick = (e) => {
-            e.preventDefault();
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    title: '🔒 Track Locked',
-                    text: `Complete the prerequisite track first to unlock ${trackName}! Or use "Unlock All" in the top bar.`,
-                    icon: 'warning',
-                    confirmButtonColor: '#2563eb'
-                });
-            }
-        };
+
+        console.log('%c🔓 [NoviCodes DevKit] All 79+ lessons, tracks, and certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                icon: 'success',
+                title: '🔓 Dev Mode: All Unlocked!',
+                text: 'All tracks, lessons, and certificates are unlocked for testing.',
+                confirmButtonColor: '#10b981'
+            }).then(() => location.reload());
+        } else {
+            location.reload();
+        }
+    },
+
+    lockAll: function() {
+        localStorage.removeItem('practice_mode_unlocked');
+        console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                icon: 'info',
+                title: '🔒 Standard Mode Restored',
+                text: 'Sequential lesson locks have been re-enabled.',
+                confirmButtonColor: '#2563eb'
+            }).then(() => location.reload());
+        } else {
+            location.reload();
+        }
+    },
+
+    maxXP: function() {
+        this.unlockAll();
+        localStorage.setItem('novicodes_daily_quest_xp', '2500');
+        localStorage.setItem('novicodes_streak_bonus_xp', '1000');
+        console.log('%c⚡ [NoviCodes DevKit] Max XP and Principal Polymath rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
+    },
+
+    status: function() {
+        const stats = window.getUserXPAndRank();
+        const isDev = localStorage.getItem('practice_mode_unlocked') === 'true';
+        console.log('%c📊 [NoviCodes Status Report]', 'color: #3b82f6; font-weight: 800; font-size: 14px;');
+        console.table({
+            'Dev Mode Unlocked': isDev ? 'YES' : 'NO',
+            'Total XP': stats.totalXP.toLocaleString() + ' XP',
+            'Rank': stats.rankTitle + ' ' + stats.rankIcon,
+            'Level 0 (History)': stats.isL0 ? 'Completed' : 'Pending',
+            'Level 1 (HTML)': stats.isL1 ? 'Completed' : 'Pending',
+            'Level 2 (CSS)': stats.isL2 ? 'Completed' : 'Pending',
+            'Level 3 (JS)': stats.isL3 ? 'Completed' : 'Pending',
+            'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
+            'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
+            'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
+            'Level 7 (Mastery Dojo)': `${stats.l7Completed}/18 Lessons (A:${stats.l7BranchA}, B:${stats.l7BranchB}, C:${stats.l7BranchC})`
+        });
     }
+};
+
+function initDevKitShortcuts() {
+    // 1. Five rapid clicks on navbar logo
+    const logos = document.querySelectorAll('.platform-logo, .brand-logo');
+    let logoClicks = 0;
+    let logoClickTimer = null;
+
+    logos.forEach(logo => {
+        logo.addEventListener('click', (e) => {
+            logoClicks++;
+            if (logoClickTimer) clearTimeout(logoClickTimer);
+
+            if (logoClicks >= 5) {
+                e.preventDefault();
+                logoClicks = 0;
+                const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+                if (isCurrentlyUnlocked) {
+                    window.NoviCodes.lockAll();
+                } else {
+                    window.NoviCodes.unlockAll();
+                }
+            } else {
+                logoClickTimer = setTimeout(() => {
+                    logoClicks = 0;
+                }, 2000);
+            }
+        });
+    });
+
+    // 2. Keyboard shortcut Ctrl + Alt + D
+    window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
+            e.preventDefault();
+            const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+            if (isCurrentlyUnlocked) {
+                window.NoviCodes.lockAll();
+            } else {
+                window.NoviCodes.unlockAll();
+            }
+        }
+    });
 }
 
 /**

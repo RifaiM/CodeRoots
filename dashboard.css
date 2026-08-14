@@ -436,6 +436,11 @@ html, body {
   color: #166534;
 }
 
+.track-status-icon.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
 .track-status-icon.ready {
   background: #eff6ff;
   color: #1e40af;
