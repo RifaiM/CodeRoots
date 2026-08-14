@@ -129,6 +129,10 @@ window.getUserXPAndRank = function() {
     totalXP += (l6Completed * 200);
     totalXP += (l7Completed * 250);
 
+    const dailyQuestXP = parseInt(localStorage.getItem('novicodes_daily_quest_xp') || '0', 10);
+    const streakBonusXP = parseInt(localStorage.getItem('novicodes_streak_bonus_xp') || '0', 10);
+    totalXP += (dailyQuestXP + streakBonusXP);
+
     let rankTitle = 'Web Novice';
     let rankIcon = '🌱';
     if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {

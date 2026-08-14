@@ -55,6 +55,10 @@
 
             <!-- Progress Badges & Quick Action -->
             <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge streak-badge" id="headerStreakBadge" title="Click to view Daily Coding Streak & Rewards" onclick="openStreakModal()" style="cursor: pointer;">
+                    <span class="badge-icon">🔥</span>
+                    <span class="badge-label" id="userStreakLabel">0 Days</span>
+                </div>
                 <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
                     <span class="badge-icon">⚡</span>
                     <span class="badge-label">1,250 XP</span>
@@ -90,6 +94,11 @@
                     <button class="segmented-tab" role="tab" aria-selected="false" data-filter="advanced">Advanced</button>
                 </div>
             </div>
+        </section>
+
+        <!-- Daily 2-Minute Quest & Retention Section -->
+        <section class="daily-quest-section" id="dailyQuestSection" aria-label="Daily Coding Quest">
+            <div id="dailyQuestCardContainer"></div>
         </section>
 
         <!-- Skill Tree Roadmap Section -->
@@ -357,6 +366,10 @@
         </svg>
     </button>
 
+    <!-- Daily Quests Data, Canvas Confetti & Daily Quest Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="./data/daily_quests_data.js"></script>
+    <script src="./daily-quests.js"></script>
     <!-- Main Dashboard JavaScript -->
     <script src="./dashboard.js"></script>
 </body>
