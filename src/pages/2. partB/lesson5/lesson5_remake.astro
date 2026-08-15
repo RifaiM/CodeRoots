@@ -1,99 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 05: Semantic HTML Architecture -->
-
-<!-- Step 1: Create a <header> containing a <nav> bar -->
-
-
-<!-- Step 2: Create a <main> region containing a <section> with an <article> -->
-
-
-<!-- Step 3: Create a <footer> at the bottom of the page -->
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Semantic Portal</title>\n</head>\n<body>\n\n  <!-- 👉 STEP 1: Add a <header> containing an <h1> title below: -->\n\n\n  <!-- 👉 STEP 2: Add a <main> section with an <article> containing a paragraph below: -->\n\n\n  <!-- 👉 STEP 3: Add a <footer> with copyright info below: -->\n\n\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 05: Semantic HTML Web Architecture | Level 4 DOM Dojo"
-    description="Upgrade from generic divs to standard HTML5 semantic elements that power screen readers and search engines."
+    description={"Structure complete web documents with modern semantic elements (<header>, <main>, <section>, <article>, <footer>) for SEO and accessibility."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={5}
     lessonTitle="Semantic HTML Web Architecture"
@@ -112,72 +43,87 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Upgrade from generic divs to standard HTML5 semantic elements that power screen readers and search engines.
+        Structure complete web documents with modern semantic elements (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;) for SEO and accessibility.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Add a <code>&lt;header&gt;</code> element containing an <code>&lt;h1&gt;</code> tag.</li>
+                <li><strong>Step 2:</strong> Add a <code>&lt;main&gt;</code> element containing an <code>&lt;article&gt;</code> with an <code>&lt;h2&gt;</code> and <code>&lt;p&gt;</code>.</li>
+                <li><strong>Step 3:</strong> Add a <code>&lt;footer&gt;</code> element with copyright text.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Semantic tags are architectural blueprints: instead of labeling every room a generic "Box", you label them "Kitchen", "Living Room", and "Balcony" so search engines and assistive devices navigate flawlessly.
+                <strong>Real-World Analogy:</strong> Semantic tags are like labeled rooms in a house (Kitchen, Bedroom, Garage) rather than calling every room a generic "Box". It gives meaning to search engines and screen readers.
             </div>
         </article>
 
-        
-        <!-- Semantic Blueprint Diagram -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🏗️</span> Semantic Blueprint Diagram</h3>
-            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px; font-family: 'Fira Code', monospace; font-size: 0.80rem; color: #334155; line-height: 1.6;">
-                <div style="background: #e0f2fe; padding: 6px; border-radius: 6px; margin-bottom: 6px;">&lt;header&gt; Top Navigation &amp; Logo &lt;/header&gt;</div>
-                <div style="background: #fef3c7; padding: 8px; border-radius: 6px; margin-bottom: 6px;">
-                    &lt;main&gt;
-                    <div style="background: #dcfce7; padding: 6px; border-radius: 4px; margin: 4px 0;">&lt;section&gt; Content Area &lt;/section&gt;</div>
-                    &lt;/main&gt;
+            <h3><span>🏷️</span> Semantic Layout Tags</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Clear structural tags that define content roles:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"<header>"}</div>
+                    <div class="tag-result">Top brand, logo, and title section</div>
                 </div>
-                <div style="background: #f1f5f9; padding: 6px; border-radius: 6px;">&lt;footer&gt; Copyright &amp; Legal Links &lt;/footer&gt;</div>
+                <div class="tag-example">
+                    <div class="tag-code">{"<main>"}</div>
+                    <div class="tag-result">Primary unique content container</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">{"<footer>"}</div>
+                    <div class="tag-result">Bottom metadata and copyright zone</div>
+                </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Semantic Document Architecture</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The 3 primary regions of every professional webpage:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">🔝</span>
+                    <div class="name">{"<header>"}</div>
+                    <div class="desc">Top branding</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🏛️</span>
+                    <div class="name">{"<main>"}</div>
+                    <div class="desc">Core content</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🔚</span>
+                    <div class="name">{"<footer>"}</div>
+                    <div class="desc">Bottom details</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_5')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_5">&lt;header&gt;
-  &lt;nav&gt;
-    &lt;a href="#home"&gt;Home&lt;/a&gt; | &lt;a href="#articles"&gt;Articles&lt;/a&gt;
-  &lt;/nav&gt;
-&lt;/header&gt;
-&lt;main&gt;
-  &lt;section&gt;
-    &lt;article&gt;
-      &lt;h1&gt;Understanding Semantic HTML&lt;/h1&gt;
-      &lt;p&gt;Semantic elements give meaningful structure to web pages.&lt;/p&gt;
-    &lt;/article&gt;
-  &lt;/section&gt;
-&lt;/main&gt;
-&lt;footer&gt;
-  &lt;p&gt;&amp;copy; 2026 NoviCodes Learning Platform&lt;/p&gt;
-&lt;/footer&gt;</code></pre>
+                <pre><code id="refCodeBox_5">{"<header>\n  <h1>CodeRoots Dev Portal</h1>\n</header>\n<main>\n  <article>\n    <h2>Getting Started</h2>\n    <p>Semantic HTML makes web applications accessible and SEO-friendly.</p>\n  </article>\n</main>\n<footer>\n  <p>&copy; 2026 CodeRoots. All rights reserved.</p>\n</footer>"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Structure your layout with a <code>&lt;header&gt;</code> containing a <code>&lt;nav&gt;</code>.</li>
-                <li>Include a <code>&lt;main&gt;</code> region with a <code>&lt;section&gt;</code> and an <code>&lt;article&gt;</code> inside.</li>
-                <li>Close your page layout with a semantic <code>&lt;footer&gt;</code>.</li>
-            </ol>
         </article>
 
     </div>
@@ -197,35 +143,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson5';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 05: Semantic HTML Architecture -->
-
-<!-- Step 1: Create a <header> containing a <nav> bar -->
-
-
-<!-- Step 2: Create a <main> region containing a <section> with an <article> -->
-
-
-<!-- Step 3: Create a <footer> at the bottom of the page -->
-`;
+        const DRAFT_KEY = 'partB_lesson5_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Semantic Portal</title>\n</head>\n<body>\n\n  <!-- 👉 STEP 1: Add a <header> containing an <h1> title below: -->\n\n\n  <!-- 👉 STEP 2: Add a <main> section with an <article> containing a paragraph below: -->\n\n\n  <!-- 👉 STEP 3: Add a <footer> with copyright info below: -->\n\n\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'header_nav', 
-                label: 'Create a <code>&lt;header&gt;</code> containing a <code>&lt;nav&gt;</code> element', 
-                fn: (code, doc) => !!doc?.querySelector('header nav')
-            },
-            { 
-                id: 'main_article', 
-                label: 'Create a <code>&lt;main&gt;</code> area with a <code>&lt;section&gt;</code> and <code>&lt;article&gt;</code>', 
-                fn: (code, doc) => !!doc?.querySelector('main section article') || (!!doc?.querySelector('main section') && !!doc?.querySelector('main article'))
-            },
-            { 
-                id: 'footer', 
-                label: 'Include a semantic <code>&lt;footer&gt;</code> at the bottom', 
-                fn: (code, doc) => !!doc?.querySelector('footer')
-            }
+            { id: 'header_main', text: 'Include <header> with <h1> and <main> with <article>', validator: (c) => /<header[^>]*>[\s\S]*?<h1[^>]*>[\s\S]*?<\/h1>[\s\S]*?<\/header>/i.test(c) && /<main[^>]*>[\s\S]*?<article[^>]*>[\s\S]*?<\/article>[\s\S]*?<\/main>/i.test(c) },
+            { id: 'footer_tag', text: 'Include a <footer> element at the bottom of <body>', validator: (c) => /<footer[^>]*>[\s\S]*?<\/footer>/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -263,18 +187,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

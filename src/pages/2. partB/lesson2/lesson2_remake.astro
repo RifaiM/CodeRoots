@@ -1,99 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 02: Typography & Heading Hierarchy -->
-
-<!-- Step 1: Create a top-level <h1> heading for your article title -->
-
-
-<!-- Step 2: Create an <h2> sub-heading for a section -->
-
-
-<!-- Step 3: Add a <p> paragraph containing <strong>bold</strong> and <em>italic</em> text -->
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography Hierarchy</title>\n</head>\n<body>\n  <h1>Frontend Engineering Guide</h1>\n\n  <!-- 👉 STEP 1: Add an <h2> subheadline with text \"Core Web Technologies\" below: -->\n\n\n  <!-- 👉 STEP 2: Add a <p> paragraph with <strong>bold</strong> and <em>emphasized</em> text below: -->\n\n\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 02: Typography & Heading Hierarchy | Level 4 DOM Dojo"
-    description="Master the 6 levels of HTML headings and text formatting to build clear, readable typographic hierarchies."
+    description={"Organize page content with structured heading levels (H1 to H3) and inline formatting tags for maximum readability."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={2}
     lessonTitle="Typography & Heading Hierarchy"
@@ -112,84 +43,86 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Master the 6 levels of HTML headings and text formatting to build clear, readable typographic hierarchies.
+        Organize page content with structured heading levels (H1 to H3) and inline formatting tags for maximum readability.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Add an <code>&lt;h2&gt;</code> subheadline with text <code>"Core Web Technologies"</code>.</li>
+                <li><strong>Step 2:</strong> Add a <code>&lt;p&gt;</code> containing at least one <code>&lt;strong&gt;</code> and one <code>&lt;em&gt;</code> inline tag.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Headings are like newspaper hierarchy: <code>&lt;h1&gt;</code> is the bold front-page headline, <code>&lt;h2&gt;</code> is the article section header, and <code>&lt;h3&gt;</code> is a sub-topic header.
+                <strong>Real-World Analogy:</strong> Headings are like book titles, chapter names, and section subtitles. They create an outline that helps users and search engines navigate your page.
             </div>
         </article>
 
-        
-        <!-- Heading Hierarchy Interactive Visualizer -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🗂️</span> Heading Hierarchy Visualizer</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Visualizing relative font sizes and structural importance:</p>
-            <div class="heading-hierarchy-list">
-                <div class="heading-item">
-                    <span class="heading-tag">&lt;h1&gt;Main Title&lt;/h1&gt;</span>
-                    <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">32px Bold</span>
-                </div>
-                <div class="heading-item">
-                    <span class="heading-tag">&lt;h2&gt;Section Subheading&lt;/h2&gt;</span>
-                    <span style="font-size: 1.05rem; font-weight: 700; color: #1e293b;">24px SemiBold</span>
-                </div>
-                <div class="heading-item">
-                    <span class="heading-tag">&lt;h3&gt;Sub-Topic Title&lt;/h3&gt;</span>
-                    <span style="font-size: 0.92rem; font-weight: 600; color: #334155;">18px Medium</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- Text Formatting Magic -->
-        <article class="concept-card">
-            <h3><span>✨</span> Text Formatting Elements</h3>
+            <h3><span>🏷️</span> Typography & Emphasis Elements</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Standard formatting elements for readable, expressive text:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">&lt;strong&gt;Bold&lt;/strong&gt;</div>
-                    <div class="tag-result">Important, high-priority text</div>
+                    <div class="tag-code">{"<h2>Section Title</h2>"}</div>
+                    <div class="tag-result">Major content subsection divider</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">&lt;em&gt;Emphasis&lt;/em&gt;</div>
-                    <div class="tag-result">Stressed, italic vocal inflection</div>
+                    <div class="tag-code">{"<strong>Important</strong>"}</div>
+                    <div class="tag-result">Bold text indicating high importance</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">&lt;mark&gt;Highlight&lt;/mark&gt;</div>
-                    <div class="tag-result">Yellow background highlighter</div>
+                    <div class="tag-code">{"<em>Emphasis</em>"}</div>
+                    <div class="tag-result">Italic text indicating vocal stress</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Heading Hierarchy Levels</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Search engines and screen readers rely on logical heading order:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">🥇</span>
+                    <div class="name">{"<h1>"}</div>
+                    <div class="desc">Page Title (1 per page)</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🥈</span>
+                    <div class="name">{"<h2>"}</div>
+                    <div class="desc">Main Topic Sections</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🥉</span>
+                    <div class="name">{"<h3>"}</div>
+                    <div class="desc">Subsection Details</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_2')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_2">&lt;h1&gt;The Journey of a Web Developer&lt;/h1&gt;
-&lt;h2&gt;Chapter 1: The First Step&lt;/h2&gt;
-&lt;p&gt;Learning HTML is the &lt;strong&gt;essential foundation&lt;/strong&gt; of all web development. With &lt;em&gt;curiosity and dedication&lt;/em&gt;, anyone can build software.&lt;/p&gt;</code></pre>
+                <pre><code id="refCodeBox_2">{"<h1>Frontend Engineering Guide</h1>\n<h2>Core Web Technologies</h2>\n<p>We build with <strong>HTML</strong> for structure and <em>CSS</em> for styling.</p>"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Create an <code>&lt;h1&gt;</code> main heading.</li>
-                <li>Create an <code>&lt;h2&gt;</code> section sub-heading.</li>
-                <li>Create a <code>&lt;p&gt;</code> paragraph containing both <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> elements.</li>
-            </ol>
         </article>
 
     </div>
@@ -209,35 +142,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson2';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 02: Typography & Heading Hierarchy -->
-
-<!-- Step 1: Create a top-level <h1> heading for your article title -->
-
-
-<!-- Step 2: Create an <h2> sub-heading for a section -->
-
-
-<!-- Step 3: Add a <p> paragraph containing <strong>bold</strong> and <em>italic</em> text -->
-`;
+        const DRAFT_KEY = 'partB_lesson2_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography Hierarchy</title>\n</head>\n<body>\n  <h1>Frontend Engineering Guide</h1>\n\n  <!-- 👉 STEP 1: Add an <h2> subheadline with text \"Core Web Technologies\" below: -->\n\n\n  <!-- 👉 STEP 2: Add a <p> paragraph with <strong>bold</strong> and <em>emphasized</em> text below: -->\n\n\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'h1', 
-                label: 'Create an <code>&lt;h1&gt;</code> main heading', 
-                fn: (code, doc) => !!doc?.querySelector('h1') && (doc.querySelector('h1')?.textContent?.trim().length || 0) > 0
-            },
-            { 
-                id: 'h2', 
-                label: 'Create an <code>&lt;h2&gt;</code> section sub-heading', 
-                fn: (code, doc) => !!doc?.querySelector('h2') && (doc.querySelector('h2')?.textContent?.trim().length || 0) > 0
-            },
-            { 
-                id: 'formatting', 
-                label: 'Add a <code>&lt;p&gt;</code> paragraph with <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> text', 
-                fn: (code, doc) => !!doc?.querySelector('p strong') && !!doc?.querySelector('p em')
-            }
+            { id: 'h2_tag', text: 'Add an <h2> subheadline with text "Core Web Technologies"', validator: (c) => /<h2[^>]*>\s*Core Web Technologies\s*<\/h2>/i.test(c) },
+            { id: 'strong_em', text: 'Include both <strong> and <em> tags inside a paragraph', validator: (c) => /<strong[^>]*>[^<]+<\/strong>/i.test(c) && /<em[^>]*>[^<]+<\/em>/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -275,18 +186,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

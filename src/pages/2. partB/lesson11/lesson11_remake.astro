@@ -1,105 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 11: Functions & Click Events -->
-<button id="counterBtn">Clicks: 0</button>
-
-<script>
-  let count = 0;
-
-  // Step 1: Write a function incrementCount() that increases count by 1
-
-
-  // Step 2: Update the button's textContent inside the function
-
-
-  // Step 3: Attach an 'click' event listener to counterBtn
-
-<\/script>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Interactive Click</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"actionBtn\" style=\"padding: 10px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Click Me</button>\n  <p id=\"statusMsg\" style=\"margin-top: 14px; font-weight: bold; color: #0f172a;\">Ready for action.</p>\n\n  <script>\n    // 👉 STEP 1: Select the button element using document.getElementById('actionBtn'):\n    const btn = document.getElementById('actionBtn');\n    const msg = document.getElementById('statusMsg');\n\n    // 👉 STEP 2: Add a 'click' event listener to btn that updates msg.textContent to \"Button Clicked Successfully!\":\n\n\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 11: Functions & Interactive Click Events | Level 4 DOM Dojo"
-    description="Write reusable functions and attach addEventListener to create responsive user actions."
+    description={"Write reusable JavaScript functions and attach interactive click event listeners to trigger UI updates."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={11}
     lessonTitle="Functions & Interactive Click Events"
@@ -118,61 +43,82 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Write reusable functions and attach addEventListener to create responsive user actions.
+        Write reusable JavaScript functions and attach interactive click event listeners to trigger UI updates.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Use <code>btn.addEventListener('click', ...)</code> to attach a click handler.</li>
+                <li><strong>Step 2:</strong> Inside the listener, update <code>msg.textContent</code> to say <code>"Button Clicked Successfully!"</code> (or similar confirmation).</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Functions are recipes with instructions, and event listeners are watchful sensors waiting for a physical button press to trigger the recipe.
+                <strong>Real-World Analogy:</strong> An event listener is like a doorbell: it sits quietly waiting for someone to press the button, and the moment it is pressed, it rings the chime (triggers your function).
             </div>
         </article>
 
-        
-        <!-- Event Listener Sensor Breakdown -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🖱️</span> The Event Listener Sensor</h3>
-            <div class="intro-highlight">
-                <code>button.addEventListener('click', myFunction);</code>
-                <p style="margin: 6px 0 0 0; font-size: 0.82rem; color: #1e3a8a;">Listens for user interaction in real time and immediately executes your assigned function handler.</p>
+            <h3><span>🏷️</span> DOM Event Methods</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">How JavaScript listens and responds to user actions:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"btn.addEventListener(\"click\", () => { ... })"}</div>
+                    <div class="tag-result">Listens for click events on target element</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">{"msg.textContent = \"New text\";"}</div>
+                    <div class="tag-result">Updates text inside element safely</div>
+                </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Event-Driven Architecture</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The 3 stages of every interactive web interaction:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">1️⃣</span>
+                    <div class="name">{"Select Element"}</div>
+                    <div class="desc">document.getElementById</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">2️⃣</span>
+                    <div class="name">{"Listen Event"}</div>
+                    <div class="desc">addEventListener("click")</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">3️⃣</span>
+                    <div class="name">{"Update DOM"}</div>
+                    <div class="desc">textContent = "..."</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_11')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_11">&lt;button id="counterBtn"&gt;Clicks: 0&lt;/button&gt;
-&lt;script&gt;
-  const btn = document.getElementById('counterBtn');
-  let count = 0;
-  function incrementCount() &#123;
-    count++;
-    btn.textContent = 'Clicks: ' + count;
-  &#125;
-  btn.addEventListener('click', incrementCount);
-&lt;/script&gt;</code></pre>
+                <pre><code id="refCodeBox_11">{"const btn = document.getElementById('actionBtn');\nconst msg = document.getElementById('statusMsg');\n\nbtn.addEventListener('click', () => {\n  msg.textContent = 'Button Clicked Successfully!';\n});"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Create a function <code>incrementCount()</code>.</li>
-                <li>Increment <code>count</code> and update button text.</li>
-                <li>Attach <code>addEventListener("click", ...)</code> to <code>#counterBtn</code>.</li>
-            </ol>
         </article>
 
     </div>
@@ -192,36 +138,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson11';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 11: Functions & Click Events -->
-<button id="counterBtn">Clicks: 0</button>
-
-<script>
-  let count = 0;
-
-  // Step 1: Write a function incrementCount() that increases count by 1
-
-
-  // Step 2: Update the button's textContent inside the function
-
-
-  // Step 3: Attach an 'click' event listener to counterBtn
-
-<\/script>
-`;
+        const DRAFT_KEY = 'partB_lesson11_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Interactive Click</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"actionBtn\" style=\"padding: 10px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Click Me</button>\n  <p id=\"statusMsg\" style=\"margin-top: 14px; font-weight: bold; color: #0f172a;\">Ready for action.</p>\n\n  <script>\n    // 👉 STEP 1: Select the button element using document.getElementById('actionBtn'):\n    const btn = document.getElementById('actionBtn');\n    const msg = document.getElementById('statusMsg');\n\n    // 👉 STEP 2: Add a 'click' event listener to btn that updates msg.textContent to \"Button Clicked Successfully!\":\n\n\n  <\/script>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'func', 
-                label: 'Define a function <code>incrementCount</code>', 
-                fn: (code) => /function\s+incrementCount\s*\(/i.test(c) || /const\s+incrementCount\s*=\s*\(/i.test(code),
-            },
-            { 
-                id: 'listener', 
-                label: 'Attach <code>addEventListener("click", ...)</code> to counterBtn', 
-                fn: (code) => /addEventListener\(\s*['"]click['"]\s*,\s*incrementCount\s*\)/i.test(c) || /addEventListener\(\s*['"]click['"]\s*,\s*\(\)\s*=>/i.test(code)
-            }
+            { id: 'event_listener', text: 'Attach a click event listener using addEventListener on btn', validator: (c) => /btn\.addEventListener\s*\(\s*["']click["']/i.test(c) || /document\.getElementById\(['"]actionBtn['"]\)\.addEventListener\s*\(\s*["']click["']/i.test(c) },
+            { id: 'update_text', text: 'Update msg.textContent inside the event listener callback', validator: (c) => /msg\.textContent\s*=\s*["'][^"']+["']/i.test(c) || /statusMsg['"]\)\.textContent\s*=\s*["'][^"']+["']/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -259,18 +182,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

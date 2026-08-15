@@ -1,103 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 06: CSS Colors, Backgrounds & Borders -->
-<style>
-  /* Step 1: Style .card with background-color, color, and border */
-
-
-  /* Step 2: Apply a border-radius for rounded corners */
-
-</style>
-
-<div class="card">
-  <h2>Design Card</h2>
-  <p>Styled with modern CSS properties.</p>
-</div>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STEP 1: Add a CSS rule for .hero-card with background: #0f172a, color: #ffffff, and border-radius: 12px below: */\n\n\n  </style>\n</head>\n<body>\n  <!-- 👉 STEP 2: Create a <div class=\"hero-card\"> containing an <h1> and <p> below: -->\n\n\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 06: CSS Colors, Backgrounds & Borders | Level 4 DOM Dojo"
-    description="Style HTML elements with rich hexadecimal colors, rounded borders, and vivid backgrounds."
+    description={"Bring HTML to life with CSS styling rules, color hex codes, background fills, and border radii."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={6}
     lessonTitle="CSS Colors, Backgrounds & Borders"
@@ -116,74 +43,86 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Style HTML elements with rich hexadecimal colors, rounded borders, and vivid backgrounds.
+        Bring HTML to life with CSS styling rules, color hex codes, background fills, and border radii.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> In the <code>&lt;style&gt;</code> block, style <code>.hero-card</code> with <code>background</code>, <code>color</code>, and <code>border-radius</code>.</li>
+                <li><strong>Step 2:</strong> In the <code>&lt;body&gt;</code>, add a <code>&lt;div class="hero-card"&gt;</code> wrapping an <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code>.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> CSS is the interior design of the web: HTML provides the drywall and doors, while CSS applies the vibrant paint, polished wood trim, and modern lighting.
+                <strong>Real-World Analogy:</strong> If HTML is the house foundation and bricks, CSS is the interior designer that paints walls, chooses color palettes, and rounds corner trims.
             </div>
         </article>
 
-        
-        <!-- CSS Syntax & Property Toolkit -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🎨</span> Essential CSS Toolkit</h3>
-            <div class="properties-showcase">
-                <div class="property-card">
-                    <span class="property-name">color</span>
-                    <p class="property-desc">Text font color (HEX, RGB, HSL)</p>
+            <h3><span>🏷️</span> Core CSS Properties</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Essential properties for styling containers and surfaces:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"background: #0f172a;"}</div>
+                    <div class="tag-result">Sets container fill color</div>
                 </div>
-                <div class="property-card">
-                    <span class="property-name">background-color</span>
-                    <p class="property-desc">Card container backdrop fill</p>
+                <div class="tag-example">
+                    <div class="tag-code">{"color: #ffffff;"}</div>
+                    <div class="tag-result">Sets text foreground color</div>
                 </div>
-                <div class="property-card">
-                    <span class="property-name">border-radius</span>
-                    <p class="property-desc">Smooth curved pill/card corners</p>
+                <div class="tag-example">
+                    <div class="tag-code">{"border-radius: 12px;"}</div>
+                    <div class="tag-result">Rounds rectangular corners</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> CSS Rule Structure</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">A selector selects HTML elements, declarations define styles:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">🎯</span>
+                    <div class="name">{".class"}</div>
+                    <div class="desc">CSS Selector</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🎨</span>
+                    <div class="name">{"property"}</div>
+                    <div class="desc">Style attribute</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">💎</span>
+                    <div class="name">{"value"}</div>
+                    <div class="desc">Color / size value</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_6')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_6">&lt;style&gt;
-  .card &#123;
-    background-color: #0f172a;
-    color: #38bdf8;
-    border: 2px solid #334155;
-    border-radius: 12px;
-    padding: 20px;
-  &#125;
-&lt;/style&gt;
-&lt;div class="card"&gt;
-  &lt;h2&gt;Pro Design Card&lt;/h2&gt;
-  &lt;p&gt;Styled with modern CSS tokens.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+                <pre><code id="refCodeBox_6">{"<style>\n  .hero-card {\n    background: #0f172a;\n    color: #ffffff;\n    padding: 24px;\n    border-radius: 12px;\n  }\n</style>\n<div class=\"hero-card\">\n  <h1>Welcome to CodeRoots</h1>\n  <p>Learn frontend development with interactive real-time feedback.</p>\n</div>"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Apply a <code>background-color</code> to <code>.card</code>.</li>
-                <li>Set a custom text <code>color</code> for <code>.card</code>.</li>
-                <li>Add a <code>border</code> and a <code>border-radius</code> for smooth rounded corners.</li>
-            </ol>
         </article>
 
     </div>
@@ -203,34 +142,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson6';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 06: CSS Colors, Backgrounds & Borders -->
-<style>
-  /* Step 1: Style .card with background-color, color, and border */
-
-
-  /* Step 2: Apply a border-radius for rounded corners */
-
-</style>
-
-<div class="card">
-  <h2>Design Card</h2>
-  <p>Styled with modern CSS properties.</p>
-</div>
-`;
+        const DRAFT_KEY = 'partB_lesson6_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STEP 1: Add a CSS rule for .hero-card with background: #0f172a, color: #ffffff, and border-radius: 12px below: */\n\n\n  </style>\n</head>\n<body>\n  <!-- 👉 STEP 2: Create a <div class=\"hero-card\"> containing an <h1> and <p> below: -->\n\n\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'bg_color', 
-                label: 'Apply <code>background-color</code> and <code>color</code> to <code>.card</code>', 
-                fn: (code, doc) => /background(-color)?\s*:\s*[^;]+;/i.test(c) && /color\s*:\s*[^;]+;/i.test(c)
-            },
-            { 
-                id: 'border_radius', 
-                label: 'Set a <code>border</code> and <code>border-radius</code> on <code>.card</code>', 
-                fn: (code, doc) => /border\s*:\s*[^;]+;/i.test(c) && /border-radius\s*:\s*[^;]+;/i.test(c)
-            }
+            { id: 'css_rule', text: 'Create a .hero-card rule with background, color, and border-radius', validator: (c) => /\.hero-card\s*\{[^}]*background[^:]*:[^;]+;[^}]*color[^:]*:[^;]+;[^}]*border-radius[^:]*:[^;]+;/i.test(c) },
+            { id: 'div_card', text: 'Add a <div class="hero-card"> in <body> with an <h1> and <p>', validator: (c) => /<div[^>]+class=["'][^"']*hero-card[^"']*["'][^>]*>[\s\S]*?<h1[^>]*>[\s\S]*?<\/h1>[\s\S]*?<p[^>]*>[\s\S]*?<\/p>[\s\S]*?<\/div>/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -268,18 +186,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

@@ -1,106 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 10: JavaScript Variables & Data Types -->
-<div id="output">Output will appear here</div>
-
-<script>
-  // Step 1: Declare a const 'appName' with string "NoviCodes"
-
-
-  // Step 2: Declare a let 'userXP' with integer 1000
-
-
-  // Step 3: Declare a const 'isPro' with boolean true
-
-
-  // Step 4: Render message into #output using document.getElementById()
-
-<\/script>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics</title>\n</head>\n<body>\n  <h1>JavaScript Variables</h1>\n  <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n  <script>\n    // 👉 STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n    \n\n    // 👉 STEP 2: Declare let levelNumber = 4 below:\n    \n\n    // 👉 STEP 3: Display message in the #output container below:\n    document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 10: JavaScript Variables & Data Types | Level 4 DOM Dojo"
-    description="Learn let, const, strings, numbers, and booleans to store and calculate dynamic application data."
+    description={"Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={10}
     lessonTitle="JavaScript Variables & Data Types"
@@ -119,69 +43,82 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Learn let, const, strings, numbers, and booleans to store and calculate dynamic application data.
+        Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Declare <code>const learnerName = "...";</code> with a non-empty string.</li>
+                <li><strong>Step 2:</strong> Declare <code>let levelNumber = 4;</code> (or any number) with <code>let</code>.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Variables are labeled storage boxes in memory: <code>const</code> is a locked steel safe (cannot be changed), while <code>let</code> is an open clipboard for numbers that change.
+                <strong>Real-World Analogy:</strong> Variables are like labeled storage containers in your kitchen. `const` is a sealed jar that cannot be swapped, while `let` is a refillable container.
             </div>
         </article>
 
-        
-        <!-- Variable Data Types Grid -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>💾</span> Primitive Data Types</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="property-name">String</span>
-                    <p class="property-desc">Text inside quotes: <code>"NoviCodes"</code></p>
+            <h3><span>🏷️</span> Variable Declaration Keywords</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">How modern JavaScript stores state in memory:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"const name = \"Alex\";"}</div>
+                    <div class="tag-result">Constant variable that cannot be reassigned</div>
                 </div>
-                <div class="feature-card">
-                    <span class="property-name">Number</span>
-                    <p class="property-desc">Integers &amp; decimals: <code>1000</code>, <code>9.99</code></p>
-                </div>
-                <div class="feature-card">
-                    <span class="property-name">Boolean</span>
-                    <p class="property-desc">Binary flag state: <code>true</code> or <code>false</code></p>
+                <div class="tag-example">
+                    <div class="tag-code">{"let score = 100;"}</div>
+                    <div class="tag-result">Mutable variable whose value can change</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> JavaScript Primitive Types</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The primary building block data types in JS:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">📝</span>
+                    <div class="name">{"String"}</div>
+                    <div class="desc">"Hello World"</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🔢</span>
+                    <div class="name">{"Number"}</div>
+                    <div class="desc">42, 3.14</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">✅</span>
+                    <div class="name">{"Boolean"}</div>
+                    <div class="desc">true / false</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_10')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_10">&lt;div id="output"&gt;&lt;/div&gt;
-&lt;script&gt;
-  const appName = "NoviCodes";
-  let userXP = 1000;
-  const isPro = true;
-  document.getElementById('output').textContent = appName + ' - ' + userXP + ' XP';
-&lt;/script&gt;</code></pre>
+                <pre><code id="refCodeBox_10">{"const learnerName = \"Alex\";\nlet levelNumber = 4;\nconsole.log(learnerName + \" is at Level \" + levelNumber);"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Declare <code>const appName = "NoviCodes"</code>.</li>
-                <li>Declare <code>let userXP = 1000</code> (number).</li>
-                <li>Declare <code>const isPro = true</code> (boolean).</li>
-                <li>Update <code>#output</code> element text.</li>
-            </ol>
         </article>
 
     </div>
@@ -201,37 +138,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson10';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 10: JavaScript Variables & Data Types -->
-<div id="output">Output will appear here</div>
-
-<script>
-  // Step 1: Declare a const 'appName' with string "NoviCodes"
-
-
-  // Step 2: Declare a let 'userXP' with integer 1000
-
-
-  // Step 3: Declare a const 'isPro' with boolean true
-
-
-  // Step 4: Render message into #output using document.getElementById()
-
-<\/script>
-`;
+        const DRAFT_KEY = 'partB_lesson10_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics</title>\n</head>\n<body>\n  <h1>JavaScript Variables</h1>\n  <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n  <script>\n    // 👉 STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n    \n\n    // 👉 STEP 2: Declare let levelNumber = 4 below:\n    \n\n    // 👉 STEP 3: Display message in the #output container below:\n    document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n  <\/script>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'vars', 
-                label: 'Declare <code>appName</code> (const), <code>userXP</code> (let), and <code>isPro</code> (const)', 
-                fn: (code) => /const\s+appName\s*=\s*['"]novicodes['"]/i.test(c) && /let\s+userXP\s*=\s*\d+/i.test(c) && /const\s+isPro\s*=\s*true/i.test(code),
-            },
-            { 
-                id: 'dom_output', 
-                label: 'Render variable text into <code>#output</code>', 
-                fn: (code) => /document\.getElementById\(['"]output['"]\)\.textContent/i.test(code)
-            }
+            { id: 'const_name', text: 'Declare a const variable named learnerName with a string value', validator: (c) => /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c) },
+            { id: 'let_level', text: 'Declare a let variable named levelNumber with a number value', validator: (c) => /let\s+levelNumber\s*=\s*\d+/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -269,18 +182,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

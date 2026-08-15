@@ -1,111 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 13: Forms & Input Validation -->
-<form id="signupForm">
-  <input type="text" id="usernameInput" placeholder="Enter username (min 3 chars)">
-  <button type="submit">Join</button>
-</form>
-<div id="statusMessage"></div>
-
-<script>
-  const form = document.getElementById('signupForm');
-  const input = document.getElementById('usernameInput');
-  const status = document.getElementById('statusMessage');
-
-  // Step 1: Add a 'submit' event listener to the form
-
-
-  // Step 2: Prevent default page reload with e.preventDefault()
-
-
-  // Step 3: Validate input.value.trim().length >= 3 and display status
-
-<\/script>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Form Validation</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <form id=\"userForm\">\n    <input type=\"text\" id=\"usernameInput\" placeholder=\"Enter username...\" style=\"padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px;\" />\n    <button type=\"submit\" style=\"padding: 8px 16px; background: #16a34a; color: #fff; border: none; border-radius: 6px; cursor: pointer;\">Submit</button>\n  </form>\n  <div id=\"feedback\" style=\"margin-top: 12px; font-weight: bold;\"></div>\n\n  <script>\n    const form = document.getElementById('userForm');\n    const input = document.getElementById('usernameInput');\n    const feedback = document.getElementById('feedback');\n\n    form.addEventListener('submit', (e) => {\n      // 👉 STEP 1: Prevent the default form submission page reload:\n      e.preventDefault();\n\n      // 👉 STEP 2: Read input.value and display a confirmation in feedback.textContent:\n      \n\n    });\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 13: Interactive Forms & Input Validation | Level 4 DOM Dojo"
-    description="Capture user form submissions, prevent page reloads with e.preventDefault(), and validate text inputs."
+    description={"Capture form submissions, prevent page reloads with event.preventDefault(), and validate user inputs."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={13}
     lessonTitle="Interactive Forms & Input Validation"
@@ -124,66 +43,82 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Capture user form submissions, prevent page reloads with e.preventDefault(), and validate text inputs.
+        Capture form submissions, prevent page reloads with event.preventDefault(), and validate user inputs.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Call <code>e.preventDefault()</code> inside the submit event listener.</li>
+                <li><strong>Step 2:</strong> Access <code>input.value</code> and update <code>feedback.textContent</code> with feedback.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Form validation is a nightclub security bouncer: it checks user credentials before letting data enter the VIP server.
+                <strong>Real-World Analogy:</strong> Submitting a form without `preventDefault()` is like a cashier throwing away the receipt and refreshing the whole cash register. `preventDefault()` keeps you in the app.
             </div>
         </article>
 
-        
-        <!-- Form Control Essentials -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🛡️</span> Form Submission Flow</h3>
-            <div class="intro-highlight">
-                <code>e.preventDefault();</code>
-                <p style="margin: 6px 0 0 0; font-size: 0.82rem; color: #1e3a8a;">Stops the browser from performing a full page reload so JavaScript can handle data smoothly in the background.</p>
+            <h3><span>🏷️</span> Form Handling APIs</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Control inputs and submission events seamlessly:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"e.preventDefault()"}</div>
+                    <div class="tag-result">Stops browser from reloading page on submit</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">{"input.value"}</div>
+                    <div class="tag-result">Reads the live text typed by the user</div>
+                </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Form Submission Lifecycle</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Handling input data smoothly without page refresh:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">🛑</span>
+                    <div class="name">{"Prevent Default"}</div>
+                    <div class="desc">e.preventDefault()</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🔍</span>
+                    <div class="name">{"Read Value"}</div>
+                    <div class="desc">input.value</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">💬</span>
+                    <div class="name">{"Show Feedback"}</div>
+                    <div class="desc">feedback.textContent</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_13')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_13">&lt;form id="signupForm"&gt;
-  &lt;input type="text" id="usernameInput"&gt;
-  &lt;button type="submit"&gt;Join&lt;/button&gt;
-&lt;/form&gt;
-&lt;div id="statusMessage"&gt;&lt;/div&gt;
-&lt;script&gt;
-  form.addEventListener('submit', (e) =&gt; &#123;
-    e.preventDefault();
-    if (input.value.trim().length &lt; 3) &#123;
-      status.textContent = "Error: Username too short!";
-    &#125; else &#123;
-      status.textContent = "Success: Account created!";
-    &#125;
-  &#125;);
-&lt;/script&gt;</code></pre>
+                <pre><code id="refCodeBox_13">{"form.addEventListener('submit', (e) => {\n  e.preventDefault();\n  const val = input.value;\n  feedback.textContent = 'Welcome, ' + val + '! Form submitted successfully.';\n});"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Listen for <code>submit</code> events on <code>#signupForm</code>.</li>
-                <li>Call <code>e.preventDefault()</code> to stop page reloads.</li>
-                <li>Check <code>input.value.trim().length >= 3</code> and display feedback.</li>
-            </ol>
         </article>
 
     </div>
@@ -203,42 +138,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson13';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 13: Forms & Input Validation -->
-<form id="signupForm">
-  <input type="text" id="usernameInput" placeholder="Enter username (min 3 chars)">
-  <button type="submit">Join</button>
-</form>
-<div id="statusMessage"></div>
-
-<script>
-  const form = document.getElementById('signupForm');
-  const input = document.getElementById('usernameInput');
-  const status = document.getElementById('statusMessage');
-
-  // Step 1: Add a 'submit' event listener to the form
-
-
-  // Step 2: Prevent default page reload with e.preventDefault()
-
-
-  // Step 3: Validate input.value.trim().length >= 3 and display status
-
-<\/script>
-`;
+        const DRAFT_KEY = 'partB_lesson13_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Form Validation</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <form id=\"userForm\">\n    <input type=\"text\" id=\"usernameInput\" placeholder=\"Enter username...\" style=\"padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px;\" />\n    <button type=\"submit\" style=\"padding: 8px 16px; background: #16a34a; color: #fff; border: none; border-radius: 6px; cursor: pointer;\">Submit</button>\n  </form>\n  <div id=\"feedback\" style=\"margin-top: 12px; font-weight: bold;\"></div>\n\n  <script>\n    const form = document.getElementById('userForm');\n    const input = document.getElementById('usernameInput');\n    const feedback = document.getElementById('feedback');\n\n    form.addEventListener('submit', (e) => {\n      // 👉 STEP 1: Prevent the default form submission page reload:\n      e.preventDefault();\n\n      // 👉 STEP 2: Read input.value and display a confirmation in feedback.textContent:\n      \n\n    });\n  <\/script>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'submit_event', 
-                label: 'Listen for <code>submit</code> event and call <code>e.preventDefault()</code>', 
-                fn: (code) => /addEventListener\(['"]submit['"]\)/i.test(c) && /preventDefault\(\)/i.test(code),
-            },
-            { 
-                id: 'validation_check',
-                label: 'Validate username length and update <code>#statusMessage</code>',
-                fn: (code) => /value\.trim\(\)\.length/i.test(c) || /value\.length/i.test(code)
-            }
+            { id: 'prevent_default', text: 'Call e.preventDefault() inside form submit listener', validator: (c) => /e\.preventDefault\s*\(\s*\)/i.test(c) || /event\.preventDefault\s*\(\s*\)/i.test(c) },
+            { id: 'read_val', text: 'Read input.value and update feedback.textContent', validator: (c) => /\.value/i.test(c) && /feedback\.textContent\s*=\s*/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -276,18 +182,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

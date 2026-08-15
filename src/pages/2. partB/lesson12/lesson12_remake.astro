@@ -1,110 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 12: DOM Manipulation -->
-<button id="addCardBtn">Add New Card</button>
-<div id="cardsContainer"></div>
-
-<script>
-  const addBtn = document.getElementById('addCardBtn');
-  const container = document.getElementById('cardsContainer');
-
-  // Step 1: Write a function createCard() that uses document.createElement('div')
-
-
-  // Step 2: Set textContent on the new card
-
-
-  // Step 3: Append the card into #cardsContainer using appendChild()
-
-
-  // Step 4: Wire addBtn click event
-
-<\/script>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dynamic Elements</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"addCardBtn\" style=\"padding: 10px 18px; background: #0284c7; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Add Element</button>\n  <ul id=\"itemList\" style=\"margin-top: 16px; padding-left: 20px;\"></ul>\n\n  <script>\n    const addBtn = document.getElementById('addCardBtn');\n    const list = document.getElementById('itemList');\n\n    addBtn.addEventListener('click', () => {\n      // 👉 STEP 1: Create a new <li> element using document.createElement('li'):\n      \n\n      // 👉 STEP 2: Set newItem.textContent = \"New Dynamic Item\" and append it to list using list.appendChild(newItem):\n      \n\n    });\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 12: DOM Manipulation & Dynamic Elements | Level 4 DOM Dojo"
-    description="Create, modify, and append new HTML elements dynamically to the live webpage in real time."
+    description={"Dynamically create, modify, and append new HTML elements into the DOM tree using JavaScript."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={12}
     lessonTitle="DOM Manipulation & Dynamic Elements"
@@ -123,71 +43,82 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Create, modify, and append new HTML elements dynamically to the live webpage in real time.
+        Dynamically create, modify, and append new HTML elements into the DOM tree using JavaScript.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Create a new list element using <code>document.createElement('li')</code>.</li>
+                <li><strong>Step 2:</strong> Assign text to <code>newItem.textContent</code> and append it using <code>list.appendChild(newItem)</code>.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> The DOM is a living LEGO structure: JavaScript can spawn brand new bricks (<code>createElement</code>), paint them (<code>textContent</code>), and snap them into place (<code>appendChild</code>).
+                <strong>Real-World Analogy:</strong> Think of the DOM as a family tree. `createElement` births a new child node, `textContent` gives it an identity, and `appendChild` welcomes it into the family tree on screen.
             </div>
         </article>
 
-        
-        <!-- DOM Manipulation Lifecycle -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🧱</span> Element Creation Lifecycle</h3>
+            <h3><span>🏷️</span> DOM Mutation Methods</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Methods to generate UI on the fly:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">1. createElement()</div>
-                    <div class="tag-result">Spawns element in memory</div>
+                    <div class="tag-code">{"document.createElement(\"li\")"}</div>
+                    <div class="tag-result">Creates a new detached DOM node</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">2. textContent = ...</div>
-                    <div class="tag-result">Fills content &amp; classes</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">3. appendChild()</div>
-                    <div class="tag-result">Mounts into live DOM tree</div>
+                    <div class="tag-code">{"list.appendChild(newItem)"}</div>
+                    <div class="tag-result">Inserts node as child of target list</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Dynamic Creation Cycle</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The standard 3-step node creation lifecycle:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">🐣</span>
+                    <div class="name">{"Create"}</div>
+                    <div class="desc">createElement("li")</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🏷️</span>
+                    <div class="name">{"Configure"}</div>
+                    <div class="desc">textContent = "..."</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🌳</span>
+                    <div class="name">{"Append"}</div>
+                    <div class="desc">appendChild(node)</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_12')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_12">&lt;button id="addCardBtn"&gt;Add Card&lt;/button&gt;
-&lt;div id="cardsContainer"&gt;&lt;/div&gt;
-&lt;script&gt;
-  function createCard() &#123;
-    const card = document.createElement('div');
-    card.textContent = "New Milestone Card!";
-    container.appendChild(card);
-  &#125;
-  addBtn.addEventListener('click', createCard);
-&lt;/script&gt;</code></pre>
+                <pre><code id="refCodeBox_12">{"const newItem = document.createElement('li');\nnewItem.textContent = 'New Dynamic Item';\nlist.appendChild(newItem);"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use <code>document.createElement("div")</code> to create new cards.</li>
-                <li>Use <code>appendChild()</code> to add them to <code>#cardsContainer</code>.</li>
-                <li>Trigger creation when clicking <code>#addCardBtn</code>.</li>
-            </ol>
         </article>
 
     </div>
@@ -207,46 +138,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson12';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 12: DOM Manipulation -->
-<button id="addCardBtn">Add New Card</button>
-<div id="cardsContainer"></div>
-
-<script>
-  const addBtn = document.getElementById('addCardBtn');
-  const container = document.getElementById('cardsContainer');
-
-  // Step 1: Write a function createCard() that uses document.createElement('div')
-
-
-  // Step 2: Set textContent on the new card
-
-
-  // Step 3: Append the card into #cardsContainer using appendChild()
-
-
-  // Step 4: Wire addBtn click event
-
-<\/script>
-`;
+        const DRAFT_KEY = 'partB_lesson12_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dynamic Elements</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"addCardBtn\" style=\"padding: 10px 18px; background: #0284c7; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Add Element</button>\n  <ul id=\"itemList\" style=\"margin-top: 16px; padding-left: 20px;\"></ul>\n\n  <script>\n    const addBtn = document.getElementById('addCardBtn');\n    const list = document.getElementById('itemList');\n\n    addBtn.addEventListener('click', () => {\n      // 👉 STEP 1: Create a new <li> element using document.createElement('li'):\n      \n\n      // 👉 STEP 2: Set newItem.textContent = \"New Dynamic Item\" and append it to list using list.appendChild(newItem):\n      \n\n    });\n  <\/script>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'create',
-                label: 'Use <code>document.createElement("div")</code>',
-                fn: (code) => /document\.createElement\(['"]div['"]\)/i.test(code)
-            },
-            { 
-                id: 'append', 
-                label: 'Append card into container with <code>appendChild()</code>', 
-                fn: (code) => /appendChild\(/i.test(code)
-            },
-            { 
-                id: 'event', 
-                label: 'Attach click event to <code>#addCardBtn</code>', 
-                fn: (code) => /addEventListener\(['"]click['"]/i.test(code)
-            }
+            { id: 'create_elem', text: 'Create a new <li> node with document.createElement("li")', validator: (c) => /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c) },
+            { id: 'append_child', text: 'Set textContent and append node with appendChild', validator: (c) => /\.textContent\s*=\s*["'][^"']+["']/i.test(c) && /\.appendChild\s*\([^)]+\)/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -284,18 +182,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

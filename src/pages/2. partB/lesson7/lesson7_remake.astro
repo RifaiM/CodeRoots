@@ -1,113 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 07: The CSS Box Model -->
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  /* Step 1: Add padding inside .box-container */
-  .box-container {
-
-
-  }
-
-  /* Step 2: Add margin between .box-item cards */
-  .box-item {
-
-
-  }
-</style>
-
-<div class="box-container">
-  <div class="box-item">Box A</div>
-  <div class="box-item">Box B</div>
-</div>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STEP 1: Add padding: 20px, margin: 16px, and border: 2px solid #2563eb to .box-card below: */\n    .box-card {\n      background: #f8fafc;\n      box-sizing: border-box;\n\n    }\n  </style>\n</head>\n<body>\n  <div class=\"box-card\">\n    <h2>Box Model Architecture</h2>\n    <p>Padding creates breathing room inside the border, while margin pushes outer elements away.</p>\n  </div>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 07: The CSS Box Model & Spacing | Level 4 DOM Dojo"
-    description="Master margin, padding, width, height, and box-sizing: border-box to control spacing with pixel precision."
+    description={"Control element dimensions, padding, borders, and margins to build balanced, well-spaced UI layouts."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={7}
     lessonTitle="The CSS Box Model & Spacing"
@@ -126,71 +43,92 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Master margin, padding, width, height, and box-sizing: border-box to control spacing with pixel precision.
+        Control element dimensions, padding, borders, and margins to build balanced, well-spaced UI layouts.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Add <code>padding: 20px;</code> (or any px value >= 16px) inside <code>.box-card</code>.</li>
+                <li><strong>Step 2:</strong> Add <code>margin: 16px;</code> (or any px value >= 12px) inside <code>.box-card</code>.</li>
+                <li><strong>Step 3:</strong> Add a visible <code>border</code> (e.g. <code>2px solid #2563eb</code>) to <code>.box-card</code>.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> The Box Model is like physical shipping: Content is the gift 🎁, Padding is the bubble wrap inside 🫧, Border is the cardboard carton 📦, and Margin is the distance to the next package 📏.
+                <strong>Real-World Analogy:</strong> Think of a framed painting: the canvas is Content, the white matting is Padding, the wooden frame is Border, and the wall space around it is Margin.
             </div>
         </article>
 
-        
-        <!-- Box Model Anatomy Visualizer -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>📦</span> Box Model Spacing Hierarchy</h3>
-            <div style="background: #fed7aa; padding: 14px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.80rem; color: #9a3412;">
-                MARGIN (Outer Spacing)
-                <div style="background: #fef08a; padding: 12px; border-radius: 8px; margin: 8px 0; color: #854d0e;">
-                    BORDER (Container Perimeter)
-                    <div style="background: #bbf7d0; padding: 12px; border-radius: 6px; margin: 6px 0; color: #166534;">
-                        PADDING (Inner Cushion)
-                        <div style="background: #bfdbfe; padding: 8px; border-radius: 4px; margin-top: 4px; color: #1e40af;">
-                            CONTENT (Text &amp; Images)
-                        </div>
-                    </div>
+            <h3><span>🏷️</span> Box Model Layers</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The 4 concentric layers that determine element size:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"padding: 20px;"}</div>
+                    <div class="tag-result">Inner spacing between text and border</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">{"border: 2px solid #2563eb;"}</div>
+                    <div class="tag-result">Visible perimeter border line</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">{"margin: 16px;"}</div>
+                    <div class="tag-result">Outer clearance around element</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Box Model Anatomy</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">From inner content to outer surrounding elements:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">📦</span>
+                    <div class="name">{"Content"}</div>
+                    <div class="desc">Text & images</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🛡️</span>
+                    <div class="name">{"Padding"}</div>
+                    <div class="desc">Inner spacing</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🖼️</span>
+                    <div class="name">{"Border"}</div>
+                    <div class="desc">Frame edge</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🌌</span>
+                    <div class="name">{"Margin"}</div>
+                    <div class="desc">Outer distance</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_7">&lt;style&gt;
-  * &#123; box-sizing: border-box; &#125;
-  .box-container &#123;
-    padding: 24px;
-    background: #f8fafc;
-  &#125;
-  .box-item &#123;
-    padding: 16px;
-    margin-bottom: 12px;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-  &#125;
-&lt;/style&gt;</code></pre>
+                <pre><code id="refCodeBox_7">{".box-card {\n  background: #f8fafc;\n  padding: 20px;\n  margin: 16px;\n  border: 2px solid #2563eb;\n  border-radius: 8px;\n  box-sizing: border-box;\n}"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Set <code>padding</code> inside <code>.box-container</code>.</li>
-                <li>Apply <code>margin</code> and <code>padding</code> on <code>.box-item</code>.</li>
-            </ol>
         </article>
 
     </div>
@@ -210,44 +148,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson7';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 07: The CSS Box Model -->
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  /* Step 1: Add padding inside .box-container */
-  .box-container {
-
-
-  }
-
-  /* Step 2: Add margin between .box-item cards */
-  .box-item {
-
-
-  }
-</style>
-
-<div class="box-container">
-  <div class="box-item">Box A</div>
-  <div class="box-item">Box B</div>
-</div>
-`;
+        const DRAFT_KEY = 'partB_lesson7_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STEP 1: Add padding: 20px, margin: 16px, and border: 2px solid #2563eb to .box-card below: */\n    .box-card {\n      background: #f8fafc;\n      box-sizing: border-box;\n\n    }\n  </style>\n</head>\n<body>\n  <div class=\"box-card\">\n    <h2>Box Model Architecture</h2>\n    <p>Padding creates breathing room inside the border, while margin pushes outer elements away.</p>\n  </div>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'padding', 
-                label: 'Add <code>padding</code> to <code>.box-container</code>', 
-                fn: (code) => /\.box-container[\s\S]*?padding\s*:\s*[^;]+;/i.test(code),
-            },
-            { 
-                id: 'margin', 
-                label: 'Add <code>margin</code> and <code>padding</code> to <code>.box-item</code>', 
-                fn: (code) => /\.box-item[\s\S]*?margin(-[a-z]+)?\s*:\s*[^;]+;/i.test(c) && /\.box-item[\s\S]*?padding\s*:\s*[^;]+;/i.test(code)
-            }
+            { id: 'padding_prop', text: 'Set padding to at least 16px on .box-card', validator: (c) => /\.box-card\s*\{[^}]*padding\s*:\s*(?:1[6-9]|[2-9][0-9]|\d{3,})px/i.test(c) },
+            { id: 'margin_border', text: 'Set margin and a solid border on .box-card', validator: (c) => /\.box-card\s*\{[^}]*margin\s*:[^;]+;/i.test(c) && /\.box-card\s*\{[^}]*border\s*:[^;]+solid/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -285,18 +192,6 @@ const level4Lessons = [
         DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
         editor.addEventListener('scroll', syncScroll);
-
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {

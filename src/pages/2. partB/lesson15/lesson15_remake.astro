@@ -1,117 +1,34 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `<!-- 🛠️ Project 15 Capstone: Production Web Application -->
-<header class="app-header">
-  <h1>⚡ Task Manager Pro</h1>
-</header>
-
-<main class="app-main">
-  <!-- Step 1: Create a task creation form with input and button -->
-
-
-  <!-- Step 2: Create a task list container -->
-
-</main>
-
-<style>
-  /* Step 3: Style the header, form, and task cards using Flexbox */
-
-
-</style>
-
-<script>
-  // Step 4: Write JS logic to add tasks, toggle completion, and persist to localStorage
-
-<\/script>
-`;
-
 const level4Lessons = [
-    {
-        "id": 1,
-        "title": "Interactive HTML Page Structure",
-        "url": "/2. partB/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Typography & Heading Hierarchy",
-        "url": "/2. partB/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Links & Dynamic Media",
-        "url": "/2. partB/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dropdown Drawer Navigation",
-        "url": "/2. partB/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Semantic HTML Web Architecture",
-        "url": "/2. partB/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "CSS Colors, Backgrounds & Borders",
-        "url": "/2. partB/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "The CSS Box Model & Spacing",
-        "url": "/2. partB/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Modern Flexbox Layout Mastery",
-        "url": "/2. partB/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Responsive CSS Grid Architecture",
-        "url": "/2. partB/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "JavaScript Variables & Data Types",
-        "url": "/2. partB/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Functions & Interactive Click Events",
-        "url": "/2. partB/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "DOM Manipulation & Dynamic Elements",
-        "url": "/2. partB/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Interactive Forms & Input Validation",
-        "url": "/2. partB/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Asynchronous JavaScript & REST APIs",
-        "url": "/2. partB/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Capstone: Full Interactive Web Application",
-        "url": "/2. partB/lesson15/lesson15_remake.html"
-    }
+    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
+
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Task Master Pro</title>\n  <style>\n    body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; padding: 24px; }\n    .app-container { max-width: 500px; margin: 0 auto; background: #1e293b; padding: 24px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }\n    .task-input { width: 70%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; box-sizing: border-box; }\n    .add-btn { padding: 10px 16px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }\n    .task-list { margin-top: 20px; list-style: none; padding: 0; }\n    .task-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #0f172a; border-radius: 8px; margin-bottom: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"app-container\">\n    <h2>🚀 Task Master Pro</h2>\n    <div style=\"display: flex; gap: 8px; margin-top: 14px;\">\n      <input type=\"text\" id=\"taskInput\" class=\"task-input\" placeholder=\"What needs to be done?\" />\n      <button id=\"addTaskBtn\" class=\"add-btn\">Add Task</button>\n    </div>\n    <ul id=\"taskList\" class=\"task-list\">\n      <li class=\"task-item\"><span>Master HTML5 & CSS3</span></li>\n    </ul>\n  </div>\n\n  <script>\n    const taskInput = document.getElementById('taskInput');\n    const addBtn = document.getElementById('addTaskBtn');\n    const taskList = document.getElementById('taskList');\n\n    // 👉 STEP 1: Add a click event listener to addBtn:\n    addBtn.addEventListener('click', () => {\n      const text = taskInput.value.trim();\n      if (!text) return;\n\n      // 👉 STEP 2: Create a new <li class=\"task-item\"> and append it to taskList:\n      const li = document.createElement('li');\n      li.className = 'task-item';\n      li.innerHTML = '<span>' + text + '</span>';\n      taskList.appendChild(li);\n\n      taskInput.value = '';\n    });\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
     title="Project 15: Capstone: Full Interactive Web Application | Level 4 DOM Dojo"
-    description="Integrate semantic HTML, responsive CSS Grid/Flexbox, and asynchronous JavaScript into a complete production web application."
+    description={"Combine semantic HTML, modern responsive CSS, and dynamic JavaScript DOM interactivity into a complete Task Dashboard."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={15}
     lessonTitle="Capstone: Full Interactive Web Application"
-    xpAmount={500}
+    xpAmount={100}
     completionKey="partB_lesson15_remake_complete"
     
     hubUrl="/2. partB/hub.html"
@@ -126,73 +43,87 @@ const level4Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Integrate semantic HTML, responsive CSS Grid/Flexbox, and asynchronous JavaScript into a complete production web application.
+        Combine semantic HTML, modern responsive CSS, and dynamic JavaScript DOM interactivity into a complete Task Dashboard.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
-        <!-- Core Concept & Analogy -->
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.25rem;">🎯</span>
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+            </div>
+            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+                Complete these step-by-step instructions in the code editor on the right:
+            </p>
+            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li><strong>Step 1:</strong> Listen for click events on <code>addBtn</code> and capture <code>taskInput.value</code>.</li>
+                <li><strong>Step 2:</strong> Create a new <code>&lt;li&gt;</code> element with class <code>task-item</code> and append it to <code>taskList</code>.</li>
+                <li><strong>Step 3:</strong> Clear the input field after adding the task.</li>
+            </ol>
+        </article>
+
+        <!-- 💡 Core Concept & Real-World Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> The Capstone is your developer graduation project: combining the skeleton (HTML), the beauty (CSS), and the brain (JavaScript) into a living, production-ready software product.
+                <strong>Real-World Analogy:</strong> A full frontend application is a symphony: HTML provides the instruments, CSS provides the melody and acoustics, and JavaScript is the conductor orchestrating every user interaction in real time.
             </div>
         </article>
 
-        
-        <!-- Capstone Full Stack Pillars -->
+        <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🏆</span> Capstone Architecture Pillars</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="property-name">1. HTML5 Frame</span>
-                    <p class="property-desc">Semantic header, main, form &amp; task containers</p>
+            <h3><span>🏷️</span> Capstone Architectural Patterns</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Harmonious integration of structure, style, and event-driven logic:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{"document.createElement(\"li\")"}</div>
+                    <div class="tag-result">Dynamic node instantiation</div>
                 </div>
-                <div class="feature-card">
-                    <span class="property-name">2. CSS3 Flex/Grid</span>
-                    <p class="property-desc">Modern responsive spacing, colors &amp; elevation</p>
+                <div class="tag-example">
+                    <div class="tag-code">{"list.appendChild(li)"}</div>
+                    <div class="tag-result">Tree insertion</div>
                 </div>
-                <div class="feature-card">
-                    <span class="property-name">3. Dynamic JS</span>
-                    <p class="property-desc">Event handling, DOM creation &amp; state persistence</p>
+                <div class="tag-example">
+                    <div class="tag-code">{"input.value = \"\""}</div>
+                    <div class="tag-result">State reset after submission</div>
                 </div>
             </div>
         </article>
 
+        <!-- 🧩 Architecture Blueprint -->
+        <article class="concept-card">
+            <h3><span>🧩</span> Web App Lifecycle</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">End-to-end user input to persistent UI render flow:</p>
+            <div class="blueprint-icons-grid">
+                <div class="blueprint-icon-card">
+                    <span class="em">✍️</span>
+                    <div class="name">{"User Input"}</div>
+                    <div class="desc">Capture value</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">🛡️</span>
+                    <div class="name">{"Validation"}</div>
+                    <div class="desc">Check if non-empty</div>
+                </div>
+                <div class="blueprint-icon-card">
+                    <span class="em">✨</span>
+                    <div class="name">{"Render"}</div>
+                    <div class="desc">Append into UI</div>
+                </div>
+            </div>
+        </article>
 
-        <!-- Working Reference Code & Target Result -->
+        <!-- 💻 Working Reference Code Pattern -->
         <article class="concept-card">
             <h3><span>💻</span> Reference Code Pattern</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_15')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_15">&lt;header&gt;&lt;h1&gt;Task Manager Pro&lt;/h1&gt;&lt;/header&gt;
-&lt;main&gt;
-  &lt;form id="taskForm"&gt;
-    &lt;input type="text" id="taskInput" placeholder="New Task..."&gt;
-    &lt;button type="submit"&gt;Add Task&lt;/button&gt;
-  &lt;/form&gt;
-  &lt;ul id="taskList"&gt;&lt;/ul&gt;
-&lt;/main&gt;
-&lt;style&gt;
-  header &#123; background: #0f172a; color: white; padding: 16px; text-align: center; &#125;
-  form &#123; display: flex; gap: 8px; margin: 20px 0; &#125;
-&lt;/style&gt;</code></pre>
+                <pre><code id="refCodeBox_15">{"addBtn.addEventListener('click', () => {\n  const text = taskInput.value.trim();\n  if (!text) return;\n  const li = document.createElement('li');\n  li.className = 'task-item';\n  li.innerHTML = '<span>' + text + '</span>';\n  taskList.appendChild(li);\n  taskInput.value = '';\n});"}</code></pre>
             </div>
-        </article>
-
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Build a semantic HTML structure with form and task list container.</li>
-                <li>Style the application with modern CSS Flexbox or Grid.</li>
-                <li>Write complete JavaScript logic to add tasks dynamically and store state.</li>
-            </ol>
         </article>
 
     </div>
@@ -212,49 +143,13 @@ const level4Lessons = [
 
         if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partB_lesson15';
-        const DEFAULT_STARTER = `<!-- 🛠️ Project 15 Capstone: Production Web Application -->
-<header class="app-header">
-  <h1>⚡ Task Manager Pro</h1>
-</header>
-
-<main class="app-main">
-  <!-- Step 1: Create a task creation form with input and button -->
-
-
-  <!-- Step 2: Create a task list container -->
-
-</main>
-
-<style>
-  /* Step 3: Style the header, form, and task cards using Flexbox */
-
-
-</style>
-
-<script>
-  // Step 4: Write JS logic to add tasks, toggle completion, and persist to localStorage
-
-<\/script>
-`;
+        const DRAFT_KEY = 'partB_lesson15_remake_draft';
+        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Task Master Pro</title>\n  <style>\n    body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; padding: 24px; }\n    .app-container { max-width: 500px; margin: 0 auto; background: #1e293b; padding: 24px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }\n    .task-input { width: 70%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; box-sizing: border-box; }\n    .add-btn { padding: 10px 16px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }\n    .task-list { margin-top: 20px; list-style: none; padding: 0; }\n    .task-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #0f172a; border-radius: 8px; margin-bottom: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"app-container\">\n    <h2>🚀 Task Master Pro</h2>\n    <div style=\"display: flex; gap: 8px; margin-top: 14px;\">\n      <input type=\"text\" id=\"taskInput\" class=\"task-input\" placeholder=\"What needs to be done?\" />\n      <button id=\"addTaskBtn\" class=\"add-btn\">Add Task</button>\n    </div>\n    <ul id=\"taskList\" class=\"task-list\">\n      <li class=\"task-item\"><span>Master HTML5 & CSS3</span></li>\n    </ul>\n  </div>\n\n  <script>\n    const taskInput = document.getElementById('taskInput');\n    const addBtn = document.getElementById('addTaskBtn');\n    const taskList = document.getElementById('taskList');\n\n    // 👉 STEP 1: Add a click event listener to addBtn:\n    addBtn.addEventListener('click', () => {\n      const text = taskInput.value.trim();\n      if (!text) return;\n\n      // 👉 STEP 2: Create a new <li class=\"task-item\"> and append it to taskList:\n      const li = document.createElement('li');\n      li.className = 'task-item';\n      li.innerHTML = '<span>' + text + '</span>';\n      taskList.appendChild(li);\n\n      taskInput.value = '';\n    });\n  <\/script>\n</body>\n</html>\n";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { 
-                id: 'html_layout', 
-                label: 'Semantic HTML structure with form and task list container', 
-                fn: (code, doc) => !!doc?.querySelector('form') && (!!doc?.querySelector('ul') || !!doc?.querySelector('#taskList'))
-            },
-            { 
-                id: 'css_styles', 
-                label: 'Modern CSS styling with Flexbox or Grid', 
-                fn: (code) => /display\s*:\s*(flex|grid)/i.test(code),
-            },
-            { 
-                id: 'js_logic', 
-                label: 'Dynamic JS logic with submit listener and element creation', 
-                fn: (code) => /addEventListener\(['"]submit['"]/i.test(c) && /createElement/i.test(code)
-            }
+            { id: 'click_listener', text: 'Add click event listener to addBtn that reads taskInput.value', validator: (c) => /addBtn\.addEventListener\s*\(\s*["']click["']/i.test(c) && /taskInput\.value/i.test(c) },
+            { id: 'create_append', text: 'Create new <li> element and append to taskList', validator: (c) => /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c) && /taskList\.appendChild/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
@@ -293,18 +188,6 @@ const level4Lessons = [
 
         editor.addEventListener('scroll', syncScroll);
 
-        // Tab indentation key support
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
-
         // 4. Safe Reset Button Handler
         if (resetBtn) {
             DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
@@ -334,7 +217,7 @@ const level4Lessons = [
                     DojoEngine.clearLint();
                     DojoEngine.celebrateCompletion({
                         lessonTitle: 'Lesson 15: Capstone: Full Interactive Web Application',
-                        xp: 500,
+                        xp: 100,
                         completionKey: 'partB_lesson15_remake_complete',
                         
                         customMessage: 'You have mastered this project challenge!'
