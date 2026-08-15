@@ -666,8 +666,14 @@ window.NoviCodes = {
 };
 
 function initDevKitShortcuts() {
+    // If UserProfileModal.astro has already installed the global listener, exit cleanly
+    if (window._novicodes_devkit_installed) return;
+    window._novicodes_devkit_installed = true;
+
+    let isToggling = false;
+
     // 1. Five rapid clicks on navbar logo
-    const logos = document.querySelectorAll('.platform-logo, .brand-logo');
+    const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand');
     let logoClicks = 0;
     let logoClickTimer = null;
 
@@ -679,11 +685,15 @@ function initDevKitShortcuts() {
             if (logoClicks >= 5) {
                 e.preventDefault();
                 logoClicks = 0;
+                if (isToggling) return;
+                isToggling = true;
+                setTimeout(() => { isToggling = false; }, 800);
+
                 const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
                 if (isCurrentlyUnlocked) {
-                    window.NoviCodes.lockAll();
+                    if (window.NoviCodes && window.NoviCodes.lockAll) window.NoviCodes.lockAll();
                 } else {
-                    window.NoviCodes.unlockAll();
+                    if (window.NoviCodes && window.NoviCodes.unlockAll) window.NoviCodes.unlockAll();
                 }
             } else {
                 logoClickTimer = setTimeout(() => {
@@ -695,16 +705,21 @@ function initDevKitShortcuts() {
 
     // 2. Keyboard shortcut Ctrl + Alt + D
     window.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
+        if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D' || e.code === 'KeyD')) {
             e.preventDefault();
+            e.stopPropagation();
+            if (isToggling) return;
+            isToggling = true;
+            setTimeout(() => { isToggling = false; }, 800);
+
             const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
             if (isCurrentlyUnlocked) {
-                window.NoviCodes.lockAll();
+                if (window.NoviCodes && window.NoviCodes.lockAll) window.NoviCodes.lockAll();
             } else {
-                window.NoviCodes.unlockAll();
+                if (window.NoviCodes && window.NoviCodes.unlockAll) window.NoviCodes.unlockAll();
             }
         }
-    });
+    }, { capture: true });
 }
 
 /**
