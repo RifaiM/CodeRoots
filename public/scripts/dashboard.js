@@ -121,6 +121,27 @@ window.getUserXPAndRank = function() {
     }
     const l7Completed = l7BranchA + l7BranchB + l7BranchC;
 
+    let l8Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partG_lesson${i}_remake_complete`) === 'true') l8Completed++;
+        } catch (e) {}
+    }
+
+    let l9Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partH_lesson${i}_remake_complete`) === 'true') l9Completed++;
+        } catch (e) {}
+    }
+
+    let l10Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true') l10Completed++;
+        } catch (e) {}
+    }
+
     let totalXP = 0;
     if (isL0) totalXP += 250;
     if (isL1) totalXP += 300;
@@ -130,6 +151,9 @@ window.getUserXPAndRank = function() {
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
     totalXP += (l7Completed * 250);
+    totalXP += (l8Completed * 250);
+    totalXP += (l9Completed * 250);
+    totalXP += (l10Completed * 500);
 
     const dailyQuestXP = parseInt(localStorage.getItem('novicodes_daily_quest_xp') || '0', 10);
     const streakBonusXP = parseInt(localStorage.getItem('novicodes_streak_bonus_xp') || '0', 10);
@@ -137,7 +161,25 @@ window.getUserXPAndRank = function() {
 
     let rankTitle = 'Web Novice';
     let rankIcon = '🌱';
-    if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    if (l10Completed >= 6) {
+        rankTitle = 'Grand Master Fullstack Engineer';
+        rankIcon = '👑';
+    } else if (l10Completed > 0) {
+        rankTitle = 'Apex SaaS Challenger';
+        rankIcon = '🏆';
+    } else if (l9Completed >= 6) {
+        rankTitle = 'Fullstack Auth & DB Architect';
+        rankIcon = '🛡️';
+    } else if (l9Completed > 0) {
+        rankTitle = 'Security Engineer';
+        rankIcon = '🔐';
+    } else if (l8Completed >= 6) {
+        rankTitle = 'Fullstack API Specialist';
+        rankIcon = '🌉';
+    } else if (l8Completed > 0) {
+        rankTitle = 'API Integration Specialist';
+        rankIcon = '⚡';
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
     } else if (l7BranchA >= 6) {
@@ -185,8 +227,9 @@ window.getUserXPAndRank = function() {
         isL0, isL1, isL2, isL3,
         l4Completed, l5Completed, l6Completed,
         l7BranchA, l7BranchB, l7BranchC, l7Completed,
+        l8Completed, l9Completed, l10Completed,
         totalXP,
-        maxXP: 8000 + (l7Completed * 250),
+        maxXP: 18500,
         rankTitle,
         rankIcon
     };
@@ -331,6 +374,45 @@ function initUserProgress() {
             if (btnSpan) {
                 btnSpan.textContent = isFinished ? '✅ Level 7 Completed' : (stats.l7Completed > 0 ? `🚀 Continue Hub (${stats.l7Completed}/18) ➔` : '🚀 Enter Level 7 Hub');
             }
+        } else if (levelText === 'Level 8') {
+            const stats = window.getUserXPAndRank();
+            const isFinished = stats.l8Completed >= 6;
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: stats.l8Completed,
+                total: 6,
+                xpReward: 1500,
+                unit: 'Projects'
+            }, './7. partG/hub.html', 'Level 8 Fullstack Bridge');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isFinished ? '✅ Level 8 Completed' : (stats.l8Completed > 0 ? `🌉 Continue Dojo (${stats.l8Completed}/6) ➔` : '🌉 Enter Level 8 Dojo');
+            }
+        } else if (levelText === 'Level 9') {
+            const stats = window.getUserXPAndRank();
+            const isFinished = stats.l9Completed >= 6;
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: stats.l9Completed,
+                total: 6,
+                xpReward: 1500,
+                unit: 'Projects'
+            }, './8. partH/hub.html', 'Level 9 Auth & Database');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isFinished ? '✅ Level 9 Completed' : (stats.l9Completed > 0 ? `🛡️ Continue Dojo (${stats.l9Completed}/6) ➔` : '🛡️ Enter Level 9 Dojo');
+            }
+        } else if (levelText.includes('Level 10') || levelText.includes('LEVEL 10')) {
+            const stats = window.getUserXPAndRank();
+            const isFinished = stats.l10Completed >= 6;
+            updateTrackCardState(card, statusIcon, btn, isFinished, {
+                count: stats.l10Completed,
+                total: 6,
+                xpReward: 3000,
+                unit: 'Milestones'
+            }, './9. partI/hub.html', 'Level 10 Apex SaaS Capstone');
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isFinished ? '✅ Apex Capstone Completed' : (stats.l10Completed > 0 ? `🏆 Continue Apex (${stats.l10Completed}/6) ➔` : '🏆 Launch Apex Capstone');
+            }
         }
     });
 
@@ -402,9 +484,12 @@ window.NoviCodes = {
             localStorage.setItem(`partF_branchA_lesson${i}_complete`, 'true');
             localStorage.setItem(`partF_branchB_lesson${i}_complete`, 'true');
             localStorage.setItem(`partF_branchC_lesson${i}_complete`, 'true');
+            localStorage.setItem(`partG_lesson${i}_remake_complete`, 'true');
+            localStorage.setItem(`partH_lesson${i}_remake_complete`, 'true');
+            localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
         }
 
-        console.log('%c🔓 [NoviCodes DevKit] All 79+ lessons, tracks, and certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+        console.log('%c🔓 [NoviCodes DevKit] All 97+ lessons, tracks, and certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
         if (typeof Swal !== 'undefined') {
             Swal.fire({
                 icon: 'success',

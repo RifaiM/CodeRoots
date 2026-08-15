@@ -20,13 +20,16 @@ export interface UserStats {
     l7BranchA: number;
     l7BranchB: number;
     l7BranchC: number;
+    l8Completed: number;
+    l9Completed: number;
+    l10Completed: number;
     dailyQuestXP: number;
     streakBonusXP: number;
     streakCount: number;
 }
 
 export function getUserXPAndRank(): UserStats {
-    const maxXP = 8000;
+    const maxXP = 18500;
 
     if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
         return {
@@ -45,6 +48,9 @@ export function getUserXPAndRank(): UserStats {
             l7BranchA: 0,
             l7BranchB: 0,
             l7BranchC: 0,
+            l8Completed: 0,
+            l9Completed: 0,
+            l10Completed: 0,
             dailyQuestXP: 0,
             streakBonusXP: 0,
             streakCount: 0
@@ -92,6 +98,27 @@ export function getUserXPAndRank(): UserStats {
     }
     const l7Completed = l7BranchA + l7BranchB + l7BranchC;
 
+    let l8Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partG_lesson${i}_remake_complete`) === 'true') l8Completed++;
+        } catch (e) {}
+    }
+
+    let l9Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partH_lesson${i}_remake_complete`) === 'true') l9Completed++;
+        } catch (e) {}
+    }
+
+    let l10Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true') l10Completed++;
+        } catch (e) {}
+    }
+
     function safeParseInt(val: any, defaultVal: number = 0): number {
         if (!val) return defaultVal;
         const parsed = parseInt(String(val), 10);
@@ -112,13 +139,34 @@ export function getUserXPAndRank(): UserStats {
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
     totalXP += (l7Completed * 250);
+    totalXP += (l8Completed * 250);
+    totalXP += (l9Completed * 250);
+    totalXP += (l10Completed * 500);
     totalXP += (dailyQuestXP + streakBonusXP);
     totalXP = Math.max(0, isNaN(totalXP) ? 0 : totalXP);
 
     let rankTitle = 'Web Explorer';
     let rankIcon = '🌐';
 
-    if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    if (l10Completed >= 6) {
+        rankTitle = 'Grand Master Fullstack Engineer';
+        rankIcon = '👑';
+    } else if (l10Completed > 0) {
+        rankTitle = 'Apex SaaS Challenger';
+        rankIcon = '🏆';
+    } else if (l9Completed >= 6) {
+        rankTitle = 'Fullstack Auth & DB Architect';
+        rankIcon = '🛡️';
+    } else if (l9Completed > 0) {
+        rankTitle = 'Security Engineer';
+        rankIcon = '🔐';
+    } else if (l8Completed >= 6) {
+        rankTitle = 'Fullstack API Specialist';
+        rankIcon = '🌉';
+    } else if (l8Completed > 0) {
+        rankTitle = 'API Integration Specialist';
+        rankIcon = '⚡';
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
     } else if (l7BranchA >= 6) {
@@ -178,6 +226,9 @@ export function getUserXPAndRank(): UserStats {
         l7BranchA,
         l7BranchB,
         l7BranchC,
+        l8Completed,
+        l9Completed,
+        l10Completed,
         dailyQuestXP,
         streakBonusXP,
         streakCount
