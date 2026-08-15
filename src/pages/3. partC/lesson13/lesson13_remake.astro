@@ -1,8 +1,30 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!\n\nfunction LiveUserDirectory() {\n  const [users, setUsers] = React.useState([]);\n  const [isLoading, setIsLoading] = React.useState(true);\n\n  // Step 1: Use React.useEffect() with empty dependency array []\n  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state\n  // Write useEffect and fetch code here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      <h2>🌐 Live API Directory</h2>\n      {isLoading ? <p>⏳ Fetching remote API data...</p> : (\n        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>\n      )}\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserDirectory />);";
+const starterCode = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
 
+function LiveUserDirectory() {
+  const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  // 👉 STEP 1: Fetch remote API data on initial mount and store into users state
+  // API URL: 'https://jsonplaceholder.typicode.com/users'
+  // Write your effect and fetch logic below:
+
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>
+      <h2>🌐 Live API Directory</h2>
+      {isLoading ? <p>⏳ Fetching remote API data...</p> : (
+        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>
+      )}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveUserDirectory />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -109,6 +131,17 @@ const level5Lessons = [
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
@@ -147,15 +180,7 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+        
 
     </div>
 </LessonLayout>
@@ -175,30 +200,51 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson13';
-        const DEFAULT_STARTER = "// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!\n\nfunction LiveUserDirectory() {\n  const [users, setUsers] = React.useState([]);\n  const [isLoading, setIsLoading] = React.useState(true);\n\n  // Step 1: Use React.useEffect() with empty dependency array []\n  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state\n  // Write useEffect and fetch code here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      <h2>🌐 Live API Directory</h2>\n      {isLoading ? <p>⏳ Fetching remote API data...</p> : (\n        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>\n      )}\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserDirectory />);";
+        const DEFAULT_STARTER = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
+
+function LiveUserDirectory() {
+  const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  // 👉 STEP 1: Fetch remote API data on initial mount and store into users state
+  // API URL: 'https://jsonplaceholder.typicode.com/users'
+  // Write your effect and fetch logic below:
+
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>
+      <h2>🌐 Live API Directory</h2>
+      {isLoading ? <p>⏳ Fetching remote API data...</p> : (
+        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>
+      )}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveUserDirectory />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'useeffect',
                 label: 'Implement <code>React.useEffect(...)</code>',
-                fn: (code) => /(?:React\.)?useEffect\s*\(/i.test(code)
+                fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\(/i.test(c); }
             },
             {
                 id: 'fetch_api',
                 label: 'Call <code>fetch(...)</code> inside effect',
-                fn: (code) => /fetch\s*\(/i.test(code)
+                fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch\s*\(/i.test(c); }
             },
             {
                 id: 'deps_empty',
                 label: 'Pass empty dependency array <code>[]</code>',
-                fn: (code) => /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*\]\s*\)/i.test(code)
+                fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*\]\s*\)/i.test(c); }
             }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync

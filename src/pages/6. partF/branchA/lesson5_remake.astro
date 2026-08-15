@@ -77,6 +77,17 @@ const branchLessons = [
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
@@ -126,15 +137,7 @@ app.add_middleware(
             </div>
         </article>
 
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+        
 
     </div>
 </LessonLayout>

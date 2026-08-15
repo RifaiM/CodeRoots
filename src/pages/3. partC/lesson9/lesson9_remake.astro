@@ -1,8 +1,41 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🎛️ Lesson 9: Lifting State Up & Cross-Component Communication!\n\nfunction ProductSelector({ onSelect }) {\n  return (\n    <button onClick={() => onSelect({ name: \"Mechanical Keyboard\", price: 129 })}>\n      Add Keyboard ($129)\n    </button>\n  );\n}\n\nfunction CartSummary({ items }) {\n  return <div>Total Items in Cart: {items.length}</div>;\n}\n\nfunction App() {\n  // Step 1: Declare state 'cart' and setter 'setCart' initialized to []\n  const cart = [];\n\n  const handleAddToCart = (item) => {\n    // Step 2: Update cart state immutably: setCart([...cart, item])\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🛒 Shopping Dojo</h2>\n      <ProductSelector onSelect={handleAddToCart} />\n      <CartSummary items={cart} />\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
+const starterCode = `// 🎛️ Lesson 9: Lifting State Up & Cross-Component Communication!
 
+function ProductSelector({ onSelect }) {
+  return (
+    <button onClick={() => onSelect({ name: "Mechanical Keyboard", price: 129 })}>
+      Add Keyboard ($129)
+    </button>
+  );
+}
+
+function CartSummary({ items }) {
+  return <div>Total Items in Cart: {items.length}</div>;
+}
+
+function App() {
+  // 👉 STEP 1: Declare state 'cart' and setter 'setCart' initialized to [] using React.useState([])
+  const cart = [];
+
+  const handleAddToCart = (item) => {
+    // 👉 STEP 2: Update cart state immutably by appending the new item:
+    
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🛒 Shopping Dojo</h2>
+      <ProductSelector onSelect={handleAddToCart} />
+      <CartSummary items={cart} />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -109,6 +142,17 @@ const level5Lessons = [
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
@@ -147,15 +191,7 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+        
 
     </div>
 </LessonLayout>
@@ -175,25 +211,57 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson9';
-        const DEFAULT_STARTER = "// 🎛️ Lesson 9: Lifting State Up & Cross-Component Communication!\n\nfunction ProductSelector({ onSelect }) {\n  return (\n    <button onClick={() => onSelect({ name: \"Mechanical Keyboard\", price: 129 })}>\n      Add Keyboard ($129)\n    </button>\n  );\n}\n\nfunction CartSummary({ items }) {\n  return <div>Total Items in Cart: {items.length}</div>;\n}\n\nfunction App() {\n  // Step 1: Declare state 'cart' and setter 'setCart' initialized to []\n  const cart = [];\n\n  const handleAddToCart = (item) => {\n    // Step 2: Update cart state immutably: setCart([...cart, item])\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🛒 Shopping Dojo</h2>\n      <ProductSelector onSelect={handleAddToCart} />\n      <CartSummary items={cart} />\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
+        const DEFAULT_STARTER = `// 🎛️ Lesson 9: Lifting State Up & Cross-Component Communication!
+
+function ProductSelector({ onSelect }) {
+  return (
+    <button onClick={() => onSelect({ name: "Mechanical Keyboard", price: 129 })}>
+      Add Keyboard ($129)
+    </button>
+  );
+}
+
+function CartSummary({ items }) {
+  return <div>Total Items in Cart: {items.length}</div>;
+}
+
+function App() {
+  // 👉 STEP 1: Declare state 'cart' and setter 'setCart' initialized to [] using React.useState([])
+  const cart = [];
+
+  const handleAddToCart = (item) => {
+    // 👉 STEP 2: Update cart state immutably by appending the new item:
+    
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🛒 Shopping Dojo</h2>
+      <ProductSelector onSelect={handleAddToCart} />
+      <CartSummary items={cart} />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'lift_state',
                 label: 'Lift state <code>const [cart, setCart] = React.useState([])</code>',
-                fn: (code) => /const\s*\[\s*cart\s*,\s*setCart\s*\]\s*=\s*(?:React\.)?useState/i.test(code)
+                fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*cart\s*,\s*setCart\s*\]\s*=\s*(?:React\.)?useState/i.test(c); }
             },
             {
                 id: 'set_cart',
-                label: 'Update cart immutably <code>setCart([...cart, item])</code>',
-                fn: (code) => /setCart\s*\(\s*\[\s*\.\.\.cart/i.test(code) || /setCart\s*\(\s*\(?c\)?\s*=>\s*\[\s*\.\.\.c/i.test(code)
+                label: 'Update cart immutably with <code>setCart</code>',
+                fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setCart\s*\(\s*\[\s*\.\.\.cart/i.test(c) || /setCart\s*\(\s*\(?c\)?\s*=>\s*\[\s*\.\.\.c/i.test(c); }
             }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync

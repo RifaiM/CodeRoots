@@ -119,6 +119,17 @@ const level6Lessons = [
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
@@ -165,15 +176,7 @@ except Exception as e:
             </div>
         </article>
 
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+        
 
     </div>
 </LessonLayout>

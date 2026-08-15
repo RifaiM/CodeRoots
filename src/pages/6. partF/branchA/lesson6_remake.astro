@@ -6,18 +6,19 @@ const starterCode = `# .github/workflows/deploy.yml
 
 name: Deploy Production
 
-# Step 1: Set push trigger on main branch
+# 👉 STEP 1: Set push trigger on main branch
 on:
   push:
     branches:
       - 
 
-# Step 2: Define deploy job with ubuntu-latest and checkout step
+# 👉 STEP 2: Define deploy job with ubuntu-latest runner and checkout step
 jobs:
   deploy:
     runs-on: 
     steps:
-      # Add Checkout step (uses: actions/checkout@v4) and Install & Test step (run: npm test)`;
+      # Write your actions checkout and test steps below:
+`;
 
 const branchLessons = [
     {
@@ -80,6 +81,17 @@ const branchLessons = [
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
@@ -127,15 +139,7 @@ jobs:
             </div>
         </article>
 
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+        
 
     </div>
 </LessonLayout>
@@ -161,28 +165,27 @@ jobs:
 
 name: Deploy Production
 
-# Step 1: Set push trigger on main branch
+# 👉 STEP 1: Set push trigger on main branch
 on:
   push:
     branches:
       - 
 
-# Step 2: Define deploy job with ubuntu-latest and checkout step
+# 👉 STEP 2: Define deploy job with ubuntu-latest runner and checkout step
 jobs:
   deploy:
     runs-on: 
     steps:
-      # Add Checkout step (uses: actions/checkout@v4) and Install & Test step (run: npm test)`;
+      # Write your actions checkout and test steps below:
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'trigger', label: 'Trigger on push to <code>main</code>', fn: (code) => /branches:[\s\S]*?-\s*main/i.test(code) },
-                { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => /runs-on:\s*ubuntu-latest/i.test(code) },
-                { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => /actions\/checkout@v4/i.test(code) }
+                { id: 'trigger', label: 'Trigger on push to <code>main</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /branches:[\s\S]*?-\s*main/i.test(c); } },
+                { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /runs-on:\s*ubuntu-latest/i.test(c); } },
+                { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /actions\/checkout@v4/i.test(c); } }
             ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'terminal'
         });
 
