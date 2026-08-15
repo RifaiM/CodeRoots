@@ -186,9 +186,22 @@ export default function Home() &#123;
             lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
             syncScroll();
 
-            // Preview update if HTML mode
+                        // Next.js App Router Simulated Live Preview
             if (previewIframe) {
-                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+                const rawCode = editor.value;
+                let cleanCode = rawCode
+                    .replace(/['"]use client['"];?/g, '')
+                    .replace(/export\s+default\s+function/g, 'function')
+                    .replace(/export\s+const\s+/g, 'const ')
+                    .replace(/export\s+let\s+/g, 'let ')
+                    .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
+
+                let pageTitle = "Next.js App";
+                const titleMatch = rawCode.match(/title\s*:\s*["']([^"']+)["']/i);
+                if (titleMatch) pageTitle = titleMatch[1];
+
+                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><script src="https://cdn.tailwindcss.com"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="color: #059669; font-weight: 700;">GET</span><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a; font-weight: 600;">localhost:3000/</span><span style="margin-left: auto; color: #94a3b8; font-size: 11px;">Title: ' + pageTitle + '</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;">⚡ Export the default <code>Home()</code> function component to preview your Next.js page.</div></div><script type="text/babel">try { ' + cleanCode + '\nif (typeof Home !== "undefined") { ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Home)); } else if (typeof Page !== "undefined") { ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Page)); } } catch (err) {}<\/script></body></html>';
+                previewIframe.srcdoc = htmlDoc;
             }
 
             // Real-Time Checklist Verification

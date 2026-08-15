@@ -126,15 +126,65 @@ const level5Lessons = [
         Learn concise arrow function syntax, lexical this binding, and implicit returns in modern JavaScript programming.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> React components are like LEGO bricks. Instead of building an entire castle in one giant piece, you build small, reusable bricks (<Header />, <Card />, <Footer />) and assemble them into a complete page tree.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Component Tree Architecture</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code"><Header /></div>
+                    <div class="tag-result">Top bar component rendering branding and title</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code"><Card title='...' /></div>
+                    <div class="tag-result">Reusable content card with dynamic props</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code"><App /></div>
+                    <div class="tag-result">Root parent component assembling the entire tree</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_2')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_2">function Header() {
+  return &lt;header&gt;&lt;h1&gt;🍱 Component Dojo&lt;/h1&gt;&lt;/header&gt;;
+}
+
+function Card({ title, desc }) {
+  return (
+    &lt;div className="card-box"&gt;
+      &lt;h3&gt;{title}&lt;/h3&gt;
+      &lt;p&gt;{desc}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+function App() {
+  return (
+    &lt;main&gt;
+      &lt;Header /&gt;
+      &lt;Card title="React JSX" desc="Declarative UI syntax" /&gt;
+    &lt;/main&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

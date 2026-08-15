@@ -139,15 +139,55 @@ const level5Lessons = [
         Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> ES6+ is like a multi-tool upgrade for JavaScript. Spread operator (...) duplicates objects instantly, destructuring unpacks values directly into variables, and template literals create dynamic strings cleanly.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Modern ES6+ Syntax Breakdown</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">{ ...dev, rank: 'Pro' }</div>
+                    <div class="tag-result">Spread: Creates immutable copies with new keys</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">const { name, role } = dev</div>
+                    <div class="tag-result">Destructure: Extracts properties into variables</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">skills.map(s => `<li>${s}</li>`)</div>
+                    <div class="tag-result">Array Map: Transforms items into UI strings</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_1">const dev = { name: "Alex", role: "Frontend" };
+// 1. Spread Operator
+const updated = { ...dev, level: "Level 5 Master" };
+
+// 2. Destructuring
+const { name, role, level } = updated;
+
+// 3. Arrow Function & Template String
+const renderProfile = () =&gt; {
+    return `&lt;div class="card"&gt;&lt;h2&gt;${name}&lt;/h2&gt;&lt;p&gt;${role}&lt;/p&gt;&lt;/div&gt;`;
+};</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

@@ -129,15 +129,61 @@ const level5Lessons = [
         Manage component-level reactive state, trigger automated re-renders, and use state updater functions.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Conditional rendering is like a traffic light. Depending on the state (e.g. isLoggedIn or isLoading), React dynamically displays different UI branches without reloading the page.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Conditional UI Patterns</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">isAuth ? <Dashboard /> : <Login /></div>
+                    <div class="tag-result">Ternary: switches between two UI states</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">hasAlert && <AlertBanner /></div>
+                    <div class="tag-result">Logical AND: renders only when true</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">if (error) return <ErrorView /></div>
+                    <div class="tag-result">Guard Clause: early return for error handling</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_10')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_10">function AuthBox({ user, onLogout }) {
+  return (
+    &lt;div className="auth-box"&gt;
+      {user ? (
+        &lt;div&gt;
+          &lt;h2&gt;Welcome back, {user.name}!&lt;/h2&gt;
+          &lt;button onClick={onLogout}&gt;Sign Out&lt;/button&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div&gt;
+          &lt;h2&gt;Please log in to continue&lt;/h2&gt;
+          &lt;button&gt;Sign In&lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

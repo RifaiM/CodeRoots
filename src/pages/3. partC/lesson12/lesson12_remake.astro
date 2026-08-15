@@ -123,15 +123,59 @@ const level5Lessons = [
         Render dynamic UI variations conditionally using JavaScript ternary operators, null coalescing, and guard clauses.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Guard clauses in React let you handle loading, error, and empty states cleanly before rendering the main content. It prevents runtime errors when accessing properties on uninitialized data.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Loading & Empty State Guards</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">if (isLoading) return <Spinner /></div>
+                    <div class="tag-result">Displays loading skeleton while fetching</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">if (error) return <ErrorCard /></div>
+                    <div class="tag-result">Catches network failures gracefully</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">if (data.length === 0) return <Empty /></div>
+                    <div class="tag-result">Handles zero-result states cleanly</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_12')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_12">function UserList({ users, isLoading, error }) {
+  if (isLoading) {
+    return &lt;div className="loader"&gt;⏳ Loading user records...&lt;/div&gt;;
+  }
+  
+  if (error) {
+    return &lt;div className="error-box"&gt;⚠️ Failed to load users.&lt;/div&gt;;
+  }
+
+  if (users.length === 0) {
+    return &lt;div className="empty-box"&gt;No users found.&lt;/div&gt;;
+  }
+
+  return &lt;ul&gt;{users.map(u =&gt; &lt;li key={u.id}&gt;{u.name}&lt;/li&gt;)}&lt;/ul&gt;;
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

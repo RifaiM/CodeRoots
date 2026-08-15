@@ -187,9 +187,21 @@ import Counter from '../components/Counter';
             lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
             syncScroll();
 
-            // Preview update if HTML mode
+                        // Jest & React Testing Library Simulated Test Runner
             if (previewIframe) {
-                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+                const rawCode = editor.value;
+                const hasTest = /test\s*\(/i.test(rawCode);
+                const hasRender = /render\s*\(/i.test(rawCode);
+                const hasClick = /fireEvent\.click/i.test(rawCode);
+                const hasExpect = /expect\s*\(/i.test(rawCode);
+
+                const testsPassed = hasTest && hasRender && hasClick && hasExpect;
+
+                const passHtml = '<div style="color: #4ade80; font-weight: bold;">PASS __tests__/Counter.test.jsx</div><div style="color: #22c55e; padding-left: 12px;">✓ increments count on click (14 ms)</div><div style="border-top: 1px solid #1e293b; margin-top: 12px; padding-top: 8px; color: #94a3b8;">Tests: <span style="color: #4ade80; font-weight: bold;">1 passed</span>, 1 total<br>Snapshots: 0 total<br>Time: 0.812 s</div>';
+                const waitHtml = '<div style="color: #facc15;">WAITING: Write your test suite in the editor using test(), render(), fireEvent, and expect().</div><div style="color: #64748b; margin-top: 8px; font-size: 11px;">• test() declared: ' + (hasTest ? '✅ Yes' : '⏳ Pending') + '<br>• render(&lt;Counter /&gt;): ' + (hasRender ? '✅ Yes' : '⏳ Pending') + '<br>• fireEvent.click(): ' + (hasClick ? '✅ Yes' : '⏳ Pending') + '<br>• expect() assertion: ' + (hasExpect ? '✅ Yes' : '⏳ Pending') + '</div>';
+
+                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"><\/script><style>body { margin: 0; padding: 14px; font-family: monospace; background: #0f172a; color: #f8fafc; font-size: 12px; }</style></head><body><div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><span style="color: #38bdf8; font-weight: 700;">JEST TEST RUNNER</span><span style="color: #94a3b8; font-size: 11px;">__tests__/Counter.test.jsx</span></div><div style="background: #090d16; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; line-height: 1.6;"><div style="color: #94a3b8; margin-bottom: 8px;">$ jest --watchAll=false</div>' + (testsPassed ? passHtml : waitHtml) + '</div></body></html>';
+                previewIframe.srcdoc = htmlDoc;
             }
 
             // Real-Time Checklist Verification

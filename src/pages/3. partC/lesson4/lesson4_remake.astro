@@ -131,15 +131,57 @@ const level5Lessons = [
         Construct multi-line strings and embed dynamic JavaScript expressions using backtick template literals effortlessly.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> State is a component's personal memory. Unlike regular variables that disappear when a function finishes, React preserves state values across renders and automatically updates the screen whenever state changes.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> React useState Lifecycle</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">const [count, setCount] = useState(0)</div>
+                    <div class="tag-result">Initializes state with 0 and returns setter</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">setCount(count + 1)</div>
+                    <div class="tag-result">Updates state value and triggers reactive UI re-render</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">onClick={() => setCount(0)}</div>
+                    <div class="tag-result">Resets counter on button click event</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_4')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_4">import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div className="counter-box"&gt;
+      &lt;h2&gt;Count: {count}&lt;/h2&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment ➕&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(0)}&gt;Reset 🔄&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

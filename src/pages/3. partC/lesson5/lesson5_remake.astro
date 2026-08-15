@@ -141,15 +141,61 @@ const level5Lessons = [
         Transform and filter data collections declaratively using array map, filter, and reduce methods in modern JavaScript.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Array.map() in React is like a factory assembly line. You feed in a raw array of data items, and map transforms each item into a rendered JSX element with a unique key.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Dynamic List Rendering</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">items.map(item => ...)</div>
+                    <div class="tag-result">Iterates through array and outputs JSX elements</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">key={item.id}</div>
+                    <div class="tag-result">Unique key for React DOM reconciliation performance</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">items.filter(i => i.active)</div>
+                    <div class="tag-result">Filters collection before mapping to screen</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_5')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_5">const courses = [
+  { id: 1, name: "HTML5 Structure", xp: 100 },
+  { id: 2, name: "CSS3 Flexbox", xp: 150 },
+  { id: 3, name: "Modern React", xp: 250 }
+];
+
+function CourseList() {
+  return (
+    &lt;ul&gt;
+      {courses.map(course =&gt; (
+        &lt;li key={course.id}&gt;
+          &lt;strong&gt;{course.name}&lt;/strong&gt; • +{course.xp} XP
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

@@ -124,15 +124,60 @@ const level5Lessons = [
         Handle asynchronous loading, error catching, and data rendering states seamlessly in production React applications.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Debouncing in search filters is like waiting for someone to stop talking before answering. Instead of triggering an API search on every single letter typed, you wait 300ms after the user stops typing.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Debounced Search & Cleanup Effects</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">const timer = setTimeout(fn, 300)</div>
+                    <div class="tag-result">Delays execution until user pauses typing</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">return () => clearTimeout(timer)</div>
+                    <div class="tag-result">Cleanup function cancels timer if query changes again</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">useEffect(() => ..., [query])</div>
+                    <div class="tag-result">Effect re-runs whenever search query changes</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_14')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_14">function SearchBox() {
+  const [query, setQuery] = React.useState("");
+  const [results, setResults] = React.useState([]);
+
+  React.useEffect(() =&gt; {
+    const timer = setTimeout(() =&gt; {
+      if (query.trim()) {
+        performSearch(query).then(res =&gt; setResults(res));
+      }
+    }, 300);
+
+    return () =&gt; clearTimeout(timer); // Cleanup on next keystroke
+  }, [query]);
+
+  return &lt;input value={query} onChange={e =&gt; setQuery(e.target.value)} /&gt;;
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

@@ -137,15 +137,58 @@ const level5Lessons = [
         Pass data between parent and child components using typed React props, children composition, and default values.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Lifting state up is like putting a scoreboard on the stadium wall instead of in one player's pocket. When two sibling components need the same data, you move the state to their common parent.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Parent-Child Communication</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">const [cart, setCart] = useState([])</div>
+                    <div class="tag-result">State lives in common parent component</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code"><Child onAdd={item => setCart(...)} /></div>
+                    <div class="tag-result">Parent passes callback function as prop</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">onClick={() => onAdd(product)}</div>
+                    <div class="tag-result">Child invokes callback to update parent state</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_9')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_9">function App() {
+  const [cart, setCart] = React.useState([]);
+
+  const handleAddToCart = (item) =&gt; {
+    setCart([...cart, item]);
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;ProductSelector onSelect={handleAddToCart} /&gt;
+      &lt;CartSummary cart={cart} /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

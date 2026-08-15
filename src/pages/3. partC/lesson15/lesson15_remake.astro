@@ -133,15 +133,65 @@ const level5Lessons = [
         Architect a complete, production-grade interactive React web application integrating all framework pillars and hooks.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> A Capstone App combines all your tools into a complete production system: state management, real-time list rendering, interactive search filtering, item deletion, and responsive UI feedback.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Fullstack React App Architecture</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">const [tasks, setTasks] = useState([...])</div>
+                    <div class="tag-result">Main collection state for data records</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">setTasks([...tasks, newTask])</div>
+                    <div class="tag-result">Adds items immutably without direct mutation</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">tasks.filter(t => t.id !== id)</div>
+                    <div class="tag-result">Deletes item by filtering out matched ID</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_15')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_15">function TaskManager() {
+  const [tasks, setTasks] = React.useState([
+    { id: 1, title: "Master React Hooks", done: true },
+    { id: 2, title: "Build Capstone SPA", done: false }
+  ]);
+  const [input, setInput] = React.useState("");
+
+  const handleAdd = () =&gt; {
+    if (!input.trim()) return;
+    setTasks([...tasks, { id: Date.now(), title: input, done: false }]);
+    setInput("");
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;input value={input} onChange={e =&gt; setInput(e.target.value)} /&gt;
+      &lt;button onClick={handleAdd}&gt;Add Task&lt;/button&gt;
+      &lt;ul&gt;{tasks.map(t =&gt; &lt;li key={t.id}&gt;{t.title}&lt;/li&gt;)}&lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

@@ -125,15 +125,59 @@ const level5Lessons = [
         Synchronize components with external systems, manage cleanup timers, and configure reactive dependency arrays.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Fetching REST APIs inside useEffect is like ordering delivery food. The component mounts, sends an HTTP request to the server, and when the data arrives, updates state to render the fresh content.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> REST API Data Fetching Flow</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">fetch(url).then(res => res.json())</div>
+                    <div class="tag-result">Sends async HTTP GET request to REST API endpoint</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">setUsers(data); setIsLoading(false);</div>
+                    <div class="tag-result">Stores response data and clears loading spinner</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">.catch(err => setError(err.message))</div>
+                    <div class="tag-result">Safely handles network errors and exceptions</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_13')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_13">function Directory() {
+  const [users, setUsers] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() =&gt; {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res =&gt; res.json())
+      .then(data =&gt; {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []); // Empty array = run once on mount
+
+  return loading ? &lt;p&gt;Loading...&lt;/p&gt; : &lt;div&gt;{users.length} users&lt;/div&gt;;
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

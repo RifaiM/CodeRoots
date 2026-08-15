@@ -125,15 +125,54 @@ const level5Lessons = [
         Build modular, reusable React UI components by composing small functional pieces into interactive application views.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> props.children is like a picture frame. The frame provides the border, padding, and layout, while whatever elements you place inside <CardShell>...</CardShell> are rendered within the frame.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Component Composition & Children</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">function Shell({ children })</div>
+                    <div class="tag-result">Receives nested JSX elements as children prop</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code"><Shell><p>Nested</p></Shell></div>
+                    <div class="tag-result">Passes inner elements between component tags</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code"><Shell {...props}></div>
+                    <div class="tag-result">Forwards layout styles and wrapper architecture</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_8')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_8">function CardShell({ title, children }) {
+  return (
+    &lt;div className="shell-container"&gt;
+      &lt;h3&gt;{title}&lt;/h3&gt;
+      &lt;div className="shell-body"&gt;
+        {children}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

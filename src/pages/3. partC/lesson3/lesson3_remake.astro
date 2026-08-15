@@ -134,15 +134,54 @@ const level5Lessons = [
         Unpack values from arrays and properties from objects into distinct variables with clean ES6 destructuring patterns.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Props are like parameters passed into a function. They flow unidirectionally downwards from parent components to child components, making your UI dynamic and flexible.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Props & Dataflow Mastery</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code"><Product name='Keyboard' price={99} /></div>
+                    <div class="tag-result">Passes string and number props to child</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">function Product({ name, price })</div>
+                    <div class="tag-result">Destructures props in function signature</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">props.isAvailable && <Badge /></div>
+                    <div class="tag-result">Renders badge only if prop evaluates to true</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_3')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_3">function ProductCard({ name, price, category, isAvailable }) {
+  return (
+    &lt;div className="product-card"&gt;
+      &lt;span className="category-pill"&gt;{category}&lt;/span&gt;
+      &lt;h3&gt;{name}&lt;/h3&gt;
+      &lt;p className="price"&gt;${price}&lt;/p&gt;
+      {isAvailable ? &lt;span className="in-stock"&gt;In Stock ✅&lt;/span&gt; : &lt;span&gt;Sold Out&lt;/span&gt;}
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

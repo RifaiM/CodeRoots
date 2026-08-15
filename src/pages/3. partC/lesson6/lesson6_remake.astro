@@ -132,15 +132,60 @@ const level5Lessons = [
         Organize modular frontend codebases with export, export default, named imports, and ES module dependency trees.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Controlled inputs create a Single Source of Truth. The React state variable dictates what appears in the input field, and user keystrokes update the state via onChange events.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> Two-Way Form Binding</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">value={name}</div>
+                    <div class="tag-result">Input always displays current React state value</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">onChange={e => setName(e.target.value)}</div>
+                    <div class="tag-result">Updates state on every keystroke in real-time</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">e.preventDefault()</div>
+                    <div class="tag-result">Prevents page reload on form submit action</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_6')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_6">function UserForm() {
+  const [name, setName] = React.useState("");
+
+  return (
+    &lt;form onSubmit={(e) =&gt; e.preventDefault()}&gt;
+      &lt;label&gt;Enter Name:&lt;/label&gt;
+      &lt;input 
+        type="text" 
+        value={name} 
+        onChange={(e) =&gt; setName(e.target.value)} 
+        placeholder="Type your name..."
+      /&gt;
+      &lt;p&gt;Preview: &lt;strong&gt;{name || "Anonymous"}&lt;/strong&gt;&lt;/p&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->

@@ -126,15 +126,54 @@ const level5Lessons = [
         Write declarative UI markup with React JSX syntax, embedded expressions, fragment containers, and HTML conversion rules.
     </p>
 
-    <!-- Concept Slot (Left Pane) -->
+        <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
-                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
-            </p>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> useEffect is your portal to the outside world. It lets you run side effects like fetching REST APIs, setting timers, or syncing localStorage after React renders your component.
+            </div>
+        </article>
+
+        <!-- Interactive Feature Explorer -->
+        <article class="concept-card">
+            <h3><span>⚛️</span> useEffect Lifecycle & Dependency Array</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">useEffect(() => { ... }, [])</div>
+                    <div class="tag-result">Runs once on initial component mount</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">useEffect(() => { ... }, [id])</div>
+                    <div class="tag-result">Re-runs whenever 'id' variable changes</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">return () => cleanup()</div>
+                    <div class="tag-result">Cleanup function runs on component unmount</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Working Reference Code & Architecture Snippet -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Architecture Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_7">function NewsFeed({ category }) {
+  const [articles, setArticles] = React.useState([]);
+
+  React.useEffect(() =&gt; {
+    // Runs whenever category changes
+    fetchNews(category).then(data =&gt; setArticles(data));
+  }, [category]); // Dependency Array
+
+  return &lt;div&gt;{articles.length} articles loaded&lt;/div&gt;;
+}</code></pre>
+            </div>
         </article>
 
         <!-- Task Instructions Card -->
