@@ -302,6 +302,19 @@ root.render(<App />);
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Component Slots with children',
+                    xp: 150,
+                    completionKey: 'partC_lesson8_remake_complete',
+                    nextUrl: '/3. partC/lesson9/lesson9_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

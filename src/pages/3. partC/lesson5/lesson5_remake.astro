@@ -267,6 +267,19 @@ const level5Lessons = [
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Interactive State with useState()',
+                    xp: 150,
+                    completionKey: 'partC_lesson5_remake_complete',
+                    nextUrl: '/3. partC/lesson6/lesson6_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

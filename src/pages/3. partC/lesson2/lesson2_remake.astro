@@ -313,6 +313,19 @@ root.render(<App />);
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'React Component Tree',
+                    xp: 150,
+                    completionKey: 'partC_lesson2_remake_complete',
+                    nextUrl: '/3. partC/lesson3/lesson3_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

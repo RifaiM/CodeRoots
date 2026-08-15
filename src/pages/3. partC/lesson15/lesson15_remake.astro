@@ -4,9 +4,9 @@ import LessonLayout from '../../../layouts/LessonLayout.astro';
 const starterCode = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
 
 function TaskTracker() {
-  // 👉 STEP 1: Declare state 'tasks' initialized to ["Master React JSX", "Build Component Tree"]
-  // (Hint: const [tasks, setTasks] = React.useState(["Master React JSX", "Build Component Tree"]);)
-  const [tasks, setTasks] = React.useState([]);
+  // 👉 STEP 1: Declare state 'tasks' and 'setTasks' with React.useState(["Master React", "Ship Code"])
+  // (Hint: const [tasks, setTasks] = React.useState(["Master React", "Ship Code"]);)
+  const tasks = [];
   const [input, setInput] = React.useState("");
 
   const handleAddTask = (e) => {
@@ -229,9 +229,9 @@ const level5Lessons = [
         const DEFAULT_STARTER = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
 
 function TaskTracker() {
-  // 👉 STEP 1: Declare state 'tasks' initialized to ["Master React JSX", "Build Component Tree"]
-  // (Hint: const [tasks, setTasks] = React.useState(["Master React JSX", "Build Component Tree"]);)
-  const [tasks, setTasks] = React.useState([]);
+  // 👉 STEP 1: Declare state 'tasks' and 'setTasks' with React.useState(["Master React", "Ship Code"])
+  // (Hint: const [tasks, setTasks] = React.useState(["Master React", "Ship Code"]);)
+  const tasks = [];
   const [input, setInput] = React.useState("");
 
   const handleAddTask = (e) => {
@@ -353,6 +353,19 @@ root.render(<TaskTracker />);
         if (resetBtn) {
             DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
                 updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'React Capstone Mini-App',
+                    xp: 150,
+                    completionKey: 'partC_lesson15_remake_complete',
+                    nextUrl: '/3. partC/certificate.html',
+                    mode: 'javascript'
+                });
             });
         }
 

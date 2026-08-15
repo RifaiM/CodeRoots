@@ -302,6 +302,19 @@ root.render(<SkillList />);
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Dynamic Lists with .map()',
+                    xp: 150,
+                    completionKey: 'partC_lesson3_remake_complete',
+                    nextUrl: '/3. partC/lesson4/lesson4_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

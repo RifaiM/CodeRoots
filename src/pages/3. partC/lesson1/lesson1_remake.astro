@@ -342,6 +342,19 @@ if (root) {
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'ES6+ Powers: Spread & Destructuring',
+                    xp: 150,
+                    completionKey: 'partC_lesson1_remake_complete',
+                    nextUrl: '/3. partC/lesson2/lesson2_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

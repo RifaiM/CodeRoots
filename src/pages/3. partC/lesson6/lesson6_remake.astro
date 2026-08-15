@@ -267,6 +267,19 @@ const level5Lessons = [
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Real-Time Input Binding',
+                    xp: 150,
+                    completionKey: 'partC_lesson6_remake_complete',
+                    nextUrl: '/3. partC/lesson7/lesson7_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

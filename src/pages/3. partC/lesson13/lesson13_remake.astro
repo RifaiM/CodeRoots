@@ -317,6 +317,19 @@ root.render(<LiveUserDirectory />);
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Fetching Live REST APIs',
+                    xp: 150,
+                    completionKey: 'partC_lesson13_remake_complete',
+                    nextUrl: '/3. partC/lesson14/lesson14_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

@@ -266,6 +266,19 @@ const level5Lessons = [
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Multi-Input Forms with Dynamic Keys',
+                    xp: 150,
+                    completionKey: 'partC_lesson11_remake_complete',
+                    nextUrl: '/3. partC/lesson12/lesson12_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }

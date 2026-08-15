@@ -10,21 +10,17 @@ function AuthScreen() {
     <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
       <h2>🔐 Member Access Portal</h2>
 
-      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? <WelcomeCard /> : <LoginPrompt />) to switch screens: */}
-      <div style={{ padding: '20px', borderRadius: '12px', background: isLoggedIn ? '#dcfce7' : '#fee2e2', marginBottom: '16px' }}>
-        {isLoggedIn ? (
-          <h3 style={{ color: '#15803d', margin: 0 }}>🟢 Welcome back, Developer!</h3>
-        ) : (
-          <h3 style={{ color: '#b91c1c', margin: 0 }}>🔒 Please log in to view content</h3>
-        )}
+      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? 🟢 Welcome : 🔒 Please log in) inside the banner: */}
+      <div style={{ padding: '20px', borderRadius: '12px', background: '#f1f5f9', marginBottom: '16px' }}>
+        {/* Replace this comment with your ternary expression: */}
+        
       </div>
 
-      {/* 👉 STEP 2: Button that toggles setIsLoggedIn(!isLoggedIn): */}
+      {/* 👉 STEP 2: Add button with onClick={() => setIsLoggedIn(!isLoggedIn)} to toggle status: */}
       <button 
-        onClick={() => setIsLoggedIn(!isLoggedIn)}
         style={{ padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
       >
-        {isLoggedIn ? "Log Out" : "Log In"}
+        Toggle Login
       </button>
     </div>
   );
@@ -221,21 +217,17 @@ function AuthScreen() {
     <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
       <h2>🔐 Member Access Portal</h2>
 
-      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? <WelcomeCard /> : <LoginPrompt />) to switch screens: */}
-      <div style={{ padding: '20px', borderRadius: '12px', background: isLoggedIn ? '#dcfce7' : '#fee2e2', marginBottom: '16px' }}>
-        {isLoggedIn ? (
-          <h3 style={{ color: '#15803d', margin: 0 }}>🟢 Welcome back, Developer!</h3>
-        ) : (
-          <h3 style={{ color: '#b91c1c', margin: 0 }}>🔒 Please log in to view content</h3>
-        )}
+      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? 🟢 Welcome : 🔒 Please log in) inside the banner: */}
+      <div style={{ padding: '20px', borderRadius: '12px', background: '#f1f5f9', marginBottom: '16px' }}>
+        {/* Replace this comment with your ternary expression: */}
+        
       </div>
 
-      {/* 👉 STEP 2: Button that toggles setIsLoggedIn(!isLoggedIn): */}
+      {/* 👉 STEP 2: Add button with onClick={() => setIsLoggedIn(!isLoggedIn)} to toggle status: */}
       <button 
-        onClick={() => setIsLoggedIn(!isLoggedIn)}
         style={{ padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
       >
-        {isLoggedIn ? "Log Out" : "Log In"}
+        Toggle Login
       </button>
     </div>
   );
@@ -325,6 +317,19 @@ root.render(<AuthScreen />);
         if (resetBtn) {
             DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
                 updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Conditional UI with Ternaries',
+                    xp: 150,
+                    completionKey: 'partC_lesson10_remake_complete',
+                    nextUrl: '/3. partC/lesson11/lesson11_remake.html',
+                    mode: 'javascript'
+                });
             });
         }
 

@@ -267,6 +267,19 @@ const level5Lessons = [
             });
         }
 
+        // 5. Check & Verify Code Action with Progate Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Debounced Search & Cleanup',
+                    xp: 150,
+                    completionKey: 'partC_lesson14_remake_complete',
+                    nextUrl: '/3. partC/lesson15/lesson15_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
         // Initial Paint
         updateEditor();
     }
