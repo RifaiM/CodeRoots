@@ -274,7 +274,7 @@ import sqlite3
             });
         }
 
-                // 🔒 Security: Escape user print() output to prevent XSS
+                                // 🔒 Security: Escape output to prevent XSS
         function escapeHTML(str) {
             return String(str)
                 .replace(/&/g, '&amp;')
@@ -284,24 +284,23 @@ import sqlite3
                 .replace(/'/g, '&#39;');
         }
 
-// 5. Python Terminal Simulation & Verification
-        function simulatePythonOutput(code: string) {
+        // 5. Python Execution Engine (Pyodide WebAssembly with Safe Client Fallback)
+        function simulatePythonOutputFallback(code) {
             if (!terminalScreen) return;
-            const prints: string[] = [];
+            const prints = [];
             const lines = code.split('\n');
 
             for (const line of lines) {
                 const trimmed = line.trim();
-                const printMatch = trimmed.match(/^prints*\((.*)\)$/);
+                const printMatch = trimmed.match(/^print\s*\((.*)\)$/);
                 if (printMatch) {
-                    let content = printMatch[1].trim();
-                    // Strip outer quotes if simple string
-                    if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'"))) {
-                        content = content.slice(1, -1);
-                    } else if (content.startsWith('f"') || content.startsWith("f'")) {
-                        content = content.slice(2, -1);
+                    let c = printMatch[1].trim();
+                    if ((c.startsWith('"') && c.endsWith('"')) || (c.startsWith("'") && c.endsWith("'"))) {
+                        c = c.slice(1, -1);
+                    } else if (c.startsWith('f"') || c.startsWith("f'")) {
+                        c = c.slice(2, -1);
                     }
-                    prints.push(content);
+                    prints.push(c);
                 }
             }
 
@@ -314,10 +313,38 @@ import sqlite3
             }
         }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
+        async function executePythonCode(code) {
+            if (!terminalScreen) return;
+
+            terminalScreen.innerHTML = '<div class="terminal-loading-wrap"><span class="terminal-spinner"></span>&gt; Running CPython 3.12 (WebAssembly)...</div>';
+
+            try {
+                const result = await DojoEngine.runPython(code);
+
+                if (result.success) {
+                    const lines = result.stdout ? result.stdout.split('\n').filter(l => l !== '') : [];
+                    if (lines.length > 0) {
+                        terminalScreen.innerHTML = lines.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
+                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
+                    } else {
+                        terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully (no stdout)!</div>' +
+                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
+                    }
+                } else {
+                    const errLines = result.stderr ? result.stderr.split('\n').filter(l => l !== '') : ['Execution error'];
+                    terminalScreen.innerHTML = errLines.map(e => `<div style="color: #f87171;">&gt; ${escapeHTML(e)}</div>`).join('') +
+                        '<div style="color: #f87171; margin-top: 8px; font-size: 0.76rem;">✗ [Process exited with code 1]</div>';
+                }
+            } catch (err) {
+                console.warn('Pyodide Web Worker unavailable, using client fallback:', err);
+                simulatePythonOutputFallback(code);
+            }
+        }
+
+// 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                simulatePythonOutput(editor.value);
+            checkBtn.addEventListener('click', async () => {
+                await executePythonCode(editor.value);
                 DojoEngine.verifySubmission(editor.value, {
                     lessonTitle: 'Databases & SQL ORM Integration',
                     xp: 150,

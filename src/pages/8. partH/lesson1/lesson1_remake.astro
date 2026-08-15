@@ -96,9 +96,21 @@ const jumpLessons = [
     starterCode={starterCode}
 >
     <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Authenticate user credentials with FastAPI backend, extract JWT bearer tokens, and persist tokens to browser storage.
-    </p>
+    <div slot="intro">
+        <p class="lesson-subtitle">
+            Authenticate user credentials with FastAPI backend, extract JWT bearer tokens, and persist tokens to browser storage.
+        </p>
+        <div class="stackblitz-banner">
+            <div class="sb-badge-row">
+                <span class="sb-badge">🔒 Cloud Auth & Database</span>
+                <span class="sb-runtime-tag">WebContainer Engine</span>
+            </div>
+            <p>Master authentication and schema concepts here. To run with <strong>live PostgreSQL, JWT session cookies, and database migrations</strong>, launch the official cloud starter:</p>
+            <a href="https://stackblitz.com/fork/github/supabase/supabase/tree/master/examples/auth/nextjs" target="_blank" rel="noopener noreferrer" class="sb-open-btn">
+                <span>⚡ Open in StackBlitz (Supabase + Next.js) →</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">

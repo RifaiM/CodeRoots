@@ -3329,3 +3329,182 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
         font-size: 0.68rem !important;
     }
 }
+
+/* ==========================================================================
+   WHAT'S NEXT / GRADUATION ROADMAP (OPTION C)
+   ========================================================================== */
+.whats-next-section {
+    max-width: 1000px;
+    margin: 50px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.whats-next-inner {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.whats-next-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.whats-next-sub {
+    color: #64748b;
+    text-align: center;
+    margin: 0 auto 32px auto;
+    font-size: 0.95rem;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+.whats-next-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.wn-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.wn-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+}
+
+.wn-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.wn-card h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.wn-card p {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+}
+
+.wn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-decoration: none;
+    margin-top: auto;
+    transition: color 0.15s ease;
+}
+
+.wn-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.whats-next-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.whats-next-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.whats-next-btn.primary {
+    background: #ffffff;
+    color: #334155;
+    border: 1.5px solid #cbd5e1;
+}
+
+.whats-next-btn.primary:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #94a3b8;
+}
+
+.whats-next-btn.accent {
+    background: #2563eb;
+    color: #ffffff;
+    border: 1.5px solid #2563eb;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.whats-next-btn.accent:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 860px) {
+    .whats-next-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .whats-next-inner {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .whats-next-section {
+        margin: 30px auto 40px auto;
+        padding: 0 12px;
+    }
+    .whats-next-title {
+        font-size: 1.25rem;
+    }
+    .whats-next-sub {
+        font-size: 0.84rem;
+        margin-bottom: 20px;
+    }
+    .whats-next-btn {
+        width: 100%;
+    }
+}
+
+@media print {
+    .whats-next-section {
+        display: none !important;
+    }
+}
+

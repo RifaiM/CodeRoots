@@ -91,9 +91,21 @@ const jumpLessons = [
     starterCode={starterCode}
 >
     <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Structure production Next.js enterprise applications with modular RootLayout wrappers and responsive navigation rails.
-    </p>
+    <div slot="intro">
+        <p class="lesson-subtitle">
+            Structure production Next.js enterprise applications with modular RootLayout wrappers and responsive navigation rails.
+        </p>
+        <div class="stackblitz-banner">
+            <div class="sb-badge-row">
+                <span class="sb-badge">🏆 Production SaaS Stack</span>
+                <span class="sb-runtime-tag">WebContainer Engine</span>
+            </div>
+            <p>Master modern enterprise architectures here. To run with <strong>live Stripe webhook listeners, AI streaming inference endpoints, and Cloud SQL</strong>, launch the fullstack SaaS sandbox:</p>
+            <a href="https://stackblitz.com/fork/github/vercel/next.js/tree/canary/examples/with-stripe-typescript" target="_blank" rel="noopener noreferrer" class="sb-open-btn">
+                <span>⚡ Open in StackBlitz (Next.js + Stripe SaaS) →</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">

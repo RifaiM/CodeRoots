@@ -12,16 +12,25 @@ import { ChecklistManager } from './core/checklist';
 import { EditorPersistence } from './core/persistence';
 import { ProgressManager } from './core/progress';
 import { DiagnosticsPanel } from './ui/diagnosticsPanel';
+import { PyodideRunner, type PythonExecutionResult } from './runners/pyodideRunner';
 
 export * from './types';
 export { HTMLLinter } from './linters/htmlLinter';
 export { CSSLinter } from './linters/cssLinter';
 export { JSCompiler } from './linters/jsCompiler';
 export { PythonLinter } from './linters/pythonLinter';
+export { PyodideRunner, type PythonExecutionResult } from './runners/pyodideRunner';
 
 export class DojoEngine {
     private static checklistManager: ChecklistManager | null = null;
     private static currentMode: LinterMode = 'html';
+
+    /**
+     * Execute real Python code via Pyodide WebAssembly
+     */
+    public static async runPython(code: string, timeoutMs?: number): Promise<PythonExecutionResult> {
+        return PyodideRunner.run(code, timeoutMs);
+    }
 
     /**
      * Initialize real-time reactive task checklist
