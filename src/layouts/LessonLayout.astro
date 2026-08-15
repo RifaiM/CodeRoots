@@ -108,7 +108,7 @@ const navLinks = [
                     </div>
                 </div>
 
-                <!-- Live Preview (Large iframe) -->
+                <!-- Live Preview (Large iframe for HTML / Web / React) -->
                 {mode === 'html' && (
                     <div class="ide-output-window">
                         <div class="ide-output-header">
@@ -119,7 +119,7 @@ const navLinks = [
                     </div>
                 )}
 
-                {/* Python / Terminal Mode Screen */}
+                {/* Python Terminal Screen */}
                 {mode === 'python' && (
                     <div class="ide-output-window" style="background: #0f172a; border-color: #334155;">
                         <div class="ide-output-header" style="background: #1e293b; border-color: #334155; color: #94a3b8;">
@@ -128,6 +128,19 @@ const navLinks = [
                         </div>
                         <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
                             <div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal ready. Click Check &amp; Verify Code to execute main.py</div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Terminal / CLI / Bash / DevOps Output Screen */}
+                {(mode === 'terminal' || mode === 'bash' || mode === 'sql') && (
+                    <div class="ide-output-window" style="background: #0f172a; border-color: #334155;">
+                        <div class="ide-output-header" style="background: #1e293b; border-color: #334155; color: #94a3b8;">
+                            <span>🖥️ CLI / Terminal Output</span>
+                            <span class="live-badge" style="color: #38bdf8;">⚡ Terminal</span>
+                        </div>
+                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
+                            <div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal ready. Click Check &amp; Verify Code to execute commands.</div>
                         </div>
                     </div>
                 )}
