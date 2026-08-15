@@ -48,7 +48,7 @@ const navLinks = [
 ];
 ---
 
-<BaseLayout title={title} description={description} showHeaderFooter={false}>
+<BaseLayout title={title} description={description} showHeaderFooter={false} noPageContentWrapper={true}>
     <PlatformHeader 
         slot="header"
         tagText={levelTag}
@@ -157,6 +157,8 @@ const navLinks = [
             </section>
         </div>
     </main>
+
+    <PlatformFooter />
 
     <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>

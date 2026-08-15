@@ -460,6 +460,10 @@
     user-select: none;
     flex-shrink: 0;
     position: relative;
+    white-space: pre !important;
+    font-family: 'Fira Code', 'Cascadia Code', monospace !important;
+    font-size: 0.80rem !important;
+    line-height: 22px !important;
 }
 
 /* Inner line numbers — exact match with textarea font, padding, line-height */
