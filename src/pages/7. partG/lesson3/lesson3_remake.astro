@@ -39,43 +39,43 @@ root.render(<AddProductForm />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Async Data Fetching & Skeleton Loaders",
+        "title": "Smooth Skeleton Loaders",
         "url": "/7. partG/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Error Boundaries & HTTP Fallbacks",
+        "title": "Friendly Error Screens & 1-Click Retry",
         "url": "/7. partG/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Controlled Form Mutations & Pending State",
+        "title": "Smarter Forms (Prevent Double Submits)",
         "url": "/7. partG/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Optimistic UI Updates & State Rollbacks",
+        "title": "Instant Optimistic Likes (Zero Lag)",
         "url": "/7. partG/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Real-Time Polling & Sync Cleanup",
+        "title": "Live Activity Badges & Safe Timers",
         "url": "/7. partG/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Reactive E-Commerce Dashboard",
+        "title": "Capstone: Reactive Storefront Dashboard",
         "url": "/7. partG/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Controlled Form Mutations & Pending State | Level 8 • Async UI Architecture"
-    description="Handle form submission state, disable buttons during transmission, and process JSON payloads."
+    title="Smarter Forms (Prevent Double Submits) | Level 8 • Async UI Architecture"
+    description="Disable buttons while sending data so users can't accidentally submit twice."
     levelTag="Level 8 • Async UI Architecture"
     lessonNum={3}
-    lessonTitle="Controlled Form Mutations & Pending State"
+    lessonTitle="Smarter Forms (Prevent Double Submits)"
     xpAmount={250}
     completionKey="partG_lesson3_remake_complete"
     nextLessonUrl="/7. partG/lesson4/lesson4_remake.html"
@@ -91,7 +91,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Handle form submission state, disable buttons during transmission, and process JSON payloads.
+        Disable buttons while sending data so users can't accidentally submit twice.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -104,7 +104,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build an interactive feedback form that disables the submit button and prevents duplicate requests while saving!</div>
+                <div style="color: #475569; margin-top: 3px;">Build an interactive form that disables the submit button and shows 'Saving...' while submitting!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>

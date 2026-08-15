@@ -53,43 +53,43 @@ root.render(<App />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Auth Token State & Client Session Storage",
+        "title": "Managing Login Tokens in State",
         "url": "/8. partH/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Global AuthContext & useAuth() Hook",
+        "title": "Global Session Provider (AuthContext)",
         "url": "/8. partH/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Protected Route Guards & Redirects",
+        "title": "Locking Private Pages (Route Guards)",
         "url": "/8. partH/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "User Directory State & Immutable Mutations",
+        "title": "Managing Team Member Lists (Clean State)",
         "url": "/8. partH/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Role-Based Access Control (RBAC) UI Gates",
+        "title": "Role Gates (Admin vs Member Views)",
         "url": "/8. partH/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Secure Workspace with Role Guards",
+        "title": "Capstone: Secure Team Workspace",
         "url": "/8. partH/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Global AuthContext & useAuth() Hook | Level 9 • React Auth & Access Control"
-    description="Distribute authentication state across components using React Context without prop-drilling."
+    title="Global Session Provider (AuthContext) | Level 9 • React Auth & Access Control"
+    description="Share the logged-in user info across every component without messy prop-drilling."
     levelTag="Level 9 • React Auth & Access Control"
     lessonNum={2}
-    lessonTitle="Global AuthContext & useAuth() Hook"
+    lessonTitle="Global Session Provider (AuthContext)"
     xpAmount={250}
     completionKey="partH_lesson2_remake_complete"
     nextLessonUrl="/8. partH/lesson3/lesson3_remake.html"
@@ -105,7 +105,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Distribute authentication state across components using React Context without prop-drilling.
+        Share the logged-in user info across every component without messy prop-drilling.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -118,7 +118,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a global AuthContext provider that broadcasts the active user session and logout action across all components!</div>
+                <div style="color: #475569; margin-top: 3px;">Build an AuthContext provider that shares the user session and logout function everywhere!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>

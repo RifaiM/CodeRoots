@@ -38,43 +38,43 @@ root.render(<SecretAdminDashboard />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Auth Token State & Client Session Storage",
+        "title": "Managing Login Tokens in State",
         "url": "/8. partH/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Global AuthContext & useAuth() Hook",
+        "title": "Global Session Provider (AuthContext)",
         "url": "/8. partH/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Protected Route Guards & Redirects",
+        "title": "Locking Private Pages (Route Guards)",
         "url": "/8. partH/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "User Directory State & Immutable Mutations",
+        "title": "Managing Team Member Lists (Clean State)",
         "url": "/8. partH/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Role-Based Access Control (RBAC) UI Gates",
+        "title": "Role Gates (Admin vs Member Views)",
         "url": "/8. partH/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Secure Workspace with Role Guards",
+        "title": "Capstone: Secure Team Workspace",
         "url": "/8. partH/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Protected Route Guards & Redirects | Level 9 • React Auth & Access Control"
-    description="Guard private application views and redirect unauthorized visitors to the login prompt."
+    title="Locking Private Pages (Route Guards) | Level 9 • React Auth & Access Control"
+    description="Keep private dashboard views locked from logged-out visitors."
     levelTag="Level 9 • React Auth & Access Control"
     lessonNum={3}
-    lessonTitle="Protected Route Guards & Redirects"
+    lessonTitle="Locking Private Pages (Route Guards)"
     xpAmount={250}
     completionKey="partH_lesson3_remake_complete"
     nextLessonUrl="/8. partH/lesson4/lesson4_remake.html"
@@ -90,7 +90,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Guard private application views and redirect unauthorized visitors to the login prompt.
+        Keep private dashboard views locked from logged-out visitors.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -103,7 +103,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a ProtectedRoute component that blocks unauthenticated access and renders private views only to logged-in users!</div>
+                <div style="color: #475569; margin-top: 3px;">Build a ProtectedRoute component that blocks visitors and shows private views only to logged-in members!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
