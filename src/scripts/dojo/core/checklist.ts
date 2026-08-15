@@ -3,25 +3,37 @@ import type { ChecklistTask } from '../types';
 export class ChecklistManager {
     private tasks: ChecklistTask[] = [];
     private containerId: string = 'taskChecklist';
+    private mode: string = 'html';
 
-    constructor(tasks: ChecklistTask[], containerId: string = 'taskChecklist') {
+    constructor(tasks: ChecklistTask[], containerId: string = 'taskChecklist', mode: string = 'html') {
         this.tasks = tasks;
         this.containerId = containerId;
+        this.mode = mode;
         this.render();
     }
 
     /**
      * Universal comment stripper to eliminate false positive regex matches in instructional comments
      */
-    public static stripComments(code: string): string {
+    public static stripComments(code: string, mode: string = 'html'): string {
         if (!code) return '';
-        return code
+        let cleaned = code
             .replace(/\{\s*\/\*[\s\S]*?\*\/\s*\}/g, '') // JSX comments
             .replace(/<!--[\s\S]*?-->/g, '')             // HTML comments
             .replace(/\/\*[\s\S]*?\*\//g, '')            // Multi-line CSS / JS comments
-            .replace(/\/\/[^\r\n]*/g, '')                // Single-line JS comments
-            .replace(/#[^\r\n]*/g, '')                   // Python / Bash / YAML comments
-            .replace(/--[^\r\n]*/g, '');                 // SQL comments
+            .replace(/(?<!:)\/\/[^\r\n]*/g, '');         // Single-line JS comments (avoid stripping http:// and https://)
+
+        // Only strip # comments for Python / Shell / YAML languages (prevents breaking CSS hex colors and ID selectors)
+        if (mode === 'python' || mode === 'bash' || mode === 'shell' || mode === 'yaml') {
+            cleaned = cleaned.replace(/#[^\r\n]*/g, '');
+        }
+
+        // Only strip -- comments for SQL (prevents breaking CSS custom properties --var)
+        if (mode === 'sql') {
+            cleaned = cleaned.replace(/--[^\r\n]*/g, '');
+        }
+
+        return cleaned;
     }
 
     public render(): void {
@@ -73,7 +85,7 @@ export class ChecklistManager {
         let doc: Document | undefined;
 
         // Strip comments so instructional TODO comments never trigger tasks
-        const cleanCode = ChecklistManager.stripComments(rawCode);
+        const cleanCode = ChecklistManager.stripComments(rawCode, this.mode);
 
         try {
             doc = new DOMParser().parseFromString(cleanCode, 'text/html');

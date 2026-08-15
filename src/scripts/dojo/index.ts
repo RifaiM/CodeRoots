@@ -28,7 +28,7 @@ export class DojoEngine {
         tasks: ChecklistTask[],
         opts: { containerId?: string; submitBtnId?: string; nextBtnId?: string; mode?: LinterMode } = {}
     ): void {
-        this.checklistManager = new ChecklistManager(tasks, opts.containerId || 'taskChecklist');
+        this.checklistManager = new ChecklistManager(tasks, opts.containerId || 'taskChecklist', opts.mode || 'html');
         if (opts.mode) this.currentMode = opts.mode;
     }
 

@@ -147,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'css_rule', label: '<strong>Step 1:</strong> Create a <code>.hero-card</code> rule with <code>background</code>, <code>color</code>, and <code>border-radius</code>', fn: (c) => /\.hero-card\s*\{[^}]*background[^:]*:[^;]+;[^}]*color[^:]*:[^;]+;[^}]*border-radius[^:]*:[^;]+;/i.test(c) },
-            { id: 'div_card', label: '<strong>Step 2:</strong> Add a <code>&lt;div class="hero-card"&gt;</code> in <code>&lt;body&gt;</code> with an <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code>', fn: (c) => /<div[^>]+class=["'][^"']*hero-card[^"']*["'][^>]*>[\s\S]*?<h1[^>]*>[\s\S]*?<\/h1>[\s\S]*?<p[^>]*>[\s\S]*?<\/p>[\s\S]*?<\/div>/i.test(c) }
+            { id: 'css_rule', label: '<strong>Step 1:</strong> Create a <code>.hero-card</code> rule with <code>background</code>, <code>color</code>, and <code>border-radius</code>', fn: (c) => /\.hero-card\s*\{[^}]*background[^:]*:[^;]+;/i.test(c) && /\.hero-card\s*\{[^}]*color[^:]*:[^;]+;/i.test(c) && /\.hero-card\s*\{[^}]*border-radius[^:]*:[^;]+;/i.test(c) },
+            { id: 'div_card', label: '<strong>Step 2:</strong> Add a <code>&lt;div class="hero-card"&gt;</code> in <code>&lt;body&gt;</code> with an <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code>', fn: (c) => /<div[^>]*class=["'][^"']*hero-card[^"']*["'][^>]*>[\s\S]*?<h1[^>]*>[\s\S]*?<\/h1>[\s\S]*?<p[^>]*>[\s\S]*?<\/p>[\s\S]*?<\/div>/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
