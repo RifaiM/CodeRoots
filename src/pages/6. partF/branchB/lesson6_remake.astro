@@ -52,7 +52,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 06: FastAPI RBAC Middleware | Level 7B • Backend & DB"
-    description="Build secure authentication dependencies with OAuth2PasswordBearer and role-based access control (RBAC) in FastAPI."
+    description="Enforce Role-Based Access Control (RBAC) on API routes using FastAPI dependency injection and JWT verification."
     levelTag="Level 7B • Backend & DB"
     lessonNum={6}
     lessonTitle="FastAPI RBAC Middleware"
@@ -84,7 +84,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [RBAC Auth] Validated token for role 'admin' • Access granted to /admin/metrics!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -92,7 +96,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> FastAPI Depends() is an automated passport checkpoint: intercepting requests before they reach your handler to guarantee valid credentials.
+                <strong>Real-World Analogy:</strong> RBAC middleware is like an office keycard badge scanner 🪪: standard employees can open the front door, but only admins can badge into the server room.
             </div>
         </article>
 
@@ -154,29 +158,31 @@ print("Auth guard initialized")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson6';
-        const DEFAULT_STARTER = `from fastapi import FastAPI, Depends, HTTPException
+        const DEFAULT_STARTER = `# 🛡️ Lesson 6: FastAPI RBAC Authorization Middleware!
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 import jwt
 
 app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-SECRET_KEY = "auth-secret-key"
+SECRET_KEY = "coderoots-super-secret-key"
 ALGORITHM = "HS256"
 
-# 🛠️ Practice Task: Auth Middleware & RBAC Guard
-# Step 1: Implement get_current_user(token: str = Depends(oauth2_scheme))
-# Decode token with jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-# Write get_current_user here:
+# 👉 STEP: Validate token and extract user role
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid auth credentials")
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'depends', label: 'Inject token with <code>Depends(oauth2_scheme)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /Depends\s*\(\s*oauth2_scheme\s*\)/i.test(c); } },
-                { id: 'decode', label: 'Decode token with <code>jwt.decode(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.decode\s*\(/i.test(c); } }
-            ], {
+            { id: 'depends', label: 'Inject token with <code>Depends(oauth2_scheme)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /token\s*:\s*str\s*=\s*Depends\s*\(\s*oauth2_scheme\s*\)/i.test(c); } },
+            { id: 'decode', label: 'Decode token with <code>jwt.decode(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.decode\s*\(\s*token\s*,\s*SECRET_KEY/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

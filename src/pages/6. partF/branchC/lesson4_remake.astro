@@ -50,7 +50,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 04: Tailwind UI Architecture | Level 7C • Next.js & Frontend"
-    description="Design responsive, utility-first production UI layouts with Tailwind CSS, flexbox grids, and dynamic state styling."
+    description="Craft high-performance responsive UI components using modern Tailwind CSS utility classes."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={4}
     lessonTitle="Tailwind UI Architecture"
@@ -82,7 +82,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: A card styled with Tailwind utility classes (rounded-2xl, shadow-lg, bg-indigo-600)!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -90,7 +94,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Tailwind CSS provides atomic design utility classes: assembling styles directly in JSX like snapping building blocks together.
+                <strong>Real-World Analogy:</strong> Tailwind CSS is like having pre-mixed paint colors and precision Lego bricks 🎨: you snap utility classes directly onto HTML elements without writing separate stylesheet files.
             </div>
         </article>
 
@@ -145,27 +149,29 @@ const branchLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson4';
-        const DEFAULT_STARTER = `// app/components/BadgeCard.jsx
-// 🛠️ Practice Task: Build a Tailwind CSS Component
+        const DEFAULT_STARTER = `// 🎨 Lesson 4: Tailwind CSS UI Architecture!
 
-export default function BadgeCard({ title, tag, isPrimary }) {
-    return (
-        // Step 1: Add Tailwind classes for padding, border, rounded corners, and badge tag
-        <div className="">
-            <span className="">{tag}</span>
-            <h3 className="">{title}</h3>
-        </div>
-    );
-}`;
+export default function TailwindCard() {
+  return (
+    // 👉 STEP 1: Apply container utilities: p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg
+    <div className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg border border-slate-200">
+      <h2 className="text-xl font-bold text-slate-900 mb-2">🎨 Tailwind Pro Card</h2>
+      <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
+      {/* 👉 STEP 2: Apply badge utilities: px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold */}
+      <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">
+        Level 7 Master
+      </span>
+    </div>
+  );
+}
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'container', label: 'Apply padding and rounded utilities', fn: (code) => /className=["'][^"']*?\bp-\d+\b[^"']*?\brounded-[a-z0-9]+\b/i.test(code) },
-                { id: 'tag', label: 'Apply tag badge utilities', fn: (code) => /className=["'][^"']*?\btext-xs\b/i.test(code) }
-            ], {
+            { id: 'container', label: 'Apply padding and rounded utilities: <code>p-6 rounded-2xl</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?p-6[^"']*?rounded-2xl/i.test(c); } },
+            { id: 'tag', label: 'Apply badge utilities: <code>bg-indigo-100 text-indigo-700</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?bg-indigo-100[^"']*?text-indigo-700/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

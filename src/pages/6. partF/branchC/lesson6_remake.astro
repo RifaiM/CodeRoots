@@ -59,7 +59,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 06: Production Capstone Service | Level 7C • Next.js & Frontend"
-    description="Deploy a production Next.js fullstack service combining Server Components, global state, API fetching, and error boundaries."
+    description="Deploy a production-grade fullstack Next.js service dashboard with search filter and responsive cards."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={6}
     lessonTitle="Production Capstone Service"
@@ -91,7 +91,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: A fullstack SaaS Dashboard with live search filter, real-time result counter, and responsive service cards!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -99,7 +103,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> The Level 7 Capstone is your engineering portfolio centerpiece: unifying frontend state, asynchronous data, and cloud architecture.
+                <strong>Real-World Analogy:</strong> Building your fullstack frontend capstone is like unveiling the flagship storefront 🏬 of your tech startup: sleek, fast, and ready for worldwide visitors!
             </div>
         </article>
 
@@ -175,36 +179,49 @@ export default function CapstoneDashboard() &#123;
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson6';
-        const DEFAULT_STARTER = `// app/page.jsx — Apex Fullstack Capstone
-// 🛠️ Practice Task: Production Fullstack Application
-
-// Step 1: Add 'use client'
-'use client';
-
+        const DEFAULT_STARTER = `// 🏆 Lesson 6: Production Next.js Fullstack Dashboard Capstone!
+"use client";
 import React, { useState } from 'react';
 
-// Step 2: Implement CapstoneDashboard component managing data state and search filter
-export default function CapstoneDashboard() {
-    const [services, setServices] = useState([
-        { id: 1, name: "Auth Gateway", latency: "14ms", status: "healthy" },
-        { id: 2, name: "Database Pool", latency: "8ms", status: "healthy" }
-    ]);
-    const [search, setSearch] = useState("");
+const services = [
+  { id: 1, name: "Auth & RBAC Service", tag: "Security" },
+  { id: 2, name: "Payment Webhook Gateway", tag: "Finance" },
+  { id: 3, name: "Cloudflare Edge CDN", tag: "Infrastructure" }
+];
 
-    // Filter services based on search query
-    // Write filter and return JSX here:
+export default function SaaSMetricsDashboard() {
+  const [search, setSearch] = useState("");
 
-    return <div></div>;
-}`;
+  // 👉 STEP: Filter services array based on search input
+  const filtered = services.filter(s => s.name.toLowerCase().includes(search.toLowerCase()));
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>
+      <h2>🏆 Fullstack SaaS Dashboard</h2>
+      <input 
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Filter services..."
+        style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '16px', boxSizing: 'border-box' }}
+      />
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {filtered.map(s => (
+          <li key={s.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0' }}>
+            <strong>{s.name}</strong> • <span style={{ color: '#6366f1' }}>{s.tag}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'search', label: 'Bind input with <code>value={search}</code> and <code>onChange</code>', fn: (code) => /value\s*=\s*\{\s*search\s*\}/i.test(code) && /onChange\s*=\s*\{/i.test(code) },
-                { id: 'filter', label: 'Filter services with <code>services.filter(...)</code>', fn: (code) => /services\.filter\s*\([\s\S]*?includes\s*\(\s*search/i.test(code) }
-            ], {
+            { id: 'search', label: 'Bind input with <code>value={search}</code> and <code>onChange</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /value\s*=\s*\{\s*search\s*\}/i.test(c) && /onChange\s*=/i.test(c); } },
+            { id: 'filter', label: 'Filter services with <code>services.filter(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /services\.filter\s*\(/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

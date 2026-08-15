@@ -47,7 +47,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 03: Cloudflare Pages & Edge | Level 7A • Cloud & DevOps"
-    description="Deploy single-page applications to Cloudflare Pages, configure SPA _redirects, and attach custom CNAME domains."
+    description="Deploy edge-rendered applications globally on Cloudflare Pages using wrangler.toml configuration files."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={3}
     lessonTitle="Cloudflare Pages & Edge"
@@ -79,7 +79,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Cloudflare Config] Project 'coderoots-app' ➔ Edge build output 'dist' ready!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -87,7 +91,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Cloudflare Pages is a global superhighway: routing DNS requests to the nearest edge server in under 15 milliseconds.
+                <strong>Real-World Analogy:</strong> Cloudflare Edge deployment is like having hundreds of mini delivery stations around the world 🌍: users get your app from the station closest to their house in milliseconds.
             </div>
         </article>
 
@@ -138,24 +142,21 @@ ENVIRONMENT = "production"</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson3';
-        const DEFAULT_STARTER = `# wrangler.toml — Cloudflare Pages Configuration
-# 🛠️ Practice Task: Configure Cloudflare Pages
+        const DEFAULT_STARTER = `# ⚡ Lesson 3: Cloudflare Pages Configuration!
 
-name = ""
-pages_build_output_dir = ""
-compatibility_date = "2026-01-01"
+# 👉 STEP 1: Specify project name = "coderoots-app"
+name = "coderoots-app"
 
-[vars]
-ENVIRONMENT = "production"`;
+# 👉 STEP 2: Set pages_build_output_dir = "dist"
+pages_build_output_dir = "dist"
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'name', label: 'Specify project <code>name = "..."</code>', fn: (code) => /name\s*=\s*"[a-z0-9_-]+"/i.test(code) },
-                { id: 'outdir', label: 'Set <code>pages_build_output_dir = "dist"</code>', fn: (code) => /pages_build_output_dir\s*=\s*"dist"/i.test(code) }
-            ], {
+            { id: 'name', label: 'Specify project <code>name = "..."</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /name\s*=\s*["'][\w-]+["']/i.test(c); } },
+            { id: 'outdir', label: 'Set <code>pages_build_output_dir = "dist"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /pages_build_output_dir\s*=\s*["']dist["']/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'terminal'
         });
 

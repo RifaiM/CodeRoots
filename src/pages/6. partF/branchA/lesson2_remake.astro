@@ -47,7 +47,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 02: Vercel & Netlify Deploy | Level 7A • Cloud & DevOps"
-    description="Configure vercel.json, custom build commands, output directories, and ship frontend apps to the global Edge CDN."
+    description="Configure automated frontend deployment manifests using vercel.json buildCommand and outputDirectory specifications."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={2}
     lessonTitle="Vercel & Netlify Deploy"
@@ -79,7 +79,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Deploy Manifest] Configured build 'npm run build' ➔ Output directory 'dist' verified!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -87,7 +91,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Vercel acts like a worldwide distribution fleet: taking your compiled code package and placing copies in 300+ edge data centers worldwide.
+                <strong>Real-World Analogy:</strong> A <code>vercel.json</code> file is like a shipping manifest on a cargo container 📦: it tells the delivery robot exactly which command builds the app and which folder contains the final goods.
             </div>
         </article>
 
@@ -142,24 +146,22 @@ const branchLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson2';
-        const DEFAULT_STARTER = `# vercel.json — Production Deployment Configuration
-# 🛠️ Practice Task: Fill in the build settings below
+        const DEFAULT_STARTER = `{
+  "framework": "astro",
+  // 👉 STEP 1: Set "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
 
-{
-  "buildCommand": "",
-  "outputDirectory": "",
-  "framework": "vite",
-  "regions": ["sin1"]
-}`;
+  // 👉 STEP 2: Set "outputDirectory": "dist"
+  "outputDirectory": "dist"
+}
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'buildcmd', label: 'Set <code>"buildCommand": "npm run build"</code>', fn: (code) => /"buildCommand"\s*:\s*"npm\s+run\s+build"/i.test(code) },
-                { id: 'outdir', label: 'Set <code>"outputDirectory": "dist"</code>', fn: (code) => /"outputDirectory"\s*:\s*"dist"/i.test(code) }
-            ], {
+            { id: 'buildcmd', label: 'Set <code>"buildCommand": "npm run build"</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /"buildCommand"\s*:\s*"npm run build"/i.test(c); } },
+            { id: 'outdir', label: 'Set <code>"outputDirectory": "dist"</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /"outputDirectory"\s*:\s*"dist"/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'terminal'
         });
 

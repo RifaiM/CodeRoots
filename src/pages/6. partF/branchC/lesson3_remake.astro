@@ -47,7 +47,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 03: Zustand Global State | Level 7C • Next.js & Frontend"
-    description="Manage lightweight, scalable global application state without boilerplate using Zustand stores and selectors."
+    description="Manage global application state cleanly without boilerplate using Zustand lightweight stores."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={3}
     lessonTitle="Zustand Global State"
@@ -79,7 +79,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: A global Cart Manager with Zustand store displaying total items and an Add Product action!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -87,7 +91,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Zustand is a global dashboard for your application: any component can read state or trigger mutations without wrapping provider trees.
+                <strong>Real-World Analogy:</strong> Zustand is like a shared walkie-talkie channel 📻: any component in your app can broadcast a message or listen for updates with zero messy wires.
             </div>
         </article>
 
@@ -139,25 +143,38 @@ export const useCartStore = create((set) =&gt; (&#123;
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson3';
-        const DEFAULT_STARTER = `// store/useCartStore.js
-// 🛠️ Practice Task: Create a Zustand Global Store
-
+        const DEFAULT_STARTER = `// 🐻 Lesson 3: Global State Management with Zustand!
 import { create } from 'zustand';
 
-// Step 1: Create store using create((set) => ({ ... }))
-// Define items array and addToCart action
-// Write useCartStore here:
+// 👉 STEP 1: Create global store with create((set) => ({ ... }))
+export const useCartStore = create((set) => ({
+  // 👉 STEP 2: Initialize items: []
+  items: [],
+  // 👉 STEP 3: Define addToCart action appending item to items
+  addToCart: (item) => set((state) => ({ items: [...state.items, item] }))
+}));
+
+export default function CartUI() {
+  const { items, addToCart } = useCartStore();
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h2>🐻 Zustand Global Cart</h2>
+      <p>Cart Items: <strong>{items.length}</strong></p>
+      <button onClick={() => addToCart({ id: 1, name: "Keyboard" })} style={{ padding: '8px 16px', background: '#8b5cf6', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+        Add Item
+      </button>
+    </div>
+  );
+}
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'create', label: 'Call <code>create((set) => ...)</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /create\s*\(\s*\(?set\)?\s*=>/i.test(c); } },
-                { id: 'items', label: 'Initialize <code>items: []</code> in state', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /items\s*:\s*\[\]/i.test(c); } },
-                { id: 'addaction', label: 'Implement <code>addToCart</code> action', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /addToCart\s*:/i.test(c) && /\[\s*\.\.\.state\.items/i.test(c); } }
-            ], {
+            { id: 'create', label: 'Call <code>create((set) => ...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /create\s*\(\s*\(?set\)?\s*=>/i.test(c); } },
+            { id: 'items', label: 'Initialize <code>items: []</code> in store state', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /items\s*:\s*\[\s*\]/i.test(c); } },
+            { id: 'addaction', label: 'Implement <code>addToCart</code> action', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /addToCart\s*:/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

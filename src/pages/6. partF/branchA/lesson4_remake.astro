@@ -48,7 +48,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 04: Render & Fly.io Deploy | Level 7A • Cloud & DevOps"
-    description="Configure render.yaml infrastructure-as-code, deploy Python ASGI servers with Uvicorn, and manage environment variables."
+    description="Deploy Python backend web services using render.yaml Infrastructure-as-Code manifests."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={4}
     lessonTitle="Render & Fly.io Deploy"
@@ -80,7 +80,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Render Spec] Web service 'coderoots-api' ➔ Uvicorn server initialized on port 8000!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -88,7 +92,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Infrastructure as Code is like a robotic factory recipe: you define CPU, ports, and start scripts in YAML, and the cloud spins up servers automatically.
+                <strong>Real-World Analogy:</strong> A <code>render.yaml</code> file is like an automated instruction manual for a cloud robot 🤖: it tells the server how to install dependencies and turn on the server.
             </div>
         </article>
 
@@ -144,25 +148,24 @@ const branchLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson4';
-        const DEFAULT_STARTER = `# render.yaml — Render Infrastructure as Code
-# 🛠️ Practice Task: Configure Python Backend Service
-
+        const DEFAULT_STARTER = `# ☁️ Lesson 4: Render Backend Service Spec!
 services:
   - type: web
-    name: 
+    name: coderoots-api
     env: python
-    buildCommand: 
-    startCommand: 
-    region: singapore`;
+    # 👉 STEP 1: Set buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt
+
+    # 👉 STEP 2: Set startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'buildcmd', label: 'Set <code>buildCommand: pip install -r requirements.txt</code>', fn: (code) => /buildCommand:\s*pip\s+install\s+-r\s+requirements\.txt/i.test(code) },
-                { id: 'startcmd', label: 'Set <code>startCommand: uvicorn main:app ...</code>', fn: (code) => /startCommand:\s*uvicorn\s+main:app/i.test(code) }
-            ], {
+            { id: 'buildcmd', label: 'Set <code>buildCommand: pip install -r requirements.txt</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /buildCommand\s*:\s*pip\s+install/i.test(c); } },
+            { id: 'startcmd', label: 'Set <code>startCommand: uvicorn main:app ...</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /startCommand\s*:\s*uvicorn/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'terminal'
         });
 

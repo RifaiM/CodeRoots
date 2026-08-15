@@ -50,7 +50,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 04: Bcrypt Password Hashing | Level 7B • Backend & DB"
-    description="Protect user credentials by generating cryptographic salts, hashing passwords, and validating logins with Bcrypt."
+    description="Safely hash user passwords with random salt generation using the industry-standard bcrypt library."
     levelTag="Level 7B • Backend & DB"
     lessonNum={4}
     lessonTitle="Bcrypt Password Hashing"
@@ -82,7 +82,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Bcrypt] Password 'topsecret' salted and hashed ➔ '$2b$12$...' • Stored securely!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -90,7 +94,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Bcrypt adds unique salt (cryptographic noise) to each password before multiple rounds of hashing: making rainbow table attacks mathematically impossible.
+                <strong>Real-World Analogy:</strong> Bcrypt salting is like adding a unique secret spice blend 🧂 to every dish: even if two people order the same dish (same password), each meal looks and tastes completely distinct.
             </div>
         </article>
 
@@ -148,27 +152,23 @@ print(f"Hashed: &#123;hashed_val&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson4';
-        const DEFAULT_STARTER = `# 🛠️ Practice Task: Password Hashing with Bcrypt
+        const DEFAULT_STARTER = `# 🔐 Lesson 4: Bcrypt Password Hashing!
+import bcrypt
 
-# Step 1: Import bcrypt
-# Write import here:
+def hash_user_password(raw_password: str) -> bytes:
+    # 👉 STEP 1: Generate salt with bcrypt.gensalt()
+    salt = bcrypt.gensalt()
 
-
-# Step 2: Implement hash_password(plain_password)
-# Generate salt with bcrypt.gensalt()
-# Hash with bcrypt.hashpw(plain_password.encode('utf-8'), salt)
-# Return decoded string with .decode('utf-8')
-# Write hash_password function here:
+    # 👉 STEP 2: Hash password with bcrypt.hashpw(raw_password.encode(), salt)
+    return bcrypt.hashpw(raw_password.encode(), salt)
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'import', label: 'Import <code>bcrypt</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+bcrypt/i.test(c); } },
-                { id: 'hashpw', label: 'Call <code>bcrypt.gensalt()</code> and <code>bcrypt.hashpw(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /bcrypt\.gensalt\s*\(\s*\)/i.test(c) && /bcrypt\.hashpw\s*\(/i.test(c); } }
-            ], {
+            { id: 'import', label: 'Import <code>bcrypt</code> module', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+bcrypt/i.test(c); } },
+            { id: 'hashpw', label: 'Call <code>bcrypt.gensalt()</code> and <code>bcrypt.hashpw(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /bcrypt\.gensalt\s*\(/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

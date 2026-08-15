@@ -52,7 +52,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 05: FastAPI CORS Security | Level 7A • Cloud & DevOps"
-    description="Secure cross-origin API communication between frontend SPAs and FastAPI backends using CORSMiddleware."
+    description="Protect backend APIs against unauthorized cross-origin requests by configuring FastAPI CORSMiddleware."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={5}
     lessonTitle="FastAPI CORS Security"
@@ -84,7 +84,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [FastAPI CORS] Allowed Origins: ['https://coderoots.dev'] • Security Active!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -92,7 +96,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> CORS is the bouncer at your API's front door: checking whether incoming web requests originate from an approved, trusted web domain.
+                <strong>Real-World Analogy:</strong> CORS is like a building security guard 🏢 checking visitor badges: only visitors on the guest list (allowed origins) are permitted through the doors.
             </div>
         </article>
 
@@ -158,29 +162,31 @@ app.add_middleware(
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson5';
-        const DEFAULT_STARTER = `from fastapi import FastAPI
+        const DEFAULT_STARTER = `# 🛡️ Lesson 5: FastAPI CORS Security Middleware!
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# 🛠️ Practice Task: Configure CORS Middleware
-# Step 1: Define allowed_origins list
-allowed_origins = [
-    # Add frontend origins here
-]
+# 👉 STEP 1: Define allowed_origins = ["https://coderoots.dev", "http://localhost:3000"]
+allowed_origins = ["https://coderoots.dev", "http://localhost:3000"]
 
-# Step 2: Add CORSMiddleware to app with allow_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
-# Write your middleware call here:
+# 👉 STEP 2: Add CORSMiddleware to app with allow_origins=allowed_origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?http/i.test(c); } },
-                { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\([\s\S]*?CORSMiddleware/i.test(c) && /allow_credentials=True/i.test(c); } }
-            ], {
+            { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?https?:/i.test(c); } },
+            { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\(\s*CORSMiddleware/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

@@ -53,7 +53,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 02: Server & Client UI | Level 7C • Next.js & Frontend"
-    description="Master the boundary between React Server Components (RSC) and interactive Client Components with the 'use client' directive."
+    description="Design interactive client components in Next.js using the "use client" directive and useState handlers."use client" directive and useState handlers."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={2}
     lessonTitle="Server & Client UI"
@@ -85,7 +85,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: An interactive Next.js Client Counter button ⚡ with click handler and reactive count updates!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -93,7 +97,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> 'use client' is a passport stamp: marking components that require client-side JavaScript execution (events, state, effects) vs server-rendered HTML.
+                <strong>Real-World Analogy:</strong> Server vs Client components is like a restaurant kitchen 🍲: the chef cooks the heavy meal on the server (fast load), and you add hot sauce at your table (client interactivity).
             </div>
         </article>
 
@@ -156,31 +160,39 @@ export default function Counter() &#123;
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson2';
-        const DEFAULT_STARTER = `// app/components/InteractiveCounter.jsx
-// 🛠️ Practice Task: Create an Interactive Client Component in Next.js
+        const DEFAULT_STARTER = `// ⚡ Lesson 2: Next.js Client Components with "use client"!
 
-// Step 1: Add use client directive at the top
-// Write 'use client'; here:
-
+// 👉 STEP 1: Add "use client" directive at top of file
+"use client";
 
 import React, { useState } from 'react';
 
-// Step 2: Export default Counter component with useState
-export default function Counter() {
-    // Write count state and button here:
+export default function InteractiveCounter() {
+  // 👉 STEP 2: Declare state [count, setCount] initialized to 0
+  const [count, setCount] = useState(0);
 
-    return <div></div>;
-}`;
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
+      <h2>⚡ Next.js Interactive Client Component</h2>
+      {/* 👉 STEP 3: Attach onClick={() => setCount(count + 1)} */}
+      <button 
+        onClick={() => setCount(count + 1)}
+        style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+      >
+        Count: {count}
+      </button>
+    </div>
+  );
+}
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'useclient', label: 'Add <code>use client</code> directive', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /['"]use client['"]/i.test(c); } },
-                { id: 'usestate', label: 'Use <code>useState</code> hook', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /useState\s*\(/i.test(c); } },
-                { id: 'onclick', label: 'Attach <code>onClick</code> handler', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /onClick\s*=\s*\{/i.test(c); } }
-            ], {
+            { id: 'useclient', label: 'Add <code>"use client"</code> directive at line 1', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /["']use client["']/i.test(c); } },
+            { id: 'usestate', label: 'Declare <code>const [count, setCount] = useState(0)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*count\s*,\s*setCount\s*\]\s*=\s*useState/i.test(c); } },
+            { id: 'onclick', label: 'Attach <code>onClick</code> handler to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

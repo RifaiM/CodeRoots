@@ -50,7 +50,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 05: Unit & E2E Testing | Level 7C • Next.js & Frontend"
-    description="Write automated tests with Jest and React Testing Library to verify component rendering and state interactions."
+    description="Ensure enterprise reliability by writing component unit tests with Vitest and React Testing Library."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={5}
     lessonTitle="Unit & E2E Testing"
@@ -82,7 +82,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Vitest Test Runner] PASS: Counter increments from 0 to 1 on click (3 tests passed)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -90,7 +94,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Automated tests are regression security cameras: constantly watching your codebase to verify that new changes never break existing features.
+                <strong>Real-World Analogy:</strong> Vitest unit tests are like automated safety crash testing in a car factory 🔬: verifying every button and sensor works perfectly before releasing the car to customers.
             </div>
         </article>
 
@@ -148,28 +152,31 @@ test('increments count on click', () =&gt; &#123;
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson5';
-        const DEFAULT_STARTER = `// __tests__/Counter.test.jsx
-// 🛠️ Practice Task: Write Component Tests with Jest & RTL
-
+        const DEFAULT_STARTER = `// 🔬 Lesson 5: Vitest & React Testing Library!
 import { render, screen, fireEvent } from '@testing-library/react';
-import Counter from '../components/Counter';
+import { test, expect } from 'vitest';
+import Counter from './Counter';
 
-// Step 1: Write test('increments count on click', () => { ... })
-// Render <Counter />
-// Trigger fireEvent.click(button)
-// Expect screen.getByText(/Count: 1/) to be in document
-// Write test here:
+test('increments counter on button click', () => {
+  // 👉 STEP 1: Mount component with render(<Counter />)
+  render(<Counter />);
+
+  // 👉 STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
+  const btn = screen.getByRole('button');
+  fireEvent.click(btn);
+
+  // 👉 STEP 3: Assert expectation with expect(screen.getByText('Count: 1')).toBeInTheDocument()
+  expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument();
+});
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'render', label: 'Mount component with <code>render(&lt;Counter /&gt;)</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /render\s*\(\s*<Counter\s*\/>\s*\)/i.test(c); } },
-                { id: 'click', label: 'Simulate click with <code>fireEvent.click(...)</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /fireEvent\.click\s*\(/i.test(c); } },
-                { id: 'expect', label: 'Assert expectation with <code>expect(...)</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, ''); return /expect\s*\([\s\S]*?\)\.toBeInTheDocument/i.test(c); } }
-            ], {
+            { id: 'render', label: 'Mount component with <code>render(&lt;Counter /&gt;)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /render\s*\(\s*<Counter/i.test(c); } },
+            { id: 'click', label: 'Simulate click with <code>fireEvent.click(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fireEvent\.click\s*\(/i.test(c); } },
+            { id: 'expect', label: 'Assert expectation with <code>expect(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /expect\s*\(/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

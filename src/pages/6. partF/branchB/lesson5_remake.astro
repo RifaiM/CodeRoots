@@ -53,7 +53,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 05: JWT Token Authentication | Level 7B • Backend & DB"
-    description="Generate, sign, and encode JSON Web Tokens (JWT) with expiration timestamps and HMAC SHA-256 algorithms."
+    description="Generate signed JSON Web Tokens (JWT) with expiration timestamps for stateless user authentication."
     levelTag="Level 7B • Backend & DB"
     lessonNum={5}
     lessonTitle="JWT Token Authentication"
@@ -85,7 +85,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [JWT Token] Generated signed token for user 'alex_dev' (Expires in 30 mins)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -93,7 +97,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A JWT is a digitally signed boarding pass: carrying verifiable claims (username, role, expiration) that any server can trust without checking a central database.
+                <strong>Real-World Analogy:</strong> A JWT token is like a concert VIP wristband 🎟️: it contains your user name and an expiration timestamp with a holographic seal that proves it was issued by the official organizer.
             </div>
         </article>
 
@@ -152,30 +156,27 @@ print(f"Token: &#123;token&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson5';
-        const DEFAULT_STARTER = `from datetime import datetime, timedelta
-# 🛠️ Practice Task: JWT Access Token Creation
+        const DEFAULT_STARTER = `# 🎟️ Lesson 5: JWT Token Authentication!
+from datetime import datetime, timedelta, timezone
+import jwt
 
-# Step 1: Import jwt library
-# Write import jwt here:
-
-
-SECRET_KEY = "my-super-secret-key"
+SECRET_KEY = "coderoots-super-secret-key"
 ALGORITHM = "HS256"
 
-# Step 2: Implement create_access_token(data, expires_in_minutes=30)
-# Add 'exp' timestamp to dictionary: datetime.utcnow() + timedelta(minutes=expires_in_minutes)
-# Sign with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-# Write create_access_token here:
+def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=30)) -> str:
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + expires_delta
+    to_encode.update({"exp": expire})
+    # 👉 STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'import', label: 'Import <code>jwt</code> and <code>timedelta</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+jwt/i.test(c) && /timedelta/i.test(c); } },
-                { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\([\s\S]*?SECRET_KEY/i.test(c); } }
-            ], {
+            { id: 'import', label: 'Import <code>jwt</code> and <code>timedelta</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+jwt/i.test(c); } },
+            { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\(\s*to_encode\s*,\s*SECRET_KEY/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

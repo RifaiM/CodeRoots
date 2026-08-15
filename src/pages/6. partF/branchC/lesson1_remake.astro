@@ -48,7 +48,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 01: Next.js App Router | Level 7C • Next.js & Frontend"
-    description="Learn Next.js App Router conventions, nested file-based routing, page.js components, and React Server Components."
+    description="Learn modern Next.js App Router conventions: page.jsx root components and metadata exports."
     levelTag="Level 7C • Next.js & Frontend"
     lessonNum={1}
     lessonTitle="Next.js App Router"
@@ -80,7 +80,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: A modern Next.js hero banner displaying 🚀 <strong>Welcome to Next.js App Router</strong> with SEO metadata!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -88,7 +92,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Next.js App Router turns folder directories into web URLs: creating a page.js file inside /dashboard automatically creates the /dashboard route.
+                <strong>Real-World Analogy:</strong> The Next.js App Router is like organizing folders on your computer 📁: putting a <code>page.jsx</code> inside a folder automatically creates that web page URL for the whole world to see.
             </div>
         </article>
 
@@ -150,26 +154,33 @@ export default function Home() &#123;
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson1';
-        const DEFAULT_STARTER = `// app/page.js — Next.js Root Page Component
-// 🛠️ Practice Task: Build an App Router Page Component
+        const DEFAULT_STARTER = `// 🚀 Level 7C Lesson 1: Next.js App Router!
 
-// Step 1: Export metadata object with title and description
-// Write export const metadata = { ... } here:
+// 👉 STEP 1: Export metadata object with title and description
+export const metadata = {
+  title: "Next.js App Router | CodeRoots",
+  description: "Modern SSR Frontend Engineering"
+};
 
-
-// Step 2: Export default function component returning JSX with <h1> heading
-// Write export default function Home() here:
+// 👉 STEP 2: Export default page component function
+export default function Page() {
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', textAlign: 'center' }}>
+      {/* 👉 STEP 3: Return <h1>Welcome to Next.js App Router</h1> */}
+      <h1 style={{ color: '#0f172a' }}>Welcome to Next.js App Router</h1>
+      <p style={{ color: '#64748b' }}>Rendered via Next.js React Server Component.</p>
+    </div>
+  );
+}
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'metadata', label: 'Export metadata object', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, ''); return /export\s+const\s+metadata\s*=\s*\{/i.test(c); } },
-                { id: 'exportdefault', label: 'Export default component <code>export default function</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, ''); return /export\s+default\s+function/i.test(c); } },
-                { id: 'heading', label: 'Return <code>&lt;h1&gt;</code> element', fn: (code) => /<h1[^>]*>[\s\S]*?<\/h1>/i.test(code) }
-            ], {
+            { id: 'metadata', label: 'Export <code>metadata</code> object with title', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /export\s+const\s+metadata\s*=/i.test(c); } },
+            { id: 'exportdefault', label: 'Export default component <code>export default function Page()</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /export\s+default\s+function/i.test(c); } },
+            { id: 'heading', label: 'Return <code>&lt;h1&gt;</code> element', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /<h1\b[^>]*>/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'javascript'
         });
 

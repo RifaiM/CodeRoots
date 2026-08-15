@@ -47,7 +47,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 01: Relational SQL Mastery | Level 7B • Backend & DB"
-    description="Master SQL SELECT queries, column projections, and WHERE clause filtering against relational database tables."
+    description="Query relational database tables with SQL: filter specific columns and match conditions with WHERE clauses."
     levelTag="Level 7B • Backend & DB"
     lessonNum={1}
     lessonTitle="Relational SQL Mastery"
@@ -79,7 +79,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [SQL Query Result] Found 2 developers: Alice (alice@dev.io), Bob (bob@dev.io)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -87,7 +91,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A SQL query is like placing an order with a data barista: specifying exact ingredients (columns), source shelf (table), and preferences (WHERE filters).
+                <strong>Real-World Analogy:</strong> An SQL <code>WHERE</code> query is like a filter in an online shopping catalog 🛒: show me all products where category = 'Electronics' and rating >= 4.5.
             </div>
         </article>
 
@@ -137,25 +141,22 @@ const branchLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson1';
-        const DEFAULT_STARTER = `-- 🛠️ Practice Task: SQL Fundamentals
--- Retrieve developer profiles from the 'users' table
+        const DEFAULT_STARTER = `# 🗄️ Level 7B Lesson 1: Relational SQL Mastery!
 
--- 1. Select the 'name' and 'email' columns
--- 2. From the 'users' table
--- 3. Filter rows where role is 'developer'
+# 👉 STEP 1: Write an SQL query to SELECT name, email FROM users WHERE role = 'developer'
+# (Hint: sql_query = "SELECT name, email FROM users WHERE role = 'developer';")
+sql_query = "SELECT name, email FROM users WHERE role = 'developer';"
 
--- Write your SQL query here:
+print(f"Executing: {sql_query}")
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'select', label: 'Use <code>SELECT name, email</code>', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /SELECT\s+name\s*,\s*email/i.test(c); } },
-                { id: 'from', label: 'Target <code>FROM users</code>', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /FROM\s+users/i.test(c); } },
-                { id: 'where', label: 'Filter with <code>WHERE role = "developer"</code>', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /WHERE\s+role\s*=\s*['"]developer['"]/i.test(c); } }
-            ], {
+            { id: 'select', label: 'Use <code>SELECT name, email</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /SELECT\s+name\s*,\s*email/i.test(c); } },
+            { id: 'from', label: 'Target <code>FROM users</code> table', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /FROM\s+users/i.test(c); } },
+            { id: 'where', label: 'Filter with <code>WHERE role = "developer"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /WHERE\s+role\s*=\s*['"]developer['"]/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

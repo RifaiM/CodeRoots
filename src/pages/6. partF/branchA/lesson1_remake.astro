@@ -59,7 +59,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 01: Git & GitHub Workflow | Level 7A • Cloud & DevOps"
-    description="Master local Git version control, staging, atomic commits, branch renaming, and pushing to GitHub remotes."
+    description="Master version control fundamentals: initialize repositories, stage changes, commit snapshots, and push code to GitHub."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={1}
     lessonTitle="Git & GitHub Workflow"
@@ -91,7 +91,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Git Workflow] Initialized • Staged • Committed 'feat: launch app' • Pushed to main!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -99,7 +103,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Git is a time-machine for your code: commits create immutable save-points you can travel back to anytime, while GitHub is the cloud bank storing your timeline.
+                <strong>Real-World Analogy:</strong> Git is like a time machine with save checkpoints 💾. <code>git add</code> packs your bags, <code>git commit</code> takes a snapshot photo, and <code>git push</code> uploads your album to the cloud.
             </div>
         </article>
 
@@ -159,39 +163,37 @@ git push -u origin main</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson1';
-        const DEFAULT_STARTER = `# 🛠️ Level 7A Lesson 1: Git & GitHub Workflow Practice
+        const DEFAULT_STARTER = `# 🚀 Level 7A Lesson 1: Essential Git & GitHub Workflow!
 
-# Step 1: Initialize Git repository
-# Write your initialize command here:
+# 👉 STEP 1: Initialize local repository with git init
+git init
 
-
-# Step 2: Create a .gitignore file ignoring node_modules/ and .env
-# Write your file creation command here:
-
-
-# Step 3: Stage all files
-# Write your stage command here:
+# 👉 STEP 2: Create .gitignore file ignoring node_modules and .env
+# (Hint: echo "node_modules
+.env" > .gitignore)
 
 
-# Step 4: Create initial commit
-# Write your commit command here:
+# 👉 STEP 3: Stage all project files for commit
+# (Hint: git add .)
 
 
-# Step 5: Push to remote main branch
-# Write your push command here:
+# 👉 STEP 4: Commit with a meaningful milestone message
+# (Hint: git commit -m "feat: initial project setup")
+
+
+# 👉 STEP 5: Push your main branch to remote GitHub repository
+# (Hint: git push -u origin main)
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'init', label: 'Run <code>git init</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+init/i.test(c); } },
-                { id: 'ignore', label: 'Create <code>.gitignore</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /\.gitignore/i.test(c); } },
-                { id: 'add', label: 'Stage files with <code>git add .</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+add/i.test(c); } },
-                { id: 'commit', label: 'Commit with <code>git commit -m</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+commit\s+-m/i.test(c); } },
-                { id: 'push', label: 'Push to remote with <code>git push</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+push/i.test(c); } }
-            ], {
+            { id: 'init', label: 'Initialize repo with <code>git init</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+init/i.test(c); } },
+            { id: 'ignore', label: 'Create <code>.gitignore</code> ignoring sensitive files', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /.gitignore/i.test(c); } },
+            { id: 'add', label: 'Stage files with <code>git add .</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+add\s+\./i.test(c); } },
+            { id: 'commit', label: 'Commit with <code>git commit -m "..."</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+commit\s+-m/i.test(c); } },
+            { id: 'push', label: 'Push to remote with <code>git push origin main</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /git\s+push/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'terminal'
         });
 

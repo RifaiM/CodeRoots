@@ -50,7 +50,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 03: SQLAlchemy ORM Models | Level 7B • Backend & DB"
-    description="Define declarative Python ORM models, table schemas, primary keys, and typed column definitions with SQLAlchemy."
+    description="Map database tables directly to Python classes using SQLAlchemy declarative base and column definitions."
     levelTag="Level 7B • Backend & DB"
     lessonNum={3}
     lessonTitle="SQLAlchemy ORM Models"
@@ -82,7 +82,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [ORM Model] Product Model mapped to table 'products' with ID and Name columns!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -90,7 +94,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> ORM models are bilingual translators: translating Python class objects into SQL relational table rows and back without writing raw SQL queries.
+                <strong>Real-World Analogy:</strong> An ORM is like a bilingual translator 🪄: it translates Python objects and properties into SQL database tables effortlessly.
             </div>
         </article>
 
@@ -152,28 +156,28 @@ print(f"Mapped Table: &#123;Product.__tablename__&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson3';
-        const DEFAULT_STARTER = `from sqlalchemy import Column, Integer, String
+        const DEFAULT_STARTER = `# 🏗️ Lesson 3: SQLAlchemy ORM Models!
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-# 🛠️ Practice Task: Define SQLAlchemy Product Model
-# Map to table 'products' with columns:
-#   - id: Integer, primary key
-#   - title: String, required
-#   - price: Integer
-# Write Product model class here:
+# 👉 STEP 1: Define class Product(Base): with __tablename__ = "products"
+class Product(Base):
+    __tablename__ = "products"
+
+    # 👉 STEP 2: Define id = Column(Integer, primary_key=True) and name = Column(String(100))
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100))
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'classdef', label: 'Define <code>class Product(Base):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+Product\s*\(\s*Base\s*\)\s*:/i.test(c); } },
-                { id: 'table', label: 'Set <code>__tablename__ = "products"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /__tablename__\s*=\s*["']products["']/i.test(c); } },
-                { id: 'columns', label: 'Define <code>id = Column(Integer, primary_key=True)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /id\s*=\s*Column\s*\(\s*Integer\s*,\s*primary_key=True\s*\)/i.test(c); } }
-            ], {
+            { id: 'classdef', label: 'Define <code>class Product(Base):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+Product\s*\(\s*Base\s*\)\s*:/i.test(c); } },
+            { id: 'table', label: 'Set <code>__tablename__ = "products"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /__tablename__\s*=\s*["']products["']/i.test(c); } },
+            { id: 'columns', label: 'Define <code>id = Column(Integer, primary_key=True)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /id\s*=\s*Column\s*\(\s*Integer\s*,\s*primary_key\s*=\s*True/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

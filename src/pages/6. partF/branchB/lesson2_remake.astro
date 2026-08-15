@@ -50,7 +50,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 02: Cloud PostgreSQL & SSL | Level 7B • Backend & DB"
-    description="Configure production PostgreSQL DATABASE_URL connection strings with SSL mode for Neon and Supabase serverless databases."
+    description="Connect to production cloud PostgreSQL databases securely using SSL connection strings."
     levelTag="Level 7B • Backend & DB"
     lessonNum={2}
     lessonTitle="Cloud PostgreSQL & SSL"
@@ -82,7 +82,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Postgres SSL] Connected to postgresql://...@cloud-db:5432 with sslmode=require!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -90,7 +94,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A DATABASE_URL is an encrypted passport: containing protocol, authentication credentials, host coordinates, and SSL certificates in a unified URI.
+                <strong>Real-World Analogy:</strong> An SSL connection string is like an armored security truck with an encrypted key 🚛: ensuring no eavesdroppers can read data in transit between server and database.
             </div>
         </article>
 
@@ -141,27 +145,21 @@ DB_POOL_SIZE = 5</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson2';
-        const DEFAULT_STARTER = `# 🛠️ Level 7B Lesson 2: Cloud Database Connection Configuration
+        const DEFAULT_STARTER = `# ☁️ Lesson 2: Cloud PostgreSQL & SSL Connection!
 
-# Step 1: Define DATABASE_URL connection string for Neon/Supabase:
-# Format: postgresql://[user]:[password]@[host]/[dbname]?sslmode=require
-# Requirements:
-#   User: db_master, Password: Pass456, Host: ep-prod-db.neon.tech, DB: prod_db
-# Write DATABASE_URL here:
+# 👉 STEP 1: Define DATABASE_URL connection string enforcing sslmode=require
+# (Hint: DATABASE_URL = "postgresql://user:secret@cloud-db.internal:5432/production?sslmode=require")
+DATABASE_URL = "postgresql://user:secret@cloud-db.internal:5432/production?sslmode=require"
 
-
-# Step 2: Configure pool size
-DB_POOL_SIZE = 5
+print(f"Connecting with SSL: {DATABASE_URL}")
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'dburl', label: 'Define <code>DATABASE_URL</code> variable', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /DATABASE_URL\s*=\s*["']postgresql:\/\//i.test(c); } },
-                { id: 'ssl', label: 'Enforce <code>sslmode=require</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /sslmode=require/i.test(c); } }
-            ], {
+            { id: 'dburl', label: 'Define <code>DATABASE_URL</code> variable', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /DATABASE_URL\s*=\s*["']postgresql:\/\//i.test(c); } },
+            { id: 'ssl', label: 'Enforce <code>sslmode=require</code> in URL', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /sslmode=require/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

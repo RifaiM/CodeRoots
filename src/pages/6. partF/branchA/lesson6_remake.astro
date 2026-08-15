@@ -56,7 +56,7 @@ const branchLessons = [
 
 <LessonLayout
     title="Milestone 06: GitHub Actions CI/CD | Level 7A • Cloud & DevOps"
-    description="Automate build pipelines and test execution using GitHub Actions YAML workflows triggered on main branch pushes."
+    description="Automate code testing and production deployment workflows using GitHub Actions YAML pipelines."
     levelTag="Level 7A • Cloud & DevOps"
     lessonNum={6}
     lessonTitle="GitHub Actions CI/CD"
@@ -88,7 +88,11 @@ const branchLessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [CI/CD Pipeline] Trigger: push on main • Ubuntu Runner • Checkout + Tests Passed!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -96,7 +100,7 @@ const branchLessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> GitHub Actions is an autonomous robot on your dev team: running unit tests and deploying code the moment you push a commit to main.
+                <strong>Real-World Analogy:</strong> A CI/CD pipeline is like a car factory quality inspection line 🏎️: every time new parts arrive, automated robots inspect, test, and polish the car before shipping.
             </div>
         </article>
 
@@ -160,31 +164,31 @@ jobs:
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson6';
-        const DEFAULT_STARTER = `# .github/workflows/deploy.yml
-# 🛠️ Practice Task: Complete GitHub Actions CI/CD Pipeline
+        const DEFAULT_STARTER = `# 🤖 Lesson 6: GitHub Actions CI/CD Pipeline!
+name: Production CI/CD
 
-name: Deploy Production
-
-# 👉 STEP 1: Set push trigger on main branch
+# 👉 STEP 1: Trigger on push to branch main
 on:
   push:
-    branches:
-      - 
+    branches: [ main ]
 
-# 👉 STEP 2: Define deploy job with ubuntu-latest runner and checkout step
 jobs:
-  deploy:
-    runs-on: 
+  build_and_test:
+    # 👉 STEP 2: Set runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+
     steps:
-      # Write your actions checkout and test steps below:
+      # 👉 STEP 3: Checkout code using actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-                { id: 'trigger', label: 'Trigger on push to <code>main</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /branches:[\s\S]*?-\s*main/i.test(c); } },
-                { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /runs-on:\s*ubuntu-latest/i.test(c); } },
-                { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => { const c = code.replace(/#[^\r\n]*/g, ''); return /actions\/checkout@v4/i.test(c); } }
-            ], {
+            { id: 'trigger', label: 'Trigger on <code>push</code> to <code>main</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /on\s*:[\s\S]*?push[\s\S]*?branches\s*:\s*\[?\s*main/i.test(c); } },
+            { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /runs-on\s*:\s*ubuntu-latest/i.test(c); } },
+            { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /uses\s*:\s*actions\/checkout@v4/i.test(c); } }
+        ], {
             containerId: 'taskChecklist',
             mode: 'terminal'
         });
