@@ -107,17 +107,14 @@ export const useCartStore = create((set) =&gt; (&#123;
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #6366f1;">
-            <h3><span>🎯</span> Milestone Requirements</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Import <code>create</code> from zustand.</li>
-                <li>Define <code>useCartStore = create((set) => (&#123; ... &#125;))</code>.</li>
-                <li>Implement <code>addToCart</code> action using spread syntax.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -188,6 +185,10 @@ import { create } from 'zustand';
             }
 
             // Real-Time Checklist Verification
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'html');
+
+            // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
         }
 
@@ -225,33 +226,19 @@ import { create } from 'zustand';
 <div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
         }
 
-        // 6. Check & Verify Code Action
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
+                if (typeof simulateTerminal === 'function') {
+                    simulateTerminal(editor.value);
                 }
-
-                simulateTerminal(code);
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Milestone 03: Zustand Global State',
-                        xp: 250,
-                        completionKey: 'partF_branchC_lesson3_complete',
-                        nextUrl: '/6. partF/branchC/lesson4_remake.html',
-                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
-                    });
-                } else {
-                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Zustand Global State',
+                    xp: 250,
+                    completionKey: 'partF_branchC_lesson3_complete',
+                    nextUrl: '/6. partF/branchC/lesson4_remake.html',
+                    mode: 'html'
+                });
             });
         }
 

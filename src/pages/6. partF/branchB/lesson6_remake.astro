@@ -122,16 +122,14 @@ print("Auth guard initialized")</code></pre>
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #6366f1;">
-            <h3><span>🎯</span> Milestone Requirements</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Inject token with <code>token: str = Depends(oauth2_scheme)</code>.</li>
-                <li>Decode with <code>jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all milestone goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -199,6 +197,10 @@ ALGORITHM = "HS256"
             }
 
             // Real-Time Checklist Verification
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'python');
+
+            // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
         }
 
@@ -236,33 +238,19 @@ ALGORITHM = "HS256"
 <div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
         }
 
-        // 6. Check & Verify Code Action
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
+                if (typeof simulateTerminal === 'function') {
+                    simulateTerminal(editor.value);
                 }
-
-                simulateTerminal(code);
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    localStorage.setItem('partF_branchB_completed', 'true');
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Milestone 06: FastAPI RBAC Middleware',
-                        xp: 250,
-                        completionKey: 'partF_branchB_lesson6_complete',
-                        nextUrl: '/6. partF/certificate.html',
-                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
-                    });
-                } else {
-                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'FastAPI RBAC Middleware',
+                    xp: 250,
+                    completionKey: 'partF_branchB_lesson6_complete',
+                    nextUrl: '/6. partF/certificate.html',
+                    mode: 'python'
+                });
             });
         }
 
