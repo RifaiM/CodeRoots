@@ -20,47 +20,47 @@ import sqlite3
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -70,27 +70,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -98,10 +98,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 14: Guided Mini Project: Task Manager API | Level 6 Python Dojo"
-    description="Build a complete Task Manager backend service with database schema, model classes, and CRUD route endpoints."
+    description="Build a modular Task Manager service combining SQLite database tables, Model classes, and CRUD handlers."
     levelTag="Level 6 • Python Dojo"
     lessonNum={14}
-    lessonTitle="Guided Mini Project: Task Manager API"
+    lessonTitle="Task Manager Backend API"
     xpAmount={150}
     completionKey="partE_lesson14_remake_complete"
     nextLessonUrl="/5. partE/lesson15/lesson15_remake.html"
@@ -130,7 +130,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; Task Service ready • Created task #1: 'Deploy CodeRoots App' • Status: Success</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -138,7 +142,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A backend service combines three layers: Models for structure, Database for storage, and Handlers for business logic operations.
+                <strong>Real-World Analogy:</strong> A backend service is like an automated warehouse 🏭: the conveyor (API) receives incoming boxes, the catalog (Model) labels them, and the shelf (Database) stores them safely.
             </div>
         </article>
 
@@ -216,31 +220,28 @@ print(f"Created task ID: &#123;new_id&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson14';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 14 Guided Project: Task Manager API
-
+        const DEFAULT_STARTER = `# 🛠️ Lesson 14: Task Manager Backend API Service!
 import sqlite3
 
-# Step 1: Define model class TaskItem with __init__(self, task_id, title, status="pending") and to_dict(self)
-# Write class TaskItem here:
+# 👉 STEP 1: Create database schema table 'tasks' with id INTEGER PRIMARY KEY, title TEXT
+conn = sqlite3.connect(":memory:")
+cursor = conn.cursor()
+cursor.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
+
+# 👉 STEP 2: Define TaskItem class with __init__(self, id, title) and to_dict(self)
 
 
-# Step 2: Connect to database conn = sqlite3.connect(":memory:") and create tasks table
-# Write DB initialization here:
+# 👉 STEP 3: Implement create_task(conn, title) that inserts into tasks and returns new id
 
-
-# Step 3: Define function create_task(conn, title) that inserts task into DB and returns task ID
-# Write create_task function here:
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'db_setup', label: 'Create tasks table with <code>cursor.execute("CREATE TABLE tasks...")</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /CREATE\s+TABLE\s+tasks/i.test(c); } },
-            { id: 'model', label: 'Define model class <code>TaskItem</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+TaskItem/i.test(c) && /def\s+to_dict/i.test(c); } },
-            { id: 'crud', label: 'Implement <code>create_task(conn, title)</code> handler', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+create_task\s*\([\s\S]*?INSERT\s+INTO\s+tasks/i.test(c); } }
+            { id: 'db_setup', label: 'Create tasks table with <code>cursor.execute("CREATE TABLE tasks...")</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /cursor\.execute\s*\([\s\S]*?CREATE\s+TABLE\s+tasks/i.test(c); } },
+            { id: 'model', label: 'Define model <code>class TaskItem:</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+TaskItem\s*:[\s\S]*?def\s+to_dict/i.test(c); } },
+            { id: 'crud', label: 'Implement <code>create_task(conn, title)</code> handler', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+create_task\s*\(\s*conn\s*,\s*title\s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

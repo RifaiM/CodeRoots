@@ -29,47 +29,47 @@ class FastAPI:
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -79,27 +79,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -107,10 +107,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 12: RESTful Web APIs with FastAPI | Level 6 Python Dojo"
-    description="Construct high-performance REST APIs with FastAPI decorators, automatic request validation, and JSON responses."
+    description="Construct high-performance REST APIs with FastAPI decorators and automatic JSON response serialization."
     levelTag="Level 6 • Python Dojo"
     lessonNum={12}
-    lessonTitle="RESTful Web APIs with FastAPI"
+    lessonTitle="REST APIs with FastAPI"
     xpAmount={150}
     completionKey="partE_lesson12_remake_complete"
     nextLessonUrl="/5. partE/lesson13/lesson13_remake.html"
@@ -139,7 +139,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; ⚡ FastAPI app initialized • Route GET / returns &#123;"status": "online"&#125;</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -147,7 +151,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> API route decorators (@app.get) are like reception desks in an office building: greeting incoming visitors at a specific room address and handing back the requested info.
+                <strong>Real-World Analogy:</strong> FastAPI is like a restaurant drive-thru window 🚗: customers send requests at the mic (GET /), and the kitchen hands them their meal (JSON payload).
             </div>
         </article>
 
@@ -217,40 +221,27 @@ print("Registered API Routes:", list(app.routes.keys()))</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson12';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 12 Practice Task: FastAPI Microservice
+        const DEFAULT_STARTER = `# ⚡ Lesson 12: RESTful Web APIs with FastAPI!
+from fastapi import FastAPI
 
-class FastAPI:
-    def __init__(self, title="API Server"):
-        self.title = title
-        self.routes = {}
+# 👉 STEP 1: Instantiate FastAPI app = FastAPI()
+app = FastAPI()
 
-    def get(self, path):
-        def decorator(func):
-            self.routes[f"GET {path}"] = func
-            return func
-        return decorator
-
-# Step 1: Instantiate app = FastAPI(title="CodeRoots Backend Gateway")
-# Write app instantiation here:
+# 👉 STEP 2: Define root endpoint @app.get("/") returning {"status": "online"}
+# (Hint: @app.get("/") def root(): return {"status": "online"})
 
 
-# Step 2: Define root route @app.get("/") returning {"status": "ok", "service": "online"}
-# Write @app.get("/") route here:
+# 👉 STEP 3: Define user endpoint @app.get("/users/me") returning {"username": "developer"}
 
-
-# Step 3: Define @app.get("/users/me") returning {"username": "alex_dev", "role": "admin"}
-# Write @app.get("/users/me") route here:
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'init_app', label: 'Instantiate <code>app = FastAPI(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\s*=\s*FastAPI\s*\(/i.test(c); } },
-            { id: 'route_root', label: 'Define <code>@app.get("/")</code> endpoint', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /@app\.get\s*\(\s*["']\/["']\s*\)/i.test(c); } },
-            { id: 'route_user', label: 'Define <code>@app.get("/users/me")</code> endpoint', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /@app\.get\s*\(\s*["']\/users\/me["']\s*\)/i.test(c); } }
+            { id: 'init_app', label: 'Instantiate <code>app = FastAPI()</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\s*=\s*FastAPI\s*\(\s*\)/i.test(c); } },
+            { id: 'route_root', label: 'Define root route <code>@app.get("/")</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /@app\.get\s*\(\s*["']\/["']s*\)/i.test(c); } },
+            { id: 'route_user', label: 'Define user route <code>@app.get("/users/me")</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /@app\.get\s*\(\s*["']\/users\/me["']s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

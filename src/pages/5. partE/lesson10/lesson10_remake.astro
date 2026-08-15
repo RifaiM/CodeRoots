@@ -22,47 +22,47 @@ import asyncio
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -72,27 +72,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -100,7 +100,7 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 10: Asynchronous Python & Asyncio | Level 6 Python Dojo"
-    description="Execute concurrent backend operations, non-blocking I/O, coroutines, and event loops with asyncio."
+    description="Execute non-blocking asynchronous backend code using async def, await, and asyncio.run()."
     levelTag="Level 6 • Python Dojo"
     lessonNum={10}
     lessonTitle="Asynchronous Python & Asyncio"
@@ -132,7 +132,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; ⏳ Async fetch initiated... • ✓ Retrieved User ID: 42 in 0.1s</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -140,7 +144,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Asynchronous execution is like a master chef in a restaurant: while waiting for a dish to bake in the oven, the chef chops vegetables for another order without idling.
+                <strong>Real-World Analogy:</strong> Asynchronous Python is like a chef cooking breakfast 🍳: while waiting for water to boil (network request), the chef toasts the bread instead of standing frozen.
             </div>
         </article>
 
@@ -203,33 +207,27 @@ asyncio.run(main())</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson10';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 10 Practice Task: Async Python
-
+        const DEFAULT_STARTER = `# ⚡ Lesson 10: Asynchronous Python & Asyncio!
 import asyncio
 
-# Step 1: Define async def fetch_user_data(user_id):
-# Simulate async delay with await asyncio.sleep(0.1)
-# Return {"user_id": user_id, "status": "active"}
-# Write coroutine here:
+# 👉 STEP 1: Define coroutine async def fetch_user_data(user_id):
+# (Hint: async def fetch_user_data(user_id): await asyncio.sleep(0.1); return f"User {user_id}")
 
 
-# Step 2: Define async def main():
-# Await fetch_user_data(42) and store in 'data'
-# Write main coroutine here:
+# 👉 STEP 2: Define async def main(): call await fetch_user_data(42)
 
 
-# Step 3: Run event loop with asyncio.run(main())
+# 👉 STEP 3: Execute event loop with asyncio.run(main())
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'async_def', label: 'Define coroutine with <code>async def fetch_user_data(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /async\s+def\s+fetch_user_data\s*\(/i.test(c); } },
-            { id: 'await', label: 'Use <code>await</code> keyword inside coroutine', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /await\s+(?:asyncio\.sleep|fetch_user_data)/i.test(c); } },
-            { id: 'async_run', label: 'Execute with <code>asyncio.run(main())</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /asyncio\.run\s*\(\s*main\s*\(\s*\)\s*\)/i.test(c); } }
+            { id: 'await', label: 'Use <code>await</code> keyword inside async function', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /await\s+/i.test(c); } },
+            { id: 'async_run', label: 'Execute with <code>asyncio.run(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /asyncio\.run\s*\(/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

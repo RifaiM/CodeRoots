@@ -22,47 +22,47 @@ class BaseService:
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -72,27 +72,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -100,10 +100,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 06: OOP Inheritance & Polymorphism | Level 6 Python Dojo"
-    description="Extend parent classes, reuse backend behaviors with super(), and override methods polymorphically."
+    description="Extend parent classes and reuse backend logic using Python inheritance and super().__init__()."
     levelTag="Level 6 • Python Dojo"
     lessonNum={6}
-    lessonTitle="OOP Inheritance & Polymorphism"
+    lessonTitle="Class Inheritance & Reuse"
     xpAmount={150}
     completionKey="partE_lesson6_remake_complete"
     nextLessonUrl="/5. partE/lesson7/lesson7_remake.html"
@@ -132,7 +132,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Auth Service] Initialized for User: Alex • Service Status: Active</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -140,7 +144,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Inheritance is genetic code reuse: child classes automatically inherit all traits and capabilities of parent classes while specializing their own unique abilities.
+                <strong>Real-World Analogy:</strong> Class inheritance is like traits passed from parent to child 🧬: the child inherits all abilities from the parent, but can add unique skills of their own.
             </div>
         </article>
 
@@ -204,33 +208,27 @@ print(auth.status())</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson6';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 6 Practice Task: OOP Inheritance
+        const DEFAULT_STARTER = `# 🧬 Lesson 6: Class Inheritance & super()!
 
 class BaseService:
     def __init__(self, service_name):
         self.service_name = service_name
 
-    def status(self):
-        return f"{self.service_name} is active"
-
-# Step 1: Define AuthService inheriting from BaseService
-# Call super().__init__("AuthService") in constructor
-# Override status() to return f"AuthService is secure"
-# Write AuthService class here:
+# 👉 STEP 1: Define AuthService inheriting from BaseService: class AuthService(BaseService):
+# 👉 STEP 2: In __init__(self), call super().__init__("AuthService") and set self.status = "Active"
 
 
-# Step 2: Instantiate auth = AuthService()
+# 👉 STEP 3: Instantiate auth = AuthService() and print auth.service_name and auth.status
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'inheritance', label: 'Inherit class: <code>class AuthService(BaseService):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+AuthService\s*\(\s*BaseService\s*\)\s*:/i.test(c); } },
             { id: 'super', label: 'Call parent constructor with <code>super().__init__(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /super\s*\(\s*\)\.__init__\s*\(/i.test(c); } },
-            { id: 'instance', label: 'Instantiate <code>auth = AuthService()</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /auth\s*=\s*AuthService\s*\(/i.test(c); } }
+            { id: 'instance', label: 'Instantiate <code>auth = AuthService()</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /auth\s*=\s*AuthService\s*\(\s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

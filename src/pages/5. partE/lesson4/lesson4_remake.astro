@@ -18,47 +18,47 @@ const starterCode = `# 🛠️ Level 6 Lesson 4 Practice Task: Data Structures
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -68,27 +68,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -96,10 +96,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 04: Data Structures & List Comprehensions | Level 6 Python Dojo"
-    description="Manipulate lists, dictionaries, tuples, sets, and concise Python list comprehension expressions."
+    description="Organize collections with Python lists and key-value dictionaries for structured backend data modeling."
     levelTag="Level 6 • Python Dojo"
     lessonNum={4}
-    lessonTitle="Data Structures & List Comprehensions"
+    lessonTitle="Lists & Dictionaries"
     xpAmount={150}
     completionKey="partE_lesson4_remake_complete"
     nextLessonUrl="/5. partE/lesson5/lesson5_remake.html"
@@ -128,7 +128,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; Top Scores: [95, 100] • User: Alice (Developer)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -136,7 +140,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> List comprehensions are like express assembly lines: transforming and filtering entire data arrays in a single, elegant line of code.
+                <strong>Real-World Analogy:</strong> A Python dictionary is like a phone contacts list 📱: you look up a contact's name ('Alice') and instantly retrieve their phone number ('Developer').
             </div>
         </article>
 
@@ -192,29 +196,28 @@ print(f"High scores: &#123;high_scores&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson4';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 4 Practice Task: Data Structures
+        const DEFAULT_STARTER = `# 📚 Lesson 4: Lists & Dictionaries!
 
-# Step 1: Create a list 'scores' with integers [65, 88, 92, 74, 98]
-# Write your list here:
-
-
-# Step 2: Create a dictionary 'user' with keys "username" and "role"
-# Write your dictionary here:
+# 👉 STEP 1: Create a list of scores = [80, 95, 60, 100]
+# (Hint: scores = [80, 95, 60, 100])
 
 
-# Step 3: Create a list comprehension 'high_scores' extracting scores >= 80
-# Write your list comprehension here:
+# 👉 STEP 2: Create a user dictionary with name="Alice" and role="Developer"
+# (Hint: user = {"name": "Alice", "role": "Developer"})
+
+
+# 👉 STEP 3: Use list comprehension to filter high_scores = [s for s in scores if s >= 90]
+# (Hint: high_scores = [s for s in scores if s >= 90])
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'list', label: 'Create list <code>scores = [...]</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /scores\s*=\s*\[[\d\s,]+\]/i.test(c); } },
-            { id: 'dict', label: 'Create dict <code>user = { ... }</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /user\s*=\s*\{[\s\S]*?["']username["'][\s\S]*?\}/i.test(c); } },
-            { id: 'comprehension', label: 'Use list comprehension <code>[s for s in scores if ...]</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /high_scores\s*=\s*\[\s*\w+\s+for\s+\w+\s+in\s+scores/i.test(c); } }
+            { id: 'list', label: 'Create list <code>scores = [80, 95, 60, 100]</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /scores\s*=\s*\[[\s\S]*?95/i.test(c); } },
+            { id: 'dict', label: 'Create dict <code>user = {"name": "Alice", ...}</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /user\s*=\s*\{[\s\S]*?["']Alice["']/i.test(c); } },
+            { id: 'comprehension', label: 'Filter list with comprehension <code>[s for s in scores if ...]</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /\[\s*\w+\s+for\s+\w+\s+in\s+scores\s+if/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

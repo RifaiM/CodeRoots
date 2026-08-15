@@ -16,47 +16,47 @@ const starterCode = `# 🛠️ Level 6 Lesson 7 Practice Task: Exception Handlin
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -66,27 +66,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -94,10 +94,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 07: Error & Exception Handling | Level 6 Python Dojo"
-    description="Handle runtime faults gracefully with try, except, finally blocks, and custom raised exceptions."
+    description="Catch and handle runtime exceptions gracefully in Python using try, except ValueError, and raise blocks."
     levelTag="Level 6 • Python Dojo"
     lessonNum={7}
-    lessonTitle="Error & Exception Handling"
+    lessonTitle="Error Handling with Try/Except"
     xpAmount={150}
     completionKey="partE_lesson7_remake_complete"
     nextLessonUrl="/5. partE/lesson8/lesson8_remake.html"
@@ -126,7 +126,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; ⚠️ Caught ValueError: Age cannot be negative! Handled gracefully.</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -134,7 +138,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Try-except blocks act as safety nets in high-wire acrobatics: catching unexpected falls so the entire performance (server) does not crash.
+                <strong>Real-World Analogy:</strong> <code>try/except</code> is like a trapeze safety net 🎪: if an acrobat slips (runtime error occurs), the safety net catches them safely so the show goes on.
             </div>
         </article>
 
@@ -196,27 +200,26 @@ except Exception as e:
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson7';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 7 Practice Task: Exception Handling
+        const DEFAULT_STARTER = `# 🛡️ Lesson 7: Robust Error Handling with Try/Except!
 
-# Step 1: Define function parse_user_id(input_val)
-# Step 2: Inside function, use try/except block:
-#   - In try: return int(input_val)
-#   - In except ValueError: raise ValueError("Invalid user ID format")
-# Write parse_user_id function here:
+def set_age(age):
+    if age < 0:
+        # 👉 STEP 1: Raise ValueError("Age cannot be negative")
+        raise ValueError("Age cannot be negative")
+    return f"Age set to {age}"
 
+# 👉 STEP 2: Wrap set_age(-5) inside a try / except ValueError as e: block and print the error message
+# (Hint: try: set_age(-5) except ValueError as e: print(f"Caught error: {e}"))
 
-# Test function call with try/except
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'try_except', label: 'Implement <code>try:</code> and <code>except:</code> blocks', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /try\s*:[\s\S]+?except\s*\w*\s*:/i.test(c); } },
-            { id: 'except', label: 'Catch specific <code>except ValueError:</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /except\s+ValueError\s*:/i.test(c); } },
-            { id: 'raise', label: 'Raise custom exception with <code>raise</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /raise\s+ValueError\s*\(/i.test(c); } }
+            { id: 'try_except', label: 'Implement <code>try:</code> and <code>except:</code> blocks', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /try\s*:[\s\S]*?except/i.test(c); } },
+            { id: 'except', label: 'Catch specific <code>except ValueError</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /except\s+ValueError/i.test(c); } },
+            { id: 'raise', label: 'Raise exception with <code>raise ValueError(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /raise\s+ValueError/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

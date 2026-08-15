@@ -18,47 +18,47 @@ const starterCode = `# 🛠️ Level 6 Lesson 5 Practice Task: Object-Oriented P
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -68,27 +68,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -96,10 +96,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 05: Object-Oriented Programming (OOP) | Level 6 Python Dojo"
-    description="Design robust software architectures with Python classes, __init__ constructors, instance methods, and encapsulation."
+    description="Design object-oriented models with Python classes, __init__ constructors, and instance methods."
     levelTag="Level 6 • Python Dojo"
     lessonNum={5}
-    lessonTitle="Object-Oriented Programming (OOP)"
+    lessonTitle="Classes & OOP Objects"
     xpAmount={150}
     completionKey="partE_lesson5_remake_complete"
     nextLessonUrl="/5. partE/lesson6/lesson6_remake.html"
@@ -128,7 +128,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [User Created] Admin: Alex (alex@coderoots.dev)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -136,7 +140,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A class is an architectural blueprint; an object instance is the actual house constructed from that blueprint with real occupants and dimensions.
+                <strong>Real-World Analogy:</strong> A Python Class is like an architectural blueprint for a house 🏡. The blueprint defines the layout, and every house built from it is an independent object instance.
             </div>
         </article>
 
@@ -199,30 +203,27 @@ print(admin_user.get_profile())</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson5';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 5 Practice Task: Object-Oriented Python
+        const DEFAULT_STARTER = `# 🏗️ Lesson 5: Classes & Object-Oriented Programming!
 
-# Step 1: Define a User class with constructor __init__(self, username, role="developer", xp=1000)
-# Save attributes to self.username, self.role, and self.xp
-# Write User class here:
-
-
-# Step 2: Add method get_profile(self) returning f"User: {self.username} ({self.role})"
+# 👉 STEP 1: Define class User with __init__(self, username, email) constructor
+# (Hint: class User: def __init__(self, username, email): self.username = username; self.email = email)
 
 
-# Step 3: Instantiate admin_user = User("Alex", "admin", 2500)
-# Write instantiation here:
+# 👉 STEP 2: Add instance method get_profile(self) returning f"User: {self.username} ({self.email})"
+
+
+# 👉 STEP 3: Instantiate admin_user = User("Alex", "alex@coderoots.dev") and print profile
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'class', label: 'Define <code>class User:</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+User\s*:/i.test(c); } },
-            { id: 'init', label: 'Initialize attributes with <code>def __init__(self, ...):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+__init__\s*\(\s*self\s*,\s*username/i.test(c); } },
-            { id: 'method', label: 'Define instance method <code>def get_profile(self):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+get_profile\s*\(\s*self\s*\)\s*:/i.test(c); } },
-            { id: 'instance', label: 'Instantiate <code>admin_user = User(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /admin_user\s*=\s*User\s*\(/i.test(c); } }
+            { id: 'init', label: 'Define constructor <code>def __init__(self, username, email):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+__init__\s*\(\s*self\s*,\s*username\s*,\s*email\s*\)/i.test(c); } },
+            { id: 'method', label: 'Define method <code>def get_profile(self):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+get_profile\s*\(\s*self\s*\)/i.test(c); } },
+            { id: 'instance', label: 'Instantiate <code>admin_user = User("Alex", ...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /admin_user\s*=\s*User\s*\(/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

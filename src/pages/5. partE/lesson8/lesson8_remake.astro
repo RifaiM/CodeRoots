@@ -18,47 +18,47 @@ const starterCode = `# 🛠️ Level 6 Lesson 8 Practice Task: Python Modules
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -68,27 +68,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -96,10 +96,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 08: Modules, Packages & Standard Library | Level 6 Python Dojo"
-    description="Structure scalable backend applications with modular imports, math calculations, and built-in utilities."
+    description="Utilize built-in standard library packages: math functions and json.dumps() data serialization."
     levelTag="Level 6 • Python Dojo"
     lessonNum={8}
-    lessonTitle="Modules, Packages & Standard Library"
+    lessonTitle="Standard Library & JSON"
     xpAmount={150}
     completionKey="partE_lesson8_remake_complete"
     nextLessonUrl="/5. partE/lesson9/lesson9_remake.html"
@@ -128,7 +128,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; JSON Payload: &#123;"title": "CodeRoots", "rating": 5&#125; • Sqrt(256) = 16.0</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -136,7 +140,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Modules are pre-packaged toolkits in a master workshop: instead of forging every tool from scratch, you import precision instruments instantly.
+                <strong>Real-World Analogy:</strong> The Python Standard Library is like a Swiss Army knife 🇨🇭: it comes built-in with scissors (math), a magnifier (json), and screwdrivers ready to use immediately.
             </div>
         </article>
 
@@ -191,29 +195,26 @@ print(json_payload)</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson8';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 8 Practice Task: Python Modules
+        const DEFAULT_STARTER = `# 📦 Lesson 8: Python Standard Library & JSON!
 
-# Step 1: Import the math module and json module
-# Write your imports here:
-
-
-# Step 2: Use math.sqrt(16) and math.ceil(88.4)
-# Write math calculations here:
+# 👉 STEP 1: Import math and json modules
+# (Hint: import math; import json)
 
 
-# Step 3: Use json.dumps({"status": "ready"})
-# Write json serialization here:
+# 👉 STEP 2: Calculate root = math.sqrt(256) and ceil = math.ceil(4.2)
+
+
+# 👉 STEP 3: Convert data = {"title": "CodeRoots", "rating": 5} to JSON with json.dumps(data)
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'import', label: 'Import modules with <code>import math</code> and <code>import json</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+math/i.test(c) && /import\s+json/i.test(c); } },
-            { id: 'math_ops', label: 'Use <code>math.sqrt(...)</code> and <code>math.ceil(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /math\.sqrt\s*\(/i.test(c) && /math\.ceil\s*\(/i.test(c); } },
-            { id: 'json', label: 'Serialize data with <code>json.dumps(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /json\.dumps\s*\(/i.test(c); } }
+            { id: 'math_ops', label: 'Use <code>math.sqrt(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /math\.sqrt\s*\(/i.test(c); } },
+            { id: 'json', label: 'Serialize dictionary with <code>json.dumps(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /json\.dumps\s*\(/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

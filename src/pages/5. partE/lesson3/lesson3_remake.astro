@@ -19,47 +19,47 @@ total = 0
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -69,27 +69,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -97,10 +97,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 03: Functions, Scope & Lambdas | Level 6 Python Dojo"
-    description="Define modular functions with def, parameter defaults, return statements, and anonymous lambda expressions."
+    description="Package reusable calculations into functions using def and return values directly to callers."
     levelTag="Level 6 • Python Dojo"
     lessonNum={3}
-    lessonTitle="Functions, Scope & Lambdas"
+    lessonTitle="Functions & Return Values"
     xpAmount={150}
     completionKey="partE_lesson3_remake_complete"
     nextLessonUrl="/5. partE/lesson4/lesson4_remake.html"
@@ -129,7 +129,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; Total Bounty XP: 750 (Calculated via calculate_xp function)</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -137,7 +141,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Functions are like kitchen appliances: you feed in ingredients (parameters), the machine processes them internally, and outputs the finished dish (return value).
+                <strong>Real-World Analogy:</strong> A function is like a vending machine 🥤: you insert coins (arguments), press a button (execute), and it delivers your drink (return value).
             </div>
         </article>
 
@@ -192,30 +196,24 @@ print(f"Total XP: &#123;total&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson3';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 3 Practice Task: Functions & Lambdas
+        const DEFAULT_STARTER = `# ⚙️ Lesson 3: Functions & Return Calculations!
 
-# Step 1: Define a function 'calculate_xp' with parameters (base_xp, bonus=500)
-# It should return base_xp + bonus
-# Write calculate_xp function here:
-
-
-# Step 2: Define an anonymous lambda function named 'double_val' that doubles its input x
-# Write lambda function here:
+# 👉 STEP 1: Define calculate_xp(base_xp, multiplier=1.5) that returns base_xp * multiplier
+# (Hint: def calculate_xp(base_xp, multiplier=1.5): return base_xp * multiplier)
 
 
-# Call calculate_xp and print result
-total = 0
+# 👉 STEP 2: Call calculate_xp(500) and print the result
+# (Hint: total = calculate_xp(500); print(f"Total XP: {total}"))
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'def', label: 'Define function using <code>def calculate_xp(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+calculate_xp\s*\([^)]*\)\s*:/i.test(c); } },
-            { id: 'return', label: 'Return value using <code>return</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /return\s+[\w\s+*]+/i.test(c); } },
-            { id: 'lambda', label: 'Define lambda function with <code>lambda</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /double_val\s*=\s*lambda\s+\w+\s*:/i.test(c); } }
+            { id: 'def', label: 'Define function <code>def calculate_xp(base_xp, multiplier=1.5):</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+calculate_xp\s*\(\s*base_xp/i.test(c); } },
+            { id: 'return', label: 'Return calculated value using <code>return</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /return\s+base_xp\s*\*/i.test(c); } },
+            { id: 'call', label: 'Call <code>calculate_xp(...)</code> and print output', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /calculate_xp\s*\(\s*\d+\s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 

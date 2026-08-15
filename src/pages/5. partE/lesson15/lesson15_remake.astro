@@ -21,47 +21,47 @@ import hashlib
 const level6Lessons = [
     {
         "id": 1,
-        "title": "Python Essentials & Syntax",
+        "title": "Python Variables & Output",
         "url": "/5. partE/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Control Flow & Logic Engines",
+        "title": "Control Flow & Logic",
         "url": "/5. partE/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "Functions, Scope & Lambdas",
+        "title": "Functions & Return Values",
         "url": "/5. partE/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Data Structures & List Comprehensions",
+        "title": "Lists & Dictionaries",
         "url": "/5. partE/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Object-Oriented Programming (OOP)",
+        "title": "Classes & OOP Objects",
         "url": "/5. partE/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "OOP Inheritance & Polymorphism",
+        "title": "Class Inheritance & Reuse",
         "url": "/5. partE/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "Error & Exception Handling",
+        "title": "Error Handling with Try/Except",
         "url": "/5. partE/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Modules, Packages & Standard Library",
+        "title": "Standard Library & JSON",
         "url": "/5. partE/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "File I/O & Data Persistence",
+        "title": "File I/O & Persistence",
         "url": "/5. partE/lesson9/lesson9_remake.html"
     },
     {
@@ -71,27 +71,27 @@ const level6Lessons = [
     },
     {
         "id": 11,
-        "title": "Databases & SQL ORM Integration",
+        "title": "SQLite Database CRUD",
         "url": "/5. partE/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "RESTful Web APIs with FastAPI",
+        "title": "REST APIs with FastAPI",
         "url": "/5. partE/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "Authentication & Security Basics",
+        "title": "Password Hashing & Security",
         "url": "/5. partE/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "Guided Mini Project: Task Manager API",
+        "title": "Task Manager Backend API",
         "url": "/5. partE/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "🏆 Capstone Python Backend Service",
+        "title": "Python Fullstack Capstone Service",
         "url": "/5. partE/lesson15/lesson15_remake.html"
     }
 ];
@@ -99,10 +99,10 @@ const level6Lessons = [
 
 <LessonLayout
     title="Project 15: Capstone Python Backend Service | Level 6 Python Dojo"
-    description="Deploy a production Python backend service integrating User Models, SHA-256 authentication, and CRUD API operations."
+    description="Deploy a production Python backend combining User Models, SHA-256 auth hashing, and database persistence."
     levelTag="Level 6 • Python Dojo"
     lessonNum={15}
-    lessonTitle="Capstone Python Backend Service"
+    lessonTitle="Python Fullstack Capstone Service"
     xpAmount={150}
     completionKey="partE_lesson15_remake_complete"
     nextLessonUrl="/5. partE/certificate.html"
@@ -131,7 +131,11 @@ const level6Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; 🏆 Python Capstone Online • Registered user 'alex_dev' with secure hash • Database verified!</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -139,7 +143,7 @@ const level6Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Your Capstone microservice brings together the full stack of backend architecture: Database schemas, Models, Cryptography, and Service Handlers.
+                <strong>Real-World Analogy:</strong> Deploying your backend capstone is like cutting the grand opening ribbon 🎀 on your own tech company's secure cloud server.
             </div>
         </article>
 
@@ -215,32 +219,28 @@ print(f"Registered User ID: &#123;uid&#125;")</code></pre>
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partE_lesson15';
-        const DEFAULT_STARTER = `# 🛠️ Level 6 Lesson 15 Capstone: Production Backend Microservice
-
+        const DEFAULT_STARTER = `# 🏆 Lesson 15: Fullstack Python Backend Capstone!
 import sqlite3
 import hashlib
 
-# Step 1: Define create_pw_hash(password) using hashlib.sha256
-# Write password hasher here:
+# 👉 STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
+def create_pw_hash(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+# 👉 STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
 
 
-# Step 2: Define UserModel with __init__(self, user_id, username, role="developer")
-# Write UserModel here:
+# 👉 STEP 3: Implement register_user(conn, username, password) inserting into users table
 
-
-# Step 3: Define register_user(conn, username, password) that hashes password and inserts into users table
-# Write register_user function here:
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'hasher', label: 'Define <code>create_pw_hash(password)</code> with <code>hashlib.sha256</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+create_pw_hash\s*\([\s\S]*?hashlib\.sha256/i.test(c); } },
-            { id: 'model', label: 'Define <code>class UserModel:</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+UserModel/i.test(c) && /def\s+to_dict/i.test(c); } },
-            { id: 'register', label: 'Implement <code>register_user(conn, username, password)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+register_user\s*\([\s\S]*?INSERT\s+INTO\s+users/i.test(c); } }
+            { id: 'model', label: 'Define <code>class UserModel:</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+UserModel\s*:[\s\S]*?def\s+to_dict/i.test(c); } },
+            { id: 'register', label: 'Implement <code>register_user(conn, username, password)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+register_user\s*\(\s*conn\s*,\s*username\s*,\s*password\s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
             mode: 'python'
         });
 
