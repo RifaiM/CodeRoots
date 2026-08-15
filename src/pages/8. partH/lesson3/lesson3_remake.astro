@@ -89,21 +89,9 @@ const jumpLessons = [
     starterCode={starterCode}
 >
     <!-- Intro Slot -->
-    <div slot="intro">
-        <p class="lesson-subtitle">
-            Safeguard private application views by creating a Route Guard component that redirects unauthenticated users.
-        </p>
-        <div class="stackblitz-banner">
-            <div class="sb-badge-row">
-                <span class="sb-badge">🔒 Cloud Auth & Database</span>
-                <span class="sb-runtime-tag">Instant WebContainer</span>
-            </div>
-            <p>Master authentication and schema concepts here. To run with <strong>live server routes, JWT session cookies, and database models</strong>, launch the instant Next.js sandbox:</p>
-            <a href="https://stackblitz.com/fork/nextjs" target="_blank" rel="noopener noreferrer" class="sb-open-btn">
-                <span>⚡ Open in StackBlitz (Instant Next.js) →</span>
-            </a>
-        </div>
-    </div>
+    <p class="lesson-subtitle" slot="intro">
+        Safeguard private application views by creating a Route Guard component that redirects unauthenticated users.
+    </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">

@@ -95,21 +95,9 @@ const jumpLessons = [
     starterCode={starterCode}
 >
     <!-- Intro Slot -->
-    <div slot="intro">
-        <p class="lesson-subtitle">
-            Handle backend API network failures gracefully with error catching, status checks, and retry buttons.
-        </p>
-        <div class="stackblitz-banner">
-            <div class="sb-badge-row">
-                <span class="sb-badge">⚡ Live Node.js Runtime</span>
-                <span class="sb-runtime-tag">Instant WebContainer</span>
-            </div>
-            <p>Master the concept here in your browser sandbox. To run with a <strong>live backend REST API and live server routes</strong>, launch the instant fullstack WebContainer:</p>
-            <a href="https://stackblitz.com/fork/vite" target="_blank" rel="noopener noreferrer" class="sb-open-btn">
-                <span>⚡ Open in StackBlitz (Instant Node.js) →</span>
-            </a>
-        </div>
-    </div>
+    <p class="lesson-subtitle" slot="intro">
+        Handle backend API network failures gracefully with error catching, status checks, and retry buttons.
+    </p>
 
     <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
