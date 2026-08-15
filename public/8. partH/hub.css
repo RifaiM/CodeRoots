@@ -1,0 +1,451 @@
+/* ==========================================================================
+   CodeRoots Level 9: React Auth & Access Control Hub Stylesheet
+   Theme: Indigo & Royal Violet (AAA Contrast)
+   Responsiveness: 320px, 375px, 425px, 768px, 1024px+
+   ========================================================================== */
+
+:root {
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ffffff;
+    --border-card: #e2e8f0;
+    --text-title: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --accent-color: #4f46e5;
+    --accent-hover: #4338ca;
+    --accent-light: #eef2ff;
+    --accent-border: #c7d2fe;
+    --accent-gradient: linear-gradient(135deg, #4f46e5, #4338ca);
+    --success-green: #059669;
+    --success-light: #ecfdf5;
+    --success-border: #a7f3d0;
+}
+
+body {
+    background-color: var(--bg-page) !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    color: var(--text-body) !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container */
+.hub-container {
+    max-width: 1100px;
+    margin: 32px auto 60px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+}
+
+/* Hero Section */
+.hub-hero {
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
+    border: 1px solid var(--border-card);
+    border-top: 5px solid var(--accent-color);
+    border-radius: 24px;
+    padding: 42px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.hub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.hub-hero h1 {
+    font-size: clamp(1.65rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 14px 0;
+    color: var(--text-title);
+    line-height: 1.25;
+}
+
+.hub-hero p {
+    color: var(--text-body);
+    font-size: clamp(0.95rem, 2vw, 1.08rem);
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    line-height: 1.65;
+}
+
+/* Progress Bar Container */
+.hero-progress-wrap {
+    max-width: 480px;
+    margin: 0 auto 26px auto;
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+}
+
+.hero-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.hero-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-gradient);
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CTA Button */
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease;
+}
+
+.hero-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Stats Row */
+.hub-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.hub-stat-card {
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s ease;
+}
+
+.hub-stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.hub-stat-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+}
+
+.hub-stat-lbl {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Curriculum Section */
+.curriculum-section {
+    margin-bottom: 40px;
+}
+
+.chapter-block {
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.03);
+}
+
+.chapter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-card);
+}
+
+.chapter-num {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.chapter-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-title);
+    margin: 0;
+}
+
+.chapter-badge {
+    background: var(--accent-light);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-border);
+    font-weight: 700;
+    font-size: 0.80rem;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+/* Lesson Cards Grid */
+.lesson-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.lesson-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 18px;
+    text-decoration: none;
+    color: inherit;
+    min-height: 140px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.lesson-card:hover {
+    background: #ffffff;
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-3px);
+}
+
+.lesson-card.completed {
+    border-color: var(--success-border);
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.lesson-card.in-progress {
+    border-color: var(--accent-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
+}
+
+.lesson-card.locked {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: #f1f5f9;
+}
+
+.lesson-card.locked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border-card);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lesson-idx {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.lesson-status-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+}
+
+.lesson-status-pill.completed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.lesson-status-pill.in-progress {
+    background: var(--accent-light);
+    color: var(--accent-color);
+}
+
+.lesson-status-pill.locked {
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+.lesson-card-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-title);
+    margin: 0 0 14px 0;
+    line-height: 1.4;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.80rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.7);
+    padding-top: 10px;
+}
+
+.xp-tag {
+    font-weight: 700;
+    color: #d97706;
+}
+
+.card-action-text {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+/* Certificate Showcase Card */
+.hub-cert-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+    border: 1.5px solid #fef3c7;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.08);
+}
+
+.cert-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cert-icon-wrap {
+    font-size: 2.5rem;
+    background: #ffffff;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+    flex-shrink: 0;
+}
+
+.cert-text-wrap {
+    flex: 1;
+}
+
+.cert-text-wrap h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #78350f;
+}
+
+.cert-text-wrap p {
+    margin: 0;
+    font-size: 0.90rem;
+    color: #92400e;
+    line-height: 1.5;
+}
+
+.cert-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.90rem;
+    padding: 12px 22px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.cert-cta-btn.unlocked {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+}
+
+.cert-cta-btn.unlocked:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16, 185, 129, 0.35);
+}
+
+.cert-cta-btn.locked {
+    background: #e2e8f0;
+    color: #64748b !important;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .hub-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cert-card-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 540px) {
+    .hub-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .chapter-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
