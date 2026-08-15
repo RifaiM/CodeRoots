@@ -275,12 +275,12 @@
         container.appendChild(btn);
         container.appendChild(menu);
         
-        const headerBadge = document.querySelector('.header-lesson-badge');
-        if (headerBadge) {
-            headerBadge.appendChild(container);
-        } else {
-            const headerInner = document.querySelector('.header-inner') || document.querySelector('header');
-            if (headerInner) headerInner.appendChild(container);
+        const targetNav = document.querySelector('.header-nav-links') 
+                       || document.querySelector('.header-lesson-badge') 
+                       || document.querySelector('.header-inner') 
+                       || document.querySelector('header');
+        if (targetNav) {
+            targetNav.appendChild(container);
         }
         
     }
@@ -606,3 +606,157 @@ window.confirmResetProgress = function() {
         });
     }
 };
+
+/**
+ * Practical Dojo Level Selection Hub Modal
+ */
+function getRelativeRootPrefix() {
+    const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
+    if (rawPath.includes('/lesson') || rawPath.includes('/brancha') || rawPath.includes('/branchb') || rawPath.includes('/branchc') || rawPath.includes('brancha/') || rawPath.includes('branchb/') || rawPath.includes('branchc/')) {
+        return '../../';
+    }
+    if (rawPath.includes('parta') || rawPath.includes('partb') || rawPath.includes('partc') || rawPath.includes('partd') || rawPath.includes('parte') || rawPath.includes('partf') || rawPath.includes('1. parta') || rawPath.includes('2. partb') || rawPath.includes('3. partc') || rawPath.includes('5. parte') || rawPath.includes('6. partf')) {
+        return '../';
+    }
+    return './';
+}
+
+window.openDojoHub = function() {
+    const rootPrefix = getRelativeRootPrefix();
+    const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
+    const isL4 = rawPath.includes('partb') || rawPath.includes('2. partb');
+    const isL5 = rawPath.includes('partc') || rawPath.includes('3. partc');
+    const isL6 = rawPath.includes('parte') || rawPath.includes('5. parte');
+    const isL7 = rawPath.includes('partf') || rawPath.includes('6. partf');
+
+    let activeL4 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+            activeL4 = Math.min(i + 1, 15);
+        }
+    }
+
+    let activeL5 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
+            activeL5 = Math.min(i + 1, 15);
+        }
+    }
+
+    let activeL6 = 1;
+    for (let i = 1; i <= 15; i++) {
+        if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
+            activeL6 = Math.min(i + 1, 15);
+        }
+    }
+
+    let activeL7 = '7A';
+    if (localStorage.getItem('partF_branchA_completed') === 'true') activeL7 = '7B';
+    if (localStorage.getItem('partF_branchB_completed') === 'true') activeL7 = '7C';
+
+    const itemL4 = isL4
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #eff6ff; border: 2px solid #3b82f6; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #1d4ed8;">⚔️ Level 4: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.76rem; color: #2563eb;">15 Projects • Active Lesson ${activeL4}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #1d4ed8; font-size: 0.80rem; background: #dbeafe; padding: 4px 10px; border-radius: 8px;">📍 Active Track</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}2. partB/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL5 = isL5
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 2px solid #0284c7; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
+                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #0369a1; font-size: 0.80rem; background: #e0f2fe; padding: 4px 10px; border-radius: 8px;">📍 Active Track</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}3. partC/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
+                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL6 = isL6
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 2px solid #059669; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
+                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #047857; font-size: 0.80rem; background: #d1fae5; padding: 4px 10px; border-radius: 8px;">📍 Active Track</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}5. partE/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #34d399; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
+                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #059669; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    const itemL7 = isL7
+        ? `
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #9333ea; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Specialization Dojo</div>
+                    <div style="font-size: 0.76rem; color: #9333ea;">18 Projects • Active Track ${activeL7}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #7e22ce; font-size: 0.80rem; background: #f3e8ff; padding: 4px 10px; border-radius: 8px;">📍 Active Track</span>
+            </div>
+        `
+        : `
+            <a href="${rootPrefix}6. partF/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Specialization Dojo</div>
+                    <div style="font-size: 0.76rem; color: #9333ea;">18 Projects • Active Track ${activeL7}</div>
+                </div>
+                <span class="badge-action" style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
+            </a>
+        `;
+
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '⚔️ Select Practical Dojo Level',
+            html: `
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    <p style="font-size: 0.88rem; color: #64748b; margin: 0 0 8px 0; text-align: center;">
+                        Jump directly to any practical project-building hub:
+                    </p>
+                    ${itemL4}
+                    ${itemL5}
+                    ${itemL6}
+                    ${itemL7}
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+            width: '460px',
+            customClass: {
+                popup: 'responsive-profile-modal'
+            }
+        });
+    } else {
+        window.location.href = `${rootPrefix}2. partB/hub.html`;
+    }
+};
+

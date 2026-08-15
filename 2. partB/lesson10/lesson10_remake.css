@@ -82,7 +82,7 @@
   color: #0d1b3d !important;
   border: none;
   padding: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.85rem;
   line-height: 1.5;
   resize: none;
@@ -147,7 +147,7 @@
 /* Update existing playground textarea for dark theme when used in challenge */
 #task-editor {
   color: #d4d4d4;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.85rem;
   line-height: 1.5;
   border: none;
@@ -406,7 +406,7 @@ ul {
   border-radius: 6px;
   padding: 8px;
   margin-top: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.8rem;
   color: #333;
 }
@@ -469,7 +469,7 @@ ul {
   color: #fff;
   padding: 16px;
   border-radius: 8px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.9rem;
   line-height: 1.4;
   margin: 12px 0;
@@ -481,7 +481,7 @@ ul {
   border-radius: 8px;
   padding: 12px;
   margin: 12px 0;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.9rem;
 }
 
@@ -551,7 +551,7 @@ ul {
   min-height: 250px;
   border: none;
   padding: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.95rem;
   background: #f2f6ff;
   color: #0d1b3d;

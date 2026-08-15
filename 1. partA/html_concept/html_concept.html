@@ -25,29 +25,39 @@
     <link rel="stylesheet" href="../../dashboard.css">
     <link rel="stylesheet" href="./html_concept.css">
     
-    <!-- SweetAlert2 -->
+    <!-- SweetAlert2 & Profile Modal Helper -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../profile-modal-helper.js"></script>
 </head>
 <body>
 
-    <!-- Sticky Platform Header -->
+    <!-- Standardized Platform Header -->
     <header class="platform-header">
         <div class="header-inner">
-            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Home">
+            <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
                 <img src="../../assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
                 <div class="logo-text">
                     <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                    <span class="logo-tag">Pillar 2 • Concept</span>
+                    <span class="logo-tag">Level 0 • Pillar 2: HTML</span>
                 </div>
             </a>
 
-            <div class="header-right">
-                <div class="stat-badge" title="Level 0 XP Progress">
-                    <span>⚡</span> <span id="userXpLabel">50 XP Track</span>
-                </div>
-                <a href="../web_history.html" class="nav-back-btn" title="Back to Web History Roadmap">
-                    <span>← Web History</span>
+            <!-- Header Nav Links -->
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Foundations Academy Hub">
+                    <span class="nav-icon">📚</span><span class="nav-text">&nbsp;Foundations Hub</span>
                 </a>
+                <a href="../web_history.html" class="nav-link" title="Web History Roadmap">
+                    <span class="nav-icon">🌱</span><span class="nav-text">&nbsp;Web History</span>
+                </a>
+            </nav>
+
+            <!-- Header User Stats -->
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">0 XP</span>
+                </div>
             </div>
         </div>
     </header>

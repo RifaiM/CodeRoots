@@ -37,33 +37,33 @@
 </head>
 <body>
 
-    <!-- Header Navigation Bar -->
+    <!-- Standardized Platform Header -->
     <header class="platform-header">
         <div class="header-inner">
-            <a href="./index.html" class="platform-logo" aria-label="NoviCodes Home">
+            <a href="./index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
                 <img src="./assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img">
                 <div class="logo-text">
                     <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                    <span class="logo-tag">Foundations</span>
+                    <span class="logo-tag" id="headerLogoTag">Foundations</span>
                 </div>
             </a>
 
-            <!-- Header Right Stats -->
-            <div class="header-user-stats">
-                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
+            <!-- Header Nav Links -->
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="./1. partA/hub.html" class="nav-link" title="Return to Foundations Academy Hub">
+                    <span class="nav-icon">📚</span><span class="nav-text">&nbsp;Foundations Hub</span>
+                </a>
+                <a href="./1. partA/web_history.html" class="nav-link" title="Web History Roadmap">
+                    <span class="nav-icon">🌱</span><span class="nav-text">&nbsp;Web History</span>
+                </a>
+            </nav>
+
+            <!-- Header User Stats -->
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
                     <span class="badge-icon">⚡</span>
                     <span class="badge-label" id="userXpLabel">0 XP</span>
                 </div>
-                <div class="stat-badge level-badge" title="Click to view Learner Profile & Developer Rank" onclick="openUserProfileModal()" style="cursor: pointer;">
-                    <span class="badge-icon" id="userRankIcon">🌱</span>
-                    <span class="badge-label" id="userRankLabel">Web Novice</span>
-                </div>
-                <a href="./1. partA/hub.html" class="back-dashboard-btn" title="Foundations Hub">
-                    <span>📚 <span class="btn-text-full">Foundations </span>Hub</span>
-                </a>
-                <a href="./index.html" class="back-dashboard-btn" title="Dashboard Home">
-                    <span>← <span class="btn-text-full">Dashboard</span><span class="btn-text-short">Home</span></span>
-                </a>
             </div>
         </div>
     </header>

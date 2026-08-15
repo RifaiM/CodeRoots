@@ -413,7 +413,7 @@ p {
   border-radius: 8px;
   padding: 16px;
   margin-top: 16px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 }
 
 .code-preview code {
@@ -603,7 +603,7 @@ p {
   margin: 0;
   padding: 20px;
   color: #fff;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.85rem;
   line-height: 1.4;
   overflow-x: auto;
@@ -817,7 +817,7 @@ p {
   flex: 1;
   border: none;
   padding: 16px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.9rem;
   line-height: 1.5;
   background: #f8f9ff;

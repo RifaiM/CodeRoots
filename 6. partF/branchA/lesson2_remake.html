@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -325,7 +325,7 @@
 </head>
 <body>
 
-    <!-- Sticky Platform Header -->
+    <!-- Standardized Platform Header -->
     <header class="platform-header">
         <div class="header-inner">
             <a href="../../index.html" class="platform-logo" aria-label="NoviCodes Dashboard Home">
@@ -340,15 +340,12 @@
                 <a href="../hub.html" class="nav-link" title="Return to Level 7 Hub">
                     <span class="nav-icon">🚀</span><span class="nav-text">&nbsp;Level 7 Hub</span>
                 </a>
-                <a href="javascript:void(0)" class="nav-link dojo-nav-highlight" onclick="openDojoHub()" title="Practical Dojo Hub">
-                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Dojo Hub</span>
-                </a>
             </nav>
 
             <div class="header-user-stats" id="userStatsBar">
-                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
                     <span class="badge-icon">⚡</span>
-                    <span class="badge-label">Loading...</span>
+                    <span class="badge-label" id="userXpLabel">Loading...</span>
                 </div>
             </div>
         </div>

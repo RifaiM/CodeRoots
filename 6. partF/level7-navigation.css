@@ -1,6 +1,45 @@
-/* Level 7: Specialization Hub Navigation Engine Styles 
-   100% Uniform Design Matching Level 4, Level 5, and Level 6 */
+/* Floating Pill Navigation Bar Links (100% Uniform Across Platform) */
+.header-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 4px !important;
+  border-radius: 30px !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
 
+.header-nav-links .nav-link {
+  color: #64748b !important;
+  text-decoration: none !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1.2 !important;
+}
+
+.header-nav-links .nav-link:hover {
+  color: #2563eb !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+}
+
+.header-nav-links .nav-link.active {
+  color: #2563eb !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  font-weight: 800 !important;
+}
+
+.header-nav-links .lesson-nav-container,
+.platform-header .lesson-nav-container,
 .lesson-nav-container {
   position: relative !important;
   display: inline-flex !important;
@@ -10,31 +49,37 @@
 }
 
 /* Borderless Pill Styling for .platform-header */
+.header-nav-links .lesson-nav-btn,
 .platform-header .lesson-nav-btn,
 .lesson-nav-btn {
-  background: #f1f5f9 !important;
+  background: transparent !important;
   border: none !important;
   color: #0f172a !important;
   padding: 6px 14px !important;
-  border-radius: 10px !important;
+  border-radius: 20px !important;
   font-size: 0.84rem !important;
   font-weight: 800 !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 6px !important;
   transition: all 0.2s ease !important;
   outline: none !important;
   box-shadow: none !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
 }
 
+.header-nav-links .lesson-nav-btn:hover,
+.header-nav-links .lesson-nav-btn.active,
 .platform-header .lesson-nav-btn:hover,
 .platform-header .lesson-nav-btn.active,
 .lesson-nav-btn:hover,
 .lesson-nav-btn.active {
-  background: #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
   border: none !important;
   color: #2563eb !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
 }
 
 .lesson-nav-btn .nav-btn-text {
@@ -276,4 +321,33 @@
     visibility: visible !important;
     transform: translate(-50%, 0) !important;
   }
+}
+
+/* Practical Dojo Navigation Link Highlight (Orange Accent) */
+#dojoNavLink.dojo-nav-highlight,
+.nav-link.dojo-nav-highlight {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(180, 83, 9, 0.22) 100%) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-radius: 14px !important;
+  padding: 5px 12px !important;
+  font-weight: 800 !important;
+  transition: all 0.25s ease !important;
+}
+
+#dojoNavLink.dojo-nav-highlight:hover,
+.nav-link.dojo-nav-highlight:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35) !important;
+}
+
+/* Universal Button, Form, and Code Typography Harmony */
+button, input, select, textarea, .run-btn, .next-btn, .clear-btn, .copy-btn, .btn {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+code, pre, kbd, samp, .code-box, .terminal-editor, .terminal-output, .console-output, textarea.terminal-editor, textarea.config-editor {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace !important;
 }

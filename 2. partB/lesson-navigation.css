@@ -92,30 +92,29 @@ header:not(.platform-header):not(:has(p)) h1,
   align-items: center !important;
   justify-content: center !important;
   gap: 6px !important;
-  height: 38px !important;
-  padding: 0 16px !important;
+  height: auto !important;
+  padding: 6px 14px !important;
   border-radius: 20px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(226, 232, 240, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   color: #0f172a !important;
-  font-family: 'Nunito', 'Plus Jakarta Sans', sans-serif !important;
-  font-size: 0.86rem !important;
-  font-weight: 700 !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   white-space: nowrap !important;
   box-sizing: border-box !important;
+  outline: none !important;
 }
 
-.lesson-nav-btn:hover {
-  background: #ffffff !important;
-  border-color: #bfdbfe !important;
+.lesson-nav-btn:hover,
+.lesson-nav-btn.active {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: none !important;
   color: #2563eb !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
 }
 
 .nav-arrow {
@@ -477,47 +476,93 @@ header:not(.platform-header):not(:has(p)) h1,
 .home-button .btn-text-short { display: none !important; }
 
 
+/* Floating Pill Navigation Bar Links (100% Uniform Across Platform) */
+.header-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 4px !important;
+  border-radius: 30px !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
+
+.header-nav-links .nav-link {
+  color: #64748b !important;
+  text-decoration: none !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1.2 !important;
+}
+
+.header-nav-links .nav-link:hover {
+  color: #2563eb !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+}
+
+.header-nav-links .nav-link.active {
+  color: #2563eb !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  font-weight: 800 !important;
+}
+
 /* Modern Inline Header Jump to Lesson Dropdown */
+.header-nav-links .lesson-nav-container,
 .header-lesson-badge .lesson-nav-container,
 .platform-header .lesson-nav-container {
   position: relative !important;
-  top: auto !important;
-  right: auto !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
   z-index: 10000 !important;
 }
 
+.header-nav-links .lesson-nav-btn,
 .header-lesson-badge .lesson-nav-btn,
 .platform-header .lesson-nav-btn {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
+  background: transparent !important;
+  border: none !important;
   color: #0f172a !important;
-  padding: 5px 14px !important;
+  padding: 6px 14px !important;
   height: auto !important;
   border-radius: 20px !important;
-  font-size: 0.82rem !important;
+  font-size: 0.84rem !important;
   font-weight: 800 !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   transition: all 0.2s ease !important;
+  outline: none !important;
   box-shadow: none !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
 }
 
+.header-nav-links .lesson-nav-btn:hover,
+.header-nav-links .lesson-nav-btn.active,
 .header-lesson-badge .lesson-nav-btn:hover,
 .platform-header .lesson-nav-btn:hover {
-  background: #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
   color: #2563eb !important;
-  border-color: #93c5fd !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
 }
 
+.header-nav-links .lesson-nav-dropdown,
 .header-lesson-badge .lesson-nav-dropdown,
 .platform-header .lesson-nav-dropdown {
   position: absolute !important;
-  top: 100% !important;
+  top: calc(100% + 8px) !important;
   left: 0 !important;
   right: auto !important;
   margin-top: 8px !important;
@@ -653,16 +698,17 @@ header:not(.platform-header):not(:has(p)) h1,
   z-index: 10000 !important;
 }
 
+.header-nav-links .lesson-nav-btn,
 .header-lesson-badge .lesson-nav-btn,
 .platform-header .lesson-nav-btn {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
+  background: transparent !important;
+  border: none !important;
   color: #0f172a !important;
   padding: 6px 14px !important;
-  height: 34px !important;
-  min-height: 34px !important;
+  height: auto !important;
+  min-height: auto !important;
   border-radius: 20px !important;
-  font-size: 0.82rem !important;
+  font-size: 0.84rem !important;
   font-weight: 800 !important;
   cursor: pointer !important;
   display: inline-flex !important;
@@ -670,14 +716,18 @@ header:not(.platform-header):not(:has(p)) h1,
   gap: 6px !important;
   transition: all 0.2s ease !important;
   box-shadow: none !important;
+  outline: none !important;
   white-space: nowrap !important;
 }
 
+.header-nav-links .lesson-nav-btn:hover,
+.header-nav-links .lesson-nav-btn.active,
 .header-lesson-badge .lesson-nav-btn:hover,
 .platform-header .lesson-nav-btn:hover {
-  background: #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: none !important;
   color: #2563eb !important;
-  border-color: #93c5fd !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
 }
 
 .header-lesson-badge .lesson-nav-dropdown,
@@ -833,4 +883,13 @@ header:not(.platform-header):not(:has(p)) h1,
     padding: 4px 6px !important;
     font-size: 0.72rem !important;
   }
+}
+
+/* Universal Button, Form, and Code Typography Harmony */
+button, input, select, textarea, .run-btn, .next-btn, .clear-btn, .copy-btn, .btn {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+code, pre, kbd, samp, .code-box, .terminal-editor, .terminal-output, .console-output, textarea.terminal-editor, textarea.config-editor {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace !important;
 }

@@ -51,6 +51,14 @@ html, body {
   box-sizing: inherit;
 }
 
+button, input, select, textarea {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal-output, .console-output, .editor-textarea {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+}
+
 /* ==========================================================================
    Header Navigation Bar
    ========================================================================== */
@@ -605,7 +613,8 @@ html, body {
 }
 
 /* Practical Dojo Navigation Link Highlight (Orange Accent) */
-#dojoNavLink.dojo-nav-highlight {
+#dojoNavLink.dojo-nav-highlight,
+.nav-link.dojo-nav-highlight {
   background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(180, 83, 9, 0.22) 100%) !important;
   color: #f59e0b !important;
   border: 1px solid rgba(245, 158, 11, 0.4) !important;
@@ -615,7 +624,8 @@ html, body {
   transition: all 0.25s ease !important;
 }
 
-#dojoNavLink.dojo-nav-highlight:hover {
+#dojoNavLink.dojo-nav-highlight:hover,
+.nav-link.dojo-nav-highlight:hover {
   background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
   color: #ffffff !important;
   border-color: #d97706 !important;
@@ -1777,6 +1787,11 @@ html, body {
     box-sizing: border-box;
 }
 
+.faq-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
 .faq-pill-badge {
     display: inline-flex;
     align-items: center;
@@ -1794,6 +1809,8 @@ html, body {
 }
 
 .faq-main-title {
+    display: block;
+    text-align: center;
     font-size: 1.85rem;
     font-weight: 800;
     color: #0f172a;
@@ -1802,6 +1819,8 @@ html, body {
 }
 
 .faq-subtitle {
+    display: block;
+    text-align: center;
     font-size: 0.96rem;
     color: #64748b;
     max-width: 650px;

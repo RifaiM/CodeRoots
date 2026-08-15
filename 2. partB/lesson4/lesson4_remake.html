@@ -16,6 +16,7 @@
     
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../../Global/root.css">
+    <link rel="stylesheet" href="../../dashboard.css">
     <link rel="stylesheet" href="../lesson-navigation.css">
     <link rel="stylesheet" href="./lesson4_remake.css">
     <script src="../dojo-linter-html.js"></script>
@@ -39,18 +40,17 @@
                 </div>
             </a>
 
-            <div class="header-lesson-badge">
-                <span class="lesson-badge-pill">Lesson 4/15 • Lesson 4 – Lists & Navigation</span>
-            </div>
-
-            <div class="header-user-stats">
-                <div class="stat-badge xp-badge" title="Click to view Learner Profile & XP breakdown" onclick="openUserProfileModal()" style="cursor: pointer;">
-                    <span class="badge-icon">⚡</span>
-                    <span class="badge-label" id="userXpLabel">0 XP</span>
-                </div>
-                <a href="../../index.html" class="back-dashboard-btn" title="Back to Dashboard">
-                    <span>← Dashboard</span>
+            <nav class="header-nav-links" aria-label="Main Navigation">
+                <a href="../hub.html" class="nav-link" title="Return to Level 4 Hub">
+                    <span class="nav-icon">⚔️</span><span class="nav-text">&nbsp;Level 4 Hub</span>
                 </a>
+            </nav>
+
+            <div class="header-user-stats" id="userStatsBar">
+                <div class="stat-badge xp-badge" onclick="openUserProfileModal()" style="cursor: pointer;" title="Click to view Learner Profile & XP breakdown">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-label" id="userXpLabel">Loading...</span>
+                </div>
             </div>
         </div>
     </header>

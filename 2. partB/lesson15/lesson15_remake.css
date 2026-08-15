@@ -195,7 +195,7 @@ pre {
 	background: #f2f6ff;
 	padding: .2em .4em;
 	border-radius: 6px;
-	font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+	font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 	font-size: clamp(0.8rem, 2.5vw, 0.9rem);
 	word-break: break-all;
 	overflow-wrap: break-word;
@@ -789,7 +789,7 @@ textarea {
 	border: none;
 	padding: 16px;
 	resize: none;
-	font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+	font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 	font-size: clamp(0.85rem, 2.3vw, 0.95rem);
 	background: #f8f9ff;
 	color: #0d1b3d;

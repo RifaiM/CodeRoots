@@ -82,7 +82,7 @@
   color: #d4d4d4;
   border: none;
   padding: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.85rem;
   line-height: 1.5;
   resize: none;
@@ -117,7 +117,7 @@
   right: 0;
   bottom: 0;
   padding: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.85rem;
   line-height: 1.5;
   color: #666;
@@ -477,7 +477,7 @@ ul {
 .property-code {
   background: #fff;
   color: var(--css-color);
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-weight: 600;
   padding: 10px;
   border-radius: 6px;
@@ -567,7 +567,7 @@ ul {
 .example-code {
   background: #fff;
   color: var(--css-color-2);
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: 0.75rem;
   padding: 6px;
   border-radius: 4px;
@@ -665,7 +665,7 @@ ul {
   border: 0;
   padding: 12px;
   resize: none;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: .95rem;
   background: #f2f6ff;
   color: #0d1b3d;
@@ -800,7 +800,7 @@ pre {
   padding: .4em .6em;
   border-radius: 6px;
   border: 1px solid #e0e6ed;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 }
 
 pre {

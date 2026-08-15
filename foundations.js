@@ -30,10 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const trackBadgePill = document.getElementById('trackBadgePill');
     const trackTitle = document.getElementById('trackTitle');
     const trackSubtitle = document.getElementById('trackSubtitle');
+    const headerLogoTag = document.getElementById('headerLogoTag');
 
     if (trackBadgePill) trackBadgePill.textContent = `${trackData.badgeIcon} ${trackData.title}`;
     if (trackTitle) trackTitle.textContent = trackData.title;
     if (trackSubtitle) trackSubtitle.textContent = trackData.subtitle;
+    if (headerLogoTag) {
+        if (trackKey === 'css') headerLogoTag.textContent = 'Level 2 • CSS Foundations';
+        else if (trackKey === 'js') headerLogoTag.textContent = 'Level 3 • JS Foundations';
+        else headerLogoTag.textContent = 'Level 1 • HTML Foundations';
+    }
 
     // Calculate User Stats from LocalStorage
     updateHeaderStats();
