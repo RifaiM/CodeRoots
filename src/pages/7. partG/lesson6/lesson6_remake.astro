@@ -56,7 +56,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<StorefrontDashboard />);
 `;
 
-const level8Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Async Data Fetching & Skeletons",
@@ -91,7 +91,7 @@ const level8Lessons = [
 ---
 
 <LessonLayout
-    title="Capstone: Live E-Commerce Dashboard | Level 8 Fullstack Dojo"
+    title="Capstone: Live E-Commerce Dashboard | Level 8 • Fullstack Bridge"
     description="Build a production-grade fullstack inventory and e-commerce catalog dashboard with filtering and real-time state mutation."
     levelTag="Level 8 • Fullstack Bridge"
     lessonNum={6}
@@ -104,13 +104,18 @@ const level8Lessons = [
     hubIcon="🌉"
     fileTab="App.jsx"
     mode="react"
-    jumpLessons={level8Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/7. partG/certificate.html"
     trackPrefix="partG"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Build a production-grade fullstack inventory and e-commerce catalog dashboard with filtering and real-time state mutation.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -119,7 +124,7 @@ const level8Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: An interactive E-Commerce Dashboard with live inventory list, Stock Filter, and New Item Publisher!</div>
+                <div style="color: #475569; margin-top: 3px;">An interactive E-Commerce Dashboard with live inventory list, Stock Filter, and New Item Publisher!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -127,7 +132,7 @@ const level8Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Build a production-grade fullstack inventory and e-commerce catalog dashboard with filtering and real-time state mutation.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> Your Level 8 Capstone is the mission control dashboard of a modern digital storefront 🏬: tracking stock, accepting new items, and updating shelves in real time.
@@ -191,7 +196,7 @@ function StorefrontDashboard() {
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {visibleItems.map(item => (
           <li key={item.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-            <span><strong>{item.name}</strong> • ${item.price}</span>
+            <span><strong>{item.name}</strong> • \${item.price}</span>
             <span style={{ color: item.inStock ? '#16a34a' : '#dc2626', fontWeight: 600, fontSize: '0.82rem' }}>
               {item.inStock ? "🟢 Available" : "🔴 Out of Stock"}
             </span>

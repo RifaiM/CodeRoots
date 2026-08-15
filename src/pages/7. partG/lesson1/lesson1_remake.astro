@@ -39,7 +39,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<ProductCatalog />);
 `;
 
-const level8Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Async Data Fetching & Skeletons",
@@ -74,7 +74,7 @@ const level8Lessons = [
 ---
 
 <LessonLayout
-    title="Async Data Fetching & Skeletons | Level 8 Fullstack Dojo"
+    title="Async Data Fetching & Skeletons | Level 8 • Fullstack Bridge"
     description="Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons."
     levelTag="Level 8 • Fullstack Bridge"
     lessonNum={1}
@@ -87,13 +87,18 @@ const level8Lessons = [
     hubIcon="🌉"
     fileTab="App.jsx"
     mode="react"
-    jumpLessons={level8Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/7. partG/certificate.html"
     trackPrefix="partG"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -102,7 +107,7 @@ const level8Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: A product catalog displaying a pulsing loading skeleton that transitions into live product cards!</div>
+                <div style="color: #475569; margin-top: 3px;">A product catalog displaying a pulsing loading skeleton that transitions into live product cards from the server!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -110,10 +115,10 @@ const level8Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons.</p>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Data fetching with loading skeletons is like receiving a buzzer at a restaurant 🎫: while the kitchen prepares your order (fetching API data), the buzzer reassures you that food is coming.
+                <strong>Real-World Analogy:</strong> Think of data fetching with loading skeletons like receiving a buzzer at a restaurant 🎫: while the kitchen prepares your order (fetching API data), the buzzer reassures you that food is coming.
             </div>
         </article>
     </div>
@@ -159,7 +164,7 @@ function ProductCatalog() {
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {products.map(p => (
             <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
-              <strong>{p.name}</strong> — ${p.price}
+              <strong>{p.name}</strong> — \${p.price}
             </li>
           ))}
         </ul>

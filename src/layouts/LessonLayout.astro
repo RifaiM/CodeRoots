@@ -109,7 +109,7 @@ const navLinks = [
                 </div>
 
                 <!-- Live Preview (Large iframe for HTML / Web / React) -->
-                {mode === 'html' && (
+                {(mode === 'html' || mode === 'react') && (
                     <div class="ide-output-window">
                         <div class="ide-output-header">
                             <span>👀 Live Preview</span>

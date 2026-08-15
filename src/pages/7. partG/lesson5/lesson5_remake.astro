@@ -31,7 +31,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<LiveNotificationCenter />);
 `;
 
-const level8Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Async Data Fetching & Skeletons",
@@ -66,7 +66,7 @@ const level8Lessons = [
 ---
 
 <LessonLayout
-    title="Real-Time Polling & Live Badges | Level 8 Fullstack Dojo"
+    title="Real-Time Polling & Live Badges | Level 8 • Fullstack Bridge"
     description="Implement automated polling intervals with React useEffect cleanup timers to keep notification badges synchronized."
     levelTag="Level 8 • Fullstack Bridge"
     lessonNum={5}
@@ -79,13 +79,18 @@ const level8Lessons = [
     hubIcon="🌉"
     fileTab="App.jsx"
     mode="react"
-    jumpLessons={level8Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/7. partG/certificate.html"
     trackPrefix="partG"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Implement automated polling intervals with React useEffect cleanup timers to keep notification badges synchronized.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -94,7 +99,7 @@ const level8Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: A Notification Bell counter polling the server every 5 seconds with automatic cleanup timer!</div>
+                <div style="color: #475569; margin-top: 3px;">A Notification Bell counter polling the server every 5 seconds with automatic cleanup timer!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -102,7 +107,7 @@ const level8Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Implement automated polling intervals with React useEffect cleanup timers to keep notification badges synchronized.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> Polling is like checking your physical mailbox every morning 📬: looking for new letters on a steady recurring schedule.

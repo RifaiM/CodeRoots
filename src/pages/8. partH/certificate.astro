@@ -27,8 +27,8 @@ const navLinks = [
         <div class="cert-container">
             <section class="generator-card">
                 <div class="generator-header">
-                    <h2>🎓 Level 9 Certificate Generator</h2>
-                    <p>Enter your full legal name or developer alias to generate your verified credential in Fullstack Auth &amp; Database Architecture.</p>
+                    <h2>🎓 Fullstack Auth &amp; Database Architect Certificate Generator</h2>
+                    <p>Enter your full legal name or developer alias to generate your verified CodeRoots credential.</p>
                 </div>
 
                 <div class="generator-inputs">
@@ -50,9 +50,12 @@ const navLinks = [
                 </div>
             </section>
 
-            <!-- Live Printable Certificate Canvas -->
+            <!-- Hidden Canvas for PNG Generation -->
+            <canvas id="certCanvas" style="display: none;"></canvas>
+
+            <!-- Live Printable Certificate Card -->
             <section class="certificate-frame-wrap">
-                <div class="cert-canvas" id="certCanvas">
+                <div class="cert-canvas-card">
                     <div class="cert-border">
                         <div class="cert-inner-content">
                             <div class="cert-top-badge">
@@ -61,7 +64,7 @@ const navLinks = [
                             </div>
                             <h1 class="cert-main-title">Certificate of Security Architecture</h1>
                             <p class="cert-award-text">This official credential certifies that</p>
-                            <h2 class="cert-recipient-name" id="certRecipientName">Security Architect</h2>
+                            <h2 class="cert-recipient-name" id="certNameDisplay">Security Architect</h2>
                             <p class="cert-description-text">
                                 has demonstrated verified hands-on competence in <strong>Level 9: Fullstack Auth &amp; Database Persistence</strong>, mastering Stateless JWT Handshakes, Global Session Contexts, Protected Route Guards, Role-Based Access Control, and Cloud PostgreSQL Persistence.
                             </p>
@@ -72,11 +75,11 @@ const navLinks = [
                                 </div>
                                 <div class="meta-col">
                                     <span class="meta-label">DATE ISSUED</span>
-                                    <span class="meta-val" id="certDateVal">August 2026</span>
+                                    <span class="meta-val" id="certDateDisplay">August 2026</span>
                                 </div>
                                 <div class="meta-col">
                                     <span class="meta-label">VERIFICATION ID</span>
-                                    <span class="meta-val font-mono" id="certIdVal">CR-L9-4729</span>
+                                    <span class="meta-val font-mono" id="certIdDisplay">CR-L9-4729</span>
                                 </div>
                             </div>
                         </div>
@@ -89,33 +92,142 @@ const navLinks = [
     <PlatformFooter />
 </BaseLayout>
 
+<script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function initCert() {
-        const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
-        const nameDisplay = document.getElementById('certRecipientName');
+    import { isCertificateAccessible, getCompletedLessonsCount } from '../../scripts/dojo/core/protection';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Strict Page Access Protection
+        if (!isCertificateAccessible('partH')) {
+            const count = getCompletedLessonsCount('partH');
+            const remaining = 6 - count;
+
+            if (typeof (window as any).Swal !== 'undefined') {
+                (window as any).Swal.fire({
+                    icon: 'warning',
+                    title: 'Level 9 Certificate Locked! 📜',
+                    html: `
+                        <div style="text-align: center;">
+                            <p style="color: #475569; margin-bottom: 16px;">
+                                You must complete all <strong>6 interactive projects</strong> in Level 9 before claiming your official Certificate of Mastery!
+                            </p>
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                                <div>
+                                    <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${count} / 6</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Projects Solved</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonColor: '#4f46e5',
+                    confirmButtonText: '🚀 Go to Level 9 Hub',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then(() => {
+                    window.location.href = '/8. partH/hub.html';
+                });
+            } else {
+                window.location.href = '/8. partH/hub.html';
+            }
+            return;
+        }
+
+        const input = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+        const nameDisplay = document.getElementById('certNameDisplay');
         const updateBtn = document.getElementById('generateCertBtn');
-        const dateVal = document.getElementById('certDateVal');
-        const idVal = document.getElementById('certIdVal');
+        const downloadBtn = document.getElementById('downloadCertBtn');
+        const dateDisplay = document.getElementById('certDateDisplay');
+        const idDisplay = document.getElementById('certIdDisplay');
 
-        if (dateVal) {
-            const d = new Date();
-            dateVal.textContent = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        const now = new Date();
+        if (dateDisplay) {
+            dateDisplay.textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
-        if (idVal) {
-            const rand = Math.floor(1000 + Math.random() * 9000);
-            idVal.textContent = `CR-L9-${rand}`;
+        if (idDisplay) {
+            const hash = 'CR-L9-' + Math.floor(1000 + Math.random() * 9000);
+            idDisplay.textContent = hash;
         }
 
-        if (updateBtn && nameInput && nameDisplay) {
+        const savedName = localStorage.getItem('partH_cert_student_name') || 'Security Architect';
+        if (input) input.value = savedName;
+        if (nameDisplay) nameDisplay.textContent = savedName;
+
+        if (updateBtn && input && nameDisplay) {
             updateBtn.addEventListener('click', () => {
-                nameDisplay.textContent = nameInput.value.trim() || 'Security Architect';
+                const val = input.value.trim() || 'Security Architect';
+                nameDisplay.textContent = val;
+                localStorage.setItem('partH_cert_student_name', val);
             });
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', initCert);
-    initCert();
+        // High-Res Canvas PNG Engine
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                const canvas = document.getElementById('certCanvas') as HTMLCanvasElement | null;
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+
+                canvas.width = 1200;
+                canvas.height = 800;
+
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, 1200, 800);
+
+                ctx.lineWidth = 14;
+                ctx.strokeStyle = '#0f172a';
+                ctx.strokeRect(20, 20, 1160, 760);
+
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#4f46e5';
+                ctx.strokeRect(34, 34, 1132, 732);
+
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#0f172a';
+                ctx.font = '900 36px sans-serif';
+                ctx.fillText('CERTIFICATE OF SECURITY ARCHITECTURE', 600, 160);
+
+                ctx.fillStyle = '#4f46e5';
+                ctx.font = '700 18px sans-serif';
+                ctx.fillText('LEVEL 9: FULLSTACK AUTH & DATABASE PERSISTENCE', 600, 200);
+
+                ctx.fillStyle = '#64748b';
+                ctx.font = '500 16px sans-serif';
+                ctx.fillText('This official certificate is proudly awarded to:', 600, 280);
+
+                const name = nameDisplay ? nameDisplay.textContent : 'Security Architect';
+                ctx.fillStyle = '#0f172a';
+                ctx.font = '900 44px sans-serif';
+                ctx.fillText(name || 'Security Architect', 600, 360);
+
+                ctx.fillStyle = '#475569';
+                ctx.font = '500 16px sans-serif';
+                ctx.fillText('For demonstrating verified hands-on excellence in Stateless JWT Handshakes,', 600, 430);
+                ctx.fillText('Global Session Contexts, Protected Route Guards, RBAC, and Cloud PostgreSQL.', 600, 460);
+
+                ctx.textAlign = 'left';
+                ctx.font = '700 14px monospace';
+                ctx.fillStyle = '#64748b';
+                ctx.fillText('ISSUE DATE: ' + (dateDisplay ? dateDisplay.textContent : ''), 80, 680);
+                ctx.fillText('VERIFICATION ID: ' + (idDisplay ? idDisplay.textContent : ''), 80, 710);
+
+                ctx.textAlign = 'right';
+                ctx.fillText('CODEROOTS ACADEMIC BOARD', 1120, 680);
+                ctx.font = '500 13px sans-serif';
+                ctx.fillText('Chief Curriculum Architect', 1120, 710);
+
+                const link = document.createElement('a');
+                link.download = `CodeRoots-Level9-Certificate-${(name || 'Architect').replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    });
 </script>
 
 <style>
@@ -131,7 +243,7 @@ const navLinks = [
     .cert-action-btn.success { background: #10b981; color: white; }
     .cert-action-btn.secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
     .certificate-frame-wrap { background: #f8fafc; padding: 24px; border-radius: 20px; border: 1px solid #e2e8f0; display: flex; justify-content: center; }
-    .cert-canvas { width: 100%; max-width: 860px; background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
+    .cert-canvas-card { width: 100%; max-width: 860px; background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
     .cert-border { border: 3px solid #4f46e5; border-radius: 12px; padding: 36px 28px; background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%); text-align: center; }
     .cert-top-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; font-weight: 800; color: #4f46e5; letter-spacing: 1px; margin-bottom: 16px; }
     .cert-main-title { font-size: 1.9rem; font-weight: 900; color: #0f172a; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }

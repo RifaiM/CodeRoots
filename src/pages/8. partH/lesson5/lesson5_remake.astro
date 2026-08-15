@@ -33,7 +33,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RBACSecurityCenter />);
 `;
 
-const level9Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Stateless JWT Login & Token Storage",
@@ -68,7 +68,7 @@ const level9Lessons = [
 ---
 
 <LessonLayout
-    title="Role-Based Access Control (RBAC) | Level 9 Fullstack Dojo"
+    title="Role-Based Access Control (RBAC) | Level 9 • Auth & Database"
     description="Enforce multi-tier permissions by conditionally rendering administrative controls and privileged API actions based on user roles."
     levelTag="Level 9 • Auth & Database"
     lessonNum={5}
@@ -81,13 +81,18 @@ const level9Lessons = [
     hubIcon="🛡️"
     fileTab="Auth.jsx"
     mode="react"
-    jumpLessons={level9Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/8. partH/certificate.html"
     trackPrefix="partH"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Enforce multi-tier permissions by conditionally rendering administrative controls and privileged API actions based on user roles.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -96,7 +101,7 @@ const level9Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: RBAC Role Switcher displaying Admin Server Controls only when user.role === 'admin'!</div>
+                <div style="color: #475569; margin-top: 3px;">RBAC Role Switcher displaying Admin Server Controls only when user.role === 'admin'!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -104,7 +109,7 @@ const level9Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Enforce multi-tier permissions by conditionally rendering administrative controls and privileged API actions based on user roles.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> RBAC is like an office keycard access hierarchy 🪪: standard staff badges open meeting rooms, while only executive admin cards open the server vault.

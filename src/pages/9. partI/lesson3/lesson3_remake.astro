@@ -37,7 +37,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<PricingBillingCard />);
 `;
 
-const level10Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Enterprise Next.js App Router Blueprint",
@@ -72,7 +72,7 @@ const level10Lessons = [
 ---
 
 <LessonLayout
-    title="Stripe Checkout & Webhook Subscription Tiers | Level 10 Apex Capstone"
+    title="Stripe Checkout & Webhook Subscription Tiers | Level 10 • Apex SaaS"
     description="Handle recurring SaaS monetization by creating Stripe checkout session triggers and webhook subscription tier handlers."
     levelTag="Level 10 • Apex SaaS"
     lessonNum={3}
@@ -85,13 +85,18 @@ const level10Lessons = [
     hubIcon="🏆"
     fileTab="Apex.jsx"
     mode="react"
-    jumpLessons={level10Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/9. partI/certificate.html"
     trackPrefix="partI"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Handle recurring SaaS monetization by creating Stripe checkout session triggers and webhook subscription tier handlers.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -100,7 +105,7 @@ const level10Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: Pricing Tier Card switching between Free and Pro with simulated Stripe Checkout upgrade!</div>
+                <div style="color: #475569; margin-top: 3px;">Pricing Tier Card switching between Free and Pro with simulated Stripe Checkout upgrade!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -108,7 +113,7 @@ const level10Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Handle recurring SaaS monetization by creating Stripe checkout session triggers and webhook subscription tier handlers.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> Stripe Webhooks are like digital automated courier receipts 🧾: the instant a user pays at checkout, Stripe notifies your server to upgrade their account permissions.
@@ -170,8 +175,8 @@ root.render(<PricingBillingCard />);
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'upgrade_tier', label: 'Call <code>setTier("pro")</code> inside handler', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setTier\s*\(\s*["']pro["']\s*\)/i.test(c); } },
-            { id: 'attach_click', label: 'Attach <code>onClick={handleUpgradeToPro}</code> to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{\s*handleUpgradeToPro\s*\}/i.test(c); } }
+            { id: 'upgrade_tier', label: 'Call <code>setTier("pro")</code> inside handler', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setTier[\s\n]*\([\s\n]*["']pro["'][\s\n]*\)/i.test(c); } },
+            { id: 'attach_click', label: 'Attach <code>onClick={handleUpgradeToPro}</code> to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick[\s\n]*=[\s\n]*\{[\s\n]*handleUpgradeToPro[\s\n]*\}/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'javascript'
@@ -203,7 +208,7 @@ root.render(<PricingBillingCard />);
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
   <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; }
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
   </style>
 </head>
 <body>

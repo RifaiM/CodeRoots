@@ -41,7 +41,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<SafeDataViewer />);
 `;
 
-const level8Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Async Data Fetching & Skeletons",
@@ -76,7 +76,7 @@ const level8Lessons = [
 ---
 
 <LessonLayout
-    title="Error Boundaries & HTTP Fallbacks | Level 8 Fullstack Dojo"
+    title="Error Boundaries & HTTP Fallbacks | Level 8 • Fullstack Bridge"
     description="Handle backend API network failures gracefully with error catching, status checks, and retry buttons."
     levelTag="Level 8 • Fullstack Bridge"
     lessonNum={2}
@@ -89,13 +89,18 @@ const level8Lessons = [
     hubIcon="🌉"
     fileTab="App.jsx"
     mode="react"
-    jumpLessons={level8Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/7. partG/certificate.html"
     trackPrefix="partG"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Handle backend API network failures gracefully with error catching, status checks, and retry buttons.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -104,7 +109,7 @@ const level8Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: A connection failure banner with an interactive '🔄 Retry Connection' button.</div>
+                <div style="color: #475569; margin-top: 3px;">A connection failure banner with an interactive '🔄 Retry Connection' button that re-executes fetch!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -112,7 +117,7 @@ const level8Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Handle backend API network failures gracefully with error catching, status checks, and retry buttons.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> HTTP error handling is like an airplane's backup generator ✈️: if the main engine falters (500 Server Error), backup systems turn on smoothly so passengers stay calm.

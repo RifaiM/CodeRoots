@@ -30,7 +30,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<FeatureUpvote />);
 `;
 
-const level8Lessons = [
+const jumpLessons = [
     {
         "id": 1,
         "title": "Async Data Fetching & Skeletons",
@@ -65,7 +65,7 @@ const level8Lessons = [
 ---
 
 <LessonLayout
-    title="Optimistic UI Updates | Level 8 Fullstack Dojo"
+    title="Optimistic UI Updates | Level 8 • Fullstack Bridge"
     description="Build instant user feedback loops by updating client-side state immediately while transmitting backend sync requests."
     levelTag="Level 8 • Fullstack Bridge"
     lessonNum={4}
@@ -78,13 +78,18 @@ const level8Lessons = [
     hubIcon="🌉"
     fileTab="App.jsx"
     mode="react"
-    jumpLessons={level8Lessons}
+    jumpLessons={jumpLessons}
     certificateUrl="/7. partG/certificate.html"
     trackPrefix="partG"
     starterCode={starterCode}
 >
-    <!-- LEFT LANE: Concept & Mission Panel -->
-    <div class="lesson-instructions" slot="instructions">
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Build instant user feedback loops by updating client-side state immediately while transmitting backend sync requests.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Unified Mission Card -->
         <article class="concept-card mission-card">
             <div class="mission-header">
@@ -93,7 +98,7 @@ const level8Lessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: An interactive Upvote button incrementing instantly (+1) with background sync confirmation!</div>
+                <div style="color: #475569; margin-top: 3px;">An interactive Upvote button incrementing instantly (+1) with background sync confirmation!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -101,7 +106,7 @@ const level8Lessons = [
 
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
-            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <p>Build instant user feedback loops by updating client-side state immediately while transmitting backend sync requests.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> Optimistic UI is like a messaging app displaying your sent text instantly 💬: it appears on your screen the millisecond you press Send, while transmitting data to the cloud in the background.
