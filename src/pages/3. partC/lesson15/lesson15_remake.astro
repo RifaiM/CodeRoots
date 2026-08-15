@@ -1,44 +1,42 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Lesson 15 Capstone: Interactive React Application!
+const starterCode = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
 
-function ReactTaskManager() {
-  // 👉 STEP 1: Declare state 'tasks' initialized with at least two default items
-  // Format: const [tasks, setTasks] = React.useState([{ id: 1, text: "Master React", completed: true }, { id: 2, text: "Build Capstone", completed: false }]);
-  
+function TaskTracker() {
+  // 👉 STEP 1: Declare state 'tasks' initialized to ["Master React JSX", "Build Component Tree"]
+  // (Hint: const [tasks, setTasks] = React.useState(["Master React JSX", "Build Component Tree"]);)
+  const [tasks, setTasks] = React.useState([]);
+  const [input, setInput] = React.useState("");
 
-  // Controlled input state for typing new tasks
-  const [inputVal, setInputVal] = React.useState("");
-
-  // 👉 STEP 2: Add task handler function that appends new task to 'tasks' state immutably
-  const handleAddTask = () => {
-    if (!inputVal.trim()) return;
-    // Write code to append new task using setTasks([...tasks, ...]) and clear inputVal with setInputVal(""):
-
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    // 👉 STEP 2: Append new task immutably: setTasks([...tasks, input]); setInput("");
+    
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🏆 React Capstone: Task Manager</h2>
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+      <h2 style={{ color: '#0f172a', margin: '0 0 6px 0' }}>🏆 React Task Dojo</h2>
+      <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total active tasks: <strong>{tasks.length}</strong></p>
+
+      <form onSubmit={handleAddTask} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
         <input 
-          value={inputVal} 
-          onChange={(e) => setInputVal(e.target.value)} 
-          placeholder="New task..." 
-          style={{ flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1px solid #cbd5e1' }} 
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="New task title..."
+          style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
         />
-        <button 
-          onClick={handleAddTask} 
-          style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer' }}
-        >
-          Add Task
+        <button type="submit" style={{ padding: '10px 16px', background: '#6366f1', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+          Add
         </button>
-      </div>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {typeof tasks !== 'undefined' && tasks.map(t => (
-          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>
-            {t.completed ? "✅" : "⏳"} {t.text}
+      </form>
+
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        {tasks.map((task, idx) => (
+          <li key={idx} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0' }}>
+            ✅ {task}
           </li>
         ))}
       </ul>
@@ -47,82 +45,82 @@ function ReactTaskManager() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ReactTaskManager />);
+root.render(<TaskTracker />);
 `;
 const level5Lessons = [
     {
         "id": 1,
-        "title": "ES6+ JavaScript Powers",
+        "title": "ES6+ Powers: Spread & Destructuring",
         "url": "/3. partC/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Arrow Functions & Scope",
+        "title": "React Component Tree",
         "url": "/3. partC/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "JS Destructuring",
+        "title": "Dynamic Lists with .map()",
         "url": "/3. partC/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Template Literals in JS",
+        "title": "Passing Props to Components",
         "url": "/3. partC/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Array Map & Filter",
+        "title": "Interactive State with useState()",
         "url": "/3. partC/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "ES Modules & Imports",
+        "title": "Real-Time Input Binding",
         "url": "/3. partC/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "React JSX Fundamentals",
+        "title": "Effects with useEffect()",
         "url": "/3. partC/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Reusable React Components",
+        "title": "Component Slots with children",
         "url": "/3. partC/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "React Props & Composition",
+        "title": "Lifting State Up",
         "url": "/3. partC/lesson9/lesson9_remake.html"
     },
     {
         "id": 10,
-        "title": "React useState Hook",
+        "title": "Conditional UI with Ternaries",
         "url": "/3. partC/lesson10/lesson10_remake.html"
     },
     {
         "id": 11,
-        "title": "Controlled Form State",
+        "title": "Multi-Input Forms with Dynamic Keys",
         "url": "/3. partC/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "Conditional UI Rendering",
+        "title": "Loading Guards & Fallback UIs",
         "url": "/3. partC/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "React useEffect Hook",
+        "title": "Fetching Live REST APIs",
         "url": "/3. partC/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "React API Data Fetching",
+        "title": "Debounced Search & Cleanup",
         "url": "/3. partC/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "React Capstone App",
+        "title": "React Capstone Mini-App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
@@ -130,10 +128,10 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 15: React Capstone App | Level 5 React Dojo"
-    description="Build a production-grade single page React application combining state, props, lifecycle effects, and API integration."
+    description="Combine state, dynamic lists, controlled inputs, and component decomposition into a complete, interactive React Task Tracker!"
     levelTag="Level 5 • Framework Dojo"
     lessonNum={15}
-    lessonTitle="React Capstone App"
+    lessonTitle="React Capstone Mini-App"
     xpAmount={150}
     completionKey="partC_lesson15_remake_complete"
     nextLessonUrl="/3. partC/certificate.html"
@@ -162,7 +160,11 @@ const level5Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">A complete, production-ready React Task Manager where you can add new todos and see the task count update live!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -170,7 +172,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A Capstone App combines all your tools into a complete production system: state management, real-time list rendering, interactive search filtering, item deletion, and responsive UI feedback.
+                <strong>Real-World Analogy:</strong> Building your capstone is like assembling your own dream racecar 🏎️ using all the precision engine components and tools you mastered throughout Level 5!
             </div>
         </article>
 
@@ -224,44 +226,42 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson15';
-        const DEFAULT_STARTER = `// 🏆 Lesson 15 Capstone: Interactive React Application!
+        const DEFAULT_STARTER = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
 
-function ReactTaskManager() {
-  // 👉 STEP 1: Declare state 'tasks' initialized with at least two default items
-  // Format: const [tasks, setTasks] = React.useState([{ id: 1, text: "Master React", completed: true }, { id: 2, text: "Build Capstone", completed: false }]);
-  
+function TaskTracker() {
+  // 👉 STEP 1: Declare state 'tasks' initialized to ["Master React JSX", "Build Component Tree"]
+  // (Hint: const [tasks, setTasks] = React.useState(["Master React JSX", "Build Component Tree"]);)
+  const [tasks, setTasks] = React.useState([]);
+  const [input, setInput] = React.useState("");
 
-  // Controlled input state for typing new tasks
-  const [inputVal, setInputVal] = React.useState("");
-
-  // 👉 STEP 2: Add task handler function that appends new task to 'tasks' state immutably
-  const handleAddTask = () => {
-    if (!inputVal.trim()) return;
-    // Write code to append new task using setTasks([...tasks, ...]) and clear inputVal with setInputVal(""):
-
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    // 👉 STEP 2: Append new task immutably: setTasks([...tasks, input]); setInput("");
+    
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🏆 React Capstone: Task Manager</h2>
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+      <h2 style={{ color: '#0f172a', margin: '0 0 6px 0' }}>🏆 React Task Dojo</h2>
+      <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total active tasks: <strong>{tasks.length}</strong></p>
+
+      <form onSubmit={handleAddTask} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
         <input 
-          value={inputVal} 
-          onChange={(e) => setInputVal(e.target.value)} 
-          placeholder="New task..." 
-          style={{ flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1px solid #cbd5e1' }} 
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="New task title..."
+          style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
         />
-        <button 
-          onClick={handleAddTask} 
-          style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer' }}
-        >
-          Add Task
+        <button type="submit" style={{ padding: '10px 16px', background: '#6366f1', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+          Add
         </button>
-      </div>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {typeof tasks !== 'undefined' && tasks.map(t => (
-          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>
-            {t.completed ? "✅" : "⏳"} {t.text}
+      </form>
+
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        {tasks.map((task, idx) => (
+          <li key={idx} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0' }}>
+            ✅ {task}
           </li>
         ))}
       </ul>
@@ -270,26 +270,16 @@ function ReactTaskManager() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ReactTaskManager />);
+root.render(<TaskTracker />);
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            {
-                id: 'tasks_state',
-                label: 'Declare <code>const [tasks, setTasks] = React.useState(...)</code>',
-                fn: (code) => /const\s*\[\s*tasks\s*,\s*setTasks\s*\]\s*=\s*(?:React\.)?useState/i.test(code)
-            },
-            {
-                id: 'add_task',
-                label: 'Append new task with <code>setTasks([...tasks, ...])</code>',
-                fn: (code) => /setTasks\s*\(\s*\[\s*\.\.\.tasks/i.test(code) || /setTasks\s*\(\s*\(?t\)?\s*=>\s*\[\s*\.\.\.t/i.test(code)
-            }
+            { id: 'tasks_state', label: 'Declare tasks state with <code>React.useState(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*tasks\s*,\s*setTasks\s*\]\s*=\s*(?:React\.)?useState/i.test(c); } },
+            { id: 'add_task', label: 'Append new task immutably with <code>setTasks([...tasks, input])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setTasks\s*\(\s*\[\s*\.\.\.tasks\s*,\s*input\s*\]\s*\)/i.test(c) || /setTasks\s*\(\s*\(?t\)?\s*=>\s*\[\s*\.\.\.t/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync

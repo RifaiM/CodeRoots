@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🛠️ Level 5 Lesson 1 Practice Task: ES6+ Powers!
+const starterCode = `// 🛠️ Level 5 Lesson 1: ES6+ Powers!
 
 // Initial developer profile object
 const developer = {
@@ -10,12 +10,12 @@ const developer = {
     skills: ["HTML5", "CSS3", "JavaScript"]
 };
 
-// 👉 STEP 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: "Level 5 Master"'
-// Write your code here:
+// 👉 STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
+// (Hint: const updatedDev = { ...developer, level: "Level 5 Master" };)
 
 
-// 👉 STEP 2: Use Object Destructuring to extract { name, role, skills, level } from 'updatedDev'
-// Write your code here:
+// 👉 STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
+// (Hint: const { name, role, skills, level } = updatedDev;)
 
 
 // Render developer profile to screen
@@ -43,77 +43,77 @@ if (root) {
 const level5Lessons = [
     {
         "id": 1,
-        "title": "ES6+ JavaScript Powers",
+        "title": "ES6+ Powers: Spread & Destructuring",
         "url": "/3. partC/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Arrow Functions & Scope",
+        "title": "React Component Tree",
         "url": "/3. partC/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "JS Destructuring",
+        "title": "Dynamic Lists with .map()",
         "url": "/3. partC/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Template Literals in JS",
+        "title": "Passing Props to Components",
         "url": "/3. partC/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Array Map & Filter",
+        "title": "Interactive State with useState()",
         "url": "/3. partC/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "ES Modules & Imports",
+        "title": "Real-Time Input Binding",
         "url": "/3. partC/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "React JSX Fundamentals",
+        "title": "Effects with useEffect()",
         "url": "/3. partC/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Reusable React Components",
+        "title": "Component Slots with children",
         "url": "/3. partC/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "React Props & Composition",
+        "title": "Lifting State Up",
         "url": "/3. partC/lesson9/lesson9_remake.html"
     },
     {
         "id": 10,
-        "title": "React useState Hook",
+        "title": "Conditional UI with Ternaries",
         "url": "/3. partC/lesson10/lesson10_remake.html"
     },
     {
         "id": 11,
-        "title": "Controlled Form State",
+        "title": "Multi-Input Forms with Dynamic Keys",
         "url": "/3. partC/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "Conditional UI Rendering",
+        "title": "Loading Guards & Fallback UIs",
         "url": "/3. partC/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "React useEffect Hook",
+        "title": "Fetching Live REST APIs",
         "url": "/3. partC/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "React API Data Fetching",
+        "title": "Debounced Search & Cleanup",
         "url": "/3. partC/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "React Capstone App",
+        "title": "React Capstone Mini-App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
@@ -121,10 +121,10 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 01: ES6+ JavaScript Powers | Level 5 React Dojo"
-    description="Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery."
+    description="Master modern ES6+ JavaScript syntax: clone objects immutably with spread (...) and unpack values directly with destructuring."
     levelTag="Level 5 • Framework Dojo"
     lessonNum={1}
-    lessonTitle="ES6+ JavaScript Powers"
+    lessonTitle="ES6+ Powers: Spread & Destructuring"
     xpAmount={150}
     completionKey="partC_lesson1_remake_complete"
     nextLessonUrl="/3. partC/lesson2/lesson2_remake.html"
@@ -153,7 +153,11 @@ const level5Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">A developer profile card showing 👤 <strong>Alex</strong>, role <strong>Frontend Developer</strong>, and upgraded rank 🏆 <strong>Level 5 Master</strong>!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -161,7 +165,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> ES6+ is like a multi-tool upgrade for JavaScript. Spread operator (...) duplicates objects instantly, destructuring unpacks values directly into variables, and template literals create dynamic strings cleanly.
+                <strong>Real-World Analogy:</strong> Think of the spread operator (<code>...</code>) like a photocopy machine that duplicates an existing document and lets you write in a new title, while destructuring is like opening a gift box and taking out just the items you want with clean variable names.
             </div>
         </article>
 
@@ -215,7 +219,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson1';
-        const DEFAULT_STARTER = `// 🛠️ Level 5 Lesson 1 Practice Task: ES6+ Powers!
+        const DEFAULT_STARTER = `// 🛠️ Level 5 Lesson 1: ES6+ Powers!
 
 // Initial developer profile object
 const developer = {
@@ -224,12 +228,12 @@ const developer = {
     skills: ["HTML5", "CSS3", "JavaScript"]
 };
 
-// 👉 STEP 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: "Level 5 Master"'
-// Write your code here:
+// 👉 STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
+// (Hint: const updatedDev = { ...developer, level: "Level 5 Master" };)
 
 
-// 👉 STEP 2: Use Object Destructuring to extract { name, role, skills, level } from 'updatedDev'
-// Write your code here:
+// 👉 STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
+// (Hint: const { name, role, skills, level } = updatedDev;)
 
 
 // Render developer profile to screen
@@ -257,16 +261,8 @@ if (root) {
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            {
-                id: 'spread',
-                label: 'Create <code>updatedDev</code> with spread <code>{ ...developer, level: "Level 5 Master" }</code>',
-                fn: (code) => /updatedDev\s*=\s*\{\s*(\.\.\.developer\s*,\s*level\s*:\s*["']Level 5 Master["']|level\s*:\s*["']Level 5 Master["']\s*,\s*\.\.\.developer)\s*\}/i.test(code)
-            },
-            {
-                id: 'destructure',
-                label: 'Destructure <code>const { name, role, skills, level } = updatedDev</code>',
-                fn: (code) => /const\s*\{\s*[^}]*\bname\b[^}]*\brole\b[^}]*\bskills\b[^}]*\blevel\b[^}]*\}\s*=\s*updatedDev/i.test(code)
-            }
+            { id: 'spread', label: 'Create <code>updatedDev</code> with spread <code>{ ...developer, level: "Level 5 Master" }</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+updatedDev\s*=\s*\{\s*\.\.\.developer\s*,\s*level\s*:\s*["']Level 5 Master["']/i.test(c); } },
+            { id: 'destructure', label: 'Destructure <code>const { name, role, skills, level } = updatedDev;</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\{\s*name\s*,\s*role\s*,\s*skills\s*,\s*level\s*\}\s*=\s*updatedDev/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'javascript'

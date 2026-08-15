@@ -6,77 +6,77 @@ const starterCode = "// ⚡ Lesson 14: Search Filter with useEffect Debounce!\n\
 const level5Lessons = [
     {
         "id": 1,
-        "title": "ES6+ JavaScript Powers",
+        "title": "ES6+ Powers: Spread & Destructuring",
         "url": "/3. partC/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Arrow Functions & Scope",
+        "title": "React Component Tree",
         "url": "/3. partC/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "JS Destructuring",
+        "title": "Dynamic Lists with .map()",
         "url": "/3. partC/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Template Literals in JS",
+        "title": "Passing Props to Components",
         "url": "/3. partC/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Array Map & Filter",
+        "title": "Interactive State with useState()",
         "url": "/3. partC/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "ES Modules & Imports",
+        "title": "Real-Time Input Binding",
         "url": "/3. partC/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "React JSX Fundamentals",
+        "title": "Effects with useEffect()",
         "url": "/3. partC/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Reusable React Components",
+        "title": "Component Slots with children",
         "url": "/3. partC/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "React Props & Composition",
+        "title": "Lifting State Up",
         "url": "/3. partC/lesson9/lesson9_remake.html"
     },
     {
         "id": 10,
-        "title": "React useState Hook",
+        "title": "Conditional UI with Ternaries",
         "url": "/3. partC/lesson10/lesson10_remake.html"
     },
     {
         "id": 11,
-        "title": "Controlled Form State",
+        "title": "Multi-Input Forms with Dynamic Keys",
         "url": "/3. partC/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "Conditional UI Rendering",
+        "title": "Loading Guards & Fallback UIs",
         "url": "/3. partC/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "React useEffect Hook",
+        "title": "Fetching Live REST APIs",
         "url": "/3. partC/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "React API Data Fetching",
+        "title": "Debounced Search & Cleanup",
         "url": "/3. partC/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "React Capstone App",
+        "title": "React Capstone Mini-App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
@@ -84,10 +84,10 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 14: React API Data Fetching | Level 5 React Dojo"
-    description="Fetch external REST APIs inside useEffect, manage loading states, and handle network error boundaries."
+    description="Prevent unnecessary API calls by implementing timers and cleanup functions inside useEffect to handle debounced search."
     levelTag="Level 5 • Framework Dojo"
     lessonNum={14}
-    lessonTitle="React API Data Fetching"
+    lessonTitle="Debounced Search & Cleanup"
     xpAmount={150}
     completionKey="partC_lesson14_remake_complete"
     nextLessonUrl="/3. partC/lesson15/lesson15_remake.html"
@@ -116,7 +116,11 @@ const level5Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">A responsive search box that waits until you pause typing before logging 🔍 'Searching query...', automatically cleaning up old timers!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -124,7 +128,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Debouncing in search filters is like waiting for someone to stop talking before answering. Instead of triggering an API search on every single letter typed, you wait 300ms after the user stops typing.
+                <strong>Real-World Analogy:</strong> A cleanup function is like an elevator door sensor 🛗. If someone steps in before the timer finishes, it resets the countdown so the door doesn't close prematurely.
             </div>
         </article>
 
@@ -182,21 +186,11 @@ const level5Lessons = [
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            {
-                id: 'search_effect',
-                label: 'Run effect on <code>[query]</code>',
-                fn: (code) => /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*query\s*\]\s*\)/i.test(code)
-            },
-            {
-                id: 'cleanup',
-                label: 'Return cleanup function <code>() => clearTimeout(...)</code>',
-                fn: (code) => /return\s*\(\s*\)\s*=>\s*clearTimeout/i.test(code) || /return\s+function\s*\(\s*\)\s*\{\s*clearTimeout/i.test(code)
-            }
+            { id: 'search_effect', label: 'Add <code>useEffect</code> listening on <code>[query]</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*query\s*\]\s*\)/i.test(c); } },
+            { id: 'cleanup', label: 'Return cleanup function with <code>clearTimeout(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /return\s*\(\s*\)\s*=>\s*clearTimeout/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync

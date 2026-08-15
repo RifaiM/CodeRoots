@@ -1,110 +1,99 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
+const starterCode = `// 🎁 Lesson 4: Passing Props to Reusable Components!
 
-// 👉 STEP 1: Child Component - Destructure { name, price, category, isAvailable } in parameters
-function ProductCard(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
-      <div>{props.category}</div>
-      <h3>{props.name}</h3>
-      <p style={{ fontWeight: '800', color: '#059669' }}>\${props.price}</p>
-      <span>{props.isAvailable ? "🟢 In Stock" : "🔴 Out of Stock"}</span>
-    </div>
-  );
-}
+// 👉 STEP 1: Define ProductCard that receives { name, price, stock } via props
+// (Hint: function ProductCard({ name, price, stock }) { return <div style={{ padding: '12px', border: '1px solid #cbd5e1', borderRadius: '8px', marginBottom: '10px' }}><h4>{name}</h4><p>💵 \${price} • 📦 In Stock: {stock}</p></div>; })
 
-// Parent Component: App (Passing Props to Reusable Children)
-function App() {
+
+function StoreCatalog() {
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>🛍️ DevDojo Gear Store</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>
-        {/* 👉 STEP 2: Render <ProductCard /> with name="Mechanical Keyboard" price={129.99} category="Peripherals" isAvailable={true} */}
-        
-      </div>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🛍️ Tech Store Catalog</h2>
+      {/* 👉 STEP 2: Render two <ProductCard name="..." price={...} stock={...} /> components below: */}
+      
     </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<StoreCatalog />);
 `;
 const level5Lessons = [
     {
         "id": 1,
-        "title": "ES6+ JavaScript Powers",
+        "title": "ES6+ Powers: Spread & Destructuring",
         "url": "/3. partC/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Arrow Functions & Scope",
+        "title": "React Component Tree",
         "url": "/3. partC/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "JS Destructuring",
+        "title": "Dynamic Lists with .map()",
         "url": "/3. partC/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Template Literals in JS",
+        "title": "Passing Props to Components",
         "url": "/3. partC/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Array Map & Filter",
+        "title": "Interactive State with useState()",
         "url": "/3. partC/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "ES Modules & Imports",
+        "title": "Real-Time Input Binding",
         "url": "/3. partC/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "React JSX Fundamentals",
+        "title": "Effects with useEffect()",
         "url": "/3. partC/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Reusable React Components",
+        "title": "Component Slots with children",
         "url": "/3. partC/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "React Props & Composition",
+        "title": "Lifting State Up",
         "url": "/3. partC/lesson9/lesson9_remake.html"
     },
     {
         "id": 10,
-        "title": "React useState Hook",
+        "title": "Conditional UI with Ternaries",
         "url": "/3. partC/lesson10/lesson10_remake.html"
     },
     {
         "id": 11,
-        "title": "Controlled Form State",
+        "title": "Multi-Input Forms with Dynamic Keys",
         "url": "/3. partC/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "Conditional UI Rendering",
+        "title": "Loading Guards & Fallback UIs",
         "url": "/3. partC/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "React useEffect Hook",
+        "title": "Fetching Live REST APIs",
         "url": "/3. partC/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "React API Data Fetching",
+        "title": "Debounced Search & Cleanup",
         "url": "/3. partC/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "React Capstone App",
+        "title": "React Capstone Mini-App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
@@ -112,10 +101,10 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 04: Template Literals in JS | Level 5 React Dojo"
-    description="Construct multi-line strings and embed dynamic JavaScript expressions using backtick template literals effortlessly."
+    description="Pass dynamic parameters (props) into reusable React child components to create flexible, customizable UI elements."
     levelTag="Level 5 • Framework Dojo"
     lessonNum={4}
-    lessonTitle="Template Literals in JS"
+    lessonTitle="Passing Props to Components"
     xpAmount={150}
     completionKey="partC_lesson4_remake_complete"
     nextLessonUrl="/3. partC/lesson5/lesson5_remake.html"
@@ -144,7 +133,11 @@ const level5Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Two stylish product cards (Mechanical Keyboard for $129 and Wireless Mouse for $59) rendered from the same reusable component!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -152,7 +145,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Props are like parameters passed into a function. They flow unidirectionally downwards from parent components to child components, making your UI dynamic and flexible.
+                <strong>Real-World Analogy:</strong> Props are like ordering custom toppings on a pizza 🍕. The base component (pizza crust) stays the same, but the props (toppings & price) make each one unique.
             </div>
         </article>
 
@@ -206,54 +199,33 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson4';
-        const DEFAULT_STARTER = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
+        const DEFAULT_STARTER = `// 🎁 Lesson 4: Passing Props to Reusable Components!
 
-// 👉 STEP 1: Child Component - Destructure { name, price, category, isAvailable } in parameters
-function ProductCard(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
-      <div>{props.category}</div>
-      <h3>{props.name}</h3>
-      <p style={{ fontWeight: '800', color: '#059669' }}>\${props.price}</p>
-      <span>{props.isAvailable ? "🟢 In Stock" : "🔴 Out of Stock"}</span>
-    </div>
-  );
-}
+// 👉 STEP 1: Define ProductCard that receives { name, price, stock } via props
+// (Hint: function ProductCard({ name, price, stock }) { return <div style={{ padding: '12px', border: '1px solid #cbd5e1', borderRadius: '8px', marginBottom: '10px' }}><h4>{name}</h4><p>💵 \${price} • 📦 In Stock: {stock}</p></div>; })
 
-// Parent Component: App (Passing Props to Reusable Children)
-function App() {
+
+function StoreCatalog() {
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>🛍️ DevDojo Gear Store</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>
-        {/* 👉 STEP 2: Render <ProductCard /> with name="Mechanical Keyboard" price={129.99} category="Peripherals" isAvailable={true} */}
-        
-      </div>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🛍️ Tech Store Catalog</h2>
+      {/* 👉 STEP 2: Render two <ProductCard name="..." price={...} stock={...} /> components below: */}
+      
     </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<StoreCatalog />);
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            {
-                id: 'props',
-                label: 'Destructure props in <code>ProductCard({ name, price, ... })</code>',
-                fn: (code) => /function\s+ProductCard\s*\(\s*\{\s*name\s*,\s*price/i.test(code) || /const\s*\{\s*name\s*,\s*price[^}]*\}\s*=\s*props/i.test(code)
-            },
-            {
-                id: 'render_cards',
-                label: 'Pass custom props to <code>&lt;ProductCard ... /&gt;</code>',
-                fn: (code) => /<ProductCard\s+[^>]*name=/i.test(code)
-            }
+            { id: 'props', label: 'Destructure props in <code>ProductCard({ name, price, stock })</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /function\s+ProductCard\s*\(\s*\{\s*name\s*,\s*price/i.test(c) || /function\s+ProductCard\s*\(\s*props/i.test(c); } },
+            { id: 'render_cards', label: 'Pass custom props to <code>&lt;ProductCard name="..." price={...} stock={...} /&gt;</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /<ProductCard\b[^>]*\bname\s*=/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync

@@ -1,102 +1,112 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🔀 Lesson 10: Conditional Rendering with Ternary & State!
+const starterCode = `// 🔀 Lesson 10: Conditional UI with Ternary Operators!
 
-function AuthDashboard() {
+function AuthScreen() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>🔐 Member Portal</h2>
-        
-        {/* 👉 STEP 1: Use Ternary operator to conditionally render based on isLoggedIn */}
-        {/* If isLoggedIn is true: render <div><h3>Welcome, Member! ✅</h3><button onClick={() => setIsLoggedIn(false)}>Log Out</button></div> */}
-        {/* If isLoggedIn is false: render <div><h3>Please Sign In</h3><button onClick={() => setIsLoggedIn(true)}>Log In</button></div> */}
-        
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+      <h2>🔐 Member Access Portal</h2>
+
+      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? <WelcomeCard /> : <LoginPrompt />) to switch screens: */}
+      <div style={{ padding: '20px', borderRadius: '12px', background: isLoggedIn ? '#dcfce7' : '#fee2e2', marginBottom: '16px' }}>
+        {isLoggedIn ? (
+          <h3 style={{ color: '#15803d', margin: 0 }}>🟢 Welcome back, Developer!</h3>
+        ) : (
+          <h3 style={{ color: '#b91c1c', margin: 0 }}>🔒 Please log in to view content</h3>
+        )}
       </div>
+
+      {/* 👉 STEP 2: Button that toggles setIsLoggedIn(!isLoggedIn): */}
+      <button 
+        onClick={() => setIsLoggedIn(!isLoggedIn)}
+        style={{ padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+      >
+        {isLoggedIn ? "Log Out" : "Log In"}
+      </button>
     </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AuthDashboard />);
+root.render(<AuthScreen />);
 `;
 const level5Lessons = [
     {
         "id": 1,
-        "title": "ES6+ JavaScript Powers",
+        "title": "ES6+ Powers: Spread & Destructuring",
         "url": "/3. partC/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Arrow Functions & Scope",
+        "title": "React Component Tree",
         "url": "/3. partC/lesson2/lesson2_remake.html"
     },
     {
         "id": 3,
-        "title": "JS Destructuring",
+        "title": "Dynamic Lists with .map()",
         "url": "/3. partC/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Template Literals in JS",
+        "title": "Passing Props to Components",
         "url": "/3. partC/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Array Map & Filter",
+        "title": "Interactive State with useState()",
         "url": "/3. partC/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "ES Modules & Imports",
+        "title": "Real-Time Input Binding",
         "url": "/3. partC/lesson6/lesson6_remake.html"
     },
     {
         "id": 7,
-        "title": "React JSX Fundamentals",
+        "title": "Effects with useEffect()",
         "url": "/3. partC/lesson7/lesson7_remake.html"
     },
     {
         "id": 8,
-        "title": "Reusable React Components",
+        "title": "Component Slots with children",
         "url": "/3. partC/lesson8/lesson8_remake.html"
     },
     {
         "id": 9,
-        "title": "React Props & Composition",
+        "title": "Lifting State Up",
         "url": "/3. partC/lesson9/lesson9_remake.html"
     },
     {
         "id": 10,
-        "title": "React useState Hook",
+        "title": "Conditional UI with Ternaries",
         "url": "/3. partC/lesson10/lesson10_remake.html"
     },
     {
         "id": 11,
-        "title": "Controlled Form State",
+        "title": "Multi-Input Forms with Dynamic Keys",
         "url": "/3. partC/lesson11/lesson11_remake.html"
     },
     {
         "id": 12,
-        "title": "Conditional UI Rendering",
+        "title": "Loading Guards & Fallback UIs",
         "url": "/3. partC/lesson12/lesson12_remake.html"
     },
     {
         "id": 13,
-        "title": "React useEffect Hook",
+        "title": "Fetching Live REST APIs",
         "url": "/3. partC/lesson13/lesson13_remake.html"
     },
     {
         "id": 14,
-        "title": "React API Data Fetching",
+        "title": "Debounced Search & Cleanup",
         "url": "/3. partC/lesson14/lesson14_remake.html"
     },
     {
         "id": 15,
-        "title": "React Capstone App",
+        "title": "React Capstone Mini-App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
@@ -104,10 +114,10 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 10: React useState Hook | Level 5 React Dojo"
-    description="Master reactive state updates, functional state setters, and multiple state variables in functional components."
+    description="Show or hide UI components dynamically using JavaScript ternary operators (condition ? <Yes /> : <No />)."
     levelTag="Level 5 • Framework Dojo"
     lessonNum={10}
-    lessonTitle="React useState Hook"
+    lessonTitle="Conditional UI with Ternaries"
     xpAmount={150}
     completionKey="partC_lesson10_remake_complete"
     nextLessonUrl="/3. partC/lesson11/lesson11_remake.html"
@@ -136,7 +146,11 @@ const level5Lessons = [
                 <h3><span>🎯</span> Your Mission</h3>
                 <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
-            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">A user authentication toggle that switches between 🟢 'Welcome back, Alex!' when logged in, and 🔒 'Please log in' when logged out!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
         </article>
         
@@ -144,7 +158,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Conditional rendering is like a traffic light. Depending on the state (e.g. isLoggedIn or isLoading), React dynamically displays different UI branches without reloading the page.
+                <strong>Real-World Analogy:</strong> A ternary operator is like a digital store sign 🏪 that reads 'OPEN' when the lights are on, and 'CLOSED' when the lights are off.
             </div>
         </article>
 
@@ -198,46 +212,46 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson10';
-        const DEFAULT_STARTER = `// 🔀 Lesson 10: Conditional Rendering with Ternary & State!
+        const DEFAULT_STARTER = `// 🔀 Lesson 10: Conditional UI with Ternary Operators!
 
-function AuthDashboard() {
+function AuthScreen() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>🔐 Member Portal</h2>
-        
-        {/* 👉 STEP 1: Use Ternary operator to conditionally render based on isLoggedIn */}
-        {/* If isLoggedIn is true: render <div><h3>Welcome, Member! ✅</h3><button onClick={() => setIsLoggedIn(false)}>Log Out</button></div> */}
-        {/* If isLoggedIn is false: render <div><h3>Please Sign In</h3><button onClick={() => setIsLoggedIn(true)}>Log In</button></div> */}
-        
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+      <h2>🔐 Member Access Portal</h2>
+
+      {/* 👉 STEP 1: Use ternary operator (isLoggedIn ? <WelcomeCard /> : <LoginPrompt />) to switch screens: */}
+      <div style={{ padding: '20px', borderRadius: '12px', background: isLoggedIn ? '#dcfce7' : '#fee2e2', marginBottom: '16px' }}>
+        {isLoggedIn ? (
+          <h3 style={{ color: '#15803d', margin: 0 }}>🟢 Welcome back, Developer!</h3>
+        ) : (
+          <h3 style={{ color: '#b91c1c', margin: 0 }}>🔒 Please log in to view content</h3>
+        )}
       </div>
+
+      {/* 👉 STEP 2: Button that toggles setIsLoggedIn(!isLoggedIn): */}
+      <button 
+        onClick={() => setIsLoggedIn(!isLoggedIn)}
+        style={{ padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+      >
+        {isLoggedIn ? "Log Out" : "Log In"}
+      </button>
     </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AuthDashboard />);
+root.render(<AuthScreen />);
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            {
-                id: 'ternary',
-                label: 'Use ternary operator: <code>isLoggedIn ? ... : ...</code>',
-                fn: (code) => /isLoggedIn\s*\?\s*<[a-z0-9]/i.test(code) || /isLoggedIn\s*\?\s*\(/i.test(code)
-            },
-            {
-                id: 'toggle',
-                label: 'Toggle state with <code>setIsLoggedIn</code>',
-                fn: (code) => /setIsLoggedIn\s*\(/i.test(code)
-            }
+            { id: 'ternary', label: 'Use ternary conditional <code>isLoggedIn ? ... : ...</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /isLoggedIn\s*\?[\s\S]*?:/i.test(c); } },
+            { id: 'toggle', label: 'Toggle state with <code>setIsLoggedIn(!isLoggedIn)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setIsLoggedIn\s*\(\s*!isLoggedIn\s*\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync
