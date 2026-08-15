@@ -1,8 +1,36 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!\n\n// Step 1: Child Component: ProductCard (Destructuring Props)\nfunction ProductCard(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>\n      <div>{props.category}</div>\n      <h3>{props.name}</h3>\n      <p style={{ fontWeight: '800', color: '#059669' }}>${props.price}</p>\n      <span>{props.isAvailable ? \"🟢 In Stock\" : \"🔴 Out of Stock\"}</span>\n    </div>\n  );\n}\n\n// 2. Parent Component: App (Passing Props to Reusable Children)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>\n      <h2>🛍️ DevDojo Gear Store</h2>\n      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>\n        {/* Step 2: Render ProductCard components with name, price, category, isAvailable props */}\n        <ProductCard name=\"Mechanical Keyboard\" price={129.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"Ergonomic Mouse\" price={69.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"4K Monitor\" price={449.99} category=\"Displays\" isAvailable={false} />\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
+const starterCode = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
 
+// 👉 STEP 1: Child Component - Destructure { name, price, category, isAvailable } in parameters
+function ProductCard(props) {
+  return (
+    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
+      <div>{props.category}</div>
+      <h3>{props.name}</h3>
+      <p style={{ fontWeight: '800', color: '#059669' }}>\${props.price}</p>
+      <span>{props.isAvailable ? "🟢 In Stock" : "🔴 Out of Stock"}</span>
+    </div>
+  );
+}
+
+// Parent Component: App (Passing Props to Reusable Children)
+function App() {
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+      <h2>🛍️ DevDojo Gear Store</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>
+        {/* 👉 STEP 2: Render <ProductCard /> with name="Mechanical Keyboard" price={129.99} category="Peripherals" isAvailable={true} */}
+        
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -147,14 +175,14 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Accept props in <code>ProductCard(&#123; name, price, category, isAvailable &#125;)</code>.</li>
-                <li>Display the product name, price, and category dynamically.</li>
-                <li>Render multiple <code>&lt;ProductCard /&gt;</code> instances in <code>App</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -175,7 +203,36 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson4';
-        const DEFAULT_STARTER = "// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!\n\n// Step 1: Child Component: ProductCard (Destructuring Props)\nfunction ProductCard(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>\n      <div>{props.category}</div>\n      <h3>{props.name}</h3>\n      <p style={{ fontWeight: '800', color: '#059669' }}>${props.price}</p>\n      <span>{props.isAvailable ? \"🟢 In Stock\" : \"🔴 Out of Stock\"}</span>\n    </div>\n  );\n}\n\n// 2. Parent Component: App (Passing Props to Reusable Children)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>\n      <h2>🛍️ DevDojo Gear Store</h2>\n      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>\n        {/* Step 2: Render ProductCard components with name, price, category, isAvailable props */}\n        <ProductCard name=\"Mechanical Keyboard\" price={129.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"Ergonomic Mouse\" price={69.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"4K Monitor\" price={449.99} category=\"Displays\" isAvailable={false} />\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
+        const DEFAULT_STARTER = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
+
+// 👉 STEP 1: Child Component - Destructure { name, price, category, isAvailable } in parameters
+function ProductCard(props) {
+  return (
+    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
+      <div>{props.category}</div>
+      <h3>{props.name}</h3>
+      <p style={{ fontWeight: '800', color: '#059669' }}>\${props.price}</p>
+      <span>{props.isAvailable ? "🟢 In Stock" : "🔴 Out of Stock"}</span>
+    </div>
+  );
+}
+
+// Parent Component: App (Passing Props to Reusable Children)
+function App() {
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+      <h2>🛍️ DevDojo Gear Store</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>
+        {/* 👉 STEP 2: Render <ProductCard /> with name="Mechanical Keyboard" price={129.99} category="Peripherals" isAvailable={true} */}
+        
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -238,6 +295,10 @@ const level5Lessons = [
 </html>`;
                 previewIframe.srcdoc = htmlDoc;
             }
+
+            // Real-Time Checklist Verification
+            // Real-Time JavaScript & React Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);

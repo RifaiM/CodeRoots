@@ -1,8 +1,28 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!\n\nfunction AuthDashboard() {\n  const [isLoggedIn, setIsLoggedIn] = React.useState(false);\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2>🔐 Member Portal</h2>\n        \n        {/* Step 1: Use Ternary operator: isLoggedIn ? <Dashboard /> : <LoginForm /> */}\n        {isLoggedIn ? (\n          <div>\n            <h3>Welcome, Member! ✅</h3>\n            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>\n          </div>\n        ) : (\n          <div>\n            <h3>Please Sign In</h3>\n            <button onClick={() => setIsLoggedIn(true)}>Log In</button>\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<AuthDashboard />);";
+const starterCode = `// 🔀 Lesson 10: Conditional Rendering with Ternary & State!
 
+function AuthDashboard() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
+        <h2>🔐 Member Portal</h2>
+        
+        {/* 👉 STEP 1: Use Ternary operator to conditionally render based on isLoggedIn */}
+        {/* If isLoggedIn is true: render <div><h3>Welcome, Member! ✅</h3><button onClick={() => setIsLoggedIn(false)}>Log Out</button></div> */}
+        {/* If isLoggedIn is false: render <div><h3>Please Sign In</h3><button onClick={() => setIsLoggedIn(true)}>Log In</button></div> */}
+        
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<AuthDashboard />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -147,14 +167,14 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use ternary condition <code>isLoggedIn ? (...) : (...)</code>.</li>
-                <li>Toggle <code>setIsLoggedIn(!isLoggedIn)</code> on button click.</li>
-                <li>Observe dynamic UI state transitions.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -175,7 +195,28 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson10';
-        const DEFAULT_STARTER = "// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!\n\nfunction AuthDashboard() {\n  const [isLoggedIn, setIsLoggedIn] = React.useState(false);\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2>🔐 Member Portal</h2>\n        \n        {/* Step 1: Use Ternary operator: isLoggedIn ? <Dashboard /> : <LoginForm /> */}\n        {isLoggedIn ? (\n          <div>\n            <h3>Welcome, Member! ✅</h3>\n            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>\n          </div>\n        ) : (\n          <div>\n            <h3>Please Sign In</h3>\n            <button onClick={() => setIsLoggedIn(true)}>Log In</button>\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<AuthDashboard />);";
+        const DEFAULT_STARTER = `// 🔀 Lesson 10: Conditional Rendering with Ternary & State!
+
+function AuthDashboard() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
+        <h2>🔐 Member Portal</h2>
+        
+        {/* 👉 STEP 1: Use Ternary operator to conditionally render based on isLoggedIn */}
+        {/* If isLoggedIn is true: render <div><h3>Welcome, Member! ✅</h3><button onClick={() => setIsLoggedIn(false)}>Log Out</button></div> */}
+        {/* If isLoggedIn is false: render <div><h3>Please Sign In</h3><button onClick={() => setIsLoggedIn(true)}>Log In</button></div> */}
+        
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<AuthDashboard />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -238,6 +279,10 @@ const level5Lessons = [
 </html>`;
                 previewIframe.srcdoc = htmlDoc;
             }
+
+            // Real-Time Checklist Verification
+            // Real-Time JavaScript & React Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);

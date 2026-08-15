@@ -1,8 +1,54 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🏆 Lesson 15 Capstone: Interactive React Application!\n\nfunction ReactTaskManager() {\n  // Step 1: Declare state 'tasks' initialized with at least two items\n  // Step 2: Declare state 'inputVal' initialized to \"\"\n  const [tasks, setTasks] = React.useState([\n    { id: 1, text: \"Master React Hooks\", completed: true },\n    { id: 2, text: \"Build Capstone SPA\", completed: false }\n  ]);\n  const [inputVal, setInputVal] = React.useState(\"\");\n\n  // Step 3: Add task handler function\n  const handleAddTask = () => {\n    if (!inputVal.trim()) return;\n    setTasks([...tasks, { id: Date.now(), text: inputVal, completed: false }]);\n    setInputVal(\"\");\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🏆 React Capstone: Task Manager</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <input value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder=\"New task...\" style={{ flex: 1, padding: '8px 12px' }} />\n        <button onClick={handleAddTask} style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px' }}>Add</button>\n      </div>\n      <ul style={{ listStyle: 'none', padding: 0 }}>\n        {tasks.map(t => (\n          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>\n            {t.completed ? \"✅\" : \"⏳\"} {t.text}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ReactTaskManager />);";
+const starterCode = `// 🏆 Lesson 15 Capstone: Interactive React Application!
 
+function ReactTaskManager() {
+  // 👉 STEP 1: Declare state 'tasks' initialized with at least two default items
+  // Format: const [tasks, setTasks] = React.useState([{ id: 1, text: "Master React", completed: true }, { id: 2, text: "Build Capstone", completed: false }]);
+  
+
+  // Controlled input state for typing new tasks
+  const [inputVal, setInputVal] = React.useState("");
+
+  // 👉 STEP 2: Add task handler function that appends new task to 'tasks' state immutably
+  const handleAddTask = () => {
+    if (!inputVal.trim()) return;
+    // Write code to append new task using setTasks([...tasks, ...]) and clear inputVal with setInputVal(""):
+
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🏆 React Capstone: Task Manager</h2>
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>
+        <input 
+          value={inputVal} 
+          onChange={(e) => setInputVal(e.target.value)} 
+          placeholder="New task..." 
+          style={{ flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1px solid #cbd5e1' }} 
+        />
+        <button 
+          onClick={handleAddTask} 
+          style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer' }}
+        >
+          Add Task
+        </button>
+      </div>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {typeof tasks !== 'undefined' && tasks.map(t => (
+          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>
+            {t.completed ? "✅" : "⏳"} {t.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ReactTaskManager />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -147,14 +193,14 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Declare <code>const [tasks, setTasks] = React.useState([...])</code>.</li>
-                <li>Implement <code>handleAddTask</code> to append new tasks with <code>setTasks([...tasks, newTask])</code>.</li>
-                <li>Render the list of tasks with <code>tasks.map(...)</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -175,7 +221,54 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson15';
-        const DEFAULT_STARTER = "// 🏆 Lesson 15 Capstone: Interactive React Application!\n\nfunction ReactTaskManager() {\n  // Step 1: Declare state 'tasks' initialized with at least two items\n  // Step 2: Declare state 'inputVal' initialized to \"\"\n  const [tasks, setTasks] = React.useState([\n    { id: 1, text: \"Master React Hooks\", completed: true },\n    { id: 2, text: \"Build Capstone SPA\", completed: false }\n  ]);\n  const [inputVal, setInputVal] = React.useState(\"\");\n\n  // Step 3: Add task handler function\n  const handleAddTask = () => {\n    if (!inputVal.trim()) return;\n    setTasks([...tasks, { id: Date.now(), text: inputVal, completed: false }]);\n    setInputVal(\"\");\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🏆 React Capstone: Task Manager</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <input value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder=\"New task...\" style={{ flex: 1, padding: '8px 12px' }} />\n        <button onClick={handleAddTask} style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px' }}>Add</button>\n      </div>\n      <ul style={{ listStyle: 'none', padding: 0 }}>\n        {tasks.map(t => (\n          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>\n            {t.completed ? \"✅\" : \"⏳\"} {t.text}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ReactTaskManager />);";
+        const DEFAULT_STARTER = `// 🏆 Lesson 15 Capstone: Interactive React Application!
+
+function ReactTaskManager() {
+  // 👉 STEP 1: Declare state 'tasks' initialized with at least two default items
+  // Format: const [tasks, setTasks] = React.useState([{ id: 1, text: "Master React", completed: true }, { id: 2, text: "Build Capstone", completed: false }]);
+  
+
+  // Controlled input state for typing new tasks
+  const [inputVal, setInputVal] = React.useState("");
+
+  // 👉 STEP 2: Add task handler function that appends new task to 'tasks' state immutably
+  const handleAddTask = () => {
+    if (!inputVal.trim()) return;
+    // Write code to append new task using setTasks([...tasks, ...]) and clear inputVal with setInputVal(""):
+
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>🏆 React Capstone: Task Manager</h2>
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>
+        <input 
+          value={inputVal} 
+          onChange={(e) => setInputVal(e.target.value)} 
+          placeholder="New task..." 
+          style={{ flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1px solid #cbd5e1' }} 
+        />
+        <button 
+          onClick={handleAddTask} 
+          style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer' }}
+        >
+          Add Task
+        </button>
+      </div>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {typeof tasks !== 'undefined' && tasks.map(t => (
+          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>
+            {t.completed ? "✅" : "⏳"} {t.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ReactTaskManager />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -238,6 +331,10 @@ const level5Lessons = [
 </html>`;
                 previewIframe.srcdoc = htmlDoc;
             }
+
+            // Real-Time Checklist Verification
+            // Real-Time JavaScript & React Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);

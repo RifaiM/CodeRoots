@@ -1,8 +1,32 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!\n\nfunction ProfileCard() {\n  const userName = \"Alex Developer\";\n  const userAvatar = \"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop\";\n  const skills = [\"React 18\", \"TypeScript\", \"Tailwind CSS\", \"Next.js\"];\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #cbd5e1', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>\n      <img src={userAvatar} alt={userName} style={{ width: '80px', height: '80px', borderRadius: '50%', marginBottom: '12px' }} />\n      <h2 style={{ margin: '0 0 6px 0', color: '#0f172a' }}>{userName}</h2>\n      <p style={{ color: '#64748b', fontSize: '14px', margin: '0 0 16px 0' }}>Frontend Developer & Open Source Contributor</p>\n      <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />\n      <h3 style={{ fontSize: '14px', color: '#334155', margin: '0 0 8px 0' }}>🚀 Tech Stack:</h3>\n      \n      {/* Step 1: Map over 'skills' array and return <li> elements with key={index} */}\n      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>\n        \n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ProfileCard />);";
+const starterCode = `// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!
 
+function ProfileCard() {
+  const userName = "Alex Developer";
+  const userAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
+  const skills = ["React 18", "TypeScript", "Tailwind CSS", "Next.js"];
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #cbd5e1', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+      <img src={userAvatar} alt={userName} style={{ width: '80px', height: '80px', borderRadius: '50%', marginBottom: '12px' }} />
+      <h2 style={{ margin: '0 0 6px 0', color: '#0f172a' }}>{userName}</h2>
+      <p style={{ color: '#64748b', fontSize: '14px', margin: '0 0 16px 0' }}>Frontend Developer & Open Source Contributor</p>
+      <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />
+      <h3 style={{ fontSize: '14px', color: '#334155', margin: '0 0 8px 0' }}>🚀 Tech Stack:</h3>
+      
+      {/* 👉 STEP 1: Map over 'skills' array and return <li> elements with key={index} */}
+      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+        
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ProfileCard />);
+`;
 const level5Lessons = [
     {
         "id": 1,
@@ -147,14 +171,14 @@ const level5Lessons = [
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use <code>skills.map((skill, index) =&gt; ...)</code> inside the <code>&lt;ul&gt;</code>.</li>
-                <li>Assign a unique <code>key=&#123;index&#125;</code> to each <code>&lt;li&gt;</code> element.</li>
-                <li>Display the skill name inside the <code>&lt;li&gt;&#123;skill&#125;&lt;/li&gt;</code> badge.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -175,7 +199,32 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson3';
-        const DEFAULT_STARTER = "// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!\n\nfunction ProfileCard() {\n  const userName = \"Alex Developer\";\n  const userAvatar = \"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop\";\n  const skills = [\"React 18\", \"TypeScript\", \"Tailwind CSS\", \"Next.js\"];\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #cbd5e1', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>\n      <img src={userAvatar} alt={userName} style={{ width: '80px', height: '80px', borderRadius: '50%', marginBottom: '12px' }} />\n      <h2 style={{ margin: '0 0 6px 0', color: '#0f172a' }}>{userName}</h2>\n      <p style={{ color: '#64748b', fontSize: '14px', margin: '0 0 16px 0' }}>Frontend Developer & Open Source Contributor</p>\n      <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />\n      <h3 style={{ fontSize: '14px', color: '#334155', margin: '0 0 8px 0' }}>🚀 Tech Stack:</h3>\n      \n      {/* Step 1: Map over 'skills' array and return <li> elements with key={index} */}\n      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>\n        \n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ProfileCard />);";
+        const DEFAULT_STARTER = `// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!
+
+function ProfileCard() {
+  const userName = "Alex Developer";
+  const userAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
+  const skills = ["React 18", "TypeScript", "Tailwind CSS", "Next.js"];
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #cbd5e1', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+      <img src={userAvatar} alt={userName} style={{ width: '80px', height: '80px', borderRadius: '50%', marginBottom: '12px' }} />
+      <h2 style={{ margin: '0 0 6px 0', color: '#0f172a' }}>{userName}</h2>
+      <p style={{ color: '#64748b', fontSize: '14px', margin: '0 0 16px 0' }}>Frontend Developer & Open Source Contributor</p>
+      <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />
+      <h3 style={{ fontSize: '14px', color: '#334155', margin: '0 0 8px 0' }}>🚀 Tech Stack:</h3>
+      
+      {/* 👉 STEP 1: Map over 'skills' array and return <li> elements with key={index} */}
+      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+        
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ProfileCard />);
+`;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -238,6 +287,10 @@ const level5Lessons = [
 </html>`;
                 previewIframe.srcdoc = htmlDoc;
             }
+
+            // Real-Time Checklist Verification
+            // Real-Time JavaScript & React Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
