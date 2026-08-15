@@ -274,7 +274,17 @@ print(admin_user.get_profile())</code></pre>
             });
         }
 
-        // 5. Python Terminal Simulation & Verification
+                // 🔒 Security: Escape user print() output to prevent XSS
+        function escapeHTML(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+// 5. Python Terminal Simulation & Verification
         function simulatePythonOutput(code: string) {
             if (!terminalScreen) return;
             const prints: string[] = [];
@@ -296,7 +306,7 @@ print(admin_user.get_profile())</code></pre>
             }
 
             if (prints.length > 0) {
-                terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${p}</div>`).join('') +
+                terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
                     '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
             } else {
                 terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully!</div>' +
