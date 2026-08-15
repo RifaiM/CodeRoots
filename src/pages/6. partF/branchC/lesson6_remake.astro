@@ -1,27 +1,41 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// app/page.jsx — Apex Fullstack Capstone
-// 🛠️ Practice Task: Production Fullstack Application
-
-// Step 1: Add 'use client'
-'use client';
-
+const starterCode = `// 🏆 Lesson 6: Production Next.js Fullstack Dashboard Capstone!
+"use client";
 import React, { useState } from 'react';
 
-// Step 2: Implement CapstoneDashboard component managing data state and search filter
-export default function CapstoneDashboard() {
-    const [services, setServices] = useState([
-        { id: 1, name: "Auth Gateway", latency: "14ms", status: "healthy" },
-        { id: 2, name: "Database Pool", latency: "8ms", status: "healthy" }
-    ]);
-    const [search, setSearch] = useState("");
+const services = [
+  { id: 1, name: "Auth & RBAC Service", tag: "Security" },
+  { id: 2, name: "Payment Webhook Gateway", tag: "Finance" },
+  { id: 3, name: "Cloudflare Edge CDN", tag: "Infrastructure" }
+];
 
-    // Filter services based on search query
-    // Write filter and return JSX here:
+export default function SaaSMetricsDashboard() {
+  const [search, setSearch] = useState("");
 
-    return <div></div>;
-}`;
+  // 👉 STEP 1: Filter services array based on search input: services.filter(s => s.name.toLowerCase().includes(search.toLowerCase()))
+  const filtered = services;
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>
+      <h2>🏆 Fullstack SaaS Dashboard</h2>
+      {/* 👉 STEP 2: Bind input with value={search} and onChange={(e) => setSearch(e.target.value)} */}
+      <input 
+        placeholder="Filter services..."
+        style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '16px', boxSizing: 'border-box' }}
+      />
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {filtered.map(s => (
+          <li key={s.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0' }}>
+            <strong>{s.name}</strong> • <span style={{ color: '#6366f1' }}>{s.tag}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+`;
 
 const branchLessons = [
     {
@@ -192,15 +206,14 @@ const services = [
 export default function SaaSMetricsDashboard() {
   const [search, setSearch] = useState("");
 
-  // 👉 STEP: Filter services array based on search input
-  const filtered = services.filter(s => s.name.toLowerCase().includes(search.toLowerCase()));
+  // 👉 STEP 1: Filter services array based on search input: services.filter(s => s.name.toLowerCase().includes(search.toLowerCase()))
+  const filtered = services;
 
   return (
     <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>
       <h2>🏆 Fullstack SaaS Dashboard</h2>
+      {/* 👉 STEP 2: Bind input with value={search} and onChange={(e) => setSearch(e.target.value)} */}
       <input 
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
         placeholder="Filter services..."
         style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '16px', boxSizing: 'border-box' }}
       />

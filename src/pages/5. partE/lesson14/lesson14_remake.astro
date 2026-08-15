@@ -1,20 +1,19 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 14 Guided Project: Task Manager API
-
+const starterCode = `# 🛠️ Lesson 14: Task Manager Backend API Service!
 import sqlite3
 
-# Step 1: Define model class TaskItem with __init__(self, task_id, title, status="pending") and to_dict(self)
-# Write class TaskItem here:
+# 👉 STEP 1: Create database schema table 'tasks' with id INTEGER PRIMARY KEY, title TEXT
+conn = sqlite3.connect(":memory:")
+cursor = conn.cursor()
 
 
-# Step 2: Connect to database conn = sqlite3.connect(":memory:") and create tasks table
-# Write DB initialization here:
+# 👉 STEP 2: Define TaskItem class with __init__(self, id, title) and to_dict(self)
 
 
-# Step 3: Define function create_task(conn, title) that inserts task into DB and returns task ID
-# Write create_task function here:
+# 👉 STEP 3: Implement create_task(conn, title) that inserts into tasks and returns new id
+
 `;
 
 const level6Lessons = [
@@ -226,7 +225,7 @@ import sqlite3
 # 👉 STEP 1: Create database schema table 'tasks' with id INTEGER PRIMARY KEY, title TEXT
 conn = sqlite3.connect(":memory:")
 cursor = conn.cursor()
-cursor.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
+
 
 # 👉 STEP 2: Define TaskItem class with __init__(self, id, title) and to_dict(self)
 

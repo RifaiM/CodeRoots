@@ -1,17 +1,18 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `from sqlalchemy import Column, Integer, String
+const starterCode = `# 🏗️ Lesson 3: SQLAlchemy ORM Models!
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-# 🛠️ Practice Task: Define SQLAlchemy Product Model
-# Map to table 'products' with columns:
-#   - id: Integer, primary key
-#   - title: String, required
-#   - price: Integer
-# Write Product model class here:
+# 👉 STEP 1: Define class Product(Base): with __tablename__ = "products"
+
+
+# 👉 STEP 2: Define id = Column(Integer, primary_key=True) and name = Column(String(100))
+
+
 `;
 
 const branchLessons = [
@@ -163,12 +164,11 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 # 👉 STEP 1: Define class Product(Base): with __tablename__ = "products"
-class Product(Base):
-    __tablename__ = "products"
 
-    # 👉 STEP 2: Define id = Column(Integer, primary_key=True) and name = Column(String(100))
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100))
+
+# 👉 STEP 2: Define id = Column(Integer, primary_key=True) and name = Column(String(100))
+
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist

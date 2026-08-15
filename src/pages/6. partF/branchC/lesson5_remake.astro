@@ -1,17 +1,21 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// __tests__/Counter.test.jsx
-// 🛠️ Practice Task: Write Component Tests with Jest & RTL
-
+const starterCode = `// 🔬 Lesson 5: Vitest & React Testing Library!
 import { render, screen, fireEvent } from '@testing-library/react';
-import Counter from '../components/Counter';
+import { test, expect } from 'vitest';
+import Counter from './Counter';
 
-// Step 1: Write test('increments count on click', () => { ... })
-// Render <Counter />
-// Trigger fireEvent.click(button)
-// Expect screen.getByText(/Count: 1/) to be in document
-// Write test here:
+test('increments counter on button click', () => {
+  // 👉 STEP 1: Mount component with render(<Counter />)
+  
+
+  // 👉 STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
+  
+
+  // 👉 STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
+  
+});
 `;
 
 const branchLessons = [
@@ -159,14 +163,13 @@ import Counter from './Counter';
 
 test('increments counter on button click', () => {
   // 👉 STEP 1: Mount component with render(<Counter />)
-  render(<Counter />);
+  
 
   // 👉 STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
-  const btn = screen.getByRole('button');
-  fireEvent.click(btn);
+  
 
-  // 👉 STEP 3: Assert expectation with expect(screen.getByText('Count: 1')).toBeInTheDocument()
-  expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument();
+  // 👉 STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
+  
 });
 `;
 

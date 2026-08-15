@@ -1,15 +1,15 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# vercel.json — Production Deployment Configuration
-# 🛠️ Practice Task: Fill in the build settings below
-
-{
+const starterCode = `{
+  "framework": "astro",
+  // 👉 STEP 1: Set "buildCommand": "npm run build"
   "buildCommand": "",
-  "outputDirectory": "",
-  "framework": "vite",
-  "regions": ["sin1"]
-}`;
+
+  // 👉 STEP 2: Set "outputDirectory": "dist"
+  "outputDirectory": ""
+}
+`;
 
 const branchLessons = [
     {
@@ -149,10 +149,10 @@ const branchLessons = [
         const DEFAULT_STARTER = `{
   "framework": "astro",
   // 👉 STEP 1: Set "buildCommand": "npm run build"
-  "buildCommand": "npm run build",
+  "buildCommand": "",
 
   // 👉 STEP 2: Set "outputDirectory": "dist"
-  "outputDirectory": "dist"
+  "outputDirectory": ""
 }
 `;
 

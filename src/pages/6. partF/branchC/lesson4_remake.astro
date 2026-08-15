@@ -1,18 +1,22 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// app/components/BadgeCard.jsx
-// 🛠️ Practice Task: Build a Tailwind CSS Component
+const starterCode = `// 🎨 Lesson 4: Tailwind CSS UI Architecture!
 
-export default function BadgeCard({ title, tag, isPrimary }) {
-    return (
-        // Step 1: Add Tailwind classes for padding, border, rounded corners, and badge tag
-        <div className="">
-            <span className="">{tag}</span>
-            <h3 className="">{title}</h3>
-        </div>
-    );
-}`;
+export default function TailwindCard() {
+  return (
+    // 👉 STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
+    <div>
+      <h2 className="text-xl font-bold text-slate-900 mb-2">🎨 Tailwind Pro Card</h2>
+      <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
+      {/* 👉 STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
+      <span>
+        Level 7 Master
+      </span>
+    </div>
+  );
+}
+`;
 
 const branchLessons = [
     {
@@ -153,12 +157,12 @@ const branchLessons = [
 
 export default function TailwindCard() {
   return (
-    // 👉 STEP 1: Apply container utilities: p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg
-    <div className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg border border-slate-200">
+    // 👉 STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
+    <div>
       <h2 className="text-xl font-bold text-slate-900 mb-2">🎨 Tailwind Pro Card</h2>
       <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
-      {/* 👉 STEP 2: Apply badge utilities: px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold */}
-      <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">
+      {/* 👉 STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
+      <span>
         Level 7 Master
       </span>
     </div>

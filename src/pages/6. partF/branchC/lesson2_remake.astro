@@ -1,21 +1,27 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// app/components/InteractiveCounter.jsx
-// 🛠️ Practice Task: Create an Interactive Client Component in Next.js
+const starterCode = `// ⚡ Lesson 2: Next.js Client Components with "use client"!
 
-// Step 1: Add use client directive at the top
-// Write 'use client'; here:
-
+// 👉 STEP 1: Add "use client" directive at top of file
 
 import React, { useState } from 'react';
 
-// Step 2: Export default Counter component with useState
-export default function Counter() {
-    // Write count state and button here:
+export default function InteractiveCounter() {
+  // 👉 STEP 2: Declare state [count, setCount] initialized to 0
+  
 
-    return <div></div>;
-}`;
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
+      <h2>⚡ Next.js Interactive Client Component</h2>
+      {/* 👉 STEP 3: Render button with onClick={() => setCount(count + 1)} */}
+      <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+        Count: 0
+      </button>
+    </div>
+  );
+}
+`;
 
 const branchLessons = [
     {
@@ -163,23 +169,19 @@ export default function Counter() &#123;
         const DEFAULT_STARTER = `// ⚡ Lesson 2: Next.js Client Components with "use client"!
 
 // 👉 STEP 1: Add "use client" directive at top of file
-"use client";
 
 import React, { useState } from 'react';
 
 export default function InteractiveCounter() {
   // 👉 STEP 2: Declare state [count, setCount] initialized to 0
-  const [count, setCount] = useState(0);
+  
 
   return (
     <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
       <h2>⚡ Next.js Interactive Client Component</h2>
-      {/* 👉 STEP 3: Attach onClick={() => setCount(count + 1)} */}
-      <button 
-        onClick={() => setCount(count + 1)}
-        style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
-      >
-        Count: {count}
+      {/* 👉 STEP 3: Render button with onClick={() => setCount(count + 1)} */}
+      <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+        Count: 0
       </button>
     </div>
   );
@@ -189,8 +191,8 @@ export default function InteractiveCounter() {
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             { id: 'useclient', label: 'Add <code>"use client"</code> directive at line 1', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /["']use client["']/i.test(c); } },
-            { id: 'usestate', label: 'Declare <code>const [count, setCount] = useState(0)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*count\s*,\s*setCount\s*\]\s*=\s*useState/i.test(c); } },
-            { id: 'onclick', label: 'Attach <code>onClick</code> handler to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{/i.test(c); } }
+            { id: 'usestate', label: 'Declare <code>const [count, setCount] = useState(0)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*count\s*,\s*setCount\s*\]\s*=\s*useState\s*\(\s*0\s*\)/i.test(c); } },
+            { id: 'onclick', label: 'Attach <code>onClick</code> handler to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{\s*\(\s*\)\s*=>\s*setCount/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'javascript'

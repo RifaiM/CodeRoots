@@ -1,14 +1,21 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// store/useCartStore.js
-// 🛠️ Practice Task: Create a Zustand Global Store
-
+const starterCode = `// 🐻 Lesson 3: Global State Management with Zustand!
 import { create } from 'zustand';
 
-// Step 1: Create store using create((set) => ({ ... }))
-// Define items array and addToCart action
-// Write useCartStore here:
+// 👉 STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
+// (Hint: export const useCartStore = create((set) => ({ items: [], addToCart: (item) => set((state) => ({ items: [...state.items, item] })) }));)
+
+
+export default function CartUI() {
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h2>🐻 Zustand Global Cart</h2>
+      <p>Cart ready for global state hook.</p>
+    </div>
+  );
+}
 `;
 
 const branchLessons = [
@@ -146,23 +153,15 @@ export const useCartStore = create((set) =&gt; (&#123;
         const DEFAULT_STARTER = `// 🐻 Lesson 3: Global State Management with Zustand!
 import { create } from 'zustand';
 
-// 👉 STEP 1: Create global store with create((set) => ({ ... }))
-export const useCartStore = create((set) => ({
-  // 👉 STEP 2: Initialize items: []
-  items: [],
-  // 👉 STEP 3: Define addToCart action appending item to items
-  addToCart: (item) => set((state) => ({ items: [...state.items, item] }))
-}));
+// 👉 STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
+// (Hint: export const useCartStore = create((set) => ({ items: [], addToCart: (item) => set((state) => ({ items: [...state.items, item] })) }));)
+
 
 export default function CartUI() {
-  const { items, addToCart } = useCartStore();
   return (
     <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
       <h2>🐻 Zustand Global Cart</h2>
-      <p>Cart Items: <strong>{items.length}</strong></p>
-      <button onClick={() => addToCart({ id: 1, name: "Keyboard" })} style={{ padding: '8px 16px', background: '#8b5cf6', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-        Add Item
-      </button>
+      <p>Cart ready for global state hook.</p>
     </div>
   );
 }

@@ -1,19 +1,17 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `from fastapi import FastAPI
+const starterCode = `# 🛡️ Lesson 5: FastAPI CORS Security Middleware!
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# 🛠️ Practice Task: Configure CORS Middleware
-# Step 1: Define allowed_origins list
-allowed_origins = [
-    # Add frontend origins here
-]
+# 👉 STEP 1: Define allowed_origins list containing "https://coderoots.dev"
+allowed_origins = []
 
-# Step 2: Add CORSMiddleware to app with allow_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
-# Write your middleware call here:
+# 👉 STEP 2: Add CORSMiddleware to app with allow_origins=allowed_origins
+
 `;
 
 const branchLessons = [
@@ -168,23 +166,17 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# 👉 STEP 1: Define allowed_origins = ["https://coderoots.dev", "http://localhost:3000"]
-allowed_origins = ["https://coderoots.dev", "http://localhost:3000"]
+# 👉 STEP 1: Define allowed_origins list containing "https://coderoots.dev"
+allowed_origins = []
 
 # 👉 STEP 2: Add CORSMiddleware to app with allow_origins=allowed_origins
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?https?:/i.test(c); } },
-            { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\(\s*CORSMiddleware/i.test(c); } }
+            { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?https?:\/\/coderoots\.dev/i.test(c); } },
+            { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\(\s*CORSMiddleware[\s\S]*?allow_origins\s*=\s*allowed_origins/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'python'

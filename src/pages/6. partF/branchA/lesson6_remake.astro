@@ -1,23 +1,22 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# .github/workflows/deploy.yml
-# 🛠️ Practice Task: Complete GitHub Actions CI/CD Pipeline
+const starterCode = `# 🤖 Lesson 6: GitHub Actions CI/CD Pipeline!
+name: Production CI/CD
 
-name: Deploy Production
-
-# 👉 STEP 1: Set push trigger on main branch
+# 👉 STEP 1: Trigger on push to branch main
 on:
-  push:
-    branches:
-      - 
 
-# 👉 STEP 2: Define deploy job with ubuntu-latest runner and checkout step
+
 jobs:
-  deploy:
+  build_and_test:
+    # 👉 STEP 2: Set runs-on: ubuntu-latest
     runs-on: 
+
     steps:
-      # Write your actions checkout and test steps below:
+      # 👉 STEP 3: Checkout code using actions/checkout@v4
+      - name: Checkout Code
+        uses: 
 `;
 
 const branchLessons = [
@@ -169,18 +168,17 @@ name: Production CI/CD
 
 # 👉 STEP 1: Trigger on push to branch main
 on:
-  push:
-    branches: [ main ]
+
 
 jobs:
   build_and_test:
     # 👉 STEP 2: Set runs-on: ubuntu-latest
-    runs-on: ubuntu-latest
+    runs-on: 
 
     steps:
       # 👉 STEP 3: Checkout code using actions/checkout@v4
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: 
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist

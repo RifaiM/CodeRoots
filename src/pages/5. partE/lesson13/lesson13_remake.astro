@@ -1,18 +1,15 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 13 Practice Task: Backend Security & Hashing
-
+const starterCode = `# 🔐 Lesson 13: Cryptographic Password Hashing!
 import hashlib
 
-# Step 1: Define function hash_password(password)
-# It should return hashlib.sha256(password.encode()).hexdigest()
-# Write hash_password function here:
+# 👉 STEP 1: Define hash_password(password) using hashlib.sha256(password.encode()).hexdigest()
+# (Hint: def hash_password(password): return hashlib.sha256(password.encode()).hexdigest())
 
 
-# Step 2: Define function verify_password(plain, expected_hash)
-# Return hash_password(plain) == expected_hash
-# Write verify_password function here:
+# 👉 STEP 2: Define verify_password(plain, expected_hash) returning hash_password(plain) == expected_hash
+
 `;
 
 const level6Lessons = [

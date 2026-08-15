@@ -1,16 +1,13 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 9 Practice Task: File I/O & Streams
+const starterCode = `# 📝 Lesson 9: Safe File I/O with Context Managers!
 
-log_filename = "server.log"
-
-# Step 1: Use with open(log_filename, "w") as file: to write "INFO: System Online\\n"
-# Write file writing logic here:
+# 👉 STEP 1: Write text to file using with open("server.log", "w") as f: f.write("Backend Online 2026")
 
 
-# Step 2: Use with open(log_filename, "r") as file: to read contents into 'log_data'
-# Write file reading logic here:
+# 👉 STEP 2: Read back the file using with open("server.log", "r") as f: content = f.read()
+
 `;
 
 const level6Lessons = [

@@ -1,19 +1,20 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `from fastapi import FastAPI, Depends, HTTPException
+const starterCode = `# 🛡️ Lesson 6: FastAPI RBAC Authorization Middleware!
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 import jwt
 
 app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-SECRET_KEY = "auth-secret-key"
+SECRET_KEY = "coderoots-super-secret-key"
 ALGORITHM = "HS256"
 
-# 🛠️ Practice Task: Auth Middleware & RBAC Guard
-# Step 1: Implement get_current_user(token: str = Depends(oauth2_scheme))
-# Decode token with jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-# Write get_current_user here:
+# 👉 STEP: Validate token and extract user role
+async def get_current_user(token: str):
+    # 👉 STEP 1: Inject Depends(oauth2_scheme) into parameter and decode token with jwt.decode(...)
+    
 `;
 
 const branchLessons = [
@@ -169,12 +170,9 @@ SECRET_KEY = "coderoots-super-secret-key"
 ALGORITHM = "HS256"
 
 # 👉 STEP: Validate token and extract user role
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid auth credentials")
+async def get_current_user(token: str):
+    # 👉 STEP 1: Inject Depends(oauth2_scheme) into parameter and decode token with jwt.decode(...)
+    
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist

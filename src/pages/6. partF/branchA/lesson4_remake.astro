@@ -1,16 +1,17 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# render.yaml — Render Infrastructure as Code
-# 🛠️ Practice Task: Configure Python Backend Service
-
+const starterCode = `# ☁️ Lesson 4: Render Backend Service Spec!
 services:
   - type: web
-    name: 
+    name: coderoots-api
     env: python
+    # 👉 STEP 1: Set buildCommand: pip install -r requirements.txt
     buildCommand: 
+
+    # 👉 STEP 2: Set startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
     startCommand: 
-    region: singapore`;
+`;
 
 const branchLessons = [
     {
@@ -154,16 +155,16 @@ services:
     name: coderoots-api
     env: python
     # 👉 STEP 1: Set buildCommand: pip install -r requirements.txt
-    buildCommand: pip install -r requirements.txt
+    buildCommand: 
 
     # 👉 STEP 2: Set startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    startCommand: 
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'buildcmd', label: 'Set <code>buildCommand: pip install -r requirements.txt</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /buildCommand\s*:\s*pip\s+install/i.test(c); } },
-            { id: 'startcmd', label: 'Set <code>startCommand: uvicorn main:app ...</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /startCommand\s*:\s*uvicorn/i.test(c); } }
+            { id: 'buildcmd', label: 'Set <code>buildCommand: pip install -r requirements.txt</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /buildCommand\s*:\s*pip\s+install\s+-r\s+requirements\.txt/i.test(c); } },
+            { id: 'startcmd', label: 'Set <code>startCommand: uvicorn main:app ...</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /startCommand\s*:\s*uvicorn\s+main:app/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'terminal'

@@ -1,22 +1,18 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 6 Practice Task: OOP Inheritance
+const starterCode = `# 🧬 Lesson 6: Class Inheritance & super()!
 
 class BaseService:
     def __init__(self, service_name):
         self.service_name = service_name
 
-    def status(self):
-        return f"{self.service_name} is active"
-
-# Step 1: Define AuthService inheriting from BaseService
-# Call super().__init__("AuthService") in constructor
-# Override status() to return f"AuthService is secure"
-# Write AuthService class here:
+# 👉 STEP 1: Define AuthService inheriting from BaseService: class AuthService(BaseService):
+# 👉 STEP 2: In __init__(self), call super().__init__("AuthService") and set self.status = "Active"
 
 
-# Step 2: Instantiate auth = AuthService()
+# 👉 STEP 3: Instantiate auth = AuthService() and print auth.service_name and auth.status
+
 `;
 
 const level6Lessons = [

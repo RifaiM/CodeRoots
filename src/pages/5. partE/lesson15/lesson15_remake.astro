@@ -1,21 +1,18 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 15 Capstone: Production Backend Microservice
-
+const starterCode = `# 🏆 Lesson 15: Fullstack Python Backend Capstone!
 import sqlite3
 import hashlib
 
-# Step 1: Define create_pw_hash(password) using hashlib.sha256
-# Write password hasher here:
+# 👉 STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
 
 
-# Step 2: Define UserModel with __init__(self, user_id, username, role="developer")
-# Write UserModel here:
+# 👉 STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
 
 
-# Step 3: Define register_user(conn, username, password) that hashes password and inserts into users table
-# Write register_user function here:
+# 👉 STEP 3: Implement register_user(conn, username, password) inserting into users table
+
 `;
 
 const level6Lessons = [
@@ -224,8 +221,7 @@ import sqlite3
 import hashlib
 
 # 👉 STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
-def create_pw_hash(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+
 
 # 👉 STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
 

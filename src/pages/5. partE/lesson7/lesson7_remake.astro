@@ -1,16 +1,17 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 7 Practice Task: Exception Handling
+const starterCode = `# 🛡️ Lesson 7: Robust Error Handling with Try/Except!
 
-# Step 1: Define function parse_user_id(input_val)
-# Step 2: Inside function, use try/except block:
-#   - In try: return int(input_val)
-#   - In except ValueError: raise ValueError("Invalid user ID format")
-# Write parse_user_id function here:
+def set_age(age):
+    if age < 0:
+        # 👉 STEP 1: Raise ValueError("Age cannot be negative")
+        pass
+    return f"Age set to {age}"
 
+# 👉 STEP 2: Wrap set_age(-5) inside a try / except ValueError as e: block and print the error message
+# (Hint: try: set_age(-5) except ValueError as e: print(f"Caught error: {e}"))
 
-# Test function call with try/except
 `;
 
 const level6Lessons = [
@@ -205,7 +206,7 @@ except Exception as e:
 def set_age(age):
     if age < 0:
         # 👉 STEP 1: Raise ValueError("Age cannot be negative")
-        raise ValueError("Age cannot be negative")
+        pass
     return f"Age set to {age}"
 
 # 👉 STEP 2: Wrap set_age(-5) inside a try / except ValueError as e: block and print the error message

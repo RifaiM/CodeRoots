@@ -1,20 +1,19 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `from datetime import datetime, timedelta
-# 🛠️ Practice Task: JWT Access Token Creation
+const starterCode = `# 🎟️ Lesson 5: JWT Token Authentication!
+from datetime import datetime, timedelta, timezone
+import jwt
 
-# Step 1: Import jwt library
-# Write import jwt here:
-
-
-SECRET_KEY = "my-super-secret-key"
+SECRET_KEY = "coderoots-super-secret-key"
 ALGORITHM = "HS256"
 
-# Step 2: Implement create_access_token(data, expires_in_minutes=30)
-# Add 'exp' timestamp to dictionary: datetime.utcnow() + timedelta(minutes=expires_in_minutes)
-# Sign with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-# Write create_access_token here:
+def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=30)) -> str:
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + expires_delta
+    to_encode.update({"exp": expire})
+    # 👉 STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    
 `;
 
 const branchLessons = [
@@ -168,13 +167,13 @@ def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes
     expire = datetime.now(timezone.utc) + expires_delta
     to_encode.update({"exp": expire})
     # 👉 STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'import', label: 'Import <code>jwt</code> and <code>timedelta</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+jwt/i.test(c); } },
-            { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\(\s*to_encode\s*,\s*SECRET_KEY/i.test(c); } }
+            { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, ...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\(\s*to_encode\s*,\s*SECRET_KEY/i.test(c); } },
+            { id: 'algorithm', label: 'Specify <code>algorithm=ALGORITHM</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /algorithm\s*=\s*ALGORITHM/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'python'

@@ -1,29 +1,18 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 12 Practice Task: FastAPI Microservice
+const starterCode = `# ⚡ Lesson 12: RESTful Web APIs with FastAPI!
+from fastapi import FastAPI
 
-class FastAPI:
-    def __init__(self, title="API Server"):
-        self.title = title
-        self.routes = {}
-
-    def get(self, path):
-        def decorator(func):
-            self.routes[f"GET {path}"] = func
-            return func
-        return decorator
-
-# Step 1: Instantiate app = FastAPI(title="CodeRoots Backend Gateway")
-# Write app instantiation here:
+# 👉 STEP 1: Instantiate FastAPI app = FastAPI()
 
 
-# Step 2: Define root route @app.get("/") returning {"status": "ok", "service": "online"}
-# Write @app.get("/") route here:
+# 👉 STEP 2: Define root endpoint @app.get("/") returning {"status": "online"}
+# (Hint: @app.get("/") def root(): return {"status": "online"})
 
 
-# Step 3: Define @app.get("/users/me") returning {"username": "alex_dev", "role": "admin"}
-# Write @app.get("/users/me") route here:
+# 👉 STEP 3: Define user endpoint @app.get("/users/me") returning {"username": "developer"}
+
 `;
 
 const level6Lessons = [
@@ -225,7 +214,7 @@ print("Registered API Routes:", list(app.routes.keys()))</code></pre>
 from fastapi import FastAPI
 
 # 👉 STEP 1: Instantiate FastAPI app = FastAPI()
-app = FastAPI()
+
 
 # 👉 STEP 2: Define root endpoint @app.get("/") returning {"status": "online"}
 # (Hint: @app.get("/") def root(): return {"status": "online"})

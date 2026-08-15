@@ -1,21 +1,17 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 6 Lesson 11 Practice Task: SQLite Database
-
+const starterCode = `# 🗄️ Lesson 11: SQLite Database CRUD Operations!
 import sqlite3
 
-# Step 1: Connect to in-memory database conn = sqlite3.connect(":memory:")
-# Create cursor = conn.cursor()
-# Write database connection here:
+# 👉 STEP 1: Connect to database conn = sqlite3.connect(":memory:") and create cursor = conn.cursor()
 
 
-# Step 2: Create 'users' table using cursor.execute("CREATE TABLE users (id INTEGER, name TEXT)")
-# Write table creation here:
+# 👉 STEP 2: Execute CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT) using cursor.execute(...)
 
 
-# Step 3: Insert a record and commit with conn.commit()
-# Write insert and commit here:
+# 👉 STEP 3: Execute INSERT INTO users (name) VALUES ('Alex') and commit with conn.commit()
+
 `;
 
 const level6Lessons = [

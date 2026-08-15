@@ -1,17 +1,15 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Practice Task: Password Hashing with Bcrypt
+const starterCode = `# 🔐 Lesson 4: Bcrypt Password Hashing!
+import bcrypt
 
-# Step 1: Import bcrypt
-# Write import here:
+def hash_user_password(raw_password: str) -> bytes:
+    # 👉 STEP 1: Generate salt with bcrypt.gensalt()
+    
 
-
-# Step 2: Implement hash_password(plain_password)
-# Generate salt with bcrypt.gensalt()
-# Hash with bcrypt.hashpw(plain_password.encode('utf-8'), salt)
-# Return decoded string with .decode('utf-8')
-# Write hash_password function here:
+    # 👉 STEP 2: Hash password with bcrypt.hashpw(raw_password.encode(), salt)
+    
 `;
 
 const branchLessons = [
@@ -157,16 +155,16 @@ import bcrypt
 
 def hash_user_password(raw_password: str) -> bytes:
     # 👉 STEP 1: Generate salt with bcrypt.gensalt()
-    salt = bcrypt.gensalt()
+    
 
     # 👉 STEP 2: Hash password with bcrypt.hashpw(raw_password.encode(), salt)
-    return bcrypt.hashpw(raw_password.encode(), salt)
+    
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'import', label: 'Import <code>bcrypt</code> module', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+bcrypt/i.test(c); } },
-            { id: 'hashpw', label: 'Call <code>bcrypt.gensalt()</code> and <code>bcrypt.hashpw(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /bcrypt\.gensalt\s*\(/i.test(c); } }
+            { id: 'salt', label: 'Generate salt with <code>salt = bcrypt.gensalt()</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /salt\s*=\s*bcrypt\.gensalt\s*\(\s*\)/i.test(c); } },
+            { id: 'hashpw', label: 'Hash password with <code>bcrypt.hashpw(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /bcrypt\.hashpw\s*\(/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'python'

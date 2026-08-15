@@ -1,17 +1,11 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🛠️ Level 7B Lesson 2: Cloud Database Connection Configuration
+const starterCode = `# ☁️ Lesson 2: Cloud PostgreSQL & SSL Connection!
 
-# Step 1: Define DATABASE_URL connection string for Neon/Supabase:
-# Format: postgresql://[user]:[password]@[host]/[dbname]?sslmode=require
-# Requirements:
-#   User: db_master, Password: Pass456, Host: ep-prod-db.neon.tech, DB: prod_db
-# Write DATABASE_URL here:
-
-
-# Step 2: Configure pool size
-DB_POOL_SIZE = 5
+# 👉 STEP 1: Define DATABASE_URL connection string enforcing sslmode=require
+# (Hint: DATABASE_URL = "postgresql://user:secret@cloud-db.internal:5432/production?sslmode=require")
+DATABASE_URL = ""
 `;
 
 const branchLessons = [
@@ -149,14 +143,12 @@ DB_POOL_SIZE = 5</code></pre>
 
 # 👉 STEP 1: Define DATABASE_URL connection string enforcing sslmode=require
 # (Hint: DATABASE_URL = "postgresql://user:secret@cloud-db.internal:5432/production?sslmode=require")
-DATABASE_URL = "postgresql://user:secret@cloud-db.internal:5432/production?sslmode=require"
-
-print(f"Connecting with SSL: {DATABASE_URL}")
+DATABASE_URL = ""
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'dburl', label: 'Define <code>DATABASE_URL</code> variable', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /DATABASE_URL\s*=\s*["']postgresql:\/\//i.test(c); } },
+            { id: 'dburl', label: 'Define <code>DATABASE_URL</code> variable', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /DATABASE_URL\s*=\s*["']postgresql:\/\/[\s\S]+?["']/i.test(c); } },
             { id: 'ssl', label: 'Enforce <code>sslmode=require</code> in URL', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /sslmode=require/i.test(c); } }
         ], {
             containerId: 'taskChecklist',

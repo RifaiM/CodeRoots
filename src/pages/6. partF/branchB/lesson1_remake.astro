@@ -1,14 +1,13 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `-- 🛠️ Practice Task: SQL Fundamentals
--- Retrieve developer profiles from the 'users' table
+const starterCode = `-- 🗄️ Level 7B Lesson 1: Relational SQL Mastery!
 
--- 1. Select the 'name' and 'email' columns
--- 2. From the 'users' table
--- 3. Filter rows where role is 'developer'
+-- 👉 STEP 1: Write an SQL query to SELECT name, email FROM users WHERE role = 'developer'
+-- (Hint: SELECT name, email FROM users WHERE role = 'developer';)
 
--- Write your SQL query here:
+
+
 `;
 
 const branchLessons = [
@@ -141,20 +140,20 @@ const branchLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson1';
-        const DEFAULT_STARTER = `# 🗄️ Level 7B Lesson 1: Relational SQL Mastery!
+        const DEFAULT_STARTER = `-- 🗄️ Level 7B Lesson 1: Relational SQL Mastery!
 
-# 👉 STEP 1: Write an SQL query to SELECT name, email FROM users WHERE role = 'developer'
-# (Hint: sql_query = "SELECT name, email FROM users WHERE role = 'developer';")
-sql_query = "SELECT name, email FROM users WHERE role = 'developer';"
+-- 👉 STEP 1: Write an SQL query to SELECT name, email FROM users WHERE role = 'developer'
+-- (Hint: SELECT name, email FROM users WHERE role = 'developer';)
 
-print(f"Executing: {sql_query}")
+
+
 `;
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'select', label: 'Use <code>SELECT name, email</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /SELECT\s+name\s*,\s*email/i.test(c); } },
-            { id: 'from', label: 'Target <code>FROM users</code> table', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /FROM\s+users/i.test(c); } },
-            { id: 'where', label: 'Filter with <code>WHERE role = "developer"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /WHERE\s+role\s*=\s*['"]developer['"]/i.test(c); } }
+            { id: 'select', label: 'Use <code>SELECT name, email</code>', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /SELECT\s+name\s*,\s*email/i.test(c); } },
+            { id: 'from', label: 'Target <code>FROM users</code> table', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /FROM\s+users/i.test(c); } },
+            { id: 'where', label: 'Filter with <code>WHERE role = "developer"</code>', fn: (code) => { const c = code.replace(/--[^\n]*/g, ''); return /WHERE\s+role\s*=\s*['"]developer['"]/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'python'
