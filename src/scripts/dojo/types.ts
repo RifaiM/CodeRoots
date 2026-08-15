@@ -17,9 +17,11 @@ export interface DiagnosticProblem {
 
 export interface ChecklistTask {
     id: string;
-    label: string;
+    label?: string;
+    text?: string;
     regex?: RegExp;
     fn?: (code: string, doc?: Document) => boolean;
+    validator?: (code: string, doc?: Document) => boolean;
 }
 
 export interface CompletionOptions {

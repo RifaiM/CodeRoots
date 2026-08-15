@@ -50,19 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Async Fetch Data<
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Define an <code>async function</code> that fetches data from an API endpoint.</li>
-                <li><strong>Step 2:</strong> Use <code>await fetch(...)</code> and <code>await res.json()</code> to parse the response.</li>
-                <li><strong>Step 3:</strong> Render the resulting data into <code>card.textContent</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -148,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Async Fetch Data<
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'async_fn', text: 'Declare an async function containing await fetch()', validator: (c) => /async\s+function/i.test(c) && /await\s+fetch/i.test(c) },
-            { id: 'json_parse', text: 'Parse JSON with await res.json() and update card text', validator: (c) => /await\s+[^.]+\.json\s*\(\s*\)/i.test(c) && /card\.textContent\s*=/i.test(c) }
+            { id: 'async_fn', label: '<strong>Step 1:</strong> Declare an <code>async function</code> containing <code>await fetch()</code>', fn: (c) => /async\s+function/i.test(c) && /await\s+fetch/i.test(c) },
+            { id: 'json_parse', label: '<strong>Step 2:</strong> Parse JSON with <code>await res.json()</code> and update card text', fn: (c) => /await\s+[^.]+\.json\s*\(\s*\)/i.test(c) && /card\.textContent\s*=/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

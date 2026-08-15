@@ -50,18 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dynamic Elements<
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Create a new list element using <code>document.createElement('li')</code>.</li>
-                <li><strong>Step 2:</strong> Assign text to <code>newItem.textContent</code> and append it using <code>list.appendChild(newItem)</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dynamic Elements<
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'create_elem', text: 'Create a new <li> node with document.createElement("li")', validator: (c) => /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c) },
-            { id: 'append_child', text: 'Set textContent and append node with appendChild', validator: (c) => /\.textContent\s*=\s*["'][^"']+["']/i.test(c) && /\.appendChild\s*\([^)]+\)/i.test(c) }
+            { id: 'create_elem', label: '<strong>Step 1:</strong> Create a new <code>&lt;li&gt;</code> element with <code>document.createElement(\'li\')</code>', fn: (c) => /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c) },
+            { id: 'append_child', label: '<strong>Step 2:</strong> Set <code>textContent</code> and append node using <code>list.appendChild(newItem)</code>', fn: (c) => /\.textContent\s*=\s*["'][^"']+["']/i.test(c) && /\.appendChild\s*\([^)]+\)/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

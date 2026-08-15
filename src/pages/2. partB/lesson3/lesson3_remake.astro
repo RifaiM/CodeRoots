@@ -50,18 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Links and Media</
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Add an <code>&lt;a&gt;</code> link pointing to <code>"https://developer.mozilla.org"</code> with link text <code>"MDN Web Docs"</code>.</li>
-                <li><strong>Step 2:</strong> Add an <code>&lt;img&gt;</code> element with a valid <code>src</code> and descriptive <code>alt</code> attribute.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Links and Media</
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'a_link', text: 'Create an <a> link pointing to developer.mozilla.org with text "MDN Web Docs"', validator: (c) => /<a[^>]+href=["']https?:\/\/developer\.mozilla\.org[^"']*["'][^>]*>\s*MDN Web Docs\s*<\/a>/i.test(c) },
-            { id: 'img_tag', text: 'Add an <img> tag with src and alt attributes', validator: (c) => /<img[^>]+src=["'][^"']+["'][^>]+alt=["'][^"']+["']/i.test(c) || /<img[^>]+alt=["'][^"']+["'][^>]+src=["'][^"']+["']/i.test(c) }
+            { id: 'a_link', label: '<strong>Step 1:</strong> Add an <code>&lt;a&gt;</code> link pointing to <code>"https://developer.mozilla.org"</code> with text <code>"MDN Web Docs"</code>', fn: (c) => /<a[^>]+href=["']https?:\/\/developer\.mozilla\.org[^"']*["'][^>]*>\s*MDN Web Docs\s*<\/a>/i.test(c) },
+            { id: 'img_tag', label: '<strong>Step 2:</strong> Add an <code>&lt;img&gt;</code> tag with <code>src</code> and <code>alt</code> attributes', fn: (c) => /<img[^>]+src=["'][^"']+["'][^>]+alt=["'][^"']+["']/i.test(c) || /<img[^>]+alt=["'][^"']+["'][^>]+src=["'][^"']+["']/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

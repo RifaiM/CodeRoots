@@ -50,18 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Declare <code>const learnerName = "...";</code> with a non-empty string.</li>
-                <li><strong>Step 2:</strong> Declare <code>let levelNumber = 4;</code> (or any number) with <code>let</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'const_name', text: 'Declare a const variable named learnerName with a string value', validator: (c) => /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c) },
-            { id: 'let_level', text: 'Declare a let variable named levelNumber with a number value', validator: (c) => /let\s+levelNumber\s*=\s*\d+/i.test(c) }
+            { id: 'const_name', label: '<strong>Step 1:</strong> Declare a <code>const</code> variable named <code>learnerName</code> with a string value', fn: (c) => /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c) },
+            { id: 'let_level', label: '<strong>Step 2:</strong> Declare a <code>let</code> variable named <code>levelNumber</code> with a number value', fn: (c) => /let\s+levelNumber\s*=\s*\d+/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

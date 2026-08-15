@@ -50,19 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Add <code>padding: 20px;</code> (or any px value >= 16px) inside <code>.box-card</code>.</li>
-                <li><strong>Step 2:</strong> Add <code>margin: 16px;</code> (or any px value >= 12px) inside <code>.box-card</code>.</li>
-                <li><strong>Step 3:</strong> Add a visible <code>border</code> (e.g. <code>2px solid #2563eb</code>) to <code>.box-card</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -153,8 +152,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'padding_prop', text: 'Set padding to at least 16px on .box-card', validator: (c) => /\.box-card\s*\{[^}]*padding\s*:\s*(?:1[6-9]|[2-9][0-9]|\d{3,})px/i.test(c) },
-            { id: 'margin_border', text: 'Set margin and a solid border on .box-card', validator: (c) => /\.box-card\s*\{[^}]*margin\s*:[^;]+;/i.test(c) && /\.box-card\s*\{[^}]*border\s*:[^;]+solid/i.test(c) }
+            { id: 'padding_prop', label: '<strong>Step 1:</strong> Set padding to at least 16px on <code>.box-card</code>', fn: (c) => /\.box-card\s*\{[^}]*padding\s*:\s*(?:1[6-9]|[2-9][0-9]|\d{3,})px/i.test(c) },
+            { id: 'margin_border', label: '<strong>Step 2:</strong> Set margin and a solid border on <code>.box-card</code>', fn: (c) => /\.box-card\s*\{[^}]*margin\s*:[^;]+;/i.test(c) && /\.box-card\s*\{[^}]*border\s*:[^;]+solid/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

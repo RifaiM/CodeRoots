@@ -25,25 +25,47 @@ export class ChecklistManager {
     }
 
     public render(): void {
-        const container = document.getElementById(this.containerId);
+        let container = document.getElementById(this.containerId);
+        
+        // Auto-locate mission card if container is not explicitly in DOM
+        if (!container) {
+            const missionCard = document.querySelector('.mission-card') || 
+                                document.querySelector('.concept-card[style*="border-left"]') ||
+                                document.querySelector('.lesson-instructions-pane .concept-card:last-child');
+            if (missionCard) {
+                const existingOl = missionCard.querySelector('ol');
+                const newContainer = document.createElement('div');
+                newContainer.id = this.containerId;
+                if (existingOl) {
+                    existingOl.replaceWith(newContainer);
+                } else {
+                    missionCard.appendChild(newContainer);
+                }
+                container = newContainer;
+            }
+        }
+
         if (!container) return;
 
         container.innerHTML = `
-            <div class="dojo-checklist-card">
-                <div class="checklist-header">
-                    <span class="checklist-title">📋 Task Checklist</span>
-                    <span class="checklist-counter" id="checklistCounter">0 / ${this.tasks.length}</span>
-                </div>
-                <ul class="checklist-items">
-                    ${this.tasks.map(t => `
-                        <li class="checklist-item" id="task_item_${t.id}" data-task-id="${t.id}">
-                            <span class="task-icon">⚪</span>
-                            <span class="task-label">${t.label}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
+            <ul class="checklist-items">
+                ${this.tasks.map(t => {
+                    const label = t.label || t.text || '';
+                    return `
+                    <li class="checklist-item" id="task_item_${t.id}" data-task-id="${t.id}">
+                        <span class="task-icon">⚪</span>
+                        <span class="task-label">${label}</span>
+                    </li>
+                    `;
+                }).join('')}
+            </ul>
         `;
+
+        const counter = document.getElementById('checklistCounter') || document.getElementById('missionCounter');
+        if (counter) {
+            counter.textContent = `0 / ${this.tasks.length}`;
+            counter.classList.remove('all-passed');
+        }
     }
 
     public run(rawCode: string): { allPassed: boolean; passedCount: number; totalCount: number } {
@@ -61,9 +83,10 @@ export class ChecklistManager {
             const item = document.getElementById(`task_item_${task.id}`);
             let isPassed = false;
 
-            if (task.fn) {
+            const validatorFn = task.fn || task.validator;
+            if (validatorFn) {
                 try {
-                    isPassed = task.fn(cleanCode, doc);
+                    isPassed = validatorFn(cleanCode, doc);
                 } catch (e) {
                     isPassed = false;
                 }
@@ -85,7 +108,7 @@ export class ChecklistManager {
             if (isPassed) passedCount++;
         });
 
-        const counter = document.getElementById('checklistCounter');
+        const counter = document.getElementById('checklistCounter') || document.getElementById('missionCounter');
         if (counter) {
             counter.textContent = `${passedCount} / ${this.tasks.length}`;
             if (passedCount === this.tasks.length && this.tasks.length > 0) {

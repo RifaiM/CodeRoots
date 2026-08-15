@@ -50,18 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Navigation Menu</
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Wrap your navigation elements inside a <code>&lt;nav&gt;</code> tag.</li>
-                <li><strong>Step 2:</strong> Create an unordered list <code>&lt;ul&gt;</code> with at least 3 <code>&lt;li&gt;</code> items: <code>Home</code>, <code>Projects</code>, and <code>Contact</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -147,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Navigation Menu</
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'nav_wrapper', text: 'Wrap your list inside a <nav> element', validator: (c) => /<nav[^>]*>[\s\S]*<\/nav>/i.test(c) },
-            { id: 'ul_items', text: 'Create an <ul> with at least 3 <li> items inside <nav>', validator: (c) => {
+            { id: 'nav_wrapper', label: '<strong>Step 1:</strong> Wrap your menu inside a semantic <code>&lt;nav&gt;</code> element', fn: (c) => /<nav[^>]*>[\s\S]*<\/nav>/i.test(c) },
+            { id: 'ul_items', label: '<strong>Step 2:</strong> Create an unordered list <code>&lt;ul&gt;</code> with at least 3 <code>&lt;li&gt;</code> items inside <code>&lt;nav&gt;</code>', fn: (c) => {
                 const navMatch = c.match(/<nav[^>]*>([\s\S]*?)<\/nav>/i);
                 if (!navMatch) return false;
                 const liCount = (navMatch[1].match(/<li[^>]*>[\s\S]*?<\/li>/gi) || []).length;

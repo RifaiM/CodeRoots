@@ -50,18 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography Hierar
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Add an <code>&lt;h2&gt;</code> subheadline with text <code>"Core Web Technologies"</code>.</li>
-                <li><strong>Step 2:</strong> Add a <code>&lt;p&gt;</code> containing at least one <code>&lt;strong&gt;</code> and one <code>&lt;em&gt;</code> inline tag.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -147,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography Hierar
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'h2_tag', text: 'Add an <h2> subheadline with text "Core Web Technologies"', validator: (c) => /<h2[^>]*>\s*Core Web Technologies\s*<\/h2>/i.test(c) },
-            { id: 'strong_em', text: 'Include both <strong> and <em> tags inside a paragraph', validator: (c) => /<strong[^>]*>[^<]+<\/strong>/i.test(c) && /<em[^>]*>[^<]+<\/em>/i.test(c) }
+            { id: 'h2_tag', label: '<strong>Step 1:</strong> Add an <code>&lt;h2&gt;</code> subheadline with text <code>"Core Web Technologies"</code>', fn: (c) => /<h2[^>]*>\s*Core Web Technologies\s*<\/h2>/i.test(c) },
+            { id: 'strong_em', label: '<strong>Step 2:</strong> Include both <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> tags inside a paragraph', fn: (c) => /<strong[^>]*>[^<]+<\/strong>/i.test(c) && /<em[^>]*>[^<]+<\/em>/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

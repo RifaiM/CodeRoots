@@ -50,19 +50,18 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card" style="border-left: 4px solid #2563eb; background: #ffffff; box-shadow: 0 4px 14px rgba(37,99,235,.08); padding: 18px 20px; border-radius: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🎯</span>
-                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <div class="mission-title-box">
+                    <span style="font-size: 1.25rem;">🎯</span>
+                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+                </div>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
             </div>
             <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
                 Complete these step-by-step instructions in the code editor on the right:
             </p>
-            <ol style="color: #1e293b; font-size: 0.90rem; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li><strong>Step 1:</strong> Set <code>display: grid;</code> on <code>.card-grid</code>.</li>
-                <li><strong>Step 2:</strong> Set <code>grid-template-columns: repeat(3, 1fr);</code> (or <code>1fr 1fr 1fr</code>) on <code>.card-grid</code>.</li>
-                <li><strong>Step 3:</strong> Set <code>gap: 16px;</code> (or any px value >= 12px) on <code>.card-grid</code>.</li>
-            </ol>
+            <div id="taskChecklist"></div>
         </article>
 
         <!-- 💡 Core Concept & Real-World Analogy -->
@@ -148,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'display_grid', text: 'Set display: grid on .card-grid', validator: (c) => /\.card-grid\s*\{[^}]*display\s*:\s*grid\s*;/i.test(c) },
-            { id: 'grid_cols_gap', text: 'Configure grid-template-columns and gap on .card-grid', validator: (c) => /\.card-grid\s*\{[^}]*grid-template-columns\s*:[^;]+;/i.test(c) && /\.card-grid\s*\{[^}]*gap\s*:[^;]+;/i.test(c) }
+            { id: 'display_grid', label: '<strong>Step 1:</strong> Set <code>display: grid;</code> on <code>.card-grid</code>', fn: (c) => /\.card-grid\s*\{[^}]*display\s*:\s*grid\s*;/i.test(c) },
+            { id: 'grid_cols_gap', label: '<strong>Step 2:</strong> Configure <code>grid-template-columns</code> and <code>gap</code> on <code>.card-grid</code>', fn: (c) => /\.card-grid\s*\{[^}]*grid-template-columns\s*:[^;]+;/i.test(c) && /\.card-grid\s*\{[^}]*gap\s*:[^;]+;/i.test(c) }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
