@@ -255,4 +255,66 @@ const navLinks = [
     .meta-label { font-size: 0.72rem; font-weight: 800; color: #94a3b8; letter-spacing: 0.5px; }
     .meta-val { font-size: 0.90rem; font-weight: 700; color: #0f172a; margin-top: 2px; }
     .font-mono { font-family: monospace; }
+
+    /* ── ≤768px: Tablet ─── */
+    @media (max-width: 768px) {
+        .cert-page-container { padding: 20px 14px 60px; }
+        .generator-card { padding: 20px 16px; border-radius: 16px; margin-bottom: 20px; }
+        .certificate-frame-wrap { padding: 16px 12px; border-radius: 16px; }
+        .cert-canvas-card { padding: 16px; border-radius: 12px; }
+        .cert-border { padding: 24px 16px; }
+        .cert-main-title { font-size: 1.4rem; }
+        .cert-recipient-name { font-size: 1.6rem; }
+        .cert-description-text { font-size: 0.85rem; margin-bottom: 20px; }
+        .cert-footer-meta { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* ── ≤425px: Mobile Large ─── */
+    @media (max-width: 425px) {
+        .cert-page-container { padding: 12px 8px 40px; }
+        .generator-card { padding: 16px 12px; }
+        .generator-header h2 { font-size: 1.25rem; }
+        .generator-header p { font-size: 0.82rem; margin-bottom: 14px; }
+        .input-group label { font-size: 0.78rem; }
+        .input-group input { font-size: 0.90rem; padding: 8px 12px; }
+        .btn-row { flex-direction: column; gap: 8px; }
+        .cert-action-btn { width: 100%; text-align: center; padding: 10px; font-size: 0.85rem; }
+        .certificate-frame-wrap { padding: 10px 6px; border-radius: 12px; }
+        .cert-canvas-card { padding: 10px; }
+        .cert-border { padding: 18px 10px; }
+        .cert-top-badge { font-size: 0.68rem; margin-bottom: 10px; }
+        .cert-main-title { font-size: 1.15rem; }
+        .cert-recipient-name { font-size: 1.30rem; }
+        .cert-award-text { font-size: 0.82rem; }
+        .cert-description-text { font-size: 0.78rem; line-height: 1.5; margin-bottom: 16px; }
+        .meta-label { font-size: 0.65rem; }
+        .meta-val { font-size: 0.80rem; }
+    }
+
+    /* ── ≤375px: Mobile Medium (iPhone SE) ─── */
+    @media (max-width: 375px) {
+        .cert-page-container { padding: 8px 6px 30px; }
+        .generator-card { padding: 12px 10px; }
+        .generator-header h2 { font-size: 1.10rem; }
+        .generator-header p { font-size: 0.76rem; }
+        .cert-main-title { font-size: 1.02rem; }
+        .cert-recipient-name { font-size: 1.15rem; }
+        .cert-description-text { font-size: 0.72rem; }
+        .meta-label { font-size: 0.60rem; }
+        .meta-val { font-size: 0.74rem; }
+    }
+
+    /* ── ≤320px: Mobile Small ─── */
+    @media (max-width: 320px) {
+        .cert-page-container { padding: 6px 4px 24px; }
+        .generator-card { padding: 10px 8px; }
+        .generator-header h2 { font-size: 0.98rem; }
+        .generator-header p { font-size: 0.70rem; }
+        .cert-main-title { font-size: 0.92rem; }
+        .cert-recipient-name { font-size: 1.02rem; }
+        .cert-description-text { font-size: 0.66rem; }
+        .cert-border { padding: 14px 6px; }
+        .meta-label { font-size: 0.55rem; }
+        .meta-val { font-size: 0.68rem; }
+    }
 </style>

@@ -324,4 +324,112 @@ const navLinks = [
     .cert-text-wrap p { font-size: 0.92rem; color: #475569; margin: 0; }
     .cert-btn { padding: 12px 24px; background: #f59e0b; color: #0f172a; text-decoration: none; border-radius: 10px; font-weight: 800; transition: background 0.2s; }
     .cert-btn.locked { background: #94a3b8; cursor: not-allowed; }
+
+    /* ── ≤768px: Tablet / Large Phone ─── */
+    @media (max-width: 768px) {
+        .hub-container { padding: 20px 16px 60px; }
+        .hub-hero { padding: 26px 18px !important; border-radius: 18px !important; }
+        .lesson-cards-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important; gap: 12px !important; }
+        .hub-cert-card { padding: 20px 16px !important; }
+        .cert-card-inner { flex-direction: column !important; text-align: center !important; gap: 14px !important; }
+        .cert-btn { width: 100% !important; text-align: center !important; box-sizing: border-box !important; }
+    }
+
+    /* ── ≤576px: Small Phones ─── */
+    @media (max-width: 576px) {
+        .hub-container { padding: 14px 12px 48px !important; }
+        .hub-badge { font-size: 0.70rem !important; padding: 3px 10px !important; margin-bottom: 10px !important; }
+        .hub-hero { padding: 20px 14px !important; margin-bottom: 18px !important; border-radius: 16px !important; }
+        .hub-hero h1 { font-size: 1.30rem !important; margin-bottom: 6px !important; line-height: 1.3 !important; }
+        .hub-hero p { font-size: 0.82rem !important; line-height: 1.5 !important; margin-bottom: 14px !important; }
+        .hero-progress-wrap { padding: 10px 12px !important; margin-bottom: 16px !important; border-radius: 12px !important; }
+        .hero-progress-info { font-size: 0.76rem !important; margin-bottom: 6px !important; }
+        .hero-cta-btn { width: 100% !important; padding: 10px 16px !important; font-size: 0.84rem !important; border-radius: 12px !important; box-sizing: border-box !important; justify-content: center !important; }
+        .hub-stats-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-bottom: 22px !important; }
+        .hub-stat-card { padding: 10px 8px !important; border-radius: 12px !important; }
+        .hub-stat-val { font-size: 1.15rem !important; margin-bottom: 2px !important; }
+        .hub-stat-lbl { font-size: 0.68rem !important; }
+        .chapter-block { padding: 16px 12px !important; border-radius: 14px !important; margin-bottom: 20px !important; }
+        .chapter-header { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; margin-bottom: 12px !important; padding-bottom: 8px !important; }
+        .chapter-num { font-size: 0.70rem !important; }
+        .chapter-title { font-size: 1.02rem !important; }
+        .chapter-badge { font-size: 0.70rem !important; padding: 2px 8px !important; }
+        .lesson-cards-grid { grid-template-columns: 1fr !important; gap: 8px !important; }
+        .lesson-card { padding: 12px 12px !important; border-radius: 12px !important; min-height: auto !important; }
+        .lesson-idx { font-size: 0.70rem !important; }
+        .lesson-status-pill { font-size: 0.66rem !important; padding: 2px 7px !important; }
+        .lesson-card-title { font-size: 0.88rem !important; margin-bottom: 8px !important; line-height: 1.4 !important; }
+        .xp-tag, .card-action-text { font-size: 0.72rem !important; }
+        .hub-cert-card { padding: 16px 12px !important; border-radius: 16px !important; margin-bottom: 24px !important; }
+        .cert-icon-wrap { font-size: 2.2rem !important; }
+        .cert-text-wrap h3 { font-size: 1.05rem !important; }
+        .cert-text-wrap p { font-size: 0.78rem !important; }
+        .cert-btn { font-size: 0.80rem !important; padding: 9px 16px !important; border-radius: 10px !important; width: 100% !important; justify-content: center !important; text-align: center !important; box-sizing: border-box !important; }
+    }
+
+    /* ── ≤425px: iPhone SE, Galaxy S-series (425px) ─── */
+    @media (max-width: 425px) {
+        .hub-container { padding: 10px 8px 36px !important; }
+        .hub-hero { padding: 16px 10px !important; margin-bottom: 14px !important; border-radius: 14px !important; }
+        .hub-badge { font-size: 0.64rem !important; padding: 2px 8px !important; margin-bottom: 8px !important; }
+        .hub-hero h1 { font-size: 1.15rem !important; margin-bottom: 4px !important; }
+        .hub-hero p { font-size: 0.76rem !important; margin-bottom: 12px !important; }
+        .hero-progress-wrap { padding: 8px 10px !important; margin-bottom: 12px !important; }
+        .hero-progress-info { font-size: 0.72rem !important; }
+        .hero-cta-btn { font-size: 0.78rem !important; padding: 9px 12px !important; }
+        .hub-stats-grid { gap: 6px !important; margin-bottom: 16px !important; }
+        .hub-stat-card { padding: 8px 6px !important; }
+        .hub-stat-val { font-size: 1.05rem !important; }
+        .hub-stat-lbl { font-size: 0.62rem !important; }
+        .chapter-block { padding: 12px 10px !important; margin-bottom: 16px !important; }
+        .chapter-title { font-size: 0.94rem !important; }
+        .chapter-num { font-size: 0.65rem !important; }
+        .lesson-card { padding: 10px 10px !important; border-radius: 10px !important; }
+        .lesson-card-title { font-size: 0.82rem !important; margin-bottom: 6px !important; }
+        .lesson-idx { font-size: 0.66rem !important; }
+        .lesson-status-pill { font-size: 0.62rem !important; padding: 2px 6px !important; }
+        .xp-tag, .card-action-text { font-size: 0.68rem !important; }
+        .cert-icon-wrap { font-size: 1.8rem !important; }
+        .cert-text-wrap h3 { font-size: 0.96rem !important; }
+        .cert-text-wrap p { font-size: 0.74rem !important; }
+        .cert-btn { font-size: 0.74rem !important; padding: 8px 12px !important; }
+    }
+
+    /* ── ≤375px: iPhone SE / Small screens (375px) ─── */
+    @media (max-width: 375px) {
+        .hub-container { padding: 8px 6px 30px !important; }
+        .hub-hero { padding: 14px 8px !important; margin-bottom: 12px !important; border-radius: 12px !important; }
+        .hub-badge { font-size: 0.58rem !important; padding: 2px 6px !important; }
+        .hub-hero h1 { font-size: 1.02rem !important; }
+        .hub-hero p { font-size: 0.70rem !important; }
+        .hero-cta-btn { font-size: 0.72rem !important; padding: 8px 10px !important; }
+        .hub-stat-val { font-size: 0.96rem !important; }
+        .hub-stat-lbl { font-size: 0.58rem !important; }
+        .chapter-title { font-size: 0.88rem !important; }
+        .lesson-card-title { font-size: 0.78rem !important; }
+        .lesson-idx { font-size: 0.62rem !important; }
+        .lesson-status-pill { font-size: 0.58rem !important; }
+        .cert-text-wrap h3 { font-size: 0.90rem !important; }
+        .cert-text-wrap p { font-size: 0.70rem !important; }
+        .cert-btn { font-size: 0.70rem !important; padding: 7px 10px !important; }
+    }
+
+    /* ── ≤320px: Galaxy S5 / Very Small Screens (320px) ─── */
+    @media (max-width: 320px) {
+        .hub-container { padding: 6px 4px 24px !important; }
+        .hub-hero { padding: 10px 6px !important; margin-bottom: 10px !important; border-radius: 10px !important; }
+        .hub-hero h1 { font-size: 0.94rem !important; }
+        .hub-hero p { font-size: 0.66rem !important; margin-bottom: 8px !important; }
+        .hero-cta-btn { font-size: 0.68rem !important; padding: 7px 8px !important; }
+        .hub-stat-val { font-size: 0.88rem !important; }
+        .hub-stat-lbl { font-size: 0.54rem !important; }
+        .chapter-block { padding: 10px 8px !important; }
+        .chapter-title { font-size: 0.82rem !important; }
+        .lesson-card-title { font-size: 0.74rem !important; }
+        .lesson-idx { font-size: 0.58rem !important; }
+        .lesson-status-pill { font-size: 0.54rem !important; padding: 1px 4px !important; }
+        .cert-text-wrap h3 { font-size: 0.84rem !important; }
+        .cert-text-wrap p { font-size: 0.66rem !important; }
+        .cert-btn { font-size: 0.66rem !important; padding: 6px 8px !important; }
+    }
 </style>

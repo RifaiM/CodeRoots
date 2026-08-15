@@ -810,17 +810,26 @@
     .blueprint-icons-grid { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
 }
 
-/* ── ≤425px: iPhone SE, Galaxy S-series ───────────────────────────────── */
+/* ── ≤425px: iPhone SE, Galaxy S-series (425px) ───────────────────────── */
 @media (max-width: 425px) {
     .lesson-workspace-outer { padding: 8px 8px 36px; }
 
     .lesson-main-title   { font-size: 1.10rem; }
-    .concept-card h3     { font-size: 0.92rem; }
-    .lesson-subtitle     { font-size: 0.80rem; }
+    .concept-card h3     { font-size: 0.90rem; }
+    .lesson-subtitle     { font-size: 0.78rem; }
     .analogy-callout,
-    .intro-highlight     { font-size: 0.78rem; padding: 8px 10px; }
+    .intro-highlight     { font-size: 0.76rem; padding: 8px 10px; }
 
-    .lesson-level-pill, .lesson-xp-pill { font-size: 0.68rem; padding: 3px 7px; }
+    .lesson-level-pill, .lesson-xp-pill { font-size: 0.66rem; padding: 3px 7px; }
+
+    /* Mission Card & Checklist */
+    .mission-card        { padding: 10px 10px !important; }
+    .mission-header h3   { font-size: 0.90rem !important; }
+    .checklist-counter   { font-size: 0.70rem !important; padding: 2px 6px !important; }
+    .target-output-preview { font-size: 0.74rem !important; padding: 6px 8px !important; }
+    .mission-subtitle    { font-size: 0.74rem !important; }
+    .checklist-item      { font-size: 0.74rem !important; padding: 6px 8px !important; gap: 6px !important; }
+    .checklist-item code { font-size: 0.68rem !important; }
 
     .tag-code            { font-size: 0.72rem; }
     .tag-result          { font-size: 0.68rem; }
@@ -844,12 +853,15 @@
         border-radius: 4px;
     }
 
-    .checklist-item      { font-size: 0.76rem; }
-    .checklist-item code { font-size: 0.70rem; }
+    .verify-code-btn, .next-action-btn { font-size: 0.80rem; padding: 10px 12px; }
 
-    .verify-code-btn, .next-action-btn { font-size: 0.82rem; padding: 11px 12px; }
+    /* Terminal */
+    .ide-terminal-screen { font-size: 0.70rem !important; min-height: 100px !important; max-height: 180px !important; padding: 8px !important; }
+    .live-badge          { font-size: 0.70rem !important; }
+    .ide-tab             { font-size: 0.72rem !important; padding: 4px 8px !important; }
+    .ide-reset-btn       { font-size: 0.70rem !important; padding: 4px 8px !important; }
 
-    /* Editor: perfectly matching font, line-height, and padding */
+    /* Editor: matching font, line-height, and padding */
     .ide-editor-workspace { height: 240px; }
     .ide-line-numbers { width: 32px; min-width: 32px; }
     .ide-line-numbers-inner {
@@ -865,13 +877,12 @@
     }
     .ide-preview-iframe  { height: 200px; }
 
-    /* Stack heading-item: code tag on top, size label below */
+    /* Stack heading-item */
     .heading-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
     }
-    /* Cap the inline font-size on the bold right-side label (e.g. "32px Bold") */
     .heading-item span[style*='font-size'] {
         font-size: 0.88rem !important;
     }
@@ -883,15 +894,26 @@
     .blueprint-icons-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
 }
 
-/* ── ≤375px: iPhone SE / Galaxy S small ───────────────────────────────── */
+/* ── ≤375px: iPhone SE / Galaxy S small (375px) ───────────────────────── */
 @media (max-width: 375px) {
     .lesson-workspace-outer { padding: 6px 8px 32px; }
 
-    .lesson-main-title   { font-size: 1.02rem; }
-    .concept-card h3     { font-size: 0.88rem; }
-    .lesson-subtitle     { font-size: 0.76rem; line-height: 1.5; }
+    .lesson-main-title   { font-size: 1.00rem; }
+    .concept-card h3     { font-size: 0.85rem; }
+    .lesson-subtitle     { font-size: 0.74rem; line-height: 1.5; }
     .analogy-callout,
-    .intro-highlight     { font-size: 0.74rem; }
+    .intro-highlight     { font-size: 0.72rem; padding: 6px 8px; }
+
+    .lesson-level-pill, .lesson-xp-pill { font-size: 0.62rem; padding: 2px 6px; }
+
+    /* Mission Card & Checklist */
+    .mission-card        { padding: 8px 8px !important; }
+    .mission-header h3   { font-size: 0.84rem !important; }
+    .checklist-counter   { font-size: 0.65rem !important; padding: 1px 5px !important; }
+    .target-output-preview { font-size: 0.70rem !important; padding: 6px 6px !important; }
+    .mission-subtitle    { font-size: 0.70rem !important; }
+    .checklist-item      { font-size: 0.70rem !important; padding: 5px 6px !important; gap: 5px !important; }
+    .checklist-item code { font-size: 0.64rem !important; }
 
     .code-snippet-box    {
         font-size: 0.64rem;
@@ -907,10 +929,13 @@
         border-radius: 4px;
     }
 
-    .checklist-item      { font-size: 0.72rem; gap: 7px; }
-    .checklist-title     { font-size: 0.70rem; }
+    .verify-code-btn, .next-action-btn { font-size: 0.76rem; padding: 9px 10px; }
 
-    .verify-code-btn, .next-action-btn { font-size: 0.78rem; padding: 10px 10px; }
+    /* Terminal */
+    .ide-terminal-screen { font-size: 0.65rem !important; min-height: 90px !important; max-height: 160px !important; padding: 6px !important; }
+    .live-badge          { font-size: 0.65rem !important; }
+    .ide-tab             { font-size: 0.68rem !important; padding: 3px 6px !important; }
+    .ide-reset-btn       { font-size: 0.65rem !important; padding: 3px 6px !important; }
 
     /* Editor: perfectly matching font, line-height, and padding */
     .ide-editor-workspace { height: 220px; }
@@ -928,7 +953,6 @@
     }
     .ide-preview-iframe  { height: 180px; }
 
-    /* Ensure heading items stay stacked and inline sizes don't overflow */
     .heading-item {
         flex-direction: column;
         align-items: flex-start;
@@ -941,20 +965,29 @@
 
     .lesson-header-card,
     .concept-card,
-    .dojo-checklist-card { padding: 12px 12px; }
+    .dojo-checklist-card { padding: 10px 10px; }
 }
 
-/* ── ≤320px: Galaxy S5, very small devices ─────────────────────────────── */
+/* ── ≤320px: Galaxy S5, very small devices (320px) ─────────────────────── */
 @media (max-width: 320px) {
     .lesson-workspace-outer { padding: 4px 6px 28px; }
 
-    .lesson-main-title   { font-size: 0.96rem; }
-    .concept-card h3     { font-size: 0.82rem; }
+    .lesson-main-title   { font-size: 0.92rem; }
+    .concept-card h3     { font-size: 0.78rem; }
     .lesson-subtitle,
     .analogy-callout,
-    .intro-highlight     { font-size: 0.70rem; }
+    .intro-highlight     { font-size: 0.68rem; padding: 5px 6px; }
 
-    .lesson-level-pill, .lesson-xp-pill { font-size: 0.60rem; padding: 2px 6px; }
+    .lesson-level-pill, .lesson-xp-pill { font-size: 0.58rem; padding: 2px 5px; }
+
+    /* Mission Card & Checklist */
+    .mission-card        { padding: 6px 6px !important; }
+    .mission-header h3   { font-size: 0.78rem !important; }
+    .checklist-counter   { font-size: 0.60rem !important; padding: 1px 4px !important; }
+    .target-output-preview { font-size: 0.65rem !important; padding: 4px 6px !important; }
+    .mission-subtitle    { font-size: 0.65rem !important; }
+    .checklist-item      { font-size: 0.65rem !important; padding: 4px 5px !important; gap: 4px !important; }
+    .checklist-item code { font-size: 0.58rem !important; }
 
     .code-snippet-box    {
         font-size: 0.60rem;
@@ -970,8 +1003,13 @@
         border-radius: 4px;
     }
 
-    .checklist-item      { font-size: 0.68rem; }
-    .verify-code-btn, .next-action-btn { font-size: 0.74rem; padding: 9px 8px; }
+    .verify-code-btn, .next-action-btn { font-size: 0.72rem; padding: 8px 8px; }
+
+    /* Terminal */
+    .ide-terminal-screen { font-size: 0.60rem !important; min-height: 80px !important; max-height: 140px !important; padding: 5px !important; }
+    .live-badge          { font-size: 0.60rem !important; }
+    .ide-tab             { font-size: 0.62rem !important; padding: 2px 5px !important; }
+    .ide-reset-btn       { font-size: 0.60rem !important; padding: 2px 5px !important; }
 
     /* Editor: perfectly matching font, line-height, and padding */
     .ide-editor-workspace { height: 200px; }
@@ -994,6 +1032,18 @@
 
     .lesson-header-card,
     .concept-card,
-    .dojo-checklist-card { padding: 10px 10px; border-radius: 10px; }
+    .dojo-checklist-card { padding: 8px 8px; border-radius: 8px; }
+}
+
+/* Mission Step Pulse Animation for Validation Feedback */
+@keyframes taskPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+    50% { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.2); background-color: #eff6ff; }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.task-highlight-pulse {
+    animation: taskPulse 1.2s ease-in-out;
+    border-radius: 8px;
 }
 
