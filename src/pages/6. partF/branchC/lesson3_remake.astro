@@ -158,7 +158,7 @@ import { create } from 'zustand';
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
             nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync
@@ -189,7 +189,7 @@ import { create } from 'zustand';
 
             // Real-Time Checklist Verification
             // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'html');
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
@@ -240,7 +240,7 @@ import { create } from 'zustand';
                     xp: 250,
                     completionKey: 'partF_branchC_lesson3_complete',
                     nextUrl: '/6. partF/branchC/lesson4_remake.html',
-                    mode: 'html'
+                    mode: 'javascript'
                 });
             });
         }

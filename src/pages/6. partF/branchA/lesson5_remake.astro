@@ -181,7 +181,7 @@ allowed_origins = [
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
             nextBtnId: 'nextLessonBtn',
-            mode: 'terminal'
+            mode: 'python'
         });
 
         // 2. Line numbers & scroll sync
@@ -205,7 +205,7 @@ allowed_origins = [
 
             // Real-Time Checklist Verification
             // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+            DojoEngine.lint(editor.value, 'python');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
@@ -256,7 +256,7 @@ allowed_origins = [
                     xp: 250,
                     completionKey: 'partF_branchA_lesson5_complete',
                     nextUrl: '/6. partF/branchA/lesson6_remake.html',
-                    mode: 'javascript'
+                    mode: 'python'
                 });
             });
         }

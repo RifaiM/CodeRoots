@@ -205,7 +205,7 @@ export default function CapstoneDashboard() {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
             nextBtnId: 'nextLessonBtn',
-            mode: 'html'
+            mode: 'javascript'
         });
 
         // 2. Line numbers & scroll sync
@@ -236,7 +236,7 @@ export default function CapstoneDashboard() {
 
             // Real-Time Checklist Verification
             // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'html');
+            DojoEngine.lint(editor.value, 'javascript');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
@@ -287,7 +287,7 @@ export default function CapstoneDashboard() {
                     xp: 250,
                     completionKey: 'partF_branchC_lesson6_complete',
                     nextUrl: '/6. partF/certificate.html',
-                    mode: 'html'
+                    mode: 'javascript'
                 });
             });
         }

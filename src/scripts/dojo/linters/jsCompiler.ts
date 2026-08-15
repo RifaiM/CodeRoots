@@ -189,36 +189,46 @@ export class JSCompiler {
             });
         });
 
-        // 3. Native JavaScript Syntax Validation via Function constructor
+        // 3. Native JavaScript Syntax Validation via Function constructor (for plain JS snippets)
         if (problems.length === 0) {
-            try {
-                new Function(code);
-            } catch (e: any) {
-                const errorMsg = e.message || 'Syntax Error';
-                let lineNum: number | undefined;
+            const hasModuleOrJSX = /\b(import|export)\b|<[A-Za-z]/.test(code);
+            const isShellOrYaml = /^\s*#/m.test(code);
 
-                const lineMatch = errorMsg.match(/line\s*(\d+)/i) || (e.stack && e.stack.match(/:(\d+):\d+/));
-                if (lineMatch) {
-                    const parsed = parseInt(lineMatch[1], 10);
-                    // Function wrapper line offset correction
-                    lineNum = parsed > 2 ? parsed - 2 : parsed;
+            if (!hasModuleOrJSX && !isShellOrYaml) {
+                try {
+                    new Function(code);
+                } catch (e: any) {
+                    const errorMsg = e.message || 'Syntax Error';
+                    
+                    // Skip errors caused by modern module/JSX syntax in plain Function constructor
+                    const isModuleOrJSXError = /import|export|<|unexpected reserved word/i.test(errorMsg);
+                    if (!isModuleOrJSXError) {
+                        let lineNum: number | undefined;
+
+                        const lineMatch = errorMsg.match(/line\s*(\d+)/i) || (e.stack && e.stack.match(/:(\d+):\d+/));
+                        if (lineMatch) {
+                            const parsed = parseInt(lineMatch[1], 10);
+                            // Function wrapper line offset correction
+                            lineNum = parsed > 2 ? parsed - 2 : parsed;
+                        }
+
+                        let hint = 'Check for missing quotes, unmatched brackets, or misspelled keywords.';
+                        if (errorMsg.includes('Unexpected token')) {
+                            hint = `Look closely around line ${lineNum || 'the highlighted area'} for missing parentheses, brackets, or commas.`;
+                        } else if (errorMsg.includes('Unterminated string') || errorMsg.includes('Invalid or unexpected token')) {
+                            hint = `Every opening quote (", ', or \`) must have a matching closing quote on the same string.`;
+                        } else if (errorMsg.includes('missing ) after argument list')) {
+                            hint = `Make sure every function call closes all parentheses: myFunction(arg1, arg2).`;
+                        }
+
+                        problems.push({
+                            message: errorMsg,
+                            line: lineNum,
+                            severity: 'error',
+                            hint
+                        });
+                    }
                 }
-
-                let hint = 'Check for missing quotes, unmatched brackets, or misspelled keywords.';
-                if (errorMsg.includes('Unexpected token')) {
-                    hint = `Look closely around line ${lineNum || 'the highlighted area'} for missing parentheses, brackets, or commas.`;
-                } else if (errorMsg.includes('Unterminated string') || errorMsg.includes('Invalid or unexpected token')) {
-                    hint = `Every opening quote (", ', or \`) must have a matching closing quote on the same string.`;
-                } else if (errorMsg.includes('missing ) after argument list')) {
-                    hint = `Make sure every function call closes all parentheses: myFunction(arg1, arg2).`;
-                }
-
-                problems.push({
-                    message: errorMsg,
-                    line: lineNum,
-                    severity: 'error',
-                    hint
-                });
             }
         }
 

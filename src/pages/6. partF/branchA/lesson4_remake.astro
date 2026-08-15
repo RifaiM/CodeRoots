@@ -187,7 +187,7 @@ services:
 
             // Real-Time Checklist Verification
             // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+            DojoEngine.lint(editor.value, 'terminal');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
@@ -238,7 +238,7 @@ services:
                     xp: 250,
                     completionKey: 'partF_branchA_lesson4_complete',
                     nextUrl: '/6. partF/branchA/lesson5_remake.html',
-                    mode: 'javascript'
+                    mode: 'terminal'
                 });
             });
         }
