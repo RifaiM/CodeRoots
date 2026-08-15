@@ -1,26 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
-
-function LiveUserDirectory() {
-  const [users, setUsers] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  // Step 1: Use React.useEffect() with empty dependency array []
-  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state
-
-
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>👥 Developer Directory</h2>
-      {isLoading ? <p>Loading directory...</p> : <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>}
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<LiveUserDirectory />);`;
+const starterCode = "// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!\n\nfunction LiveUserDirectory() {\n  const [users, setUsers] = React.useState([]);\n  const [isLoading, setIsLoading] = React.useState(true);\n\n  // Step 1: Use React.useEffect() with empty dependency array []\n  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state\n  // Write useEffect and fetch code here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      <h2>🌐 Live API Directory</h2>\n      {isLoading ? <p>⏳ Fetching remote API data...</p> : (\n        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>\n      )}\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserDirectory />);";
 
 const level5Lessons = [
     {
@@ -103,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 13: React useEffect Hook | Level 5 React Dojo"
-    description="Synchronize components with external systems, manage cleanup timers, and configure reactive dependency arrays."
-    levelTag="Level 5 • React Dojo"
+    description="Execute asynchronous side effects, handle component lifecycle events, and configure dependency arrays."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={13}
     lessonTitle="React useEffect Hook"
     xpAmount={150}
@@ -122,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Synchronize components with external systems, manage cleanup timers, and configure reactive dependency arrays.
+        Execute asynchronous side effects, handle component lifecycle events, and configure dependency arrays.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -142,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">fetch(url).then(res => res.json())</div>
-                    <div class="tag-result">Sends async HTTP GET request to REST API endpoint</div>
+                    <div class="tag-code">{"fetch(url).then(res => res.json())"}</div>
+                    <div class="tag-result">{"Sends async HTTP GET request to REST API endpoint"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">setUsers(data); setIsLoading(false);</div>
-                    <div class="tag-result">Stores response data and clears loading spinner</div>
+                    <div class="tag-code">{"setUsers(data); setIsLoading(false);"}</div>
+                    <div class="tag-result">{"Stores response data and clears loading spinner"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">.catch(err => setError(err.message))</div>
-                    <div class="tag-result">Safely handles network errors and exceptions</div>
+                    <div class="tag-code">{".catch(err => setError(err.message))"}</div>
+                    <div class="tag-result">{"Safely handles network errors and exceptions"}</div>
                 </div>
             </div>
         </article>
@@ -162,21 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_13')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_13">function Directory() {
-  const [users, setUsers] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() =&gt; {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res =&gt; res.json())
-      .then(data =&gt; {
-        setUsers(data);
-        setLoading(false);
-      });
-  }, []); // Empty array = run once on mount
-
-  return loading ? &lt;p&gt;Loading...&lt;/p&gt; : &lt;div&gt;{users.length} users&lt;/div&gt;;
-}</code></pre>
+                <pre><code id="refCodeBox_13">{"function Directory() {\n  const [users, setUsers] = React.useState([]);\n  const [loading, setLoading] = React.useState(true);\n\n  React.useEffect(() => {\n    fetch('https://jsonplaceholder.typicode.com/users')\n      .then(res => res.json())\n      .then(data => {\n        setUsers(data);\n        setLoading(false);\n      });\n  }, []);\n\n  return loading ? <p>Loading...</p> : <div>{users.length} users</div>;\n}"}</code></pre>
             </div>
         </article>
 
@@ -184,9 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use <code>React.useEffect()</code> callback function.</li>
-                <li>Fetch data from API using <code>fetch(...)</code> and <code>res.json()</code>.</li>
-                <li>Pass empty dependency array <code>[]</code> to run on mount.</li>
+                <li>Implement <code>React.useEffect(() =&gt; &#123; ... &#125;, [])</code>.</li>
+                <li>Call <code>fetch('https://jsonplaceholder.typicode.com/users')</code>.</li>
+                <li>Set users data with <code>setUsers(data)</code> and update <code>setIsLoading(false)</code>.</li>
             </ol>
         </article>
 
@@ -208,26 +175,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson13';
-        const DEFAULT_STARTER = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
-
-function LiveUserDirectory() {
-  const [users, setUsers] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  // Step 1: Use React.useEffect() with empty dependency array []
-  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state
-
-
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>👥 Developer Directory</h2>
-      {isLoading ? <p>Loading directory...</p> : <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>}
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<LiveUserDirectory />);`;
+        const DEFAULT_STARTER = "// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!\n\nfunction LiveUserDirectory() {\n  const [users, setUsers] = React.useState([]);\n  const [isLoading, setIsLoading] = React.useState(true);\n\n  // Step 1: Use React.useEffect() with empty dependency array []\n  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state\n  // Write useEffect and fetch code here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      <h2>🌐 Live API Directory</h2>\n      {isLoading ? <p>⏳ Fetching remote API data...</p> : (\n        <ul>{users.slice(0, 5).map(u => <li key={u.id}><strong>{u.name}</strong> • {u.email}</li>)}</ul>\n      )}\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserDirectory />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -239,12 +187,12 @@ root.render(<LiveUserDirectory />);`;
             {
                 id: 'fetch_api',
                 label: 'Call <code>fetch(...)</code> inside effect',
-                fn: (code) => /fetch\s*\(/i.test(code) && /setUsers\s*\(/i.test(code)
+                fn: (code) => /fetch\s*\(/i.test(code)
             },
             {
                 id: 'deps_empty',
                 label: 'Pass empty dependency array <code>[]</code>',
-                fn: (code) => /useEffect\s*\([\s\S]*?,\s*\[\s*\]\s*\)/i.test(code)
+                fn: (code) => /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*\]\s*\)/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -318,36 +266,12 @@ root.render(<LiveUserDirectory />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 13: React useEffect Hook',
-                        xp: 150,
-                        completionKey: 'partC_lesson13_remake_complete',
-                        nextUrl: '/3. partC/lesson14/lesson14_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

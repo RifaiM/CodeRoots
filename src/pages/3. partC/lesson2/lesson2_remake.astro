@@ -1,27 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🍱 Lesson 2: Build a React Component Tree!
-
-// Step 1: Define sub-component 'Header' that returns <header><h1>🍱 Component Dojo</h1></header>
-// Write function Header() here:
-
-
-// Step 2: Define sub-component 'Card' that accepts { title, desc } and returns <div className="card-box"><h3>{title}</h3><p>{desc}</p></div>
-// Write function Card({ title, desc }) here:
-
-
-// Step 3: Parent Component: App (Assembles the Component Tree)
-function App() {
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', padding: '16px' }}>
-      {/* Add Header and at least two Card components here */}
-    </div>
-  );
-}
-
-// Step 4: Render Component Tree to DOM using ReactDOM.createRoot
-// Write ReactDOM.createRoot(document.getElementById('root')).render(<App />); here:`;
+const starterCode = "// 🍱 Lesson 2: Build a React Component Tree!\n\n// Step 1: Define sub-component 'Header' that returns <header><h1>🍱 Component Dojo</h1></header>\n// Write function Header() here:\n\n\n// Step 2: Define sub-component 'Card' that accepts { title, desc } and returns <div className=\"card-box\"><h3>{title}</h3><p>{desc}</p></div>\n// Write function Card({ title, desc }) here:\n\n\n// Step 3: Parent Component: App (Assembles the Component Tree)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      {/* Step 4: Render <Header /> and two <Card /> components here: */}\n      \n    </div>\n  );\n}\n\n// 4. Render Component Tree to DOM\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
 const level5Lessons = [
     {
@@ -105,7 +85,7 @@ const level5Lessons = [
 <LessonLayout
     title="Project 02: Arrow Functions & Scope | Level 5 React Dojo"
     description="Learn concise arrow function syntax, lexical this binding, and implicit returns in modern JavaScript programming."
-    levelTag="Level 5 • React Dojo"
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={2}
     lessonTitle="Arrow Functions & Scope"
     xpAmount={150}
@@ -126,14 +106,14 @@ const level5Lessons = [
         Learn concise arrow function syntax, lexical this binding, and implicit returns in modern JavaScript programming.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> React components are like LEGO bricks. Instead of building an entire castle in one giant piece, you build small, reusable bricks (<Header />, <Card />, <Footer />) and assemble them into a complete page tree.
+                <strong>Real-World Analogy:</strong> React components are like LEGO bricks. Instead of building an entire castle in one giant piece, you build small, reusable bricks (&lt;Header /&gt;, &lt;Card /&gt;, &lt;Footer /&gt;) and assemble them into a complete page tree.
             </div>
         </article>
 
@@ -143,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code"><Header /></div>
-                    <div class="tag-result">Top bar component rendering branding and title</div>
+                    <div class="tag-code">{"<Header />"}</div>
+                    <div class="tag-result">{"Top bar component rendering branding and title"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code"><Card title='...' /></div>
-                    <div class="tag-result">Reusable content card with dynamic props</div>
+                    <div class="tag-code">{"<Card title='...' />"}</div>
+                    <div class="tag-result">{"Reusable content card with dynamic props"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code"><App /></div>
-                    <div class="tag-result">Root parent component assembling the entire tree</div>
+                    <div class="tag-code">{"<App />"}</div>
+                    <div class="tag-result">{"Root parent component assembling the entire tree"}</div>
                 </div>
             </div>
         </article>
@@ -163,27 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_2')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_2">function Header() {
-  return &lt;header&gt;&lt;h1&gt;🍱 Component Dojo&lt;/h1&gt;&lt;/header&gt;;
-}
-
-function Card({ title, desc }) {
-  return (
-    &lt;div className="card-box"&gt;
-      &lt;h3&gt;{title}&lt;/h3&gt;
-      &lt;p&gt;{desc}&lt;/p&gt;
-    &lt;/div&gt;
-  );
-}
-
-function App() {
-  return (
-    &lt;main&gt;
-      &lt;Header /&gt;
-      &lt;Card title="React JSX" desc="Declarative UI syntax" /&gt;
-    &lt;/main&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_2">{"function Header() {\n  return <header><h1>🍱 Component Dojo</h1></header>;\n}\n\nfunction Card({ title, desc }) {\n  return (\n    <div className=\"card-box\">\n      <h3>{title}</h3>\n      <p>{desc}</p>\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <main>\n      <Header />\n      <Card title=\"React JSX\" desc=\"Declarative UI syntax\" />\n    </main>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -216,49 +176,24 @@ function App() {
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson2';
-        const DEFAULT_STARTER = `// 🍱 Lesson 2: Build a React Component Tree!
-
-// Step 1: Define sub-component 'Header' that returns <header><h1>🍱 Component Dojo</h1></header>
-// Write function Header() here:
-
-
-// Step 2: Define sub-component 'Card' that accepts { title, desc } and returns <div className="card-box"><h3>{title}</h3><p>{desc}</p></div>
-// Write function Card({ title, desc }) here:
-
-
-// Step 3: Parent Component: App (Assembles the Component Tree)
-function App() {
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', padding: '16px' }}>
-      {/* Add Header and at least two Card components here */}
-    </div>
-  );
-}
-
-// Step 4: Render Component Tree to DOM using ReactDOM.createRoot
-// Write ReactDOM.createRoot(document.getElementById('root')).render(<App />); here:`;
+        const DEFAULT_STARTER = "// 🍱 Lesson 2: Build a React Component Tree!\n\n// Step 1: Define sub-component 'Header' that returns <header><h1>🍱 Component Dojo</h1></header>\n// Write function Header() here:\n\n\n// Step 2: Define sub-component 'Card' that accepts { title, desc } and returns <div className=\"card-box\"><h3>{title}</h3><p>{desc}</p></div>\n// Write function Card({ title, desc }) here:\n\n\n// Step 3: Parent Component: App (Assembles the Component Tree)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto' }}>\n      {/* Step 4: Render <Header /> and two <Card /> components here: */}\n      \n    </div>\n  );\n}\n\n// 4. Render Component Tree to DOM\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'header',
-                label: 'Define <code>function Header()</code> returning <code>&lt;header&gt;</code>',
-                fn: (code) => /function\s+Header\s*\([^)]*\)\s*\{[\s\S]*return\s*\(?[\s\S]*<header/i.test(code)
+                label: 'Define <code>function Header()</code> component',
+                fn: (code) => /function\s+Header\s*\(/i.test(code)
             },
             {
                 id: 'card',
-                label: 'Define <code>function Card({ title, desc })</code> with props',
-                fn: (code) => /function\s+Card\s*\(\s*\{\s*title\s*,\s*desc\s*\}\s*\)/i.test(code)
+                label: 'Define <code>function Card({ title, desc })</code> component',
+                fn: (code) => /function\s+Card\s*\(\s*\{\s*title\s*,\s*desc/i.test(code) || /function\s+Card\s*\(\s*props/i.test(code)
             },
             {
-                id: 'app',
-                label: 'Assemble <code>&lt;Header /&gt;</code> and <code>&lt;Card /&gt;</code> in <code>App</code>',
-                fn: (code) => /<Header\s*\/>/i.test(code) && /<Card\s+[^>]*\/>/i.test(code)
-            },
-            {
-                id: 'render',
-                label: 'Render root with <code>ReactDOM.createRoot().render(&lt;App /&gt;)</code>',
-                fn: (code) => /ReactDOM\.createRoot\([\s\S]*?\)\.render\s*\(\s*<App\s*\/>\s*\)/i.test(code)
+                id: 'render_tree',
+                label: 'Render <code>&lt;Header /&gt;</code> and <code>&lt;Card /&gt;</code> inside App',
+                fn: (code) => /<Header\s*\/?>/i.test(code) && /<Card\s+/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -332,36 +267,12 @@ function App() {
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 02: Arrow Functions & Scope',
-                        xp: 150,
-                        completionKey: 'partC_lesson2_remake_complete',
-                        nextUrl: '/3. partC/lesson3/lesson3_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

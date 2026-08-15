@@ -1,27 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!
-
-function DevNewsFetcher() {
-  const [category, setCategory] = React.useState("react");
-  const [articles, setArticles] = React.useState([]);
-
-  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change
-
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <button onClick={() => setCategory('react')}>REACT</button>
-      <div style={{ background: '#0f172a', padding: '16px', color: 'white' }}>
-        {articles.length === 0 ? <p>No articles yet. Implement useEffect above!</p> : articles.map((a, i) => <p key={i}>{a.title}</p>)}
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DevNewsFetcher />);`;
+const starterCode = "// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n  const [category, setCategory] = React.useState(\"react\");\n  const [articles, setArticles] = React.useState([]);\n\n  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n  // Write useEffect hook here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n      <h2>📰 Developer News Digest</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <button onClick={() => setCategory(\"react\")}>⚛️ React</button>\n        <button onClick={() => setCategory(\"nextjs\")}>⚡ Next.js</button>\n        <button onClick={() => setCategory(\"typescript\")}>🔷 TypeScript</button>\n      </div>\n      <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
 
 const level5Lessons = [
     {
@@ -104,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 07: React JSX Fundamentals | Level 5 React Dojo"
-    description="Write declarative UI markup with React JSX syntax, embedded expressions, fragment containers, and HTML conversion rules."
-    levelTag="Level 5 • React Dojo"
+    description="Understand JSX compilation, React elements, and embedding JavaScript expressions inside declarative markup."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={7}
     lessonTitle="React JSX Fundamentals"
     xpAmount={150}
@@ -123,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Write declarative UI markup with React JSX syntax, embedded expressions, fragment containers, and HTML conversion rules.
+        Understand JSX compilation, React elements, and embedding JavaScript expressions inside declarative markup.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -143,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">useEffect(() => { ... }, [])</div>
-                    <div class="tag-result">Runs once on initial component mount</div>
+                    <div class="tag-code">{"useEffect(() => { ... }, [])"}</div>
+                    <div class="tag-result">{"Runs once on initial component mount"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">useEffect(() => { ... }, [id])</div>
-                    <div class="tag-result">Re-runs whenever 'id' variable changes</div>
+                    <div class="tag-code">{"useEffect(() => { ... }, [id])"}</div>
+                    <div class="tag-result">{"Re-runs whenever 'id' variable changes"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">return () => cleanup()</div>
-                    <div class="tag-result">Cleanup function runs on component unmount</div>
+                    <div class="tag-code">{"return () => cleanup()"}</div>
+                    <div class="tag-result">{"Cleanup function runs on component unmount"}</div>
                 </div>
             </div>
         </article>
@@ -163,16 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_7">function NewsFeed({ category }) {
-  const [articles, setArticles] = React.useState([]);
-
-  React.useEffect(() =&gt; {
-    // Runs whenever category changes
-    fetchNews(category).then(data =&gt; setArticles(data));
-  }, [category]); // Dependency Array
-
-  return &lt;div&gt;{articles.length} articles loaded&lt;/div&gt;;
-}</code></pre>
+                <pre><code id="refCodeBox_7">{"function NewsFeed({ category }) {\n  const [articles, setArticles] = React.useState([]);\n\n  React.useEffect(() => {\n    fetchNews(category).then(data => setArticles(data));\n  }, [category]);\n\n  return <div>{articles.length} articles loaded</div>;\n}"}</code></pre>
             </div>
         </article>
 
@@ -180,8 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use <code>React.useEffect()</code> callback function.</li>
-                <li>Pass dependency array <code>[category]</code> to useEffect.</li>
+                <li>Implement <code>React.useEffect(() =&gt; &#123; ... &#125;, [category])</code>.</li>
+                <li>Update the articles state inside the effect function.</li>
+                <li>Verify that clicking category buttons triggers the effect.</li>
             </ol>
         </article>
 
@@ -203,27 +175,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson7';
-        const DEFAULT_STARTER = `// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!
-
-function DevNewsFetcher() {
-  const [category, setCategory] = React.useState("react");
-  const [articles, setArticles] = React.useState([]);
-
-  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change
-
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <button onClick={() => setCategory('react')}>REACT</button>
-      <div style={{ background: '#0f172a', padding: '16px', color: 'white' }}>
-        {articles.length === 0 ? <p>No articles yet. Implement useEffect above!</p> : articles.map((a, i) => <p key={i}>{a.title}</p>)}
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DevNewsFetcher />);`;
+        const DEFAULT_STARTER = "// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n  const [category, setCategory] = React.useState(\"react\");\n  const [articles, setArticles] = React.useState([]);\n\n  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n  // Write useEffect hook here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n      <h2>📰 Developer News Digest</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <button onClick={() => setCategory(\"react\")}>⚛️ React</button>\n        <button onClick={() => setCategory(\"nextjs\")}>⚡ Next.js</button>\n        <button onClick={() => setCategory(\"typescript\")}>🔷 TypeScript</button>\n      </div>\n      <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -235,7 +187,7 @@ root.render(<DevNewsFetcher />);`;
             {
                 id: 'deps',
                 label: 'Specify dependency array <code>[category]</code>',
-                fn: (code) => /useEffect\s*\([^,]+,\s*\[\s*category\s*\]\s*\)/i.test(code)
+                fn: (code) => /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*category\s*\]\s*\)/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -309,36 +261,12 @@ root.render(<DevNewsFetcher />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 07: React JSX Fundamentals',
-                        xp: 150,
-                        completionKey: 'partC_lesson7_remake_complete',
-                        nextUrl: '/3. partC/lesson8/lesson8_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

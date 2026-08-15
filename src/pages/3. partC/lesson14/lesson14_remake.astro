@@ -1,25 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// ⚡ Lesson 14: Search Filter with useEffect Debounce!
-
-function LiveUserSearch() {
-  const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState([]);
-
-  // Step 1: Use useEffect with dependency [query] to filter results
-  // Step 2: Return a cleanup function clearTimeout(timer)
-
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto' }}>
-      <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." />
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<LiveUserSearch />);`;
+const starterCode = "// ⚡ Lesson 14: Search Filter with useEffect Debounce!\n\nfunction LiveUserSearch() {\n  const [query, setQuery] = React.useState(\"\");\n  const [results, setResults] = React.useState([]);\n\n  // Step 1: Use useEffect with dependency [query] to filter results\n  // Step 2: Return a cleanup function clearTimeout(timer)\n  // Write useEffect debounce here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🔍 Debounced User Search</h2>\n      <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder=\"Type to search...\" />\n      <p>Search query: <strong>{query}</strong></p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserSearch />);";
 
 const level5Lessons = [
     {
@@ -102,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 14: React API Data Fetching | Level 5 React Dojo"
-    description="Handle asynchronous loading, error catching, and data rendering states seamlessly in production React applications."
-    levelTag="Level 5 • React Dojo"
+    description="Fetch external REST APIs inside useEffect, manage loading states, and handle network error boundaries."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={14}
     lessonTitle="React API Data Fetching"
     xpAmount={150}
@@ -121,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Handle asynchronous loading, error catching, and data rendering states seamlessly in production React applications.
+        Fetch external REST APIs inside useEffect, manage loading states, and handle network error boundaries.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -141,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">const timer = setTimeout(fn, 300)</div>
-                    <div class="tag-result">Delays execution until user pauses typing</div>
+                    <div class="tag-code">{"const timer = setTimeout(fn, 300)"}</div>
+                    <div class="tag-result">{"Delays execution until user pauses typing"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">return () => clearTimeout(timer)</div>
-                    <div class="tag-result">Cleanup function cancels timer if query changes again</div>
+                    <div class="tag-code">{"return () => clearTimeout(timer)"}</div>
+                    <div class="tag-result">{"Cleanup function cancels timer if query changes again"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">useEffect(() => ..., [query])</div>
-                    <div class="tag-result">Effect re-runs whenever search query changes</div>
+                    <div class="tag-code">{"useEffect(() => ..., [query])"}</div>
+                    <div class="tag-result">{"Effect re-runs whenever search query changes"}</div>
                 </div>
             </div>
         </article>
@@ -161,22 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_14')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_14">function SearchBox() {
-  const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState([]);
-
-  React.useEffect(() =&gt; {
-    const timer = setTimeout(() =&gt; {
-      if (query.trim()) {
-        performSearch(query).then(res =&gt; setResults(res));
-      }
-    }, 300);
-
-    return () =&gt; clearTimeout(timer); // Cleanup on next keystroke
-  }, [query]);
-
-  return &lt;input value={query} onChange={e =&gt; setQuery(e.target.value)} /&gt;;
-}</code></pre>
+                <pre><code id="refCodeBox_14">{"function SearchBox() {\n  const [query, setQuery] = React.useState(\"\");\n  const [results, setResults] = React.useState([]);\n\n  React.useEffect(() => {\n    const timer = setTimeout(() => {\n      if (query.trim()) {\n        performSearch(query).then(res => setResults(res));\n      }\n    }, 300);\n\n    return () => clearTimeout(timer);\n  }, [query]);\n\n  return <input value={query} onChange={e => setQuery(e.target.value)} />;\n}"}</code></pre>
             </div>
         </article>
 
@@ -184,8 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Implement <code>useEffect</code> with <code>[query]</code> dependency.</li>
-                <li>Return cleanup function <code>return () => clearTimeout(timer)</code>.</li>
+                <li>Add <code>useEffect</code> with dependency <code>[query]</code>.</li>
+                <li>Set timer with <code>setTimeout</code>.</li>
+                <li>Return cleanup function <code>clearTimeout(timer)</code>.</li>
             </ol>
         </article>
 
@@ -207,37 +175,19 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson14';
-        const DEFAULT_STARTER = `// ⚡ Lesson 14: Search Filter with useEffect Debounce!
-
-function LiveUserSearch() {
-  const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState([]);
-
-  // Step 1: Use useEffect with dependency [query] to filter results
-  // Step 2: Return a cleanup function clearTimeout(timer)
-
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto' }}>
-      <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." />
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<LiveUserSearch />);`;
+        const DEFAULT_STARTER = "// ⚡ Lesson 14: Search Filter with useEffect Debounce!\n\nfunction LiveUserSearch() {\n  const [query, setQuery] = React.useState(\"\");\n  const [results, setResults] = React.useState([]);\n\n  // Step 1: Use useEffect with dependency [query] to filter results\n  // Step 2: Return a cleanup function clearTimeout(timer)\n  // Write useEffect debounce here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🔍 Debounced User Search</h2>\n      <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder=\"Type to search...\" />\n      <p>Search query: <strong>{query}</strong></p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<LiveUserSearch />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'search_effect',
-                label: 'Run effect on <code>[query]</code> change',
-                fn: (code) => /useEffect\s*\([\s\S]*?,\s*\[\s*query\s*\]\s*\)/i.test(code)
+                label: 'Run effect on <code>[query]</code>',
+                fn: (code) => /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*query\s*\]\s*\)/i.test(code)
             },
             {
                 id: 'cleanup',
-                label: 'Return cleanup function with <code>clearTimeout</code>',
-                fn: (code) => /return\s*\(\s*\)\s*=>\s*clearTimeout\s*\(/i.test(code)
+                label: 'Return cleanup function <code>() => clearTimeout(...)</code>',
+                fn: (code) => /return\s*\(\s*\)\s*=>\s*clearTimeout/i.test(code) || /return\s+function\s*\(\s*\)\s*\{\s*clearTimeout/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -311,36 +261,12 @@ root.render(<LiveUserSearch />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 14: React API Data Fetching',
-                        xp: 150,
-                        completionKey: 'partC_lesson14_remake_complete',
-                        nextUrl: '/3. partC/lesson15/lesson15_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

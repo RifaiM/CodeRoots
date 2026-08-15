@@ -1,26 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🖼️ Lesson 8: Component Composition & props.children!
-
-function CardShell(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '16px', marginBottom: '14px' }}>
-      {/* Step 1: Render props.children inside this container */}
-    </div>
-  );
-}
-
-function DevDashboard() {
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      {/* Step 2: Compose children between CardShell tags */}
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DevDashboard />);`;
+const starterCode = "// 🖼️ Lesson 8: Component Composition & props.children!\n\nfunction CardShell(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '16px', marginBottom: '14px' }}>\n      {/* Step 1: Render props.children inside this container */}\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🍱 Composition Dojo</h2>\n      \n      {/* Step 2: Wrap custom content between <CardShell> tags */}\n      <CardShell>\n        <h3>⚡ Turbo Engine</h3>\n        <p>High-performance reactive rendering with props.children.</p>\n      </CardShell>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
 const level5Lessons = [
     {
@@ -103,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 08: Reusable React Components | Level 5 React Dojo"
-    description="Build modular, reusable React UI components by composing small functional pieces into interactive application views."
-    levelTag="Level 5 • React Dojo"
+    description="Construct modular, reusable React components and master component tree composition techniques."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={8}
     lessonTitle="Reusable React Components"
     xpAmount={150}
@@ -122,17 +103,17 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Build modular, reusable React UI components by composing small functional pieces into interactive application views.
+        Construct modular, reusable React components and master component tree composition techniques.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> props.children is like a picture frame. The frame provides the border, padding, and layout, while whatever elements you place inside <CardShell>...</CardShell> are rendered within the frame.
+                <strong>Real-World Analogy:</strong> props.children is like a picture frame. The frame provides the border, padding, and layout, while whatever elements you place inside &lt;CardShell&gt;...&lt;/CardShell&gt; are rendered within the frame.
             </div>
         </article>
 
@@ -142,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">function Shell({ children })</div>
-                    <div class="tag-result">Receives nested JSX elements as children prop</div>
+                    <div class="tag-code">{"function Shell({ children })"}</div>
+                    <div class="tag-result">{"Receives nested JSX elements as children prop"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code"><Shell><p>Nested</p></Shell></div>
-                    <div class="tag-result">Passes inner elements between component tags</div>
+                    <div class="tag-code">{"<Shell><p>Nested</p></Shell>"}</div>
+                    <div class="tag-result">{"Passes inner elements between component tags"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code"><Shell {...props}></div>
-                    <div class="tag-result">Forwards layout styles and wrapper architecture</div>
+                    <div class="tag-code">{"<Shell {...props}>"}</div>
+                    <div class="tag-result">{"Forwards layout styles and wrapper architecture"}</div>
                 </div>
             </div>
         </article>
@@ -162,16 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_8')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_8">function CardShell({ title, children }) {
-  return (
-    &lt;div className="shell-container"&gt;
-      &lt;h3&gt;{title}&lt;/h3&gt;
-      &lt;div className="shell-body"&gt;
-        {children}
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_8">{"function CardShell({ title, children }) {\n  return (\n    <div className=\"shell-container\">\n      <h3>{title}</h3>\n      <div className=\"shell-body\">\n        {children}\n      </div>\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -179,8 +151,8 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Render <code>&#123;children&#125;</code> inside <code>CardShell</code>.</li>
-                <li>Compose elements between <code>&lt;CardShell&gt;...&lt;/CardShell&gt;</code> tags.</li>
+                <li>Render <code>&#123;props.children&#125;</code> inside <code>CardShell</code>.</li>
+                <li>Compose elements between <code>&lt;CardShell&gt;...&lt;/CardShell&gt;</code> in <code>App</code>.</li>
             </ol>
         </article>
 
@@ -202,26 +174,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson8';
-        const DEFAULT_STARTER = `// 🖼️ Lesson 8: Component Composition & props.children!
-
-function CardShell(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '16px', marginBottom: '14px' }}>
-      {/* Step 1: Render props.children inside this container */}
-    </div>
-  );
-}
-
-function DevDashboard() {
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      {/* Step 2: Compose children between CardShell tags */}
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DevDashboard />);`;
+        const DEFAULT_STARTER = "// 🖼️ Lesson 8: Component Composition & props.children!\n\nfunction CardShell(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '16px', marginBottom: '14px' }}>\n      {/* Step 1: Render props.children inside this container */}\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🍱 Composition Dojo</h2>\n      \n      {/* Step 2: Wrap custom content between <CardShell> tags */}\n      <CardShell>\n        <h3>⚡ Turbo Engine</h3>\n        <p>High-performance reactive rendering with props.children.</p>\n      </CardShell>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -233,7 +186,7 @@ root.render(<DevDashboard />);`;
             {
                 id: 'compose',
                 label: 'Compose elements between <code>&lt;CardShell&gt;...&lt;/CardShell&gt;</code>',
-                fn: (code) => /<CardShell[^>]*>[\s\S]+<\/CardShell>/i.test(code)
+                fn: (code) => /<CardShell[^>]*>[\s\S]*?<\/CardShell>/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -307,36 +260,12 @@ root.render(<DevDashboard />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 08: Reusable React Components',
-                        xp: 150,
-                        completionKey: 'partC_lesson8_remake_complete',
-                        nextUrl: '/3. partC/lesson9/lesson9_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

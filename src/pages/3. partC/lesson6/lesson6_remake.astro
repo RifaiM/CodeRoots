@@ -1,33 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 📝 Lesson 6: React Controlled Form Inputs & Two-Way Data Binding!
-
-function ProfileBadgeGenerator() {
-  const [developerName, setDeveloperName] = React.useState("");
-  const [specialty, setSpecialty] = React.useState("Frontend Architect");
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '16px', marginBottom: '16px' }}>
-        <h3>📝 Form Controls</h3>
-        <label>Full Name:</label>
-        {/* Step 1: Bind input with value and onChange handler */}
-        <input 
-          type="text" 
-          placeholder="Type developer name..."
-          style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
-        />
-      </div>
-      <div style={{ background: '#0f172a', borderRadius: '16px', padding: '18px', color: 'white' }}>
-        <h3>{developerName || "Anonymous Developer"}</h3>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ProfileBadgeGenerator />);`;
+const starterCode = "// 📝 Lesson 6: React Controlled Form Inputs & Two-Way Data Binding!\n\nfunction ProfileBadgeGenerator() {\n  const [developerName, setDeveloperName] = React.useState(\"\");\n  const [specialty, setSpecialty] = React.useState(\"Frontend Architect\");\n\n  return (\n    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2 style={{ margin: '0 0 12px 0', color: '#0f172a' }}>📝 Live Badge Generator</h2>\n        \n        {/* Step 1: Bind input to developerName state with value and onChange */}\n        <div style={{ marginBottom: '14px' }}>\n          <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '4px' }}>Developer Name:</label>\n          <input \n            type=\"text\" \n            placeholder=\"Type your name...\"\n            style={{ width: '100%', padding: '8px 12px', border: '1px solid #cbd5e1', borderRadius: '8px', boxSizing: 'border-box' }}\n          />\n        </div>\n\n        {/* Live Badge Preview */}\n        <div style={{ background: '#f0fdf4', border: '1px solid #86efac', padding: '14px', borderRadius: '12px', textAlign: 'center' }}>\n          <h3 style={{ margin: '0 0 4px 0', color: '#166534' }}>🏷️ {developerName || \"Your Name Here\"}</h3>\n          <p style={{ margin: 0, fontSize: '12px', color: '#15803d', fontWeight: '600' }}>⚡ {specialty}</p>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ProfileBadgeGenerator />);";
 
 const level5Lessons = [
     {
@@ -110,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 06: ES Modules & Imports | Level 5 React Dojo"
-    description="Organize modular frontend codebases with export, export default, named imports, and ES module dependency trees."
-    levelTag="Level 5 • React Dojo"
+    description="Organize reusable codebases using JavaScript ES module export and import statements."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={6}
     lessonTitle="ES Modules & Imports"
     xpAmount={150}
@@ -129,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Organize modular frontend codebases with export, export default, named imports, and ES module dependency trees.
+        Organize reusable codebases using JavaScript ES module export and import statements.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -149,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">value={name}</div>
-                    <div class="tag-result">Input always displays current React state value</div>
+                    <div class="tag-code">{"value={name}"}</div>
+                    <div class="tag-result">{"Input always displays current React state value"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">onChange={e => setName(e.target.value)}</div>
-                    <div class="tag-result">Updates state on every keystroke in real-time</div>
+                    <div class="tag-code">{"onChange={e => setName(e.target.value)}"}</div>
+                    <div class="tag-result">{"Updates state on every keystroke in real-time"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">e.preventDefault()</div>
-                    <div class="tag-result">Prevents page reload on form submit action</div>
+                    <div class="tag-code">{"e.preventDefault()"}</div>
+                    <div class="tag-result">{"Prevents page reload on form submit action"}</div>
                 </div>
             </div>
         </article>
@@ -169,22 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_6')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_6">function UserForm() {
-  const [name, setName] = React.useState("");
-
-  return (
-    &lt;form onSubmit={(e) =&gt; e.preventDefault()}&gt;
-      &lt;label&gt;Enter Name:&lt;/label&gt;
-      &lt;input 
-        type="text" 
-        value={name} 
-        onChange={(e) =&gt; setName(e.target.value)} 
-        placeholder="Type your name..."
-      /&gt;
-      &lt;p&gt;Preview: &lt;strong&gt;{name || "Anonymous"}&lt;/strong&gt;&lt;/p&gt;
-    &lt;/form&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_6">{"function UserForm() {\n  const [name, setName] = React.useState(\"\");\n\n  return (\n    <form onSubmit={(e) => e.preventDefault()}>\n      <label>Enter Name:</label>\n      <input \n        type=\"text\" \n        value={name} \n        onChange={(e) => setName(e.target.value)} \n        placeholder=\"Type your name...\"\n      />\n      <p>Preview: <strong>{name || \"Anonymous\"}</strong></p>\n    </form>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -192,8 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Bind input with <code>value=&#123;developerName&#125;</code>.</li>
-                <li>Update state on input: <code>onChange=&#123;(e) => setDeveloperName(e.target.value)&#125;</code>.</li>
+                <li>Add <code>value=&#123;developerName&#125;</code> to the text input.</li>
+                <li>Add <code>onChange=&#123;(e) =&gt; setDeveloperName(e.target.value)&#125;</code> to update state on typing.</li>
+                <li>Observe the live green badge update synchronously in the preview.</li>
             </ol>
         </article>
 
@@ -215,33 +175,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson6';
-        const DEFAULT_STARTER = `// 📝 Lesson 6: React Controlled Form Inputs & Two-Way Data Binding!
-
-function ProfileBadgeGenerator() {
-  const [developerName, setDeveloperName] = React.useState("");
-  const [specialty, setSpecialty] = React.useState("Frontend Architect");
-
-  return (
-    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '16px', marginBottom: '16px' }}>
-        <h3>📝 Form Controls</h3>
-        <label>Full Name:</label>
-        {/* Step 1: Bind input with value and onChange handler */}
-        <input 
-          type="text" 
-          placeholder="Type developer name..."
-          style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
-        />
-      </div>
-      <div style={{ background: '#0f172a', borderRadius: '16px', padding: '18px', color: 'white' }}>
-        <h3>{developerName || "Anonymous Developer"}</h3>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ProfileBadgeGenerator />);`;
+        const DEFAULT_STARTER = "// 📝 Lesson 6: React Controlled Form Inputs & Two-Way Data Binding!\n\nfunction ProfileBadgeGenerator() {\n  const [developerName, setDeveloperName] = React.useState(\"\");\n  const [specialty, setSpecialty] = React.useState(\"Frontend Architect\");\n\n  return (\n    <div style={{ padding: '16px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <div style={{ background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2 style={{ margin: '0 0 12px 0', color: '#0f172a' }}>📝 Live Badge Generator</h2>\n        \n        {/* Step 1: Bind input to developerName state with value and onChange */}\n        <div style={{ marginBottom: '14px' }}>\n          <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '4px' }}>Developer Name:</label>\n          <input \n            type=\"text\" \n            placeholder=\"Type your name...\"\n            style={{ width: '100%', padding: '8px 12px', border: '1px solid #cbd5e1', borderRadius: '8px', boxSizing: 'border-box' }}\n          />\n        </div>\n\n        {/* Live Badge Preview */}\n        <div style={{ background: '#f0fdf4', border: '1px solid #86efac', padding: '14px', borderRadius: '12px', textAlign: 'center' }}>\n          <h3 style={{ margin: '0 0 4px 0', color: '#166534' }}>🏷️ {developerName || \"Your Name Here\"}</h3>\n          <p style={{ margin: 0, fontSize: '12px', color: '#15803d', fontWeight: '600' }}>⚡ {specialty}</p>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ProfileBadgeGenerator />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -327,36 +261,12 @@ root.render(<ProfileBadgeGenerator />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 06: ES Modules & Imports',
-                        xp: 150,
-                        completionKey: 'partC_lesson6_remake_complete',
-                        nextUrl: '/3. partC/lesson7/lesson7_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

@@ -1,27 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 📝 Lesson 11: Multi-Field Controlled Forms!
-
-function ContactForm() {
-  const [form, setForm] = React.useState({ name: "", email: "" });
-
-  const handleChange = (e) => {
-    // Step 1: Update form state dynamically using [e.target.name]: e.target.value
-  };
-
-  return (
-    <form onSubmit={(e) => e.preventDefault()} style={{ fontFamily: 'sans-serif', maxWidth: '380px', margin: '0 auto' }}>
-      {/* Step 2: Bind input with value={form.name} and onChange */}
-      <input name="name" onChange={handleChange} placeholder="Name" />
-      <input name="email" onChange={handleChange} placeholder="Email" />
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ContactForm />);`;
+const starterCode = "// 📝 Lesson 11: Multi-Field Controlled Forms!\n\nfunction ContactForm() {\n  const [form, setForm] = React.useState({ name: \"\", email: \"\" });\n\n  const handleChange = (e) => {\n    // Step 1: Update form state dynamically using [e.target.name]: e.target.value\n    // Write dynamic updater here:\n  };\n\n  return (\n    <form style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto' }}>\n      <h2>📝 Contact Us</h2>\n      <input name=\"name\" value={form.name} onChange={handleChange} placeholder=\"Your name\" />\n      <input name=\"email\" value={form.email} onChange={handleChange} placeholder=\"Your email\" />\n      <p>Current state: {form.name} ({form.email})</p>\n    </form>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ContactForm />);";
 
 const level5Lessons = [
     {
@@ -104,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 11: Controlled Form State | Level 5 React Dojo"
-    description="Synchronize form inputs, selects, and checkboxes directly with React state using two-way value bindings."
-    levelTag="Level 5 • React Dojo"
+    description="Handle complex form inputs, multi-field state management, and real-time validation feedback in React."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={11}
     lessonTitle="Controlled Form State"
     xpAmount={150}
@@ -123,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Synchronize form inputs, selects, and checkboxes directly with React state using two-way value bindings.
+        Handle complex form inputs, multi-field state management, and real-time validation feedback in React.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -143,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">[e.target.name]: e.target.value</div>
-                    <div class="tag-result">Computed property updates specific key dynamically</div>
+                    <div class="tag-code">{"[e.target.name]: e.target.value"}</div>
+                    <div class="tag-result">{"Computed property updates specific key dynamically"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">setForm({ ...form, [name]: val })</div>
-                    <div class="tag-result">Preserves existing form fields using spread</div>
+                    <div class="tag-code">{"setForm({ ...form, [name]: val })"}</div>
+                    <div class="tag-result">{"Preserves existing form fields using spread"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">form.email && form.name</div>
-                    <div class="tag-result">Validates all fields before submission</div>
+                    <div class="tag-code">{"form.email && form.name"}</div>
+                    <div class="tag-result">{"Validates all fields before submission"}</div>
                 </div>
             </div>
         </article>
@@ -163,23 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_11')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_11">function MultiInputForm() {
-  const [form, setForm] = React.useState({ username: "", email: "", role: "dev" });
-
-  const handleChange = (e) =&gt; {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  return (
-    &lt;form&gt;
-      &lt;input name="username" value={form.username} onChange={handleChange} /&gt;
-      &lt;input name="email" value={form.email} onChange={handleChange} /&gt;
-    &lt;/form&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_11">{"function MultiInputForm() {\n  const [form, setForm] = React.useState({ username: \"\", email: \"\", role: \"dev\" });\n\n  const handleChange = (e) => {\n    setForm({\n      ...form,\n      [e.target.name]: e.target.value\n    });\n  };\n\n  return (\n    <form>\n      <input name=\"username\" value={form.username} onChange={handleChange} />\n      <input name=\"email\" value={form.email} onChange={handleChange} />\n    </form>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -187,8 +151,8 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Implement dynamic handler: <code>setForm(&#123; ...form, [e.target.name]: e.target.value &#125;)</code>.</li>
-                <li>Bind form fields with <code>value=&#123;form.name&#125;</code>.</li>
+                <li>Update state dynamically using <code>setForm(&#123; ...form, [e.target.name]: e.target.value &#125;)</code>.</li>
+                <li>Bind <code>value=&#123;form.name&#125;</code> and <code>value=&#123;form.email&#125;</code>.</li>
             </ol>
         </article>
 
@@ -210,39 +174,14 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson11';
-        const DEFAULT_STARTER = `// 📝 Lesson 11: Multi-Field Controlled Forms!
-
-function ContactForm() {
-  const [form, setForm] = React.useState({ name: "", email: "" });
-
-  const handleChange = (e) => {
-    // Step 1: Update form state dynamically using [e.target.name]: e.target.value
-  };
-
-  return (
-    <form onSubmit={(e) => e.preventDefault()} style={{ fontFamily: 'sans-serif', maxWidth: '380px', margin: '0 auto' }}>
-      {/* Step 2: Bind input with value={form.name} and onChange */}
-      <input name="name" onChange={handleChange} placeholder="Name" />
-      <input name="email" onChange={handleChange} placeholder="Email" />
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ContactForm />);`;
+        const DEFAULT_STARTER = "// 📝 Lesson 11: Multi-Field Controlled Forms!\n\nfunction ContactForm() {\n  const [form, setForm] = React.useState({ name: \"\", email: \"\" });\n\n  const handleChange = (e) => {\n    // Step 1: Update form state dynamically using [e.target.name]: e.target.value\n    // Write dynamic updater here:\n  };\n\n  return (\n    <form style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto' }}>\n      <h2>📝 Contact Us</h2>\n      <input name=\"name\" value={form.name} onChange={handleChange} placeholder=\"Your name\" />\n      <input name=\"email\" value={form.email} onChange={handleChange} placeholder=\"Your email\" />\n      <p>Current state: {form.name} ({form.email})</p>\n    </form>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ContactForm />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'dynamic_handler',
                 label: 'Update state dynamically: <code>setForm({ ...form, [e.target.name]: e.target.value })</code>',
-                fn: (code) => /setForm\s*\(\s*\{\s*\.\.\.form\s*,\s*\[\s*e\.target\.name\s*\]\s*:\s*e\.target\.value\s*\}\s*\)/i.test(code)
-            },
-            {
-                id: 'bind_value',
-                label: 'Bind input with <code>value={form.name}</code>',
-                fn: (code) => /value\s*=\s*\{\s*form\.name\s*\}/i.test(code)
+                fn: (code) => /setForm\s*\(\s*\{\s*\.\.\.form\s*,\s*\[\s*e\.target\.name\s*\]\s*:\s*e\.target\.value\s*\}\s*\)/i.test(code) || /setForm\s*\(\s*\(?prev\)?\s*=>\s*\(\s*\{\s*\.\.\.prev\s*,\s*\[\s*e\.target\.name\s*\]/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -316,36 +255,12 @@ root.render(<ContactForm />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 11: Controlled Form State',
-                        xp: 150,
-                        completionKey: 'partC_lesson11_remake_complete',
-                        nextUrl: '/3. partC/lesson12/lesson12_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

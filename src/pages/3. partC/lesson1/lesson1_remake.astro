@@ -1,40 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🛠️ Level 5 Lesson 1 Practice Task: Modern ES6+ JavaScript Powers
-
-// 1. Initial user profile object:
-const developer = {
-    name: "Alex",
-    role: "Frontend Developer",
-    skills: ["HTML5", "CSS3", "JavaScript"]
-};
-
-// Step 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: "Level 5 Master"'
-// Write your spread code here:
-
-
-// Step 2: Use Object Destructuring to extract 'name', 'role', 'skills', and 'level' from 'updatedDev'
-// Write your destructuring code here:
-
-
-// Step 3: Write an Arrow Function named 'renderProfile' that returns a formatted HTML template string
-const renderProfile = () => {
-    // Step 4: Use .map() on the 'skills' array to generate formatted badge strings
-    const skillBadges = "";
-
-    return \`
-        <div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">
-            <h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 \${typeof name !== 'undefined' ? name : 'Developer'}</h2>
-            <p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;">💻 \${typeof role !== 'undefined' ? role : 'Role'}</p>
-            <p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;">🏆 \${typeof level !== 'undefined' ? level : 'Level'}</p>
-            <div>\${skillBadges}</div>
-        </div>
-    \`;
-};
-
-// Render output to screen
-document.getElementById('root').innerHTML = renderProfile();`;
+const starterCode = "// 🛠️ Level 5 Lesson 1 Practice Task: ES6+ Powers!\n\n// 1. Initial user object:\nconst developer = {\n    name: \"Alex\",\n    role: \"Frontend Developer\",\n    skills: [\"HTML5\", \"CSS3\", \"JavaScript\"]\n};\n\n// Step 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: \"Level 5 Master\"'\n// Write your spread code here:\n\n\n// Step 2: Use Object Destructuring to extract 'name', 'role', 'skills', and 'level' from 'updatedDev'\n// Write your destructuring code here:\n\n\n// Step 3: Write an Arrow Function named 'renderProfile' that returns a formatted HTML template string\nconst renderProfile = () => {\n    // Step 4: Use .map() on the 'skills' array to generate formatted badge strings\n    const skillBadges = \"\";\n\n    return `\n        <div style=\"font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;\">\n            <h2 style=\"margin: 0 0 6px 0; color: #0f172a;\">👤 ${typeof name !== 'undefined' ? name : 'Developer'}</h2>\n            <p style=\"margin: 0 0 8px 0; color: #64748b; font-weight: 600;\">💻 ${typeof role !== 'undefined' ? role : 'Role'}</p>\n            <p style=\"margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;\">🏆 ${typeof level !== 'undefined' ? level : 'Level'}</p>\n            <div>${skillBadges}</div>\n        </div>\n    `;\n};\n\n// Render output to screen\ndocument.getElementById('root').innerHTML = renderProfile();";
 
 const level5Lessons = [
     {
@@ -118,7 +85,7 @@ const level5Lessons = [
 <LessonLayout
     title="Project 01: ES6+ JavaScript Powers | Level 5 React Dojo"
     description="Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery."
-    levelTag="Level 5 • React Dojo"
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={1}
     lessonTitle="ES6+ JavaScript Powers"
     xpAmount={150}
@@ -139,7 +106,7 @@ const level5Lessons = [
         Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -156,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">{ ...dev, rank: 'Pro' }</div>
-                    <div class="tag-result">Spread: Creates immutable copies with new keys</div>
+                    <div class="tag-code">{"{ ...dev, rank: 'Pro' }"}</div>
+                    <div class="tag-result">{"Spread: Creates immutable copies with new keys"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">const { name, role } = dev</div>
-                    <div class="tag-result">Destructure: Extracts properties into variables</div>
+                    <div class="tag-code">{"const { name, role } = dev"}</div>
+                    <div class="tag-result">{"Destructure: Extracts properties into variables"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">skills.map(s => `<li>${s}</li>`)</div>
-                    <div class="tag-result">Array Map: Transforms items into UI strings</div>
+                    <div class="tag-code">{"skills.map(s => `<li>${s}</li>`)"}</div>
+                    <div class="tag-result">{"Array Map: Transforms items into UI strings"}</div>
                 </div>
             </div>
         </article>
@@ -176,17 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_1">const dev = { name: "Alex", role: "Frontend" };
-// 1. Spread Operator
-const updated = { ...dev, level: "Level 5 Master" };
-
-// 2. Destructuring
-const { name, role, level } = updated;
-
-// 3. Arrow Function & Template String
-const renderProfile = () =&gt; {
-    return `&lt;div class="card"&gt;&lt;h2&gt;${name}&lt;/h2&gt;&lt;p&gt;${role}&lt;/p&gt;&lt;/div&gt;`;
-};</code></pre>
+                <pre><code id="refCodeBox_1">{"const dev = { name: \"Alex\", role: \"Frontend\" };\n// 1. Spread Operator\nconst updated = { ...dev, level: \"Level 5 Master\" };\n\n// 2. Destructuring\nconst { name, role, level } = updated;\n\n// 3. Arrow Function & Template String\nconst renderProfile = () => {\n    return `<div class=\"card\"><h2>${name}</h2><p>${role}</p></div>`;\n};"}</code></pre>
             </div>
         </article>
 
@@ -194,9 +151,9 @@ const renderProfile = () =&gt; {
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use the spread operator (<code>...</code>) to create <code>const updatedDev = &#123; ...developer, level: "Level 5 Master" &#125;</code>.</li>
-                <li>Use object destructuring <code>const &#123; name, role, skills, level &#125; = updatedDev</code>.</li>
-                <li>Use <code>skills.map(skill => ...)</code> to generate badge HTML strings.</li>
+                <li>Create <code>updatedDev</code> using object spread <code>&#123; ...developer, level: "Level 5 Master" &#125;</code>.</li>
+                <li>Destructure <code>&#123; name, role, skills, level &#125;</code> from <code>updatedDev</code>.</li>
+                <li>Map over <code>skills</code> using an arrow function to produce HTML badges.</li>
             </ol>
         </article>
 
@@ -218,40 +175,7 @@ const renderProfile = () =&gt; {
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson1';
-        const DEFAULT_STARTER = `// 🛠️ Level 5 Lesson 1 Practice Task: Modern ES6+ JavaScript Powers
-
-// 1. Initial user profile object:
-const developer = {
-    name: "Alex",
-    role: "Frontend Developer",
-    skills: ["HTML5", "CSS3", "JavaScript"]
-};
-
-// Step 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: "Level 5 Master"'
-// Write your spread code here:
-
-
-// Step 2: Use Object Destructuring to extract 'name', 'role', 'skills', and 'level' from 'updatedDev'
-// Write your destructuring code here:
-
-
-// Step 3: Write an Arrow Function named 'renderProfile' that returns a formatted HTML template string
-const renderProfile = () => {
-    // Step 4: Use .map() on the 'skills' array to generate formatted badge strings
-    const skillBadges = "";
-
-    return \`
-        <div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">
-            <h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 \${typeof name !== 'undefined' ? name : 'Developer'}</h2>
-            <p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;">💻 \${typeof role !== 'undefined' ? role : 'Role'}</p>
-            <p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;">🏆 \${typeof level !== 'undefined' ? level : 'Level'}</p>
-            <div>\${skillBadges}</div>
-        </div>
-    \`;
-};
-
-// Render output to screen
-document.getElementById('root').innerHTML = renderProfile();`;
+        const DEFAULT_STARTER = "// 🛠️ Level 5 Lesson 1 Practice Task: ES6+ Powers!\n\n// 1. Initial user object:\nconst developer = {\n    name: \"Alex\",\n    role: \"Frontend Developer\",\n    skills: [\"HTML5\", \"CSS3\", \"JavaScript\"]\n};\n\n// Step 1: Use Spread Operator (...) to create an immutable copy named 'updatedDev' with a new property 'level: \"Level 5 Master\"'\n// Write your spread code here:\n\n\n// Step 2: Use Object Destructuring to extract 'name', 'role', 'skills', and 'level' from 'updatedDev'\n// Write your destructuring code here:\n\n\n// Step 3: Write an Arrow Function named 'renderProfile' that returns a formatted HTML template string\nconst renderProfile = () => {\n    // Step 4: Use .map() on the 'skills' array to generate formatted badge strings\n    const skillBadges = \"\";\n\n    return `\n        <div style=\"font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;\">\n            <h2 style=\"margin: 0 0 6px 0; color: #0f172a;\">👤 ${typeof name !== 'undefined' ? name : 'Developer'}</h2>\n            <p style=\"margin: 0 0 8px 0; color: #64748b; font-weight: 600;\">💻 ${typeof role !== 'undefined' ? role : 'Role'}</p>\n            <p style=\"margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;\">🏆 ${typeof level !== 'undefined' ? level : 'Level'}</p>\n            <div>${skillBadges}</div>\n        </div>\n    `;\n};\n\n// Render output to screen\ndocument.getElementById('root').innerHTML = renderProfile();";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -342,36 +266,12 @@ document.getElementById('root').innerHTML = renderProfile();`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 01: ES6+ JavaScript Powers',
-                        xp: 150,
-                        completionKey: 'partC_lesson1_remake_complete',
-                        nextUrl: '/3. partC/lesson2/lesson2_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

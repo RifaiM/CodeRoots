@@ -1,32 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
-
-// Step 1: Destructure props { name, price, category, isAvailable } in ProductCard parameter list
-function ProductCard(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
-      <div>{props.category}</div>
-      <h3>{props.name}</h3>
-      <p>\${props.price}</p>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', padding: '16px' }}>
-      <h2>🛍️ DevDojo Gear Store</h2>
-      {/* Step 2: Render at least two ProductCard elements */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px' }}>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);`;
+const starterCode = "// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!\n\n// Step 1: Child Component: ProductCard (Destructuring Props)\nfunction ProductCard(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>\n      <div>{props.category}</div>\n      <h3>{props.name}</h3>\n      <p style={{ fontWeight: '800', color: '#059669' }}>${props.price}</p>\n      <span>{props.isAvailable ? \"🟢 In Stock\" : \"🔴 Out of Stock\"}</span>\n    </div>\n  );\n}\n\n// 2. Parent Component: App (Passing Props to Reusable Children)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>\n      <h2>🛍️ DevDojo Gear Store</h2>\n      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>\n        {/* Step 2: Render ProductCard components with name, price, category, isAvailable props */}\n        <ProductCard name=\"Mechanical Keyboard\" price={129.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"Ergonomic Mouse\" price={69.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"4K Monitor\" price={449.99} category=\"Displays\" isAvailable={false} />\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
 const level5Lessons = [
     {
@@ -110,7 +85,7 @@ const level5Lessons = [
 <LessonLayout
     title="Project 04: Template Literals in JS | Level 5 React Dojo"
     description="Construct multi-line strings and embed dynamic JavaScript expressions using backtick template literals effortlessly."
-    levelTag="Level 5 • React Dojo"
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={4}
     lessonTitle="Template Literals in JS"
     xpAmount={150}
@@ -131,33 +106,33 @@ const level5Lessons = [
         Construct multi-line strings and embed dynamic JavaScript expressions using backtick template literals effortlessly.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> State is a component's personal memory. Unlike regular variables that disappear when a function finishes, React preserves state values across renders and automatically updates the screen whenever state changes.
+                <strong>Real-World Analogy:</strong> Props are like parameters passed into a function. They flow unidirectionally downwards from parent components to child components, making your UI dynamic and flexible.
             </div>
         </article>
 
         <!-- Interactive Feature Explorer -->
         <article class="concept-card">
-            <h3><span>⚛️</span> React useState Lifecycle</h3>
+            <h3><span>⚛️</span> Props & Dataflow Mastery</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">const [count, setCount] = useState(0)</div>
-                    <div class="tag-result">Initializes state with 0 and returns setter</div>
+                    <div class="tag-code">{"<Product name='Keyboard' price={99} />"}</div>
+                    <div class="tag-result">{"Passes string and number props to child"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">setCount(count + 1)</div>
-                    <div class="tag-result">Updates state value and triggers reactive UI re-render</div>
+                    <div class="tag-code">{"function Product({ name, price })"}</div>
+                    <div class="tag-result">{"Destructures props in function signature"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">onClick={() => setCount(0)}</div>
-                    <div class="tag-result">Resets counter on button click event</div>
+                    <div class="tag-code">{"props.isAvailable && <Badge />"}</div>
+                    <div class="tag-result">{"Renders badge only if prop evaluates to true"}</div>
                 </div>
             </div>
         </article>
@@ -168,19 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_4')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_4">import React, { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    &lt;div className="counter-box"&gt;
-      &lt;h2&gt;Count: {count}&lt;/h2&gt;
-      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment ➕&lt;/button&gt;
-      &lt;button onClick={() =&gt; setCount(0)}&gt;Reset 🔄&lt;/button&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_4">{"function ProductCard({ name, price, category, isAvailable }) {\n  return (\n    <div className=\"product-card\">\n      <span className=\"category-pill\">{category}</span>\n      <h3>{name}</h3>\n      <p className=\"price\">${price}</p>\n      {isAvailable ? <span className=\"in-stock\">In Stock ✅</span> : <span>Sold Out</span>}\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -188,8 +151,9 @@ function Counter() {
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Destructure props in <code>function ProductCard(&#123; name, price, category, isAvailable &#125;)</code>.</li>
-                <li>Render multiple <code>&lt;ProductCard name=... price=... /&gt;</code> instances in parent <code>App</code>.</li>
+                <li>Accept props in <code>ProductCard(&#123; name, price, category, isAvailable &#125;)</code>.</li>
+                <li>Display the product name, price, and category dynamically.</li>
+                <li>Render multiple <code>&lt;ProductCard /&gt;</code> instances in <code>App</code>.</li>
             </ol>
         </article>
 
@@ -211,32 +175,7 @@ function Counter() {
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson4';
-        const DEFAULT_STARTER = `// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!
-
-// Step 1: Destructure props { name, price, category, isAvailable } in ProductCard parameter list
-function ProductCard(props) {
-  return (
-    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>
-      <div>{props.category}</div>
-      <h3>{props.name}</h3>
-      <p>\${props.price}</p>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', padding: '16px' }}>
-      <h2>🛍️ DevDojo Gear Store</h2>
-      {/* Step 2: Render at least two ProductCard elements */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px' }}>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);`;
+        const DEFAULT_STARTER = "// 🎁 Lesson 4: Custom Reusable Props & Dynamic Product Cards!\n\n// Step 1: Child Component: ProductCard (Destructuring Props)\nfunction ProductCard(props) {\n  return (\n    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '16px' }}>\n      <div>{props.category}</div>\n      <h3>{props.name}</h3>\n      <p style={{ fontWeight: '800', color: '#059669' }}>${props.price}</p>\n      <span>{props.isAvailable ? \"🟢 In Stock\" : \"🔴 Out of Stock\"}</span>\n    </div>\n  );\n}\n\n// 2. Parent Component: App (Passing Props to Reusable Children)\nfunction App() {\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>\n      <h2>🛍️ DevDojo Gear Store</h2>\n      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>\n        {/* Step 2: Render ProductCard components with name, price, category, isAvailable props */}\n        <ProductCard name=\"Mechanical Keyboard\" price={129.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"Ergonomic Mouse\" price={69.99} category=\"Peripherals\" isAvailable={true} />\n        <ProductCard name=\"4K Monitor\" price={449.99} category=\"Displays\" isAvailable={false} />\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<App />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -246,9 +185,9 @@ root.render(<App />);`;
                 fn: (code) => /function\s+ProductCard\s*\(\s*\{\s*name\s*,\s*price/i.test(code) || /const\s*\{\s*name\s*,\s*price[^}]*\}\s*=\s*props/i.test(code)
             },
             {
-                id: 'render_props',
-                label: 'Render multiple <code>&lt;ProductCard /&gt;</code> elements',
-                fn: (code) => /(?:<ProductCard[^>]*>[\s\S]*?){2,}/i.test(code) || (code.match(/<ProductCard/gi) || []).length >= 2
+                id: 'render_cards',
+                label: 'Pass custom props to <code>&lt;ProductCard ... /&gt;</code>',
+                fn: (code) => /<ProductCard\s+[^>]*name=/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -322,36 +261,12 @@ root.render(<App />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 04: Template Literals in JS',
-                        xp: 150,
-                        completionKey: 'partC_lesson4_remake_complete',
-                        nextUrl: '/3. partC/lesson5/lesson5_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

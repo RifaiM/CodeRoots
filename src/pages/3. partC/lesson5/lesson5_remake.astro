@@ -1,42 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// ⚡ Lesson 5: React State (useState) & Interactive Events!
-
-function DojoCounterApp() {
-  // Step 1: Declare state 'likes' and setter 'setLikes' using React.useState(0)
-  const likes = 0;
-
-  // Step 2: Component Event Handlers
-  const handleLike = () => {
-  };
-
-  const handleReset = () => {
-  };
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>⚡ DevDojo Like Booster</h2>
-        <div style={{ fontSize: '2.2rem', fontWeight: '800', margin: '14px 0' }}>
-          ❤️ {likes} Likes
-        </div>
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-          {/* Step 3: Attach onClick to buttons */}
-          <button style={{ background: '#059669', color: 'white', border: 'none', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', fontWeight: '700' }}>
-            👍 Like
-          </button>
-          <button style={{ background: '#64748b', color: 'white', border: 'none', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', fontWeight: '700' }}>
-            🔄 Reset
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DojoCounterApp />);`;
+const starterCode = "// ⚡ Lesson 5: React State (useState) & Interactive Events!\n\nfunction DojoCounterApp() {\n  // Step 1: Declare state 'likes' and setter 'setLikes' using React.useState(0)\n  const likes = 0;\n\n  // Step 2: Component Event Handlers\n  const handleLike = () => {\n    // Write setLikes increment here:\n  };\n\n  const handleReset = () => {\n    // Write setLikes(0) here:\n  };\n\n  return (\n    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '24px' }}>\n        <h2>⚡ DevDojo Like Booster</h2>\n        <div style={{ fontSize: '2.5rem', fontWeight: '800', margin: '20px 0' }}>\n          ❤️ {likes} Likes\n        </div>\n        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>\n          <button onClick={handleLike} style={{ background: '#10b981', color: 'white', border: 'none', padding: '10px 18px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}>\n            👍 Like (+1)\n          </button>\n          <button onClick={handleReset} style={{ background: '#64748b', color: 'white', border: 'none', padding: '10px 18px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}>\n            🔄 Reset\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DojoCounterApp />);";
 
 const level5Lessons = [
     {
@@ -120,7 +85,7 @@ const level5Lessons = [
 <LessonLayout
     title="Project 05: Array Map & Filter | Level 5 React Dojo"
     description="Transform and filter data collections declaratively using array map, filter, and reduce methods in modern JavaScript."
-    levelTag="Level 5 • React Dojo"
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={5}
     lessonTitle="Array Map & Filter"
     xpAmount={150}
@@ -141,33 +106,33 @@ const level5Lessons = [
         Transform and filter data collections declaratively using array map, filter, and reduce methods in modern JavaScript.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Array.map() in React is like a factory assembly line. You feed in a raw array of data items, and map transforms each item into a rendered JSX element with a unique key.
+                <strong>Real-World Analogy:</strong> State is a component's personal memory. Unlike regular variables that disappear when a function finishes, React preserves state values across renders and automatically updates the screen whenever state changes.
             </div>
         </article>
 
         <!-- Interactive Feature Explorer -->
         <article class="concept-card">
-            <h3><span>⚛️</span> Dynamic List Rendering</h3>
+            <h3><span>⚛️</span> React useState Lifecycle</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">items.map(item => ...)</div>
-                    <div class="tag-result">Iterates through array and outputs JSX elements</div>
+                    <div class="tag-code">{"const [count, setCount] = useState(0)"}</div>
+                    <div class="tag-result">{"Initializes state with 0 and returns setter"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">key={item.id}</div>
-                    <div class="tag-result">Unique key for React DOM reconciliation performance</div>
+                    <div class="tag-code">{"setCount(count + 1)"}</div>
+                    <div class="tag-result">{"Updates state value and triggers reactive UI re-render"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">items.filter(i => i.active)</div>
-                    <div class="tag-result">Filters collection before mapping to screen</div>
+                    <div class="tag-code">{"onClick={() => setCount(0)}"}</div>
+                    <div class="tag-result">{"Resets counter on button click event"}</div>
                 </div>
             </div>
         </article>
@@ -178,23 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_5')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_5">const courses = [
-  { id: 1, name: "HTML5 Structure", xp: 100 },
-  { id: 2, name: "CSS3 Flexbox", xp: 150 },
-  { id: 3, name: "Modern React", xp: 250 }
-];
-
-function CourseList() {
-  return (
-    &lt;ul&gt;
-      {courses.map(course =&gt; (
-        &lt;li key={course.id}&gt;
-          &lt;strong&gt;{course.name}&lt;/strong&gt; • +{course.xp} XP
-        &lt;/li&gt;
-      ))}
-    &lt;/ul&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_5">{"import React, { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div className=\"counter-box\">\n      <h2>Count: {count}</h2>\n      <button onClick={() => setCount(count + 1)}>Increment ➕</button>\n      <button onClick={() => setCount(0)}>Reset 🔄</button>\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -203,7 +152,8 @@ function CourseList() {
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
                 <li>Declare state <code>const [likes, setLikes] = React.useState(0)</code>.</li>
-                <li>Attach click handlers <code>onClick=&#123;handleLike&#125;</code> and <code>onClick=&#123;handleReset&#125;</code>.</li>
+                <li>Implement <code>handleLike</code> to increment <code>setLikes(likes + 1)</code>.</li>
+                <li>Implement <code>handleReset</code> to reset <code>setLikes(0)</code>.</li>
             </ol>
         </article>
 
@@ -225,42 +175,7 @@ function CourseList() {
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson5';
-        const DEFAULT_STARTER = `// ⚡ Lesson 5: React State (useState) & Interactive Events!
-
-function DojoCounterApp() {
-  // Step 1: Declare state 'likes' and setter 'setLikes' using React.useState(0)
-  const likes = 0;
-
-  // Step 2: Component Event Handlers
-  const handleLike = () => {
-  };
-
-  const handleReset = () => {
-  };
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>⚡ DevDojo Like Booster</h2>
-        <div style={{ fontSize: '2.2rem', fontWeight: '800', margin: '14px 0' }}>
-          ❤️ {likes} Likes
-        </div>
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-          {/* Step 3: Attach onClick to buttons */}
-          <button style={{ background: '#059669', color: 'white', border: 'none', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', fontWeight: '700' }}>
-            👍 Like
-          </button>
-          <button style={{ background: '#64748b', color: 'white', border: 'none', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', fontWeight: '700' }}>
-            🔄 Reset
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<DojoCounterApp />);`;
+        const DEFAULT_STARTER = "// ⚡ Lesson 5: React State (useState) & Interactive Events!\n\nfunction DojoCounterApp() {\n  // Step 1: Declare state 'likes' and setter 'setLikes' using React.useState(0)\n  const likes = 0;\n\n  // Step 2: Component Event Handlers\n  const handleLike = () => {\n    // Write setLikes increment here:\n  };\n\n  const handleReset = () => {\n    // Write setLikes(0) here:\n  };\n\n  return (\n    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '24px' }}>\n        <h2>⚡ DevDojo Like Booster</h2>\n        <div style={{ fontSize: '2.5rem', fontWeight: '800', margin: '20px 0' }}>\n          ❤️ {likes} Likes\n        </div>\n        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>\n          <button onClick={handleLike} style={{ background: '#10b981', color: 'white', border: 'none', padding: '10px 18px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}>\n            👍 Like (+1)\n          </button>\n          <button onClick={handleReset} style={{ background: '#64748b', color: 'white', border: 'none', padding: '10px 18px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}>\n            🔄 Reset\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DojoCounterApp />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
@@ -270,9 +185,9 @@ root.render(<DojoCounterApp />);`;
                 fn: (code) => /const\s*\[\s*likes\s*,\s*setLikes\s*\]\s*=\s*(?:React\.)?useState\s*\(\s*0\s*\)/i.test(code)
             },
             {
-                id: 'onclick',
-                label: 'Attach <code>onClick={handleLike}</code> and <code>onClick={handleReset}</code>',
-                fn: (code) => /onClick\s*=\s*\{\s*handleLike\s*\}/i.test(code) && /onClick\s*=\s*\{\s*handleReset\s*\}/i.test(code)
+                id: 'setlikes',
+                label: 'Call <code>setLikes(likes + 1)</code> in handleLike',
+                fn: (code) => /setLikes\s*\(\s*likes\s*\+\s*1\s*\)/i.test(code) || /setLikes\s*\(\s*\(?l\)?\s*=>\s*l\s*\+\s*1\s*\)/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -346,36 +261,12 @@ root.render(<DojoCounterApp />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 05: Array Map & Filter',
-                        xp: 150,
-                        completionKey: 'partC_lesson5_remake_complete',
-                        nextUrl: '/3. partC/lesson6/lesson6_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

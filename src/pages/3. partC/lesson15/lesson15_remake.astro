@@ -1,34 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Lesson 15 Capstone: Interactive React Application!
-
-function ReactTaskManager() {
-  // Step 1: Declare state 'tasks' initialized with at least two items
-  const tasks = [];
-  const [inputVal, setInputVal] = React.useState("");
-
-  // Step 2: Add task handler function
-  const handleAddTask = (e) => {
-    e.preventDefault();
-  };
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🏆 Task Manager Capstone</h2>
-      <form onSubmit={handleAddTask}>
-        <input value={inputVal} onChange={e => setInputVal(e.target.value)} placeholder="New task..." />
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        {/* Render tasks list */}
-      </ul>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ReactTaskManager />);`;
+const starterCode = "// 🏆 Lesson 15 Capstone: Interactive React Application!\n\nfunction ReactTaskManager() {\n  // Step 1: Declare state 'tasks' initialized with at least two items\n  // Step 2: Declare state 'inputVal' initialized to \"\"\n  const [tasks, setTasks] = React.useState([\n    { id: 1, text: \"Master React Hooks\", completed: true },\n    { id: 2, text: \"Build Capstone SPA\", completed: false }\n  ]);\n  const [inputVal, setInputVal] = React.useState(\"\");\n\n  // Step 3: Add task handler function\n  const handleAddTask = () => {\n    if (!inputVal.trim()) return;\n    setTasks([...tasks, { id: Date.now(), text: inputVal, completed: false }]);\n    setInputVal(\"\");\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🏆 React Capstone: Task Manager</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <input value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder=\"New task...\" style={{ flex: 1, padding: '8px 12px' }} />\n        <button onClick={handleAddTask} style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px' }}>Add</button>\n      </div>\n      <ul style={{ listStyle: 'none', padding: 0 }}>\n        {tasks.map(t => (\n          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>\n            {t.completed ? \"✅\" : \"⏳\"} {t.text}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ReactTaskManager />);";
 
 const level5Lessons = [
     {
@@ -111,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 15: React Capstone App | Level 5 React Dojo"
-    description="Architect a complete, production-grade interactive React web application integrating all framework pillars and hooks."
-    levelTag="Level 5 • React Dojo"
+    description="Build a production-grade single page React application combining state, props, lifecycle effects, and API integration."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={15}
     lessonTitle="React Capstone App"
     xpAmount={150}
@@ -130,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Architect a complete, production-grade interactive React web application integrating all framework pillars and hooks.
+        Build a production-grade single page React application combining state, props, lifecycle effects, and API integration.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -150,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">const [tasks, setTasks] = useState([...])</div>
-                    <div class="tag-result">Main collection state for data records</div>
+                    <div class="tag-code">{"const [tasks, setTasks] = useState([...])"}</div>
+                    <div class="tag-result">{"Main collection state for data records"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">setTasks([...tasks, newTask])</div>
-                    <div class="tag-result">Adds items immutably without direct mutation</div>
+                    <div class="tag-code">{"setTasks([...tasks, newTask])"}</div>
+                    <div class="tag-result">{"Adds items immutably without direct mutation"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">tasks.filter(t => t.id !== id)</div>
-                    <div class="tag-result">Deletes item by filtering out matched ID</div>
+                    <div class="tag-code">{"tasks.filter(t => t.id !== id)"}</div>
+                    <div class="tag-result">{"Deletes item by filtering out matched ID"}</div>
                 </div>
             </div>
         </article>
@@ -170,27 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_15')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_15">function TaskManager() {
-  const [tasks, setTasks] = React.useState([
-    { id: 1, title: "Master React Hooks", done: true },
-    { id: 2, title: "Build Capstone SPA", done: false }
-  ]);
-  const [input, setInput] = React.useState("");
-
-  const handleAdd = () =&gt; {
-    if (!input.trim()) return;
-    setTasks([...tasks, { id: Date.now(), title: input, done: false }]);
-    setInput("");
-  };
-
-  return (
-    &lt;div&gt;
-      &lt;input value={input} onChange={e =&gt; setInput(e.target.value)} /&gt;
-      &lt;button onClick={handleAdd}&gt;Add Task&lt;/button&gt;
-      &lt;ul&gt;{tasks.map(t =&gt; &lt;li key={t.id}&gt;{t.title}&lt;/li&gt;)}&lt;/ul&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_15">{"function TaskManager() {\n  const [tasks, setTasks] = React.useState([\n    { id: 1, title: \"Master React Hooks\", done: true },\n    { id: 2, title: \"Build Capstone SPA\", done: false }\n  ]);\n  const [input, setInput] = React.useState(\"\");\n\n  const handleAdd = () => {\n    if (!input.trim()) return;\n    setTasks([...tasks, { id: Date.now(), title: input, done: false }]);\n    setInput(\"\");\n  };\n\n  return (\n    <div>\n      <input value={input} onChange={e => setInput(e.target.value)} />\n      <button onClick={handleAdd}>Add Task</button>\n      <ul>{tasks.map(t => <li key={t.id}>{t.title}</li>)}</ul>\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -198,8 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Declare state <code>const [tasks, setTasks] = React.useState(...)</code>.</li>
-                <li>Append new task: <code>setTasks([...tasks, ...])</code>.</li>
+                <li>Declare <code>const [tasks, setTasks] = React.useState([...])</code>.</li>
+                <li>Implement <code>handleAddTask</code> to append new tasks with <code>setTasks([...tasks, newTask])</code>.</li>
+                <li>Render the list of tasks with <code>tasks.map(...)</code>.</li>
             </ol>
         </article>
 
@@ -221,46 +175,19 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson15';
-        const DEFAULT_STARTER = `// 🏆 Lesson 15 Capstone: Interactive React Application!
-
-function ReactTaskManager() {
-  // Step 1: Declare state 'tasks' initialized with at least two items
-  const tasks = [];
-  const [inputVal, setInputVal] = React.useState("");
-
-  // Step 2: Add task handler function
-  const handleAddTask = (e) => {
-    e.preventDefault();
-  };
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🏆 Task Manager Capstone</h2>
-      <form onSubmit={handleAddTask}>
-        <input value={inputVal} onChange={e => setInputVal(e.target.value)} placeholder="New task..." />
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        {/* Render tasks list */}
-      </ul>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ReactTaskManager />);`;
+        const DEFAULT_STARTER = "// 🏆 Lesson 15 Capstone: Interactive React Application!\n\nfunction ReactTaskManager() {\n  // Step 1: Declare state 'tasks' initialized with at least two items\n  // Step 2: Declare state 'inputVal' initialized to \"\"\n  const [tasks, setTasks] = React.useState([\n    { id: 1, text: \"Master React Hooks\", completed: true },\n    { id: 2, text: \"Build Capstone SPA\", completed: false }\n  ]);\n  const [inputVal, setInputVal] = React.useState(\"\");\n\n  // Step 3: Add task handler function\n  const handleAddTask = () => {\n    if (!inputVal.trim()) return;\n    setTasks([...tasks, { id: Date.now(), text: inputVal, completed: false }]);\n    setInputVal(\"\");\n  };\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>\n      <h2>🏆 React Capstone: Task Manager</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <input value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder=\"New task...\" style={{ flex: 1, padding: '8px 12px' }} />\n        <button onClick={handleAddTask} style={{ background: '#2563eb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px' }}>Add</button>\n      </div>\n      <ul style={{ listStyle: 'none', padding: 0 }}>\n        {tasks.map(t => (\n          <li key={t.id} style={{ padding: '8px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '6px' }}>\n            {t.completed ? \"✅\" : \"⏳\"} {t.text}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<ReactTaskManager />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'tasks_state',
                 label: 'Declare <code>const [tasks, setTasks] = React.useState(...)</code>',
-                fn: (code) => /const\s*\[\s*tasks\s*,\s*setTasks\s*\]\s*=\s*(?:React\.)?useState\s*\(/i.test(code)
+                fn: (code) => /const\s*\[\s*tasks\s*,\s*setTasks\s*\]\s*=\s*(?:React\.)?useState/i.test(code)
             },
             {
                 id: 'add_task',
-                label: 'Append task with <code>setTasks([...tasks, ...])</code>',
-                fn: (code) => /setTasks\s*\(\s*\[\s*\.\.\.tasks\s*,/i.test(code)
+                label: 'Append new task with <code>setTasks([...tasks, ...])</code>',
+                fn: (code) => /setTasks\s*\(\s*\[\s*\.\.\.tasks/i.test(code) || /setTasks\s*\(\s*\(?t\)?\s*=>\s*\[\s*\.\.\.t/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -334,36 +261,12 @@ root.render(<ReactTaskManager />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 15: React Capstone App',
-                        xp: 150,
-                        completionKey: 'partC_lesson15_remake_complete',
-                        nextUrl: '/3. partC/certificate.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 

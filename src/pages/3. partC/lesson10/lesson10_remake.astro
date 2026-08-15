@@ -1,30 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!
-
-function AuthDashboard() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>🛡️ Access Portal</h2>
-        
-        {/* Step 1: Use ternary operator to show Profile when logged in, or Login box when logged out */}
-
-
-        {/* Step 2: Toggle state on button click */}
-        <button onClick={() => {}} style={{ marginTop: '16px', padding: '8px 16px', borderRadius: '10px', background: '#2563eb', color: 'white', border: 'none', cursor: 'pointer' }}>
-          {isLoggedIn ? "Log Out" : "Log In"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AuthDashboard />);`;
+const starterCode = "// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!\n\nfunction AuthDashboard() {\n  const [isLoggedIn, setIsLoggedIn] = React.useState(false);\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2>🔐 Member Portal</h2>\n        \n        {/* Step 1: Use Ternary operator: isLoggedIn ? <Dashboard /> : <LoginForm /> */}\n        {isLoggedIn ? (\n          <div>\n            <h3>Welcome, Member! ✅</h3>\n            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>\n          </div>\n        ) : (\n          <div>\n            <h3>Please Sign In</h3>\n            <button onClick={() => setIsLoggedIn(true)}>Log In</button>\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<AuthDashboard />);";
 
 const level5Lessons = [
     {
@@ -107,8 +84,8 @@ const level5Lessons = [
 
 <LessonLayout
     title="Project 10: React useState Hook | Level 5 React Dojo"
-    description="Manage component-level reactive state, trigger automated re-renders, and use state updater functions."
-    levelTag="Level 5 • React Dojo"
+    description="Master reactive state updates, functional state setters, and multiple state variables in functional components."
+    levelTag="Level 5 • Framework Dojo"
     lessonNum={10}
     lessonTitle="React useState Hook"
     xpAmount={150}
@@ -126,10 +103,10 @@ const level5Lessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Manage component-level reactive state, trigger automated re-renders, and use state updater functions.
+        Master reactive state updates, functional state setters, and multiple state variables in functional components.
     </p>
 
-        <!-- Concept Slot (Left Pane) -->
+    <!-- Concept Slot (Left Pane) -->
     <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
         
         <!-- Core Concept & Analogy -->
@@ -146,16 +123,16 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
             <div class="tag-demo">
                 <div class="tag-example">
-                    <div class="tag-code">isAuth ? <Dashboard /> : <Login /></div>
-                    <div class="tag-result">Ternary: switches between two UI states</div>
+                    <div class="tag-code">{"isAuth ? <Dashboard /> : <Login />"}</div>
+                    <div class="tag-result">{"Ternary: switches between two UI states"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">hasAlert && <AlertBanner /></div>
-                    <div class="tag-result">Logical AND: renders only when true</div>
+                    <div class="tag-code">{"hasAlert && <AlertBanner />"}</div>
+                    <div class="tag-result">{"Logical AND: renders only when true"}</div>
                 </div>
                 <div class="tag-example">
-                    <div class="tag-code">if (error) return <ErrorView /></div>
-                    <div class="tag-result">Guard Clause: early return for error handling</div>
+                    <div class="tag-code">{"if (error) return <ErrorView />"}</div>
+                    <div class="tag-result">{"Guard Clause: early return for error handling"}</div>
                 </div>
             </div>
         </article>
@@ -166,23 +143,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_10')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_10">function AuthBox({ user, onLogout }) {
-  return (
-    &lt;div className="auth-box"&gt;
-      {user ? (
-        &lt;div&gt;
-          &lt;h2&gt;Welcome back, {user.name}!&lt;/h2&gt;
-          &lt;button onClick={onLogout}&gt;Sign Out&lt;/button&gt;
-        &lt;/div&gt;
-      ) : (
-        &lt;div&gt;
-          &lt;h2&gt;Please log in to continue&lt;/h2&gt;
-          &lt;button&gt;Sign In&lt;/button&gt;
-        &lt;/div&gt;
-      )}
-    &lt;/div&gt;
-  );
-}</code></pre>
+                <pre><code id="refCodeBox_10">{"function AuthBox({ user, onLogout }) {\n  return (\n    <div className=\"auth-box\">\n      {user ? (\n        <div>\n          <h2>Welcome back, {user.name}!</h2>\n          <button onClick={onLogout}>Sign Out</button>\n        </div>\n      ) : (\n        <div>\n          <h2>Please log in to continue</h2>\n          <button>Sign In</button>\n        </div>\n      )}\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -190,8 +151,9 @@ const level5Lessons = [
         <article class="concept-card" style="border-left: 4px solid #2563eb;">
             <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
             <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Use ternary operator: <code>isLoggedIn ? &lt;p&gt;Welcome&lt;/p&gt; : &lt;p&gt;Please log in&lt;/p&gt;</code>.</li>
-                <li>Toggle authentication state: <code>setIsLoggedIn(!isLoggedIn)</code>.</li>
+                <li>Use ternary condition <code>isLoggedIn ? (...) : (...)</code>.</li>
+                <li>Toggle <code>setIsLoggedIn(!isLoggedIn)</code> on button click.</li>
+                <li>Observe dynamic UI state transitions.</li>
             </ol>
         </article>
 
@@ -213,42 +175,19 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson10';
-        const DEFAULT_STARTER = `// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!
-
-function AuthDashboard() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>
-        <h2>🛡️ Access Portal</h2>
-        
-        {/* Step 1: Use ternary operator to show Profile when logged in, or Login box when logged out */}
-
-
-        {/* Step 2: Toggle state on button click */}
-        <button onClick={() => {}} style={{ marginTop: '16px', padding: '8px 16px', borderRadius: '10px', background: '#2563eb', color: 'white', border: 'none', cursor: 'pointer' }}>
-          {isLoggedIn ? "Log Out" : "Log In"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AuthDashboard />);`;
+        const DEFAULT_STARTER = "// 🔀 Lesson 10: Conditional Rendering with Ternary & Logical AND!\n\nfunction AuthDashboard() {\n  const [isLoggedIn, setIsLoggedIn] = React.useState(false);\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '420px', margin: '0 auto', textAlign: 'center' }}>\n      <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '16px', padding: '20px' }}>\n        <h2>🔐 Member Portal</h2>\n        \n        {/* Step 1: Use Ternary operator: isLoggedIn ? <Dashboard /> : <LoginForm /> */}\n        {isLoggedIn ? (\n          <div>\n            <h3>Welcome, Member! ✅</h3>\n            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>\n          </div>\n        ) : (\n          <div>\n            <h3>Please Sign In</h3>\n            <button onClick={() => setIsLoggedIn(true)}>Log In</button>\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<AuthDashboard />);";
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
             {
                 id: 'ternary',
                 label: 'Use ternary operator: <code>isLoggedIn ? ... : ...</code>',
-                fn: (code) => /isLoggedIn\s*\?\s*<[a-z0-9]+[^>]*>[\s\S]+:\s*<[a-z0-9]+[^>]*>/i.test(code)
+                fn: (code) => /isLoggedIn\s*\?\s*<[a-z0-9]/i.test(code) || /isLoggedIn\s*\?\s*\(/i.test(code)
             },
             {
-                id: 'toggle_state',
-                label: 'Toggle state with <code>setIsLoggedIn(!isLoggedIn)</code>',
-                fn: (code) => /setIsLoggedIn\s*\(\s*!isLoggedIn\s*\)/i.test(code)
+                id: 'toggle',
+                label: 'Toggle state with <code>setIsLoggedIn</code>',
+                fn: (code) => /setIsLoggedIn\s*\(/i.test(code)
             }
         ], {
             containerId: 'taskChecklist',
@@ -322,36 +261,12 @@ root.render(<AuthDashboard />);`;
 
         // 4. Safe Reset Button Handler
         if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
-
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 10: React useState Hook',
-                        xp: 150,
-                        completionKey: 'partC_lesson10_remake_complete',
-                        nextUrl: '/3. partC/lesson11/lesson11_remake.html',
-                        customMessage: 'You have mastered this React Dojo challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
             });
         }
 
+        // Initial Paint
         updateEditor();
     }
 
