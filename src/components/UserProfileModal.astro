@@ -445,14 +445,14 @@
 
     // ── 6. Course Progress Reset Confirmation Modal ──
     window.confirmResetProgress = function() {
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
+        if (typeof (window as any).Swal !== 'undefined') {
+            (window as any).Swal.fire({
                 icon: 'warning',
                 title: '⚠️ Reset All Progress?',
                 html: `
                     <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                         <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
-                            This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                            This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across <strong>Level 0 through Level 10</strong>.
                         </p>
                         <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                             🚨 This action cannot be undone!
@@ -471,12 +471,264 @@
             }).then((result: any) => {
                 if (result.isConfirmed) {
                     localStorage.clear();
+                    sessionStorage.clear();
                     updateAllHeaderStats();
                     window.location.reload();
                 }
             });
         }
     };
+
+    // ── 7. Universal Developer Toolkit & Shortcuts (Ctrl+Alt+D) ──
+    (window as any).NoviCodes = {
+        unlockAll: function() {
+            localStorage.setItem('practice_mode_unlocked', 'true');
+            localStorage.setItem('level0_completed', 'true');
+            localStorage.setItem('readWebsite', 'true');
+            localStorage.setItem('readHTML', 'true');
+            localStorage.setItem('readCSS', 'true');
+            localStorage.setItem('readJavaScript', 'true');
+            localStorage.setItem('level0_quiz_completed', 'true');
+            localStorage.setItem('level1_completed', 'true');
+            localStorage.setItem('level2_completed', 'true');
+            localStorage.setItem('level3_completed', 'true');
+            localStorage.setItem('level4_completed', 'true');
+            localStorage.setItem('level5_completed', 'true');
+            localStorage.setItem('level6_completed', 'true');
+            localStorage.setItem('level7_completed', 'true');
+            localStorage.setItem('level8_completed', 'true');
+            localStorage.setItem('level9_completed', 'true');
+            localStorage.setItem('level10_completed', 'true');
+
+            localStorage.setItem('partF_completed', 'true');
+            localStorage.setItem('partF_branchA_completed', 'true');
+            localStorage.setItem('partF_branchB_completed', 'true');
+            localStorage.setItem('partF_branchC_completed', 'true');
+            localStorage.setItem('partG_completed', 'true');
+            localStorage.setItem('partH_completed', 'true');
+            localStorage.setItem('partI_completed', 'true');
+
+            for (let i = 1; i <= 15; i++) {
+                localStorage.setItem(`partB_lesson${i}_remake_complete`, 'true');
+                localStorage.setItem(`partC_lesson${i}_remake_complete`, 'true');
+                localStorage.setItem(`partE_lesson${i}_remake_complete`, 'true');
+            }
+
+            for (let i = 1; i <= 6; i++) {
+                localStorage.setItem(`partF_branchA_lesson${i}_complete`, 'true');
+                localStorage.setItem(`partF_branchB_lesson${i}_complete`, 'true');
+                localStorage.setItem(`partF_branchC_lesson${i}_complete`, 'true');
+                localStorage.setItem(`partG_lesson${i}_remake_complete`, 'true');
+                localStorage.setItem(`partH_lesson${i}_remake_complete`, 'true');
+                localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
+            }
+
+            console.log('%c🔓 [NoviCodes DevKit] All 10 Levels, 81 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+            if (typeof (window as any).Swal !== 'undefined') {
+                (window as any).Swal.fire({
+                    icon: 'success',
+                    title: '🔓 Dev Mode: All Unlocked!',
+                    text: 'All levels (0–10), lessons, and certificates are unlocked for testing.',
+                    confirmButtonColor: '#10b981'
+                }).then(() => window.location.reload());
+            } else {
+                window.location.reload();
+            }
+        },
+
+        lockAll: function() {
+            // 1. Reset Dev Unlock Flag
+            localStorage.removeItem('practice_mode_unlocked');
+            localStorage.removeItem('progression_mode');
+
+            // 2. Reset User XP & Streaks
+            localStorage.removeItem('userXP');
+            localStorage.removeItem('novicodes_user_xp');
+            localStorage.removeItem('novicodes_xp');
+            localStorage.removeItem('novicodes_streak_count');
+            localStorage.removeItem('novicodes_longest_streak');
+            localStorage.removeItem('novicodes_last_quest_date');
+            localStorage.removeItem('novicodes_daily_quest_xp');
+            localStorage.removeItem('novicodes_streak_bonus_xp');
+            localStorage.removeItem('novicodes_streak_freeze');
+
+            // 3. Reset Level Completion & Concept Flags (Levels 0–10)
+            localStorage.removeItem('level0_completed');
+            localStorage.removeItem('level0_quiz_completed');
+            localStorage.removeItem('level0_quiz_score');
+            localStorage.removeItem('readWebsite');
+            localStorage.removeItem('readHTML');
+            localStorage.removeItem('readCSS');
+            localStorage.removeItem('readJavaScript');
+            localStorage.removeItem('level1_completed');
+            localStorage.removeItem('level2_completed');
+            localStorage.removeItem('level3_completed');
+            localStorage.removeItem('level4_completed');
+            localStorage.removeItem('level5_completed');
+            localStorage.removeItem('level6_completed');
+            localStorage.removeItem('level7_completed');
+            localStorage.removeItem('level8_completed');
+            localStorage.removeItem('level9_completed');
+            localStorage.removeItem('level10_completed');
+
+            // 4. Reset Track Completion Flags (Levels 7–10)
+            localStorage.removeItem('partF_completed');
+            localStorage.removeItem('partF_complete');
+            localStorage.removeItem('partF_branchA_completed');
+            localStorage.removeItem('partF_branchA_complete');
+            localStorage.removeItem('partF_branchB_completed');
+            localStorage.removeItem('partF_branchB_complete');
+            localStorage.removeItem('partF_branchC_completed');
+            localStorage.removeItem('partF_branchC_complete');
+            localStorage.removeItem('partG_completed');
+            localStorage.removeItem('partG_complete');
+            localStorage.removeItem('partH_completed');
+            localStorage.removeItem('partH_complete');
+            localStorage.removeItem('partI_completed');
+            localStorage.removeItem('partI_complete');
+
+            // 5. Reset Lessons (Levels 4–6)
+            for (let i = 1; i <= 20; i++) {
+                localStorage.removeItem(`partB_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partB_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partB_lesson${i}_draft`);
+                localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partC_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partC_lesson${i}_draft`);
+                localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partE_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partE_lesson${i}_draft`);
+                localStorage.removeItem(`lesson_${i}_completed`);
+                localStorage.removeItem(`lesson_${i}_complete`);
+            }
+
+            // 6. Reset Lessons (Levels 7–10)
+            for (let i = 1; i <= 6; i++) {
+                localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+                localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
+                localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
+
+                localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+                localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
+                localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
+
+                localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
+                localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
+                localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
+
+                localStorage.removeItem(`partG_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partG_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partG_lesson${i}_draft`);
+
+                localStorage.removeItem(`partH_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partH_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partH_lesson${i}_draft`);
+
+                localStorage.removeItem(`partI_lesson${i}_remake_complete`);
+                localStorage.removeItem(`partI_lesson${i}_remake_completed`);
+                localStorage.removeItem(`partI_lesson${i}_draft`);
+            }
+
+            // 7. Reset Certificate Recipient Names
+            localStorage.removeItem('partB_cert_student_name');
+            localStorage.removeItem('partC_cert_student_name');
+            localStorage.removeItem('partE_cert_student_name');
+            localStorage.removeItem('partF_cert_student_name');
+            localStorage.removeItem('partG_cert_student_name');
+            localStorage.removeItem('partH_cert_student_name');
+            localStorage.removeItem('partI_cert_student_name');
+
+            console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression & 0 XP RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
+            if (typeof (window as any).Swal !== 'undefined') {
+                (window as any).Swal.fire({
+                    icon: 'info',
+                    title: '🔒 Standard Mode Restored',
+                    text: 'Sequential progression and 0 XP have been restored across all levels (0–10).',
+                    confirmButtonColor: '#2563eb'
+                }).then(() => window.location.reload());
+            } else {
+                window.location.reload();
+            }
+        },
+
+        maxXP: function() {
+            (this as any).unlockAll();
+            localStorage.setItem('novicodes_daily_quest_xp', '2500');
+            localStorage.setItem('novicodes_streak_bonus_xp', '1000');
+            console.log('%c⚡ [NoviCodes DevKit] Max XP and Grand Master rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
+        },
+
+        status: function() {
+            const stats = getUserXPAndRank();
+            const isDev = localStorage.getItem('practice_mode_unlocked') === 'true';
+            console.log('%c📊 [NoviCodes Status Report]', 'color: #3b82f6; font-weight: 800; font-size: 14px;');
+            console.table({
+                'Dev Mode Unlocked': isDev ? 'YES' : 'NO',
+                'Total XP': stats.totalXP.toLocaleString() + ' / ' + stats.maxXP.toLocaleString() + ' XP',
+                'Rank': stats.rankTitle + ' ' + stats.rankIcon,
+                'Level 0 (History)': stats.isL0 ? 'Completed' : 'Pending',
+                'Level 1 (HTML)': stats.isL1 ? 'Completed' : 'Pending',
+                'Level 2 (CSS)': stats.isL2 ? 'Completed' : 'Pending',
+                'Level 3 (JS)': stats.isL3 ? 'Completed' : 'Pending',
+                'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
+                'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
+                'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
+                'Level 7 (Mastery Dojo)': `${stats.l7Completed}/18 Lessons (A:${stats.l7BranchA}, B:${stats.l7BranchB}, C:${stats.l7BranchC})`,
+                'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Projects`,
+                'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Projects`,
+                'Level 10 (Apex SaaS)': `${stats.l10Completed || 0}/6 Milestones`
+            });
+        }
+    };
+
+    function initDevKitShortcuts() {
+        // 1. Five rapid clicks on navbar logo
+        const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand');
+        let logoClicks = 0;
+        let logoClickTimer: any = null;
+
+        logos.forEach(logo => {
+            logo.addEventListener('click', (e) => {
+                logoClicks++;
+                if (logoClickTimer) clearTimeout(logoClickTimer);
+
+                if (logoClicks >= 5) {
+                    e.preventDefault();
+                    logoClicks = 0;
+                    const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+                    if (isCurrentlyUnlocked) {
+                        (window as any).NoviCodes.lockAll();
+                    } else {
+                        (window as any).NoviCodes.unlockAll();
+                    }
+                } else {
+                    logoClickTimer = setTimeout(() => {
+                        logoClicks = 0;
+                    }, 2000);
+                }
+            });
+        });
+
+        // 2. Keyboard shortcut Ctrl + Alt + D
+        window.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
+                e.preventDefault();
+                const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+                if (isCurrentlyUnlocked) {
+                    (window as any).NoviCodes.lockAll();
+                } else {
+                    (window as any).NoviCodes.unlockAll();
+                }
+            }
+        });
+    }
+
+    // Initialize keyboard shortcuts & triggers
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => initDevKitShortcuts());
+    } else {
+        initDevKitShortcuts();
+    }
 
     // Hydrate all user stats badges on page load & listen for real-time events
     if (document.readyState === 'loading') {

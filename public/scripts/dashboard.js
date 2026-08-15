@@ -473,6 +473,21 @@ window.NoviCodes = {
         localStorage.setItem('level1_completed', 'true');
         localStorage.setItem('level2_completed', 'true');
         localStorage.setItem('level3_completed', 'true');
+        localStorage.setItem('level4_completed', 'true');
+        localStorage.setItem('level5_completed', 'true');
+        localStorage.setItem('level6_completed', 'true');
+        localStorage.setItem('level7_completed', 'true');
+        localStorage.setItem('level8_completed', 'true');
+        localStorage.setItem('level9_completed', 'true');
+        localStorage.setItem('level10_completed', 'true');
+
+        localStorage.setItem('partF_completed', 'true');
+        localStorage.setItem('partF_branchA_completed', 'true');
+        localStorage.setItem('partF_branchB_completed', 'true');
+        localStorage.setItem('partF_branchC_completed', 'true');
+        localStorage.setItem('partG_completed', 'true');
+        localStorage.setItem('partH_completed', 'true');
+        localStorage.setItem('partI_completed', 'true');
 
         for (let i = 1; i <= 15; i++) {
             localStorage.setItem(`partB_lesson${i}_remake_complete`, 'true');
@@ -489,12 +504,12 @@ window.NoviCodes = {
             localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
         }
 
-        console.log('%c🔓 [NoviCodes DevKit] All 97+ lessons, tracks, and certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+        console.log('%c🔓 [NoviCodes DevKit] All 10 Levels, 81 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
         if (typeof Swal !== 'undefined') {
             Swal.fire({
                 icon: 'success',
                 title: '🔓 Dev Mode: All Unlocked!',
-                text: 'All tracks, lessons, and certificates are unlocked for testing.',
+                text: 'All levels (0–10), lessons, and certificates are unlocked for testing.',
                 confirmButtonColor: '#10b981'
             }).then(() => window.location.reload());
         } else {
@@ -518,7 +533,7 @@ window.NoviCodes = {
         localStorage.removeItem('novicodes_streak_bonus_xp');
         localStorage.removeItem('novicodes_streak_freeze');
 
-        // 3. Reset Level Completion & Concept Flags
+        // 3. Reset Level Completion & Concept Flags (Levels 0–10)
         localStorage.removeItem('level0_completed');
         localStorage.removeItem('level0_quiz_completed');
         localStorage.removeItem('level0_quiz_score');
@@ -533,8 +548,11 @@ window.NoviCodes = {
         localStorage.removeItem('level5_completed');
         localStorage.removeItem('level6_completed');
         localStorage.removeItem('level7_completed');
+        localStorage.removeItem('level8_completed');
+        localStorage.removeItem('level9_completed');
+        localStorage.removeItem('level10_completed');
 
-        // 4. Reset Level 7 Track & Branch Completion Flags
+        // 4. Reset Track Completion Flags (Levels 7–10)
         localStorage.removeItem('partF_completed');
         localStorage.removeItem('partF_complete');
         localStorage.removeItem('partF_branchA_completed');
@@ -543,22 +561,32 @@ window.NoviCodes = {
         localStorage.removeItem('partF_branchB_complete');
         localStorage.removeItem('partF_branchC_completed');
         localStorage.removeItem('partF_branchC_complete');
+        localStorage.removeItem('partG_completed');
+        localStorage.removeItem('partG_complete');
+        localStorage.removeItem('partH_completed');
+        localStorage.removeItem('partH_complete');
+        localStorage.removeItem('partI_completed');
+        localStorage.removeItem('partI_complete');
 
-        // 5. Reset Lessons 1-20 (Levels 1-6)
+        // 5. Reset Lessons (Levels 4–6)
         for (let i = 1; i <= 20; i++) {
             localStorage.removeItem(`partB_lesson${i}_remake_complete`);
             localStorage.removeItem(`partB_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partB_lesson${i}_draft`);
             localStorage.removeItem(`partC_lesson${i}_remake_complete`);
             localStorage.removeItem(`partC_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partC_lesson${i}_draft`);
             localStorage.removeItem(`partD_lesson${i}_remake_complete`);
             localStorage.removeItem(`partD_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partD_lesson${i}_draft`);
             localStorage.removeItem(`partE_lesson${i}_remake_complete`);
             localStorage.removeItem(`partE_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partE_lesson${i}_draft`);
             localStorage.removeItem(`lesson_${i}_completed`);
             localStorage.removeItem(`lesson_${i}_complete`);
         }
 
-        // 6. Reset Level 7 Branch A, B, C Lessons & Keystroke Drafts
+        // 6. Reset Lessons (Levels 7–10)
         for (let i = 1; i <= 6; i++) {
             localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
             localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
@@ -571,14 +599,35 @@ window.NoviCodes = {
             localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
             localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
             localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
+
+            localStorage.removeItem(`partG_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partG_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partG_lesson${i}_draft`);
+
+            localStorage.removeItem(`partH_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partH_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partH_lesson${i}_draft`);
+
+            localStorage.removeItem(`partI_lesson${i}_remake_complete`);
+            localStorage.removeItem(`partI_lesson${i}_remake_completed`);
+            localStorage.removeItem(`partI_lesson${i}_draft`);
         }
+
+        // 7. Reset Certificate Recipient Names
+        localStorage.removeItem('partB_cert_student_name');
+        localStorage.removeItem('partC_cert_student_name');
+        localStorage.removeItem('partE_cert_student_name');
+        localStorage.removeItem('partF_cert_student_name');
+        localStorage.removeItem('partG_cert_student_name');
+        localStorage.removeItem('partH_cert_student_name');
+        localStorage.removeItem('partI_cert_student_name');
 
         console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression & 0 XP RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
         if (typeof Swal !== 'undefined') {
             Swal.fire({
                 icon: 'info',
                 title: '🔒 Standard Mode Restored',
-                text: 'Sequential progression and 0 XP have been restored.',
+                text: 'Sequential progression and 0 XP have been restored across all levels (0–10).',
                 confirmButtonColor: '#2563eb'
             }).then(() => window.location.reload());
         } else {
@@ -590,7 +639,7 @@ window.NoviCodes = {
         this.unlockAll();
         localStorage.setItem('novicodes_daily_quest_xp', '2500');
         localStorage.setItem('novicodes_streak_bonus_xp', '1000');
-        console.log('%c⚡ [NoviCodes DevKit] Max XP and Principal Polymath rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
+        console.log('%c⚡ [NoviCodes DevKit] Max XP and Grand Master rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
     },
 
     status: function() {
@@ -599,7 +648,7 @@ window.NoviCodes = {
         console.log('%c📊 [NoviCodes Status Report]', 'color: #3b82f6; font-weight: 800; font-size: 14px;');
         console.table({
             'Dev Mode Unlocked': isDev ? 'YES' : 'NO',
-            'Total XP': stats.totalXP.toLocaleString() + ' XP',
+            'Total XP': stats.totalXP.toLocaleString() + ' / ' + stats.maxXP.toLocaleString() + ' XP',
             'Rank': stats.rankTitle + ' ' + stats.rankIcon,
             'Level 0 (History)': stats.isL0 ? 'Completed' : 'Pending',
             'Level 1 (HTML)': stats.isL1 ? 'Completed' : 'Pending',
@@ -608,7 +657,10 @@ window.NoviCodes = {
             'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
             'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
             'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
-            'Level 7 (Mastery Dojo)': `${stats.l7Completed}/18 Lessons (A:${stats.l7BranchA}, B:${stats.l7BranchB}, C:${stats.l7BranchC})`
+            'Level 7 (Mastery Dojo)': `${stats.l7Completed}/18 Lessons (A:${stats.l7BranchA}, B:${stats.l7BranchB}, C:${stats.l7BranchC})`,
+            'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Projects`,
+            'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Projects`,
+            'Level 10 (Apex SaaS)': `${stats.l10Completed || 0}/6 Milestones`
         });
     }
 };
@@ -1092,6 +1144,22 @@ window.openUserProfileModal = function() {
                             <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Mastery Hub</div>
                             <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${stats.l7Completed * 250} / 4,500 XP</div>
                         </div>
+                        <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #0369a1; font-weight: 700;">Level 8: API Bridge</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${(stats.l8Completed || 0) * 250} / 1,500 XP</div>
+                        </div>
+                        <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #4338ca; font-weight: 700;">Level 9: Auth &amp; DB</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #4f46e5;">${(stats.l9Completed || 0) * 250} / 1,500 XP</div>
+                        </div>
+                        <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #b45309; font-weight: 700;">Level 10: Apex SaaS</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #d97706;">${(stats.l10Completed || 0) * 500} / 3,000 XP</div>
+                        </div>
+                        <div style="background: #fefce8; border: 1px solid #fef08a; padding: 8px 10px; border-radius: 10px; grid-column: 1 / -1;">
+                            <div style="font-size: 0.70rem; color: #854d0e; font-weight: 700;">🔥 Daily Quests &amp; Streaks XP</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #ca8a04;">+${(stats.dailyQuestXP + stats.streakBonusXP).toLocaleString()} XP (${stats.streakCount}-Day Streak)</div>
+                        </div>
                     </div>
 
                     <!-- Developer Rank Progression Roadmap -->
@@ -1129,7 +1197,7 @@ window.confirmResetProgress = function() {
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                     <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across <strong>Level 0 through Level 10</strong>.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!

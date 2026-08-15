@@ -269,6 +269,22 @@ window.openUserProfileModal = function() {
                             <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Mastery Hub</div>
                             <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${stats.l7Completed * 250} / 4,500 XP</div>
                         </div>
+                        <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #0369a1; font-weight: 700;">Level 8: API Bridge</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${(stats.l8Completed || 0) * 250} / 1,500 XP</div>
+                        </div>
+                        <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #4338ca; font-weight: 700;">Level 9: Auth &amp; DB</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #4f46e5;">${(stats.l9Completed || 0) * 250} / 1,500 XP</div>
+                        </div>
+                        <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 8px 10px; border-radius: 10px;">
+                            <div style="font-size: 0.70rem; color: #b45309; font-weight: 700;">Level 10: Apex SaaS</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #d97706;">${(stats.l10Completed || 0) * 500} / 3,000 XP</div>
+                        </div>
+                        <div style="background: #fefce8; border: 1px solid #fef08a; padding: 8px 10px; border-radius: 10px; grid-column: 1 / -1;">
+                            <div style="font-size: 0.70rem; color: #854d0e; font-weight: 700;">🔥 Daily Quests &amp; Streaks XP</div>
+                            <div style="font-size: 0.84rem; font-weight: 800; color: #ca8a04;">+${(stats.dailyQuestXP + stats.streakBonusXP).toLocaleString()} XP (${stats.streakCount}-Day Streak)</div>
+                        </div>
                     </div>
 
                     <!-- Developer Rank Progression Roadmap -->
@@ -306,7 +322,7 @@ window.confirmResetProgress = function() {
             html: `
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                     <p style="color: #475569; font-size: 0.93rem; line-height: 1.6; margin-bottom: 12px;">
-                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across Level 0 through Level 7.
+                        This will reset your <strong>XP back to 0</strong>, reset <strong>Daily Quest XP & Streaks</strong>, clear your <strong>Developer Rank</strong>, and reset all completed lesson checkmarks across <strong>Level 0 through Level 10</strong>.
                     </p>
                     <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 10px; border-radius: 10px; font-weight: 700; color: #be123c; font-size: 0.84rem;">
                         🚨 This action cannot be undone!
@@ -324,48 +340,18 @@ window.confirmResetProgress = function() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                // Clear all progress keys
-                localStorage.removeItem('userXP');
-                localStorage.removeItem('novicodes_user_xp');
-                localStorage.removeItem('novicodes_xp');
+                // Exhaustive Full Platform Wipe
+                localStorage.clear();
+                sessionStorage.clear();
 
-                localStorage.removeItem('novicodes_streak_count');
-                localStorage.removeItem('novicodes_longest_streak');
-                localStorage.removeItem('novicodes_last_quest_date');
-                localStorage.removeItem('novicodes_daily_quest_xp');
-                localStorage.removeItem('novicodes_streak_bonus_xp');
-                localStorage.removeItem('novicodes_streak_freeze');
-
-                localStorage.removeItem('level0_completed');
-                localStorage.removeItem('level0_quiz_completed');
-                localStorage.removeItem('level0_quiz_score');
-                localStorage.removeItem('readWebsite');
-                localStorage.removeItem('readHTML');
-                localStorage.removeItem('readCSS');
-                localStorage.removeItem('readJavaScript');
-                localStorage.removeItem('level1_completed');
-                localStorage.removeItem('level2_completed');
-                localStorage.removeItem('level3_completed');
-
-                for (let i = 1; i <= 15; i++) {
-                    localStorage.removeItem(`partB_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`lesson_${i}_completed`);
-                    localStorage.removeItem(`partC_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+                if (typeof updateAllHeaderStats === 'function') {
+                    updateAllHeaderStats();
                 }
-
-                for (let i = 1; i <= 6; i++) {
-                    localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
-                }
-
-                localStorage.removeItem('practice_mode_unlocked');
 
                 Swal.fire({
                     icon: 'success',
                     title: 'Progress Reset Complete',
-                    text: 'All XP, ranks, and lesson progress have been reset to zero.',
+                    text: 'All XP, ranks, and lesson progress across Levels 0 through 10 have been reset to zero.',
                     confirmButtonColor: '#2563eb'
                 }).then(() => {
                     location.reload();
