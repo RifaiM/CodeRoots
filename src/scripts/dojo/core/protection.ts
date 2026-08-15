@@ -131,6 +131,12 @@ export function checkLessonAccessAndRenderOverlay(opts: AccessCheckOptions): boo
         targetUrl = `/6. partF/branchB/lesson${highestAccessible}_remake.html`;
     } else if (opts.track.includes('branchC')) {
         targetUrl = `/6. partF/branchC/lesson${highestAccessible}_remake.html`;
+    } else if (opts.track === 'partG') {
+        targetUrl = `/7. partG/lesson${highestAccessible}/lesson${highestAccessible}_remake.html`;
+    } else if (opts.track === 'partH') {
+        targetUrl = `/8. partH/lesson${highestAccessible}/lesson${highestAccessible}_remake.html`;
+    } else if (opts.track === 'partI') {
+        targetUrl = `/9. partI/lesson${highestAccessible}/lesson${highestAccessible}_remake.html`;
     }
 
     const renderOverlay = () => {

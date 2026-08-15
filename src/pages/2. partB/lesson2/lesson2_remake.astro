@@ -147,8 +147,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography Hierar
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'h2_tag', label: '<strong>Step 1:</strong> Add an <code>&lt;h2&gt;</code> subheadline with text <code>"Core Web Technologies"</code>', fn: (c) => /<h2[^>]*>\s*Core Web Technologies\s*<\/h2>/i.test(c) },
-            { id: 'strong_em', label: '<strong>Step 2:</strong> Include both <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> tags inside a paragraph', fn: (c) => /<strong[^>]*>[^<]+<\/strong>/i.test(c) && /<em[^>]*>[^<]+<\/em>/i.test(c) }
+            { id: 'h2_tag', label: '<strong>Step 1:</strong> Add an <code>&lt;h2&gt;</code> subheadline with text <code>"Core Web Technologies"</code>', fn: (code) => { const c = code.replace(/<!--[\s\S]*?-->/g, ''); return /<h2[^>]*>\s*Core Web Technologies\s*<\/h2>/i.test(c); } },
+            { id: 'strong_em', label: '<strong>Step 2:</strong> Include both <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> tags inside a paragraph', fn: (code) => { const c = code.replace(/<!--[\s\S]*?-->/g, ''); return /<strong[^>]*>[^<]+<\/strong>/i.test(c) && /<em[^>]*>[^<]+<\/em>/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

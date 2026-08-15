@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Form Validation</
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'prevent_default', label: '<strong>Step 1:</strong> Call <code>e.preventDefault()</code> inside the submit event listener', fn: (c) => /e\.preventDefault\s*\(\s*\)/i.test(c) || /event\.preventDefault\s*\(\s*\)/i.test(c) },
-            { id: 'read_val', label: '<strong>Step 2:</strong> Read <code>input.value</code> and update <code>feedback.textContent</code>', fn: (c) => /\.value/i.test(c) && /feedback\.textContent\s*=\s*/i.test(c) }
+            { id: 'prevent_default', label: '<strong>Step 1:</strong> Call <code>e.preventDefault()</code> inside the submit event listener', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, '').replace(/<!--[\s\S]*?-->/g, ''); return /e\.preventDefault\s*\(\s*\)/i.test(c) || /event\.preventDefault\s*\(\s*\)/i.test(c); } },
+            { id: 'read_val', label: '<strong>Step 2:</strong> Read <code>input.value</code> and update <code>feedback.textContent</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, '').replace(/<!--[\s\S]*?-->/g, ''); return /\.value/i.test(c) && /feedback\.textContent\s*=\s*/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

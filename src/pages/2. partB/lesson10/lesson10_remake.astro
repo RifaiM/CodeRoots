@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'const_name', label: '<strong>Step 1:</strong> Declare a <code>const</code> variable named <code>learnerName</code> with a string value', fn: (c) => /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c) },
-            { id: 'let_level', label: '<strong>Step 2:</strong> Declare a <code>let</code> variable named <code>levelNumber</code> with a number value', fn: (c) => /let\s+levelNumber\s*=\s*\d+/i.test(c) }
+            { id: 'const_name', label: '<strong>Step 1:</strong> Declare a <code>const</code> variable named <code>learnerName</code> with a string value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c); } },
+            { id: 'let_level', label: '<strong>Step 2:</strong> Declare a <code>let</code> variable named <code>levelNumber</code> with a number value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /let\s+levelNumber\s*=\s*\d+/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',

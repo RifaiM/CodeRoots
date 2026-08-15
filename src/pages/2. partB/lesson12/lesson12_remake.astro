@@ -143,8 +143,8 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dynamic Elements<
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'create_elem', label: '<strong>Step 1:</strong> Create a new <code>&lt;li&gt;</code> element with <code>document.createElement(\'li\')</code>', fn: (c) => /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c) },
-            { id: 'append_child', label: '<strong>Step 2:</strong> Set <code>textContent</code> and append node using <code>list.appendChild(newItem)</code>', fn: (c) => /\.textContent\s*=\s*["'][^"']+["']/i.test(c) && /\.appendChild\s*\([^)]+\)/i.test(c) }
+            { id: 'create_elem', label: '<strong>Step 1:</strong> Create a new <code>&lt;li&gt;</code> element with <code>document.createElement(\'li\')</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, '').replace(/<!--[\s\S]*?-->/g, ''); return /document\.createElement\s*\(\s*["']li["']\s*\)/i.test(c); } },
+            { id: 'append_child', label: '<strong>Step 2:</strong> Set <code>textContent</code> and append node using <code>list.appendChild(newItem)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, '').replace(/<!--[\s\S]*?-->/g, ''); return /\.textContent\s*=\s*["'][^"']+["']/i.test(c) && /\.appendChild\s*\([^)]+\)/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             submitBtnId: 'checkAnswerBtn',
