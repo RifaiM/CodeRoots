@@ -428,6 +428,47 @@ const navLinks = [
             font-size: 1.4rem;
         }
     }
+
+    /* ── Pixel-Perfect Print Stylesheet (Hides Navbar, Footer & Form Controls) ─── */
+    @media print {
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+        html, body {
+            background: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        header, footer, nav, .platform-header, .platform-footer, .generator-card, .btn-row, #printCertBtn, .cert-container > div:last-child {
+            display: none !important;
+        }
+        .cert-page-container {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            min-height: auto !important;
+            background: transparent !important;
+            display: block !important;
+        }
+        .cert-container {
+            max-width: 100% !important;
+            gap: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .certificate-frame {
+            box-shadow: none !important;
+            border: 12px solid #0f172a !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            width: 96% !important;
+            max-width: 1000px !important;
+            margin: 20px auto !important;
+        }
+    }
 </style>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

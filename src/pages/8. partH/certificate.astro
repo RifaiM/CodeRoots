@@ -25,16 +25,18 @@ const navLinks = [
 
     <main class="cert-page-container">
         <div class="cert-container">
+            
+            <!-- Certificate Generator Controls -->
             <section class="generator-card">
                 <div class="generator-header">
-                    <h2>🎓 Fullstack Auth &amp; Database Architect Certificate Generator</h2>
-                    <p>Enter your full legal name or developer alias to generate your verified NoviCodes credential.</p>
+                    <h2>🎓 Level 9 Certificate Generator</h2>
+                    <p>Enter your full name or developer alias to generate your verified proof-of-work certificate in Fullstack Auth &amp; Database Security.</p>
                 </div>
 
                 <div class="generator-inputs">
                     <div class="input-group">
                         <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
-                        <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Security Architect" />
+                        <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Fullstack Security Architect" />
                     </div>
                     <div class="btn-row">
                         <button class="cert-action-btn primary" id="generateCertBtn">
@@ -50,47 +52,423 @@ const navLinks = [
                 </div>
             </section>
 
-            <!-- Hidden Canvas for PNG Generation -->
-            <canvas id="certCanvas" style="display: none;"></canvas>
+            <!-- Visual Certificate Preview -->
+            <div class="certificate-frame" id="certificateFrame">
+                <div class="certificate-inner">
+                    <div class="cert-watermark">NOVICODES</div>
+                    
+                    <div class="cert-top-row">
+                        <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
+                        <div class="cert-brand">NOVICODES PLATFORM</div>
+                        <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-AUTH-2026-0042</span></div>
+                    </div>
 
-            <!-- Live Printable Certificate Card -->
-            <section class="certificate-frame-wrap">
-                <div class="cert-canvas-card">
-                    <div class="cert-border">
-                        <div class="cert-inner-content">
-                            <div class="cert-top-badge">
-                                <span class="badge-icon">🏛️</span>
-                                <span class="badge-text">CODEROOTS ACCREDITED CERTIFICATION</span>
+                    <div class="cert-center-content">
+                        <div class="cert-icon-seal">🛡️</div>
+                        <h1 class="cert-title">CERTIFICATE OF MASTERY</h1>
+                        <p class="cert-subtitle">LEVEL 9: FULLSTACK AUTH &amp; DATABASE PERSISTENCE</p>
+
+                        <p class="cert-award-text">This official certificate is proudly awarded to:</p>
+                        <h2 class="cert-student-name" id="certNameDisplay">Fullstack Security Architect</h2>
+
+                        <p class="cert-description">
+                            For demonstrating verified excellence in <strong>Stateless JWT Session Storage, Global Auth Contexts, Protected Client-Side Route Guards, Role-Based Access Control (RBAC), and Relational PostgreSQL Persistence</strong> across 6 interactive practical projects.
+                        </p>
+                    </div>
+
+                    <div class="cert-bottom-row">
+                        <div class="cert-col">
+                            <div class="cert-col-title">ISSUE DATE</div>
+                            <div class="cert-col-val" id="certDateDisplay">August 16, 2026</div>
+                        </div>
+
+                        <div class="cert-seal-badge">
+                            <div class="seal-circle">
+                                <span>VERIFIED</span>
+                                <strong>★ NOVICODES ★</strong>
+                                <span>MASTERY</span>
                             </div>
-                            <h1 class="cert-main-title">Certificate of Security Architecture</h1>
-                            <p class="cert-award-text">This official credential certifies that</p>
-                            <h2 class="cert-recipient-name" id="certNameDisplay">Security Architect</h2>
-                            <p class="cert-description-text">
-                                has demonstrated verified hands-on competence in <strong>Level 9: Fullstack Auth &amp; Database Persistence</strong>, mastering Stateless JWT Handshakes, Global Session Contexts, Protected Route Guards, Role-Based Access Control, and Cloud PostgreSQL Persistence.
-                            </p>
-                            <div class="cert-footer-meta">
-                                <div class="meta-col">
-                                    <span class="meta-label">ISSUED BY</span>
-                                    <span class="meta-val">NoviCodes Academy</span>
-                                </div>
-                                <div class="meta-col">
-                                    <span class="meta-label">DATE ISSUED</span>
-                                    <span class="meta-val" id="certDateDisplay">August 2026</span>
-                                </div>
-                                <div class="meta-col">
-                                    <span class="meta-label">VERIFICATION ID</span>
-                                    <span class="meta-val font-mono" id="certIdDisplay">CR-L9-4729</span>
-                                </div>
+                        </div>
+
+                        <div class="cert-col right">
+                            <div class="cert-col-title">VERIFICATION SIGNATURE</div>
+                            <div class="cert-sig-box">
+                                <span class="sig-script">NoviCodes Academic Board</span>
+                                <div class="sig-line"></div>
+                                <span class="sig-sub">Chief Security Architect</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- Hidden Canvas for PNG Generation -->
+            <canvas id="certCanvas" style="display: none;"></canvas>
+
+            <!-- Return Link -->
+            <div class="return-link-wrap" style="text-align: center; margin-top: 24px;">
+                <a href="/8. partH/hub.html" style="color: #4f46e5; font-weight: 700; text-decoration: none; font-size: 0.95rem;">
+                    ← Return to Level 9 Auth &amp; Database Hub
+                </a>
+            </div>
+
         </div>
     </main>
 
-    <PlatformFooter />
+    <PlatformFooter slot="footer" />
 </BaseLayout>
+
+<style>
+    .cert-page-container {
+        padding: 32px 20px 60px 20px;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        min-height: calc(100vh - 140px);
+        display: flex;
+        justify-content: center;
+    }
+
+    .cert-container {
+        max-width: 900px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .generator-card {
+        background: #ffffff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    }
+
+    .generator-header h2 {
+        margin: 0 0 8px 0;
+        font-size: 1.35rem;
+        color: #0f172a;
+        font-weight: 800;
+    }
+
+    .generator-header p {
+        margin: 0 0 16px 0;
+        color: #64748b;
+        font-size: 0.90rem;
+    }
+
+    .generator-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .input-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 6px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+        border-color: #4f46e5;
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .cert-action-btn {
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cert-action-btn.primary { background: #4f46e5; color: white; }
+    .cert-action-btn.success { background: #10b981; color: white; }
+    .cert-action-btn.secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+
+    /* Visual Certificate Frame */
+    .certificate-frame {
+        background: #ffffff;
+        border: 12px solid #0f172a;
+        padding: 12px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+        border-radius: 4px;
+    }
+
+    .certificate-inner {
+        border: 2px dashed #4f46e5;
+        padding: 36px 40px;
+        text-align: center;
+        position: relative;
+        background: #ffffff;
+    }
+
+    .cert-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        font-size: 5.5rem;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.025);
+        letter-spacing: 12px;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .cert-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .cert-logo-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+    }
+
+    .cert-brand {
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: #475569;
+    }
+
+    .cert-id-badge {
+        font-size: 0.75rem;
+        font-family: 'Fira Code', monospace;
+        color: #64748b;
+        background: #f1f5f9;
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+
+    .cert-center-content {
+        margin-bottom: 24px;
+    }
+
+    .cert-icon-seal {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+    }
+
+    .cert-title {
+        font-size: 2rem;
+        font-weight: 900;
+        color: #0f172a;
+        letter-spacing: 2px;
+        margin: 0 0 4px 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .cert-subtitle {
+        font-size: 0.90rem;
+        font-weight: 700;
+        color: #4f46e5;
+        letter-spacing: 1.5px;
+        margin: 0 0 24px 0;
+    }
+
+    .cert-award-text {
+        font-size: 0.80rem;
+        font-weight: 700;
+        color: #94a3b8;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin: 0 0 10px 0;
+    }
+
+    .cert-student-name {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #0f172a;
+        margin: 0 0 16px 0;
+        border-bottom: 2px solid #818cf8;
+        display: inline-block;
+        padding: 0 24px 4px 24px;
+    }
+
+    .cert-description {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: #475569;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+    .cert-bottom-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 20px;
+    }
+
+    .cert-col {
+        text-align: left;
+    }
+
+    .cert-col.right {
+        text-align: right;
+    }
+
+    .cert-col-title {
+        font-size: 0.68rem;
+        font-weight: 800;
+        color: #94a3b8;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .cert-col-val {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .seal-circle {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        border: 2px dashed #4f46e5;
+        background: #f5f3ff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.52rem;
+        font-weight: 800;
+        color: #4f46e5;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .cert-sig-box {
+        text-align: right;
+    }
+
+    .sig-script {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        color: #0f172a;
+        font-weight: 700;
+    }
+
+    .sig-line {
+        width: 140px;
+        height: 1px;
+        background: #cbd5e1;
+        margin: 4px 0 4px auto;
+    }
+
+    .sig-sub {
+        font-size: 0.68rem;
+        color: #64748b;
+    }
+
+    /* ── Responsive Viewports ─── */
+    @media (max-width: 768px) {
+        .certificate-inner { padding: 24px 18px; }
+        .cert-student-name { font-size: 1.5rem; }
+        .cert-title { font-size: 1.3rem; }
+        .cert-bottom-row {
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            text-align: center;
+        }
+        .cert-sig-box { text-align: center; }
+        .sig-line { margin: 4px auto; }
+    }
+
+    @media (max-width: 425px) {
+        .cert-page-container { padding: 16px 10px 40px; }
+        .generator-card { padding: 16px 12px; }
+        .btn-row { flex-direction: column; }
+        .cert-action-btn { width: 100%; text-align: center; }
+        .certificate-inner { padding: 16px 10px; }
+        .cert-title { font-size: 1.15rem; }
+        .cert-subtitle { font-size: 0.76rem; }
+        .cert-student-name { font-size: 1.30rem; padding: 0 10px 4px; }
+        .cert-description { font-size: 0.78rem; }
+    }
+
+    @media (max-width: 375px) {
+        .cert-title { font-size: 1.02rem; }
+        .cert-student-name { font-size: 1.15rem; }
+        .cert-description { font-size: 0.72rem; }
+    }
+
+    @media (max-width: 320px) {
+        .cert-title { font-size: 0.92rem; }
+        .cert-student-name { font-size: 1.02rem; }
+        .cert-description { font-size: 0.66rem; }
+    }
+
+    /* ── Pixel-Perfect Print Stylesheet (Hides Navbar, Footer & Form Controls) ─── */
+    @media print {
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+        html, body {
+            background: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        header, footer, nav, .platform-header, .platform-footer, .generator-card, .btn-row, #printCertBtn, .return-link-wrap {
+            display: none !important;
+        }
+        .cert-page-container {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            min-height: auto !important;
+            background: transparent !important;
+            display: block !important;
+        }
+        .cert-container {
+            max-width: 100% !important;
+            gap: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .certificate-frame {
+            box-shadow: none !important;
+            border: 12px solid #0f172a !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            width: 96% !important;
+            max-width: 1000px !important;
+            margin: 20px auto !important;
+        }
+    }
+</style>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -149,17 +527,17 @@ const navLinks = [
         }
 
         if (idDisplay) {
-            const hash = 'CR-L9-' + Math.floor(1000 + Math.random() * 9000);
+            const hash = 'NC-AUTH-' + now.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
             idDisplay.textContent = hash;
         }
 
-        const savedName = localStorage.getItem('partH_cert_student_name') || 'Security Architect';
+        const savedName = localStorage.getItem('partH_cert_student_name') || 'Fullstack Security Architect';
         if (input) input.value = savedName;
         if (nameDisplay) nameDisplay.textContent = savedName;
 
         if (updateBtn && input && nameDisplay) {
             updateBtn.addEventListener('click', () => {
-                const val = input.value.trim() || 'Security Architect';
+                const val = input.value.trim() || 'Fullstack Security Architect';
                 nameDisplay.textContent = val;
                 localStorage.setItem('partH_cert_student_name', val);
             });
@@ -190,7 +568,7 @@ const navLinks = [
                 ctx.textAlign = 'center';
                 ctx.fillStyle = '#0f172a';
                 ctx.font = '900 36px sans-serif';
-                ctx.fillText('CERTIFICATE OF SECURITY ARCHITECTURE', 600, 160);
+                ctx.fillText('CERTIFICATE OF MASTERY', 600, 160);
 
                 ctx.fillStyle = '#4f46e5';
                 ctx.font = '700 18px sans-serif';
@@ -200,15 +578,15 @@ const navLinks = [
                 ctx.font = '500 16px sans-serif';
                 ctx.fillText('This official certificate is proudly awarded to:', 600, 280);
 
-                const name = nameDisplay ? nameDisplay.textContent : 'Security Architect';
+                const name = nameDisplay ? nameDisplay.textContent : 'Fullstack Security Architect';
                 ctx.fillStyle = '#0f172a';
                 ctx.font = '900 44px sans-serif';
-                ctx.fillText(name || 'Security Architect', 600, 360);
+                ctx.fillText(name || 'Fullstack Security Architect', 600, 360);
 
                 ctx.fillStyle = '#475569';
                 ctx.font = '500 16px sans-serif';
-                ctx.fillText('For demonstrating verified hands-on excellence in Stateless JWT Handshakes,', 600, 430);
-                ctx.fillText('Global Session Contexts, Protected Route Guards, RBAC, and Cloud PostgreSQL.', 600, 460);
+                ctx.fillText('For demonstrating verified excellence in Stateless JWT Session Storage, Global Auth Contexts,', 600, 430);
+                ctx.fillText('Protected Client-Side Route Guards, Role-Based Access Control, and Relational PostgreSQL Persistence.', 600, 460);
 
                 ctx.textAlign = 'left';
                 ctx.font = '700 14px monospace';
@@ -229,92 +607,3 @@ const navLinks = [
         }
     });
 </script>
-
-<style>
-    .cert-page-container { max-width: 1040px; margin: 0 auto; padding: 32px 20px 80px; }
-    .generator-card { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 28px; margin-bottom: 32px; }
-    .generator-header h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 0 0 6px; }
-    .generator-header p { font-size: 0.95rem; color: #64748b; margin: 0 0 20px; }
-    .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
-    .input-group input { width: 100%; max-width: 420px; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 1rem; font-family: inherit; margin-bottom: 16px; box-sizing: border-box; }
-    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .cert-action-btn { padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 0.92rem; border: none; cursor: pointer; transition: all 0.2s; }
-    .cert-action-btn.primary { background: #4f46e5; color: white; }
-    .cert-action-btn.success { background: #10b981; color: white; }
-    .cert-action-btn.secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
-    .certificate-frame-wrap { background: #f8fafc; padding: 24px; border-radius: 20px; border: 1px solid #e2e8f0; display: flex; justify-content: center; }
-    .cert-canvas-card { width: 100%; max-width: 860px; background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
-    .cert-border { border: 3px solid #4f46e5; border-radius: 12px; padding: 36px 28px; background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%); text-align: center; }
-    .cert-top-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; font-weight: 800; color: #4f46e5; letter-spacing: 1px; margin-bottom: 16px; }
-    .cert-main-title { font-size: 1.9rem; font-weight: 900; color: #0f172a; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .cert-award-text { font-size: 0.95rem; color: #64748b; margin: 0 0 12px; font-style: italic; }
-    .cert-recipient-name { font-size: 2.2rem; font-weight: 900; color: #4f46e5; margin: 0 0 16px; text-decoration: underline; text-underline-offset: 6px; }
-    .cert-description-text { font-size: 0.95rem; color: #334155; max-width: 620px; margin: 0 auto 32px; line-height: 1.6; }
-    .cert-footer-meta { display: flex; justify-content: space-around; border-top: 1px solid #e2e8f0; padding-top: 20px; }
-    .meta-col { display: flex; flex-direction: column; }
-    .meta-label { font-size: 0.72rem; font-weight: 800; color: #94a3b8; letter-spacing: 0.5px; }
-    .meta-val { font-size: 0.90rem; font-weight: 700; color: #0f172a; margin-top: 2px; }
-    .font-mono { font-family: monospace; }
-
-    /* ── ≤768px: Tablet ─── */
-    @media (max-width: 768px) {
-        .cert-page-container { padding: 20px 14px 60px; }
-        .generator-card { padding: 20px 16px; border-radius: 16px; margin-bottom: 20px; }
-        .certificate-frame-wrap { padding: 16px 12px; border-radius: 16px; }
-        .cert-canvas-card { padding: 16px; border-radius: 12px; }
-        .cert-border { padding: 24px 16px; }
-        .cert-main-title { font-size: 1.4rem; }
-        .cert-recipient-name { font-size: 1.6rem; }
-        .cert-description-text { font-size: 0.85rem; margin-bottom: 20px; }
-        .cert-footer-meta { flex-direction: column; gap: 12px; text-align: center; }
-    }
-
-    /* ── ≤425px: Mobile Large ─── */
-    @media (max-width: 425px) {
-        .cert-page-container { padding: 12px 8px 40px; }
-        .generator-card { padding: 16px 12px; }
-        .generator-header h2 { font-size: 1.25rem; }
-        .generator-header p { font-size: 0.82rem; margin-bottom: 14px; }
-        .input-group label { font-size: 0.78rem; }
-        .input-group input { font-size: 0.90rem; padding: 8px 12px; }
-        .btn-row { flex-direction: column; gap: 8px; }
-        .cert-action-btn { width: 100%; text-align: center; padding: 10px; font-size: 0.85rem; }
-        .certificate-frame-wrap { padding: 10px 6px; border-radius: 12px; }
-        .cert-canvas-card { padding: 10px; }
-        .cert-border { padding: 18px 10px; }
-        .cert-top-badge { font-size: 0.68rem; margin-bottom: 10px; }
-        .cert-main-title { font-size: 1.15rem; }
-        .cert-recipient-name { font-size: 1.30rem; }
-        .cert-award-text { font-size: 0.82rem; }
-        .cert-description-text { font-size: 0.78rem; line-height: 1.5; margin-bottom: 16px; }
-        .meta-label { font-size: 0.65rem; }
-        .meta-val { font-size: 0.80rem; }
-    }
-
-    /* ── ≤375px: Mobile Medium (iPhone SE) ─── */
-    @media (max-width: 375px) {
-        .cert-page-container { padding: 8px 6px 30px; }
-        .generator-card { padding: 12px 10px; }
-        .generator-header h2 { font-size: 1.10rem; }
-        .generator-header p { font-size: 0.76rem; }
-        .cert-main-title { font-size: 1.02rem; }
-        .cert-recipient-name { font-size: 1.15rem; }
-        .cert-description-text { font-size: 0.72rem; }
-        .meta-label { font-size: 0.60rem; }
-        .meta-val { font-size: 0.74rem; }
-    }
-
-    /* ── ≤320px: Mobile Small ─── */
-    @media (max-width: 320px) {
-        .cert-page-container { padding: 6px 4px 24px; }
-        .generator-card { padding: 10px 8px; }
-        .generator-header h2 { font-size: 0.98rem; }
-        .generator-header p { font-size: 0.70rem; }
-        .cert-main-title { font-size: 0.92rem; }
-        .cert-recipient-name { font-size: 1.02rem; }
-        .cert-description-text { font-size: 0.66rem; }
-        .cert-border { padding: 14px 6px; }
-        .meta-label { font-size: 0.55rem; }
-        .meta-val { font-size: 0.68rem; }
-    }
-</style>
