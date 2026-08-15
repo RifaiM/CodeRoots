@@ -165,17 +165,14 @@ except Exception as e:
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #059669;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Implement <code>try:</code> block inside <code>parse_user_id</code>.</li>
-                <li>Handle specific error with <code>except ValueError:</code>.</li>
-                <li>Raise error with <code>raise ValueError(...)</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -233,6 +230,10 @@ except Exception as e:
             const lineCount = Math.max(lines.length, 1);
             lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
             syncScroll();
+
+            // Real-Time Checklist Verification
+            // Real-Time Python Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'python');
 
             // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
@@ -294,43 +295,17 @@ except Exception as e:
             }
         }
 
-        // 6. Check & Verify Code Action
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your Python code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                simulatePythonOutput(code);
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 07: Error & Exception Handling',
-                        xp: 150,
-                        completionKey: 'partE_lesson7_remake_complete',
-                        nextUrl: '/5. partE/lesson8/lesson8_remake.html',
-                        customMessage: 'You have mastered this Python backend challenge!'
-                    });
-                } else {
-                    const firstIncomplete = result.incompleteTasks[0];
-                    const cleanLabel = firstIncomplete ? (firstIncomplete.label || firstIncomplete.text || 'Requirement').replace(/<[^>]+>/g, '').trim() : 'Requirement incomplete';
-                    DojoEngine.showLint(`Mission Incomplete: ${cleanLabel}`, 'warning', 'Review "🎯 Your Mission" in the left pane and verify that your code matches the expected pattern.');
-                    if (firstIncomplete) {
-                        const targetItem = document.getElementById(`task_item_${firstIncomplete.id}`);
-                        if (targetItem) {
-                            targetItem.classList.remove('task-highlight-pulse');
-                            void targetItem.offsetWidth;
-                            targetItem.classList.add('task-highlight-pulse');
-                            targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }
-                }
+                simulatePythonOutput(editor.value);
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Error & Exception Handling',
+                    xp: 150,
+                    completionKey: 'partE_lesson7_remake_complete',
+                    nextUrl: '/5. partE/lesson8/lesson8_remake.html',
+                    mode: 'python'
+                });
             });
         }
 

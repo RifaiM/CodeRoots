@@ -172,18 +172,14 @@ asyncio.run(main())</code></pre>
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #059669;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Import <code>asyncio</code> module.</li>
-                <li>Define coroutine with <code>async def fetch_user_data(...)</code>.</li>
-                <li>Use <code>await asyncio.sleep(...)</code> or <code>await fetch_user_data(...)</code>.</li>
-                <li>Drive event loop with <code>asyncio.run(main())</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -249,6 +245,10 @@ import asyncio
             syncScroll();
 
             // Real-Time Checklist Verification
+            // Real-Time Python Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'python');
+
+            // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
         }
 
@@ -308,43 +308,17 @@ import asyncio
             }
         }
 
-        // 6. Check & Verify Code Action
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your Python code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                simulatePythonOutput(code);
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 10: Asynchronous Python & Asyncio',
-                        xp: 150,
-                        completionKey: 'partE_lesson10_remake_complete',
-                        nextUrl: '/5. partE/lesson11/lesson11_remake.html',
-                        customMessage: 'You have mastered this Python backend challenge!'
-                    });
-                } else {
-                    const firstIncomplete = result.incompleteTasks[0];
-                    const cleanLabel = firstIncomplete ? (firstIncomplete.label || firstIncomplete.text || 'Requirement').replace(/<[^>]+>/g, '').trim() : 'Requirement incomplete';
-                    DojoEngine.showLint(`Mission Incomplete: ${cleanLabel}`, 'warning', 'Review "🎯 Your Mission" in the left pane and verify that your code matches the expected pattern.');
-                    if (firstIncomplete) {
-                        const targetItem = document.getElementById(`task_item_${firstIncomplete.id}`);
-                        if (targetItem) {
-                            targetItem.classList.remove('task-highlight-pulse');
-                            void targetItem.offsetWidth;
-                            targetItem.classList.add('task-highlight-pulse');
-                            targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }
-                }
+                simulatePythonOutput(editor.value);
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Asynchronous Python & Asyncio',
+                    xp: 150,
+                    completionKey: 'partE_lesson10_remake_complete',
+                    nextUrl: '/5. partE/lesson11/lesson11_remake.html',
+                    mode: 'python'
+                });
             });
         }
 

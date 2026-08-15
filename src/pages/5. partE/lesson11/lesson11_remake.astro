@@ -171,18 +171,14 @@ print(cursor.fetchall())</code></pre>
             </div>
         </article>
 
-        <!-- Task Instructions Card -->
-        <article class="concept-card" style="border-left: 4px solid #059669;">
-            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
-            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
-                In the code editor on the right pane:
-            </p>
-            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li>Connect to database with <code>conn = sqlite3.connect(...)</code>.</li>
-                <li>Create cursor with <code>cursor = conn.cursor()</code>.</li>
-                <li>Execute SQL with <code>cursor.execute("CREATE TABLE...")</code> and <code>cursor.execute("INSERT...")</code>.</li>
-                <li>Persist transaction with <code>conn.commit()</code>.</li>
-            </ol>
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <p class="mission-subtitle">Complete all coding goals below in the editor:</p>
+            <div id="taskChecklist"></div>
         </article>
 
     </div>
@@ -248,6 +244,10 @@ import sqlite3
             syncScroll();
 
             // Real-Time Checklist Verification
+            // Real-Time Python Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'python');
+
+            // Real-Time Checklist Verification
             DojoEngine.runChecklist(editor.value);
         }
 
@@ -307,43 +307,17 @@ import sqlite3
             }
         }
 
-        // 6. Check & Verify Code Action
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your Python code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                simulatePythonOutput(code);
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Project 11: Databases & SQL ORM Integration',
-                        xp: 150,
-                        completionKey: 'partE_lesson11_remake_complete',
-                        nextUrl: '/5. partE/lesson12/lesson12_remake.html',
-                        customMessage: 'You have mastered this Python backend challenge!'
-                    });
-                } else {
-                    const firstIncomplete = result.incompleteTasks[0];
-                    const cleanLabel = firstIncomplete ? (firstIncomplete.label || firstIncomplete.text || 'Requirement').replace(/<[^>]+>/g, '').trim() : 'Requirement incomplete';
-                    DojoEngine.showLint(`Mission Incomplete: ${cleanLabel}`, 'warning', 'Review "🎯 Your Mission" in the left pane and verify that your code matches the expected pattern.');
-                    if (firstIncomplete) {
-                        const targetItem = document.getElementById(`task_item_${firstIncomplete.id}`);
-                        if (targetItem) {
-                            targetItem.classList.remove('task-highlight-pulse');
-                            void targetItem.offsetWidth;
-                            targetItem.classList.add('task-highlight-pulse');
-                            targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }
-                }
+                simulatePythonOutput(editor.value);
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Databases & SQL ORM Integration',
+                    xp: 150,
+                    completionKey: 'partE_lesson11_remake_complete',
+                    nextUrl: '/5. partE/lesson12/lesson12_remake.html',
+                    mode: 'python'
+                });
             });
         }
 
