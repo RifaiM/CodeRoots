@@ -17,7 +17,24 @@ export class HTMLLinter {
 
         const lines = code.split('\n');
 
-        // 1. Angle bracket syntax check (e.g. h1My Title/h1)
+        // 1. Incomplete / Unterminated HTML Tag Check (e.g. </html or <h1 without closing '>')
+        lines.forEach((lineText, idx) => {
+            const clean = lineText.replace(/<!--[\s\S]*?-->/g, '').trim();
+            if (!clean) return;
+
+            // Matches tag start like <div, </html, <span class="x" without closing >
+            const openMatches = clean.match(/<\/?([a-zA-Z0-9\-]+)(?:\s+[^>]*)?$/);
+            if (openMatches && !clean.endsWith('>')) {
+                problems.push({
+                    message: `Incomplete HTML tag '${openMatches[0]}' (missing closing '>' bracket)`,
+                    line: idx + 1,
+                    severity: 'error',
+                    hint: `Complete the tag by adding '>' at the end (e.g. '${openMatches[0]}>').`
+                });
+            }
+        });
+
+        // 2. Angle bracket syntax check (e.g. h1My Title/h1)
         const bareTagMatch = /^\s*(h[1-6]|p|div|span|button|table|section|article|header|footer)[A-Za-z0-9\s]+(\/\1|\1)\s*$/i;
         lines.forEach((line, idx) => {
             if (bareTagMatch.test(line.trim()) && !line.includes('<') && !line.includes('>')) {
@@ -30,7 +47,7 @@ export class HTMLLinter {
             }
         });
 
-        // 2. Unclosed attribute quotes check
+        // 3. Unclosed attribute quotes check
         lines.forEach((line, idx) => {
             const trimmed = line.trim();
             if (trimmed.startsWith('<') && !trimmed.startsWith('<!--')) {
@@ -47,7 +64,7 @@ export class HTMLLinter {
             }
         });
 
-        // 3. Tag Balance & Unclosed Tag Tracker
+        // 4. Tag Balance & Unclosed Tag Tracker
         const tagRegex = /<\/?([a-zA-Z0-9\-]+)(?:\s+[^>]*)?\/?>/g;
         const tagStack: { tag: string; line: number }[] = [];
         let match: RegExpExecArray | null;
@@ -91,17 +108,20 @@ export class HTMLLinter {
             }
         });
 
-        // Report any unclosed tags left on stack
-        tagStack.forEach(unclosed => {
-            // Don't complain about html/head/body if partial snippet
-            if (['html', 'head', 'body'].includes(unclosed.tag) && tagStack.length > 3) return;
-            problems.push({
-                message: `Unclosed <${unclosed.tag}> tag`,
-                line: unclosed.line,
-                severity: 'warning',
-                hint: `Remember to close this tag with a matching </${unclosed.tag}>.`
+        // Report any unclosed tags left on stack (suppress if incomplete tag error on same line)
+        const hasIncompleteTagErrors = problems.some(p => p.message.includes('Incomplete HTML tag'));
+        if (!hasIncompleteTagErrors) {
+            tagStack.forEach(unclosed => {
+                // Don't complain about html/head/body if partial snippet
+                if (['html', 'head', 'body'].includes(unclosed.tag) && tagStack.length > 3) return;
+                problems.push({
+                    message: `Unclosed <${unclosed.tag}> tag opened on line ${unclosed.line}`,
+                    line: unclosed.line,
+                    severity: 'warning',
+                    hint: `Remember to close <${unclosed.tag}> with a matching </${unclosed.tag}> before the end of the file.`
+                });
             });
-        });
+        }
 
         // 4. In-Memory DOMParser Checks (Duplicate IDs, Missing Attributes, Invalid Nesting)
         try {

@@ -7,12 +7,33 @@ export class PythonLinter {
 
         const lines = code.split('\n');
 
-        // 1. Line-by-line checks
+        // 1. Line-by-line static syntax checks
         lines.forEach((lineText, idx) => {
             const lineNum = idx + 1;
-            // Strip comments
+            // Strip Python comments
             const cleanLine = lineText.replace(/#[^\r\n]*/, '').trim();
             if (!cleanLine) return;
+
+            // Check for unclosed single/double quotes on a single line (unless multiline triple quote)
+            if (!cleanLine.includes('"""') && !cleanLine.includes("'''")) {
+                const quoteCountD = (cleanLine.match(/"/g) || []).length;
+                const quoteCountS = (cleanLine.match(/'/g) || []).length;
+                if (quoteCountD % 2 !== 0) {
+                    problems.push({
+                        message: `Unterminated double quote (") string literal`,
+                        line: lineNum,
+                        severity: 'error',
+                        hint: `Every opening double quote (") must have a matching closing quote on the same line.`
+                    });
+                } else if (quoteCountS % 2 !== 0) {
+                    problems.push({
+                        message: `Unterminated single quote (') string literal`,
+                        line: lineNum,
+                        severity: 'error',
+                        hint: `Every opening single quote (') must have a matching closing quote on the same line.`
+                    });
+                }
+            }
 
             // Missing colon check on control flow / def / class
             if (/^(def\s+[a-zA-Z0-9_]+\s*\(.*?\)|if\s+.*|elif\s+.*|else|for\s+.*|while\s+.*|class\s+[a-zA-Z0-9_]+(\(.*?\))?|try|except(\s+.*)?|finally|with\s+.*)$/.test(cleanLine)) {
@@ -78,38 +99,109 @@ export class PythonLinter {
             }
         });
 
-        // 2. Bracket Balance Counter
-        const strippedAllComments = code.replace(/#[^\r\n]*/g, '');
-        const parenOpen = (strippedAllComments.match(/\(/g) || []).length;
-        const parenClose = (strippedAllComments.match(/\)/g) || []).length;
-        if (parenOpen !== parenClose) {
-            problems.push({
-                message: `Unmatched parentheses: ${parenOpen} '(' vs ${parenClose} ')'`,
-                severity: 'error',
-                hint: `Ensure all function calls, tuples, and groupings have matching '(' and ')'.`
-            });
-        }
+        // 2. Exact Bracket & Delimiter Stack Tracker (skipping strings and comments)
+        const parenStack: { line: number }[] = [];
+        const braceStack: { line: number }[] = [];
+        const bracketStack: { line: number }[] = [];
 
-        const bracketOpen = (strippedAllComments.match(/\[/g) || []).length;
-        const bracketClose = (strippedAllComments.match(/\]/g) || []).length;
-        if (bracketOpen !== bracketClose) {
-            problems.push({
-                message: `Unmatched square brackets: ${bracketOpen} '[' vs ${bracketClose} ']'`,
-                severity: 'error',
-                hint: `Ensure all lists and indexing expressions have matching '[' and ']'.`
-            });
-        }
+        lines.forEach((lineText, lineIdx) => {
+            const lineNum = lineIdx + 1;
+            let inString: string | null = null;
 
-        const braceOpen = (strippedAllComments.match(/\{/g) || []).length;
-        const braceClose = (strippedAllComments.match(/\}/g) || []).length;
-        if (braceOpen !== braceClose) {
+            for (let i = 0; i < lineText.length; i++) {
+                const char = lineText[i];
+
+                if (char === '#' && !inString) {
+                    break; // Python comment, skip rest of line
+                }
+
+                if (inString) {
+                    if (char === inString && lineText[i - 1] !== '\\') {
+                        inString = null;
+                    }
+                    continue;
+                } else if (char === '"' || char === "'") {
+                    inString = char;
+                    continue;
+                }
+
+                // Delimiters
+                if (char === '(') {
+                    parenStack.push({ line: lineNum });
+                } else if (char === ')') {
+                    if (parenStack.length === 0) {
+                        problems.push({
+                            message: `Unexpected closing parenthesis ')'`,
+                            line: lineNum,
+                            severity: 'error',
+                            hint: `Remove this extra ')' or check the line above.`
+                        });
+                    } else {
+                        parenStack.pop();
+                    }
+                }
+
+                if (char === '{') {
+                    braceStack.push({ line: lineNum });
+                } else if (char === '}') {
+                    if (braceStack.length === 0) {
+                        problems.push({
+                            message: `Unexpected closing curly brace '}'`,
+                            line: lineNum,
+                            severity: 'error',
+                            hint: `Remove this extra '}' or check the line above.`
+                        });
+                    } else {
+                        braceStack.pop();
+                    }
+                }
+
+                if (char === '[') {
+                    bracketStack.push({ line: lineNum });
+                } else if (char === ']') {
+                    if (bracketStack.length === 0) {
+                        problems.push({
+                            message: `Unexpected closing square bracket ']'`,
+                            line: lineNum,
+                            severity: 'error',
+                            hint: `Remove this extra ']' or check the list above.`
+                        });
+                    } else {
+                        bracketStack.pop();
+                    }
+                }
+            }
+        });
+
+        // Report unclosed delimiters with exact line numbers
+        parenStack.forEach(unclosed => {
             problems.push({
-                message: `Unmatched curly braces: ${braceOpen} '{' vs ${braceClose} '}'`,
+                message: `Unclosed parenthesis '(' opened on line ${unclosed.line}`,
+                line: unclosed.line,
                 severity: 'error',
-                hint: `Ensure all dictionaries and f-string expressions have matching '{' and '}'.`
+                hint: `Ensure all function calls, tuples, and groupings have a matching ')' closing parenthesis.`
             });
-        }
+        });
+
+        braceStack.forEach(unclosed => {
+            problems.push({
+                message: `Unclosed curly brace '{' opened on line ${unclosed.line}`,
+                line: unclosed.line,
+                severity: 'error',
+                hint: `Ensure all dictionaries and f-string expressions have a matching '}' closing brace.`
+            });
+        });
+
+        bracketStack.forEach(unclosed => {
+            problems.push({
+                message: `Unclosed square bracket '[' opened on line ${unclosed.line}`,
+                line: unclosed.line,
+                severity: 'error',
+                hint: `Ensure all lists and indexing expressions have a matching ']' closing bracket.`
+            });
+        });
 
         return problems;
     }
 }
+
