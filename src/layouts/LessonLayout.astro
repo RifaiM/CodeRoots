@@ -1,0 +1,224 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PlatformHeader, { type JumpLessonItem } from '../components/PlatformHeader.astro';
+import PlatformFooter from '../components/PlatformFooter.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    levelTag: string;
+    lessonNum: number;
+    lessonTitle: string;
+    xpAmount?: number;
+    completionKey: string;
+    nextLessonUrl?: string;
+    hubUrl: string;
+    hubTitle?: string;
+    hubIcon?: string;
+    fileTab?: string;
+    starterCode?: string;
+    mode?: 'html' | 'react' | 'python' | 'terminal';
+    jumpLessons?: JumpLessonItem[];
+    certificateUrl?: string;
+    trackPrefix?: string;
+}
+
+const {
+    title,
+    description,
+    levelTag,
+    lessonNum,
+    lessonTitle,
+    xpAmount = 100,
+    completionKey,
+    nextLessonUrl,
+    hubUrl,
+    hubTitle = 'Level 4 Hub',
+    hubIcon = '⚔️',
+    fileTab = 'index.html',
+    starterCode = '',
+    mode = 'html',
+    jumpLessons = [],
+    certificateUrl,
+    trackPrefix = 'partB'
+} = Astro.props;
+
+const navLinks = [
+    { href: hubUrl, label: `${hubTitle}`, icon: hubIcon, title: `Return to ${hubTitle}` }
+];
+---
+
+<BaseLayout title={title} description={description} showHeaderFooter={false}>
+    <PlatformHeader 
+        slot="header"
+        tagText={levelTag}
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showJumpDropdown={jumpLessons.length > 0}
+        currentLessonId={lessonNum}
+        jumpLessons={jumpLessons}
+        certificateUrl={certificateUrl}
+        trackPrefix={trackPrefix}
+    />
+
+    <!-- Dual 50/50 Lesson Workspace: Natural scroll on both lanes -->
+    <main class="lesson-workspace-outer" data-track={trackPrefix} data-lesson-num={lessonNum} data-level-tag={levelTag}>
+        <div class="lesson-grid">
+            
+            <!-- LEFT LANE: Concept, Widgets, Reference Code, Goal — scrolls freely -->
+            <section class="lesson-instructions-pane">
+                <div class="lesson-header-card">
+                    <div class="lesson-badge-row">
+                        <span class="lesson-level-pill">{levelTag} • Project {lessonNum.toString().padStart(2, '0')}</span>
+                        <span class="lesson-xp-pill">⚡ +{xpAmount} XP Bounty</span>
+                    </div>
+                    <h1 class="lesson-main-title">{lessonTitle}</h1>
+                    <slot name="intro" />
+                </div>
+                <slot name="concept" />
+            </section>
+
+            <!-- RIGHT LANE: Sticky IDE Workspace — large editor + large preview -->
+            <section class="lesson-ide-pane">
+                
+                <!-- Code Editor (Large, wrap-based, no h-scroll) -->
+                <div class="ide-window">
+                    <div class="ide-top-bar">
+                        <div class="ide-tab">
+                            <span>📄</span>
+                            <span>{fileTab}</span>
+                        </div>
+                        <div class="ide-controls">
+                            <button class="ide-reset-btn" id="resetEditorBtn" title="Reset to starter code">
+                                🔄 Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ide-editor-workspace">
+                        <div class="ide-line-numbers" id="ideLineNumbers" aria-hidden="true">
+                            <div class="ide-line-numbers-inner" id="ideLineNumbersInner">1</div>
+                        </div>
+                        <textarea 
+                            id="lessonEditor" 
+                            class="ide-textarea" 
+                            spellcheck="false"
+                            placeholder="Write your code here..."
+                        >{starterCode}</textarea>
+                    </div>
+                </div>
+
+                <!-- Live Preview (Large iframe) -->
+                {mode === 'html' && (
+                    <div class="ide-output-window">
+                        <div class="ide-output-header">
+                            <span>👀 Live Preview</span>
+                            <span class="live-badge">🟢 Real-Time</span>
+                        </div>
+                        <iframe id="livePreviewIframe" class="ide-preview-iframe" title="Live Preview Result" sandbox="allow-scripts allow-modals allow-same-origin"></iframe>
+                    </div>
+                )}
+
+                {/* Python / Terminal Mode Screen */}
+                {mode === 'python' && (
+                    <div class="ide-output-window" style="background: #0f172a; border-color: #334155;">
+                        <div class="ide-output-header" style="background: #1e293b; border-color: #334155; color: #94a3b8;">
+                            <span>🖥️ Python Terminal &amp; Output</span>
+                            <span class="live-badge" style="color: #38bdf8;">🐍 Python 3.12</span>
+                        </div>
+                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
+                            <div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal ready. Click Check &amp; Verify Code to execute main.py</div>
+                        </div>
+                    </div>
+                )}
+
+                <!-- Lint Panel -->
+                <div id="lintPanel"></div>
+
+                <!-- Task Checklist -->
+                <div id="taskChecklist"></div>
+
+                <!-- Action Bar -->
+                <div class="ide-action-bar">
+                    <button class="verify-code-btn" id="checkAnswerBtn">
+                        <span>🔍 Check &amp; Verify Code</span>
+                    </button>
+                    {nextLessonUrl ? (
+                        <a href={nextLessonUrl} class="next-action-btn" id="nextLessonBtn">
+                            <span>Continue ➔</span>
+                        </a>
+                    ) : (
+                        <a href={hubUrl} class="next-action-btn active" id="nextLessonBtn">
+                            <span>Complete Dojo 🏆</span>
+                        </a>
+                    )}
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        import { checkLessonAccessAndRenderOverlay } from '../scripts/dojo/core/protection';
+
+        // ── Direct URL Access Protection & Tampering Prevention ──
+        const mainEl = document.querySelector('.lesson-workspace-outer') as HTMLElement | null;
+        if (mainEl) {
+            const track = mainEl.dataset.track || 'partB';
+            const lessonNum = parseInt(mainEl.dataset.lessonNum || '1', 10);
+            const levelTag = mainEl.dataset.levelTag || 'Lesson';
+
+            checkLessonAccessAndRenderOverlay({
+                track,
+                lessonNum,
+                levelTag
+            });
+        }
+
+        // Global Copy Reference Code Snippet Handler
+        document.addEventListener('click', (e) => {
+            const btn = (e.target as HTMLElement).closest('.copy-code-btn');
+            if (btn) {
+                const targetId = btn.getAttribute('data-target');
+                const targetEl = targetId ? document.getElementById(targetId) : null;
+                const textToCopy = targetEl ? targetEl.textContent || '' : '';
+
+                const markSuccess = () => {
+                    const originalHtml = btn.innerHTML;
+                    btn.innerHTML = '<span>✅ Copied!</span>';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                };
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(textToCopy).then(markSuccess).catch(() => {
+                        fallbackCopy(textToCopy, markSuccess);
+                    });
+                } else {
+                    fallbackCopy(textToCopy, markSuccess);
+                }
+            }
+        });
+
+        function fallbackCopy(text: string, cb: () => void) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                cb();
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(ta);
+        }
+    </script>
+    <slot name="scripts" />
+</BaseLayout>

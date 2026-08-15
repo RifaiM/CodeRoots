@@ -1,0 +1,315 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
+
+function LiveUserDirectory() {
+  const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  // Step 1: Use React.useEffect() with empty dependency array []
+  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state
+
+
+  return (
+    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>👥 Developer Directory</h2>
+      {isLoading ? <p>Loading directory...</p> : <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveUserDirectory />);`;
+
+const level5Lessons = [
+    {
+        "id": 1,
+        "title": "ES6+ JavaScript Powers",
+        "url": "/3. partC/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Arrow Functions & Scope",
+        "url": "/3. partC/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "JS Destructuring",
+        "url": "/3. partC/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Template Literals in JS",
+        "url": "/3. partC/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Array Map & Filter",
+        "url": "/3. partC/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "ES Modules & Imports",
+        "url": "/3. partC/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "React JSX Fundamentals",
+        "url": "/3. partC/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Reusable React Components",
+        "url": "/3. partC/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "React Props & Composition",
+        "url": "/3. partC/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "React useState Hook",
+        "url": "/3. partC/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Controlled Form State",
+        "url": "/3. partC/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "Conditional UI Rendering",
+        "url": "/3. partC/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "React useEffect Hook",
+        "url": "/3. partC/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "React API Data Fetching",
+        "url": "/3. partC/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "React Capstone App",
+        "url": "/3. partC/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 13: React useEffect Hook | Level 5 React Dojo"
+    description="Synchronize components with external systems, manage cleanup timers, and configure reactive dependency arrays."
+    levelTag="Level 5 • React Dojo"
+    lessonNum={13}
+    lessonTitle="React useEffect Hook"
+    xpAmount={150}
+    completionKey="partC_lesson13_remake_complete"
+    nextLessonUrl="/3. partC/lesson14/lesson14_remake.html"
+    hubUrl="/3. partC/hub.html"
+    hubTitle="Level 5 Hub"
+    hubIcon="⚛️"
+    fileTab="App.jsx"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level5Lessons}
+    certificateUrl="/3. partC/certificate.html"
+    trackPrefix="partC"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Synchronize components with external systems, manage cleanup timers, and configure reactive dependency arrays.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
+                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
+            </p>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Use <code>React.useEffect()</code> callback function.</li>
+                <li>Fetch data from API using <code>fetch(...)</code> and <code>res.json()</code>.</li>
+                <li>Pass empty dependency array <code>[]</code> to run on mount.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partC_lesson13';
+        const DEFAULT_STARTER = `// 🌐 Lesson 13: Fetching Live REST APIs with useEffect!
+
+function LiveUserDirectory() {
+  const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  // Step 1: Use React.useEffect() with empty dependency array []
+  // Step 2: Fetch 'https://jsonplaceholder.typicode.com/users' and update users state
+
+
+  return (
+    <div style={{ fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+      <h2>👥 Developer Directory</h2>
+      {isLoading ? <p>Loading directory...</p> : <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveUserDirectory />);`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            {
+                id: 'useeffect',
+                label: 'Implement <code>React.useEffect(...)</code>',
+                fn: (code) => /(?:React\.)?useEffect\s*\(/i.test(code)
+            },
+            {
+                id: 'fetch_api',
+                label: 'Call <code>fetch(...)</code> inside effect',
+                fn: (code) => /fetch\s*\(/i.test(code) && /setUsers\s*\(/i.test(code)
+            },
+            {
+                id: 'deps_empty',
+                label: 'Pass empty dependency array <code>[]</code>',
+                fn: (code) => /useEffect\s*\([\s\S]*?,\s*\[\s*\]\s*\)/i.test(code)
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live React JSX preview inside iframe
+            if (previewIframe) {
+                const code = editor.value;
+                const htmlDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    try {
+      ${code}
+    } catch (err) {
+      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
+    }
+  <\/script>
+</body>
+</html>`;
+                previewIframe.srcdoc = htmlDoc;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Project 13: React useEffect Hook',
+                        xp: 150,
+                        completionKey: 'partC_lesson13_remake_complete',
+                        nextUrl: '/3. partC/lesson14/lesson14_remake.html',
+                        customMessage: 'You have mastered this React Dojo challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

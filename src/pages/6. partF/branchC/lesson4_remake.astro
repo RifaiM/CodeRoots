@@ -1,0 +1,267 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// app/components/BadgeCard.jsx
+// 🛠️ Practice Task: Build a Tailwind CSS Component
+
+export default function BadgeCard({ title, tag, isPrimary }) {
+    return (
+        // Step 1: Add Tailwind classes for padding, border, rounded corners, and badge tag
+        <div className="">
+            <span className="">{tag}</span>
+            <h3 className="">{title}</h3>
+        </div>
+    );
+}`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Next.js App Router",
+        "url": "/6. partF/branchC/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Server & Client UI",
+        "url": "/6. partF/branchC/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Zustand Global State",
+        "url": "/6. partF/branchC/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Tailwind UI Architecture",
+        "url": "/6. partF/branchC/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Unit & E2E Testing",
+        "url": "/6. partF/branchC/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Production Capstone Service",
+        "url": "/6. partF/branchC/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 04: Tailwind UI Architecture | Level 7C • Next.js & Frontend"
+    description="Design responsive, utility-first production UI layouts with Tailwind CSS, flexbox grids, and dynamic state styling."
+    levelTag="Level 7C • Next.js & Frontend"
+    lessonNum={4}
+    lessonTitle="Tailwind UI Architecture"
+    xpAmount={250}
+    completionKey="partF_branchC_lesson4_complete"
+    nextLessonUrl="/6. partF/branchC/lesson5_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="page.jsx"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchC"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Design responsive, utility-first production UI layouts with Tailwind CSS, flexbox grids, and dynamic state styling.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Tailwind CSS provides atomic design utility classes: assembling styles directly in JSX like snapping building blocks together.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>🎨</span> Tailwind Utility Classes</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">p-6 rounded-2xl</div>
+                        <div class="tag-result">Padding + Border Radius utilities</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchC_4">export default function BadgeCard(&#123; title, tag, isPrimary &#125;) &#123;
+    return (
+        &lt;div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all"&gt;
+            &lt;span className="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-indigo-50 text-indigo-600"&gt;
+                &#123;tag&#125;
+            &lt;/span&gt;
+            &lt;h3 className="mt-3 text-lg font-bold text-slate-900"&gt;&#123;title&#125;&lt;/h3&gt;
+        &lt;/div&gt;
+    );
+&#125;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Add responsive container classes (e.g. <code>p-6 rounded-2xl</code>).</li>
+                <li>Add tag styling classes (e.g. <code>text-xs</code>).</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson4';
+        const DEFAULT_STARTER = `// app/components/BadgeCard.jsx
+// 🛠️ Practice Task: Build a Tailwind CSS Component
+
+export default function BadgeCard({ title, tag, isPrimary }) {
+    return (
+        // Step 1: Add Tailwind classes for padding, border, rounded corners, and badge tag
+        <div className="">
+            <span className="">{tag}</span>
+            <h3 className="">{title}</h3>
+        </div>
+    );
+}`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'container', label: 'Apply padding and rounded utilities', fn: (code) => /className=["'][^"']*?\bp-\d+\b[^"']*?\brounded-[a-z0-9]+\b/i.test(code) },
+                { id: 'tag', label: 'Apply tag badge utilities', fn: (code) => /className=["'][^"']*?\btext-xs\b/i.test(code) }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 04: Tailwind UI Architecture',
+                        xp: 250,
+                        completionKey: 'partF_branchC_lesson4_complete',
+                        nextUrl: '/6. partF/branchC/lesson5_remake.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

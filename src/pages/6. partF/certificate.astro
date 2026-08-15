@@ -1,0 +1,709 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/6. partF/hub.html', label: 'Level 7 Hub', icon: '🚀', title: 'Fullstack Hub' }
+];
+---
+
+<BaseLayout 
+    title="Level 7: Full-Stack Systems Certificate | NoviCodes" 
+    description="Claim your verified Level 7 Apex Certificate in Production Cloud Deployment, Backend Systems, and Next.js Architecture."
+    showHeaderFooter={false}
+>
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 7 • Fullstack Mastery"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="cert-page-container">
+        <div class="cert-container">
+            
+            <!-- Certificate Generator Controls -->
+            <section class="generator-card">
+                <div class="generator-header">
+                    <h2>🎓 Level 7 Apex Certificate Generator</h2>
+                    <p>Select your track specialization and enter your name to generate your verified proof-of-work certificate.</p>
+                </div>
+
+                <div class="generator-inputs">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
+                            <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Apex Fullstack Developer" />
+                        </div>
+                        <div class="input-group">
+                            <label for="trackSelect">Certificate Track Specialization:</label>
+                            <select id="trackSelect" class="track-select">
+                                <option value="all">👑 Apex Fullstack Master (All 3 Tracks)</option>
+                                <option value="7a">☁️ Track 7A: Cloud Deployment &amp; DevOps</option>
+                                <option value="7b">🗄️ Track 7B: Backend Systems &amp; Databases</option>
+                                <option value="7c">⚡ Track 7C: Production Frontend &amp; Next.js</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="cert-action-btn primary" id="generateCertBtn">
+                            <span>✨ Update Certificate</span>
+                        </button>
+                        <button class="cert-action-btn success" id="downloadCertBtn">
+                            <span>📥 Download High-Res PNG</span>
+                        </button>
+                        <button class="cert-action-btn secondary" id="printCertBtn" onclick="window.print()">
+                            <span>🖨️ Print / PDF</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Certificate Preview -->
+            <div class="certificate-frame" id="certificateFrame">
+                <div class="certificate-inner">
+                    <div class="cert-watermark">NOVICODES</div>
+                    
+                    <div class="cert-top-row">
+                        <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
+                        <div class="cert-brand">NOVICODES APEX PLATFORM</div>
+                        <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-APEX-2026-0042</span></div>
+                    </div>
+
+                    <div class="cert-center-content">
+                        <div class="cert-icon-seal" id="certIconDisplay">🚀</div>
+                        <h1 class="cert-title">CERTIFICATE OF APEX MASTERY</h1>
+                        <p class="cert-subtitle" id="certSubtitleDisplay">LEVEL 7: PRODUCTION FULLSTACK SYSTEMS ARCHITECTURE</p>
+
+                        <p class="cert-award-text">This official certificate is proudly awarded to:</p>
+                        <h2 class="cert-student-name" id="certNameDisplay">Apex Fullstack Developer</h2>
+
+                        <p class="cert-description" id="certDescDisplay">
+                            For demonstrating verified excellence in <strong>Production Cloud Infrastructure, Distributed Backend Services, High-Performance Databases, and Next.js Frontend Architectures</strong> across complete interactive industry milestones.
+                        </p>
+                    </div>
+
+                    <div class="cert-bottom-row">
+                        <div class="cert-col">
+                            <div class="cert-col-title">ISSUE DATE</div>
+                            <div class="cert-col-val" id="certDateDisplay">August 15, 2026</div>
+                        </div>
+
+                        <div class="cert-seal-badge">
+                            <div class="seal-circle">
+                                <span>VERIFIED</span>
+                                <strong>★ NOVICODES ★</strong>
+                                <span>APEX</span>
+                            </div>
+                        </div>
+
+                        <div class="cert-col right">
+                            <div class="cert-col-title">VERIFICATION SIGNATURE</div>
+                            <div class="cert-sig-box">
+                                <span class="sig-script">NoviCodes Academic Board</span>
+                                <div class="sig-line"></div>
+                                <span class="sig-sub">Chief Fullstack Architect</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Return Link -->
+            <div style="text-align: center; margin-top: 24px;">
+                <a href="/6. partF/hub.html" style="color: #0284c7; font-weight: 700; text-decoration: none; font-size: 0.95rem;">
+                    ← Return to Level 7 Fullstack Hub
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <PlatformFooter slot="footer" />
+</BaseLayout>
+
+<style>
+    .cert-page-container {
+        padding: 40px 20px 80px;
+        background: #f8fafc;
+        min-height: calc(100vh - 72px);
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .cert-container {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .generator-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        margin-bottom: 30px;
+    }
+
+    .generator-header h2 {
+        margin: 0 0 6px 0;
+        font-size: 1.35rem;
+        color: #0f172a;
+    }
+
+    .generator-header p {
+        margin: 0 0 16px 0;
+        color: #64748b;
+        font-size: 0.92rem;
+    }
+
+    .input-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .input-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .track-select {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1.5px solid #cbd5e1;
+        font-family: inherit;
+        font-size: 0.92rem;
+        box-sizing: border-box;
+        outline: none;
+        background: #ffffff;
+        transition: border-color 0.2s;
+    }
+
+    .input-group input:focus,
+    .track-select:focus {
+        border-color: #6366f1;
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .cert-action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cert-action-btn.primary {
+        background: #0f172a;
+        color: #ffffff;
+    }
+
+    .cert-action-btn.primary:hover {
+        background: #1e293b;
+    }
+
+    .cert-action-btn.success {
+        background: #6366f1;
+        color: #ffffff;
+    }
+
+    .cert-action-btn.success:hover {
+        background: #4f46e5;
+    }
+
+    .cert-action-btn.secondary {
+        background: #e2e8f0;
+        color: #334155;
+    }
+
+    .cert-action-btn.secondary:hover {
+        background: #cbd5e1;
+    }
+
+    /* Certificate Visual Frame */
+    .certificate-frame {
+        background: #ffffff;
+        border: 8px solid #0f172a;
+        border-radius: 20px;
+        padding: 14px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        position: relative;
+    }
+
+    .certificate-inner {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 40px 36px;
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #fcfdfe 100%);
+        overflow: hidden;
+    }
+
+    .cert-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        font-size: 6rem;
+        font-weight: 900;
+        color: rgba(15, 23, 42, 0.025);
+        pointer-events: none;
+        letter-spacing: 12px;
+        user-select: none;
+    }
+
+    .cert-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .cert-logo-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+    }
+
+    .cert-brand {
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: #64748b;
+    }
+
+    .cert-id-badge {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.78rem;
+        background: #f1f5f9;
+        padding: 4px 10px;
+        border-radius: 6px;
+        color: #475569;
+        font-weight: 600;
+    }
+
+    .cert-center-content {
+        text-align: center;
+        margin: 20px 0 36px;
+    }
+
+    .cert-icon-seal {
+        font-size: 2.4rem;
+        margin-bottom: 8px;
+    }
+
+    .cert-title {
+        font-size: 1.9rem;
+        letter-spacing: 3px;
+        color: #0f172a;
+        margin: 0 0 6px 0;
+        font-weight: 900;
+    }
+
+    .cert-subtitle {
+        font-size: 0.88rem;
+        letter-spacing: 1.5px;
+        color: #6366f1;
+        font-weight: 800;
+        margin: 0 0 24px 0;
+    }
+
+    .cert-award-text {
+        color: #64748b;
+        font-size: 0.92rem;
+        margin: 0 0 8px 0;
+    }
+
+    .cert-student-name {
+        font-size: 2rem;
+        color: #0f172a;
+        margin: 0 0 16px 0;
+        font-weight: 800;
+        text-decoration: underline;
+        text-decoration-color: #6366f1;
+        text-underline-offset: 6px;
+    }
+
+    .cert-description {
+        max-width: 680px;
+        margin: 0 auto;
+        font-size: 0.90rem;
+        line-height: 1.6;
+        color: #475569;
+    }
+
+    .cert-bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 24px;
+    }
+
+    .cert-col-title {
+        font-size: 0.70rem;
+        letter-spacing: 1px;
+        font-weight: 800;
+        color: #94a3b8;
+        margin-bottom: 4px;
+    }
+
+    .cert-col-val {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .cert-seal-badge {
+        text-align: center;
+    }
+
+    .seal-circle {
+        width: 80px;
+        height: 80px;
+        border: 2px dashed #6366f1;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.55rem;
+        font-weight: 800;
+        color: #6366f1;
+        letter-spacing: 0.5px;
+        background: #eef2ff;
+    }
+
+    .cert-sig-box {
+        text-align: right;
+    }
+
+    .sig-script {
+        font-family: serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .sig-line {
+        width: 140px;
+        height: 1px;
+        background: #0f172a;
+        margin: 4px 0 4px auto;
+    }
+
+    .sig-sub {
+        font-size: 0.72rem;
+        color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+        .input-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cert-bottom-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .cert-sig-box {
+            text-align: center;
+        }
+
+        .sig-line {
+            margin: 4px auto;
+        }
+
+        .cert-student-name {
+            font-size: 1.5rem;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+        }
+    }
+</style>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    declare const Swal: any;
+
+    const trackDetails: Record<string, { icon: string; subtitle: string; desc: string }> = {
+        all: {
+            icon: "🚀",
+            subtitle: "LEVEL 7: PRODUCTION FULLSTACK SYSTEMS ARCHITECTURE",
+            desc: "For demonstrating verified excellence in Production Cloud Infrastructure, Distributed Backend Services, High-Performance Databases, and Next.js Frontend Architectures across all three Level 7 milestone tracks."
+        },
+        "7a": {
+            icon: "☁️",
+            subtitle: "LEVEL 7A: CLOUD DEPLOYMENT & DEVOPS MASTERY",
+            desc: "For demonstrating verified excellence in Git / GitHub Workflows, Vercel & Netlify Deployment, Cloudflare Pages, Render & Fly.io Microservices, CORS Configuration, and GitHub Actions CI/CD."
+        },
+        "7b": {
+            icon: "🗄️",
+            subtitle: "LEVEL 7B: BACKEND SYSTEMS & DATABASE ARCHITECTURE",
+            desc: "For demonstrating verified excellence in FastAPI Microservices, SQLite & PostgreSQL Databases, JWT & Security Tokens, Async Task Queues with Redis, Docker Containerization, and GraphQL Services."
+        },
+        "7c": {
+            icon: "⚡",
+            subtitle: "LEVEL 7C: PRODUCTION FRONTEND & NEXT.JS ARCHITECTURE",
+            desc: "For demonstrating verified excellence in Next.js Server-Side Rendering (SSR), Zustand State Management, Tailwind Production UI, Jest & Playwright Testing, Sentry Monitoring, and Capstone Architecture."
+        }
+    };
+
+    // 1. Certificate Access Protection Check
+    function isTrackACompleted() { return localStorage.getItem('partF_branchA_completed') === 'true'; }
+    function isTrackBCompleted() { return localStorage.getItem('partF_branchB_completed') === 'true'; }
+    function isTrackCCompleted() { return localStorage.getItem('partF_branchC_completed') === 'true'; }
+
+    function countCompletedTracks() {
+        let count = 0;
+        if (isTrackACompleted()) count++;
+        if (isTrackBCompleted()) count++;
+        if (isTrackCCompleted()) count++;
+        return count;
+    }
+
+    function canAccessCertificate() {
+        const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+        return isPracticeUnlocked || countCompletedTracks() > 0;
+    }
+
+    function checkProtection() {
+        if (!canAccessCertificate()) {
+            const count = countCompletedTracks();
+            const remaining = 3 - count;
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Level 7 Certificate Locked! 📜',
+                html: `
+                    <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <p style="font-size: 1.02rem; color: #475569; margin-bottom: 16px;">
+                            You must complete at least <strong>1 specialization track</strong> (Track 7A, 7B, or 7C) in Level 7 before claiming your official certificate!
+                        </p>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${count}</div>
+                                <div style="font-size: 0.8rem; color: #64748b;">Tracks Done</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
+                                <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                confirmButtonColor: '#6366f1',
+                confirmButtonText: '🚀 Go to Level 7 Hub',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            }).then(() => {
+                window.location.href = '/6. partF/hub.html';
+            });
+        }
+    }
+
+    // 2. High-DPI Canvas Exporter
+    function setupGenerator() {
+        const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+        const trackSelect = document.getElementById('trackSelect') as HTMLSelectElement | null;
+        const nameDisplay = document.getElementById('certNameDisplay');
+        const iconDisplay = document.getElementById('certIconDisplay');
+        const subtitleDisplay = document.getElementById('certSubtitleDisplay');
+        const descDisplay = document.getElementById('certDescDisplay');
+        const updateBtn = document.getElementById('generateCertBtn');
+        const downloadBtn = document.getElementById('downloadCertBtn');
+        const dateDisplay = document.getElementById('certDateDisplay');
+        const idDisplay = document.getElementById('certIdDisplay');
+
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        if (dateDisplay) dateDisplay.textContent = dateStr;
+
+        let seed = 42;
+        const savedName = localStorage.getItem('novicodes_user_name') || 'Apex Fullstack Developer';
+        if (nameInput) nameInput.value = savedName;
+        if (nameDisplay) nameDisplay.textContent = savedName;
+
+        for (let i = 0; i < savedName.length; i++) {
+            seed = (seed * 31 + savedName.charCodeAt(i)) % 9000;
+        }
+        const certNum = (1000 + seed).toString();
+        if (idDisplay) idDisplay.textContent = `NC-APEX-2026-${certNum}`;
+
+        function updatePreview() {
+            const val = nameInput?.value.trim() || 'Apex Fullstack Developer';
+            const trackKey = trackSelect?.value || 'all';
+            const details = trackDetails[trackKey] || trackDetails['all'];
+
+            if (nameDisplay) nameDisplay.textContent = val;
+            if (iconDisplay) iconDisplay.textContent = details.icon;
+            if (subtitleDisplay) subtitleDisplay.textContent = details.subtitle;
+            if (descDisplay) descDisplay.textContent = details.desc;
+
+            localStorage.setItem('novicodes_user_name', val);
+
+            let newSeed = 42;
+            for (let i = 0; i < val.length; i++) {
+                newSeed = (newSeed * 31 + val.charCodeAt(i)) % 9000;
+            }
+            if (idDisplay) idDisplay.textContent = `NC-APEX-2026-${(1000 + newSeed).toString()}`;
+        }
+
+        if (updateBtn) updateBtn.addEventListener('click', updatePreview);
+        if (trackSelect) trackSelect.addEventListener('change', updatePreview);
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                const name = (nameInput?.value.trim() || 'Apex_Developer').replace(/\s+/g, '_');
+                generateCanvasAndDownload(`NoviCodes_Level7_Certificate_${name}.png`);
+            });
+        }
+    }
+
+    function generateCanvasAndDownload(filename: string) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 2400;
+        canvas.height = 1600;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const trackKey = (document.getElementById('trackSelect') as HTMLSelectElement)?.value || 'all';
+        const details = trackDetails[trackKey] || trackDetails['all'];
+
+        // Background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 2400, 1600);
+
+        // Border Outer
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineWidth = 24;
+        ctx.strokeRect(30, 30, 2340, 1540);
+
+        // Border Inner
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(60, 60, 2280, 1480);
+
+        // Header Title
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('NOVICODES APEX PLATFORM • LEVEL 7 FULLSTACK MASTERY', 1200, 160);
+
+        // Icon
+        ctx.font = '80px sans-serif';
+        ctx.fillText(details.icon, 1200, 280);
+
+        // Certificate Title
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('CERTIFICATE OF APEX MASTERY', 1200, 380);
+
+        // Subtitle
+        ctx.fillStyle = '#6366f1';
+        ctx.font = 'bold 34px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(details.subtitle, 1200, 440);
+
+        // Awarded text
+        ctx.fillStyle = '#64748b';
+        ctx.font = '32px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('This official certificate is proudly awarded to:', 1200, 560);
+
+        // Student Name
+        const name = (document.getElementById('learnerNameInput') as HTMLInputElement)?.value.trim() || 'Apex Fullstack Developer';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '800 64px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(name, 1200, 660);
+
+        // Underline
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        const textWidth = ctx.measureText(name).width;
+        ctx.moveTo(1200 - textWidth / 2 - 20, 690);
+        ctx.lineTo(1200 + textWidth / 2 + 20, 690);
+        ctx.stroke();
+
+        // Description
+        ctx.fillStyle = '#475569';
+        ctx.font = '30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(details.desc.substring(0, 80), 1200, 780);
+        ctx.fillText(details.desc.substring(80, 160), 1200, 830);
+        if (details.desc.length > 160) {
+            ctx.fillText(details.desc.substring(160), 1200, 880);
+        }
+
+        // Bottom Details
+        const dateStr = document.getElementById('certDateDisplay')?.textContent || 'August 15, 2026';
+        const certId = document.getElementById('certIdDisplay')?.textContent || 'NC-APEX-2026-0042';
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('ISSUE DATE', 160, 1340);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(dateStr, 160, 1390);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('CERTIFICATE ID', 1200, 1340);
+        ctx.fillStyle = '#6366f1';
+        ctx.font = 'bold 30px "Fira Code", monospace';
+        ctx.fillText(certId, 1200, 1390);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('VERIFICATION', 2240, 1340);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('NoviCodes Academic Board', 2240, 1390);
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            checkProtection();
+            setupGenerator();
+        });
+    } else {
+        checkProtection();
+        setupGenerator();
+    }
+</script>

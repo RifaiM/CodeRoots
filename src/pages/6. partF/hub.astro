@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', active: true, extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+];
+---
+
+<BaseLayout
+    title="Mastery Specialization Hub (Level 7) | NoviCodes"
+    description="Choose your specialization track: Cloud DevOps & CI/CD, Database & Auth Engineering, or Next.js Fullstack Architecture."
+    showHeaderFooter={false}
+>
+    <!-- Top Global Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Specialization"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="hub-container">
+        <!-- Hero Banner -->
+        <section class="hub-hero">
+            <span class="level7-badge">🚀 Level 7 Specialization Hub</span>
+            <h1>Choose Your Developer Mastery Track</h1>
+            <p>
+                Congratulations on reaching Level 7! Select your specialization branch below. Complete <strong>any 1 branch</strong> to earn your official Level 7 Certificate, or conquer all 3 to claim the <strong>Principal Polymath Rank</strong>!
+            </p>
+            <div class="hub-stats-row">
+                <span class="stat-pill">☁️ Track 7A: Cloud & DevOps (1,500 XP)</span>
+                <span class="stat-pill">🛢️ Track 7B: SQL & Auth (1,500 XP)</span>
+                <span class="stat-pill">⚡ Track 7C: Next.js SSR (1,500 XP)</span>
+            </div>
+        </section>
+
+        <!-- Branch Selector Grid -->
+        <section class="branch-grid">
+            
+            <!-- Branch 7A: Cloud Shipping & DevOps -->
+            <article class="branch-card card-cloud">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">☁️</div>
+                        <span class="branch-tag">Track 7A</span>
+                    </div>
+                    <h2 class="branch-title">Cloud Shipping & Free Hosting</h2>
+                    <p class="branch-desc">
+                        Master Git workflows and deploy live production web apps to Vercel, Cloudflare Pages, Netlify, and Render for $0/month forever.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">Git / GitHub</span>
+                        <span class="branch-meta-item">Vercel & Netlify</span>
+                        <span class="branch-meta-item">Cloudflare Pages</span>
+                        <span class="branch-meta-item">Render API</span>
+                        <span class="branch-meta-item">CI/CD</span>
+                    </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#34d399;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="/6. partF/branchA/lesson1_remake.html" class="syllabus-item" id="item7A_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">Git & GitHub Workflow</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_1">⚡ Up Next</span>
+                            </a>
+                            <a href="/6. partF/branchA/lesson2_remake.html" class="syllabus-item locked" id="item7A_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Vercel & Netlify Deployments</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_2">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchA/lesson3_remake.html" class="syllabus-item locked" id="item7A_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">Cloudflare Pages & Workers</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_3">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchA/lesson4_remake.html" class="syllabus-item locked" id="item7A_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">Render & Fly.io Web Services</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_4">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchA/lesson5_remake.html" class="syllabus-item locked" id="item7A_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">FastAPI CORS Security</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_5">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchA/lesson6_remake.html" class="syllabus-item locked" id="item7A_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">GitHub Actions CI/CD Pipeline</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7A_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7A"></div>
+                    </div>
+                    <a href="/6. partF/branchA/lesson1_remake.html" class="branch-btn" id="btnBranch7A">
+                        <span>☁️ Launch Track 7A (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Branch 7B: Database Architecture & Auth -->
+            <article class="branch-card card-db">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">🛢️</div>
+                        <span class="branch-tag">Track 7B</span>
+                    </div>
+                    <h2 class="branch-title">Databases & Auth Architecture</h2>
+                    <p class="branch-desc">
+                        Learn relational SQL, managed cloud PostgreSQL (Neon/Supabase), SQLAlchemy ORMs, Bcrypt security, and JWT tokens.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">PostgreSQL / SQL</span>
+                        <span class="branch-meta-item">Supabase / Neon</span>
+                        <span class="branch-meta-item">SQLAlchemy</span>
+                        <span class="branch-meta-item">Bcrypt & JWT</span>
+                    </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#38bdf8;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="/6. partF/branchB/lesson1_remake.html" class="syllabus-item" id="item7B_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">SQL Fundamentals & Queries</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_1">⚡ Up Next</span>
+                            </a>
+                            <a href="/6. partF/branchB/lesson2_remake.html" class="syllabus-item locked" id="item7B_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Cloud PostgreSQL (Neon/Supabase)</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_2">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchB/lesson3_remake.html" class="syllabus-item locked" id="item7B_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">SQLAlchemy ORM Models</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_3">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchB/lesson4_remake.html" class="syllabus-item locked" id="item7B_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">Bcrypt Password Hashing</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_4">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchB/lesson5_remake.html" class="syllabus-item locked" id="item7B_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">JWT Token Authentication</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_5">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchB/lesson6_remake.html" class="syllabus-item locked" id="item7B_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">Auth Middleware & RBAC</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7B_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7B"></div>
+                    </div>
+                    <a href="/6. partF/branchB/lesson1_remake.html" class="branch-btn" id="btnBranch7B">
+                        <span>🛢️ Launch Track 7B (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Branch 7C: Next.js & Modern Frameworks -->
+            <article class="branch-card card-next">
+                <div>
+                    <div class="branch-card-header">
+                        <div class="branch-icon-box">⚡</div>
+                        <span class="branch-tag">Track 7C</span>
+                    </div>
+                    <h2 class="branch-title">Next.js & Server Components</h2>
+                    <p class="branch-desc">
+                        Master Server-Side Rendering (SSR), Next.js App Router, Server Components vs Client Components, and Vercel Deployments.
+                    </p>
+                    <div class="branch-meta-list">
+                        <span class="branch-meta-item">Next.js App Router</span>
+                        <span class="branch-meta-item">SSR vs CSR</span>
+                        <span class="branch-meta-item">Server Actions</span>
+                        <span class="branch-meta-item">Vercel Deploy</span>
+                    </div>
+
+                    <!-- 6-Lesson Syllabus List -->
+                    <div class="branch-syllabus-wrap">
+                        <div class="syllabus-heading">
+                            <span>Syllabus (6 Projects)</span>
+                            <span style="color:#a855f7;">+1,500 XP</span>
+                        </div>
+                        <div class="syllabus-list">
+                            <a href="/6. partF/branchC/lesson1_remake.html" class="syllabus-item" id="item7C_1">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">01</span>
+                                    <span class="syllabus-name">App Router Architecture</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_1">⚡ Up Next</span>
+                            </a>
+                            <a href="/6. partF/branchC/lesson2_remake.html" class="syllabus-item locked" id="item7C_2">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">02</span>
+                                    <span class="syllabus-name">Server vs Client Components</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_2">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchC/lesson3_remake.html" class="syllabus-item locked" id="item7C_3">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">03</span>
+                                    <span class="syllabus-name">Server Actions & Forms</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_3">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchC/lesson4_remake.html" class="syllabus-item locked" id="item7C_4">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">04</span>
+                                    <span class="syllabus-name">API Route Handlers</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_4">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchC/lesson5_remake.html" class="syllabus-item locked" id="item7C_5">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">05</span>
+                                    <span class="syllabus-name">RSC Direct DB Queries</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_5">🔒 Locked</span>
+                            </a>
+                            <a href="/6. partF/branchC/lesson6_remake.html" class="syllabus-item locked" id="item7C_6">
+                                <div class="syllabus-item-left">
+                                    <span class="syllabus-idx">06</span>
+                                    <span class="syllabus-name">Next.js Production Config</span>
+                                </div>
+                                <span class="syllabus-status" id="stat7C_6">🔒 Locked</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch-footer">
+                    <div class="branch-progress-bar">
+                        <div class="branch-progress-fill" id="fillBranch7C"></div>
+                    </div>
+                    <a href="/6. partF/branchC/lesson1_remake.html" class="branch-btn" id="btnBranch7C">
+                        <span>⚡ Launch Track 7C (Lesson 1/6)</span>
+                    </a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/6. partF/hub.css" />
+
+    <!-- JavaScript Engines -->
+    <script is:inline src="/scripts/dashboard.js"></script>
+    <script is:inline src="/6. partF/hub.js"></script>
+</BaseLayout>

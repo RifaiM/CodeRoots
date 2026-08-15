@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../../components/PlatformHeader.astro';
+import PlatformFooter from '../../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
+    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+];
+---
+
+<BaseLayout
+    title="Pillar 4: JavaScript Interactivity Fundamentals Guide | NoviCodes"
+    description="Learn how JavaScript powers dynamic interactivity, DOM event handling, and data communication for modern web applications."
+    showHeaderFooter={false}
+>
+    <!-- Standardized Platform Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 0 • Pillar 4: JavaScript"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+    />
+
+    <!-- Main Container -->
+    <main class="concept-container">
+        
+        <!-- Hero Banner -->
+        <section class="concept-hero">
+            <span class="concept-badge-pill">⚡ Pillar 4 of 4 • 50 XP</span>
+            <h1>JavaScript - The Brain &amp; Interactivity</h1>
+            <p>
+                Learn how JavaScript brings websites to life by reacting to user events, calculating dynamic values, and communicating with cloud APIs.
+            </p>
+        </section>
+
+        <!-- 1. The Web Development Triad -->
+        <section class="concept-card">
+            <h2><span>🏛️</span> 1. The Web Development Triad in Action</h2>
+            <p>
+                Every modern website is an orchestra of three technologies working in perfect harmony:
+            </p>
+
+            <div class="triad-grid">
+                <div class="triad-card" style="border-top: 4px solid #ea580c;">
+                    <div class="triad-icon">🧱</div>
+                    <h3 class="triad-title">HTML (The Skeleton)</h3>
+                    <p class="triad-desc">Provides the structural blueprint and semantic tags.</p>
+                </div>
+                <div class="triad-card" style="border-top: 4px solid #db2777;">
+                    <div class="triad-icon">🎨</div>
+                    <h3 class="triad-title">CSS (The Skin)</h3>
+                    <p class="triad-desc">Styles colors, fonts, responsive layouts, and visual appeal.</p>
+                </div>
+                <div class="triad-card" style="border-top: 4px solid #eab308;">
+                    <div class="triad-icon">⚡</div>
+                    <h3 class="triad-title">JavaScript (The Brain)</h3>
+                    <p class="triad-desc">Executes logic, listens to user events, and fetches data.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Interactive Event Playground -->
+        <section class="concept-card">
+            <h2><span>🎮</span> 2. Interactive Event Counter Playground</h2>
+            <p>
+                Click the action buttons below to see JavaScript event listeners manipulate the DOM in real-time:
+            </p>
+
+            <div class="sandbox-card-box">
+                <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Live Dynamic Counter</span>
+                <div class="counter-value-display" id="counterValueDisplay">0</div>
+                <div class="sandbox-btn-row">
+                    <button class="event-action-btn" id="btnInc">➕ Increment (Add 1)</button>
+                    <button class="event-action-btn" id="btnDec" style="background:#f1f5f9; color:#0f172a;">➖ Decrement (Minus 1)</button>
+                    <button class="event-action-btn" id="btnReset" style="background:#fee2e2; color:#b91c1c;">🔄 Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Mini Knowledge Check -->
+        <section class="concept-card">
+            <div class="section-header-row">
+                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
+            </div>
+            <p id="quizQText">Loading question...</p>
+            <div class="quiz-options-list" id="quizOptionsContainer"></div>
+            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+        </section>
+
+        <!-- 4. Complete & Return to Roadmap -->
+        <section class="complete-card">
+            <h3>🎉 Mastered All 4 Pillars?</h3>
+            <p>Claim your +50 XP and return to the Web History roadmap to finalize Level 0!</p>
+            <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
+                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/1. partA/javascript_concept/javascript_concept.css" />
+
+    <!-- Script -->
+    <script is:inline src="/1. partA/javascript_concept/javascript_concept.js"></script>
+</BaseLayout>

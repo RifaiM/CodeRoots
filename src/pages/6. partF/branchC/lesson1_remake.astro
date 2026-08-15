@@ -1,0 +1,271 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// app/page.js — Next.js Root Page Component
+// 🛠️ Practice Task: Build an App Router Page Component
+
+// Step 1: Export metadata object with title and description
+// Write export const metadata = { ... } here:
+
+
+// Step 2: Export default function component returning JSX with <h1> heading
+// Write export default function Home() here:
+`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Next.js App Router",
+        "url": "/6. partF/branchC/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Server & Client UI",
+        "url": "/6. partF/branchC/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Zustand Global State",
+        "url": "/6. partF/branchC/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Tailwind UI Architecture",
+        "url": "/6. partF/branchC/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Unit & E2E Testing",
+        "url": "/6. partF/branchC/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Production Capstone Service",
+        "url": "/6. partF/branchC/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 01: Next.js App Router | Level 7C • Next.js & Frontend"
+    description="Learn Next.js App Router conventions, nested file-based routing, page.js components, and React Server Components."
+    levelTag="Level 7C • Next.js & Frontend"
+    lessonNum={1}
+    lessonTitle="Next.js App Router"
+    xpAmount={250}
+    completionKey="partF_branchC_lesson1_complete"
+    nextLessonUrl="/6. partF/branchC/lesson2_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="page.jsx"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchC"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Learn Next.js App Router conventions, nested file-based routing, page.js components, and React Server Components.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Next.js App Router turns folder directories into web URLs: creating a page.js file inside /dashboard automatically creates the /dashboard route.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>📁</span> App Router Conventions</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">app/page.js</div>
+                        <div class="tag-result">Serves root URL path (/)</div>
+                    </div>
+                    <div class="tag-example">
+                        <div class="tag-code">app/blog/page.js</div>
+                        <div class="tag-result">Serves /blog route automatically</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchC_1">export const metadata = &#123;
+    title: 'My Next.js Application',
+    description: 'Built with Next.js App Router',
+&#125;;
+
+export default function Home() &#123;
+    return (
+        &lt;main style=&#123;&#123; padding: 24, fontFamily: 'sans-serif' &#125;&#125;&gt;
+            &lt;h1&gt;🚀 Welcome to Next.js App Router&lt;/h1&gt;
+            &lt;p&gt;Server-rendered high performance frontend.&lt;/p&gt;
+        &lt;/main&gt;
+    );
+&#125;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Export metadata with <code>export const metadata = &#123; ... &#125;</code>.</li>
+                <li>Export default page component with <code>export default function Home() &#123; return ...; &#125;</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson1';
+        const DEFAULT_STARTER = `// app/page.js — Next.js Root Page Component
+// 🛠️ Practice Task: Build an App Router Page Component
+
+// Step 1: Export metadata object with title and description
+// Write export const metadata = { ... } here:
+
+
+// Step 2: Export default function component returning JSX with <h1> heading
+// Write export default function Home() here:
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'metadata', label: 'Export metadata object', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, ''); return /export\s+const\s+metadata\s*=\s*\{/i.test(c); } },
+                { id: 'exportdefault', label: 'Export default component <code>export default function</code>', fn: (code) => { const c = code.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, ''); return /export\s+default\s+function/i.test(c); } },
+                { id: 'heading', label: 'Return <code>&lt;h1&gt;</code> element', fn: (code) => /<h1[^>]*>[\s\S]*?<\/h1>/i.test(code) }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 01: Next.js App Router',
+                        xp: 250,
+                        completionKey: 'partF_branchC_lesson1_complete',
+                        nextUrl: '/6. partF/branchC/lesson2_remake.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

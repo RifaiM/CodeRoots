@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../../components/PlatformHeader.astro';
+import PlatformFooter from '../../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
+    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+];
+---
+
+<BaseLayout
+    title="Pillar 3: CSS Styling Fundamentals Guide | NoviCodes"
+    description="Discover how Cascading Style Sheets (CSS) transform raw HTML into beautiful, responsive, and animated user interfaces."
+    showHeaderFooter={false}
+>
+    <!-- Standardized Platform Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 0 • Pillar 3: CSS"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+    />
+
+    <!-- Main Container -->
+    <main class="concept-container">
+        
+        <!-- Hero Banner -->
+        <section class="concept-hero">
+            <span class="concept-badge-pill">🎨 Pillar 3 of 4 • 50 XP</span>
+            <h1>CSS - The Visual Style &amp; Palette</h1>
+            <p>
+                Learn how Cascading Style Sheets transform plain markup into vibrant colors, typography, responsive grids, and delightful micro-interactions.
+            </p>
+        </section>
+
+        <!-- 1. Interactive Styler Playground -->
+        <section class="concept-card">
+            <h2><span>🎨</span> 1. Interactive Live CSS Styler</h2>
+            <p>
+                Click the style controls below to see instant visual CSS transformations applied to the card:
+            </p>
+
+            <div class="styler-controls-grid">
+                <button class="style-toggle-btn" id="styleToggleColor">🎨 Toggle Gradient Color</button>
+                <button class="style-toggle-btn" id="styleToggleRadius">🔘 Toggle Border Radius</button>
+                <button class="style-toggle-btn" id="styleToggleShadow">✨ Toggle Glow Shadow</button>
+            </div>
+
+            <div class="styler-live-box">
+                <div class="demo-element-card" id="demoElementCard">
+                    🎨 Live CSS Element
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CSS Box Model Visualizer -->
+        <section class="concept-card">
+            <h2><span>📦</span> 2. The CSS Box Model</h2>
+            <p>
+                Every HTML element on a webpage is treated as a rectangular box with 4 nested layers:
+            </p>
+
+            <div class="box-model-diagram">
+                MARGIN (Outer Space between Elements)
+                <div class="box-border">
+                    BORDER (Visible Stroke Outline)
+                    <div class="box-padding">
+                        PADDING (Inner Breathing Space)
+                        <div class="box-content">
+                            CONTENT (Text, Image, Icon)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Mini Knowledge Check -->
+        <section class="concept-card">
+            <div class="section-header-row">
+                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
+            </div>
+            <p id="quizQText">Loading question...</p>
+            <div class="quiz-options-list" id="quizOptionsContainer"></div>
+            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+        </section>
+
+        <!-- 4. Complete & Continue -->
+        <section class="complete-card">
+            <h3>🎉 Mastered CSS Styling?</h3>
+            <p>Claim your +50 XP and continue to Pillar 4: JavaScript Interactivity!</p>
+            <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
+                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/1. partA/css_concept/css_concept.css" />
+
+    <!-- Script -->
+    <script is:inline src="/1. partA/css_concept/css_concept.js"></script>
+</BaseLayout>

@@ -1,0 +1,276 @@
+---
+interface Props {
+    brandName?: string;
+    tagline?: string;
+}
+
+const { 
+    brandName = 'NoviCodes',
+    tagline = 'From Novice to Fullstack Web Developer. Zero-barrier, open-source environment for learners worldwide.'
+} = Astro.props;
+---
+
+<footer class="platform-footer" id="footer" aria-label="Platform Footer">
+    <div class="footer-inner">
+        <!-- Column 1: Brand & Mission (Equal Height with Badges) -->
+        <div class="footer-col footer-col-brand">
+            <a href="/" class="platform-logo" aria-label="NoviCodes Footer Home Link">
+                <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" width="38" height="38" loading="lazy" />
+                <div class="logo-text">
+                    <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+                    <span class="logo-tag">From Novice to Dev</span>
+                </div>
+            </a>
+            <p class="footer-mission-text">{tagline}</p>
+            <div class="footer-badges-wrap">
+                <span class="footer-badge-pill">⚖️ MIT License</span>
+                <span class="footer-badge-pill">✨ 100% Free</span>
+            </div>
+        </div>
+
+        <!-- Column 2: Foundations & Concepts (Exactly 5 items) -->
+        <div class="footer-col">
+            <h3 class="footer-heading">
+                <span class="col-icon">🧱</span> Foundations
+            </h3>
+            <ul class="footer-nav-list">
+                <li><a href="/1. partA/web_history.html">Level 0 • Web History</a></li>
+                <li><a href="/foundations.html?track=html">Level 1 • HTML5 Structure</a></li>
+                <li><a href="/foundations.html?track=css">Level 2 • CSS3 &amp; Styling</a></li>
+                <li><a href="/foundations.html?track=js">Level 3 • Modern JavaScript</a></li>
+                <li><a href="/1. partA/hub.html">Foundations Academy Hub</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Dojos & Masteries (Exactly 5 items) -->
+        <div class="footer-col">
+            <h3 class="footer-heading">
+                <span class="col-icon">⚔️</span> Dojos &amp; Mastery
+            </h3>
+            <ul class="footer-nav-list">
+                <li><a href="/2. partB/hub.html">Level 4 • DOM Projects Dojo</a></li>
+                <li><a href="/3. partC/hub.html">Level 5 • React Framework Dojo</a></li>
+                <li><a href="/5. partE/hub.html">Level 6 • Python Backend Dojo</a></li>
+                <li><a href="/6. partF/hub.html">Level 7 • Fullstack Mastery Hub</a></li>
+                <li><a href="/4. partD/devtype/devtype.html">DevType Code Speedrun</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 4: Platform & Legal (Exactly 5 items) -->
+        <div class="footer-col">
+            <h3 class="footer-heading">
+                <span class="col-icon">⚖️</span> Platform &amp; Legal
+            </h3>
+            <ul class="footer-nav-list">
+                <li><a href="/#dailyQuestSection">Daily 2-Minute Quests</a></li>
+                <li><a href="javascript:void(0)" onclick="if(typeof openCertificateHub==='function') openCertificateHub();">Proof-of-Work Certificates</a></li>
+                <li><a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                <li><a href="/terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+                <li><a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Creator Portfolio ↗</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom Copyright Row -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+            <p class="copyright-text">© 2026 {brandName} • 100% Free &amp; Open-Source for All Learners Worldwide</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* ==========================================================================
+       Master Pixel-Perfect Equal-Height Platform Footer
+       ========================================================================== */
+    .platform-footer {
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+        padding: 56px 24px 28px 24px;
+        margin-top: 60px;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #334155;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.8fr 1.2fr 1.2fr 1.2fr;
+        gap: 36px;
+        padding-bottom: 36px;
+        border-bottom: 1px solid #f1f5f9;
+        box-sizing: border-box;
+        align-items: start;
+    }
+
+    /* Column 1: Brand */
+    .footer-col-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-col-brand .platform-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        margin-bottom: 12px;
+    }
+
+    .footer-col-brand .brand-logo-img {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    .footer-mission-text {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0 0 16px 0;
+        max-width: 320px;
+    }
+
+    .footer-badges-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .footer-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #475569;
+    }
+
+    /* Navigation Link Columns */
+    .footer-heading {
+        font-size: 0.84rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: #0f172a;
+        margin: 0 0 16px 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 24px;
+    }
+
+    .footer-nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .footer-nav-list li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-nav-list li a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        display: inline-block;
+        line-height: 1.4;
+    }
+
+    .footer-nav-list li a:hover {
+        color: #2563eb;
+        transform: translateX(3px);
+    }
+
+    /* Bottom Copyright & Status Bar */
+    .footer-bottom {
+        max-width: 1240px;
+        margin: 24px auto 0 auto;
+        box-sizing: border-box;
+    }
+
+    .footer-bottom-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copyright-text {
+        font-size: 0.82rem;
+        color: #94a3b8;
+        margin: 0;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    /* ==========================================================================
+       Responsive Breakpoints (Desktop, Tablet & Mobile 320px-768px)
+       ========================================================================== */
+
+    @media (max-width: 1024px) {
+        .footer-inner {
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 24px;
+        }
+    }
+
+    @media (max-width: 860px) {
+        .footer-inner {
+            grid-template-columns: 1fr 1fr;
+            gap: 32px 24px;
+        }
+        .footer-col-brand {
+            grid-column: 1 / -1;
+            max-width: 100%;
+        }
+        .footer-mission-text {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .platform-footer {
+            padding: 36px 16px 20px 16px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            grid-template-columns: 1fr;
+            gap: 26px;
+            padding-bottom: 24px;
+        }
+        .footer-heading {
+            margin-bottom: 12px;
+            font-size: 0.82rem;
+        }
+        .footer-nav-list {
+            gap: 9px;
+        }
+        .footer-nav-list li a {
+            font-size: 0.85rem;
+            padding: 2px 0;
+        }
+        .footer-bottom-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+</style>

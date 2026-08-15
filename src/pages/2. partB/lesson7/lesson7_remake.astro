@@ -1,0 +1,350 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<!-- 🛠️ Project 07: The CSS Box Model -->
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Step 1: Add padding inside .box-container */
+  .box-container {
+
+
+  }
+
+  /* Step 2: Add margin between .box-item cards */
+  .box-item {
+
+
+  }
+</style>
+
+<div class="box-container">
+  <div class="box-item">Box A</div>
+  <div class="box-item">Box B</div>
+</div>
+`;
+
+const level4Lessons = [
+    {
+        "id": 1,
+        "title": "Interactive HTML Page Structure",
+        "url": "/2. partB/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Typography & Heading Hierarchy",
+        "url": "/2. partB/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Interactive Links & Dynamic Media",
+        "url": "/2. partB/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Lists & Dropdown Drawer Navigation",
+        "url": "/2. partB/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Semantic HTML Web Architecture",
+        "url": "/2. partB/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "CSS Colors, Backgrounds & Borders",
+        "url": "/2. partB/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "The CSS Box Model & Spacing",
+        "url": "/2. partB/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Modern Flexbox Layout Mastery",
+        "url": "/2. partB/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "Responsive CSS Grid Architecture",
+        "url": "/2. partB/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "JavaScript Variables & Data Types",
+        "url": "/2. partB/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Functions & Interactive Click Events",
+        "url": "/2. partB/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "DOM Manipulation & Dynamic Elements",
+        "url": "/2. partB/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "Interactive Forms & Input Validation",
+        "url": "/2. partB/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "Asynchronous JavaScript & REST APIs",
+        "url": "/2. partB/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "Capstone: Full Interactive Web Application",
+        "url": "/2. partB/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 07: The CSS Box Model & Spacing | Level 4 DOM Dojo"
+    description="Master margin, padding, width, height, and box-sizing: border-box to control spacing with pixel precision."
+    levelTag="Level 4 • DOM Dojo"
+    lessonNum={7}
+    lessonTitle="The CSS Box Model & Spacing"
+    xpAmount={100}
+    completionKey="partB_lesson7_remake_complete"
+    nextLessonUrl="/2. partB/lesson8/lesson8_remake.html"
+    hubUrl="/2. partB/hub.html"
+    hubTitle="Level 4 Hub"
+    hubIcon="⚔️"
+    fileTab="index.html"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level4Lessons}
+    certificateUrl="/2. partB/certificate.html"
+    trackPrefix="partB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Master margin, padding, width, height, and box-sizing: border-box to control spacing with pixel precision.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> The Box Model is like physical shipping: Content is the gift 🎁, Padding is the bubble wrap inside 🫧, Border is the cardboard carton 📦, and Margin is the distance to the next package 📏.
+            </div>
+        </article>
+
+        
+        <!-- Box Model Anatomy Visualizer -->
+        <article class="concept-card">
+            <h3><span>📦</span> Box Model Spacing Hierarchy</h3>
+            <div style="background: #fed7aa; padding: 14px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.80rem; color: #9a3412;">
+                MARGIN (Outer Spacing)
+                <div style="background: #fef08a; padding: 12px; border-radius: 8px; margin: 8px 0; color: #854d0e;">
+                    BORDER (Container Perimeter)
+                    <div style="background: #bbf7d0; padding: 12px; border-radius: 6px; margin: 6px 0; color: #166534;">
+                        PADDING (Inner Cushion)
+                        <div style="background: #bfdbfe; padding: 8px; border-radius: 4px; margin-top: 4px; color: #1e40af;">
+                            CONTENT (Text &amp; Images)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Code Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_7">&lt;style&gt;
+  * &#123; box-sizing: border-box; &#125;
+  .box-container &#123;
+    padding: 24px;
+    background: #f8fafc;
+  &#125;
+  .box-item &#123;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+  &#125;
+&lt;/style&gt;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the code editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Set <code>padding</code> inside <code>.box-container</code>.</li>
+                <li>Apply <code>margin</code> and <code>padding</code> on <code>.box-item</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partB_lesson7';
+        const DEFAULT_STARTER = `<!-- 🛠️ Project 07: The CSS Box Model -->
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Step 1: Add padding inside .box-container */
+  .box-container {
+
+
+  }
+
+  /* Step 2: Add margin between .box-item cards */
+  .box-item {
+
+
+  }
+</style>
+
+<div class="box-container">
+  <div class="box-item">Box A</div>
+  <div class="box-item">Box B</div>
+</div>
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { 
+                id: 'padding', 
+                label: 'Add <code>padding</code> to <code>.box-container</code>', 
+                fn: (code) => /\.box-container[\s\S]*?padding\s*:\s*[^;]+;/i.test(code),
+            },
+            { 
+                id: 'margin', 
+                label: 'Add <code>margin</code> and <code>padding</code> to <code>.box-item</code>', 
+                fn: (code) => /\.box-item[\s\S]*?margin(-[a-z]+)?\s*:\s*[^;]+;/i.test(c) && /\.box-item[\s\S]*?padding\s*:\s*[^;]+;/i.test(code)
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers and scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live preview instantly via srcdoc
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Intelligent Linter
+            DojoEngine.lint(editor.value, 'html');
+
+            // Real-Time Checklist
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        // Tab indentation key support
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                // Empty or Whitespace-only Submission Protection
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                // Check for blocking syntax errors from Linter
+                const problems = DojoEngine.lint(code, 'html');
+                const hasErrors = problems.some(p => p.severity === 'error');
+                if (hasErrors) {
+                    return; // Block submission while syntax errors exist
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Lesson 7: The CSS Box Model & Spacing',
+                        xp: 100,
+                        completionKey: 'partB_lesson7_remake_complete',
+                        nextUrl: '/2. partB/lesson8/lesson8_remake.html',
+                        customMessage: 'You have mastered this project challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

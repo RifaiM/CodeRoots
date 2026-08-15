@@ -1,0 +1,440 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/2. partB/hub.html', label: 'Level 4 Hub', icon: '⚔️', title: 'DOM Dojo Hub' }
+];
+---
+
+<BaseLayout 
+    title="Level 4 Certificate: DOM & Web Interactivity | NoviCodes" 
+    description="Claim your Level 4 Certificate in DOM Manipulation, JavaScript Event Handling, and Interactive Web Applications."
+    showHeaderFooter={false}
+>
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 4 • DOM Dojo"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="cert-page-container">
+        <div class="cert-container">
+            
+            <!-- Certificate Generator Controls -->
+            <section class="generator-card">
+                <div class="generator-header">
+                    <h2>🎓 Level 4 Certificate Generator</h2>
+                    <p>Enter your full name to generate your verified proof-of-work certificate in DOM Manipulation &amp; Interactivity.</p>
+                </div>
+
+                <div class="generator-inputs">
+                    <div class="input-group">
+                        <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
+                        <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Code Apprentice" />
+                    </div>
+                    <div class="btn-row">
+                        <button class="cert-action-btn primary" id="generateCertBtn">
+                            <span>✨ Update Certificate</span>
+                        </button>
+                        <button class="cert-action-btn success" id="downloadCertBtn">
+                            <span>📥 Download High-Res PNG</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Certificate Preview -->
+            <div class="certificate-frame" id="certificateFrame">
+                <div class="certificate-inner">
+                    <div class="cert-watermark">NOVICODES</div>
+                    
+                    <div class="cert-top-row">
+                        <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
+                        <div class="cert-brand">NOVICODES PLATFORM</div>
+                        <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-DOM-2026-0042</span></div>
+                    </div>
+
+                    <div class="cert-headline">CERTIFICATE OF MASTERY</div>
+                    <div class="cert-subheadline">DOM Manipulation, Web Interactivity &amp; JavaScript Architecture</div>
+
+                    <div class="cert-awarded-text">THIS CERTIFIES THAT</div>
+                    <div class="cert-recipient-name" id="certRecipientName">Code Apprentice</div>
+
+                    <div class="cert-body-text">
+                        has successfully solved 15 interactive coding challenges demonstrating verified proficiency in semantic HTML5 framing, responsive CSS3 Flexbox/Grid architectures, DOM manipulation, asynchronous REST APIs, and production application engineering.
+                    </div>
+
+                    <div class="cert-footer-row">
+                        <div class="cert-sig-col">
+                            <div class="cert-sig-line">NoviCodes Core Team</div>
+                            <div class="cert-sig-label">Curriculum Verification</div>
+                        </div>
+                        <div class="cert-badge-center">
+                            <div class="cert-gold-seal">
+                                <span>🏆</span>
+                                <span>LEVEL 4</span>
+                            </div>
+                        </div>
+                        <div class="cert-sig-col">
+                            <div class="cert-sig-line" id="certIssueDate">August 15, 2026</div>
+                            <div class="cert-sig-label">Date of Issuance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <PlatformFooter />
+
+    <style>
+        .cert-page-container {
+            max-width: 1000px;
+            margin: 30px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .generator-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+        }
+
+        .generator-header h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.35rem;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .generator-header p {
+            margin: 0 0 16px 0;
+            color: #64748b;
+            font-size: 0.90rem;
+        }
+
+        .generator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cert-action-btn {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.90rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .cert-action-btn.primary {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .cert-action-btn.primary:hover {
+            background: #1d4ed8;
+        }
+
+        .cert-action-btn.success {
+            background: #10b981;
+            color: #ffffff;
+        }
+
+        .cert-action-btn.success:hover {
+            background: #059669;
+        }
+
+        /* Visual Certificate Layout */
+        .certificate-frame {
+            background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);
+            border: 12px solid #0f172a;
+            border-image: linear-gradient(135deg, #d97706, #fbbf24, #b45309) 12;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .certificate-inner {
+            border: 2px solid rgba(217, 119, 6, 0.4);
+            padding: 36px 40px;
+            text-align: center;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .cert-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.025);
+            letter-spacing: 12px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .cert-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .cert-logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+        }
+
+        .cert-brand {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #475569;
+        }
+
+        .cert-id-badge {
+            font-size: 0.75rem;
+            font-family: 'Fira Code', monospace;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .cert-headline {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .cert-subheadline {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #d97706;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+        }
+
+        .cert-awarded-text {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .cert-recipient-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            border-bottom: 2px solid #bfdbfe;
+            display: inline-block;
+            padding: 0 24px 6px 24px;
+            margin-bottom: 20px;
+        }
+
+        .cert-body-text {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: #475569;
+            max-width: 680px;
+            margin: 0 auto 36px auto;
+        }
+
+        .cert-footer-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .cert-sig-col {
+            text-align: center;
+            width: 180px;
+        }
+
+        .cert-sig-line {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+            border-bottom: 1.5px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .cert-sig-label {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .cert-gold-seal {
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            color: #ffffff;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
+            font-weight: 900;
+            font-size: 0.70rem;
+            border: 3px solid #ffffff;
+        }
+
+        .cert-gold-seal span:first-child {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .cert-headline {
+                font-size: 1.5rem;
+            }
+            .cert-recipient-name {
+                font-size: 1.4rem;
+            }
+            .cert-footer-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <script>
+        import { isCertificateAccessible, getCompletedLessonsCount } from '../../scripts/dojo/core/protection';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Enforce Certificate Access Protection
+            if (!isCertificateAccessible('partB')) {
+                const count = getCompletedLessonsCount('partB');
+                const remaining = 15 - count;
+
+                if (typeof (window as any).Swal !== 'undefined') {
+                    (window as any).Swal.fire({
+                        icon: 'warning',
+                        title: 'Level 4 Certificate Locked! 📜',
+                        html: `
+                            <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
+                                <p style="font-size: 1.02rem; color: #475569; margin-bottom: 16px;">
+                                    You must complete all <strong>15 interactive DOM projects</strong> in Level 4 before claiming your official Certificate of Mastery!
+                                </p>
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                                    <div>
+                                        <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${count} / 15</div>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Projects Solved</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        confirmButtonColor: '#2563eb',
+                        confirmButtonText: '🚀 Go to DOM Dojo Hub',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        customClass: { popup: 'responsive-profile-modal' }
+                    }).then(() => {
+                        window.location.href = '/2. partB/hub.html';
+                    });
+                } else {
+                    window.location.href = '/2. partB/hub.html';
+                }
+                return;
+            }
+
+            const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+            const certName = document.getElementById('certRecipientName');
+            const genBtn = document.getElementById('generateCertBtn');
+            const dlBtn = document.getElementById('downloadCertBtn');
+            const dateSpan = document.getElementById('certIssueDate');
+
+            if (dateSpan) {
+                dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            }
+
+            function updateName() {
+                if (certName && nameInput) {
+                    certName.textContent = nameInput.value.trim() || 'Code Apprentice';
+                }
+            }
+
+            if (nameInput) nameInput.addEventListener('input', updateName);
+            if (genBtn) genBtn.addEventListener('click', updateName);
+
+            // High-Res PNG Download
+            if (dlBtn) {
+                dlBtn.addEventListener('click', () => {
+                    const certFrame = document.getElementById('certificateFrame');
+                    if (!certFrame || typeof (window as any).html2canvas === 'undefined') return;
+
+                    (window as any).html2canvas(certFrame, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
+                        const link = document.createElement('a');
+                        link.download = `NoviCodes_Level4_Certificate_${(nameInput?.value || 'Learner').replace(/\s+/g, '_')}.png`;
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                    });
+                });
+            }
+        });
+    </script>
+</BaseLayout>

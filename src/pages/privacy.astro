@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlatformHeader from '../components/PlatformHeader.astro';
+import PlatformFooter from '../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/foundations.html', label: 'Foundations', icon: '🧱', title: 'Web Foundations' },
+    { href: '/terms.html', label: 'Terms of Use', icon: '📜', title: 'Terms of Use' }
+];
+---
+
+<BaseLayout 
+    title="Privacy Policy | NoviCodes" 
+    description="Understand how NoviCodes handles your learner data, local storage progress, and browser cookies responsibly."
+    showHeaderFooter={false}
+>
+    <PlatformHeader 
+        slot="header"
+        tagText="Platform Governance • Privacy"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={false}
+        showLevelBadge={false}
+    />
+
+    <!-- Main Content -->
+    <main class="legal-container">
+        <!-- Hero -->
+        <div class="legal-hero">
+            <h1>🔒 Privacy Policy</h1>
+            <p>100% Client-Side LocalStorage Architecture • Zero Data Harvesting</p>
+        </div>
+
+        <!-- Highlight Callout -->
+        <div class="highlight-card">
+            <h3>💡 100% LocalStorage Architecture</h3>
+            <p>NoviCodes is built as an open, client-side educational platform. All your XP score, completed lesson checks, unlock states, and code editor work remain strictly stored inside your own web browser's LocalStorage. We do NOT collect, harvest, track, or sell your personal data.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="legal-card">
+            <h2><span>🛡️</span> 1. Zero Tracking &amp; No Account Needed</h2>
+            <p>NoviCodes does not require user registration, passwords, email addresses, or account creation. You are completely free to start learning immediately without providing any personal identifiers.</p>
+            <p>We do not use tracking pixels, fingerprinting, or invasive analytics cookies.</p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="legal-card">
+            <h2><span>💾</span> 2. Local Storage Usage</h2>
+            <p>NoviCodes stores your course progression locally on your device using HTML5 Web Storage (<code>localStorage</code>). This data includes:</p>
+            <ul>
+                <li><strong>Completed Lesson Keys:</strong> Remembers which lessons you have finished (e.g. <code>partB_lesson1_remake_complete</code>).</li>
+                <li><strong>XP &amp; Rank Stats:</strong> Stores earned experience points and unlocked developer ranks.</li>
+                <li><strong>Code Editor Drafts:</strong> Saves your current code draft so you can safely refresh without losing your work.</li>
+            </ul>
+            <p>You can clear or reset this data at any time using the <em>"Reset Course Progress"</em> button in your Learner Profile modal or by clearing your browser cache.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="legal-card">
+            <h2><span>⚙️</span> 3. Third-Party CDNs &amp; Open Source Assets</h2>
+            <p>To provide high performance and reliable open-source functionality, NoviCodes loads static assets from trusted public content delivery networks (CDNs):</p>
+            <ul>
+                <li><strong>Google Fonts:</strong> Loads typography fonts (Plus Jakarta Sans, Nunito, Fira Code).</li>
+                <li><strong>SweetAlert2 &amp; GSAP:</strong> Loads UI alert popups and smooth animation engines.</li>
+            </ul>
+            <p>These CDNs may process standard technical HTTP headers (such as IP addresses) to serve static asset files securely.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="legal-card">
+            <h2><span>📜</span> 4. Open-Source Transparency</h2>
+            <p>NoviCodes is 100% open-source under the MIT License. You can inspect the source code, review scripts, or fork the codebase directly on GitHub.</p>
+        </div>
+    </main>
+
+    <PlatformFooter slot="footer" />
+</BaseLayout>
+
+<style>
+    .legal-container {
+        max-width: 800px;
+        margin: 32px auto 60px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .legal-hero {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        color: #ffffff;
+        padding: 36px 28px;
+        border-radius: 20px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        text-align: center;
+    }
+
+    .legal-hero h1 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        margin: 0 0 8px 0;
+        font-weight: 800;
+    }
+
+    .legal-hero p {
+        color: #93c5fd;
+        font-size: 1rem;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .highlight-card {
+        background: #ecfdf5;
+        border: 1px solid #6ee7b7;
+        border-left: 5px solid #10b981;
+        padding: 20px 22px;
+        border-radius: 14px;
+        margin-bottom: 28px;
+        color: #065f46;
+    }
+
+    .highlight-card h3 {
+        margin: 0 0 6px 0;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #047857;
+    }
+
+    .highlight-card p {
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+
+    .legal-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 28px 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .legal-card h2 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin: 0 0 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .legal-card p, .legal-card ul {
+        color: #475569;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin: 0 0 12px 0;
+    }
+
+    .legal-card ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .legal-card li {
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: 480px) {
+        .legal-container {
+            padding: 0 14px;
+        }
+        .legal-hero {
+            padding: 24px 16px;
+        }
+        .legal-card {
+            padding: 20px 16px;
+        }
+    }
+</style>

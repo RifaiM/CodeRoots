@@ -1,0 +1,3190 @@
+/* ==========================================================================
+   DevDojo Master Platform Dashboard Stylesheet
+   Design Token System: Soft Light Mode (Zero Eye-Strain, AAA Contrast)
+   Mobile Rules: 320px & 375px Horizontal Snap Lanes & Segmented View Switchers
+   ========================================================================== */
+
+/* Root Design System Tokens */
+:root {
+  --app-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border-subtle: #e2e8f0;
+  --text-title: #0f172a;
+  --text-body: #1e293b;
+  --text-muted: #475569;
+  
+  --brand-blue: #2563eb;
+  --brand-blue-hover: #1d4ed8;
+  --brand-blue-light: #eff6ff;
+  
+  --gold-accent: #d97706;
+  --gold-light: #fffbeb;
+  
+  --success-green: #059669;
+  --success-light: #ecfdf5;
+
+  --card-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --hover-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+  --border-radius-card: 18px;
+  --border-radius-badge: 20px;
+}
+
+/* Global Reset & Base Styling */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw !important;
+  overflow-x: clip !important;
+  position: relative !important;
+  min-height: 100vh;
+  background-color: var(--app-bg) !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  color: var(--text-body) !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+button, input, select, textarea {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal-output, .console-output, .editor-textarea {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+}
+
+/* ==========================================================================
+   Header Navigation Bar
+   ========================================================================== */
+.platform-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99999 !important;
+  background: #ffffff !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding: 0 24px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05) !important;
+  box-sizing: border-box !important;
+}
+
+.header-inner {
+  max-width: 1240px !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.platform-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  color: var(--text-title);
+}
+
+.brand-logo-img {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  object-fit: cover !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.platform-logo:hover .brand-logo-img {
+  transform: scale(1.08) rotate(-3deg) !important;
+}
+
+.logo-text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.logo-title {
+  font-size: 1.18rem !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.title-novi {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.title-codes {
+  color: #2563eb !important;
+  font-weight: 800 !important;
+}
+
+.logo-tag {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.1 !important;
+  margin-top: 1px !important;
+  padding: 0 !important;
+}
+
+/* Center Header Navigation Bar Links (Floating Pill Bar) */
+.header-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  padding: 4px;
+  border-radius: 30px;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.header-nav-links .nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  white-space: nowrap;
+}
+
+.header-nav-links .nav-link:hover {
+  color: var(--brand-blue);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.header-nav-links .nav-link.active {
+  color: var(--brand-blue);
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.header-nav-links .nav-link.dojo-locked {
+  opacity: 0.8 !important;
+  color: #64748b !important;
+  background: #f1f5f9 !important;
+  cursor: pointer !important;
+}
+
+.header-nav-links .nav-link.dojo-locked:hover {
+  background: #fef2f2 !important;
+  color: #dc2626 !important;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.1) !important;
+}
+
+.header-user-stats {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.stat-badge {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  height: 36px !important;
+  padding: 0 12px !important;
+  gap: 6px !important;
+  border-radius: 20px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+}
+
+.stat-badge span,
+.stat-badge div {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.xp-badge {
+  background: #fffbeb !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+
+.level-badge {
+  background: #eff6ff !important;
+  color: var(--brand-blue) !important;
+  border-color: #bfdbfe !important;
+}
+
+.resume-btn {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  border-radius: 20px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-hover) 100%) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+  transition: all 0.25s ease !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.resume-btn span {
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+.resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+/* ==========================================================================
+   Main Dashboard Content Container
+   ========================================================================== */
+.dashboard-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 24px 60px 24px;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 24px 16px 40px 16px;
+}
+
+.hero-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  border: 1px solid #bfdbfe;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--text-title);
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.03em;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* Mobile Segmented Control (Hidden by default on Desktop) */
+.mobile-segmented-control {
+  display: none;
+  background: #e2e8f0;
+  border-radius: 12px;
+  padding: 4px;
+  margin-top: 24px;
+  gap: 4px;
+}
+
+.segmented-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.segmented-tab.active {
+  background: #ffffff;
+  color: var(--brand-blue);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Roadmap Section */
+.roadmap-section {
+  margin-top: 20px;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-title);
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Tracks Grid & Mobile Snap Lane Layout
+   ========================================================================== */
+.tracks-snap-lane {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* Track Card Design System */
+.track-card {
+  background: var(--card-bg) !important;
+  border: 1.5px solid var(--border-subtle) !important;
+  border-radius: var(--border-radius-card) !important;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.track-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+  border-color: #cbd5e1 !important;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.track-level-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f1f5f9;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.track-level-badge.highlight-gold {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.track-status-icon {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.track-status-icon.completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.track-status-icon.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.track-status-icon.ready {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.track-status-icon.upcoming {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.track-status-icon.locked {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.track-card.locked {
+  opacity: 0.88;
+  background: #f8fafc !important;
+}
+
+.track-btn.locked-btn {
+  background: #cbd5e1 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+.mode-toggle-badge {
+  cursor: pointer;
+  background: #f1f5f9;
+  color: var(--text-title);
+  border-color: var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.mode-toggle-badge:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+/* Card Icon Wrappers */
+.card-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.concept-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); }
+.html-gradient    { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); }
+.css-gradient     { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+.js-gradient      { background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); }
+.dojo-gradient    { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+.react-gradient   { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); }
+.python-gradient  { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); }
+.cloud-gradient   { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); }
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-title);
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 20px 0;
+  flex: 1;
+  line-height: 1.55;
+}
+
+.card-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.meta-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Button Variants */
+.track-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+}
+
+.primary-btn {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.primary-btn:hover {
+  background: var(--brand-blue-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.secondary-btn {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border: 1px solid #bfdbfe !important;
+  font-weight: 800 !important;
+}
+
+.secondary-btn:hover {
+  background: #dbeafe !important;
+  border-color: #93c5fd !important;
+  color: #1d4ed8 !important;
+  transform: translateY(-2px);
+}
+
+.concept-btn {
+  background: linear-gradient(135deg, #0f766e 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.25) !important;
+  font-weight: 800 !important;
+}
+
+.concept-btn:hover {
+  background: linear-gradient(135deg, #0d9488 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35) !important;
+}
+
+.gold-btn {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+}
+
+.gold-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+}
+
+/* Practical Dojo Navigation Link Highlight (Orange Accent) */
+#dojoNavLink.dojo-nav-highlight,
+.nav-link.dojo-nav-highlight {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(180, 83, 9, 0.22) 100%) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-radius: 14px !important;
+  padding: 5px 12px !important;
+  font-weight: 800 !important;
+  transition: all 0.25s ease !important;
+}
+
+#dojoNavLink.dojo-nav-highlight:hover,
+.nav-link.dojo-nav-highlight:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35) !important;
+}
+
+/* React Framework Dojo Track Button */
+.react-track-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+}
+
+.react-track-btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4) !important;
+}
+
+.preview-btn {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  border: 1.5px dashed #cbd5e1 !important;
+}
+
+.preview-btn:hover {
+  background: #f1f5f9 !important;
+  color: var(--text-title) !important;
+}
+
+/* Responsive Profile Modal for Mobile Screens (320px, 375px, 425px) */
+.responsive-profile-modal {
+  width: 92vw !important;
+  max-width: 480px !important;
+  max-height: 88vh !important;
+  padding: 16px 14px !important;
+  box-sizing: border-box !important;
+  border-radius: 18px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
+.responsive-profile-modal .swal2-html-container {
+  max-height: calc(88vh - 70px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  padding: 2px 4px 10px 2px !important;
+  margin: 10px 0 0 0 !important;
+}
+
+/* Custom Thin Scrollbar for Profile Modal Container */
+.responsive-profile-modal::-webkit-scrollbar,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar,
+.responsive-profile-modal div::-webkit-scrollbar {
+  width: 6px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-track,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-track,
+.responsive-profile-modal div::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-thumb,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.responsive-profile-modal div::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.responsive-profile-modal::-webkit-scrollbar-thumb:hover,
+.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb:hover,
+.responsive-profile-modal div::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Dedicated Level 6 Python Track Card Button */
+.track-btn.python-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.track-btn.python-btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.45) !important;
+}
+
+/* Pixel-Perfect Centered Modal Close Button */
+.responsive-profile-modal .swal2-close,
+.swal2-popup .swal2-close {
+  font-family: Arial, sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+.responsive-profile-modal .swal2-close:hover,
+.swal2-popup .swal2-close:hover {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+  transform: scale(1.08) !important;
+}
+
+@media (max-width: 425px) {
+  .responsive-profile-modal {
+    padding: 14px 10px !important;
+  }
+}
+
+/* ==========================================================================
+   Certificate Showcase Promo Card
+   ========================================================================== */
+.certificate-promo-section {
+  margin-top: 48px;
+}
+
+.cert-promo-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+  color: #ffffff !important;
+  border-radius: var(--border-radius-card);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15);
+}
+
+.cert-promo-content h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin: 10px 0 10px 0;
+}
+
+.cert-promo-content p {
+  font-size: 1rem;
+  color: #94a3b8 !important;
+  margin: 0 0 24px 0;
+  max-width: 600px;
+}
+
+.cert-badge {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fbbf24;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.cert-promo-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.cert-promo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.cert-promo-icon {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.platform-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+  padding: 40px 24px 24px 24px;
+  margin-top: 60px;
+}
+
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.footer-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-title);
+}
+
+.footer-brand p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 6px 0 0 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--brand-blue);
+}
+
+.footer-bottom {
+  max-width: 1240px;
+  margin: 20px auto 0 auto;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Responsive Viewport Architecture (320px & 375px Specific Mobile Rules)
+   ========================================================================== */
+
+/* ==========================================================================
+   Responsive Viewport Architecture (425px, 375px, 320px Specific Mobile Rules)
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .logo-tag {
+    display: none !important; /* Hide subtitle on <=1100px to save 80px space */
+  }
+
+  .header-nav-links .nav-link {
+    padding: 5px 10px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .header-user-stats {
+    gap: 6px !important;
+  }
+
+  .stat-badge {
+    padding: 0 8px !important;
+    height: 32px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Collapse mode toggle text & rank label text on 1024px to fit nav pills */
+  .mode-toggle-badge #unlockModeText,
+  .level-badge #userRankLabel {
+    display: none !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .header-nav-links {
+    display: flex !important;
+    gap: 4px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 5px 8px !important;
+    font-size: 0.95rem !important;
+    border-radius: 8px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-nav-links .nav-text {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .platform-header {
+    padding: 0 12px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+  }
+
+  .logo-tag {
+    display: none !important;
+  }
+
+  .mobile-segmented-control {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px !important;
+    gap: 4px !important;
+    margin: 12px 0 16px 0 !important;
+    scrollbar-width: none;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-segmented-control::-webkit-scrollbar {
+    display: none;
+  }
+
+  .segmented-tab {
+    flex: 1 0 auto !important;
+    padding: 6px 12px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* Mobile Roadmap Layout: Full-Width Step-by-Step Vertical Cards (Zero Clipping, 100% Readability) */
+  .tracks-snap-lane {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+
+  .track-card {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .cert-promo-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .cert-promo-icon {
+    display: none;
+  }
+
+  .platform-footer {
+    padding: 30px 16px 20px 16px !important;
+  }
+
+  .footer-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .footer-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px 16px !important;
+    width: 100% !important;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Specific Mobile Viewports (425px, 375px & 320px) */
+@media (max-width: 576px) {
+  .platform-header {
+    padding: 0 8px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+  }
+
+  .header-inner {
+    gap: 4px !important;
+    justify-content: space-between !important;
+  }
+
+  .platform-logo {
+    gap: 6px !important;
+  }
+
+  .brand-logo-img {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
+  }
+
+  .logo-title {
+    font-size: 0.95rem !important;
+  }
+
+  .logo-tag {
+    display: none !important;
+  }
+
+  .header-nav-links {
+    gap: 2px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 3px 5px !important;
+    font-size: 0.85rem !important;
+    min-width: 26px !important;
+    height: 26px !important;
+    border-radius: 6px !important;
+  }
+
+  .header-user-stats {
+    gap: 3px !important;
+  }
+
+  .stat-badge {
+    padding: 0 5px !important;
+    height: 28px !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Show icons for all badges on mobile while collapsing long text */
+  .mode-toggle-badge #unlockModeText,
+  .level-badge #userRankLabel {
+    display: none !important;
+  }
+
+  .resume-btn {
+    padding: 0 8px !important;
+    height: 28px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .resume-btn span {
+    white-space: nowrap !important;
+  }
+
+  .segmented-tab {
+    padding: 5px 8px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .hero-section {
+    padding: 12px 10px 20px 10px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Hide logo text ONLY inside top header to prevent horizontal navbar overflow on 320px & 375px */
+  .platform-header .logo-title {
+    display: none !important;
+  }
+  
+  /* Ensure footer logo text remains 100% visible on mobile */
+  .platform-footer .logo-title {
+    display: inline-block !important;
+    font-size: 1.1rem !important;
+  }
+
+  /* Compact hero section padding for ultra-small 320px screen viewports */
+  .hero-section {
+    padding: 8px 4px 16px 4px !important;
+  }
+}
+
+/* Universal Floating Back to Top Button */
+.back-to-top-btn {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  z-index: 999999 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) scale(0.9) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.back-to-top-btn:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #003d80 100%) !important;
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.5) !important;
+}
+
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 20px !important;
+    right: 16px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+}
+
+/* Hub Modal Cards Responsiveness (375px & 320px) */
+@media (max-width: 480px) {
+  .hub-modal-card {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+  }
+
+  .hub-modal-card .badge-action {
+    align-self: flex-end !important;
+    margin-left: auto !important;
+    margin-top: 2px !important;
+  }
+}
+
+
+/* ==========================================================================
+   Daily Streaks & 2-Minute Quest Card Styles
+   ========================================================================== */
+
+.daily-quest-section {
+    max-width: 1200px;
+    margin: 0 auto 36px auto;
+    box-sizing: border-box;
+}
+
+.daily-quest-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.daily-quest-card.active-card {
+    border-left: 5px solid #ea580c;
+}
+
+.daily-quest-card.completed-card {
+    border-left: 5px solid #10b981;
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.quest-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.quest-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quest-pill-active {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff7ed;
+    color: #ea580c;
+    border: 1px solid #fed7aa;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ea580c;
+    display: inline-block;
+    animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 8px rgba(234, 88, 12, 0.6); }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.quest-pill-completed {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quest-category-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.quest-reward-pill {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.quest-streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fdba74;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+.quest-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+}
+
+.quest-question {
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+}
+
+.quest-code-box {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-family: 'Fira Code', Consolas, monospace;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    border: 1px solid #1e293b;
+}
+
+.quest-code-box pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.quest-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.quest-option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.quest-option-btn:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+.quest-option-btn .opt-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #475569;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.quest-option-btn.correct {
+    background: #dcfce7 !important;
+    border-color: #4ade80 !important;
+    color: #14532d !important;
+}
+
+.quest-option-btn.correct .opt-icon {
+    background: #22c55e !important;
+    color: #ffffff !important;
+}
+
+.quest-option-btn.incorrect {
+    background: #fee2e2 !important;
+    border-color: #f87171 !important;
+    color: #7f1d1d !important;
+}
+
+.quest-option-btn.incorrect .opt-icon {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+.quest-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    font-size: 0.82rem;
+    color: #64748b;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Completed Card Inner */
+.quest-completed-body {
+    text-align: center;
+    padding: 10px 0 6px 0;
+}
+
+.completed-check-icon {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.quest-completed-body h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #065f46;
+    margin: 0 0 6px 0;
+}
+
+.quest-completed-body p {
+    font-size: 0.95rem;
+    color: #334155;
+    margin: 0 0 16px 0;
+}
+
+.quest-explanation-banner {
+    background: #ffffff;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #14532d;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.next-quest-countdown-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.countdown-timer {
+    color: #ea580c;
+    font-family: 'Fira Code', monospace;
+    font-weight: 800;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .quest-options-grid {
+        grid-template-columns: 1fr;
+    }
+    .daily-quest-card {
+        padding: 18px 16px;
+    }
+}
+
+@media (max-width: 420px) {
+    .quest-title {
+        font-size: 1.1rem;
+    }
+    .quest-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* ==========================================================================
+   Mobile Navbar Responsive Perfection (576px, 425px, 375px, 320px)
+   ========================================================================== */
+
+@media (max-width: 576px) {
+  .platform-header {
+    height: 50px !important;
+    min-height: 50px !important;
+    padding: 0 10px !important;
+  }
+
+  .header-inner {
+    gap: 6px !important;
+    justify-content: space-between !important;
+  }
+
+  .platform-logo {
+    gap: 6px !important;
+  }
+
+  .brand-logo-img {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
+  }
+
+  .logo-title {
+    font-size: 0.95rem !important;
+  }
+
+  .logo-tag {
+    display: none !important;
+  }
+
+  .header-nav-links {
+    gap: 2px !important;
+    padding: 2px 4px !important;
+    border-radius: 20px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 3px 6px !important;
+    font-size: 0.85rem !important;
+    min-width: 26px !important;
+    height: 26px !important;
+    border-radius: 6px !important;
+  }
+
+  .header-nav-links .nav-text {
+    display: none !important;
+  }
+
+  .header-user-stats {
+    gap: 4px !important;
+  }
+
+  .stat-badge {
+    padding: 0 7px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    font-size: 0.74rem !important;
+    gap: 3px !important;
+  }
+
+  .streak-badge .streak-days-text {
+    display: none !important;
+  }
+
+  .level-badge #userRankLabel,
+  .mode-toggle-badge #unlockModeText {
+    display: none !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .platform-header {
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 8px !important;
+  }
+
+  .header-inner {
+    gap: 4px !important;
+  }
+
+  .logo-title {
+    font-size: 0.88rem !important;
+  }
+
+  .header-nav-links {
+    gap: 1px !important;
+    padding: 2px !important;
+    background: rgba(241, 245, 249, 0.75) !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 2px 4px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    font-size: 0.80rem !important;
+  }
+
+  .header-user-stats {
+    gap: 3px !important;
+  }
+
+  .stat-badge {
+    padding: 0 5px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    font-size: 0.70rem !important;
+    gap: 2px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .platform-header .logo-title {
+    display: none !important;
+  }
+
+  .platform-footer .logo-title {
+    display: inline-block !important;
+    font-size: 1.1rem !important;
+  }
+
+  .header-nav-links .nav-link {
+    min-width: 22px !important;
+    height: 22px !important;
+    font-size: 0.76rem !important;
+    padding: 1px 3px !important;
+  }
+
+  .stat-badge {
+    padding: 0 4px !important;
+    height: 25px !important;
+    min-height: 25px !important;
+    font-size: 0.68rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .platform-header {
+    padding: 0 4px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .header-inner {
+    gap: 2px !important;
+  }
+
+  .brand-logo-img {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+  }
+
+  .header-nav-links {
+    gap: 1px !important;
+    padding: 1px !important;
+  }
+
+  .header-nav-links .nav-link {
+    padding: 1px 2px !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .header-user-stats {
+    gap: 2px !important;
+  }
+
+  .stat-badge {
+    padding: 0 3px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    font-size: 0.65rem !important;
+    gap: 2px !important;
+  }
+}
+
+
+/* ==========================================================================
+   SweetAlert2 Modal Internal Scrollbar Precision Fix
+   Prevents double viewport scrollbars and places scrollbar strictly inside modal
+   ========================================================================== */
+
+.swal2-container {
+    overflow-y: hidden !important;
+}
+
+.swal2-popup.responsive-streak-modal,
+.swal2-popup.responsive-profile-modal {
+    max-height: 90vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container,
+.swal2-popup.responsive-profile-modal .swal2-html-container {
+    max-height: calc(90vh - 130px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-right: 6px !important;
+    box-sizing: border-box !important;
+}
+
+/* Custom Sleek Webkit Scrollbar Inside Modal Container */
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-track,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar-track,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-track,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 8px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-streak-modal div::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb,
+.swal2-popup.responsive-profile-modal div::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+    border-radius: 8px !important;
+}
+
+.swal2-popup.responsive-streak-modal .swal2-html-container::-webkit-scrollbar-thumb:hover,
+.swal2-popup.responsive-profile-modal .swal2-html-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8 !important;
+}
+
+
+/* Live XP Badge Pop Animation */
+@keyframes xpPopGlow {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.22); background-color: #dbeafe !important; border-color: #3b82f6 !important; box-shadow: 0 0 14px rgba(37, 99, 235, 0.45) !important; color: #1d4ed8 !important; }
+  100% { transform: scale(1); }
+}
+
+.xp-reward-pulse {
+  animation: xpPopGlow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+
+/* ==========================================================================
+   Interactive FAQ & Platform Facts Accordion Styles
+   ========================================================================== */
+
+.faq-section {
+    max-width: 1000px;
+    margin: 48px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.faq-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.faq-main-title {
+    display: block;
+    text-align: center;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px 0;
+}
+
+.faq-subtitle {
+    display: block;
+    text-align: center;
+    font-size: 0.96rem;
+    color: #64748b;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.faq-accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.faq-item {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 14px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.faq-item:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+}
+
+.faq-item.active {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+}
+
+.faq-question-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: left;
+    transition: color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.faq-question-btn:hover {
+    color: #2563eb;
+}
+
+.faq-item.active .faq-question-btn {
+    color: #2563eb;
+}
+
+.faq-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #64748b;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-item.active .faq-chevron {
+    transform: rotate(180deg);
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.faq-answer-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-content {
+    padding: 0 22px 20px 22px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #475569;
+    border-top: 1px solid #f8fafc;
+}
+
+.faq-answer-content p {
+    margin: 0;
+}
+
+.faq-answer-content strong {
+    color: #0f172a;
+}
+
+/* Mobile Responsive FAQ */
+@media (max-width: 768px) {
+    .faq-section {
+        margin: 36px auto 48px auto;
+        padding: 0 16px;
+    }
+    .faq-main-title {
+        font-size: 1.45rem;
+    }
+    .faq-question-btn {
+        padding: 14px 16px;
+        font-size: 0.92rem;
+    }
+    .faq-answer-content {
+        padding: 0 16px 16px 16px;
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .faq-section {
+        padding: 0 12px;
+        margin: 28px auto 40px auto;
+    }
+    .faq-main-title {
+        font-size: 1.25rem;
+    }
+    .faq-question-btn {
+        padding: 12px 14px;
+        font-size: 0.86rem;
+        gap: 10px;
+    }
+    .faq-chevron {
+    background: #94a3b8 !important;
+}
+
+
+/* Live XP Badge Pop Animation */
+@keyframes xpPopGlow {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.22); background-color: #dbeafe !important; border-color: #3b82f6 !important; box-shadow: 0 0 14px rgba(37, 99, 235, 0.45) !important; color: #1d4ed8 !important; }
+  100% { transform: scale(1); }
+}
+
+.xp-reward-pulse {
+  animation: xpPopGlow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+
+/* ==========================================================================
+   Interactive FAQ & Platform Facts Accordion Styles
+   ========================================================================== */
+
+.faq-section {
+    max-width: 1000px;
+    margin: 48px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.faq-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.faq-main-title {
+    display: block;
+    text-align: center;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px 0;
+}
+
+.faq-subtitle {
+    display: block;
+    text-align: center;
+    font-size: 0.96rem;
+    color: #64748b;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.faq-accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.faq-item {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 14px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.faq-item:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+}
+
+.faq-item.active {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+}
+
+.faq-question-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: left;
+    transition: color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.faq-question-btn:hover {
+    color: #2563eb;
+}
+
+.faq-item.active .faq-question-btn {
+    color: #2563eb;
+}
+
+.faq-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #64748b;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-item.active .faq-chevron {
+    transform: rotate(180deg);
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.faq-answer-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-content {
+    padding: 0 22px 20px 22px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #475569;
+    border-top: 1px solid #f8fafc;
+}
+
+.faq-answer-content p {
+    margin: 0;
+}
+
+.faq-answer-content strong {
+    color: #0f172a;
+}
+
+/* Mobile Responsive FAQ */
+@media (max-width: 768px) {
+    .faq-section {
+        margin: 36px auto 48px auto;
+        padding: 0 16px;
+    }
+    .faq-main-title {
+        font-size: 1.45rem;
+    }
+    .faq-question-btn {
+        padding: 14px 16px;
+        font-size: 0.92rem;
+    }
+    .faq-answer-content {
+        padding: 0 16px 16px 16px;
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .faq-section {
+        padding: 0 12px;
+        margin: 28px auto 40px auto;
+    }
+    .faq-main-title {
+        font-size: 1.25rem;
+    }
+    .faq-question-btn {
+        padding: 12px 14px;
+        font-size: 0.86rem;
+        gap: 10px;
+    }
+    .faq-chevron {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* ==========================================================================
+   MASTER PROGRESSIVE MOBILE TYPOGRAPHY & SPACING SYSTEM
+   Applies to: Homepage, Foundations, Hubs (L0, L4, L5, L6, L7), Concept Pages,
+   Web History, Certificates, Footers, Daily Quest, and ALL Modals (Profile, Streak, Certificate Hub, etc.)
+   Excludes: Level 4 Lesson Pages (which have dedicated lesson.css scaling)
+   ========================================================================== */
+
+/* ── ≤576px: Small Phones (Initial Compact Scale) ────────────────────────── */
+@media (max-width: 576px) {
+    /* Hero Sections (Homepage, Foundations, Hubs, History, Concepts) */
+    .hero-section, .track-hero, .hub-hero, .history-hero, .concept-hero {
+        padding: 20px 14px !important;
+        margin-bottom: 20px !important;
+    }
+    .hero-title, .hub-hero h1, .track-hero h1, .concept-hero h1, .history-hero h1, .cert-promo-content h2 {
+        font-size: 1.35rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px !important;
+    }
+    .hero-subtitle, .hub-hero p, .track-hero p, .concept-hero p, .history-hero p, .cert-promo-content p {
+        font-size: 0.88rem !important;
+        line-height: 1.55 !important;
+    }
+    .hero-pill, .hub-badge, .level7-badge, .track-badge-pill, .hero-pill-badge, .quiz-badge, .cert-badge {
+        font-size: 0.74rem !important;
+        padding: 3px 9px !important;
+    }
+
+    /* Section Titles & Headers */
+    .section-header h2, .tracks-section-header h2, .curriculum-section h2, .section-title, .glossary-header-card h2, .faq-main-title {
+        font-size: 1.20rem !important;
+    }
+    .section-desc, .section-subtitle {
+        font-size: 0.84rem !important;
+    }
+
+    /* Daily Quest Card */
+    .daily-quest-card {
+        padding: 16px 14px !important;
+        border-radius: 14px !important;
+        margin-bottom: 24px !important;
+    }
+    .quest-title {
+        font-size: 1.10rem !important;
+    }
+    .quest-question {
+        font-size: 0.86rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+    }
+    .quest-code-box {
+        font-size: 0.76rem !important;
+        padding: 10px 12px !important;
+        margin-bottom: 14px !important;
+    }
+    .quest-options-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 14px !important;
+    }
+    .quest-option-btn {
+        font-size: 0.82rem !important;
+        padding: 10px 12px !important;
+    }
+    .quest-pill-active, .quest-pill-completed, .quest-category-badge, .quest-reward-pill, .quest-streak-badge {
+        font-size: 0.74rem !important;
+        padding: 3px 9px !important;
+    }
+    .quest-completed-body h3 {
+        font-size: 1.10rem !important;
+    }
+    .quest-completed-body p, .quest-explanation-banner {
+        font-size: 0.82rem !important;
+    }
+    .next-quest-countdown-box {
+        font-size: 0.80rem !important;
+        padding: 10px 12px !important;
+    }
+
+    /* Cards (Track Cards, Lesson Cards, Branch Cards, Concept Cards, Glossary Cards) */
+    .track-card, .lesson-card, .branch-card, .track-hub-card, .concept-hero-card, .glossary-card, .sandbox-instructions-card, .chapter-block {
+        padding: 14px 12px !important;
+        border-radius: 14px !important;
+    }
+    .card-top {
+        margin-bottom: 10px !important;
+    }
+    .track-level-badge, .track-status-icon, .mode-toggle-badge {
+        font-size: 0.70rem !important;
+        padding: 3px 8px !important;
+        border-radius: 10px !important;
+    }
+    .card-icon-wrap,
+    .concept-gradient, .html-gradient, .css-gradient, .js-gradient,
+    .dojo-gradient, .react-gradient, .python-gradient, .cloud-gradient {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.4rem !important;
+        margin-bottom: 10px !important;
+        border-radius: 12px !important;
+    }
+    .card-title, .lesson-title, .branch-title, .chapter-title, .concept-title, .track-hub-card h3 {
+        font-size: 1.05rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+    .card-desc, .lesson-desc, .branch-desc, .concept-desc, .concept-body, .syllabus-item-left span {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+    }
+    .card-meta, .lesson-meta, .branch-meta-item, .card-tag, .track-status-pill, .stat-pill, .lesson-status {
+        font-size: 0.74rem !important;
+        gap: 6px !important;
+        margin-bottom: 12px !important;
+    }
+    .meta-tag {
+        font-size: 0.70rem !important;
+        padding: 2px 6px !important;
+    }
+
+    /* All Card Button Variants (track-btn, gold-btn, primary-btn, secondary-btn, concept-btn, locked-btn) */
+    .track-btn, .primary-btn, .secondary-btn, .concept-btn, .gold-btn, .card-action-btn, .hero-cta-btn, .mark-complete-btn, .cert-action-btn, .tab-btn, .era-tab-btn, .tag-btn, .segmented-tab {
+        font-size: 0.84rem !important;
+        padding: 9px 14px !important;
+        border-radius: 10px !important;
+    }
+
+    /* Hub Curriculum & Chapter Blocks */
+    .chapter-num {
+        font-size: 0.74rem !important;
+    }
+    .chapter-badge {
+        font-size: 0.70rem !important;
+        padding: 2px 8px !important;
+    }
+    .syllabus-heading {
+        font-size: 0.80rem !important;
+    }
+    .syllabus-item {
+        font-size: 0.78rem !important;
+        padding: 6px 8px !important;
+    }
+
+    /* Stats Grids */
+    .hub-stats-grid, .hero-stats, .hub-stats-row {
+        gap: 8px !important;
+    }
+    .stat-num, .hub-stat-val, .stat-number {
+        font-size: 1.15rem !important;
+    }
+    .stat-label, .hub-stat-lbl {
+        font-size: 0.72rem !important;
+    }
+
+    /* Certificate Components */
+    .cert-container, .generator-card, .certificate-frame {
+        padding: 16px 12px !important;
+    }
+    .cert-headline {
+        font-size: 1.30rem !important;
+    }
+    .cert-subheadline, .cert-awarded-text, .cert-details {
+        font-size: 0.84rem !important;
+    }
+
+    /* ALL Modals (SweetAlert2, Profile, Streak, Certificate Hub, Access Denied, XP, Reset) */
+    .swal2-popup, .responsive-profile-modal, .responsive-streak-modal, .responsive-cert-hub-modal {
+        padding: 16px 14px !important;
+        width: 92vw !important;
+        max-width: 480px !important;
+        border-radius: 16px !important;
+    }
+    .swal2-title {
+        font-size: 1.15rem !important;
+        margin-bottom: 8px !important;
+    }
+    .swal2-html-container {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+        margin: 8px 0 !important;
+    }
+    .swal2-actions {
+        gap: 8px !important;
+        margin-top: 14px !important;
+    }
+    .swal2-confirm, .swal2-cancel, .swal2-deny {
+        font-size: 0.84rem !important;
+        padding: 9px 14px !important;
+        border-radius: 10px !important;
+    }
+
+    /* Hub Modal Card (Certificate Hub & Dojo Selection Cards inside modal) */
+    .hub-modal-card {
+        padding: 10px 12px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .hub-modal-card div[style*="font-weight: 800"] {
+        font-size: 0.86rem !important;
+    }
+    .hub-modal-card div[style*="font-size: 0.76rem"] {
+        font-size: 0.72rem !important;
+    }
+    .hub-modal-card .badge-action {
+        font-size: 0.74rem !important;
+        padding: 3px 8px !important;
+    }
+
+    /* Profile Modal Details */
+    .responsive-profile-modal div[style*="font-size: 2.4rem"] {
+        font-size: 1.8rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 1.15rem"] {
+        font-size: 1.05rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.85rem"] {
+        font-size: 0.78rem !important;
+    }
+
+    /* Streak Modal Details */
+    .responsive-streak-modal div[style*="font-size:1.8rem"],
+    .responsive-streak-modal div[style*="font-size: 1.8rem"] {
+        font-size: 1.45rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem"],
+    .responsive-streak-modal div[style*="font-size: 0.78rem"] {
+        font-size: 0.72rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.9rem"],
+    .responsive-streak-modal div[style*="font-size: 0.9rem"] {
+        font-size: 0.82rem !important;
+    }
+
+    /* Platform Footer */
+    .platform-footer {
+        padding: 32px 14px 20px 14px !important;
+    }
+    .footer-tagline, .footer-desc, .footer-col-title, .footer-links a, .footer-copyright {
+        font-size: 0.82rem !important;
+    }
+}
+
+/* ── ≤425px: iPhone SE, Galaxy S-series ───────────────────────────────── */
+@media (max-width: 425px) {
+    /* Hero Sections */
+    .hero-section, .track-hero, .hub-hero, .history-hero, .concept-hero {
+        padding: 16px 10px !important;
+        margin-bottom: 16px !important;
+    }
+    .hero-title, .hub-hero h1, .track-hero h1, .concept-hero h1, .history-hero h1, .cert-promo-content h2 {
+        font-size: 1.18rem !important;
+    }
+    .hero-subtitle, .hub-hero p, .track-hero p, .concept-hero p, .history-hero p, .cert-promo-content p {
+        font-size: 0.82rem !important;
+        line-height: 1.5 !important;
+    }
+    .hero-pill, .hub-badge, .level7-badge, .track-badge-pill, .hero-pill-badge, .quiz-badge, .cert-badge {
+        font-size: 0.70rem !important;
+        padding: 3px 8px !important;
+    }
+
+    /* Section Titles */
+    .section-header h2, .tracks-section-header h2, .curriculum-section h2, .section-title, .glossary-header-card h2, .faq-main-title {
+        font-size: 1.10rem !important;
+    }
+    .section-desc, .section-subtitle {
+        font-size: 0.80rem !important;
+    }
+
+    /* Daily Quest Card */
+    .daily-quest-card {
+        padding: 14px 10px !important;
+        border-radius: 12px !important;
+        margin-bottom: 18px !important;
+    }
+    .quest-title {
+        font-size: 1.02rem !important;
+    }
+    .quest-question {
+        font-size: 0.80rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quest-code-box {
+        font-size: 0.72rem !important;
+        padding: 8px 10px !important;
+    }
+    .quest-option-btn {
+        font-size: 0.78rem !important;
+        padding: 8px 10px !important;
+    }
+    .quest-pill-active, .quest-pill-completed, .quest-category-badge, .quest-reward-pill, .quest-streak-badge {
+        font-size: 0.68rem !important;
+        padding: 2px 7px !important;
+    }
+    .quest-completed-body h3 {
+        font-size: 1.00rem !important;
+    }
+    .quest-completed-body p, .quest-explanation-banner {
+        font-size: 0.78rem !important;
+    }
+
+    /* Cards */
+    .track-card, .lesson-card, .branch-card, .track-hub-card, .concept-hero-card, .glossary-card, .sandbox-instructions-card, .chapter-block {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+    }
+    .card-top {
+        margin-bottom: 8px !important;
+    }
+    .track-level-badge, .track-status-icon, .mode-toggle-badge {
+        font-size: 0.65rem !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+    .card-icon-wrap,
+    .concept-gradient, .html-gradient, .css-gradient, .js-gradient,
+    .dojo-gradient, .react-gradient, .python-gradient, .cloud-gradient {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
+        border-radius: 10px !important;
+    }
+    .card-title, .lesson-title, .branch-title, .chapter-title, .concept-title, .track-hub-card h3 {
+        font-size: 0.96rem !important;
+        margin-bottom: 4px !important;
+    }
+    .card-desc, .lesson-desc, .branch-desc, .concept-desc, .concept-body, .syllabus-item-left span {
+        font-size: 0.80rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 10px !important;
+    }
+    .card-meta, .lesson-meta, .branch-meta-item, .card-tag, .track-status-pill, .stat-pill, .lesson-status {
+        font-size: 0.70rem !important;
+        gap: 4px !important;
+        margin-bottom: 10px !important;
+    }
+    .meta-tag {
+        font-size: 0.65rem !important;
+        padding: 2px 5px !important;
+    }
+
+    /* Card Buttons */
+    .track-btn, .primary-btn, .secondary-btn, .concept-btn, .gold-btn, .card-action-btn, .hero-cta-btn, .mark-complete-btn, .cert-action-btn, .tab-btn, .era-tab-btn, .tag-btn, .segmented-tab {
+        font-size: 0.78rem !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Hub Curriculum & Chapter Blocks */
+    .chapter-num {
+        font-size: 0.70rem !important;
+    }
+    .chapter-badge {
+        font-size: 0.66rem !important;
+        padding: 2px 6px !important;
+    }
+    .syllabus-heading {
+        font-size: 0.76rem !important;
+    }
+    .syllabus-item {
+        font-size: 0.74rem !important;
+        padding: 5px 6px !important;
+    }
+
+    /* Stats Grids */
+    .stat-num, .hub-stat-val, .stat-number {
+        font-size: 1.02rem !important;
+    }
+    .stat-label, .hub-stat-lbl {
+        font-size: 0.66rem !important;
+    }
+
+    /* Certificate Components */
+    .cert-headline {
+        font-size: 1.15rem !important;
+    }
+    .cert-subheadline, .cert-awarded-text, .cert-details {
+        font-size: 0.78rem !important;
+    }
+
+    /* ALL Modals */
+    .swal2-popup, .responsive-profile-modal, .responsive-streak-modal, .responsive-cert-hub-modal {
+        padding: 14px 10px !important;
+        width: 94vw !important;
+        border-radius: 14px !important;
+    }
+    .swal2-title {
+        font-size: 1.05rem !important;
+    }
+    .swal2-html-container {
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+    }
+    .swal2-confirm, .swal2-cancel, .swal2-deny {
+        font-size: 0.78rem !important;
+        padding: 8px 12px !important;
+    }
+
+    /* Hub Modal Card (Certificate Hub & Dojo Selection Cards inside modal) */
+    .hub-modal-card {
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 6px !important;
+    }
+    .hub-modal-card div[style*="font-weight: 800"] {
+        font-size: 0.80rem !important;
+    }
+    .hub-modal-card div[style*="font-size: 0.76rem"] {
+        font-size: 0.66rem !important;
+    }
+    .hub-modal-card .badge-action {
+        font-size: 0.68rem !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Profile Modal Details (425px) */
+    .responsive-profile-modal div[style*="font-size: 2.4rem"] {
+        font-size: 1.5rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 1.15rem"] {
+        font-size: 0.98rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.85rem"] {
+        font-size: 0.74rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] > div {
+        padding: 6px 8px !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.70rem"] {
+        font-size: 0.64rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.84rem"] {
+        font-size: 0.76rem !important;
+    }
+    .responsive-profile-modal div[style*="border-radius: 10px"] {
+        padding: 6px 8px !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.84rem; font-weight: 800"] {
+        font-size: 0.76rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.72rem; color: #64748b"] {
+        font-size: 0.64rem !important;
+    }
+    .responsive-profile-modal span[style*="font-size: 0.70rem; font-weight: 800"] {
+        font-size: 0.64rem !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Streak Modal Details (425px) */
+    .responsive-streak-modal div[style*="grid-template-columns:1fr 1fr"],
+    .responsive-streak-modal div[style*="grid-template-columns: 1fr 1fr"] {
+        gap: 6px !important;
+    }
+    .responsive-streak-modal div[style*="background:#fff7ed"],
+    .responsive-streak-modal div[style*="background:#eff6ff"] {
+        padding: 8px 6px !important;
+    }
+    .responsive-streak-modal div[style*="font-size:1.8rem"],
+    .responsive-streak-modal div[style*="font-size: 1.8rem"] {
+        font-size: 1.30rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem"],
+    .responsive-streak-modal div[style*="font-size: 0.78rem"] {
+        font-size: 0.66rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.75rem"],
+    .responsive-streak-modal div[style*="font-size: 0.75rem"] {
+        font-size: 0.64rem !important;
+    }
+    .responsive-streak-modal div[style*="display:flex; align-items:center; justify-content:space-between"] {
+        padding: 8px 10px !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.9rem"],
+    .responsive-streak-modal div[style*="font-size: 0.9rem"] {
+        font-size: 0.78rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem; color:#64748b"] {
+        font-size: 0.66rem !important;
+    }
+    .responsive-streak-modal span[style*="font-size:0.78rem; font-weight:800"] {
+        font-size: 0.68rem !important;
+        padding: 3px 7px !important;
+    }
+    .responsive-streak-modal div[style*="background:#f1f5f9"] {
+        font-size: 0.72rem !important;
+        padding: 8px 10px !important;
+    }
+
+    /* FAQ Details (425px) */
+    .faq-section {
+        margin: 24px auto 32px auto !important;
+        padding: 0 10px !important;
+    }
+    .faq-main-title {
+        font-size: 1.10rem !important;
+    }
+    .faq-question-btn {
+        padding: 10px 12px !important;
+        font-size: 0.80rem !important;
+    }
+    .faq-answer-content {
+        padding: 0 12px 12px 12px !important;
+        font-size: 0.76rem !important;
+    }
+
+    /* Platform Footer (425px) */
+    .platform-footer {
+        padding: 24px 10px 16px 10px !important;
+    }
+    .footer-tagline, .footer-desc, .footer-col-title, .footer-links a, .footer-copyright {
+        font-size: 0.76rem !important;
+    }
+}
+
+/* ── ≤375px: iPhone SE / Galaxy S Small ───────────────────────────────── */
+@media (max-width: 375px) {
+    /* Hero Sections */
+    .hero-section, .track-hero, .hub-hero, .history-hero, .concept-hero {
+        padding: 14px 8px !important;
+        margin-bottom: 14px !important;
+    }
+    .hero-title, .hub-hero h1, .track-hero h1, .concept-hero h1, .history-hero h1, .cert-promo-content h2 {
+        font-size: 1.05rem !important;
+    }
+    .hero-subtitle, .hub-hero p, .track-hero p, .concept-hero p, .history-hero p, .cert-promo-content p {
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+    }
+    .hero-pill, .hub-badge, .level7-badge, .track-badge-pill, .hero-pill-badge, .quiz-badge, .cert-badge {
+        font-size: 0.66rem !important;
+        padding: 2px 7px !important;
+    }
+
+    /* Section Titles */
+    .section-header h2, .tracks-section-header h2, .curriculum-section h2, .section-title, .glossary-header-card h2, .faq-main-title {
+        font-size: 1.00rem !important;
+    }
+    .section-desc, .section-subtitle {
+        font-size: 0.76rem !important;
+    }
+
+    /* Daily Quest Card (375px) */
+    .daily-quest-card {
+        padding: 12px 8px !important;
+        border-radius: 10px !important;
+    }
+    .quest-title {
+        font-size: 0.95rem !important;
+    }
+    .quest-question {
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+    }
+    .quest-code-box {
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
+    }
+    .quest-option-btn {
+        font-size: 0.74rem !important;
+        padding: 7px 8px !important;
+    }
+    .quest-pill-active, .quest-pill-completed, .quest-category-badge, .quest-reward-pill, .quest-streak-badge {
+        font-size: 0.64rem !important;
+        padding: 2px 6px !important;
+    }
+    .quest-completed-body h3 {
+        font-size: 0.92rem !important;
+    }
+    .quest-completed-body p, .quest-explanation-banner {
+        font-size: 0.74rem !important;
+    }
+
+    /* Cards */
+    .track-card, .lesson-card, .branch-card, .track-hub-card, .concept-hero-card, .glossary-card, .sandbox-instructions-card, .chapter-block {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .card-top {
+        margin-bottom: 6px !important;
+    }
+    .track-level-badge, .track-status-icon, .mode-toggle-badge {
+        font-size: 0.60rem !important;
+        padding: 2px 5px !important;
+        border-radius: 6px !important;
+    }
+    .card-icon-wrap,
+    .concept-gradient, .html-gradient, .css-gradient, .js-gradient,
+    .dojo-gradient, .react-gradient, .python-gradient, .cloud-gradient {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1.05rem !important;
+        margin-bottom: 6px !important;
+        border-radius: 8px !important;
+    }
+    .card-title, .lesson-title, .branch-title, .chapter-title, .concept-title, .track-hub-card h3 {
+        font-size: 0.90rem !important;
+        margin-bottom: 3px !important;
+    }
+    .card-desc, .lesson-desc, .branch-desc, .concept-desc, .concept-body, .syllabus-item-left span {
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 8px !important;
+    }
+    .card-meta, .lesson-meta, .branch-meta-item, .card-tag, .track-status-pill, .stat-pill, .lesson-status {
+        font-size: 0.66rem !important;
+        gap: 4px !important;
+        margin-bottom: 8px !important;
+    }
+    .meta-tag {
+        font-size: 0.60rem !important;
+        padding: 1px 4px !important;
+    }
+
+    /* Card Buttons */
+    .track-btn, .primary-btn, .secondary-btn, .concept-btn, .gold-btn, .card-action-btn, .hero-cta-btn, .mark-complete-btn, .cert-action-btn, .tab-btn, .era-tab-btn, .tag-btn, .segmented-tab {
+        font-size: 0.74rem !important;
+        padding: 7px 10px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Hub Curriculum */
+    .chapter-num {
+        font-size: 0.66rem !important;
+    }
+    .chapter-badge {
+        font-size: 0.62rem !important;
+        padding: 1px 5px !important;
+    }
+    .syllabus-heading {
+        font-size: 0.72rem !important;
+    }
+    .syllabus-item {
+        font-size: 0.70rem !important;
+        padding: 4px 6px !important;
+    }
+
+    /* Stats Grids */
+    .stat-num, .hub-stat-val, .stat-number {
+        font-size: 0.92rem !important;
+    }
+    .stat-label, .hub-stat-lbl {
+        font-size: 0.62rem !important;
+    }
+
+    /* Certificate Components */
+    .cert-headline {
+        font-size: 1.05rem !important;
+    }
+    .cert-subheadline, .cert-awarded-text, .cert-details {
+        font-size: 0.74rem !important;
+    }
+
+    /* ALL Modals (375px) */
+    .swal2-popup, .responsive-profile-modal, .responsive-streak-modal, .responsive-cert-hub-modal {
+        padding: 12px 8px !important;
+        width: 96vw !important;
+        border-radius: 12px !important;
+    }
+    .swal2-title {
+        font-size: 0.95rem !important;
+    }
+    .swal2-html-container {
+        font-size: 0.74rem !important;
+        line-height: 1.4 !important;
+    }
+    .swal2-confirm, .swal2-cancel, .swal2-deny {
+        font-size: 0.74rem !important;
+        padding: 7px 10px !important;
+    }
+
+    /* Hub Modal Card (375px) */
+    .hub-modal-card {
+        padding: 6px 8px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 4px !important;
+    }
+    .hub-modal-card div[style*="font-weight: 800"] {
+        font-size: 0.74rem !important;
+    }
+    .hub-modal-card div[style*="font-size: 0.76rem"] {
+        font-size: 0.60rem !important;
+    }
+    .hub-modal-card .badge-action {
+        font-size: 0.62rem !important;
+        padding: 2px 5px !important;
+    }
+
+    /* Profile Modal Details (375px) */
+    .responsive-profile-modal div[style*="font-size: 2.4rem"] {
+        font-size: 1.3rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 1.15rem"] {
+        font-size: 0.90rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.85rem"] {
+        font-size: 0.70rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.70rem"] {
+        font-size: 0.58rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.84rem"] {
+        font-size: 0.70rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.84rem; font-weight: 800"] {
+        font-size: 0.70rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.72rem; color: #64748b"] {
+        font-size: 0.58rem !important;
+    }
+    .responsive-profile-modal span[style*="font-size: 0.70rem; font-weight: 800"] {
+        font-size: 0.58rem !important;
+        padding: 2px 5px !important;
+    }
+
+    /* Streak Modal Details (375px) */
+    .responsive-streak-modal div[style*="font-size:1.8rem"],
+    .responsive-streak-modal div[style*="font-size: 1.8rem"] {
+        font-size: 1.15rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem"],
+    .responsive-streak-modal div[style*="font-size: 0.78rem"] {
+        font-size: 0.60rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.75rem"],
+    .responsive-streak-modal div[style*="font-size: 0.75rem"] {
+        font-size: 0.58rem !important;
+    }
+    .responsive-streak-modal div[style*="display:flex; align-items:center; justify-content:space-between"] {
+        padding: 6px 8px !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.9rem"],
+    .responsive-streak-modal div[style*="font-size: 0.9rem"] {
+        font-size: 0.72rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem; color:#64748b"] {
+        font-size: 0.60rem !important;
+    }
+    .responsive-streak-modal span[style*="font-size:0.78rem; font-weight:800"] {
+        font-size: 0.62rem !important;
+        padding: 2px 5px !important;
+    }
+    .responsive-streak-modal div[style*="background:#f1f5f9"] {
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
+    }
+
+    /* FAQ (375px) */
+    .faq-main-title {
+        font-size: 1.00rem !important;
+    }
+    .faq-question-btn {
+        padding: 8px 10px !important;
+        font-size: 0.76rem !important;
+    }
+    .faq-answer-content {
+        padding: 0 10px 10px 10px !important;
+        font-size: 0.72rem !important;
+    }
+
+    /* Platform Footer */
+    .footer-tagline, .footer-desc, .footer-col-title, .footer-links a, .footer-copyright {
+        font-size: 0.72rem !important;
+    }
+}
+
+/* ── ≤320px: Galaxy S5, Smallest Mobile Screens ────────────────────────── */
+@media (max-width: 320px) {
+    /* Hero Sections */
+    .hero-section, .track-hero, .hub-hero, .history-hero, .concept-hero {
+        padding: 12px 6px !important;
+        margin-bottom: 12px !important;
+    }
+    .hero-title, .hub-hero h1, .track-hero h1, .concept-hero h1, .history-hero h1, .cert-promo-content h2 {
+        font-size: 0.95rem !important;
+    }
+    .hero-subtitle, .hub-hero p, .track-hero p, .concept-hero p, .history-hero p, .cert-promo-content p {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+    }
+    .hero-pill, .hub-badge, .level7-badge, .track-badge-pill, .hero-pill-badge, .quiz-badge, .cert-badge {
+        font-size: 0.62rem !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Section Titles */
+    .section-header h2, .tracks-section-header h2, .curriculum-section h2, .section-title, .glossary-header-card h2, .faq-main-title {
+        font-size: 0.90rem !important;
+    }
+    .section-desc, .section-subtitle {
+        font-size: 0.70rem !important;
+    }
+
+    /* Daily Quest Card (320px) */
+    .daily-quest-card {
+        padding: 10px 6px !important;
+        border-radius: 8px !important;
+    }
+    .quest-title {
+        font-size: 0.88rem !important;
+    }
+    .quest-question {
+        font-size: 0.70rem !important;
+        line-height: 1.35 !important;
+    }
+    .quest-code-box {
+        font-size: 0.62rem !important;
+        padding: 5px 7px !important;
+    }
+    .quest-option-btn {
+        font-size: 0.68rem !important;
+        padding: 6px 7px !important;
+    }
+    .quest-pill-active, .quest-pill-completed, .quest-category-badge, .quest-reward-pill, .quest-streak-badge {
+        font-size: 0.58rem !important;
+        padding: 1px 5px !important;
+    }
+    .quest-completed-body h3 {
+        font-size: 0.86rem !important;
+    }
+    .quest-completed-body p, .quest-explanation-banner {
+        font-size: 0.68rem !important;
+    }
+
+    /* Cards */
+    .track-card, .lesson-card, .branch-card, .track-hub-card, .concept-hero-card, .glossary-card, .sandbox-instructions-card, .chapter-block {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+    }
+    .card-top {
+        margin-bottom: 4px !important;
+    }
+    .track-level-badge, .track-status-icon, .mode-toggle-badge {
+        font-size: 0.56rem !important;
+        padding: 1px 4px !important;
+        border-radius: 5px !important;
+    }
+    .card-icon-wrap,
+    .concept-gradient, .html-gradient, .css-gradient, .js-gradient,
+    .dojo-gradient, .react-gradient, .python-gradient, .cloud-gradient {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 4px !important;
+        border-radius: 6px !important;
+    }
+    .card-title, .lesson-title, .branch-title, .chapter-title, .concept-title, .track-hub-card h3 {
+        font-size: 0.84rem !important;
+        margin-bottom: 2px !important;
+    }
+    .card-desc, .lesson-desc, .branch-desc, .concept-desc, .concept-body, .syllabus-item-left span {
+        font-size: 0.70rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 6px !important;
+    }
+    .card-meta, .lesson-meta, .branch-meta-item, .card-tag, .track-status-pill, .stat-pill, .lesson-status {
+        font-size: 0.62rem !important;
+        gap: 3px !important;
+        margin-bottom: 6px !important;
+    }
+    .meta-tag {
+        font-size: 0.56rem !important;
+        padding: 1px 3px !important;
+    }
+
+    /* Card Buttons */
+    .track-btn, .primary-btn, .secondary-btn, .concept-btn, .gold-btn, .card-action-btn, .hero-cta-btn, .mark-complete-btn, .cert-action-btn, .tab-btn, .era-tab-btn, .tag-btn, .segmented-tab {
+        font-size: 0.70rem !important;
+        padding: 6px 8px !important;
+        border-radius: 6px !important;
+    }
+
+    /* Hub Curriculum (320px) */
+    .chapter-num {
+        font-size: 0.62rem !important;
+    }
+    .chapter-badge {
+        font-size: 0.58rem !important;
+        padding: 1px 4px !important;
+    }
+    .syllabus-heading {
+        font-size: 0.68rem !important;
+    }
+    .syllabus-item {
+        font-size: 0.66rem !important;
+        padding: 3px 5px !important;
+    }
+
+    /* Stats Grids */
+    .stat-num, .hub-stat-val, .stat-number {
+        font-size: 0.84rem !important;
+    }
+    .stat-label, .hub-stat-lbl {
+        font-size: 0.58rem !important;
+    }
+
+    /* Certificate Components */
+    .cert-headline {
+        font-size: 0.95rem !important;
+    }
+    .cert-subheadline, .cert-awarded-text, .cert-details {
+        font-size: 0.68rem !important;
+    }
+
+    /* ALL Modals (320px) */
+    .swal2-popup, .responsive-profile-modal, .responsive-streak-modal, .responsive-cert-hub-modal {
+        padding: 10px 6px !important;
+        width: 98vw !important;
+        border-radius: 10px !important;
+    }
+    .swal2-title {
+        font-size: 0.88rem !important;
+    }
+    .swal2-html-container {
+        font-size: 0.70rem !important;
+        line-height: 1.35 !important;
+    }
+    .swal2-confirm, .swal2-cancel, .swal2-deny {
+        font-size: 0.70rem !important;
+        padding: 6px 8px !important;
+    }
+
+    /* Hub Modal Card (320px) */
+    .hub-modal-card {
+        padding: 5px 6px !important;
+        border-radius: 6px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 3px !important;
+    }
+    .hub-modal-card div[style*="font-weight: 800"] {
+        font-size: 0.68rem !important;
+    }
+    .hub-modal-card div[style*="font-size: 0.76rem"] {
+        font-size: 0.54rem !important;
+    }
+    .hub-modal-card .badge-action {
+        font-size: 0.56rem !important;
+        padding: 1px 4px !important;
+    }
+
+    /* Profile Modal Details (320px) */
+    .responsive-profile-modal div[style*="font-size: 2.4rem"] {
+        font-size: 1.15rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 1.15rem"] {
+        font-size: 0.82rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.85rem"] {
+        font-size: 0.66rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.70rem"] {
+        font-size: 0.54rem !important;
+    }
+    .responsive-profile-modal div[style*="grid-template-columns"] div[style*="font-size: 0.84rem"] {
+        font-size: 0.64rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.84rem; font-weight: 800"] {
+        font-size: 0.64rem !important;
+    }
+    .responsive-profile-modal div[style*="font-size: 0.72rem; color: #64748b"] {
+        font-size: 0.54rem !important;
+    }
+    .responsive-profile-modal span[style*="font-size: 0.70rem; font-weight: 800"] {
+        font-size: 0.54rem !important;
+        padding: 1px 4px !important;
+    }
+
+    /* Streak Modal Details (320px) */
+    .responsive-streak-modal div[style*="font-size:1.8rem"],
+    .responsive-streak-modal div[style*="font-size: 1.8rem"] {
+        font-size: 1.00rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem"],
+    .responsive-streak-modal div[style*="font-size: 0.78rem"] {
+        font-size: 0.54rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.75rem"],
+    .responsive-streak-modal div[style*="font-size: 0.75rem"] {
+        font-size: 0.52rem !important;
+    }
+    .responsive-streak-modal div[style*="display:flex; align-items:center; justify-content:space-between"] {
+        padding: 5px 6px !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.9rem"],
+    .responsive-streak-modal div[style*="font-size: 0.9rem"] {
+        font-size: 0.66rem !important;
+    }
+    .responsive-streak-modal div[style*="font-size:0.78rem; color:#64748b"] {
+        font-size: 0.54rem !important;
+    }
+    .responsive-streak-modal span[style*="font-size:0.78rem; font-weight:800"] {
+        font-size: 0.56rem !important;
+        padding: 1px 4px !important;
+    }
+    .responsive-streak-modal div[style*="background:#f1f5f9"] {
+        font-size: 0.62rem !important;
+        padding: 5px 6px !important;
+    }
+
+    /* FAQ (320px) */
+    .faq-main-title {
+        font-size: 0.90rem !important;
+    }
+    .faq-question-btn {
+        padding: 7px 8px !important;
+        font-size: 0.70rem !important;
+    }
+    .faq-answer-content {
+        padding: 0 8px 8px 8px !important;
+        font-size: 0.66rem !important;
+    }
+
+    /* Platform Footer */
+    .footer-tagline, .footer-desc, .footer-col-title, .footer-links a, .footer-copyright {
+        font-size: 0.68rem !important;
+    }
+}

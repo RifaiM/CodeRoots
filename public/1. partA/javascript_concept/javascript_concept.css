@@ -1,0 +1,997 @@
+/* ==========================================================================
+   NoviCodes - Concept 4: JavaScript Interactivity Stylesheet
+   Modern Glassmorphic Design with 100% Fluid Mobile Adaptability
+   ========================================================================== */
+
+:root {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --brand-yellow: #ca8a04;
+    --brand-blue: #2563eb;
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.platform-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0 20px !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.header-inner {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.platform-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    object-fit: cover;
+}
+
+.logo-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.title-novi { color: #0f172a; }
+.title-codes { color: var(--brand-blue); }
+
+.logo-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    background: #fefce8;
+    color: #854d0e;
+    border: 1px solid #fef08a;
+    cursor: pointer;
+}
+
+.nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-back-btn:hover {
+    background: #eab308;
+    color: #000000;
+    border-color: #eab308;
+}
+
+.concept-container {
+    max-width: 960px;
+    margin: 28px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.concept-hero {
+    background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+    color: #000000;
+    padding: 36px 28px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 25px rgba(202, 138, 4, 0.2);
+    text-align: center;
+}
+
+.concept-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.concept-hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 8px 0;
+}
+
+.concept-hero p {
+    color: #422006;
+    font-size: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+.concept-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 26px 22px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+}
+
+.concept-card h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.concept-card p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+}
+
+/* Triad Diagram - Perfectly Centered & Balanced */
+.triad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 18px auto 0 auto;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+.triad-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.triad-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.triad-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.triad-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 auto 6px auto;
+    width: 100%;
+    line-height: 1.3;
+}
+
+.triad-desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* Event Sandbox */
+.sandbox-card-box {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 24px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 14px;
+}
+
+.counter-value-display {
+    font-size: 2.6rem;
+    font-weight: 800;
+    font-family: 'Fira Code', monospace;
+    color: #fde047;
+    margin: 8px 0 16px 0;
+}
+
+.sandbox-btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.event-action-btn {
+    background: #eab308;
+    color: #000000;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.event-action-btn:hover {
+    transform: translateY(-2px);
+    background: #facc15;
+}
+
+/* Quiz */
+.quiz-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.quiz-opt-btn {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    background: #fefce8;
+    border-color: #facc15;
+}
+
+.quiz-opt-btn.correct {
+    background: #f0fdf4 !important;
+    border-color: #22c55e !important;
+    color: #15803d !important;
+    font-weight: 800;
+}
+
+.quiz-opt-btn.incorrect {
+    background: #fef2f2 !important;
+    border-color: #ef4444 !important;
+    color: #b91c1c !important;
+}
+
+.quiz-feedback-box {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    margin-top: 12px;
+}
+
+.quiz-feedback-box.show { display: block; }
+.quiz-feedback-box.correct { background: #f0fdf4; border: 1px solid #86efac; color: #15803d; }
+.quiz-feedback-box.incorrect { background: #fff1f2; border: 1px solid #fecdd3; color: #be123c; }
+
+/* Completion Card */
+.complete-card {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: #ffffff;
+    padding: 24px 20px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+}
+
+.complete-card h3 { font-size: 1.25rem; margin: 0 0 6px 0; }
+.complete-card p { color: #d1fae5; font-size: 0.90rem; margin: 0 0 14px 0; }
+
+.mark-complete-btn {
+    background: #ffffff;
+    color: #047857;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 24px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mark-complete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.mark-complete-btn.locked {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    box-shadow: none;
+    opacity: 0.92;
+}
+
+.mark-complete-btn.locked:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.section-header-row h2 {
+    margin-bottom: 0 !important;
+}
+
+.quiz-badge {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Progressive Typography & Spacing System (≤576px, ≤425px, ≤375px, ≤320px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .triad-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        max-width: 480px !important;
+        margin: 16px auto 0 auto !important;
+    }
+    .triad-card {
+        padding: 16px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-desc {
+        max-width: 360px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+}
+
+/* ── ≤576px: Small Phones ─────────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .platform-header {
+        padding: 0 12px !important;
+    }
+    .concept-container {
+        margin-top: 14px !important;
+        padding: 0 12px !important;
+    }
+    .concept-hero {
+        padding: 18px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.70rem !important;
+        padding: 3px 9px !important;
+        margin-bottom: 8px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.28rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+    .concept-hero p {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .concept-card {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+        margin-bottom: 18px !important;
+    }
+    .concept-card h2 {
+        font-size: 1.05rem !important;
+        margin-bottom: 8px !important;
+    }
+    .concept-card p {
+        font-size: 0.82rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Triad Layout & Sizing */
+    .triad-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin: 12px auto 0 auto !important;
+        max-width: 100% !important;
+    }
+    .triad-card {
+        padding: 14px 12px !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-icon {
+        font-size: 1.8rem !important;
+        margin: 0 auto 6px auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-title {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.88rem !important;
+        margin: 0 auto 4px auto !important;
+    }
+    .triad-desc {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+        margin: 0 auto !important;
+        max-width: 100% !important;
+    }
+
+    /* Event Sandbox */
+    .sandbox-card-box {
+        padding: 16px 12px !important;
+        border-radius: 12px !important;
+        margin-top: 10px !important;
+    }
+    .counter-value-display {
+        font-size: 2.0rem !important;
+        margin: 6px 0 12px 0 !important;
+    }
+    .sandbox-btn-row {
+        gap: 8px !important;
+    }
+    .event-action-btn {
+        font-size: 0.78rem !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.70rem !important;
+        padding: 2px 8px !important;
+    }
+    #quizQText {
+        font-size: 0.86rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.78rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.76rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+
+    .complete-card {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+    }
+    .complete-card h3 {
+        font-size: 1.10rem !important;
+        margin-bottom: 4px !important;
+    }
+    .complete-card p {
+        font-size: 0.80rem !important;
+        margin-bottom: 12px !important;
+    }
+    .mark-complete-btn {
+        width: 100% !important;
+        font-size: 0.80rem !important;
+        padding: 8px 14px !important;
+        border-radius: 10px !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ── ≤425px: iPhone SE, Galaxy S-series ───────────────────────────────── */
+@media (max-width: 425px) {
+    .platform-header {
+        padding: 0 8px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.95rem !important;
+    }
+    .logo-tag {
+        display: none !important;
+    }
+
+    .concept-container {
+        padding: 0 10px !important;
+        margin-top: 10px !important;
+    }
+    .concept-hero {
+        padding: 14px 10px !important;
+        border-radius: 14px !important;
+        margin-bottom: 14px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.64rem !important;
+        padding: 2px 7px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.12rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.78rem !important;
+    }
+
+    .concept-card {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+        margin-bottom: 14px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.95rem !important;
+    }
+    .concept-card p {
+        font-size: 0.76rem !important;
+    }
+
+    /* Triad Layout & Sizing */
+    .triad-grid {
+        gap: 8px !important;
+        margin: 10px auto 0 auto !important;
+    }
+    .triad-card {
+        padding: 12px 10px !important;
+        border-radius: 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-icon {
+        font-size: 1.6rem !important;
+        margin: 0 auto 4px auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-title {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.84rem !important;
+        margin: 0 auto 3px auto !important;
+    }
+    .triad-desc {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.74rem !important;
+        line-height: 1.4 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Event Sandbox */
+    .sandbox-card-box {
+        padding: 12px 8px !important;
+    }
+    .counter-value-display {
+        font-size: 1.7rem !important;
+        margin: 4px 0 10px 0 !important;
+    }
+    .sandbox-btn-row {
+        gap: 6px !important;
+    }
+    .event-action-btn {
+        font-size: 0.72rem !important;
+        padding: 6px 10px !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.64rem !important;
+    }
+    #quizQText {
+        font-size: 0.80rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.72rem !important;
+        padding: 7px 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.70rem !important;
+        padding: 6px 8px !important;
+    }
+
+    .complete-card {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.98rem !important;
+    }
+    .complete-card p {
+        font-size: 0.74rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.74rem !important;
+        padding: 7px 10px !important;
+    }
+}
+
+/* ── ≤375px: iPhone SE / Galaxy S Small ───────────────────────────────── */
+@media (max-width: 375px) {
+    .concept-container {
+        padding: 0 8px !important;
+        margin-top: 8px !important;
+    }
+    .concept-hero {
+        padding: 12px 8px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.58rem !important;
+        padding: 2px 6px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.00rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .concept-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.88rem !important;
+    }
+    .concept-card p {
+        font-size: 0.70rem !important;
+    }
+
+    /* Triad Layout & Sizing */
+    .triad-grid {
+        gap: 6px !important;
+        margin: 8px auto 0 auto !important;
+    }
+    .triad-card {
+        padding: 10px 8px !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-icon {
+        font-size: 1.4rem !important;
+        margin: 0 auto 3px auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-title {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.78rem !important;
+        margin: 0 auto 2px auto !important;
+    }
+    .triad-desc {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.68rem !important;
+        line-height: 1.35 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Event Sandbox */
+    .sandbox-card-box {
+        padding: 10px 6px !important;
+    }
+    .counter-value-display {
+        font-size: 1.5rem !important;
+        margin: 4px 0 8px 0 !important;
+    }
+    .sandbox-btn-row {
+        gap: 5px !important;
+    }
+    .event-action-btn {
+        font-size: 0.66rem !important;
+        padding: 5px 8px !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.58rem !important;
+    }
+    #quizQText {
+        font-size: 0.74rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.66rem !important;
+        padding: 6px 6px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.64rem !important;
+        padding: 5px 6px !important;
+    }
+
+    .complete-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.88rem !important;
+    }
+    .complete-card p {
+        font-size: 0.68rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
+    }
+}
+
+/* ── ≤320px: Galaxy S5 / Smallest Mobile ──────────────────────────────── */
+@media (max-width: 320px) {
+    .platform-header {
+        padding: 0 6px !important;
+    }
+    .brand-logo-img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.86rem !important;
+    }
+    .stat-badge {
+        padding: 0 5px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+
+    .concept-container {
+        padding: 0 6px !important;
+        margin-top: 6px !important;
+    }
+    .concept-hero {
+        padding: 10px 6px !important;
+        border-radius: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.52rem !important;
+        padding: 1px 4px !important;
+    }
+    .concept-hero h1 {
+        font-size: 0.90rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.66rem !important;
+    }
+
+    .concept-card {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.80rem !important;
+    }
+    .concept-card p {
+        font-size: 0.64rem !important;
+    }
+
+    /* Triad Layout & Sizing */
+    .triad-grid {
+        gap: 5px !important;
+        margin: 6px auto 0 auto !important;
+    }
+    .triad-card {
+        padding: 8px 6px !important;
+        border-radius: 6px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-icon {
+        font-size: 1.1rem !important;
+        margin: 0 auto 2px auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .triad-title {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.70rem !important;
+        margin: 0 auto 2px auto !important;
+    }
+    .triad-desc {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.60rem !important;
+        line-height: 1.3 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Event Sandbox */
+    .sandbox-card-box {
+        padding: 8px 4px !important;
+    }
+    .counter-value-display {
+        font-size: 1.3rem !important;
+        margin: 2px 0 6px 0 !important;
+    }
+    .sandbox-btn-row {
+        gap: 4px !important;
+    }
+    .event-action-btn {
+        font-size: 0.60rem !important;
+        padding: 4px 6px !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.52rem !important;
+    }
+    #quizQText {
+        font-size: 0.68rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.60rem !important;
+        padding: 5px 5px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.58rem !important;
+        padding: 4px 5px !important;
+    }
+
+    .complete-card {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.78rem !important;
+    }
+    .complete-card p {
+        font-size: 0.62rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.62rem !important;
+        padding: 5px 6px !important;
+    }
+}
+
+

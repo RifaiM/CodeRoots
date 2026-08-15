@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/devtype.css';
+---
+
+<BaseLayout
+    title="DevType Dojo: Code Typing Speedrun | NoviCodes"
+    description="Sharpen your coding speed and muscle memory across HTML, CSS, JavaScript, React, Python, SQL, and Next.js."
+    showHeaderFooter={false}
+    bodyClass="devtype-page"
+    noPageContentWrapper={true}
+>
+    <!-- Compact Top Navbar -->
+    <header class="devtype-navbar">
+        <a href="/" class="nav-back-btn">
+            <span class="btn-icon">🏠</span>
+            <span class="btn-text">Dashboard</span>
+        </a>
+
+        <h1 class="nav-title">
+            <span>⌨️ DevType Dojo</span>
+            <span class="nav-sub">Code Typing Speedrun</span>
+        </h1>
+
+        <div class="high-score-badge">
+            <button id="howItWorksBtn" type="button" onclick="showArcadeHelpModal()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; padding: 3px 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; margin-right: 8px; transition: all 0.2s ease;">❓ How it Works</button>
+            <span>🏆 Best:</span>
+            <strong id="highScoreVal">0 WPM</strong>
+        </div>
+    </header>
+
+    <main class="devtype-viewport-container">
+        <!-- Compact Control Bar (Mode & Timer Selectors in One Row) -->
+        <div class="compact-controls-bar">
+            <div class="mode-selector-bar">
+                <button class="mode-btn" data-mode="html" title="Practice HTML5 structure & tags">🌐 HTML</button>
+                <button class="mode-btn" data-mode="css" title="Practice CSS3 layout & styles">🎨 CSS</button>
+                <button class="mode-btn active" data-mode="js" title="Practice ES6+ JavaScript syntax">⚡ JS</button>
+                <button class="mode-btn" data-mode="react" title="Practice React 18/19 components & hooks">⚛️ React</button>
+                <button class="mode-btn" data-mode="python" title="Practice Python 3 backend & FastAPI">🐍 Python</button>
+                <button class="mode-btn" data-mode="sql" title="Practice Relational SQL queries & JOINs">🛢️ SQL</button>
+                <button class="mode-btn" data-mode="nextjs" title="Practice Next.js App Router & Server Actions">⚡ Next.js</button>
+            </div>
+
+            <div class="timer-divider"></div>
+
+            <div class="timer-selector-bar">
+                <span class="timer-label">⏱️ Mode:</span>
+                <button class="timer-btn" data-time="15" title="15 second speedrun sprint">15s</button>
+                <button class="timer-btn active" data-time="30" title="30 second standard speedrun">30s</button>
+                <button class="timer-btn" data-time="60" title="60 second endurance speedrun">60s</button>
+                <button class="timer-btn" data-time="custom" id="customTimerBtn" title="Set a custom speedrun countdown duration">⚙️ Custom</button>
+                <button class="timer-btn" data-time="0" title="No Timer Mode: Type full code snippet at your own pace with no countdown timer!">∞ No Timer</button>
+            </div>
+        </div>
+
+        <!-- Live Stats HUD Bar -->
+        <div class="stats-hud-bar">
+            <div class="hud-item">
+                <span class="hud-label">🚀 Speed</span>
+                <span class="hud-value" id="wpmVal">0 WPM</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">⏱️ Time</span>
+                <span class="hud-value highlight-amber" id="timerVal">30s</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">🎯 Accuracy</span>
+                <span class="hud-value" id="accuracyVal">100%</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">⌨️ CPM</span>
+                <span class="hud-value" id="cpmVal">0</span>
+            </div>
+        </div>
+
+        <!-- Main Code Typing Area -->
+        <div class="typing-area-card" title="Click to start typing code!">
+            <div class="code-display" id="codeDisplay"></div>
+            <textarea id="hiddenInput" spellcheck="false" autocomplete="off" capitalize="off"></textarea>
+        </div>
+
+        <!-- Action Controls & Shortcut Hint -->
+        <div class="action-footer">
+            <div class="action-buttons">
+                <button class="action-btn retry-btn" id="retryBtn">
+                    <span>🔄 Retry</span><span class="btn-full-text">&nbsp;Snippet</span>
+                </button>
+                <button class="action-btn next-btn" id="nextBtn">
+                    <span>⏭ Next</span><span class="btn-full-text">&nbsp;Snippet</span>
+                </button>
+            </div>
+
+            <div class="shortcut-text">
+                Press <kbd>Tab</kbd> to indent code like VS Code | Press <kbd>Esc</kbd> to restart
+            </div>
+        </div>
+    </main>
+
+    <footer class="devtype-platform-footer">
+        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; font-weight: 700; flex-wrap: wrap;">
+            <a href="/privacy.html" style="color: #38bdf8; text-decoration: none;">Privacy Policy</a>
+            <a href="/terms.html" style="color: #38bdf8; text-decoration: none;">Terms of Use</a>
+            <a href="/" style="color: #38bdf8; text-decoration: none;">Dashboard</a>
+        </div>
+        <p style="margin: 0; color: #e2e8f0; font-weight: 600; font-size: 0.82rem;">© 2026 NoviCodes • DevType Speedrun</p>
+    </footer>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script is:inline src="/4. partD/devtype/devtype.js"></script>
+</BaseLayout>

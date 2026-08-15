@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: 'javascript:void(0)', label: 'Foundations', icon: '📚', active: true, title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+];
+---
+
+<BaseLayout
+    title="Foundations Academy Hub (Levels 0–3) | NoviCodes"
+    description="Master the core building blocks of the web: Web Architecture, Semantic HTML5, Modern CSS3 Styling, and JavaScript ES6+ logic."
+    showHeaderFooter={false}
+>
+    <!-- Top Global Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Foundations"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <!-- Main Container -->
+    <main class="hub-container">
+        
+        <!-- Hero Section -->
+        <section class="hub-hero">
+            <span class="hub-badge">🏛️ Foundations Academy • Levels 0–3</span>
+            <h1>Master the Core Building Blocks of the Web</h1>
+            <p>
+                Build unbreakable mental models before you start writing complex applications. Learn internet architecture, semantic HTML structure, modern CSS styling, and reactive JavaScript logic with zero setup required.
+            </p>
+
+            <!-- Live Progress Bar -->
+            <div class="hero-progress-wrap">
+                <div class="hero-progress-info">
+                    <span>Foundations Progress</span>
+                    <span id="heroProgressText">0 of 4 Tracks Completed (0%)</span>
+                </div>
+                <div class="hero-progress-bar">
+                    <div class="hero-progress-fill" id="heroProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Smart Resume CTA -->
+            <a href="/1. partA/web_history.html" class="hero-cta-btn" id="heroResumeBtn">
+                <span>🚀 Start Level 0: Web History ➔</span>
+            </a>
+        </section>
+
+        <!-- Stats Overview Row -->
+        <section class="hub-stats-grid">
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">1,300 XP</div>
+                <div class="hub-stat-lbl">Total Foundations Bounty</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val" id="statCompletedTracks">0 / 4</div>
+                <div class="hub-stat-lbl">Tracks Mastered</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">4 Core Modules</div>
+                <div class="hub-stat-lbl">Analogy • Glossary • Sandbox • Quiz</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">Code Apprentice</div>
+                <div class="hub-stat-lbl">Milestone Rank</div>
+            </div>
+        </section>
+
+        <!-- Curriculum Tracks Breakdown -->
+        <section>
+            <div class="tracks-section-header">
+                <h2>Curriculum Roadmap (Levels 0–3)</h2>
+                <p>Complete each foundational milestone to unlock the next level and earn XP.</p>
+            </div>
+
+            <div class="tracks-grid">
+                
+                <!-- Track 0: Web History & Concepts -->
+                <a href="/1. partA/web_history.html" class="track-hub-card card-l0" id="cardL0">
+                    <div>
+                        <div class="track-hub-header">
+                            <div class="track-icon-badge">🌐</div>
+                            <span class="track-status-pill available" id="pillL0">⚡ Up Next</span>
+                        </div>
+                        <div class="track-card-level">Level 0 • Architecture</div>
+                        <h3 class="track-card-title">Web History &amp; Core Concepts</h3>
+                        <p class="track-card-desc">
+                            Discover how the World Wide Web was born. Learn how clients, servers, DNS, HTTP protocols, and browser rendering engines interact.
+                        </p>
+                        <div class="track-module-list">
+                            <span class="module-pill">Web History</span>
+                            <span class="module-pill">Clients &amp; Servers</span>
+                            <span class="module-pill">DNS &amp; IP</span>
+                            <span class="module-pill">HTTP Cycle</span>
+                        </div>
+                    </div>
+                    <div class="track-card-footer">
+                        <span class="track-xp-badge">⚡ +100 XP</span>
+                        <span class="track-btn-action" id="actionL0">Start Track ➔</span>
+                    </div>
+                </a>
+
+                <!-- Track 1: HTML Foundations -->
+                <a href="/foundations.html?track=html" class="track-hub-card card-l1" id="cardL1">
+                    <div>
+                        <div class="track-hub-header">
+                            <div class="track-icon-badge">🧱</div>
+                            <span class="track-status-pill locked" id="pillL1">🔒 Locked</span>
+                        </div>
+                        <div class="track-card-level">Level 1 • Structure</div>
+                        <h3 class="track-card-title">HTML5 Structural Foundations</h3>
+                        <p class="track-card-desc">
+                            The skeleton of every website. Learn tags, elements, nested structures, forms, links, media, and semantic document architecture.
+                        </p>
+                        <div class="track-module-list">
+                            <span class="module-pill">📖 Analogy &amp; Concept</span>
+                            <span class="module-pill">📚 Term Glossary</span>
+                            <span class="module-pill">💻 Code Sandbox</span>
+                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        </div>
+                    </div>
+                    <div class="track-card-footer">
+                        <span class="track-xp-badge">⚡ +400 XP</span>
+                        <span class="track-btn-action" id="actionL1">Locked</span>
+                    </div>
+                </a>
+
+                <!-- Track 2: CSS Foundations -->
+                <a href="/foundations.html?track=css" class="track-hub-card card-l2" id="cardL2">
+                    <div>
+                        <div class="track-hub-header">
+                            <div class="track-icon-badge">🎨</div>
+                            <span class="track-status-pill locked" id="pillL2">🔒 Locked</span>
+                        </div>
+                        <div class="track-card-level">Level 2 • Styling</div>
+                        <h3 class="track-card-title">Modern CSS3 Styling &amp; Layouts</h3>
+                        <p class="track-card-desc">
+                            Bring structure to life with visual style. Master selectors, the CSS Cascade, the Box Model, Flexbox alignment, and responsive design.
+                        </p>
+                        <div class="track-module-list">
+                            <span class="module-pill">📖 Analogy &amp; Concept</span>
+                            <span class="module-pill">📚 Term Glossary</span>
+                            <span class="module-pill">💻 Code Sandbox</span>
+                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        </div>
+                    </div>
+                    <div class="track-card-footer">
+                        <span class="track-xp-badge">⚡ +400 XP</span>
+                        <span class="track-btn-action" id="actionL2">Locked</span>
+                    </div>
+                </a>
+
+                <!-- Track 3: JavaScript Foundations -->
+                <a href="/foundations.html?track=js" class="track-hub-card card-l3" id="cardL3">
+                    <div>
+                        <div class="track-hub-header">
+                            <div class="track-icon-badge">⚡</div>
+                            <span class="track-status-pill locked" id="pillL3">🔒 Locked</span>
+                        </div>
+                        <div class="track-card-level">Level 3 • Logic</div>
+                        <h3 class="track-card-title">Modern JavaScript (ES6+) Logic</h3>
+                        <p class="track-card-desc">
+                            Give your web pages interactive superpowers. Master variables, functions, conditional flow, DOM event listeners, and API fetching.
+                        </p>
+                        <div class="track-module-list">
+                            <span class="module-pill">📖 Analogy &amp; Concept</span>
+                            <span class="module-pill">📚 Term Glossary</span>
+                            <span class="module-pill">💻 Code Sandbox</span>
+                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        </div>
+                    </div>
+                    <div class="track-card-footer">
+                        <span class="track-xp-badge">⚡ +400 XP</span>
+                        <span class="track-btn-action" id="actionL3">Locked</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Gateway Box to Level 4 DOM Dojo -->
+        <section class="dojo-gateway-box">
+            <div class="gateway-info-wrap">
+                <div class="gateway-icon">⚔️</div>
+                <div>
+                    <h3 class="gateway-title">Ready for Hands-On Project Building?</h3>
+                    <p class="gateway-desc">
+                        After completing Foundations (Levels 0–3), advance to Level 4: DOM Dojo to build 15 complete real-world JavaScript projects and earn your DOM Architect Certificate.
+                    </p>
+                </div>
+            </div>
+            <a href="/2. partB/hub.html" class="gateway-btn">
+                <span>⚔️ Explore DOM Dojo ➔</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/1. partA/hub.css" />
+
+    <!-- JavaScript Engines -->
+    <script is:inline src="/scripts/dashboard.js"></script>
+    <script is:inline src="/1. partA/hub.js"></script>
+</BaseLayout>

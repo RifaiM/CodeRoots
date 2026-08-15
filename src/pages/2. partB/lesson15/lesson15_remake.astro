@@ -1,0 +1,357 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<!-- 🛠️ Project 15 Capstone: Production Web Application -->
+<header class="app-header">
+  <h1>⚡ Task Manager Pro</h1>
+</header>
+
+<main class="app-main">
+  <!-- Step 1: Create a task creation form with input and button -->
+
+
+  <!-- Step 2: Create a task list container -->
+
+</main>
+
+<style>
+  /* Step 3: Style the header, form, and task cards using Flexbox */
+
+
+</style>
+
+<script>
+  // Step 4: Write JS logic to add tasks, toggle completion, and persist to localStorage
+
+<\/script>
+`;
+
+const level4Lessons = [
+    {
+        "id": 1,
+        "title": "Interactive HTML Page Structure",
+        "url": "/2. partB/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Typography & Heading Hierarchy",
+        "url": "/2. partB/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Interactive Links & Dynamic Media",
+        "url": "/2. partB/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Lists & Dropdown Drawer Navigation",
+        "url": "/2. partB/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Semantic HTML Web Architecture",
+        "url": "/2. partB/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "CSS Colors, Backgrounds & Borders",
+        "url": "/2. partB/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "The CSS Box Model & Spacing",
+        "url": "/2. partB/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Modern Flexbox Layout Mastery",
+        "url": "/2. partB/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "Responsive CSS Grid Architecture",
+        "url": "/2. partB/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "JavaScript Variables & Data Types",
+        "url": "/2. partB/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Functions & Interactive Click Events",
+        "url": "/2. partB/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "DOM Manipulation & Dynamic Elements",
+        "url": "/2. partB/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "Interactive Forms & Input Validation",
+        "url": "/2. partB/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "Asynchronous JavaScript & REST APIs",
+        "url": "/2. partB/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "Capstone: Full Interactive Web Application",
+        "url": "/2. partB/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 15: Capstone: Full Interactive Web Application | Level 4 DOM Dojo"
+    description="Integrate semantic HTML, responsive CSS Grid/Flexbox, and asynchronous JavaScript into a complete production web application."
+    levelTag="Level 4 • DOM Dojo"
+    lessonNum={15}
+    lessonTitle="Capstone: Full Interactive Web Application"
+    xpAmount={500}
+    completionKey="partB_lesson15_remake_complete"
+    
+    hubUrl="/2. partB/hub.html"
+    hubTitle="Level 4 Hub"
+    hubIcon="⚔️"
+    fileTab="index.html"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level4Lessons}
+    certificateUrl="/2. partB/certificate.html"
+    trackPrefix="partB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Integrate semantic HTML, responsive CSS Grid/Flexbox, and asynchronous JavaScript into a complete production web application.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> The Capstone is your developer graduation project: combining the skeleton (HTML), the beauty (CSS), and the brain (JavaScript) into a living, production-ready software product.
+            </div>
+        </article>
+
+        
+        <!-- Capstone Full Stack Pillars -->
+        <article class="concept-card">
+            <h3><span>🏆</span> Capstone Architecture Pillars</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="property-name">1. HTML5 Frame</span>
+                    <p class="property-desc">Semantic header, main, form &amp; task containers</p>
+                </div>
+                <div class="feature-card">
+                    <span class="property-name">2. CSS3 Flex/Grid</span>
+                    <p class="property-desc">Modern responsive spacing, colors &amp; elevation</p>
+                </div>
+                <div class="feature-card">
+                    <span class="property-name">3. Dynamic JS</span>
+                    <p class="property-desc">Event handling, DOM creation &amp; state persistence</p>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Code Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_15')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_15">&lt;header&gt;&lt;h1&gt;Task Manager Pro&lt;/h1&gt;&lt;/header&gt;
+&lt;main&gt;
+  &lt;form id="taskForm"&gt;
+    &lt;input type="text" id="taskInput" placeholder="New Task..."&gt;
+    &lt;button type="submit"&gt;Add Task&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;ul id="taskList"&gt;&lt;/ul&gt;
+&lt;/main&gt;
+&lt;style&gt;
+  header &#123; background: #0f172a; color: white; padding: 16px; text-align: center; &#125;
+  form &#123; display: flex; gap: 8px; margin: 20px 0; &#125;
+&lt;/style&gt;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the code editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Build a semantic HTML structure with form and task list container.</li>
+                <li>Style the application with modern CSS Flexbox or Grid.</li>
+                <li>Write complete JavaScript logic to add tasks dynamically and store state.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partB_lesson15';
+        const DEFAULT_STARTER = `<!-- 🛠️ Project 15 Capstone: Production Web Application -->
+<header class="app-header">
+  <h1>⚡ Task Manager Pro</h1>
+</header>
+
+<main class="app-main">
+  <!-- Step 1: Create a task creation form with input and button -->
+
+
+  <!-- Step 2: Create a task list container -->
+
+</main>
+
+<style>
+  /* Step 3: Style the header, form, and task cards using Flexbox */
+
+
+</style>
+
+<script>
+  // Step 4: Write JS logic to add tasks, toggle completion, and persist to localStorage
+
+<\/script>
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { 
+                id: 'html_layout', 
+                label: 'Semantic HTML structure with form and task list container', 
+                fn: (code, doc) => !!doc?.querySelector('form') && (!!doc?.querySelector('ul') || !!doc?.querySelector('#taskList'))
+            },
+            { 
+                id: 'css_styles', 
+                label: 'Modern CSS styling with Flexbox or Grid', 
+                fn: (code) => /display\s*:\s*(flex|grid)/i.test(code),
+            },
+            { 
+                id: 'js_logic', 
+                label: 'Dynamic JS logic with submit listener and element creation', 
+                fn: (code) => /addEventListener\(['"]submit['"]/i.test(c) && /createElement/i.test(code)
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers and scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live preview instantly via srcdoc
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Intelligent Linter
+            DojoEngine.lint(editor.value, 'html');
+
+            // Real-Time Checklist
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        // Tab indentation key support
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                // Empty or Whitespace-only Submission Protection
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                // Check for blocking syntax errors from Linter
+                const problems = DojoEngine.lint(code, 'html');
+                const hasErrors = problems.some(p => p.severity === 'error');
+                if (hasErrors) {
+                    return; // Block submission while syntax errors exist
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Lesson 15: Capstone: Full Interactive Web Application',
+                        xp: 500,
+                        completionKey: 'partB_lesson15_remake_complete',
+                        
+                        customMessage: 'You have mastered this project challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

@@ -1,0 +1,306 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// app/page.jsx — Apex Fullstack Capstone
+// 🛠️ Practice Task: Production Fullstack Application
+
+// Step 1: Add 'use client'
+'use client';
+
+import React, { useState } from 'react';
+
+// Step 2: Implement CapstoneDashboard component managing data state and search filter
+export default function CapstoneDashboard() {
+    const [services, setServices] = useState([
+        { id: 1, name: "Auth Gateway", latency: "14ms", status: "healthy" },
+        { id: 2, name: "Database Pool", latency: "8ms", status: "healthy" }
+    ]);
+    const [search, setSearch] = useState("");
+
+    // Filter services based on search query
+    // Write filter and return JSX here:
+
+    return <div></div>;
+}`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Next.js App Router",
+        "url": "/6. partF/branchC/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Server & Client UI",
+        "url": "/6. partF/branchC/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Zustand Global State",
+        "url": "/6. partF/branchC/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Tailwind UI Architecture",
+        "url": "/6. partF/branchC/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Unit & E2E Testing",
+        "url": "/6. partF/branchC/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Production Capstone Service",
+        "url": "/6. partF/branchC/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 06: Production Capstone Service | Level 7C • Next.js & Frontend"
+    description="Deploy a production Next.js fullstack service combining Server Components, global state, API fetching, and error boundaries."
+    levelTag="Level 7C • Next.js & Frontend"
+    lessonNum={6}
+    lessonTitle="Production Capstone Service"
+    xpAmount={250}
+    completionKey="partF_branchC_lesson6_complete"
+    nextLessonUrl="/6. partF/certificate.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="page.jsx"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchC"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Deploy a production Next.js fullstack service combining Server Components, global state, API fetching, and error boundaries.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> The Level 7 Capstone is your engineering portfolio centerpiece: unifying frontend state, asynchronous data, and cloud architecture.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>👑</span> Apex Fullstack Architecture</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">Next.js + State + API + Edge</div>
+                        <div class="tag-result">Production Modern Fullstack Web Stack</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchC_6">'use client';
+
+import React, &#123; useState &#125; from 'react';
+
+export default function CapstoneDashboard() &#123;
+    const [services] = useState([
+        &#123; id: 1, name: "Auth Gateway", latency: "14ms", status: "healthy" &#125;,
+        &#123; id: 2, name: "Database Pool", latency: "8ms", status: "healthy" &#125;
+    ]);
+    const [search, setSearch] = useState("");
+
+    const filtered = services.filter(s =&gt; s.name.toLowerCase().includes(search.toLowerCase()));
+
+    return (
+        &lt;main style=&#123;&#123; padding: 24, fontFamily: 'sans-serif', maxWidth: 600, margin: '0 auto' &#125;&#125;&gt;
+            &lt;h2&gt;🚀 Fullstack Production Dashboard&lt;/h2&gt;
+            &lt;input 
+                value=&#123;search&#125; 
+                onChange=&#123;(e) =&gt; setSearch(e.target.value)&#125; 
+                placeholder="Filter services..." 
+                style=&#123;&#123; width: '100%', padding: '8px 12px', marginBottom: 16 &#125;&#125;
+            /&gt;
+            &#123;filtered.map(s =&gt; (
+                &lt;div key=&#123;s.id&#125; style=&#123;&#123; padding: 12, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 8, display: 'flex', justifyContent: 'space-between' &#125;&#125;&gt;
+                    &lt;span&gt;&#123;s.name&#125;&lt;/span&gt;
+                    &lt;span style=&#123;&#123; color: '#10b981', fontWeight: 'bold' &#125;&#125;&gt;&#123;s.status&#125; (&#123;s.latency&#125;)&lt;/span&gt;
+                &lt;/div&gt;
+            ))&#125;
+        &lt;/main&gt;
+    );
+&#125;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Bind search input with <code>value=&#123;search&#125;</code> and <code>onChange=&#123;...&#125;</code>.</li>
+                <li>Filter services with <code>services.filter(...)</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson6';
+        const DEFAULT_STARTER = `// app/page.jsx — Apex Fullstack Capstone
+// 🛠️ Practice Task: Production Fullstack Application
+
+// Step 1: Add 'use client'
+'use client';
+
+import React, { useState } from 'react';
+
+// Step 2: Implement CapstoneDashboard component managing data state and search filter
+export default function CapstoneDashboard() {
+    const [services, setServices] = useState([
+        { id: 1, name: "Auth Gateway", latency: "14ms", status: "healthy" },
+        { id: 2, name: "Database Pool", latency: "8ms", status: "healthy" }
+    ]);
+    const [search, setSearch] = useState("");
+
+    // Filter services based on search query
+    // Write filter and return JSX here:
+
+    return <div></div>;
+}`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'search', label: 'Bind input with <code>value={search}</code> and <code>onChange</code>', fn: (code) => /value\s*=\s*\{\s*search\s*\}/i.test(code) && /onChange\s*=\s*\{/i.test(code) },
+                { id: 'filter', label: 'Filter services with <code>services.filter(...)</code>', fn: (code) => /services\.filter\s*\([\s\S]*?includes\s*\(\s*search/i.test(code) }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    localStorage.setItem('partF_branchC_completed', 'true');
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 06: Production Capstone Service',
+                        xp: 250,
+                        completionKey: 'partF_branchC_lesson6_complete',
+                        nextUrl: '/6. partF/certificate.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

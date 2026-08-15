@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' }
+];
+---
+
+<BaseLayout
+    title="Level 0: Journey Through Web History & Digital Architecture | NoviCodes"
+    description="Explore how the internet and World Wide Web evolved from 1969 ARPANET to modern fullstack edge computing. Zero coding required."
+    showHeaderFooter={false}
+>
+    <!-- Standardized Platform Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 0 • Web History"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+    />
+
+    <!-- Main Content Container -->
+    <main class="history-container">
+        
+        <!-- Hero Banner -->
+        <section class="history-hero">
+            <span class="hero-pill-badge">🌱 Level 0 • Zero Coding Required • 250 XP</span>
+            <h1>Journey Through Web History &amp; Digital Architecture</h1>
+            <p>
+                Discover how the World Wide Web evolved from plain scientific documents into the powerhouse running our global digital world. Master the history and mechanics before writing your first line of code!
+            </p>
+        </section>
+
+        <!-- 1. The Web Era Time Machine -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>⏱️</span> 1. The Web Era Time Machine</h2>
+                <span class="quiz-badge">Interactive Simulator</span>
+            </div>
+            <p class="section-subtitle">
+                Click across the eras below to see how web technology, rendering speeds, and user interfaces evolved from 1991 to today:
+            </p>
+
+            <div class="era-tabs-nav" role="tablist">
+                <button class="era-tab-btn active" data-era="1991" role="tab">
+                    <span>📜</span> 1991: Web 1.0 (Read-Only)
+                </button>
+                <button class="era-tab-btn" data-era="2004" role="tab">
+                    <span>📻</span> 2004: Web 2.0 (Dynamic &amp; Social)
+                </button>
+                <button class="era-tab-btn" data-era="2026" role="tab">
+                    <span>⚡</span> 2026: Modern Web (Fullstack Edge)
+                </button>
+            </div>
+
+            <div class="era-preview-viewport">
+                <div class="viewport-browser-bar">
+                    <div class="browser-dots">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                    </div>
+                    <div class="browser-url-input" id="browserUrlInput">
+                        http://info.cern.ch/hypertext/WWW/TheProject.html
+                    </div>
+                </div>
+                <div class="era-screen-content" id="eraScreenContent">
+                    <div class="screen-1991">
+                        <h2>WorldWideWeb - Executive Summary</h2>
+                        <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+                        <p>Everything there is online at CERN is linked directly or indirectly to this document.</p>
+                        <ul>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire('Hypertext Link', 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', 'info')">What is Hypertext?</a></li>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire('Tim Berners-Lee', 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', 'info')">Technical Project Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. How the Internet Actually Works in 4 Steps -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🌐</span> 2. How the Internet Works in 4 Steps</h2>
+                <span class="quiz-badge">Packet Journey</span>
+            </div>
+            <p class="section-subtitle">
+                What happens when you type <code>novicodes.dev</code> and press Enter? Watch a data packet travel across the world in milliseconds:
+            </p>
+
+            <div class="packet-flow-grid">
+                <div class="flow-step-card active" id="flowStep1">
+                    <div class="flow-step-num">1</div>
+                    <div class="flow-icon">💻</div>
+                    <div class="flow-title">1. URL Typed</div>
+                    <p class="flow-desc">Your browser creates an HTTP/HTTPS GET request for the web address.</p>
+                </div>
+                <div class="flow-step-card" id="flowStep2">
+                    <div class="flow-step-num">2</div>
+                    <div class="flow-icon">🧭</div>
+                    <div class="flow-title">2. DNS Lookup</div>
+                    <p class="flow-desc">DNS translates the domain name into an IP address (e.g. 142.250.190.46).</p>
+                </div>
+                <div class="flow-step-card" id="flowStep3">
+                    <div class="flow-step-num">3</div>
+                    <div class="flow-icon">🖧</div>
+                    <div class="flow-title">3. Server Response</div>
+                    <p class="flow-desc">The web server receives the request and returns HTML, CSS, &amp; JS bundles.</p>
+                </div>
+                <div class="flow-step-card" id="flowStep4">
+                    <div class="flow-step-num">4</div>
+                    <div class="flow-icon">🎨</div>
+                    <div class="flow-title">4. DOM Rendering</div>
+                    <p class="flow-desc">Your browser builds the DOM tree, applies styles, and executes JavaScript.</p>
+                </div>
+            </div>
+
+            <div class="packet-action-row">
+                <button class="simulate-packet-btn" id="simulatePacketBtn">
+                    <span>🚀 Send Test Data Packet</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Browser Evolution Timeline -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🧭</span> 3. Evolution of Web Browsers</h2>
+                <div class="filter-pills-row">
+                    <button class="filter-pill-btn active" data-filter="all">All (1990 - 2026)</button>
+                    <button class="filter-pill-btn" data-filter="pioneers">Pioneers (1990-1994)</button>
+                    <button class="filter-pill-btn" data-filter="wars">Browser Wars (1995-2004)</button>
+                    <button class="filter-pill-btn" data-filter="modern">Modern Era (2008-2026)</button>
+                </div>
+            </div>
+            <p class="section-subtitle">
+                Web browsers are the software vehicles that navigate the internet. Explore the revolutionary milestones that shaped today's web standards:
+            </p>
+
+            <div class="timeline-cards-row" id="timelineCardsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 4. The 4 Core Pillars of Web Development -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🎓</span> 4. The 4 Core Pillars of Web Development</h2>
+                <span class="quiz-badge">Progress: <span id="pillarProgressCount">0/4</span> Concepts</span>
+            </div>
+            <p class="section-subtitle">
+                Every modern website on earth is built upon these 4 foundational building blocks. Explore each pillar below to earn +50 XP per topic:
+            </p>
+
+            <div class="pillars-grid">
+                <!-- Pillar 1 -->
+                <a href="/1. partA/website_concept/website_concept.html" class="pillar-card" id="cardWebsite">
+                    <div class="pillar-icon-box">🌐</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">What is a Website?</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">How files, web servers, and clients communicate to render digital experiences.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
+                </a>
+
+                <!-- Pillar 2 -->
+                <a href="/1. partA/html_concept/html_concept.html" class="pillar-card" id="cardHTML">
+                    <div class="pillar-icon-box">🧱</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">HTML Structure</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The architectural blueprint and skeleton that holds all headings, text, and media.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
+                </a>
+
+                <!-- Pillar 3 -->
+                <a href="/1. partA/css_concept/css_concept.html" class="pillar-card" id="cardCSS">
+                    <div class="pillar-icon-box">🎨</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">CSS Styling</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The visual artist's palette creating colors, typography, flexbox, grid, and animations.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
+                </a>
+
+                <!-- Pillar 4 -->
+                <a href="/1. partA/javascript_concept/javascript_concept.html" class="pillar-card" id="cardJS">
+                    <div class="pillar-icon-box">⚡</div>
+                    <div class="pillar-info">
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">JavaScript Interactivity</h3>
+                            <span class="pillar-xp-badge">+50 XP</span>
+                        </div>
+                        <p class="pillar-desc">The intelligent engine powering real-time events, data APIs, and responsive logic.</p>
+                        <span class="pillar-action-link">Explore Concept ➔</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 5. Level 0 Knowledge Challenge (Quiz) -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <h2 class="section-title"><span>🧠</span> 5. Level 0 Knowledge Challenge</h2>
+                <span class="quiz-badge" id="quizQBadge">Question 1 of 5</span>
+            </div>
+            <p class="section-subtitle">
+                Test your understanding of web history and internet architecture concepts:
+            </p>
+
+            <div class="quiz-box">
+                <h3 class="quiz-question-text" id="quizQText">Loading question...</h3>
+                <div class="quiz-options-list" id="quizOptionsContainer">
+                    <!-- Dynamic Options -->
+                </div>
+                <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+            </div>
+        </section>
+
+        <!-- 6. Claim Level 0 Completion -->
+        <section class="completion-banner">
+            <h2>🎉 Ready to Complete Level 0?</h2>
+            <p id="claimLevel0Desc">Explore all 4 Core Pillars and complete the Knowledge Challenge to claim your +250 XP reward and unlock Level 1: HTML Foundations on your Dashboard roadmap!</p>
+            <button class="claim-level0-btn locked" id="claimLevel0Btn" onclick="claimLevel0Completion()">
+                <span>🔒 Complete 4 Pillars (0/4) &amp; Knowledge Challenge to Unlock (+250 XP)</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/1. partA/web_history.css" />
+
+    <!-- Script -->
+    <script is:inline src="/1. partA/web_history.js"></script>
+</BaseLayout>

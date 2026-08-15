@@ -1,0 +1,1687 @@
+/* ==========================================================================
+   NoviCodes - Level 0 Web History & Architecture Stylesheet
+   Modern Glassmorphic Design System with 100% Fluid Mobile Adaptability
+   ========================================================================== */
+
+:root {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --brand-blue: #2563eb;
+    --brand-blue-hover: #1d4ed8;
+    --brand-cyan: #0284c7;
+    --brand-emerald: #10b981;
+    --brand-purple: #9333ea;
+    --brand-amber: #f59e0b;
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Sticky Platform Header
+   -------------------------------------------------------------------------- */
+.platform-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0 20px !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.header-inner {
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.platform-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    object-fit: cover;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.title-novi { color: #0f172a; }
+.title-codes { color: var(--brand-blue); }
+
+.logo-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.header-user-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.xp-badge {
+    background: #eff6ff;
+    color: var(--brand-blue);
+    border: 1px solid #bfdbfe;
+}
+
+.xp-badge:hover {
+    background: #dbeafe;
+    transform: translateY(-1px);
+}
+
+.level-badge {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.level-badge:hover {
+    background: #dcfce7;
+    transform: translateY(-1px);
+}
+
+.back-dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.back-dashboard-btn:hover {
+    background: var(--brand-blue);
+    color: #ffffff;
+    border-color: var(--brand-blue);
+    transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Main Container & Hero Layout
+   -------------------------------------------------------------------------- */
+.history-container {
+    max-width: 1100px;
+    margin: 28px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.history-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0284c7 100%);
+    color: #ffffff;
+    padding: 38px 30px;
+    border-radius: 22px;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.history-hero h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+}
+
+.history-hero p {
+    color: #bfdbfe;
+    font-size: clamp(0.95rem, 2vw, 1.12rem);
+    max-width: 750px;
+    margin: 0 auto;
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   Section Cards Design
+   -------------------------------------------------------------------------- */
+.history-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px 26px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-title {
+    font-size: clamp(1.15rem, 3vw, 1.45rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    margin: 0 0 22px 0;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   1. The Web Era Time Machine (Simulator)
+   -------------------------------------------------------------------------- */
+.era-tabs-nav {
+    display: flex;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.era-tab-btn {
+    flex: 1 1 calc(33.333% - 8px);
+    min-width: 140px;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+.era-tab-btn.active {
+    background: #ffffff;
+    color: var(--brand-blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.era-tab-btn:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.era-preview-viewport {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.viewport-browser-bar {
+    background: #1e293b;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #334155;
+}
+
+.browser-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.browser-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.browser-url-input {
+    background: #0f172a;
+    color: #94a3b8;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    flex: 1;
+    border: 1px solid #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.era-screen-content {
+    padding: 24px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 1991 Web 1.0 Screen */
+.screen-1991 {
+    background: #ffffff;
+    color: #000000;
+    font-family: 'Times New Roman', serif;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px inset #94a3b8;
+}
+.screen-1991 a { color: #0000ee; text-decoration: underline; }
+.screen-1991 h2 { margin: 0 0 10px 0; font-size: 1.4rem; }
+
+/* 2004 Web 2.0 Screen */
+.screen-2004 {
+    background: #fafafa;
+    color: #333333;
+    font-family: 'Verdana', sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+.screen-2004 .blog-header {
+    background: #ff6600;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* 2026 Modern Web Screen */
+.screen-2026 {
+    background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.screen-2026 .modern-pill {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   2. How the Internet Works in 4 Steps (Packet Flow Visualizer)
+   -------------------------------------------------------------------------- */
+.packet-flow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.flow-step-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px 14px;
+    text-align: center;
+    position: relative;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.flow-step-card.active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+    transform: translateY(-2px);
+}
+
+.flow-step-card.active .flow-step-num {
+    background: var(--brand-blue);
+    color: #ffffff;
+}
+
+.flow-step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: var(--text-secondary);
+    font-size: 0.74rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px auto;
+}
+
+.flow-icon {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.flow-title {
+    font-size: 0.90rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.flow-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
+.packet-action-row {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 14px;
+    width: 100%;
+}
+
+.simulate-packet-btn {
+    background: var(--brand-blue);
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    max-width: 320px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.simulate-packet-btn:hover {
+    background: var(--brand-blue-hover);
+    transform: translateY(-1px);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Browser Evolution Timeline
+   -------------------------------------------------------------------------- */
+.filter-pills-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-pill-btn {
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill-btn.active {
+    background: var(--brand-blue);
+    color: #ffffff;
+    border-color: var(--brand-blue);
+}
+
+.timeline-cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.browser-milestone-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.browser-milestone-card:hover {
+    background: #ffffff;
+    border-color: #93c5fd;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.browser-icon-box {
+    font-size: 1.5rem;
+}
+
+.browser-year-tag {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.browser-name {
+    font-size: 0.94rem;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    color: var(--text-primary);
+}
+
+.browser-desc {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0 0 8px 0;
+}
+
+.browser-impact-pill {
+    background: #f1f5f9;
+    color: var(--brand-blue);
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 8px;
+    text-align: center;
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   4. The 4 Core Pillars of Web Development
+   -------------------------------------------------------------------------- */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.pillar-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.pillar-card:hover {
+    background: #ffffff;
+    border-color: #93c5fd;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pillar-card.completed {
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+.pillar-icon-box {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pillar-info {
+    flex: 1;
+}
+
+.pillar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.pillar-title {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.pillar-xp-badge {
+    background: #eff6ff;
+    color: var(--brand-blue);
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #bfdbfe;
+}
+
+.pillar-card.completed .pillar-xp-badge {
+    background: #dcfce7;
+    color: #15803d;
+    border-color: #86efac;
+}
+
+.pillar-desc {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+}
+
+.pillar-action-link {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--brand-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Level 0 Knowledge Challenge (Quiz)
+   -------------------------------------------------------------------------- */
+.quiz-box {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-sizing: border-box;
+}
+
+.quiz-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quiz-badge {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+.quiz-progress-text {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.quiz-question-text {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    line-height: 1.45;
+}
+
+.quiz-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.quiz-opt-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    border-color: var(--brand-blue);
+    background: #eff6ff;
+}
+
+.quiz-opt-btn.correct {
+    background: #f0fdf4 !important;
+    border-color: #22c55e !important;
+    color: #15803d !important;
+    font-weight: 800;
+}
+
+.quiz-opt-btn.incorrect {
+    background: #fef2f2 !important;
+    border-color: #ef4444 !important;
+    color: #b91c1c !important;
+    opacity: 0.7;
+}
+
+.quiz-feedback-box {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    margin-top: 12px;
+}
+
+.quiz-feedback-box.show {
+    display: block;
+}
+
+.quiz-feedback-box.correct {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #15803d;
+}
+
+.quiz-feedback-box.incorrect {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #be123c;
+}
+
+/* --------------------------------------------------------------------------
+   6. Level 0 Claim Completion Bar
+   -------------------------------------------------------------------------- */
+.completion-banner {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.completion-banner h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+}
+
+.completion-banner p {
+    color: #d1fae5;
+    font-size: 0.92rem;
+    margin: 0 0 16px 0;
+}
+
+.claim-level0-btn {
+    background: #ffffff;
+    color: #047857;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-family: inherit;
+    font-size: 0.94rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.claim-level0-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background: #f8fafc;
+}
+
+.claim-level0-btn.locked {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px dashed rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    box-shadow: none;
+    opacity: 0.9;
+}
+
+.claim-level0-btn.locked:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Progressive Typography & Spacing System (≤576px, ≤425px, ≤375px, ≤320px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 868px) {
+    .packet-flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── ≤576px: Small Phones ─────────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .platform-header {
+        padding: 0 12px !important;
+    }
+    .history-container {
+        margin-top: 14px !important;
+        padding: 0 12px !important;
+    }
+    .history-hero {
+        padding: 18px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+    }
+    .hero-pill-badge {
+        font-size: 0.70rem !important;
+        padding: 3px 9px !important;
+        margin-bottom: 8px !important;
+    }
+    .history-hero h1 {
+        font-size: 1.28rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+    .history-hero p {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Sections */
+    .history-section {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+        margin-bottom: 18px !important;
+    }
+    .section-header-row {
+        margin-bottom: 8px !important;
+        gap: 6px !important;
+    }
+    .section-title {
+        font-size: 1.08rem !important;
+    }
+    .section-subtitle {
+        font-size: 0.82rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 12px !important;
+    }
+    .quiz-badge {
+        font-size: 0.70rem !important;
+        padding: 2px 8px !important;
+    }
+
+    /* Time Machine Era Tabs */
+    .era-tabs-nav {
+        flex-direction: column !important;
+        gap: 6px !important;
+        margin-bottom: 12px !important;
+    }
+    .era-tab-btn {
+        width: 100% !important;
+        min-width: 100% !important;
+        font-size: 0.80rem !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+    }
+    .era-preview-viewport {
+        border-radius: 12px !important;
+    }
+    .viewport-browser-bar {
+        padding: 8px 12px !important;
+    }
+    .browser-url-input {
+        font-size: 0.74rem !important;
+        padding: 3px 8px !important;
+    }
+    .era-screen-content {
+        padding: 14px 12px !important;
+        font-size: 0.82rem !important;
+    }
+    .era-screen-content h2 {
+        font-size: 1.00rem !important;
+        margin-bottom: 6px !important;
+    }
+    .era-screen-content p, .era-screen-content li {
+        font-size: 0.80rem !important;
+        line-height: 1.45 !important;
+    }
+
+    /* Packet Flow */
+    .packet-flow-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+    }
+    .flow-step-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .flow-step-num {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.72rem !important;
+    }
+    .flow-icon {
+        font-size: 1.4rem !important;
+        margin-bottom: 4px !important;
+    }
+    .flow-title {
+        font-size: 0.86rem !important;
+        margin-bottom: 2px !important;
+    }
+    .flow-desc {
+        font-size: 0.78rem !important;
+        line-height: 1.4 !important;
+    }
+    .packet-action-row {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+    .simulate-packet-btn {
+        font-size: 0.82rem !important;
+        padding: 8px 16px !important;
+        border-radius: 10px !important;
+        max-width: 280px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Timeline & Filters */
+    .filter-pills-row {
+        gap: 4px !important;
+        margin-bottom: 10px !important;
+    }
+    .filter-pill-btn {
+        font-size: 0.72rem !important;
+        padding: 4px 9px !important;
+        border-radius: 14px !important;
+    }
+    .timeline-cards-row {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .timeline-card, .browser-milestone-card {
+        padding: 10px 10px !important;
+        border-radius: 10px !important;
+    }
+    .browser-icon-box {
+        font-size: 1.25rem !important;
+    }
+    .browser-year-tag, .timeline-year {
+        font-size: 0.66rem !important;
+        padding: 2px 6px !important;
+    }
+    .browser-name, .timeline-title {
+        font-size: 0.84rem !important;
+        margin-bottom: 3px !important;
+    }
+    .browser-desc, .timeline-desc {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 6px !important;
+    }
+    .browser-impact-pill {
+        font-size: 0.64rem !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Pillars Grid */
+    .pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .pillar-card {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+        gap: 10px !important;
+    }
+    .pillar-icon-box {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.3rem !important;
+        border-radius: 10px !important;
+    }
+    .pillar-title {
+        font-size: 0.96rem !important;
+    }
+    .pillar-xp-badge {
+        font-size: 0.70rem !important;
+        padding: 2px 6px !important;
+    }
+    .pillar-desc {
+        font-size: 0.78rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 6px !important;
+    }
+    .pillar-action-link {
+        font-size: 0.74rem !important;
+    }
+
+    /* Quiz Box */
+    .quiz-box {
+        padding: 14px 10px !important;
+        border-radius: 12px !important;
+    }
+    .quiz-question-text {
+        font-size: 0.92rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quiz-options-list {
+        gap: 6px !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.80rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.78rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Completion Banner */
+    .completion-banner {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+    }
+    .completion-banner h2 {
+        font-size: 1.12rem !important;
+        margin-bottom: 4px !important;
+    }
+    .completion-banner p {
+        font-size: 0.80rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+    }
+    .claim-level0-btn {
+        width: 100% !important;
+        font-size: 0.80rem !important;
+        padding: 8px 14px !important;
+        border-radius: 10px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ── ≤425px: iPhone SE, Galaxy S-series ───────────────────────────────── */
+@media (max-width: 425px) {
+    .platform-header {
+        padding: 0 8px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.95rem !important;
+    }
+    .logo-tag {
+        display: none !important;
+    }
+    .header-user-stats {
+        gap: 4px !important;
+    }
+    .stat-badge {
+        padding: 0 6px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
+    }
+    .back-dashboard-btn {
+        padding: 0 8px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
+    }
+
+    .history-container {
+        padding: 0 10px !important;
+        margin-top: 10px !important;
+    }
+    .history-hero {
+        padding: 14px 10px !important;
+        border-radius: 14px !important;
+        margin-bottom: 14px !important;
+    }
+    .hero-pill-badge {
+        font-size: 0.64rem !important;
+        padding: 2px 7px !important;
+    }
+    .history-hero h1 {
+        font-size: 1.12rem !important;
+    }
+    .history-hero p {
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+    }
+
+    .history-section {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+        margin-bottom: 14px !important;
+    }
+    .section-title {
+        font-size: 0.98rem !important;
+    }
+    .section-subtitle {
+        font-size: 0.76rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quiz-badge {
+        font-size: 0.64rem !important;
+    }
+
+    .era-tab-btn {
+        font-size: 0.74rem !important;
+        padding: 6px 9px !important;
+    }
+    .browser-url-input {
+        font-size: 0.68rem !important;
+    }
+    .era-screen-content {
+        padding: 10px 8px !important;
+    }
+    .era-screen-content h2 {
+        font-size: 0.90rem !important;
+    }
+    .era-screen-content p, .era-screen-content li {
+        font-size: 0.74rem !important;
+    }
+
+    .flow-step-card {
+        padding: 8px 6px !important;
+    }
+    .flow-step-num {
+        width: 19px !important;
+        height: 19px !important;
+        font-size: 0.65rem !important;
+    }
+    .flow-icon {
+        font-size: 1.2rem !important;
+    }
+    .flow-title {
+        font-size: 0.78rem !important;
+    }
+    .flow-desc {
+        font-size: 0.72rem !important;
+    }
+    .simulate-packet-btn {
+        font-size: 0.76rem !important;
+        padding: 7px 12px !important;
+        border-radius: 8px !important;
+        max-width: 240px !important;
+        width: 100% !important;
+    }
+
+    .filter-pill-btn {
+        font-size: 0.66rem !important;
+        padding: 3px 7px !important;
+    }
+    .timeline-card, .browser-milestone-card {
+        padding: 8px 8px !important;
+        border-radius: 8px !important;
+    }
+    .browser-icon-box {
+        font-size: 1.1rem !important;
+    }
+    .browser-year-tag, .timeline-year {
+        font-size: 0.60rem !important;
+        padding: 2px 5px !important;
+    }
+    .browser-name, .timeline-title {
+        font-size: 0.78rem !important;
+        margin-bottom: 2px !important;
+    }
+    .browser-desc, .timeline-desc {
+        font-size: 0.68rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 4px !important;
+    }
+    .browser-impact-pill {
+        font-size: 0.60rem !important;
+        padding: 2px 5px !important;
+    }
+
+    .pillar-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+        gap: 8px !important;
+    }
+    .pillar-icon-box {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.1rem !important;
+    }
+    .pillar-title {
+        font-size: 0.88rem !important;
+    }
+    .pillar-xp-badge {
+        font-size: 0.64rem !important;
+    }
+    .pillar-desc {
+        font-size: 0.72rem !important;
+    }
+    .pillar-action-link {
+        font-size: 0.68rem !important;
+    }
+
+    .quiz-box {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .quiz-question-text {
+        font-size: 0.84rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.74rem !important;
+        padding: 7px 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.72rem !important;
+        padding: 6px 8px !important;
+    }
+
+    .completion-banner {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+    }
+    .completion-banner h2 {
+        font-size: 1.00rem !important;
+    }
+    .completion-banner p {
+        font-size: 0.74rem !important;
+    }
+    .claim-level0-btn {
+        font-size: 0.74rem !important;
+        padding: 7px 10px !important;
+    }
+}
+
+/* ── ≤375px: iPhone SE / Galaxy S Small ───────────────────────────────── */
+@media (max-width: 375px) {
+    .history-container {
+        padding: 0 8px !important;
+        margin-top: 8px !important;
+    }
+    .history-hero {
+        padding: 12px 8px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    .hero-pill-badge {
+        font-size: 0.58rem !important;
+        padding: 2px 6px !important;
+    }
+    .history-hero h1 {
+        font-size: 1.00rem !important;
+    }
+    .history-hero p {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .history-section {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .section-title {
+        font-size: 0.90rem !important;
+    }
+    .section-subtitle {
+        font-size: 0.70rem !important;
+        margin-bottom: 8px !important;
+    }
+    .quiz-badge {
+        font-size: 0.58rem !important;
+    }
+
+    .era-tab-btn {
+        font-size: 0.68rem !important;
+        padding: 5px 7px !important;
+    }
+    .browser-url-input {
+        font-size: 0.60rem !important;
+    }
+    .era-screen-content h2 {
+        font-size: 0.82rem !important;
+    }
+    .era-screen-content p, .era-screen-content li {
+        font-size: 0.68rem !important;
+    }
+
+    .flow-step-card {
+        padding: 6px 5px !important;
+    }
+    .flow-step-num {
+        width: 17px !important;
+        height: 17px !important;
+        font-size: 0.58rem !important;
+    }
+    .flow-icon {
+        font-size: 1.05rem !important;
+    }
+    .flow-title {
+        font-size: 0.72rem !important;
+    }
+    .flow-desc {
+        font-size: 0.66rem !important;
+    }
+    .simulate-packet-btn {
+        font-size: 0.70rem !important;
+        padding: 6px 9px !important;
+        border-radius: 8px !important;
+        max-width: 220px !important;
+        width: 100% !important;
+    }
+
+    .filter-pill-btn {
+        font-size: 0.60rem !important;
+        padding: 2px 5px !important;
+    }
+    .timeline-card, .browser-milestone-card {
+        padding: 6px 6px !important;
+        border-radius: 6px !important;
+    }
+    .browser-icon-box {
+        font-size: 0.95rem !important;
+    }
+    .browser-year-tag, .timeline-year {
+        font-size: 0.54rem !important;
+        padding: 1px 4px !important;
+    }
+    .browser-name, .timeline-title {
+        font-size: 0.72rem !important;
+        margin-bottom: 2px !important;
+    }
+    .browser-desc, .timeline-desc {
+        font-size: 0.62rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 3px !important;
+    }
+    .browser-impact-pill {
+        font-size: 0.54rem !important;
+        padding: 1px 4px !important;
+    }
+
+    .pillar-card {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+        gap: 6px !important;
+    }
+    .pillar-icon-box {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.95rem !important;
+    }
+    .pillar-title {
+        font-size: 0.80rem !important;
+    }
+    .pillar-xp-badge {
+        font-size: 0.58rem !important;
+    }
+    .pillar-desc {
+        font-size: 0.66rem !important;
+    }
+    .pillar-action-link {
+        font-size: 0.62rem !important;
+    }
+
+    .quiz-box {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+    }
+    .quiz-question-text {
+        font-size: 0.78rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.68rem !important;
+        padding: 6px 6px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.66rem !important;
+        padding: 5px 6px !important;
+    }
+
+    .completion-banner {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .completion-banner h2 {
+        font-size: 0.90rem !important;
+    }
+    .completion-banner p {
+        font-size: 0.68rem !important;
+    }
+    .claim-level0-btn {
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
+    }
+}
+
+/* ── ≤320px: Galaxy S5 / Smallest Mobile ──────────────────────────────── */
+@media (max-width: 320px) {
+    .platform-header {
+        padding: 0 6px !important;
+    }
+    .brand-logo-img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.86rem !important;
+    }
+    .header-user-stats {
+        gap: 3px !important;
+    }
+    .stat-badge.xp-badge {
+        padding: 0 5px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+    .back-dashboard-btn {
+        padding: 0 6px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+    .btn-text-short {
+        display: none !important;
+    }
+
+    .history-container {
+        padding: 0 6px !important;
+        margin-top: 6px !important;
+    }
+    .history-hero {
+        padding: 10px 6px !important;
+        border-radius: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .hero-pill-badge {
+        font-size: 0.52rem !important;
+        padding: 1px 4px !important;
+    }
+    .history-hero h1 {
+        font-size: 0.90rem !important;
+    }
+    .history-hero p {
+        font-size: 0.66rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .history-section {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px !important;
+    }
+    .section-title {
+        font-size: 0.82rem !important;
+    }
+    .section-subtitle {
+        font-size: 0.64rem !important;
+        margin-bottom: 6px !important;
+    }
+    .quiz-badge {
+        font-size: 0.52rem !important;
+    }
+
+    .era-tab-btn {
+        font-size: 0.62rem !important;
+        padding: 4px 5px !important;
+    }
+    .browser-url-input {
+        font-size: 0.54rem !important;
+    }
+    .era-screen-content h2 {
+        font-size: 0.74rem !important;
+    }
+    .era-screen-content p, .era-screen-content li {
+        font-size: 0.62rem !important;
+    }
+
+    .flow-step-card {
+        padding: 5px 4px !important;
+    }
+    .flow-step-num {
+        width: 15px !important;
+        height: 15px !important;
+        font-size: 0.52rem !important;
+    }
+    .flow-icon {
+        font-size: 0.90rem !important;
+    }
+    .flow-title {
+        font-size: 0.66rem !important;
+    }
+    .flow-desc {
+        font-size: 0.60rem !important;
+    }
+    .simulate-packet-btn {
+        font-size: 0.64rem !important;
+        padding: 5px 7px !important;
+        border-radius: 6px !important;
+        max-width: 200px !important;
+        width: 100% !important;
+    }
+
+    .filter-pill-btn {
+        font-size: 0.54rem !important;
+        padding: 2px 4px !important;
+    }
+    .timeline-card, .browser-milestone-card {
+        padding: 5px 5px !important;
+        border-radius: 6px !important;
+    }
+    .browser-icon-box {
+        font-size: 0.85rem !important;
+    }
+    .browser-year-tag, .timeline-year {
+        font-size: 0.50rem !important;
+        padding: 1px 3px !important;
+    }
+    .browser-name, .timeline-title {
+        font-size: 0.66rem !important;
+        margin-bottom: 1px !important;
+    }
+    .browser-desc, .timeline-desc {
+        font-size: 0.56rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 2px !important;
+    }
+    .browser-impact-pill {
+        font-size: 0.50rem !important;
+        padding: 1px 3px !important;
+    }
+
+    .pillar-card {
+        padding: 6px 5px !important;
+        border-radius: 6px !important;
+        gap: 5px !important;
+    }
+    .pillar-icon-box {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.82rem !important;
+    }
+    .pillar-title {
+        font-size: 0.72rem !important;
+    }
+    .pillar-xp-badge {
+        font-size: 0.52rem !important;
+    }
+    .pillar-desc {
+        font-size: 0.60rem !important;
+    }
+    .pillar-action-link {
+        font-size: 0.56rem !important;
+    }
+
+    .quiz-box {
+        padding: 6px 5px !important;
+        border-radius: 6px !important;
+    }
+    .quiz-question-text {
+        font-size: 0.70rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.62rem !important;
+        padding: 5px 5px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.60rem !important;
+        padding: 4px 5px !important;
+    }
+
+    .completion-banner {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+    }
+    .completion-banner h2 {
+        font-size: 0.80rem !important;
+    }
+    .completion-banner p {
+        font-size: 0.62rem !important;
+    }
+    .claim-level0-btn {
+        font-size: 0.62rem !important;
+        padding: 5px 6px !important;
+    }
+}
+

@@ -1,0 +1,71 @@
+---
+import '../styles/root.css';
+import '../styles/dashboard.css';
+import '../styles/lesson.css';
+import PlatformFooter from '../components/PlatformFooter.astro';
+import UserProfileModal from '../components/UserProfileModal.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    ogImage?: string;
+    showHeaderFooter?: boolean;
+    bodyClass?: string;
+    noPageContentWrapper?: boolean;
+}
+
+const {
+    title = 'NoviCodes • Interactive Code Learning Platform',
+    description = 'Master Web Development from absolute fundamentals to production Cloud Architecture through interactive coding dojos.',
+    canonical = 'https://novicodes.dev',
+    ogImage = '/assets/og-image.jpg',
+    showHeaderFooter = true,
+    bodyClass = '',
+    noPageContentWrapper = false
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- SweetAlert2 CDN -->
+    <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <slot name="head" />
+</head>
+<body class={bodyClass}>
+    <slot name="header" />
+    
+    {noPageContentWrapper ? (
+        <slot />
+    ) : (
+        <main class="page-content">
+            <slot />
+        </main>
+    )}
+
+    {showHeaderFooter && <PlatformFooter />}
+    
+    <UserProfileModal />
+</body>
+</html>

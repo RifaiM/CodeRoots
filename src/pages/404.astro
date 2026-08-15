@@ -1,0 +1,573 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+    title="404: Page Not Found | NoviCodes" 
+    description="The page you are looking for could not be found. Return to the NoviCodes interactive web development dashboard or explore suggested curriculum tracks."
+    showHeaderFooter={false}
+>
+    <div class="glow-sphere-1"></div>
+    <div class="glow-sphere-2"></div>
+
+    <main class="error-container">
+        <div class="error-card">
+            <div class="badge-404">ERROR CODE: 404</div>
+            
+            <div class="error-icon-wrap">🧭</div>
+
+            <h1 class="error-title">Lost in the Dojo Matrix?</h1>
+            
+            <p class="error-desc" id="errorDescription">
+                The requested URL <code class="broken-path" id="brokenPathLabel">/unknown-route</code> could not be found or has moved.
+            </p>
+
+            <!-- Smart Auto-Recovery Suggestion Banner -->
+            <div class="smart-suggestion-box" id="smartSuggestionBox">
+                <div class="suggestion-tag-bar">
+                    <span class="suggestion-pulse"></span>
+                    <span class="suggestion-header" id="suggestionTitle">💡 Recommended Match</span>
+                </div>
+                <div class="suggestion-name" id="suggestionName">NoviCodes Dashboard</div>
+                <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress.</p>
+                <div class="suggestion-action-row">
+                    <a href="/" class="suggestion-btn" id="suggestionLink">
+                        <span>👉 Jump to Suggested Route ➔</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Primary Navigation Actions -->
+            <div class="button-group">
+                <a href="/" class="action-btn primary-btn" id="dashboardLink">
+                    <span>🏠 Return to NoviCodes Dashboard</span>
+                </a>
+                <button id="goBackBtn" class="action-btn secondary-btn" type="button">
+                    <span>↩️ Go Back to Previous Page</span>
+                </button>
+            </div>
+
+            <!-- Quick Curriculum Fast-Track Directory -->
+            <div class="fast-track-section">
+                <div class="fast-track-title">🚀 Fast-Track Curriculum Directory</div>
+                <div class="fast-track-grid">
+                    <a href="/1. partA/web_history.html" class="fast-track-pill" title="Level 0 • Web History">
+                        <span class="pill-icon">🌐</span>
+                        <span class="pill-text">Level 0: History</span>
+                    </a>
+                    <a href="/foundations.html" class="fast-track-pill" title="Levels 1-3 • Web Foundations">
+                        <span class="pill-icon">🛡️</span>
+                        <span class="pill-text">Levels 1-3: Foundations</span>
+                    </a>
+                    <a href="/2. partB/hub.html" class="fast-track-pill" title="Level 4 • DOM Dojo">
+                        <span class="pill-icon">⚔️</span>
+                        <span class="pill-text">Level 4: DOM Dojo</span>
+                    </a>
+                    <a href="/3. partC/hub.html" class="fast-track-pill" title="Level 5 • React Dojo">
+                        <span class="pill-icon">⚛️</span>
+                        <span class="pill-text">Level 5: React Dojo</span>
+                    </a>
+                    <a href="/5. partE/hub.html" class="fast-track-pill" title="Level 6 • Python Dojo">
+                        <span class="pill-icon">🐍</span>
+                        <span class="pill-text">Level 6: Python Dojo</span>
+                    </a>
+                    <a href="/6. partF/hub.html" class="fast-track-pill" title="Level 7 • Fullstack Mastery">
+                        <span class="pill-icon">🚀</span>
+                        <span class="pill-text">Level 7: Fullstack</span>
+                    </a>
+                    <a href="/4. partD/devtype/devtype.html" class="fast-track-pill" title="DevType • Typing Speedrun">
+                        <span class="pill-icon">⌨️</span>
+                        <span class="pill-text">DevType Dojo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #090d16;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .glow-sphere-1 {
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow-sphere-2 {
+            position: absolute;
+            bottom: 10%;
+            right: 15%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.20) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .error-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 24px 16px;
+            box-sizing: border-box;
+        }
+
+        .error-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 40px rgba(37, 99, 235, 0.15);
+            border-radius: 24px;
+            padding: 36px 28px;
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge-404 {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #f87171;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .error-icon-wrap {
+            font-size: 3.8rem;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .error-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .error-desc {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            margin: 0 0 20px 0;
+            line-height: 1.55;
+            word-break: break-all;
+        }
+
+        .broken-path {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.80rem;
+        }
+
+        .smart-suggestion-box {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .suggestion-tag-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .suggestion-pulse {
+            width: 8px;
+            height: 8px;
+            background: #38bdf8;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #38bdf8;
+            animation: pulseDot 1.5s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+
+        .suggestion-header {
+            font-size: 0.76rem;
+            font-weight: 800;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .suggestion-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .suggestion-content {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin: 0 0 12px 0;
+            line-height: 1.45;
+        }
+
+        .suggestion-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .suggestion-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        .suggestion-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .primary-btn {
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .primary-btn:hover {
+            background: rgba(37, 99, 235, 0.25);
+            color: #93c5fd;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+        }
+
+        .secondary-btn:hover {
+            background: #334155;
+            color: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        /* Fast Track Section */
+        .fast-track-section {
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 16px;
+            text-align: left;
+        }
+
+        .fast-track-title {
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .fast-track-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .fast-track-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(51, 65, 85, 0.7);
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .fast-track-pill:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .pill-icon {
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 24px 16px;
+                border-radius: 20px;
+            }
+
+            .error-icon-wrap {
+                font-size: 3.2rem;
+            }
+
+            .error-title {
+                font-size: 1.35rem;
+            }
+
+            .error-desc {
+                font-size: 0.82rem;
+            }
+
+            .suggestion-name {
+                font-size: 0.95rem;
+            }
+
+            .action-btn {
+                padding: 11px 16px;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+
+    <script>
+        document.getElementById('goBackBtn')?.addEventListener('click', () => {
+            if (window.history.length > 1 && document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        });
+
+        // ── Heuristic Auto-Recovery & Deep Pattern Matcher ──
+        try {
+            const rawPath = decodeURIComponent(window.location.pathname.toLowerCase());
+            const brokenPathLabel = document.getElementById('brokenPathLabel');
+            const suggestionTitle = document.getElementById('suggestionTitle');
+            const suggestionName = document.getElementById('suggestionName');
+            const suggestionText = document.getElementById('suggestionText');
+            const suggestionLink = document.getElementById('suggestionLink') as HTMLAnchorElement | null;
+
+            if (brokenPathLabel) {
+                brokenPathLabel.textContent = window.location.pathname;
+            }
+
+            // Heuristic Match State
+            let targetUrl = '/';
+            let targetName = 'NoviCodes Dashboard';
+            let targetDesc = 'Return to your interactive web development path and course overview.';
+            let tagHeader = '💡 Suggested Route';
+
+            // 1. Check for specific Lesson Numbers & Tracks
+            const lessonMatch = rawPath.match(/lesson[_\s/-]?(\d+)/i) || rawPath.match(/\/(?:lesson)?(\d+)(?:\.html|\/|$)/i);
+            const lessonNum = lessonMatch ? parseInt(lessonMatch[1], 10) : null;
+
+            if (rawPath.includes('brancha') || rawPath.includes('7a') || rawPath.includes('cloud') || rawPath.includes('devops')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+                    targetUrl = `/6. partF/branchA/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 7A • Lesson ${lessonNum} (Cloud & DevOps)`;
+                    targetDesc = `Jump directly into Cloud Architecture, Docker, and CI/CD Milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/6. partF/hub.html';
+                    targetName = 'Level 7 • Track 7A: Cloud Systems & DevOps';
+                    targetDesc = 'Master cloud deployment, containerization, and production infrastructure.';
+                }
+            } else if (rawPath.includes('branchb') || rawPath.includes('7b') || rawPath.includes('database') || rawPath.includes('postgres') || rawPath.includes('sql')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+                    targetUrl = `/6. partF/branchB/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 7B • Lesson ${lessonNum} (Postgres & Backend)`;
+                    targetDesc = `Jump directly into Relational Databases and SQL Architecture Milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/6. partF/hub.html';
+                    targetName = 'Level 7 • Track 7B: Postgres & Database Architecture';
+                    targetDesc = 'Master SQL queries, migrations, pooling, and robust backend data modeling.';
+                }
+            } else if (rawPath.includes('branchc') || rawPath.includes('7c') || rawPath.includes('next') || rawPath.includes('app_router')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+                    targetUrl = `/6. partF/branchC/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 7C • Lesson ${lessonNum} (Next.js Framework)`;
+                    targetDesc = `Jump directly into Next.js App Router and Server Actions Milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/6. partF/hub.html';
+                    targetName = 'Level 7 • Track 7C: Next.js & Server Components';
+                    targetDesc = 'Master fullstack React, hybrid rendering, and production web engineering.';
+                }
+            } else if (rawPath.includes('parte') || rawPath.includes('level6') || rawPath.includes('python')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
+                    targetUrl = `/5. partE/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 6 • Python Dojo Lesson ${lessonNum}`;
+                    targetDesc = `Jump directly into interactive Python milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/5. partE/hub.html';
+                    targetName = 'Level 6 • Python Backend Dojo Hub';
+                    targetDesc = '15 interactive Python backend projects, OOP algorithms, and FastAPI.';
+                }
+            } else if (rawPath.includes('partc') || rawPath.includes('level5') || rawPath.includes('react')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
+                    targetUrl = `/3. partC/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 5 • React Dojo Lesson ${lessonNum}`;
+                    targetDesc = `Jump directly into interactive React component milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/3. partC/hub.html';
+                    targetName = 'Level 5 • React Framework Dojo Hub';
+                    targetDesc = '15 interactive React component projects, hooks, context, and state management.';
+                }
+            } else if (rawPath.includes('partb') || rawPath.includes('level4') || rawPath.includes('dom')) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
+                    targetUrl = `/2. partB/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 4 • DOM Dojo Lesson ${lessonNum}`;
+                    targetDesc = `Jump directly into interactive DOM milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/2. partB/hub.html';
+                    targetName = 'Level 4 • JavaScript DOM Mastery Hub';
+                    targetDesc = '15 interactive DOM projects, dynamic state UI, and browser canvas games.';
+                }
+            } else if (rawPath.includes('certificate') || rawPath.includes('cert')) {
+                targetUrl = '/6. partF/certificate.html';
+                targetName = 'Fullstack Systems Certification';
+                targetDesc = 'Claim and export your official cryptographic certificate of mastery.';
+            } else if (rawPath.includes('devtype') || rawPath.includes('typing') || rawPath.includes('speedrun')) {
+                targetUrl = '/4. partD/devtype/devtype.html';
+                targetName = 'DevType Dojo • Speedrun Engine';
+                targetDesc = 'Sharpen your coding speed and muscle memory across 7 languages.';
+            } else if (rawPath.includes('foundation') || rawPath.includes('html_foundation') || rawPath.includes('css_foundation') || rawPath.includes('js_foundation') || rawPath.includes('level1') || rawPath.includes('level2') || rawPath.includes('level3')) {
+                targetUrl = '/foundations.html';
+                targetName = 'Levels 1-3 • Web Foundations';
+                targetDesc = 'Master memory models, visual layouts, and syntax across HTML, CSS, and JS.';
+            } else if (rawPath.includes('history') || rawPath.includes('level0') || rawPath.includes('parta') || rawPath.includes('era') || rawPath.includes('packet')) {
+                targetUrl = '/1. partA/web_history.html';
+                targetName = 'Level 0 • Web History & Architecture';
+                targetDesc = 'Explore web eras from 1991 to today, internet packet flow, and 4 core pillars.';
+            } else if (rawPath.includes('website_concept')) {
+                targetUrl = '/1. partA/website_concept/website_concept.html';
+                targetName = 'Pillar 1 • What is a Website?';
+                targetDesc = 'Learn about clients, cloud servers, and URL addresses.';
+            } else if (rawPath.includes('html_concept')) {
+                targetUrl = '/1. partA/html_concept/html_concept.html';
+                targetName = 'Pillar 2 • HTML Structure';
+                targetDesc = 'Learn tags, headings, and semantic DOM blueprints.';
+            } else if (rawPath.includes('css_concept')) {
+                targetUrl = '/1. partA/css_concept/css_concept.html';
+                targetName = 'Pillar 3 • CSS Styling';
+                targetDesc = 'Master colors, typography, flexbox, and layouts.';
+            } else if (rawPath.includes('javascript_concept')) {
+                targetUrl = '/1. partA/javascript_concept/javascript_concept.html';
+                targetName = 'Pillar 4 • JavaScript Interactivity';
+                targetDesc = 'Explore events, DOM manipulation, and dynamic logic.';
+            } else if (rawPath.includes('privacy')) {
+                targetUrl = '/privacy.html';
+                targetName = 'Privacy Policy';
+                targetDesc = 'Review how student data and privacy are protected.';
+            } else if (rawPath.includes('term')) {
+                targetUrl = '/terms.html';
+                targetName = 'Terms of Use';
+                targetDesc = 'Review platform terms and code usage guidelines.';
+            }
+
+            // Hydrate Suggestion Box in DOM
+            if (suggestionTitle && suggestionName && suggestionText && suggestionLink) {
+                suggestionTitle.textContent = tagHeader;
+                suggestionName.textContent = targetName;
+                suggestionText.textContent = targetDesc;
+                suggestionLink.href = targetUrl;
+            }
+        } catch (e) {
+            console.error('Error in 404 intelligent route recovery:', e);
+        }
+    </script>
+</BaseLayout>

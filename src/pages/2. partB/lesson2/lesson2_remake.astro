@@ -1,0 +1,340 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<!-- 🛠️ Project 02: Typography & Heading Hierarchy -->
+
+<!-- Step 1: Create a top-level <h1> heading for your article title -->
+
+
+<!-- Step 2: Create an <h2> sub-heading for a section -->
+
+
+<!-- Step 3: Add a <p> paragraph containing <strong>bold</strong> and <em>italic</em> text -->
+`;
+
+const level4Lessons = [
+    {
+        "id": 1,
+        "title": "Interactive HTML Page Structure",
+        "url": "/2. partB/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Typography & Heading Hierarchy",
+        "url": "/2. partB/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Interactive Links & Dynamic Media",
+        "url": "/2. partB/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Lists & Dropdown Drawer Navigation",
+        "url": "/2. partB/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Semantic HTML Web Architecture",
+        "url": "/2. partB/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "CSS Colors, Backgrounds & Borders",
+        "url": "/2. partB/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "The CSS Box Model & Spacing",
+        "url": "/2. partB/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Modern Flexbox Layout Mastery",
+        "url": "/2. partB/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "Responsive CSS Grid Architecture",
+        "url": "/2. partB/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "JavaScript Variables & Data Types",
+        "url": "/2. partB/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Functions & Interactive Click Events",
+        "url": "/2. partB/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "DOM Manipulation & Dynamic Elements",
+        "url": "/2. partB/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "Interactive Forms & Input Validation",
+        "url": "/2. partB/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "Asynchronous JavaScript & REST APIs",
+        "url": "/2. partB/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "Capstone: Full Interactive Web Application",
+        "url": "/2. partB/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 02: Typography & Heading Hierarchy | Level 4 DOM Dojo"
+    description="Master the 6 levels of HTML headings and text formatting to build clear, readable typographic hierarchies."
+    levelTag="Level 4 • DOM Dojo"
+    lessonNum={2}
+    lessonTitle="Typography & Heading Hierarchy"
+    xpAmount={100}
+    completionKey="partB_lesson2_remake_complete"
+    nextLessonUrl="/2. partB/lesson3/lesson3_remake.html"
+    hubUrl="/2. partB/hub.html"
+    hubTitle="Level 4 Hub"
+    hubIcon="⚔️"
+    fileTab="index.html"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level4Lessons}
+    certificateUrl="/2. partB/certificate.html"
+    trackPrefix="partB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Master the 6 levels of HTML headings and text formatting to build clear, readable typographic hierarchies.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Headings are like newspaper hierarchy: <code>&lt;h1&gt;</code> is the bold front-page headline, <code>&lt;h2&gt;</code> is the article section header, and <code>&lt;h3&gt;</code> is a sub-topic header.
+            </div>
+        </article>
+
+        
+        <!-- Heading Hierarchy Interactive Visualizer -->
+        <article class="concept-card">
+            <h3><span>🗂️</span> Heading Hierarchy Visualizer</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Visualizing relative font sizes and structural importance:</p>
+            <div class="heading-hierarchy-list">
+                <div class="heading-item">
+                    <span class="heading-tag">&lt;h1&gt;Main Title&lt;/h1&gt;</span>
+                    <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">32px Bold</span>
+                </div>
+                <div class="heading-item">
+                    <span class="heading-tag">&lt;h2&gt;Section Subheading&lt;/h2&gt;</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: #1e293b;">24px SemiBold</span>
+                </div>
+                <div class="heading-item">
+                    <span class="heading-tag">&lt;h3&gt;Sub-Topic Title&lt;/h3&gt;</span>
+                    <span style="font-size: 0.92rem; font-weight: 600; color: #334155;">18px Medium</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Text Formatting Magic -->
+        <article class="concept-card">
+            <h3><span>✨</span> Text Formatting Elements</h3>
+            <div class="tag-demo">
+                <div class="tag-example">
+                    <div class="tag-code">&lt;strong&gt;Bold&lt;/strong&gt;</div>
+                    <div class="tag-result">Important, high-priority text</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">&lt;em&gt;Emphasis&lt;/em&gt;</div>
+                    <div class="tag-result">Stressed, italic vocal inflection</div>
+                </div>
+                <div class="tag-example">
+                    <div class="tag-code">&lt;mark&gt;Highlight&lt;/mark&gt;</div>
+                    <div class="tag-result">Yellow background highlighter</div>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Code Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_2')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_2">&lt;h1&gt;The Journey of a Web Developer&lt;/h1&gt;
+&lt;h2&gt;Chapter 1: The First Step&lt;/h2&gt;
+&lt;p&gt;Learning HTML is the &lt;strong&gt;essential foundation&lt;/strong&gt; of all web development. With &lt;em&gt;curiosity and dedication&lt;/em&gt;, anyone can build software.&lt;/p&gt;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the code editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Create an <code>&lt;h1&gt;</code> main heading.</li>
+                <li>Create an <code>&lt;h2&gt;</code> section sub-heading.</li>
+                <li>Create a <code>&lt;p&gt;</code> paragraph containing both <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> elements.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partB_lesson2';
+        const DEFAULT_STARTER = `<!-- 🛠️ Project 02: Typography & Heading Hierarchy -->
+
+<!-- Step 1: Create a top-level <h1> heading for your article title -->
+
+
+<!-- Step 2: Create an <h2> sub-heading for a section -->
+
+
+<!-- Step 3: Add a <p> paragraph containing <strong>bold</strong> and <em>italic</em> text -->
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { 
+                id: 'h1', 
+                label: 'Create an <code>&lt;h1&gt;</code> main heading', 
+                fn: (code, doc) => !!doc?.querySelector('h1') && (doc.querySelector('h1')?.textContent?.trim().length || 0) > 0
+            },
+            { 
+                id: 'h2', 
+                label: 'Create an <code>&lt;h2&gt;</code> section sub-heading', 
+                fn: (code, doc) => !!doc?.querySelector('h2') && (doc.querySelector('h2')?.textContent?.trim().length || 0) > 0
+            },
+            { 
+                id: 'formatting', 
+                label: 'Add a <code>&lt;p&gt;</code> paragraph with <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> text', 
+                fn: (code, doc) => !!doc?.querySelector('p strong') && !!doc?.querySelector('p em')
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers and scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live preview instantly via srcdoc
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Intelligent Linter
+            DojoEngine.lint(editor.value, 'html');
+
+            // Real-Time Checklist
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        // Tab indentation key support
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                // Empty or Whitespace-only Submission Protection
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                // Check for blocking syntax errors from Linter
+                const problems = DojoEngine.lint(code, 'html');
+                const hasErrors = problems.some(p => p.severity === 'error');
+                if (hasErrors) {
+                    return; // Block submission while syntax errors exist
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Lesson 2: Typography & Heading Hierarchy',
+                        xp: 100,
+                        completionKey: 'partB_lesson2_remake_complete',
+                        nextUrl: '/2. partB/lesson3/lesson3_remake.html',
+                        customMessage: 'You have mastered this project challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

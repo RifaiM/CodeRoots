@@ -1,0 +1,328 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<!-- 🛠️ Project 05: Semantic HTML Architecture -->
+
+<!-- Step 1: Create a <header> containing a <nav> bar -->
+
+
+<!-- Step 2: Create a <main> region containing a <section> with an <article> -->
+
+
+<!-- Step 3: Create a <footer> at the bottom of the page -->
+`;
+
+const level4Lessons = [
+    {
+        "id": 1,
+        "title": "Interactive HTML Page Structure",
+        "url": "/2. partB/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Typography & Heading Hierarchy",
+        "url": "/2. partB/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Interactive Links & Dynamic Media",
+        "url": "/2. partB/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Lists & Dropdown Drawer Navigation",
+        "url": "/2. partB/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Semantic HTML Web Architecture",
+        "url": "/2. partB/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "CSS Colors, Backgrounds & Borders",
+        "url": "/2. partB/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "The CSS Box Model & Spacing",
+        "url": "/2. partB/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Modern Flexbox Layout Mastery",
+        "url": "/2. partB/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "Responsive CSS Grid Architecture",
+        "url": "/2. partB/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "JavaScript Variables & Data Types",
+        "url": "/2. partB/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Functions & Interactive Click Events",
+        "url": "/2. partB/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "DOM Manipulation & Dynamic Elements",
+        "url": "/2. partB/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "Interactive Forms & Input Validation",
+        "url": "/2. partB/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "Asynchronous JavaScript & REST APIs",
+        "url": "/2. partB/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "Capstone: Full Interactive Web Application",
+        "url": "/2. partB/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 05: Semantic HTML Web Architecture | Level 4 DOM Dojo"
+    description="Upgrade from generic divs to standard HTML5 semantic elements that power screen readers and search engines."
+    levelTag="Level 4 • DOM Dojo"
+    lessonNum={5}
+    lessonTitle="Semantic HTML Web Architecture"
+    xpAmount={100}
+    completionKey="partB_lesson5_remake_complete"
+    nextLessonUrl="/2. partB/lesson6/lesson6_remake.html"
+    hubUrl="/2. partB/hub.html"
+    hubTitle="Level 4 Hub"
+    hubIcon="⚔️"
+    fileTab="index.html"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level4Lessons}
+    certificateUrl="/2. partB/certificate.html"
+    trackPrefix="partB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Upgrade from generic divs to standard HTML5 semantic elements that power screen readers and search engines.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Semantic tags are architectural blueprints: instead of labeling every room a generic "Box", you label them "Kitchen", "Living Room", and "Balcony" so search engines and assistive devices navigate flawlessly.
+            </div>
+        </article>
+
+        
+        <!-- Semantic Blueprint Diagram -->
+        <article class="concept-card">
+            <h3><span>🏗️</span> Semantic Blueprint Diagram</h3>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px; font-family: 'Fira Code', monospace; font-size: 0.80rem; color: #334155; line-height: 1.6;">
+                <div style="background: #e0f2fe; padding: 6px; border-radius: 6px; margin-bottom: 6px;">&lt;header&gt; Top Navigation &amp; Logo &lt;/header&gt;</div>
+                <div style="background: #fef3c7; padding: 8px; border-radius: 6px; margin-bottom: 6px;">
+                    &lt;main&gt;
+                    <div style="background: #dcfce7; padding: 6px; border-radius: 4px; margin: 4px 0;">&lt;section&gt; Content Area &lt;/section&gt;</div>
+                    &lt;/main&gt;
+                </div>
+                <div style="background: #f1f5f9; padding: 6px; border-radius: 6px;">&lt;footer&gt; Copyright &amp; Legal Links &lt;/footer&gt;</div>
+            </div>
+        </article>
+
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Code Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_5')?.innerText || '')">📋 Copy</button>
+                <pre><code id="refCodeBox_5">&lt;header&gt;
+  &lt;nav&gt;
+    &lt;a href="#home"&gt;Home&lt;/a&gt; | &lt;a href="#articles"&gt;Articles&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;
+      &lt;h1&gt;Understanding Semantic HTML&lt;/h1&gt;
+      &lt;p&gt;Semantic elements give meaningful structure to web pages.&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 NoviCodes Learning Platform&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the code editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Structure your layout with a <code>&lt;header&gt;</code> containing a <code>&lt;nav&gt;</code>.</li>
+                <li>Include a <code>&lt;main&gt;</code> region with a <code>&lt;section&gt;</code> and an <code>&lt;article&gt;</code> inside.</li>
+                <li>Close your page layout with a semantic <code>&lt;footer&gt;</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partB_lesson5';
+        const DEFAULT_STARTER = `<!-- 🛠️ Project 05: Semantic HTML Architecture -->
+
+<!-- Step 1: Create a <header> containing a <nav> bar -->
+
+
+<!-- Step 2: Create a <main> region containing a <section> with an <article> -->
+
+
+<!-- Step 3: Create a <footer> at the bottom of the page -->
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { 
+                id: 'header_nav', 
+                label: 'Create a <code>&lt;header&gt;</code> containing a <code>&lt;nav&gt;</code> element', 
+                fn: (code, doc) => !!doc?.querySelector('header nav')
+            },
+            { 
+                id: 'main_article', 
+                label: 'Create a <code>&lt;main&gt;</code> area with a <code>&lt;section&gt;</code> and <code>&lt;article&gt;</code>', 
+                fn: (code, doc) => !!doc?.querySelector('main section article') || (!!doc?.querySelector('main section') && !!doc?.querySelector('main article'))
+            },
+            { 
+                id: 'footer', 
+                label: 'Include a semantic <code>&lt;footer&gt;</code> at the bottom', 
+                fn: (code, doc) => !!doc?.querySelector('footer')
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers and scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live preview instantly via srcdoc
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Intelligent Linter
+            DojoEngine.lint(editor.value, 'html');
+
+            // Real-Time Checklist
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        // Tab indentation key support
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                // Empty or Whitespace-only Submission Protection
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                // Check for blocking syntax errors from Linter
+                const problems = DojoEngine.lint(code, 'html');
+                const hasErrors = problems.some(p => p.severity === 'error');
+                if (hasErrors) {
+                    return; // Block submission while syntax errors exist
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Lesson 5: Semantic HTML Web Architecture',
+                        xp: 100,
+                        completionKey: 'partB_lesson5_remake_complete',
+                        nextUrl: '/2. partB/lesson6/lesson6_remake.html',
+                        customMessage: 'You have mastered this project challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

@@ -1,45 +1,43 @@
-# NoviCodes 🚀
+# Astro Starter Kit: Minimal
 
-> **From Novice to Fullstack Web Developer** — An interactive, zero-setup, zero-cost web development learning platform featuring 79+ hands-on lessons, real-time code execution, live task checklists, and gamified rank progression.
+```sh
+npm create astro@latest -- --template minimal
+```
 
----
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## ✨ Key Features
+## 🚀 Project Structure
 
-- 🎓 **8 Comprehensive Learning Levels (79+ Lessons)**:
-  - **Level 0**: Web Concepts & Mental Models (Web History, Client/Server, DNS, HTTP)
-  - **Levels 1–3**: HTML5 Semantic Layouts, CSS3 Styling & ES6+ JavaScript Foundations
-  - **Level 4**: DOM Dojo (15 Real-World Interactive JavaScript Projects)
-  - **Level 5**: Framework Dojo (15 React.js Components & State Hook Projects)
-  - **Level 6**: Backend Dojo (15 Python, REST APIs & FastAPI Projects)
-  - **Level 7**: Fullstack Mastery Hub (DevOps & Edge Deployment, Cloud Databases & Auth, Next.js 14/15 App Router)
-- ⚡ **Zero-Barrier In-Browser Execution**:
-  - Live sandboxed `<iframe>` preview for HTML/CSS/JS.
-  - Client-side AST validation and linters for Python, SQL, and Next.js.
-- 📋 **Live Task Checklists**:
-  - Interactive checklists that automatically tick green (`✅`) as code requirements are fulfilled.
-- 🏆 **Gamified Progress & Streaks**:
-  - 11 Developer Rank Tiers (from *Web Novice* 🌱 to *Principal Polymath* 👑).
-  - Daily 2-Minute Warmup Quests with streak counters and bonus XP.
-- 🛠️ **Developer Toolkit (DevKit)**:
-  - Global `window.NoviCodes` API and `Ctrl + Alt + D` toggle for rapid testing.
-- 📱 **100% Mobile Responsive**:
-  - Fluid segmented panel viewports designed for 320px+ mobile screens.
+Inside of your Astro project, you'll see the following folders and files:
 
----
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-## 📚 Project Documentation
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-Detailed architectural and design specifications are available in the [`docs/`](./docs/) directory:
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-- [📄 Product Requirements Document (PRD)](./docs/1_PRD.md)
-- [🏗️ System Architecture & $0 Stack Blueprint](./docs/2_ARCHITECTURE.md)
-- [🎨 Design System & UX Tokens](./docs/3_DESIGN_SYSTEM.md)
-- [📋 Lesson JSON Schema](./docs/4_LESSON_SCHEMA.json)
+Any static assets, like images, can be placed in the `public/` directory.
 
----
+## 🧞 Commands
 
-## 📄 License
+All commands are run from the root of the project, from a terminal:
 
-MIT License. Free to use, adapt, and build upon.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,0 +1,417 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlatformHeader from '../components/PlatformHeader.astro';
+import PlatformFooter from '../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '#roadmap', label: 'Skill Tree', icon: '🗺️', active: true, title: 'Skill Tree' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certificate', icon: '📜', title: 'Certificate Hub', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+];
+---
+
+<BaseLayout 
+    title="NoviCodes - Master Web Development From Zero to Shipping Code"
+    description="Learn HTML, CSS, JavaScript, React, and Python by building real projects directly in your browser. Zero setup, zero paywalls, and verifiable certificates from Day 1."
+    showHeaderFooter={false}
+>
+    <!-- Top Global Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="From Novice to Dev"
+        navLinks={navLinks}
+        showStreakBadge={true}
+        showLevelBadge={true}
+        showXpBadge={true}
+    />
+
+    <!-- Main Dashboard Body Container -->
+    <main class="dashboard-main">
+        <!-- Hero Intro Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <span class="pill-sparkle">✨</span> 100% Free &amp; Open-Source Learning
+                </div>
+                <h1 class="hero-title">
+                    Master Web Development From Zero to Shipping Code
+                </h1>
+                <p class="hero-subtitle">
+                    Learn HTML, CSS, JavaScript, React, and Python by building real projects directly in your browser. Zero setup, zero paywalls, and verifiable certificates from Day 1.
+                </p>
+            </div>
+        </section>
+
+        <!-- Daily 2-Minute Quest & Retention Section -->
+        <section class="daily-quest-section" id="dailyQuestSection" aria-label="Daily Coding Quest">
+            <div id="dailyQuestCardContainer"></div>
+        </section>
+
+        <!-- Mobile Track Quick Switcher (Placed below Daily Quest Section on mobile screens) -->
+        <div class="mobile-segmented-control" role="tablist" aria-label="Learning Track Filters">
+            <button class="segmented-tab active" role="tab" aria-selected="true" data-filter="all">All Tracks</button>
+            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="foundations">Foundations</button>
+            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="dojo">Projects</button>
+            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="advanced">Advanced</button>
+        </div>
+
+        <!-- Skill Tree Roadmap Section -->
+        <section class="roadmap-section" id="roadmap">
+            <div class="section-header">
+                <h2>
+                    <span class="section-emoji">🗺️</span> Curriculum Skill Tree
+                </h2>
+                <p class="section-desc">Follow the structured path or jump to your desired track below.</p>
+            </div>
+
+            <!-- Vertical Step-by-Step Tracks Container (Total 9 Cards Starting from Level 0) -->
+            <div class="tracks-snap-lane" id="tracksContainer">
+                
+                <!-- Track 0: Concepts & Web History -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 0</span>
+                        <span class="track-status-icon ready">⚡ +250 XP</span>
+                    </div>
+                    <div class="card-icon-wrap concept-gradient">
+                        <span class="card-icon">🧠</span>
+                    </div>
+                    <h3 class="card-title">Web Concepts &amp; Mental Models</h3>
+                    <p class="card-desc">
+                        Learn how the internet works—browsers, servers, HTTP requests, and the magic behind websites without writing code yet.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">4 Core Topics</span>
+                        <span class="meta-tag">Analogy-First</span>
+                    </div>
+                    <a href="/1. partA/web_history.html" class="track-btn secondary-btn">
+                        <span>📖 Read Web History &amp; Concepts</span>
+                    </a>
+                </article>
+
+                <!-- Track 1: HTML5 Structural Mastery -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 1</span>
+                        <span class="track-status-icon ready">⚡ +300 XP</span>
+                    </div>
+                    <div class="card-icon-wrap html-gradient">
+                        <span class="card-icon">🧱</span>
+                    </div>
+                    <h3 class="card-title">HTML5 Structural Mastery</h3>
+                    <p class="card-desc">
+                        Master the wooden framing of web pages. Learn tags, semantic elements, forms, accessibility, and clean document structure.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Semantic Web</span>
+                        <span class="meta-tag">WCAG Standards</span>
+                    </div>
+                    <a href="/foundations.html?track=html" class="track-btn secondary-btn">
+                        <span>🧱 Start HTML Foundations</span>
+                    </a>
+                </article>
+
+                <!-- Track 2: CSS3 & Utility Styling -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 2</span>
+                        <span class="track-status-icon ready">⚡ +300 XP</span>
+                    </div>
+                    <div class="card-icon-wrap css-gradient">
+                        <span class="card-icon">🎨</span>
+                    </div>
+                    <h3 class="card-title">CSS3 &amp; Utility Styling</h3>
+                    <p class="card-desc">
+                        Transform raw structure into beautiful designs. Deep dive into Flexbox, Grid, Responsive Media Queries, and Tailwind CSS.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">Flexbox &amp; Grid</span>
+                        <span class="meta-tag">Tailwind Sub-track</span>
+                    </div>
+                    <a href="/foundations.html?track=css" class="track-btn secondary-btn">
+                        <span>🎨 Start CSS Foundations</span>
+                    </a>
+                </article>
+
+                <!-- Track 3: Modern JavaScript (ES6+) -->
+                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 3</span>
+                        <span class="track-status-icon ready">⚡ +400 XP</span>
+                    </div>
+                    <div class="card-icon-wrap js-gradient">
+                        <span class="card-icon">⚡</span>
+                    </div>
+                    <h3 class="card-title">Modern JavaScript (ES6+)</h3>
+                    <p class="card-desc">
+                        Add life to your web pages. Learn variables, functions, DOM manipulation, click events, and fetching live web APIs.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">DOM &amp; Events</span>
+                        <span class="meta-tag">Async / Fetch</span>
+                    </div>
+                    <a href="/foundations.html?track=js" class="track-btn secondary-btn">
+                        <span>⚡ Start JS Foundations</span>
+                    </a>
+                </article>
+
+                <!-- Track 4: Practical Dojo Projects -->
+                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+                    <div class="card-top">
+                        <span class="track-level-badge highlight-gold">Level 4</span>
+                        <span class="track-status-icon ready">⚡ +1,500 XP</span>
+                    </div>
+                    <div class="card-icon-wrap dojo-gradient">
+                        <span class="card-icon">⚔️</span>
+                    </div>
+                    <h3 class="card-title">15-Lesson Practical Dojo</h3>
+                    <p class="card-desc">
+                        Build 15 complete real-world projects step-by-step. Combine HTML, CSS, and JS to earn your official completion certificate!
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">15 Projects</span>
+                        <span class="meta-tag">Certificate Included</span>
+                    </div>
+                    <a href="/2. partB/hub.html" class="track-btn gold-btn">
+                        <span>⚔️ Enter Level 4 Dojo</span>
+                    </a>
+                </article>
+
+                <!-- Track 5: Framework Dojo (React) -->
+                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+                    <div class="card-top">
+                        <span class="track-level-badge" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white;">Level 5</span>
+                        <span class="track-status-icon ready">⚡ +2,250 XP</span>
+                    </div>
+                    <div class="card-icon-wrap" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd);">
+                        <span class="card-icon">⚛️</span>
+                    </div>
+                    <h3 class="card-title">React &amp; Framework Dojo</h3>
+                    <p class="card-desc">
+                        Master modern frontend engineering! Build React components, stateful UIs, custom hooks, and SPAs across 15 interactive Dojo lessons.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">15 Lessons</span>
+                        <span class="meta-tag">React 18 / 19</span>
+                    </div>
+                    <a href="/3. partC/hub.html" class="track-btn gold-btn">
+                        <span>⚛️ Enter Level 5 Dojo</span>
+                    </a>
+                </article>
+
+                <!-- BONUS ARCADE MODE: DevType Dojo -->
+                <article class="track-card dojo-track gsap-reveal" data-category="dojo" style="border: 2px solid #8b5cf6 !important; background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%) !important; box-shadow: 0 12px 32px rgba(139, 92, 246, 0.22) !important;">
+                    <div class="card-top">
+                        <span class="track-level-badge" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); color: white; font-weight: 800; font-size: 0.80rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);">🎮 ARCADE MODE</span>
+                        <span class="track-status-icon ready" style="color: #6d28d9; font-weight: 800;">⌨️ Speedrun Arcade</span>
+                    </div>
+                    <div class="card-icon-wrap" style="background: linear-gradient(135deg, #fce7f3 0%, #ddd6fe 100%); border: 1px solid #c4b5fd;">
+                        <span class="card-icon">⌨️</span>
+                    </div>
+                    <h3 class="card-title" style="color: #4c1d95;">DevType Dojo (Code Typing Speedrun)</h3>
+                    <p class="card-desc" style="color: #475569;">
+                        Boost your symbol muscle memory &amp; typing speed! Practice HTML tags, CSS selectors, JS syntax, and React hooks with live WPM &amp; accuracy stats.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag" style="background: #ede9fe; color: #6d28d9; font-weight: 700;">🎮 Speedrun Arcade</span>
+                        <span class="meta-tag" style="background: #fce7f3; color: #be185d; font-weight: 700;">⚡ Live WPM Counter</span>
+                    </div>
+                    <a href="/4. partD/devtype/devtype.html" class="track-btn primary-btn" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); border-radius: 20px; box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);">
+                        <span>🎮 Enter DevType Speedrun</span>
+                    </a>
+                </article>
+
+                <!-- Track 6: Python & Backend Architecture Dojo -->
+                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+                    <div class="card-top">
+                        <span class="track-level-badge">Level 6</span>
+                        <span class="track-status-icon ready">⚡ +3,000 XP</span>
+                    </div>
+                    <div class="card-icon-wrap python-gradient">
+                        <span class="card-icon">🐍</span>
+                    </div>
+                    <h3 class="card-title">Python &amp; Backend Architecture</h3>
+                    <p class="card-desc">
+                        Master Python syntax, Object-Oriented Programming (OOP), Data Structures, REST APIs, and Database Persistence with live browser execution!
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">🐍 Python 3.11</span>
+                        <span class="meta-tag">⚡ REST APIs</span>
+                    </div>
+                    <a href="/5. partE/hub.html" class="track-btn gold-btn">
+                        <span>🐍 Enter Level 6 Dojo</span>
+                    </a>
+                </article>
+
+                <!-- Track 7: Mastery Specialization Hub -->
+                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+                    <div class="card-top">
+                        <span class="track-level-badge" style="background: linear-gradient(135deg, #a855f7, #7e22ce); color: white;">Level 7</span>
+                        <span class="track-status-icon ready">⚡ +1,500 XP / Track</span>
+                    </div>
+                    <div class="card-icon-wrap cloud-gradient">
+                        <span class="card-icon">🚀</span>
+                    </div>
+                    <h3 class="card-title">Fullstack Mastery &amp; Specialization</h3>
+                    <p class="card-desc">
+                        Choose your high-demand developer track: Cloud Shipping &amp; DevOps, Database &amp; Auth Architecture, or Next.js SSR Engineering.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-tag">☁️ Cloud Shipping</span>
+                        <span class="meta-tag">🛢️ SQL &amp; Auth</span>
+                        <span class="meta-tag">⚡ Next.js SSR</span>
+                    </div>
+                    <a href="/6. partF/hub.html" class="track-btn gold-btn">
+                        <span>🚀 Enter Level 7 Hub</span>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Certificate Showcase Card -->
+        <section class="certificate-promo-section">
+            <div class="cert-promo-card">
+                <div class="cert-promo-content">
+                    <span class="cert-badge">🎓 Official Proof of Work</span>
+                    <h2>Earn Your Web Development Certificate</h2>
+                    <p>Complete any Level 4, 5, 6, or Level 7 specialization branch to generate your official, verifiable course completion certificate.</p>
+                    <a href="javascript:void(0)" class="cert-promo-btn" onclick="openCertificateHub()">
+                        <span>🏆 View Certificate Hub</span>
+                    </a>
+                </div>
+                <div class="cert-promo-icon">
+                    📜
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive FAQ & Platform Facts Section -->
+        <section class="faq-section" id="faqSection" aria-label="Frequently Asked Questions and Platform Facts">
+            <div class="faq-header">
+                <div class="faq-pill-badge">
+                    <span>💡 Frequently Asked Questions &amp; Quick Facts</span>
+                </div>
+                <h2 class="faq-main-title">
+                    Everything You Need to Know About NoviCodes
+                </h2>
+                <p class="faq-subtitle">
+                    Zero paywalls, zero tool setups, and no academic jargon. Just clear mental models and hands-on interactive code.
+                </p>
+            </div>
+
+            <div class="faq-accordion-container" id="faqAccordionContainer">
+                
+                <!-- FAQ Item 1 -->
+                <article class="faq-item" data-faq="1">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-1" id="faq-q-1">
+                        <span class="faq-q-text">💰 Is NoviCodes really 100% free and open-source forever?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-1" role="region" aria-labelledby="faq-q-1">
+                        <div class="faq-answer-content">
+                            <p><strong>Yes, absolutely!</strong> NoviCodes is licensed under the open-source MIT License. There are zero paywalls, zero premium tiers, no credit cards required, and no locked lessons. Everything from Level 0 Web Concepts to Level 7 Fullstack Specializations is 100% free for all learners worldwide.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAQ Item 2 -->
+                <article class="faq-item" data-faq="2">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-2" id="faq-q-2">
+                        <span class="faq-q-text">💻 Do I need to install VS Code, Node.js, or Git to start?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-2" role="region" aria-labelledby="faq-q-2">
+                        <div class="faq-answer-content">
+                            <p><strong>Zero installation is required.</strong> Every lesson, challenge, and sandbox runs directly inside your browser. We provide real-time DOM previews, Babel React JSX compilation, and Python runtime execution right in your browser tab—working smoothly on Mac, Windows, Linux, Chromebooks, and tablets.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAQ Item 3 -->
+                <article class="faq-item" data-faq="3">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-3" id="faq-q-3">
+                        <span class="faq-q-text">🤖 Why learn web coding foundations in the Age of Generative AI?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-3" role="region" aria-labelledby="faq-q-3">
+                        <div class="faq-answer-content">
+                            <p>In 2026, developers are no longer just "code typists"—they are <strong>Code Reviewers, Systems Architects, and Debuggers</strong>. Anyone can prompt an AI, but when the AI hallucinates a subtle CSS overflow bug, introduces a security exploit, or causes a React state mutation loop, only someone who understands core mental models can diagnose and fix it in minutes. NoviCodes gives you the flight simulator training to pilot AI tools effectively.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAQ Item 4 -->
+                <article class="faq-item" data-faq="4">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-4" id="faq-q-4">
+                        <span class="faq-q-text">📜 How does the verified certificate and Proof-of-Work work?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-4" role="region" aria-labelledby="faq-q-4">
+                        <div class="faq-answer-content">
+                            <p>When you complete any Level 4, 5, 6, or Level 7 specialization branch, the platform cryptographically generates an official Certificate of Completion containing a unique Verification ID. You can download it as a high-resolution certificate image, print it, or embed the verification link directly into your LinkedIn profile and developer portfolio.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAQ Item 5 -->
+                <article class="faq-item" data-faq="5">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-5" id="faq-q-5">
+                        <span class="faq-q-text">🔥 How do Daily Streaks and 2-Minute Quests help me?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-5" role="region" aria-labelledby="faq-q-5">
+                        <div class="faq-answer-content">
+                            <p>Consistency is the #1 predictor of learning success. Every 24 hours at midnight, a new bite-sized quest unlocks on the dashboard covering real AI bug spotters, CSS layout puzzles, and JavaScript logic riddles. Spending just 2 minutes every morning keeps your muscle memory sharp, maintains your streak, and unlocks milestone bonus XP (+100, +250, +500 XP).</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAQ Item 6 -->
+                <article class="faq-item" data-faq="6">
+                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-6" id="faq-q-6">
+                        <span class="faq-q-text">🚀 Can I export my code projects and build my own portfolio?</span>
+                        <span class="faq-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer-panel" id="faq-ans-6" role="region" aria-labelledby="faq-q-6">
+                        <div class="faq-answer-content">
+                            <p><strong>Yes!</strong> You own 100% of all the code you write. You can copy or export your HTML, CSS, JavaScript, and React components to run them locally on your machine or deploy them live to production via GitHub Pages, Vercel, Netlify, or AWS.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script is:inline src="/data/daily_quests_data.js"></script>
+    <script is:inline src="/daily-quests.js"></script>
+    <script is:inline src="/scripts/dashboard.js"></script>
+</BaseLayout>

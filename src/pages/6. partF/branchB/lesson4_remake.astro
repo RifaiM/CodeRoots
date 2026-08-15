@@ -1,0 +1,270 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `# 🛠️ Practice Task: Password Hashing with Bcrypt
+
+# Step 1: Import bcrypt
+# Write import here:
+
+
+# Step 2: Implement hash_password(plain_password)
+# Generate salt with bcrypt.gensalt()
+# Hash with bcrypt.hashpw(plain_password.encode('utf-8'), salt)
+# Return decoded string with .decode('utf-8')
+# Write hash_password function here:
+`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Relational SQL Mastery",
+        "url": "/6. partF/branchB/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Cloud PostgreSQL & SSL",
+        "url": "/6. partF/branchB/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "SQLAlchemy ORM Models",
+        "url": "/6. partF/branchB/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Bcrypt Password Hashing",
+        "url": "/6. partF/branchB/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "JWT Token Authentication",
+        "url": "/6. partF/branchB/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "FastAPI RBAC Middleware",
+        "url": "/6. partF/branchB/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 04: Bcrypt Password Hashing | Level 7B • Backend & DB"
+    description="Protect user credentials by generating cryptographic salts, hashing passwords, and validating logins with Bcrypt."
+    levelTag="Level 7B • Backend & DB"
+    lessonNum={4}
+    lessonTitle="Bcrypt Password Hashing"
+    xpAmount={250}
+    completionKey="partF_branchB_lesson4_complete"
+    nextLessonUrl="/6. partF/branchB/lesson5_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="server.py"
+    starterCode={starterCode}
+    mode="python"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Protect user credentials by generating cryptographic salts, hashing passwords, and validating logins with Bcrypt.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Bcrypt adds unique salt (cryptographic noise) to each password before multiple rounds of hashing: making rainbow table attacks mathematically impossible.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>🔒</span> Bcrypt Salt &amp; Hash</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">bcrypt.gensalt()</div>
+                        <div class="tag-result">Generates cryptographically random salt bytes</div>
+                    </div>
+                    <div class="tag-example">
+                        <div class="tag-code">bcrypt.hashpw(pw, salt)</div>
+                        <div class="tag-result">Computes adaptive, slow-cost hash</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchB_4">import bcrypt
+
+def hash_password(plain_password: str) -&gt; str:
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(plain_password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
+
+hashed_val = hash_password("SuperSecret2026!")
+print(f"Hashed: &#123;hashed_val&#125;")</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Import <code>bcrypt</code> module.</li>
+                <li>Implement <code>hash_password(plain_password)</code> calling <code>bcrypt.gensalt()</code> and <code>bcrypt.hashpw(...)</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson4';
+        const DEFAULT_STARTER = `# 🛠️ Practice Task: Password Hashing with Bcrypt
+
+# Step 1: Import bcrypt
+# Write import here:
+
+
+# Step 2: Implement hash_password(plain_password)
+# Generate salt with bcrypt.gensalt()
+# Hash with bcrypt.hashpw(plain_password.encode('utf-8'), salt)
+# Return decoded string with .decode('utf-8')
+# Write hash_password function here:
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'import', label: 'Import <code>bcrypt</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+bcrypt/i.test(c); } },
+                { id: 'hashpw', label: 'Call <code>bcrypt.gensalt()</code> and <code>bcrypt.hashpw(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /bcrypt\.gensalt\s*\(\s*\)/i.test(c) && /bcrypt\.hashpw\s*\(/i.test(c); } }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'python'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 04: Bcrypt Password Hashing',
+                        xp: 250,
+                        completionKey: 'partF_branchB_lesson4_complete',
+                        nextUrl: '/6. partF/branchB/lesson5_remake.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

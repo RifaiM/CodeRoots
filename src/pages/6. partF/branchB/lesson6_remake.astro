@@ -1,0 +1,278 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+import jwt
+
+app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+SECRET_KEY = "auth-secret-key"
+ALGORITHM = "HS256"
+
+# 🛠️ Practice Task: Auth Middleware & RBAC Guard
+# Step 1: Implement get_current_user(token: str = Depends(oauth2_scheme))
+# Decode token with jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+# Write get_current_user here:
+`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Relational SQL Mastery",
+        "url": "/6. partF/branchB/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Cloud PostgreSQL & SSL",
+        "url": "/6. partF/branchB/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "SQLAlchemy ORM Models",
+        "url": "/6. partF/branchB/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Bcrypt Password Hashing",
+        "url": "/6. partF/branchB/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "JWT Token Authentication",
+        "url": "/6. partF/branchB/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "FastAPI RBAC Middleware",
+        "url": "/6. partF/branchB/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 06: FastAPI RBAC Middleware | Level 7B • Backend & DB"
+    description="Build secure authentication dependencies with OAuth2PasswordBearer and role-based access control (RBAC) in FastAPI."
+    levelTag="Level 7B • Backend & DB"
+    lessonNum={6}
+    lessonTitle="FastAPI RBAC Middleware"
+    xpAmount={250}
+    completionKey="partF_branchB_lesson6_complete"
+    nextLessonUrl="/6. partF/certificate.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="server.py"
+    starterCode={starterCode}
+    mode="python"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchB"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Build secure authentication dependencies with OAuth2PasswordBearer and role-based access control (RBAC) in FastAPI.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> FastAPI Depends() is an automated passport checkpoint: intercepting requests before they reach your handler to guarantee valid credentials.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>🛡️</span> Dependency Injection Guard</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">token: str = Depends(oauth2_scheme)</div>
+                        <div class="tag-result">Injects Bearer token from incoming request headers</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchB_6">from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+import jwt
+
+app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+SECRET_KEY = "auth-secret-key"
+ALGORITHM = "HS256"
+
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+print("Auth guard initialized")</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Inject token with <code>token: str = Depends(oauth2_scheme)</code>.</li>
+                <li>Decode with <code>jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson6';
+        const DEFAULT_STARTER = `from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+import jwt
+
+app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+SECRET_KEY = "auth-secret-key"
+ALGORITHM = "HS256"
+
+# 🛠️ Practice Task: Auth Middleware & RBAC Guard
+# Step 1: Implement get_current_user(token: str = Depends(oauth2_scheme))
+# Decode token with jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+# Write get_current_user here:
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'depends', label: 'Inject token with <code>Depends(oauth2_scheme)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /Depends\s*\(\s*oauth2_scheme\s*\)/i.test(c); } },
+                { id: 'decode', label: 'Decode token with <code>jwt.decode(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.decode\s*\(/i.test(c); } }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'python'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    localStorage.setItem('partF_branchB_completed', 'true');
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 06: FastAPI RBAC Middleware',
+                        xp: 250,
+                        completionKey: 'partF_branchB_lesson6_complete',
+                        nextUrl: '/6. partF/certificate.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

@@ -1,0 +1,649 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/5. partE/hub.html', label: 'Level 6 Hub', icon: '🐍', title: 'Python Dojo Hub' }
+];
+---
+
+<BaseLayout 
+    title="Level 6 Certificate: Python Systems & Backend Architecture | NoviCodes" 
+    description="Claim your Level 6 Certificate in Python programming, OOP structures, backend logic, and API architecture."
+    showHeaderFooter={false}
+>
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 6 • Python Dojo"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="cert-page-container">
+        <div class="cert-container">
+            
+            <!-- Certificate Generator Controls -->
+            <section class="generator-card">
+                <div class="generator-header">
+                    <h2>🎓 Level 6 Certificate Generator</h2>
+                    <p>Enter your full name to generate your verified proof-of-work certificate in Python &amp; Backend Engineering.</p>
+                </div>
+
+                <div class="generator-inputs">
+                    <div class="input-group">
+                        <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
+                        <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Python Backend Developer" />
+                    </div>
+                    <div class="btn-row">
+                        <button class="cert-action-btn primary" id="generateCertBtn">
+                            <span>✨ Update Certificate</span>
+                        </button>
+                        <button class="cert-action-btn success" id="downloadCertBtn">
+                            <span>📥 Download High-Res PNG</span>
+                        </button>
+                        <button class="cert-action-btn secondary" id="printCertBtn" onclick="window.print()">
+                            <span>🖨️ Print / PDF</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Certificate Preview -->
+            <div class="certificate-frame" id="certificateFrame">
+                <div class="certificate-inner">
+                    <div class="cert-watermark">NOVICODES</div>
+                    
+                    <div class="cert-top-row">
+                        <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
+                        <div class="cert-brand">NOVICODES PLATFORM</div>
+                        <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-PY-2026-0042</span></div>
+                    </div>
+
+                    <div class="cert-center-content">
+                        <div class="cert-icon-seal">🐍</div>
+                        <h1 class="cert-title">CERTIFICATE OF MASTERY</h1>
+                        <p class="cert-subtitle">LEVEL 6: PYTHON SYSTEMS &amp; BACKEND ARCHITECTURE</p>
+
+                        <p class="cert-award-text">This official certificate is proudly awarded to:</p>
+                        <h2 class="cert-student-name" id="certNameDisplay">Python Backend Developer</h2>
+
+                        <p class="cert-description">
+                            For demonstrating verified excellence in <strong>Python Core Syntax, Control Flow, Functional Programming, Object-Oriented Architecture, Exception Handling, File I/O, Asyncio, SQL Databases, and FastAPI RESTful Services</strong> across 15 interactive practical projects.
+                        </p>
+                    </div>
+
+                    <div class="cert-bottom-row">
+                        <div class="cert-col">
+                            <div class="cert-col-title">ISSUE DATE</div>
+                            <div class="cert-col-val" id="certDateDisplay">August 15, 2026</div>
+                        </div>
+
+                        <div class="cert-seal-badge">
+                            <div class="seal-circle">
+                                <span>VERIFIED</span>
+                                <strong>★ NOVICODES ★</strong>
+                                <span>MASTERY</span>
+                            </div>
+                        </div>
+
+                        <div class="cert-col right">
+                            <div class="cert-col-title">VERIFICATION SIGNATURE</div>
+                            <div class="cert-sig-box">
+                                <span class="sig-script">NoviCodes Academic Board</span>
+                                <div class="sig-line"></div>
+                                <span class="sig-sub">Chief Backend Architect</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Return Link -->
+            <div style="text-align: center; margin-top: 24px;">
+                <a href="/5. partE/hub.html" style="color: #0284c7; font-weight: 700; text-decoration: none; font-size: 0.95rem;">
+                    ← Return to Level 6 Python Hub
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <PlatformFooter slot="footer" />
+</BaseLayout>
+
+<style>
+    .cert-page-container {
+        padding: 40px 20px 80px;
+        background: #f8fafc;
+        min-height: calc(100vh - 72px);
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .cert-container {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .generator-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        margin-bottom: 30px;
+    }
+
+    .generator-header h2 {
+        margin: 0 0 6px 0;
+        font-size: 1.35rem;
+        color: #0f172a;
+    }
+
+    .generator-header p {
+        margin: 0 0 16px 0;
+        color: #64748b;
+        font-size: 0.92rem;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    .input-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 6px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1.5px solid #cbd5e1;
+        font-family: inherit;
+        font-size: 0.95rem;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+        border-color: #059669;
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .cert-action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cert-action-btn.primary {
+        background: #0f172a;
+        color: #ffffff;
+    }
+
+    .cert-action-btn.primary:hover {
+        background: #1e293b;
+    }
+
+    .cert-action-btn.success {
+        background: #059669;
+        color: #ffffff;
+    }
+
+    .cert-action-btn.success:hover {
+        background: #047857;
+    }
+
+    .cert-action-btn.secondary {
+        background: #e2e8f0;
+        color: #334155;
+    }
+
+    .cert-action-btn.secondary:hover {
+        background: #cbd5e1;
+    }
+
+    /* Certificate Visual Frame */
+    .certificate-frame {
+        background: #ffffff;
+        border: 8px solid #0f172a;
+        border-radius: 20px;
+        padding: 14px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        position: relative;
+    }
+
+    .certificate-inner {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 40px 36px;
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #fcfdfe 100%);
+        overflow: hidden;
+    }
+
+    .cert-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        font-size: 6rem;
+        font-weight: 900;
+        color: rgba(15, 23, 42, 0.025);
+        pointer-events: none;
+        letter-spacing: 12px;
+        user-select: none;
+    }
+
+    .cert-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .cert-logo-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+    }
+
+    .cert-brand {
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: #64748b;
+    }
+
+    .cert-id-badge {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.78rem;
+        background: #f1f5f9;
+        padding: 4px 10px;
+        border-radius: 6px;
+        color: #475569;
+        font-weight: 600;
+    }
+
+    .cert-center-content {
+        text-align: center;
+        margin: 20px 0 36px;
+    }
+
+    .cert-icon-seal {
+        font-size: 2.4rem;
+        margin-bottom: 8px;
+    }
+
+    .cert-title {
+        font-size: 1.9rem;
+        letter-spacing: 3px;
+        color: #0f172a;
+        margin: 0 0 6px 0;
+        font-weight: 900;
+    }
+
+    .cert-subtitle {
+        font-size: 0.88rem;
+        letter-spacing: 1.5px;
+        color: #059669;
+        font-weight: 800;
+        margin: 0 0 24px 0;
+    }
+
+    .cert-award-text {
+        color: #64748b;
+        font-size: 0.92rem;
+        margin: 0 0 8px 0;
+    }
+
+    .cert-student-name {
+        font-size: 2rem;
+        color: #0f172a;
+        margin: 0 0 16px 0;
+        font-weight: 800;
+        text-decoration: underline;
+        text-decoration-color: #059669;
+        text-underline-offset: 6px;
+    }
+
+    .cert-description {
+        max-width: 680px;
+        margin: 0 auto;
+        font-size: 0.90rem;
+        line-height: 1.6;
+        color: #475569;
+    }
+
+    .cert-bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 24px;
+    }
+
+    .cert-col-title {
+        font-size: 0.70rem;
+        letter-spacing: 1px;
+        font-weight: 800;
+        color: #94a3b8;
+        margin-bottom: 4px;
+    }
+
+    .cert-col-val {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .cert-seal-badge {
+        text-align: center;
+    }
+
+    .seal-circle {
+        width: 80px;
+        height: 80px;
+        border: 2px dashed #059669;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.55rem;
+        font-weight: 800;
+        color: #059669;
+        letter-spacing: 0.5px;
+        background: #ecfdf5;
+    }
+
+    .cert-sig-box {
+        text-align: right;
+    }
+
+    .sig-script {
+        font-family: serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .sig-line {
+        width: 140px;
+        height: 1px;
+        background: #0f172a;
+        margin: 4px 0 4px auto;
+    }
+
+    .sig-sub {
+        font-size: 0.72rem;
+        color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+        .cert-bottom-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .cert-sig-box {
+            text-align: center;
+        }
+
+        .sig-line {
+            margin: 4px auto;
+        }
+
+        .cert-student-name {
+            font-size: 1.5rem;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+        }
+    }
+</style>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    declare const Swal: any;
+
+    // 1. Certificate Access Protection Check
+    function isLessonCompleted(num: number) {
+        return localStorage.getItem(`partE_lesson${num}_remake_complete`) === 'true';
+    }
+
+    function countCompletedLessons() {
+        let completed = 0;
+        for (let i = 1; i <= 15; i++) {
+            if (isLessonCompleted(i)) completed++;
+        }
+        return completed;
+    }
+
+    function canAccessCertificate() {
+        const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+        return isPracticeUnlocked || countCompletedLessons() >= 15;
+    }
+
+    function checkProtection() {
+        if (!canAccessCertificate()) {
+            const completedCount = countCompletedLessons();
+            const remaining = 15 - completedCount;
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Level 6 Certificate Locked! 📜',
+                html: `
+                    <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <p style="font-size: 1.02rem; color: #475569; margin-bottom: 16px;">
+                            You must complete all <strong>15 lessons</strong> in Level 6 (Python Systems & Backend Architecture) before claiming your official certificate!
+                        </p>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${completedCount}</div>
+                                <div style="font-size: 0.8rem; color: #64748b;">Completed</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
+                                <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                confirmButtonColor: '#059669',
+                confirmButtonText: '🏠 Return to Dashboard',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            }).then(() => {
+                window.location.href = '/';
+            });
+        }
+    }
+
+    // 2. High-DPI Canvas Exporter
+    function setupGenerator() {
+        const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+        const nameDisplay = document.getElementById('certNameDisplay');
+        const updateBtn = document.getElementById('generateCertBtn');
+        const downloadBtn = document.getElementById('downloadCertBtn');
+        const dateDisplay = document.getElementById('certDateDisplay');
+        const idDisplay = document.getElementById('certIdDisplay');
+
+        // Set dynamic date and verification ID
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        if (dateDisplay) dateDisplay.textContent = dateStr;
+
+        let seed = 42;
+        const savedName = localStorage.getItem('novicodes_user_name') || 'Python Backend Developer';
+        if (nameInput) nameInput.value = savedName;
+        if (nameDisplay) nameDisplay.textContent = savedName;
+
+        for (let i = 0; i < savedName.length; i++) {
+            seed = (seed * 31 + savedName.charCodeAt(i)) % 9000;
+        }
+        const certNum = (1000 + seed).toString();
+        if (idDisplay) idDisplay.textContent = `NC-PY-2026-${certNum}`;
+
+        if (updateBtn && nameInput && nameDisplay) {
+            updateBtn.addEventListener('click', () => {
+                const val = nameInput.value.trim() || 'Python Backend Developer';
+                nameDisplay.textContent = val;
+                localStorage.setItem('novicodes_user_name', val);
+
+                let newSeed = 42;
+                for (let i = 0; i < val.length; i++) {
+                    newSeed = (newSeed * 31 + val.charCodeAt(i)) % 9000;
+                }
+                if (idDisplay) idDisplay.textContent = `NC-PY-2026-${(1000 + newSeed).toString()}`;
+            });
+        }
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                const name = (nameInput?.value.trim() || 'Python_Backend_Developer').replace(/\s+/g, '_');
+                generateCanvasAndDownload(`NoviCodes_Level6_Certificate_${name}.png`);
+            });
+        }
+    }
+
+    function generateCanvasAndDownload(filename: string) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 2400;
+        canvas.height = 1600;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 2400, 1600);
+
+        // Border Outer
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineWidth = 24;
+        ctx.strokeRect(30, 30, 2340, 1540);
+
+        // Border Inner
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(60, 60, 2280, 1480);
+
+        // Header Title
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('NOVICODES PLATFORM • LEVEL 6 PYTHON SYSTEMS & BACKEND ARCHITECTURE', 1200, 160);
+
+        // Icon
+        ctx.font = '80px sans-serif';
+        ctx.fillText('🐍', 1200, 280);
+
+        // Certificate Title
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('CERTIFICATE OF MASTERY', 1200, 380);
+
+        // Subtitle
+        ctx.fillStyle = '#059669';
+        ctx.font = 'bold 36px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('PYTHON CORE, ASYNCIO, SQL & FASTAPI SERVICES', 1200, 440);
+
+        // Awarded text
+        ctx.fillStyle = '#64748b';
+        ctx.font = '32px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('This official certificate is proudly awarded to:', 1200, 560);
+
+        // Student Name
+        const name = (document.getElementById('learnerNameInput') as HTMLInputElement)?.value.trim() || 'Python Backend Developer';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '800 64px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(name, 1200, 660);
+
+        // Underline
+        ctx.strokeStyle = '#059669';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        const textWidth = ctx.measureText(name).width;
+        ctx.moveTo(1200 - textWidth / 2 - 20, 690);
+        ctx.lineTo(1200 + textWidth / 2 + 20, 690);
+        ctx.stroke();
+
+        // Description
+        ctx.fillStyle = '#475569';
+        ctx.font = '30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('For demonstrating verified excellence in Python Core Syntax, Control Flow,', 1200, 780);
+        ctx.fillText('Functional Programming, Object-Oriented Architecture, Exception Handling,', 1200, 830);
+        ctx.fillText('File I/O, Asyncio, SQL Databases, and FastAPI RESTful Services across 15 interactive projects.', 1200, 880);
+
+        // Bottom Details
+        const dateStr = document.getElementById('certDateDisplay')?.textContent || 'August 15, 2026';
+        const certId = document.getElementById('certIdDisplay')?.textContent || 'NC-PY-2026-0042';
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('ISSUE DATE', 160, 1340);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(dateStr, 160, 1390);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('CERTIFICATE ID', 1200, 1340);
+        ctx.fillStyle = '#059669';
+        ctx.font = 'bold 30px "Fira Code", monospace';
+        ctx.fillText(certId, 1200, 1390);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('VERIFICATION', 2240, 1340);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('NoviCodes Academic Board', 2240, 1390);
+
+        // Download trigger
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            checkProtection();
+            setupGenerator();
+        });
+    } else {
+        checkProtection();
+        setupGenerator();
+    }
+</script>

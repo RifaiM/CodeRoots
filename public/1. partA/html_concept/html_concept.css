@@ -1,0 +1,782 @@
+/* ==========================================================================
+   NoviCodes - Concept 2: HTML Structure Stylesheet
+   Modern Glassmorphic Design with 100% Fluid Mobile Adaptability
+   ========================================================================== */
+
+:root {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --brand-orange: #ea580c;
+    --brand-blue: #2563eb;
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.platform-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0 20px !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.header-inner {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.platform-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    object-fit: cover;
+}
+
+.logo-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.title-novi { color: #0f172a; }
+.title-codes { color: var(--brand-blue); }
+
+.logo-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    background: #fff7ed;
+    color: var(--brand-orange);
+    border: 1px solid #fed7aa;
+    cursor: pointer;
+}
+
+.nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-back-btn:hover {
+    background: var(--brand-orange);
+    color: #ffffff;
+    border-color: var(--brand-orange);
+}
+
+.concept-container {
+    max-width: 960px;
+    margin: 28px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.concept-hero {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    color: #ffffff;
+    padding: 36px 28px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 25px rgba(234, 88, 12, 0.2);
+    text-align: center;
+}
+
+.concept-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.concept-hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 8px 0;
+}
+
+.concept-hero p {
+    color: #ffedd5;
+    font-size: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+.concept-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 26px 22px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+}
+
+.concept-card h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.concept-card p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+}
+
+/* Tag Sandbox */
+.tag-selector-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.tag-btn {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-btn.active {
+    background: var(--brand-orange);
+    color: #ffffff;
+    border-color: var(--brand-orange);
+}
+
+.tag-display-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.code-box-pane {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 16px;
+    color: #f8fafc;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+    overflow-x: auto;
+}
+
+.preview-pane-box {
+    background: #ffffff;
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+
+/* DOM Tree visualizer */
+.dom-tree-box {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 18px 20px;
+    border-radius: 12px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.dom-tree-box .tree-root { color: #f43f5e; font-weight: 700; }
+.dom-tree-box .tree-branch { color: #38bdf8; }
+.dom-tree-box .tree-leaf { color: #4ade80; }
+
+/* Quiz */
+.quiz-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.quiz-opt-btn {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    background: #fff7ed;
+    border-color: var(--brand-orange);
+}
+
+.quiz-opt-btn.correct {
+    background: #f0fdf4 !important;
+    border-color: #22c55e !important;
+    color: #15803d !important;
+    font-weight: 800;
+}
+
+.quiz-opt-btn.incorrect {
+    background: #fef2f2 !important;
+    border-color: #ef4444 !important;
+    color: #b91c1c !important;
+}
+
+.quiz-feedback-box {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    margin-top: 12px;
+}
+
+.quiz-feedback-box.show { display: block; }
+.quiz-feedback-box.correct { background: #f0fdf4; border: 1px solid #86efac; color: #15803d; }
+.quiz-feedback-box.incorrect { background: #fff1f2; border: 1px solid #fecdd3; color: #be123c; }
+
+/* Completion Card */
+.complete-card {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    color: #ffffff;
+    padding: 24px 20px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.2);
+}
+
+.complete-card h3 { font-size: 1.25rem; margin: 0 0 6px 0; }
+.complete-card p { color: #ffedd5; font-size: 0.90rem; margin: 0 0 14px 0; }
+
+.mark-complete-btn {
+    background: #ffffff;
+    color: #ea580c;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 24px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mark-complete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.mark-complete-btn.locked {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    box-shadow: none;
+    opacity: 0.92;
+}
+
+.mark-complete-btn.locked:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.section-header-row h2 {
+    margin-bottom: 0 !important;
+}
+
+.quiz-badge {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Progressive Typography & Spacing System (≤576px, ≤425px, ≤375px, ≤320px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .tag-display-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+}
+
+/* ── ≤576px: Small Phones ─────────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .platform-header {
+        padding: 0 12px !important;
+    }
+    .concept-container {
+        margin-top: 14px !important;
+        padding: 0 12px !important;
+    }
+    .concept-hero {
+        padding: 18px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.70rem !important;
+        padding: 3px 9px !important;
+        margin-bottom: 8px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.28rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+    .concept-hero p {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .concept-card {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+        margin-bottom: 18px !important;
+    }
+    .concept-card h2 {
+        font-size: 1.05rem !important;
+        margin-bottom: 8px !important;
+    }
+    .concept-card p {
+        font-size: 0.82rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .tag-selector-row {
+        gap: 6px !important;
+        margin-bottom: 10px !important;
+    }
+    .tag-btn {
+        font-size: 0.78rem !important;
+        padding: 6px 10px !important;
+        border-radius: 8px !important;
+    }
+    .tag-display-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .code-box-pane, .preview-pane-box {
+        padding: 10px 12px !important;
+        font-size: 0.80rem !important;
+        border-radius: 10px !important;
+    }
+    .dom-tree-box {
+        padding: 12px 10px !important;
+        font-size: 0.78rem !important;
+        line-height: 1.6 !important;
+        border-radius: 10px !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.70rem !important;
+        padding: 2px 8px !important;
+    }
+    #quizQText {
+        font-size: 0.86rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.78rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.76rem !important;
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+    }
+
+    .complete-card {
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
+    }
+    .complete-card h3 {
+        font-size: 1.10rem !important;
+        margin-bottom: 4px !important;
+    }
+    .complete-card p {
+        font-size: 0.80rem !important;
+        margin-bottom: 12px !important;
+    }
+    .mark-complete-btn {
+        width: 100% !important;
+        font-size: 0.80rem !important;
+        padding: 8px 14px !important;
+        border-radius: 10px !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ── ≤425px: iPhone SE, Galaxy S-series ───────────────────────────────── */
+@media (max-width: 425px) {
+    .platform-header {
+        padding: 0 8px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.95rem !important;
+    }
+    .logo-tag {
+        display: none !important;
+    }
+
+    .concept-container {
+        padding: 0 10px !important;
+        margin-top: 10px !important;
+    }
+    .concept-hero {
+        padding: 14px 10px !important;
+        border-radius: 14px !important;
+        margin-bottom: 14px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.64rem !important;
+        padding: 2px 7px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.12rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.78rem !important;
+    }
+
+    .concept-card {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+        margin-bottom: 14px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.95rem !important;
+    }
+    .concept-card p {
+        font-size: 0.76rem !important;
+    }
+
+    .tag-selector-row {
+        gap: 5px !important;
+    }
+    .tag-btn {
+        font-size: 0.72rem !important;
+        padding: 5px 8px !important;
+    }
+    .code-box-pane, .preview-pane-box {
+        padding: 8px 10px !important;
+        font-size: 0.74rem !important;
+    }
+    .dom-tree-box {
+        padding: 10px 8px !important;
+        font-size: 0.72rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.64rem !important;
+    }
+    #quizQText {
+        font-size: 0.80rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.72rem !important;
+        padding: 7px 8px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.70rem !important;
+        padding: 6px 8px !important;
+    }
+
+    .complete-card {
+        padding: 12px 10px !important;
+        border-radius: 12px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.98rem !important;
+    }
+    .complete-card p {
+        font-size: 0.74rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.74rem !important;
+        padding: 7px 10px !important;
+    }
+}
+
+/* ── ≤375px: iPhone SE / Galaxy S Small ───────────────────────────────── */
+@media (max-width: 375px) {
+    .concept-container {
+        padding: 0 8px !important;
+        margin-top: 8px !important;
+    }
+    .concept-hero {
+        padding: 12px 8px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.58rem !important;
+        padding: 2px 6px !important;
+    }
+    .concept-hero h1 {
+        font-size: 1.00rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .concept-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.88rem !important;
+    }
+    .concept-card p {
+        font-size: 0.70rem !important;
+    }
+
+    .tag-selector-row {
+        gap: 4px !important;
+    }
+    .tag-btn {
+        font-size: 0.66rem !important;
+        padding: 4px 6px !important;
+    }
+    .code-box-pane, .preview-pane-box {
+        padding: 6px 8px !important;
+        font-size: 0.68rem !important;
+    }
+    .dom-tree-box {
+        padding: 8px 6px !important;
+        font-size: 0.66rem !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.58rem !important;
+    }
+    #quizQText {
+        font-size: 0.74rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.66rem !important;
+        padding: 6px 6px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.64rem !important;
+        padding: 5px 6px !important;
+    }
+
+    .complete-card {
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.88rem !important;
+    }
+    .complete-card p {
+        font-size: 0.68rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
+    }
+}
+
+/* ── ≤320px: Galaxy S5 / Smallest Mobile ──────────────────────────────── */
+@media (max-width: 320px) {
+    .platform-header {
+        padding: 0 6px !important;
+    }
+    .brand-logo-img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .platform-header .logo-title {
+        font-size: 0.86rem !important;
+    }
+    .stat-badge {
+        padding: 0 5px !important;
+        font-size: 0.70rem !important;
+        height: 28px !important;
+    }
+
+    .concept-container {
+        padding: 0 6px !important;
+        margin-top: 6px !important;
+    }
+    .concept-hero {
+        padding: 10px 6px !important;
+        border-radius: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .concept-badge-pill {
+        font-size: 0.52rem !important;
+        padding: 1px 4px !important;
+    }
+    .concept-hero h1 {
+        font-size: 0.90rem !important;
+    }
+    .concept-hero p {
+        font-size: 0.66rem !important;
+    }
+
+    .concept-card {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px !important;
+    }
+    .concept-card h2 {
+        font-size: 0.80rem !important;
+    }
+    .concept-card p {
+        font-size: 0.64rem !important;
+    }
+
+    .tag-selector-row {
+        gap: 3px !important;
+    }
+    .tag-btn {
+        font-size: 0.60rem !important;
+        padding: 3px 5px !important;
+    }
+    .code-box-pane, .preview-pane-box {
+        padding: 5px 6px !important;
+        font-size: 0.62rem !important;
+    }
+    .dom-tree-box {
+        padding: 6px 4px !important;
+        font-size: 0.60rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .quiz-badge {
+        font-size: 0.52rem !important;
+    }
+    #quizQText {
+        font-size: 0.68rem !important;
+    }
+    .quiz-opt-btn {
+        font-size: 0.60rem !important;
+        padding: 5px 5px !important;
+    }
+    .quiz-feedback-box {
+        font-size: 0.58rem !important;
+        padding: 4px 5px !important;
+    }
+
+    .complete-card {
+        padding: 8px 6px !important;
+        border-radius: 8px !important;
+    }
+    .complete-card h3 {
+        font-size: 0.78rem !important;
+    }
+    .complete-card p {
+        font-size: 0.62rem !important;
+    }
+    .mark-complete-btn {
+        font-size: 0.62rem !important;
+        padding: 5px 6px !important;
+    }
+}
+

@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../../components/PlatformHeader.astro';
+import PlatformFooter from '../../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
+    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+];
+---
+
+<BaseLayout
+    title="Pillar 2: HTML Structure Fundamentals Guide | NoviCodes"
+    description="Understand how HTML markup provides the structural foundation, semantic tags, and DOM tree hierarchy for every webpage."
+    showHeaderFooter={false}
+>
+    <!-- Standardized Platform Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 0 • Pillar 2: HTML"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+    />
+
+    <!-- Main Container -->
+    <main class="concept-container">
+        
+        <!-- Hero Banner -->
+        <section class="concept-hero">
+            <span class="concept-badge-pill">🧱 Pillar 2 of 4 • 50 XP</span>
+            <h1>HTML - The Skeleton of the Web</h1>
+            <p>
+                Learn how HyperText Markup Language structures text, images, and buttons into an organized semantic Document Object Model (DOM).
+            </p>
+        </section>
+
+        <!-- 1. Interactive Tag Sandbox -->
+        <section class="concept-card">
+            <h2><span>🏷️</span> 1. Interactive HTML Tag Inspector</h2>
+            <p>
+                Click any tag below to see the underlying HTML code and its immediate browser rendering:
+            </p>
+
+            <div class="tag-selector-row">
+                <button class="tag-btn active" data-tag="h1">&lt;h1&gt; Heading</button>
+                <button class="tag-btn" data-tag="p">&lt;p&gt; Paragraph</button>
+                <button class="tag-btn" data-tag="button">&lt;button&gt; Button</button>
+                <button class="tag-btn" data-tag="img">&lt;img&gt; Image</button>
+            </div>
+
+            <div class="tag-display-grid">
+                <div>
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">HTML Code</span>
+                    <div class="code-box-pane" id="tagCodePane">
+                        <code>&lt;h1&gt;Welcome to NoviCodes&lt;/h1&gt;</code>
+                    </div>
+                </div>
+                <div>
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Live Browser Output</span>
+                    <div class="preview-pane-box" id="tagPreviewPane">
+                        <h1 style="margin:0; font-size:1.6rem; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif;">Welcome to NoviCodes</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. DOM Tree Hierarchy Visualizer -->
+        <section class="concept-card">
+            <h2><span>🌳</span> 2. The DOM Tree Hierarchy</h2>
+            <p>
+                Browsers parse HTML into a nested tree structure called the <strong>Document Object Model (DOM)</strong>:
+            </p>
+
+            <div class="dom-tree-box">
+                <span class="tree-root">&lt;html&gt;</span> (The Root Document)<br />
+                &nbsp;&nbsp;├── <span class="tree-branch">&lt;head&gt;</span> (Page Title, Favicon, SEO Metadata)<br />
+                &nbsp;&nbsp;└── <span class="tree-branch">&lt;body&gt;</span> (Visible Content)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;h1&gt;</span> (Main Page Title)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;p&gt;</span> (Article Body Text)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="tree-leaf">&lt;button&gt;</span> (Interactive Clickable Action)
+            </div>
+        </section>
+
+        <!-- 3. Mini Knowledge Check -->
+        <section class="concept-card">
+            <div class="section-header-row">
+                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
+            </div>
+            <p id="quizQText">Loading question...</p>
+            <div class="quiz-options-list" id="quizOptionsContainer"></div>
+            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+        </section>
+
+        <!-- 4. Complete & Continue -->
+        <section class="complete-card">
+            <h3>🎉 Mastered HTML Fundamentals?</h3>
+            <p>Claim your +50 XP and continue to Pillar 3: CSS Styling!</p>
+            <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
+                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/1. partA/html_concept/html_concept.css" />
+
+    <!-- Script -->
+    <script is:inline src="/1. partA/html_concept/html_concept.js"></script>
+</BaseLayout>

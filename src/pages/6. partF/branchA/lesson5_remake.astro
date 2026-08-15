@@ -1,0 +1,282 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# 🛠️ Practice Task: Configure CORS Middleware
+# Step 1: Define allowed_origins list
+allowed_origins = [
+    # Add frontend origins here
+]
+
+# Step 2: Add CORSMiddleware to app with allow_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
+# Write your middleware call here:
+`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Git & GitHub Workflow",
+        "url": "/6. partF/branchA/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Vercel & Netlify Deploy",
+        "url": "/6. partF/branchA/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Cloudflare Pages & Edge",
+        "url": "/6. partF/branchA/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Render & Fly.io Deploy",
+        "url": "/6. partF/branchA/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "FastAPI CORS Security",
+        "url": "/6. partF/branchA/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "GitHub Actions CI/CD",
+        "url": "/6. partF/branchA/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 05: FastAPI CORS Security | Level 7A • Cloud & DevOps"
+    description="Secure cross-origin API communication between frontend SPAs and FastAPI backends using CORSMiddleware."
+    levelTag="Level 7A • Cloud & DevOps"
+    lessonNum={5}
+    lessonTitle="FastAPI CORS Security"
+    xpAmount={250}
+    completionKey="partF_branchA_lesson5_complete"
+    nextLessonUrl="/6. partF/branchA/lesson6_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="terminal.sh"
+    starterCode={starterCode}
+    mode="terminal"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchA"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Secure cross-origin API communication between frontend SPAs and FastAPI backends using CORSMiddleware.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> CORS is the bouncer at your API's front door: checking whether incoming web requests originate from an approved, trusted web domain.
+            </div>
+        </article>
+
+        
+            <article class="concept-card">
+                <h3><span>🔒</span> CORS Security Policy</h3>
+                <div class="tag-demo">
+                    <div class="tag-example">
+                        <div class="tag-code">allow_origins=allowed_origins</div>
+                        <div class="tag-result">Whitelist of approved browser origins</div>
+                    </div>
+                    <div class="tag-example">
+                        <div class="tag-code">allow_credentials=True</div>
+                        <div class="tag-result">Permits cookies and auth headers</div>
+                    </div>
+                </div>
+            </article>
+
+        <!-- Working Reference Code & Target Result -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchA_5">from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+allowed_origins = [
+    "http://localhost:3000",
+    "https://novicodes.dev"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)</code></pre>
+            </div>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #6366f1;">
+            <h3><span>🎯</span> Milestone Requirements</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0 0 10px 0;">
+                In the editor on the right pane:
+            </p>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Define <code>allowed_origins</code> with frontend URLs.</li>
+                <li>Call <code>app.add_middleware(CORSMiddleware, allow_origins=allowed_origins, allow_credentials=True, ...)</code>.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson5';
+        const DEFAULT_STARTER = `from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# 🛠️ Practice Task: Configure CORS Middleware
+# Step 1: Define allowed_origins list
+allowed_origins = [
+    # Add frontend origins here
+]
+
+# Step 2: Add CORSMiddleware to app with allow_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
+# Write your middleware call here:
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+                { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?http/i.test(c); } },
+                { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\([\s\S]*?CORSMiddleware/i.test(c) && /allow_credentials=True/i.test(c); } }
+            ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'terminal'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Preview update if HTML mode
+            if (previewIframe) {
+                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTerminal(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+<div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
+<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your editor is empty! Complete the milestone tasks before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                simulateTerminal(code);
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Milestone 05: FastAPI CORS Security',
+                        xp: 250,
+                        completionKey: 'partF_branchA_lesson5_complete',
+                        nextUrl: '/6. partF/branchA/lesson6_remake.html',
+                        customMessage: 'You have conquered this Level 7 Fullstack Milestone!'
+                    });
+                } else {
+                    DojoEngine.showLint('Milestone criteria incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlatformHeader from '../components/PlatformHeader.astro';
+import PlatformFooter from '../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
+    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+];
+---
+
+<BaseLayout
+    title="NoviCodes - Web Development Foundations Track"
+    description="Interactive Web Development Foundations covering HTML, CSS, and Modern JavaScript with analogies, code sandboxes, and knowledge checks."
+    showHeaderFooter={false}
+>
+    <!-- Standardized Platform Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Foundations"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+    />
+
+    <!-- Main Content Area -->
+    <main class="foundations-main">
+        
+        <!-- Track Hero Banner -->
+        <section class="track-hero">
+            <div class="hero-inner">
+                <span class="track-badge-pill" id="trackBadgePill">🧱 Level 1 HTML</span>
+                <h1 id="trackTitle">Level 1: HTML Foundations</h1>
+                <p id="trackSubtitle">The Structural Blueprint &amp; Skeleton of the World Wide Web</p>
+            </div>
+        </section>
+
+        <!-- 4-Part Segmented Module Tab Bar -->
+        <nav class="foundations-tab-bar" aria-label="Module Navigation">
+            <button class="tab-btn active" data-tab="concepts">
+                <span class="tab-icon">📖</span>
+                <span class="tab-label"><span class="desktop-text">Analogy &amp; </span>Concepts</span>
+            </button>
+            <button class="tab-btn" data-tab="glossary">
+                <span class="tab-icon">📚</span>
+                <span class="tab-label"><span class="desktop-text">Terms &amp; </span>Glossary</span>
+            </button>
+            <button class="tab-btn" data-tab="sandbox">
+                <span class="tab-icon">💻</span>
+                <span class="tab-label"><span class="desktop-text">Code </span>Sandbox</span>
+            </button>
+            <button class="tab-btn" data-tab="quiz">
+                <span class="tab-icon">🧪</span>
+                <span class="tab-label"><span class="desktop-text">Knowledge </span>Check</span>
+            </button>
+        </nav>
+
+        <!-- TAB PANELS -->
+
+        <!-- 1. Analogy & Concepts Panel -->
+        <section class="tab-panel active" id="panel-concepts">
+            <div class="concept-hero-card" id="heroAnalogyBox">
+                <!-- Injected dynamically via JS -->
+            </div>
+            <div class="concept-sections-grid" id="conceptSectionsList">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 2. Interactive Terms & Glossary Bank Panel -->
+        <section class="tab-panel" id="panel-glossary">
+            <div class="glossary-header-card">
+                <h2>📚 Interactive Terms &amp; Glossary Bank</h2>
+                <p>Search and filter core web development terminology with real-world analogies.</p>
+                <div class="glossary-search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="glossarySearchInput" placeholder="Search terms (e.g. DOM, Tag, Flexbox, Variable)..." />
+                </div>
+            </div>
+            <div class="glossary-cards-grid" id="glossaryCardsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 3. Code Sandbox & Live Preview Panel -->
+        <section class="tab-panel" id="panel-sandbox">
+            <div class="sandbox-instructions-card">
+                <span class="sandbox-tag">💡 Live Code Sandbox</span>
+                <p id="sandboxInstructions">Type or edit HTML/CSS/JS code in the left editor pane to see real-time updates in the preview pane!</p>
+            </div>
+            
+            <div class="sandbox-editor-workspace">
+                <!-- Left Editor Pane -->
+                <div class="workspace-pane editor-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">📝 Code Editor</span>
+                        <button class="reset-code-btn" id="resetSandboxBtn">🔄 Reset Code</button>
+                    </div>
+                    <textarea id="sandboxTextarea" spellcheck="false"></textarea>
+                </div>
+
+                <!-- Right Live Preview Pane -->
+                <div class="workspace-pane preview-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">👀 Live Result Preview</span>
+                        <span class="live-status-pill">🟢 Live Engine</span>
+                    </div>
+                    <iframe id="sandboxPreviewIframe" title="Live Preview Output" sandbox="allow-scripts allow-modals allow-same-origin"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Knowledge Check & Quiz Panel -->
+        <section class="tab-panel" id="panel-quiz">
+            <div class="quiz-header-card">
+                <span class="quiz-badge">🧪 Knowledge Verification</span>
+                <h2>Validate Your Foundation Knowledge</h2>
+                <p>Answer the 3 concept questions correctly to earn your XP reward and unlock the next level track!</p>
+            </div>
+
+            <div class="quiz-questions-list" id="quizQuestionsContainer">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+            <div class="quiz-submit-bar">
+                <button class="complete-track-btn" id="submitQuizBtn">
+                    <span>✅ Complete Foundations Track &amp; Return to Dashboard</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/foundations.css" />
+
+    <!-- Scripts -->
+    <script is:inline src="/data/level1_html.js"></script>
+    <script is:inline src="/data/level2_css.js"></script>
+    <script is:inline src="/data/level3_js.js"></script>
+    <script is:inline src="/foundations.js"></script>
+</BaseLayout>

@@ -1,0 +1,333 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!
+
+function ProfileCard() {
+  const userName = "Alex Developer";
+  const userAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
+  const skills = ["React 18", "TypeScript", "Tailwind CSS", "Next.js"];
+
+  return (
+    <div style={{ fontFamily: 'sans-serif', maxWidth: '380px', margin: '0 auto', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '20px', textAlign: 'center', boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}>
+      <img src={userAvatar} alt="Avatar" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }} />
+      
+      {/* Step 1: Render the dynamic userName variable inside h2 tag */}
+      <h2 style={{ margin: '0 0 4px 0', color: '#0f172a' }}>
+      </h2>
+
+      <p style={{ margin: '0 0 16px 0', color: '#64748b', fontSize: '0.85rem' }}>Frontend Developer</p>
+      <hr style={{ border: 'none', borderTop: '1px solid #f1f5f9', margin: '16px 0' }} />
+      
+      <h3 style={{ margin: '0 0 10px 0', color: '#0284c7', fontSize: '0.95rem' }}>🚀 Tech Stack:</h3>
+      
+      {/* Step 2 & 3: Map over skills array */}
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ProfileCard />);`;
+
+const level5Lessons = [
+    {
+        "id": 1,
+        "title": "ES6+ JavaScript Powers",
+        "url": "/3. partC/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Arrow Functions & Scope",
+        "url": "/3. partC/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "JS Destructuring",
+        "url": "/3. partC/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Template Literals in JS",
+        "url": "/3. partC/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Array Map & Filter",
+        "url": "/3. partC/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "ES Modules & Imports",
+        "url": "/3. partC/lesson6/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "React JSX Fundamentals",
+        "url": "/3. partC/lesson7/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Reusable React Components",
+        "url": "/3. partC/lesson8/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "React Props & Composition",
+        "url": "/3. partC/lesson9/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "React useState Hook",
+        "url": "/3. partC/lesson10/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Controlled Form State",
+        "url": "/3. partC/lesson11/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "Conditional UI Rendering",
+        "url": "/3. partC/lesson12/lesson12_remake.html"
+    },
+    {
+        "id": 13,
+        "title": "React useEffect Hook",
+        "url": "/3. partC/lesson13/lesson13_remake.html"
+    },
+    {
+        "id": 14,
+        "title": "React API Data Fetching",
+        "url": "/3. partC/lesson14/lesson14_remake.html"
+    },
+    {
+        "id": 15,
+        "title": "React Capstone App",
+        "url": "/3. partC/lesson15/lesson15_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Project 03: JS Destructuring | Level 5 React Dojo"
+    description="Unpack values from arrays and properties from objects into distinct variables with clean ES6 destructuring patterns."
+    levelTag="Level 5 • React Dojo"
+    lessonNum={3}
+    lessonTitle="JS Destructuring"
+    xpAmount={150}
+    completionKey="partC_lesson3_remake_complete"
+    nextLessonUrl="/3. partC/lesson4/lesson4_remake.html"
+    hubUrl="/3. partC/hub.html"
+    hubTitle="Level 5 Hub"
+    hubIcon="⚛️"
+    fileTab="App.jsx"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={level5Lessons}
+    certificateUrl="/3. partC/certificate.html"
+    trackPrefix="partC"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Unpack values from arrays and properties from objects into distinct variables with clean ES6 destructuring patterns.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Concept &amp; Architecture</h3>
+            <p style="color: #475569; font-size: 0.90rem; line-height: 1.6; margin: 0;">
+                Master modern declarative UI state, props dataflow, and reactive lifecycle rendering in React.
+            </p>
+        </article>
+
+        <!-- Task Instructions Card -->
+        <article class="concept-card" style="border-left: 4px solid #2563eb;">
+            <h3><span>🎯</span> Your Hands-On Coding Goal</h3>
+            <ol style="color: #334155; font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
+                <li>Embed dynamic variables inside JSX with <code>&lt;h2&gt;&#123;userName&#125;&lt;/h2&gt;</code>.</li>
+                <li>Map over the skills array with <code>skills.map((skill, index) => ...)</code>.</li>
+                <li>Set unique <code>key=&#123;index&#125;</code> on each mapped <code>&lt;li&gt;</code> tag.</li>
+            </ol>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partC_lesson3';
+        const DEFAULT_STARTER = `// ⚡ Lesson 3: Dynamic JSX Rendering & List Mapping!
+
+function ProfileCard() {
+  const userName = "Alex Developer";
+  const userAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
+  const skills = ["React 18", "TypeScript", "Tailwind CSS", "Next.js"];
+
+  return (
+    <div style={{ fontFamily: 'sans-serif', maxWidth: '380px', margin: '0 auto', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '20px', textAlign: 'center', boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}>
+      <img src={userAvatar} alt="Avatar" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }} />
+      
+      {/* Step 1: Render the dynamic userName variable inside h2 tag */}
+      <h2 style={{ margin: '0 0 4px 0', color: '#0f172a' }}>
+      </h2>
+
+      <p style={{ margin: '0 0 16px 0', color: '#64748b', fontSize: '0.85rem' }}>Frontend Developer</p>
+      <hr style={{ border: 'none', borderTop: '1px solid #f1f5f9', margin: '16px 0' }} />
+      
+      <h3 style={{ margin: '0 0 10px 0', color: '#0284c7', fontSize: '0.95rem' }}>🚀 Tech Stack:</h3>
+      
+      {/* Step 2 & 3: Map over skills array */}
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ProfileCard />);`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            {
+                id: 'username',
+                label: 'Embed dynamic variable <code>&lt;h2&gt;{userName}&lt;/h2&gt;</code>',
+                fn: (code) => /<h2[^>]*>\s*\{\s*userName\s*\}\s*<\/h2>/i.test(code)
+            },
+            {
+                id: 'map',
+                label: 'Map over array with <code>skills.map((skill, index) => ...)</code>',
+                fn: (code) => /skills\.map\s*\(\s*\(\s*(?:skill|s)\s*,\s*(?:index|i)\s*\)\s*=>/i.test(code)
+            },
+            {
+                id: 'key',
+                label: 'Set unique <code>key={index}</code> on mapped elements',
+                fn: (code) => /key=\s*\{\s*(?:index|i)\s*\}/i.test(code)
+            }
+        ], {
+            containerId: 'taskChecklist',
+            submitBtnId: 'checkAnswerBtn',
+            nextBtnId: 'nextLessonBtn',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live React JSX preview inside iframe
+            if (previewIframe) {
+                const code = editor.value;
+                const htmlDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    try {
+      ${code}
+    } catch (err) {
+      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
+    }
+  <\/script>
+</body>
+</html>`;
+                previewIframe.srcdoc = htmlDoc;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+        }
+
+        // 5. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                const code = editor.value;
+
+                if (DojoEngine.isEmpty(code)) {
+                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
+                    return;
+                }
+
+                const result = DojoEngine.runChecklist(code);
+
+                if (result.allPassed) {
+                    DojoEngine.clearLint();
+                    DojoEngine.celebrateCompletion({
+                        lessonTitle: 'Project 03: JS Destructuring',
+                        xp: 150,
+                        completionKey: 'partC_lesson3_remake_complete',
+                        nextUrl: '/3. partC/lesson4/lesson4_remake.html',
+                        customMessage: 'You have mastered this React Dojo challenge!'
+                    });
+                } else {
+                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                }
+            });
+        }
+
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

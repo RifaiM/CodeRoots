@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', active: true, extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+];
+---
+
+<BaseLayout
+    title="DOM Dojo (Level 4) • 15 Hands-On Projects | NoviCodes"
+    description="Build 15 real-world interactive DOM manipulation projects in vanilla JavaScript to earn your DOM Architect Certificate."
+    showHeaderFooter={false}
+>
+    <!-- Top Global Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="DOM Dojo"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="hub-container">
+        
+        <!-- Hero Section -->
+        <section class="hub-hero">
+            <span class="hub-badge">⚔️ Level 4 • DOM Dojo</span>
+            <h1>Master the Browser with 15 Hands-On Projects</h1>
+            <p>
+                Bridge the gap between static code and dynamic user experiences. Build 15 real-world interactive projects in vanilla JavaScript, manipulate the live DOM, handle user events, and earn your official DOM Architect Certificate!
+            </p>
+
+            <!-- Live Progress Bar -->
+            <div class="hero-progress-wrap">
+                <div class="hero-progress-info">
+                    <span>Course Progress</span>
+                    <span id="heroProgressText">0 of 15 Projects Completed (0%)</span>
+                </div>
+                <div class="hero-progress-bar">
+                    <div class="hero-progress-fill" id="heroProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Smart Resume CTA -->
+            <a href="/2. partB/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
+                <span>🚀 Start Lesson 1: Page Structure ➔</span>
+            </a>
+        </section>
+
+        <!-- Stats Overview Row -->
+        <section class="hub-stats-grid">
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">1,500 XP</div>
+                <div class="hub-stat-lbl">Total XP Bounty</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val" id="statCompletedProjects">0 / 15</div>
+                <div class="hub-stat-lbl">Projects Built</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">100% Client-Side</div>
+                <div class="hub-stat-lbl">Live Sandbox Execution</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">DOM Architect</div>
+                <div class="hub-stat-lbl">Official Certificate</div>
+            </div>
+        </section>
+
+        <!-- Curriculum Breakdown by Chapter -->
+        <section class="curriculum-section">
+            
+            <!-- Chapter 1: HTML & Structural Architecture -->
+            <div class="chapter-block">
+                <div class="chapter-header">
+                    <div class="chapter-title-wrap">
+                        <span class="chapter-num">Phase 1</span>
+                        <h2 class="chapter-title">HTML & Structural Architecture</h2>
+                    </div>
+                    <span class="chapter-badge">Lessons 1–5 • 500 XP</span>
+                </div>
+
+                <div class="lesson-cards-grid">
+                    <!-- Lesson 1 -->
+                    <a href="/2. partB/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 01</span>
+                            <span class="lesson-status-pill available" id="statusPill1">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Interactive HTML Page Structure</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText1">Start ➔</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 2 -->
+                    <a href="/2. partB/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 02</span>
+                            <span class="lesson-status-pill locked" id="statusPill2">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Typography & Heading Hierarchy</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText2">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 3 -->
+                    <a href="/2. partB/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 03</span>
+                            <span class="lesson-status-pill locked" id="statusPill3">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Interactive Links & Dynamic Media</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText3">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 4 -->
+                    <a href="/2. partB/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 04</span>
+                            <span class="lesson-status-pill locked" id="statusPill4">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Lists & Dropdown Drawer Navigation</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText4">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 5 -->
+                    <a href="/2. partB/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 05</span>
+                            <span class="lesson-status-pill locked" id="statusPill5">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Semantic HTML Web Architecture</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText5">Locked</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 2: Modern Styling & Layout Engines -->
+            <div class="chapter-block">
+                <div class="chapter-header">
+                    <div class="chapter-title-wrap">
+                        <span class="chapter-num">Phase 2</span>
+                        <h2 class="chapter-title">Modern Styling & Layout Engines</h2>
+                    </div>
+                    <span class="chapter-badge">Lessons 6–9 • 400 XP</span>
+                </div>
+
+                <div class="lesson-cards-grid">
+                    <!-- Lesson 6 -->
+                    <a href="/2. partB/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 06</span>
+                            <span class="lesson-status-pill locked" id="statusPill6">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">CSS Styling & Theme Engine</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText6">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 7 -->
+                    <a href="/2. partB/lesson7/lesson7_remake.html" class="lesson-card locked" id="lessonCard7">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 07</span>
+                            <span class="lesson-status-pill locked" id="statusPill7">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">CSS Box Model & Element Bounds</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText7">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 8 -->
+                    <a href="/2. partB/lesson8/lesson8_remake.html" class="lesson-card locked" id="lessonCard8">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 08</span>
+                            <span class="lesson-status-pill locked" id="statusPill8">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Flexbox Layout & Alignment Engine</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText8">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 9 -->
+                    <a href="/2. partB/lesson9/lesson9_remake.html" class="lesson-card locked" id="lessonCard9">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 09</span>
+                            <span class="lesson-status-pill locked" id="statusPill9">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">CSS Positioning & Floating Modals</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText9">Locked</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 3: JavaScript DOM Interactivity & Events -->
+            <div class="chapter-block">
+                <div class="chapter-header">
+                    <div class="chapter-title-wrap">
+                        <span class="chapter-num">Phase 3</span>
+                        <h2 class="chapter-title">JavaScript DOM Interactivity & Events</h2>
+                    </div>
+                    <span class="chapter-badge">Lessons 10–13 • 400 XP</span>
+                </div>
+
+                <div class="lesson-cards-grid">
+                    <!-- Lesson 10 -->
+                    <a href="/2. partB/lesson10/lesson10_remake.html" class="lesson-card locked" id="lessonCard10">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 10</span>
+                            <span class="lesson-status-pill locked" id="statusPill10">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">JavaScript Logic & State Variables</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText10">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 11 -->
+                    <a href="/2. partB/lesson11/lesson11_remake.html" class="lesson-card locked" id="lessonCard11">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 11</span>
+                            <span class="lesson-status-pill locked" id="statusPill11">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Live DOM Manipulation & Queries</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText11">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 12 -->
+                    <a href="/2. partB/lesson12/lesson12_remake.html" class="lesson-card locked" id="lessonCard12">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 12</span>
+                            <span class="lesson-status-pill locked" id="statusPill12">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Event Listeners & User Interactions</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText12">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 13 -->
+                    <a href="/2. partB/lesson13/lesson13_remake.html" class="lesson-card locked" id="lessonCard13">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 13</span>
+                            <span class="lesson-status-pill locked" id="statusPill13">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Controlled Forms & Live Input Validation</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText13">Locked</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 4: Guided Applications & Capstone -->
+            <div class="chapter-block">
+                <div class="chapter-header">
+                    <div class="chapter-title-wrap">
+                        <span class="chapter-num">Phase 4</span>
+                        <h2 class="chapter-title">Guided Applications & Capstone</h2>
+                    </div>
+                    <span class="chapter-badge">Lessons 14–15 • 200 XP</span>
+                </div>
+
+                <div class="lesson-cards-grid">
+                    <!-- Lesson 14 -->
+                    <a href="/2. partB/lesson14/lesson14_remake.html" class="lesson-card locked" id="lessonCard14">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 14</span>
+                            <span class="lesson-status-pill locked" id="statusPill14">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">Guided Dashboard Mini Application</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText14">Locked</span>
+                        </div>
+                    </a>
+
+                    <!-- Lesson 15 -->
+                    <a href="/2. partB/lesson15/lesson15_remake.html" class="lesson-card locked" id="lessonCard15">
+                        <div class="card-top">
+                            <span class="lesson-idx">PROJECT 15 • CAPSTONE</span>
+                            <span class="lesson-status-pill locked" id="statusPill15">🔒 Locked</span>
+                        </div>
+                        <h3 class="lesson-card-title">🏆 Capstone Practical Web Application</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +100 XP</span>
+                            <span class="card-action-text" id="actionText15">Locked</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Certificate Milestone Box -->
+        <section class="certificate-preview-box">
+            <div class="cert-info-wrap">
+                <div class="cert-trophy-icon">🏆</div>
+                <div>
+                    <h3 class="cert-title">DOM Architect Certificate</h3>
+                    <p class="cert-desc" id="certDescText">
+                        Complete all 15 real-world JavaScript projects to unlock your official DOM Architect Certificate.
+                    </p>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="cert-action-btn locked" id="certActionBtn">
+                <span>🔒 Complete All 15 First</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Platform Footer -->
+    <PlatformFooter />
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/2. partB/hub.css" />
+
+    <!-- JavaScript Engines -->
+    <script is:inline src="/scripts/dashboard.js"></script>
+    <script is:inline src="/2. partB/hub.js"></script>
+</BaseLayout>
