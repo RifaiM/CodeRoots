@@ -2288,6 +2288,10 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
         gap: 10px;
     }
     .faq-chevron {
+        background: #94a3b8 !important;
+    }
+}
+    .faq-chevron {
         width: 26px;
         height: 26px;
     }
