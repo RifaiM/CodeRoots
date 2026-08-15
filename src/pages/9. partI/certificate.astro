@@ -10,8 +10,8 @@ const navLinks = [
 ---
 
 <BaseLayout 
-    title="Apex Graduation Diploma: Fullstack Software Engineer | CodeRoots" 
-    description="The official CodeRoots Fullstack Software Engineering Graduation Diploma certifying production mastery across Next.js, FastAPI, PostgreSQL, and AI Integration."
+    title="Apex Graduation Diploma: Fullstack Software Engineer | NoviCodes" 
+    description="The official NoviCodes Fullstack Software Engineering Graduation Diploma certifying production mastery across Next.js, FastAPI, PostgreSQL, and AI Integration."
     showHeaderFooter={false}
 >
     <PlatformHeader 
@@ -28,7 +28,7 @@ const navLinks = [
             <section class="generator-card">
                 <div class="generator-header">
                     <h2>🎓 Fullstack Software Engineer Graduation Diploma</h2>
-                    <p>Enter your full legal name or developer alias to generate your verified CodeRoots Graduation Credential.</p>
+                    <p>Enter your full legal name or developer alias to generate your verified NoviCodes Graduation Credential.</p>
                 </div>
 
                 <div class="generator-inputs">
@@ -60,7 +60,7 @@ const navLinks = [
                         <div class="cert-inner-content">
                             <div class="cert-top-badge">
                                 <span class="badge-icon">🏛️</span>
-                                <span class="badge-text">CODEROOTS APEX FULLSTACK GRADUATION DIPLOMA</span>
+                                <span class="badge-text">NOVICODES APEX FULLSTACK GRADUATION DIPLOMA</span>
                             </div>
                             <h1 class="cert-main-title">Fullstack Software Engineer</h1>
                             <p class="cert-award-text">This highest institutional credential certifies that</p>
@@ -71,7 +71,7 @@ const navLinks = [
                             <div class="cert-footer-meta">
                                 <div class="meta-col">
                                     <span class="meta-label">ACCREDITED BY</span>
-                                    <span class="meta-val">CodeRoots Academy</span>
+                                    <span class="meta-val">NoviCodes Academy</span>
                                 </div>
                                 <div class="meta-col">
                                     <span class="meta-label">GRADUATION DATE</span>
@@ -217,12 +217,12 @@ const navLinks = [
                 ctx.fillText('HONORS ID: ' + (idDisplay ? idDisplay.textContent : ''), 80, 710);
 
                 ctx.textAlign = 'right';
-                ctx.fillText('CODEROOTS ACADEMIC BOARD', 1120, 680);
+                ctx.fillText('NOVICODES ACADEMIC BOARD', 1120, 680);
                 ctx.font = '500 13px sans-serif';
                 ctx.fillText('Chief Curriculum Architect', 1120, 710);
 
                 const link = document.createElement('a');
-                link.download = `CodeRoots-Level10-Graduation-Diploma-${(name || 'Engineer').replace(/\s+/g, '_')}.png`;
+                link.download = `NoviCodes-Level10-Graduation-Diploma-${(name || 'Engineer').replace(/\s+/g, '_')}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             });

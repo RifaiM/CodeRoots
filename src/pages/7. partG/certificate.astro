@@ -10,7 +10,7 @@ const navLinks = [
 ---
 
 <BaseLayout 
-    title="Level 8 Certificate: Fullstack API Integration | CodeRoots" 
+    title="Level 8 Certificate: Fullstack API Integration | NoviCodes" 
     description="Claim your verified Certificate of Mastery in Fullstack API Data Fetching, Optimistic UI, and Microservice Integration."
     showHeaderFooter={false}
 >
@@ -28,7 +28,7 @@ const navLinks = [
             <section class="generator-card">
                 <div class="generator-header">
                     <h2>🎓 Fullstack API Specialist Certificate Generator</h2>
-                    <p>Enter your full legal name or developer alias to generate your verified CodeRoots credential.</p>
+                    <p>Enter your full legal name or developer alias to generate your verified NoviCodes credential.</p>
                 </div>
 
                 <div class="generator-inputs">
@@ -71,7 +71,7 @@ const navLinks = [
                             <div class="cert-footer-meta">
                                 <div class="meta-col">
                                     <span class="meta-label">ISSUED BY</span>
-                                    <span class="meta-val">CodeRoots Dojo</span>
+                                    <span class="meta-val">NoviCodes Academy</span>
                                 </div>
                                 <div class="meta-col">
                                     <span class="meta-label">DATE ISSUED</span>
@@ -217,12 +217,12 @@ const navLinks = [
                 ctx.fillText('VERIFICATION ID: ' + (idDisplay ? idDisplay.textContent : ''), 80, 710);
 
                 ctx.textAlign = 'right';
-                ctx.fillText('CODEROOTS ACADEMIC BOARD', 1120, 680);
+                ctx.fillText('NOVICODES ACADEMIC BOARD', 1120, 680);
                 ctx.font = '500 13px sans-serif';
                 ctx.fillText('Chief Curriculum Architect', 1120, 710);
 
                 const link = document.createElement('a');
-                link.download = `CodeRoots-Level8-Certificate-${(name || 'Engineer').replace(/\s+/g, '_')}.png`;
+                link.download = `NoviCodes-Level8-Certificate-${(name || 'Engineer').replace(/\s+/g, '_')}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             });
