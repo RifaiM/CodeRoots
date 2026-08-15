@@ -1,0 +1,275 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// 🏆 Level 10 Milestone 1: Enterprise Next.js App Router Blueprint!
+
+export const metadata = {
+  title: "Apex SaaS Engine | CodeRoots Pro",
+  description: "Enterprise Production Microservice Architecture"
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', background: '#0f172a', color: '#f8fafc', padding: '24px' }}>
+      {/* 👉 STEP 1: Render header with <h1>CodeRoots Pro SaaS</h1> */}
+      <header style={{ paddingBottom: '16px', borderBottom: '1px solid #334155', marginBottom: '20px' }}>
+        
+      </header>
+
+      {/* 👉 STEP 2: Render main children content wrapper: */}
+      {/* (Hint: <main>{children}</main>) */}
+      
+    </div>
+  );
+}
+
+function DemoPage() {
+  return (
+    <RootLayout>
+      <div style={{ padding: '16px', background: '#1e293b', borderRadius: '12px', border: '1px solid #334155' }}>
+        <p style={{ margin: 0, color: '#38bdf8' }}>🚀 App Router layout active.</p>
+      </div>
+    </RootLayout>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<DemoPage />);
+`;
+
+const level10Lessons = [
+    {
+        "id": 1,
+        "title": "Enterprise Next.js App Router Blueprint",
+        "url": "/9. partI/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Server-Side Search & Debounced Pagination",
+        "url": "/9. partI/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Stripe Checkout & Webhook Subscription Tiers",
+        "url": "/9. partI/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Modern AI / LLM REST API Integration",
+        "url": "/9. partI/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Cloud Production Deployment & Security",
+        "url": "/9. partI/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Apex Capstone: CodeRoots Pro SaaS Engine",
+        "url": "/9. partI/lesson6/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Enterprise Next.js App Router Blueprint | Level 10 Apex Capstone"
+    description="Structure production Next.js enterprise applications with modular RootLayout wrappers and responsive navigation rails."
+    levelTag="Level 10 • Apex SaaS"
+    lessonNum={1}
+    lessonTitle="Enterprise Next.js App Router Blueprint"
+    xpAmount={500}
+    completionKey="partI_lesson1_remake_complete"
+    nextLessonUrl="/9. partI/lesson2/lesson2_remake.html"
+    hubUrl="/9. partI/hub.html"
+    hubTitle="Level 10 Hub"
+    hubIcon="🏆"
+    fileTab="Apex.jsx"
+    mode="react"
+    jumpLessons={level10Lessons}
+    certificateUrl="/9. partI/certificate.html"
+    trackPrefix="partI"
+    starterCode={starterCode}
+>
+    <!-- LEFT LANE: Concept & Mission Panel -->
+    <div class="lesson-instructions" slot="instructions">
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: Modern Next.js Root Layout with top navigation bar, sidebar navigation, and main content view!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+
+        <!-- Analogy Explainer Card -->
+        <article class="concept-card">
+            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <p>Structure production Next.js enterprise applications with modular RootLayout wrappers and responsive navigation rails.</p>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> The Next.js Root Layout is the steel structural frame of a skyscraper 🏙️: once erected, every office room inside shares plumbing, electricity, and elevators effortlessly.
+            </div>
+        </article>
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partI_lesson1';
+        const DEFAULT_STARTER = `// 🏆 Level 10 Milestone 1: Enterprise Next.js App Router Blueprint!
+
+export const metadata = {
+  title: "Apex SaaS Engine | CodeRoots Pro",
+  description: "Enterprise Production Microservice Architecture"
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', background: '#0f172a', color: '#f8fafc', padding: '24px' }}>
+      {/* 👉 STEP 1: Render header with <h1>CodeRoots Pro SaaS</h1> */}
+      <header style={{ paddingBottom: '16px', borderBottom: '1px solid #334155', marginBottom: '20px' }}>
+        
+      </header>
+
+      {/* 👉 STEP 2: Render main children content wrapper: */}
+      {/* (Hint: <main>{children}</main>) */}
+      
+    </div>
+  );
+}
+
+function DemoPage() {
+  return (
+    <RootLayout>
+      <div style={{ padding: '16px', background: '#1e293b', borderRadius: '12px', border: '1px solid #334155' }}>
+        <p style={{ margin: 0, color: '#38bdf8' }}>🚀 App Router layout active.</p>
+      </div>
+    </RootLayout>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<DemoPage />);
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { id: 'heading', label: 'Render <code>&lt;h1&gt;CodeRoots Pro SaaS&lt;/h1&gt;</code> in header', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /<h1[^>]*>CodeRoots Pro SaaS<\/h1>/i.test(c); } },
+            { id: 'children', label: 'Render <code>children</code> inside <code>&lt;main&gt;</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /<main[^>]*>\s*\{\s*children\s*\}\s*<\/main>/i.test(c); } }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'javascript'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live React JSX preview inside iframe
+            if (previewIframe) {
+                const code = editor.value;
+                const htmlDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    try {
+      ${code}
+    } catch (err) {
+      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
+    }
+  <\/script>
+</body>
+</html>`;
+                previewIframe.srcdoc = htmlDoc;
+            }
+
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action with Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Enterprise Next.js App Router Blueprint',
+                    xp: 500,
+                    completionKey: 'partI_lesson1_remake_complete',
+                    nextUrl: '/9. partI/lesson2/lesson2_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
+        // Initial Paint
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

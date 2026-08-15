@@ -1,0 +1,267 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// 👑 Lesson 5: Role-Based Access Control (RBAC)!
+
+function RBACSecurityCenter() {
+  const [role, setRole] = React.useState("member");
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+      <h2>👑 RBAC Permission Guard</h2>
+      
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ fontSize: '0.88rem', marginRight: '8px' }}>Active Role:</label>
+        <select value={role} onChange={e => setRole(e.target.value)} style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+          <option value="member">Standard Member</option>
+          <option value="admin">System Administrator</option>
+        </select>
+      </div>
+
+      <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '12px' }}>
+        <p style={{ margin: 0 }}>📄 General Workspace: Available to all team members.</p>
+      </div>
+
+      {/* 👉 STEP 1: Conditionally render Admin Panel when role === 'admin': */}
+      {/* (Hint: role === "admin" && <div style={{ padding: '12px', background: '#fef3c7', borderRadius: '8px', border: '1px solid #fde68a' }}>⚙️ Admin Panel: Server logs & Billing Controls</div>) */}
+      
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<RBACSecurityCenter />);
+`;
+
+const level9Lessons = [
+    {
+        "id": 1,
+        "title": "Stateless JWT Login & Token Storage",
+        "url": "/8. partH/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Global useAuth() Context & Session Hook",
+        "url": "/8. partH/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Protected Route Guards & Redirects",
+        "url": "/8. partH/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Cloud Database Relational CRUD",
+        "url": "/8. partH/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Role-Based Access Control (RBAC)",
+        "url": "/8. partH/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Capstone: Multi-User Task SaaS with RBAC",
+        "url": "/8. partH/lesson6/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Role-Based Access Control (RBAC) | Level 9 Fullstack Dojo"
+    description="Enforce multi-tier permissions by conditionally rendering administrative controls and privileged API actions based on user roles."
+    levelTag="Level 9 • Auth & Database"
+    lessonNum={5}
+    lessonTitle="Role-Based Access Control (RBAC)"
+    xpAmount={250}
+    completionKey="partH_lesson5_remake_complete"
+    nextLessonUrl="/8. partH/lesson6/lesson6_remake.html"
+    hubUrl="/8. partH/hub.html"
+    hubTitle="Level 9 Hub"
+    hubIcon="🛡️"
+    fileTab="Auth.jsx"
+    mode="react"
+    jumpLessons={level9Lessons}
+    certificateUrl="/8. partH/certificate.html"
+    trackPrefix="partH"
+    starterCode={starterCode}
+>
+    <!-- LEFT LANE: Concept & Mission Panel -->
+    <div class="lesson-instructions" slot="instructions">
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: RBAC Role Switcher displaying Admin Server Controls only when user.role === 'admin'!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+
+        <!-- Analogy Explainer Card -->
+        <article class="concept-card">
+            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <p>Enforce multi-tier permissions by conditionally rendering administrative controls and privileged API actions based on user roles.</p>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> RBAC is like an office keycard access hierarchy 🪪: standard staff badges open meeting rooms, while only executive admin cards open the server vault.
+            </div>
+        </article>
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partH_lesson5';
+        const DEFAULT_STARTER = `// 👑 Lesson 5: Role-Based Access Control (RBAC)!
+
+function RBACSecurityCenter() {
+  const [role, setRole] = React.useState("member");
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+      <h2>👑 RBAC Permission Guard</h2>
+      
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ fontSize: '0.88rem', marginRight: '8px' }}>Active Role:</label>
+        <select value={role} onChange={e => setRole(e.target.value)} style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+          <option value="member">Standard Member</option>
+          <option value="admin">System Administrator</option>
+        </select>
+      </div>
+
+      <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '12px' }}>
+        <p style={{ margin: 0 }}>📄 General Workspace: Available to all team members.</p>
+      </div>
+
+      {/* 👉 STEP 1: Conditionally render Admin Panel when role === 'admin': */}
+      {/* (Hint: role === "admin" && <div style={{ padding: '12px', background: '#fef3c7', borderRadius: '8px', border: '1px solid #fde68a' }}>⚙️ Admin Panel: Server logs & Billing Controls</div>) */}
+      
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<RBACSecurityCenter />);
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { id: 'rbac_condition', label: 'Check <code>role === "admin"</code> before rendering Admin Panel', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /role[\s\n]*===[\s\n]*["']admin["']/i.test(c); } },
+            { id: 'admin_panel', label: 'Render Admin Panel markup inside condition', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /Admin Panel/i.test(c); } }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'javascript'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live React JSX preview inside iframe
+            if (previewIframe) {
+                const code = editor.value;
+                const htmlDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    try {
+      ${code}
+    } catch (err) {
+      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
+    }
+  <\/script>
+</body>
+</html>`;
+                previewIframe.srcdoc = htmlDoc;
+            }
+
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action with Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Role-Based Access Control (RBAC)',
+                    xp: 250,
+                    completionKey: 'partH_lesson5_remake_complete',
+                    nextUrl: '/8. partH/lesson6/lesson6_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
+        // Initial Paint
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

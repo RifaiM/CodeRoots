@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformHeader from '../../components/PlatformHeader.astro';
+import PlatformFooter from '../../components/PlatformFooter.astro';
+
+const navLinks = [
+    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/8. partH/hub.html', label: 'Level 9 Hub', icon: '🛡️', title: 'Level 9 Hub' },
+    { href: 'javascript:void(0)', label: 'Level 10 Apex', icon: '🏆', title: 'Apex Capstone Hub', active: true }
+];
+---
+
+<BaseLayout
+    title="The Apex Production SaaS & AI Capstone (Level 10) | CodeRoots"
+    description="The flagship graduation capstone: Build, scale, monetize, and deploy a production-grade AI-powered SaaS application with Next.js, Stripe, and FastAPI."
+    showHeaderFooter={false}
+>
+    <!-- Top Global Header -->
+    <PlatformHeader 
+        slot="header"
+        tagText="Level 10 • Apex SaaS"
+        tagId="headerLogoTag"
+        navLinks={navLinks}
+        showXpBadge={true}
+        showLevelBadge={true}
+    />
+
+    <main class="hub-container">
+        <!-- Hero Section -->
+        <section class="hub-hero">
+            <span class="hub-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white;">🏆 Level 10 • The Apex Graduation Capstone</span>
+            <h1>Launch Your Production AI-Powered SaaS Engine</h1>
+            <p>
+                The ultimate culmination of your software engineering journey. Build a modern fullstack SaaS product with Next.js App Router, PostgreSQL persistence, Stripe recurring billing tiers, automated AI summaries, and cloud deployment!
+            </p>
+
+            <!-- Live Progress Bar -->
+            <div class="hero-progress-wrap">
+                <div class="hero-progress-info">
+                    <span>Graduation Progress</span>
+                    <span id="heroProgressText">0 of 6 Milestones Completed (0%)</span>
+                </div>
+                <div class="hero-progress-bar">
+                    <div class="hero-progress-fill" id="heroProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Smart Resume CTA -->
+            <a href="/9. partI/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
+                <span>🚀 Start Milestone 1: App Router Blueprint ➔</span>
+            </a>
+        </section>
+
+        <!-- Stats Overview Row -->
+        <section class="hub-stats-grid">
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">3,000 XP</div>
+                <div class="hub-stat-lbl">Grand Master Bounty</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val" id="statCompletedProjects">0 / 6</div>
+                <div class="hub-stat-lbl">Milestones Shipped</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">Next.js + AI + Stripe</div>
+                <div class="hub-stat-lbl">Enterprise Tech Stack</div>
+            </div>
+            <div class="hub-stat-card">
+                <div class="hub-stat-val">Fullstack Engineer</div>
+                <div class="hub-stat-lbl">Graduation Credential</div>
+            </div>
+        </section>
+
+        <!-- Curriculum Breakdown -->
+        <section class="curriculum-section">
+            <div class="chapter-block">
+                <div class="chapter-header">
+                    <div class="chapter-title-wrap">
+                        <span class="chapter-num">Apex Track</span>
+                        <h2 class="chapter-title">Production SaaS &amp; AI Integration</h2>
+                    </div>
+                    <span class="chapter-badge">Milestones 1–6 • 3,000 XP</span>
+                </div>
+
+                <div class="lesson-cards-grid">
+                    
+                    <a href="/9. partI/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 01</span>
+                            <span class="lesson-status-pill available" id="statusPill1">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Enterprise Next.js App Router Blueprint</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText1">Start ➔</span>
+                        </div>
+                    </a>
+                    <a href="/9. partI/lesson2/lesson2_remake.html" class="lesson-card" id="lessonCard2">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 02</span>
+                            <span class="lesson-status-pill available" id="statusPill2">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Server-Side Search & Debounced Pagination</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText2">Start ➔</span>
+                        </div>
+                    </a>
+                    <a href="/9. partI/lesson3/lesson3_remake.html" class="lesson-card" id="lessonCard3">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 03</span>
+                            <span class="lesson-status-pill available" id="statusPill3">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Stripe Checkout & Webhook Subscription Tiers</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText3">Start ➔</span>
+                        </div>
+                    </a>
+                    <a href="/9. partI/lesson4/lesson4_remake.html" class="lesson-card" id="lessonCard4">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 04</span>
+                            <span class="lesson-status-pill available" id="statusPill4">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Modern AI / LLM REST API Integration</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText4">Start ➔</span>
+                        </div>
+                    </a>
+                    <a href="/9. partI/lesson5/lesson5_remake.html" class="lesson-card" id="lessonCard5">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 05</span>
+                            <span class="lesson-status-pill available" id="statusPill5">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Cloud Production Deployment & Security</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText5">Start ➔</span>
+                        </div>
+                    </a>
+                    <a href="/9. partI/lesson6/lesson6_remake.html" class="lesson-card" id="lessonCard6">
+                        <div class="card-top">
+                            <span class="lesson-idx">MILESTONE 06</span>
+                            <span class="lesson-status-pill available" id="statusPill6">⚡ Up Next</span>
+                        </div>
+                        <h3 class="lesson-card-title">Apex Capstone: CodeRoots Pro SaaS Engine</h3>
+                        <div class="card-bottom">
+                            <span class="xp-tag">⚡ +500 XP</span>
+                            <span class="card-action-text" id="actionText6">Start ➔</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Showcase Card -->
+        <section class="hub-cert-card">
+            <div class="cert-card-inner">
+                <div class="cert-icon-wrap">🎓</div>
+                <div class="cert-text-wrap">
+                    <h3>Official Fullstack Software Engineer Graduation Diploma</h3>
+                    <p>Complete all 6 Level 10 Apex milestones to earn your official CodeRoots Fullstack Software Engineering Graduation Diploma.</p>
+                </div>
+                <a href="/9. partI/certificate.html" class="cert-btn" id="claimCertBtn">
+                    <span>🏆 Claim Graduation Diploma</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <PlatformFooter />
+</BaseLayout>
+
+<script>
+    function updateHubProgress() {
+        let completed = 0;
+        for (let i = 1; i <= 6; i++) {
+            const isDone = localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true' ||
+                           localStorage.getItem(`partI_lesson${i}_complete`) === 'true';
+            const card = document.getElementById(`lessonCard${i}`);
+            const pill = document.getElementById(`statusPill${i}`);
+            const action = document.getElementById(`actionText${i}`);
+
+            if (isDone) {
+                completed++;
+                if (card) card.classList.add('completed');
+                if (pill) { pill.className = 'lesson-status-pill completed'; pill.textContent = '✅ Completed'; }
+                if (action) action.textContent = 'Review ➔';
+            }
+        }
+
+        const pct = Math.round((completed / 6) * 100);
+        const fill = document.getElementById('heroProgressFill');
+        const text = document.getElementById('heroProgressText');
+        const stat = document.getElementById('statCompletedProjects');
+
+        if (fill) fill.style.width = `${pct}%`;
+        if (text) text.textContent = `${completed} of 6 Milestones Completed (${pct}%)`;
+        if (stat) stat.textContent = `${completed} / 6`;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateHubProgress);
+    updateHubProgress();
+</script>
+
+<style>
+    .hub-container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 80px; }
+    .hub-hero { background: linear-gradient(135deg, #0f172a 0%, #291e0a 100%); border-radius: 24px; padding: 40px 32px; color: white; margin-bottom: 32px; border: 1px solid #78350f; }
+    .hub-badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; }
+    .hub-hero h1 { font-size: 2.2rem; font-weight: 800; margin: 0 0 12px; line-height: 1.2; }
+    .hub-hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 720px; margin: 0 0 24px; line-height: 1.6; }
+    .hero-progress-wrap { background: rgba(255,255,255,0.06); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 24px; }
+    .hero-progress-info { display: flex; justify-content: space-between; font-size: 0.90rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px; }
+    .hero-progress-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 6px; overflow: hidden; }
+    .hero-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #fbbf24, #f59e0b); transition: width 0.4s ease; }
+    .hero-cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: #f59e0b; color: #0f172a; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 1.02rem; transition: transform 0.2s, background 0.2s; }
+    .hero-cta-btn:hover { background: #d97706; transform: translateY(-2px); }
+    .hub-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .hub-stat-card { background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; }
+    .hub-stat-val { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+    .hub-stat-lbl { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+    .chapter-block { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; margin-bottom: 32px; }
+    .chapter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9; }
+    .chapter-num { font-size: 0.80rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .chapter-title { font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 4px 0 0; }
+    .chapter-badge { font-size: 0.82rem; font-weight: 700; color: #475569; background: #f1f5f9; padding: 4px 12px; border-radius: 8px; }
+    .lesson-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .lesson-card { display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 18px; text-decoration: none; color: inherit; transition: all 0.2s ease; min-height: 120px; }
+    .lesson-card:hover { transform: translateY(-3px); border-color: #f59e0b; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.12); background: #ffffff; }
+    .lesson-card.completed { border-color: #10b981; background: #f0fdf4; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .lesson-idx { font-size: 0.72rem; font-weight: 800; color: #64748b; }
+    .lesson-status-pill { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+    .lesson-status-pill.available { background: #fef3c7; color: #b45309; }
+    .lesson-status-pill.completed { background: #dcfce7; color: #15803d; }
+    .lesson-card-title { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 14px; line-height: 1.4; }
+    .card-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .xp-tag { font-size: 0.78rem; font-weight: 700; color: #d97706; }
+    .card-action-text { font-size: 0.82rem; font-weight: 700; color: #0f172a; }
+    .hub-cert-card { background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%); border: 1.5px dashed #f59e0b; border-radius: 20px; padding: 28px; }
+    .cert-card-inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .cert-icon-wrap { font-size: 2.8rem; }
+    .cert-text-wrap { flex: 1; min-width: 240px; }
+    .cert-text-wrap h3 { font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
+    .cert-text-wrap p { font-size: 0.92rem; color: #475569; margin: 0; }
+    .cert-btn { padding: 12px 24px; background: #f59e0b; color: #0f172a; text-decoration: none; border-radius: 10px; font-weight: 800; transition: background 0.2s; }
+    .cert-btn:hover { background: #d97706; }
+</style>

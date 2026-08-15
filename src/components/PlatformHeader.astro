@@ -410,6 +410,12 @@ const {
             } else if (t.includes('branchC')) {
                 return localStorage.getItem(`partF_branchC_lesson${num}_complete`) === 'true' ||
                        localStorage.getItem(`partF_branchC_lesson${num}_completed`) === 'true';
+            } else if (t === 'partG') {
+                return localStorage.getItem(`partG_lesson${num}_remake_complete`) === 'true';
+            } else if (t === 'partH') {
+                return localStorage.getItem(`partH_lesson${num}_remake_complete`) === 'true';
+            } else if (t === 'partI') {
+                return localStorage.getItem(`partI_lesson${num}_remake_complete`) === 'true';
             }
             return false;
         }
@@ -471,7 +477,7 @@ const {
         if (certItem) {
             let isCertUnlocked = false;
             let completedCount = 0;
-            const totalRequired = (track.includes('branch') || track.startsWith('partF')) ? 6 : 15;
+            const totalRequired = (track.includes('branch') || track.startsWith('partF') || track === 'partG' || track === 'partH' || track === 'partI') ? 6 : 15;
 
             if (track === 'partB') {
                 for (let i = 1; i <= 15; i++) if (checkLessonComp('partB', i)) completedCount++;
@@ -487,6 +493,15 @@ const {
                 const b = checkLessonComp('partF_branchB', 6);
                 const c = checkLessonComp('partF_branchC', 6);
                 isCertUnlocked = isPracticeMode || a || b || c || localStorage.getItem('partF_branchA_completed') === 'true' || localStorage.getItem('partF_branchB_completed') === 'true' || localStorage.getItem('partF_branchC_completed') === 'true';
+            } else if (track === 'partG') {
+                for (let i = 1; i <= 6; i++) if (checkLessonComp('partG', i)) completedCount++;
+                isCertUnlocked = isPracticeMode || completedCount >= 6;
+            } else if (track === 'partH') {
+                for (let i = 1; i <= 6; i++) if (checkLessonComp('partH', i)) completedCount++;
+                isCertUnlocked = isPracticeMode || completedCount >= 6;
+            } else if (track === 'partI') {
+                for (let i = 1; i <= 6; i++) if (checkLessonComp('partI', i)) completedCount++;
+                isCertUnlocked = isPracticeMode || completedCount >= 6;
             }
 
             const certStatus = certItem.querySelector('.jump-item-status');

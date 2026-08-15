@@ -1,0 +1,263 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// 🔔 Lesson 5: Real-Time Polling & Live Badges!
+
+function LiveNotificationCenter() {
+  const [unreadCount, setUnreadCount] = React.useState(3);
+
+  React.useEffect(() => {
+    // 👉 STEP 1: Set up polling interval with const timer = setInterval(() => { ... }, 5000)
+    // (Hint: const timer = setInterval(() => { fetch("/api/notifications/count").then(r => r.json()).then(d => setUnreadCount(d.count)); }, 5000);)
+    
+
+    // 👉 STEP 2: Return cleanup function: return () => clearInterval(timer);
+    
+  }, []);
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+      <h2>🔔 Notification Radar</h2>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#f1f5f9', borderRadius: '12px' }}>
+        <span style={{ fontSize: '1.5rem' }}>📬</span>
+        <span>Unread Alerts: <strong>{unreadCount}</strong></span>
+      </div>
+      <p style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '12px' }}>Auto-polling server every 5s with memory leak protection.</p>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveNotificationCenter />);
+`;
+
+const level8Lessons = [
+    {
+        "id": 1,
+        "title": "Async Data Fetching & Skeletons",
+        "url": "/7. partG/lesson1/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Error Boundaries & HTTP Fallbacks",
+        "url": "/7. partG/lesson2/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Form Mutations & JSON POST",
+        "url": "/7. partG/lesson3/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Optimistic UI Updates",
+        "url": "/7. partG/lesson4/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Real-Time Polling & Live Badges",
+        "url": "/7. partG/lesson5/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Capstone: Live E-Commerce Dashboard",
+        "url": "/7. partG/lesson6/lesson6_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Real-Time Polling & Live Badges | Level 8 Fullstack Dojo"
+    description="Implement automated polling intervals with React useEffect cleanup timers to keep notification badges synchronized."
+    levelTag="Level 8 • Fullstack Bridge"
+    lessonNum={5}
+    lessonTitle="Real-Time Polling & Live Badges"
+    xpAmount={250}
+    completionKey="partG_lesson5_remake_complete"
+    nextLessonUrl="/7. partG/lesson6/lesson6_remake.html"
+    hubUrl="/7. partG/hub.html"
+    hubTitle="Level 8 Hub"
+    hubIcon="🌉"
+    fileTab="App.jsx"
+    mode="react"
+    jumpLessons={level8Lessons}
+    certificateUrl="/7. partG/certificate.html"
+    trackPrefix="partG"
+    starterCode={starterCode}
+>
+    <!-- LEFT LANE: Concept & Mission Panel -->
+    <div class="lesson-instructions" slot="instructions">
+        <!-- Unified Mission Card -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview: A Notification Bell counter polling the server every 5 seconds with automatic cleanup timer!</div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+
+        <!-- Analogy Explainer Card -->
+        <article class="concept-card">
+            <h3><span>💡</span> Concept &amp; Everyday Analogy</h3>
+            <p>Implement automated polling intervals with React useEffect cleanup timers to keep notification badges synchronized.</p>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Polling is like checking your physical mailbox every morning 📬: looking for new letters on a steady recurring schedule.
+            </div>
+        </article>
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partG_lesson5';
+        const DEFAULT_STARTER = `// 🔔 Lesson 5: Real-Time Polling & Live Badges!
+
+function LiveNotificationCenter() {
+  const [unreadCount, setUnreadCount] = React.useState(3);
+
+  React.useEffect(() => {
+    // 👉 STEP 1: Set up polling interval with const timer = setInterval(() => { ... }, 5000)
+    // (Hint: const timer = setInterval(() => { fetch("/api/notifications/count").then(r => r.json()).then(d => setUnreadCount(d.count)); }, 5000);)
+    
+
+    // 👉 STEP 2: Return cleanup function: return () => clearInterval(timer);
+    
+  }, []);
+
+  return (
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+      <h2>🔔 Notification Radar</h2>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#f1f5f9', borderRadius: '12px' }}>
+        <span style={{ fontSize: '1.5rem' }}>📬</span>
+        <span>Unread Alerts: <strong>{unreadCount}</strong></span>
+      </div>
+      <p style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '12px' }}>Auto-polling server every 5s with memory leak protection.</p>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<LiveNotificationCenter />);
+`;
+
+        // 1. Initialize Real-Time Conceptual Checklist
+        DojoEngine.initChecklist([
+            { id: 'setinterval', label: 'Declare interval with <code>const timer = setInterval(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:const|let|var)?[\s\n]*timer[\s\n]*=[\s\n]*setInterval/i.test(c); } },
+            { id: 'cleanup', label: 'Return cleanup function <code>return () => clearInterval(timer)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /return[\s\n]*\([\s\n]*\)[\s\n]*=>[\s\n]*clearInterval[\s\n]*\([\s\n]*timer[\s\n]*\)/i.test(c); } }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'javascript'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Render live React JSX preview inside iframe
+            if (previewIframe) {
+                const code = editor.value;
+                const htmlDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    try {
+      ${code}
+    } catch (err) {
+      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
+    }
+  <\/script>
+</body>
+</html>`;
+                previewIframe.srcdoc = htmlDoc;
+            }
+
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'javascript');
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action with Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Real-Time Polling & Live Badges',
+                    xp: 250,
+                    completionKey: 'partG_lesson5_remake_complete',
+                    nextUrl: '/7. partG/lesson6/lesson6_remake.html',
+                    mode: 'javascript'
+                });
+            });
+        }
+
+        // Initial Paint
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>
