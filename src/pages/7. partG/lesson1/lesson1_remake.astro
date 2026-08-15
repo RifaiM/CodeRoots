@@ -42,7 +42,7 @@ root.render(<ProductCatalog />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Async Data Fetching & Skeletons",
+        "title": "Async Data Fetching & Skeleton Loaders",
         "url": "/7. partG/lesson1/lesson1_remake.html"
     },
     {
@@ -52,33 +52,33 @@ const jumpLessons = [
     },
     {
         "id": 3,
-        "title": "Form Mutations & JSON POST",
+        "title": "Controlled Form Mutations & Pending State",
         "url": "/7. partG/lesson3/lesson3_remake.html"
     },
     {
         "id": 4,
-        "title": "Optimistic UI Updates",
+        "title": "Optimistic UI Updates & State Rollbacks",
         "url": "/7. partG/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Real-Time Polling & Live Badges",
+        "title": "Real-Time Polling & Sync Cleanup",
         "url": "/7. partG/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Live E-Commerce Dashboard",
+        "title": "Capstone: Reactive E-Commerce Dashboard",
         "url": "/7. partG/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Async Data Fetching & Skeletons | Level 8 • Fullstack Bridge"
-    description="Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons."
-    levelTag="Level 8 • Fullstack Bridge"
+    title="Async Data Fetching & Skeleton Loaders | Level 8 • Async UI Architecture"
+    description="Fetch asynchronous data in React with useEffect and render animated skeleton loading states."
+    levelTag="Level 8 • Async UI Architecture"
     lessonNum={1}
-    lessonTitle="Async Data Fetching & Skeletons"
+    lessonTitle="Async Data Fetching & Skeleton Loaders"
     xpAmount={250}
     completionKey="partG_lesson1_remake_complete"
     nextLessonUrl="/7. partG/lesson2/lesson2_remake.html"
@@ -94,7 +94,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons.
+        Fetch asynchronous data in React with useEffect and render animated skeleton loading states.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -107,7 +107,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">A product catalog displaying a pulsing loading skeleton that transitions into live product cards from the server!</div>
+                <div style="color: #475569; margin-top: 3px;">Build a product catalog that renders an animated loading placeholder while awaiting asynchronous API data!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>

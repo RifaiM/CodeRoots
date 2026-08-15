@@ -51,12 +51,12 @@ root.render(<CloudDatabaseManager />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Stateless JWT Login & Token Storage",
+        "title": "Auth Token State & Client Session Storage",
         "url": "/8. partH/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Global useAuth() Context & Session Hook",
+        "title": "Global AuthContext & useAuth() Hook",
         "url": "/8. partH/lesson2/lesson2_remake.html"
     },
     {
@@ -66,28 +66,28 @@ const jumpLessons = [
     },
     {
         "id": 4,
-        "title": "Cloud Database Relational CRUD",
+        "title": "User Directory State & Immutable Mutations",
         "url": "/8. partH/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Role-Based Access Control (RBAC)",
+        "title": "Role-Based Access Control (RBAC) UI Gates",
         "url": "/8. partH/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Multi-User Task SaaS with RBAC",
+        "title": "Capstone: Secure Workspace with Role Guards",
         "url": "/8. partH/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Cloud Database Relational CRUD | Level 9 • Auth & Database"
-    description="Perform transactional Create, Read, and Update operations on cloud PostgreSQL tables using FastAPI and SQLAlchemy ORM."
-    levelTag="Level 9 • Auth & Database"
+    title="User Directory State & Immutable Mutations | Level 9 • React Auth & Access Control"
+    description="Manage an in-memory user directory with immutable state updates in React."
+    levelTag="Level 9 • React Auth & Access Control"
     lessonNum={4}
-    lessonTitle="Cloud Database Relational CRUD"
+    lessonTitle="User Directory State & Immutable Mutations"
     xpAmount={250}
     completionKey="partH_lesson4_remake_complete"
     nextLessonUrl="/8. partH/lesson5/lesson5_remake.html"
@@ -103,7 +103,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Perform transactional Create, Read, and Update operations on cloud PostgreSQL tables using FastAPI and SQLAlchemy ORM.
+        Manage an in-memory user directory with immutable state updates in React.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -116,7 +116,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">User Directory querying PostgreSQL records and inserting new team members with instant table sync!</div>
+                <div style="color: #475569; margin-top: 3px;">Build a user directory manager that immutably inserts new team members into React state!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>

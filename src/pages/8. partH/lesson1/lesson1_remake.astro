@@ -45,12 +45,12 @@ root.render(<LoginPortal />);
 const jumpLessons = [
     {
         "id": 1,
-        "title": "Stateless JWT Login & Token Storage",
+        "title": "Auth Token State & Client Session Storage",
         "url": "/8. partH/lesson1/lesson1_remake.html"
     },
     {
         "id": 2,
-        "title": "Global useAuth() Context & Session Hook",
+        "title": "Global AuthContext & useAuth() Hook",
         "url": "/8. partH/lesson2/lesson2_remake.html"
     },
     {
@@ -60,28 +60,28 @@ const jumpLessons = [
     },
     {
         "id": 4,
-        "title": "Cloud Database Relational CRUD",
+        "title": "User Directory State & Immutable Mutations",
         "url": "/8. partH/lesson4/lesson4_remake.html"
     },
     {
         "id": 5,
-        "title": "Role-Based Access Control (RBAC)",
+        "title": "Role-Based Access Control (RBAC) UI Gates",
         "url": "/8. partH/lesson5/lesson5_remake.html"
     },
     {
         "id": 6,
-        "title": "Capstone: Multi-User Task SaaS with RBAC",
+        "title": "Capstone: Secure Workspace with Role Guards",
         "url": "/8. partH/lesson6/lesson6_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Stateless JWT Login & Token Storage | Level 9 • Auth & Database"
-    description="Authenticate user credentials with FastAPI backend, extract JWT bearer tokens, and persist tokens to browser storage."
-    levelTag="Level 9 • Auth & Database"
+    title="Auth Token State & Client Session Storage | Level 9 • React Auth & Access Control"
+    description="Manage authentication tokens in React state and handle login/logout transitions."
+    levelTag="Level 9 • React Auth & Access Control"
     lessonNum={1}
-    lessonTitle="Stateless JWT Login & Token Storage"
+    lessonTitle="Auth Token State & Client Session Storage"
     xpAmount={250}
     completionKey="partH_lesson1_remake_complete"
     nextLessonUrl="/8. partH/lesson2/lesson2_remake.html"
@@ -97,7 +97,7 @@ const jumpLessons = [
 >
     <!-- Intro Slot -->
     <p class="lesson-subtitle" slot="intro">
-        Authenticate user credentials with FastAPI backend, extract JWT bearer tokens, and persist tokens to browser storage.
+        Manage authentication tokens in React state and handle login/logout transitions.
     </p>
 
     <!-- Concept Slot (Left Pane) -->
@@ -110,7 +110,7 @@ const jumpLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">A Member Login Form authenticating 'dev_user' and persisting the JWT token to local storage!</div>
+                <div style="color: #475569; margin-top: 3px;">Build an authenticated login portal that stores auth credentials in state and renders the bearer session!</div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
