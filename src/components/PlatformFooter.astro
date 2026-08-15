@@ -63,7 +63,7 @@ const {
             </h3>
             <ul class="footer-nav-list">
                 <li><a href="/#dailyQuestSection">Daily 2-Minute Quests</a></li>
-                <li><a href="javascript:void(0)" onclick="if(typeof openCertificateHub==='function') openCertificateHub();">Proof-of-Work Certificates</a></li>
+                <li><a href="javascript:void(0)" onclick="if(typeof openCertificateHub==='function'){openCertificateHub();}else if(typeof window.openCertificateHub==='function'){window.openCertificateHub();}else{window.location.href='/2. partB/certificate.html';}">Proof-of-Work Certificates</a></li>
                 <li><a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
                 <li><a href="/terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
                 <li><a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Creator Portfolio ↗</a></li>
