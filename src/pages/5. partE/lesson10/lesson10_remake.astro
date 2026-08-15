@@ -332,7 +332,18 @@ import asyncio
                         customMessage: 'You have mastered this Python backend challenge!'
                     });
                 } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
+                    const firstIncomplete = result.incompleteTasks[0];
+                    const cleanLabel = firstIncomplete ? (firstIncomplete.label || firstIncomplete.text || 'Requirement').replace(/<[^>]+>/g, '').trim() : 'Requirement incomplete';
+                    DojoEngine.showLint(`Mission Incomplete: ${cleanLabel}`, 'warning', 'Review "🎯 Your Mission" in the left pane and verify that your code matches the expected pattern.');
+                    if (firstIncomplete) {
+                        const targetItem = document.getElementById(`task_item_${firstIncomplete.id}`);
+                        if (targetItem) {
+                            targetItem.classList.remove('task-highlight-pulse');
+                            void targetItem.offsetWidth;
+                            targetItem.classList.add('task-highlight-pulse');
+                            targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
                 }
             });
         }

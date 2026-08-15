@@ -80,8 +80,9 @@ export class ChecklistManager {
         }
     }
 
-    public run(rawCode: string): { allPassed: boolean; passedCount: number; totalCount: number } {
+    public run(rawCode: string): ChecklistResult {
         let passedCount = 0;
+        const incompleteTasks: ChecklistTask[] = [];
         let doc: Document | undefined;
 
         // Strip comments so instructional TODO comments never trigger tasks
@@ -117,7 +118,11 @@ export class ChecklistManager {
                 }
             }
 
-            if (isPassed) passedCount++;
+            if (isPassed) {
+                passedCount++;
+            } else {
+                incompleteTasks.push(task);
+            }
         });
 
         const counter = document.getElementById('checklistCounter') || document.getElementById('missionCounter');
@@ -133,7 +138,9 @@ export class ChecklistManager {
         return {
             allPassed: passedCount === this.tasks.length && this.tasks.length > 0,
             passedCount,
-            totalCount: this.tasks.length
+            totalCount: this.tasks.length,
+            incompleteTasks
         };
     }
 }
+

@@ -1027,3 +1027,15 @@
     .dojo-checklist-card { padding: 10px 10px; border-radius: 10px; }
 }
 
+/* Mission Step Pulse Animation for Validation Feedback */
+@keyframes taskPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+    50% { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.2); background-color: #eff6ff; }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.task-highlight-pulse {
+    animation: taskPulse 1.2s ease-in-out;
+    border-radius: 8px;
+}
+

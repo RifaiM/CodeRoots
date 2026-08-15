@@ -1,4 +1,6 @@
 import type { DiagnosticProblem } from '../types';
+import { CSSLinter } from './cssLinter';
+import { JSCompiler } from './jsCompiler';
 
 const VOID_ELEMENTS = new Set([
     'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
@@ -144,6 +146,45 @@ export class HTMLLinter {
             });
         } catch (e) {}
 
+        // 5. Embedded CSS Diagnostics (<style>...</style>)
+        const styleRegex = /<style[^>]*>([\s\S]*?)<\/style>/gi;
+        let styleMatch: RegExpExecArray | null;
+        while ((styleMatch = styleRegex.exec(code)) !== null) {
+            const styleContent = styleMatch[1];
+            if (styleContent && styleContent.trim()) {
+                const preStyle = code.substring(0, styleMatch.index + styleMatch[0].indexOf(styleContent));
+                const lineOffset = preStyle.split('\n').length - 1;
+
+                const cssProblems = CSSLinter.lint(styleContent);
+                cssProblems.forEach(p => {
+                    problems.push({
+                        ...p,
+                        line: p.line !== undefined ? p.line + lineOffset : lineOffset + 1
+                    });
+                });
+            }
+        }
+
+        // 6. Embedded JavaScript Diagnostics (<script>...</script>)
+        const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/gi;
+        let scriptMatch: RegExpExecArray | null;
+        while ((scriptMatch = scriptRegex.exec(code)) !== null) {
+            const scriptContent = scriptMatch[1];
+            if (scriptContent && scriptContent.trim()) {
+                const preScript = code.substring(0, scriptMatch.index + scriptMatch[0].indexOf(scriptContent));
+                const lineOffset = preScript.split('\n').length - 1;
+
+                const jsProblems = JSCompiler.lint(scriptContent);
+                jsProblems.forEach(p => {
+                    problems.push({
+                        ...p,
+                        line: p.line !== undefined ? p.line + lineOffset : lineOffset + 1
+                    });
+                });
+            }
+        }
+
         return problems;
     }
 }
+

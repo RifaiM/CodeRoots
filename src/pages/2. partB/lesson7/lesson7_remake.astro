@@ -200,35 +200,13 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* 👉 STE
         // 5. Check & Verify Code Action with Empty & Diagnostics Protection
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                const code = editor.value;
-
-                // Empty or Whitespace-only Submission Protection
-                if (DojoEngine.isEmpty(code)) {
-                    DojoEngine.showLint('Your code editor is empty! Write your code before verifying.', 'error', 'Follow the step-by-step instructions in the left pane.');
-                    return;
-                }
-
-                // Check for blocking syntax errors from Linter
-                const problems = DojoEngine.lint(code, 'html');
-                const hasErrors = problems.some(p => p.severity === 'error');
-                if (hasErrors) {
-                    return; // Block submission while syntax errors exist
-                }
-
-                const result = DojoEngine.runChecklist(code);
-
-                if (result.allPassed) {
-                    DojoEngine.clearLint();
-                    DojoEngine.celebrateCompletion({
-                        lessonTitle: 'Lesson 7: The CSS Box Model & Spacing',
-                        xp: 100,
-                        completionKey: 'partB_lesson7_remake_complete',
-                        nextUrl: '/2. partB/lesson8/lesson8_remake.html',
-                        customMessage: 'You have mastered this project challenge!'
-                    });
-                } else {
-                    DojoEngine.showLint('Project requirements incomplete', 'warning', 'Check the task checklist below to see remaining requirements.');
-                }
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: 'Project 07: The CSS Box Model & Spacing',
+                    xp: 100,
+                    completionKey: 'partB_lesson7_remake_complete',
+                    nextUrl: '/2. partB/lesson8/lesson8_remake.html',
+                    mode: 'html'
+                });
             });
         }
 

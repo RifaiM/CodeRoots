@@ -19,24 +19,30 @@ export class DiagnosticsPanel {
             return;
         }
 
+        const hasError = problems.some(p => p.severity === 'error');
+        const headerTitle = hasError 
+            ? `🛑 Syntax & Compiler Diagnostics (${problems.length})` 
+            : `💡 Mission & Code Guidance (${problems.length})`;
+
         const itemsHTML = problems.map(p => {
             const isError = p.severity === 'error';
             const icon = isError ? '🔴' : p.severity === 'warning' ? '🟡' : 'ℹ️';
             const badgeBg = isError ? '#fee2e2' : p.severity === 'warning' ? '#fef3c7' : '#eff6ff';
             const badgeColor = isError ? '#dc2626' : p.severity === 'warning' ? '#b45309' : '#2563eb';
-            const badgeText = isError ? 'ERROR' : p.severity === 'warning' ? 'WARNING' : 'INFO';
+            const badgeText = isError ? 'ERROR' : p.severity === 'warning' ? 'GUIDANCE' : 'INFO';
 
             return `
-                <div class="diagnostic-item ${p.severity}" style="background: #ffffff; border: 1px solid ${isError ? '#fca5a5' : '#fde68a'}; border-left: 4px solid ${isError ? '#ef4444' : '#f59e0b'}; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
-                        <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.84rem; color: #0f172a;">
+                <div class="diagnostic-item ${p.severity}" style="background: #ffffff; border: 1px solid ${isError ? '#fca5a5' : '#fde68a'}; border-left: 4px solid ${isError ? '#ef4444' : '#f59e0b'}; padding: 12px 14px; border-radius: 10px; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
+                        <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.86rem;">
                             <span>${icon}</span>
-                            <span>${p.line ? `Line ${p.line}: ` : ''}${p.message}</span>
+                            ${p.line ? `<span style="background: #f1f5f9; color: #334155; padding: 2px 6px; border-radius: 4px; font-size: 0.74rem; font-family: monospace; font-weight: 700; border: 1px solid #cbd5e1;">Line ${p.line}</span>` : ''}
+                            <span style="color: #0f172a;">${p.message}</span>
                         </div>
-                        <span style="background: ${badgeBg}; color: ${badgeColor}; font-size: 0.70rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; font-family: 'Fira Code', monospace;">${badgeText}</span>
+                        <span style="background: ${badgeBg}; color: ${badgeColor}; font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: 12px; font-family: 'Fira Code', monospace; flex-shrink: 0;">${badgeText}</span>
                     </div>
                     ${p.hint ? `
-                        <div style="font-size: 0.80rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 10px; border-radius: 6px; margin-top: 6px; line-height: 1.5;">
+                        <div style="font-size: 0.82rem; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 6px; margin-top: 6px; line-height: 1.5;">
                             💡 <strong>Hint:</strong> ${p.hint}
                         </div>
                     ` : ''}
@@ -47,7 +53,7 @@ export class DiagnosticsPanel {
         container.innerHTML = `
             <div class="vscode-problems-panel" style="margin-bottom: 14px;">
                 <div style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-                    <span>⚠️ Diagnostic Problems (${problems.length})</span>
+                    <span>${headerTitle}</span>
                 </div>
                 ${itemsHTML}
             </div>

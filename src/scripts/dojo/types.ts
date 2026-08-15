@@ -33,3 +33,10 @@ export interface CompletionOptions {
     continueText?: string;
     customMessage?: string;
 }
+
+export interface ChecklistResult {
+    allPassed: boolean;
+    passedCount: number;
+    totalCount: number;
+    incompleteTasks: ChecklistTask[];
+}
