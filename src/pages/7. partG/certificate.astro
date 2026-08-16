@@ -448,82 +448,53 @@ const navLinks = [
     <script is:inline src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script>
-        import { isCertificateAccessible, getCompletedLessonsCount } from '../../scripts/dojo/core/protection';
+        import { checkCertificateAccessAndRenderOverlay } from '../../scripts/dojo/core/protection';
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Enforce Certificate Access Protection
-            if (!isCertificateAccessible('partG')) {
-                const count = getCompletedLessonsCount('partG');
-                const remaining = Math.max(0, 6 - count);
-
-                if (typeof (window as any).Swal !== 'undefined') {
-                    (window as any).Swal.fire({
-                        icon: 'warning',
-                        title: 'Level 8 Certificate Locked! 📜',
-                        html: `
-                            <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
-                                <p style="font-size: 1.02rem; color: #475569; margin-bottom: 16px;">
-                                    You must complete all <strong>6 enterprise bridge projects</strong> in Level 8 before claiming your official Certificate of Mastery!
-                                </p>
-                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; display: flex; justify-content: space-around; margin-bottom: 12px;">
-                                    <div>
-                                        <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${count} / 6</div>
-                                        <div style="font-size: 0.8rem; color: #64748b;">Projects Solved</div>
-                                    </div>
-                                    <div>
-                                        <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
-                                        <div style="font-size: 0.8rem; color: #64748b;">Remaining</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `,
-                        confirmButtonColor: '#2563eb',
-                        confirmButtonText: '🚀 Go to Hub',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        customClass: { popup: 'responsive-profile-modal' }
-                    }).then(() => {
-                        window.location.href = '/7. partG/hub.html';
-                    });
-                } else {
-                    window.location.href = '/7. partG/hub.html';
-                }
-                return;
-            }
-
-            const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
-            const certName = document.getElementById('certRecipientName');
-            const genBtn = document.getElementById('generateCertBtn');
-            const dlBtn = document.getElementById('downloadCertBtn');
-            const dateSpan = document.getElementById('certIssueDate');
-
-            if (dateSpan) {
-                dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-            }
-
-            function updateName() {
-                if (certName && nameInput) {
-                    certName.textContent = nameInput.value.trim() || 'API Systems Engineer';
-                }
-            }
-
-            if (nameInput) nameInput.addEventListener('input', updateName);
-            if (genBtn) genBtn.addEventListener('click', updateName);
-
-            // High-Res PNG Download
-            if (dlBtn) {
-                dlBtn.addEventListener('click', () => {
-                    const certFrame = document.getElementById('certificateFrame');
-                    if (!certFrame || typeof (window as any).html2canvas === 'undefined') return;
-
-                    (window as any).html2canvas(certFrame, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
-                        const link = document.createElement('a');
-                        link.download = `NoviCodes_Level8_API_Bridge_Certificate_${(nameInput?.value || 'Learner').replace(/\s+/g, '_')}.png`;
-                        link.href = canvas.toDataURL('image/png');
-                        link.click();
-                    });
-                });
-            }
+        // 1. Watertight Certificate Security Verification (Immediate Overlay Guard)
+        const isAccessible = checkCertificateAccessAndRenderOverlay({
+            track: 'partG',
+            levelTag: 'Level 8',
+            totalProjects: 6,
+            hubUrl: '/7. partG/hub.html',
+            certName: 'Level 8: Async UI & Skeletons'
         });
+
+        if (isAccessible) {
+            document.addEventListener('DOMContentLoaded', () => {
+                const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+                const certName = document.getElementById('certRecipientName');
+                const genBtn = document.getElementById('generateCertBtn');
+                const dlBtn = document.getElementById('downloadCertBtn');
+                const dateSpan = document.getElementById('certIssueDate');
+
+                if (dateSpan) {
+                    dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                }
+
+                function updateName() {
+                    if (certName && nameInput) {
+                        certName.textContent = nameInput.value.trim() || 'Software Engineer';
+                    }
+                }
+
+                if (nameInput) nameInput.addEventListener('input', updateName);
+                if (genBtn) genBtn.addEventListener('click', updateName);
+
+                // High-Res PNG Download
+                if (dlBtn) {
+                    dlBtn.addEventListener('click', () => {
+                        const certFrame = document.getElementById('certificateFrame');
+                        if (!certFrame || typeof (window as any).html2canvas === 'undefined') return;
+
+                        (window as any).html2canvas(certFrame, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
+                            const link = document.createElement('a');
+                            link.download = `NoviCodes_Level 8_Certificate_${(nameInput?.value || 'Learner').replace(/\s+/g, '_')}.png`;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
+                        });
+                    });
+                }
+            });
+        }
     </script>
 </BaseLayout>

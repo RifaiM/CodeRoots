@@ -134,11 +134,25 @@
             if (completedCount === total || isLessonCompleted(15)) {
                 certBtn.className = 'cert-action-btn unlocked';
                 certBtn.href = './certificate.html';
+                certBtn.onclick = null;
                 certBtn.innerHTML = '<span>🏆 Claim Certificate ➔</span>';
                 certDesc.textContent = 'Congratulations! You completed all 15 DOM Dojo projects. Download your official certificate.';
             } else {
                 certBtn.className = 'cert-action-btn locked';
                 certBtn.href = 'javascript:void(0)';
+                certBtn.onclick = (e) => {
+                    e.preventDefault();
+                    if (typeof window.showCertLockWarning === 'function') {
+                        window.showCertLockWarning('Level 4', completedCount, total);
+                    } else if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Level 4 Certificate Locked 📜',
+                            text: `You have completed ${completedCount} of ${total} projects. Finish all 15 to claim your official certificate!`,
+                            confirmButtonColor: '#2563eb'
+                        });
+                    }
+                };
                 certBtn.innerHTML = '<span>🔒 Complete All 15 First</span>';
                 certDesc.textContent = `Finish all 15 real-world JavaScript projects to unlock your official DOM Architect certificate (${completedCount}/15 completed).`;
             }

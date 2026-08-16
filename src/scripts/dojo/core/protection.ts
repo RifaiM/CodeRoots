@@ -187,9 +187,128 @@ export function checkLessonAccessAndRenderOverlay(opts: AccessCheckOptions): boo
     return false;
 }
 
+export interface CertAccessCheckOptions {
+    track: string;
+    levelTag: string;
+    totalProjects: number;
+    hubUrl: string;
+    certName: string;
+}
+
+export function showCertLockWarning(levelTag: string, completed: number, total: number) {
+    const remaining = Math.max(0, total - completed);
+    if (typeof (window as any).Swal !== 'undefined') {
+        (window as any).Swal.fire({
+            icon: 'info',
+            title: `${levelTag} Certificate Locked 📜`,
+            html: `
+                <div style="text-align: center; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
+                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 16px; line-height: 1.55;">
+                        Complete all <strong>${total} interactive projects</strong> in this Dojo to claim and download your verified official certificate!
+                    </p>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 14px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                        <div>
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${completed} / ${total}</div>
+                            <div style="font-size: 0.75rem; color: #64748b; font-weight: 700;">Completed</div>
+                        </div>
+                        <div style="width: 1px; background: #e2e8f0;"></div>
+                        <div>
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
+                            <div style="font-size: 0.75rem; color: #64748b; font-weight: 700;">Remaining</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: '🚀 Keep Coding',
+            customClass: { popup: 'responsive-profile-modal' }
+        });
+    }
+}
+
+export function checkCertificateAccessAndRenderOverlay(opts: CertAccessCheckOptions): boolean {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return true;
+
+    if (isCertificateAccessible(opts.track)) {
+        return true;
+    }
+
+    const count = getCompletedLessonsCount(opts.track);
+    const remaining = Math.max(0, opts.totalProjects - count);
+
+    const renderOverlay = () => {
+        if (document.getElementById('_cert-access-denied-overlay')) return;
+
+        // Hide original cert-page-container immediately to prevent any visual leakage
+        const originalMain = document.querySelector('.cert-page-container') as HTMLElement | null;
+        if (originalMain) {
+            originalMain.style.display = 'none';
+        }
+
+        // Keyframes injection
+        if (!document.getElementById('_cert-ad-styles')) {
+            const s = document.createElement('style');
+            s.id = '_cert-ad-styles';
+            s.textContent = '@keyframes _certFadeIn{from{opacity:0}to{opacity:1}}@keyframes _certSlideIn{from{opacity:0;transform:scale(.92) translateY(-14px)}to{opacity:1;transform:scale(1) translateY(0)}}';
+            document.head.appendChild(s);
+        }
+
+        const overlay = document.createElement('div');
+        overlay.id = '_cert-access-denied-overlay';
+        overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:linear-gradient(135deg,#f8fafc 0%,#f1f5f9 100%);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_certFadeIn 0.3s ease;font-family:\'Plus Jakarta Sans\',system-ui,-apple-system,sans-serif;');
+
+        const card = document.createElement('div');
+        card.setAttribute('style', 'position:relative;background:#ffffff;border:1.5px solid #e2e8f0;border-top:4px solid #ef4444;border-radius:24px;padding:36px 28px;max-width:480px;width:95%;text-align:center;box-shadow:0 20px 50px rgba(15,23,42,0.08), 0 4px 14px rgba(239,68,68,0.06);animation:_certSlideIn 0.35s cubic-bezier(0.16,1,0.3,1);box-sizing:border-box;');
+
+        card.innerHTML = `
+            <div style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:0.75rem;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:0.5px;text-transform:uppercase;">🔒 CERTIFICATE LOCKED</div>
+            <div style="font-size:3.4rem;margin-bottom:10px;line-height:1;">📜</div>
+            <h2 style="color:#0f172a;margin:0 0 8px;font-size:1.5rem;font-weight:800;letter-spacing:-0.4px;">${opts.levelTag} Certificate Locked</h2>
+            <p style="margin:0 0 20px;line-height:1.6;color:#64748b;font-size:0.90rem;">
+                You must complete all <strong style="color:#0f172a;">${opts.totalProjects} projects</strong> in ${opts.certName} before unlocking your verified proof-of-work certificate.
+            </p>
+            
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px;display:flex;justify-content:space-around;margin-bottom:22px;">
+                <div>
+                    <div style="font-size:1.4rem;font-weight:800;color:#10b981;">${count} / ${opts.totalProjects}</div>
+                    <div style="font-size:0.75rem;color:#64748b;font-weight:700;">Completed</div>
+                </div>
+                <div style="width:1px;background:#e2e8f0;"></div>
+                <div>
+                    <div style="font-size:1.4rem;font-weight:800;color:#ef4444;">${remaining}</div>
+                    <div style="font-size:0.75rem;color:#64748b;font-weight:700;">Remaining</div>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;width:100%;box-sizing:border-box;">
+                <button onclick="window.location.replace('${opts.hubUrl}')" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;border:none;border-radius:12px;font-family:inherit;font-size:0.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.25);transition:all 0.2s ease;box-sizing:border-box;">
+                    <span>🚀 Return to Dojo Hub &amp; Continue ➔</span>
+                </button>
+                <a href="/" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 20px;background:#f8fafc;color:#475569;border:1px solid #cbd5e1;border-radius:12px;font-family:inherit;font-size:0.84rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;">
+                    <span>🏠 Dashboard Skill Tree</span>
+                </a>
+            </div>
+        `;
+
+        overlay.appendChild(card);
+        document.body.appendChild(overlay);
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderOverlay);
+    } else {
+        renderOverlay();
+    }
+
+    return false;
+}
+
 // Global registration
 if (typeof window !== 'undefined') {
     (window as any).isLessonCompleted = isLessonCompleted;
     (window as any).canAccessLesson = canAccessLesson;
     (window as any).checkLessonAccessAndRenderOverlay = checkLessonAccessAndRenderOverlay;
+    (window as any).isCertificateAccessible = isCertificateAccessible;
+    (window as any).checkCertificateAccessAndRenderOverlay = checkCertificateAccessAndRenderOverlay;
+    (window as any).showCertLockWarning = showCertLockWarning;
 }
