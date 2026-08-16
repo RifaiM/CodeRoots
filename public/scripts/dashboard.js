@@ -21,14 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
  * Accessible, zero-layout-shift, prefers-reduced-motion safe
  */
 function initHeroTypewriter() {
-    const el = document.getElementById('typewriterText');
-    if (!el) return;
+    const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
+    if (!elements || elements.length === 0) return;
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
     }
 
-    const phrases = [
+    const defaultPhrases = [
         'Doing, Not Just Watching',
         'Building 81 Real Projects',
         'Mastering React & JavaScript',
@@ -36,43 +36,55 @@ function initHeroTypewriter() {
         'Building Modern Web Interfaces'
     ];
 
-    let phraseIdx = 0;
-    let charIdx = phrases[0].length;
-    let isDeleting = true;
-    let typingSpeed = 60;
-    const pauseEnd = 2600;
-    const pauseStart = 400;
-
-    function typeLoop() {
-        const currentPhrase = phrases[phraseIdx];
-
-        if (isDeleting) {
-            charIdx--;
-            el.textContent = currentPhrase.substring(0, charIdx);
-            typingSpeed = 35;
-
-            if (charIdx <= 0) {
-                isDeleting = false;
-                phraseIdx = (phraseIdx + 1) % phrases.length;
-                setTimeout(typeLoop, pauseStart);
-                return;
-            }
-        } else {
-            charIdx++;
-            el.textContent = currentPhrase.substring(0, charIdx);
-            typingSpeed = 65;
-
-            if (charIdx >= currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(typeLoop, pauseEnd);
-                return;
-            }
+    elements.forEach(el => {
+        let phrases = defaultPhrases;
+        if (el.dataset && el.dataset.phrases) {
+            try {
+                const parsed = JSON.parse(el.dataset.phrases);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    phrases = parsed;
+                }
+            } catch (e) {}
         }
 
-        setTimeout(typeLoop, typingSpeed);
-    }
+        let phraseIdx = 0;
+        let charIdx = el.textContent.length || phrases[0].length;
+        let isDeleting = true;
+        let typingSpeed = 60;
+        const pauseEnd = 2400;
+        const pauseStart = 350;
 
-    setTimeout(typeLoop, pauseEnd);
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIdx];
+
+            if (isDeleting) {
+                charIdx--;
+                el.textContent = currentPhrase.substring(0, charIdx);
+                typingSpeed = 35;
+
+                if (charIdx <= 0) {
+                    isDeleting = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                    setTimeout(typeLoop, pauseStart);
+                    return;
+                }
+            } else {
+                charIdx++;
+                el.textContent = currentPhrase.substring(0, charIdx);
+                typingSpeed = 65;
+
+                if (charIdx >= currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(typeLoop, pauseEnd);
+                    return;
+                }
+            }
+
+            setTimeout(typeLoop, typingSpeed);
+        }
+
+        setTimeout(typeLoop, pauseEnd);
+    });
 }
 
 /**

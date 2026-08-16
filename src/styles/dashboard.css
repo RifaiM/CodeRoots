@@ -328,21 +328,29 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 
 .typewriter-text {
   display: inline;
-  color: #2563eb;
-  border-bottom: 2.5px solid rgba(37, 99, 235, 0.3);
+  color: inherit;
+  border-bottom: 2.5px solid currentColor;
   padding-bottom: 2px;
 }
 
 .typewriter-cursor {
   display: inline-block;
   margin-left: 2px;
-  color: #2563eb;
+  color: inherit;
   font-weight: 700;
   font-family: 'Fira Code', monospace;
   animation: typewriterBlink 0.9s steps(2, start) infinite;
   vertical-align: baseline;
   user-select: none;
 }
+
+/* Theme Modifiers */
+.typewriter-wrap.theme-blue { color: #2563eb; }
+.typewriter-wrap.theme-sky { color: #0284c7; }
+.typewriter-wrap.theme-emerald { color: #059669; }
+.typewriter-wrap.theme-purple { color: #7e22ce; }
+.typewriter-wrap.theme-indigo { color: #4f46e5; }
+.typewriter-wrap.theme-amber { color: #b45309; }
 
 @keyframes typewriterBlink {
   0%, 100% { opacity: 1; }
