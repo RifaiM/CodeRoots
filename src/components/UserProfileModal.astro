@@ -746,19 +746,29 @@
 
         let isToggling = false;
 
-        // 1. Five rapid clicks on navbar logo
-        const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand');
+        // 1. Five rapid clicks on navbar logo (or logo icon/title)
+        const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand, .logo-icon, .logo-text');
         let logoClicks = 0;
         let logoClickTimer: any = null;
 
         logos.forEach(logo => {
             logo.addEventListener('click', (e) => {
                 logoClicks++;
-                if (logoClickTimer) clearTimeout(logoClickTimer);
 
-                if (logoClicks >= 5) {
+                if (logoClicks > 1 && logoClicks < 5) {
+                    // Prevent link navigation during rapid tapping sequence
                     e.preventDefault();
+                    if (logoClickTimer) clearTimeout(logoClickTimer);
+                    logoClickTimer = setTimeout(() => {
+                        logoClicks = 0;
+                    }, 1200);
+                } else if (logoClicks >= 5) {
+                    // 5 Rapid Clicks Reached! Prevent navigation and trigger Dev Mode toggle
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (logoClickTimer) clearTimeout(logoClickTimer);
                     logoClicks = 0;
+
                     if (isToggling) return;
                     isToggling = true;
                     setTimeout(() => { isToggling = false; }, 800);
@@ -770,9 +780,11 @@
                         (window as any).NoviCodes.unlockAll();
                     }
                 } else {
+                    // First click: wait 350ms before clearing counter if no second click follows
+                    if (logoClickTimer) clearTimeout(logoClickTimer);
                     logoClickTimer = setTimeout(() => {
                         logoClicks = 0;
-                    }, 2000);
+                    }, 1200);
                 }
             });
         });
