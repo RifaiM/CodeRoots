@@ -2015,6 +2015,16 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
     color: #2563eb;
 }
 
+.faq-question-btn:focus {
+    outline: none;
+}
+
+.faq-question-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+    border-radius: 12px;
+}
+
 .faq-item.active .faq-question-btn {
     color: #2563eb;
 }
@@ -2041,7 +2051,13 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 .faq-answer-panel {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.25s ease;
+    will-change: max-height, opacity;
+}
+
+.faq-item.active .faq-answer-panel {
+    opacity: 1;
 }
 
 .faq-answer-content {
@@ -2049,7 +2065,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
     font-size: 0.92rem;
     line-height: 1.65;
     color: #475569;
-    border-top: 1px solid #f8fafc;
+    border-top: none;
 }
 
 .faq-answer-content p {
@@ -2210,6 +2226,16 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
     color: #2563eb;
 }
 
+.faq-question-btn:focus {
+    outline: none;
+}
+
+.faq-question-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+    border-radius: 12px;
+}
+
 .faq-item.active .faq-question-btn {
     color: #2563eb;
 }
@@ -2236,7 +2262,13 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 .faq-answer-panel {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.25s ease;
+    will-change: max-height, opacity;
+}
+
+.faq-item.active .faq-answer-panel {
+    opacity: 1;
 }
 
 .faq-answer-content {
@@ -2244,7 +2276,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
     font-size: 0.92rem;
     line-height: 1.65;
     color: #475569;
-    border-top: 1px solid #f8fafc;
+    border-top: none;
 }
 
 .faq-answer-content p {
