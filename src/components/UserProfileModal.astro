@@ -500,6 +500,16 @@
             localStorage.setItem('level9_completed', 'true');
             localStorage.setItem('level10_completed', 'true');
 
+            // Advanced Foundations (L5 - L10)
+            localStorage.setItem('foundations_react_completed', 'true');
+            localStorage.setItem('foundations_python_completed', 'true');
+            localStorage.setItem('foundations_cloud_completed', 'true');
+            localStorage.setItem('foundations_sql_completed', 'true');
+            localStorage.setItem('foundations_nextjs_completed', 'true');
+            localStorage.setItem('foundations_async_completed', 'true');
+            localStorage.setItem('foundations_auth_completed', 'true');
+            localStorage.setItem('foundations_saas_completed', 'true');
+
             localStorage.setItem('partF_completed', 'true');
             localStorage.setItem('partF_branchA_completed', 'true');
             localStorage.setItem('partF_branchB_completed', 'true');
@@ -534,10 +544,10 @@
                     html: `
                         <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
                             <p style="color: #475569; margin-bottom: 14px; font-size: 0.92rem;">
-                                All <strong>10 Levels</strong>, <strong>81 Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing!
+                                All <strong>11 Foundation Tracks</strong>, <strong>81 Real Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing!
                             </p>
                             <span style="font-size: 0.80rem; background: #ecfdf5; color: #047857; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                                Press Ctrl + Alt + D anytime to restore
+                                21,100 / 21,100 Total XP (Grand Master Rank)
                             </span>
                         </div>
                     `,
@@ -591,6 +601,16 @@
             localStorage.removeItem('level8_completed');
             localStorage.removeItem('level9_completed');
             localStorage.removeItem('level10_completed');
+
+            // Reset Advanced Foundations Keys
+            localStorage.removeItem('foundations_react_completed');
+            localStorage.removeItem('foundations_python_completed');
+            localStorage.removeItem('foundations_cloud_completed');
+            localStorage.removeItem('foundations_sql_completed');
+            localStorage.removeItem('foundations_nextjs_completed');
+            localStorage.removeItem('foundations_async_completed');
+            localStorage.removeItem('foundations_auth_completed');
+            localStorage.removeItem('foundations_saas_completed');
 
             // 4. Reset Track Completion Flags (Levels 7–10)
             localStorage.removeItem('partF_completed');
