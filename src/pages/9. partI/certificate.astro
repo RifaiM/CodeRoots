@@ -388,7 +388,7 @@ const navLinks = [
             font-size: 1.2rem;
         }
 
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
             .cert-headline {
                 font-size: 1.5rem;
             }
@@ -415,7 +415,7 @@ const navLinks = [
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-            header, footer, nav, .platform-header, .platform-footer, .generator-card, .btn-row, #printCertBtn {
+            header, footer, nav, .platform-header, .platform-footer, .generator-card, .btn-row, #printCertBtn, .whats-next-section {
                 display: none !important;
             }
             .cert-page-container {
@@ -431,15 +431,57 @@ const navLinks = [
                 gap: 0 !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                display: block !important;
             }
             .certificate-frame {
                 box-shadow: none !important;
                 border: 12px solid #0f172a !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                width: 96% !important;
-                max-width: 1000px !important;
+                width: 94% !important;
+                max-width: 980px !important;
                 margin: 20px auto !important;
+                box-sizing: border-box !important;
+            }
+            .certificate-inner {
+                padding: 32px 40px !important;
+            }
+            .cert-headline {
+                font-size: 1.8rem !important;
+            }
+            .cert-recipient-name {
+                font-size: 2rem !important;
+                margin: 12px 0 16px 0 !important;
+            }
+            .cert-body-text {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+                margin-bottom: 24px !important;
+            }
+            .cert-footer-row {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: flex-end !important;
+                width: 100% !important;
+                margin-top: 24px !important;
+                gap: 0 !important;
+            }
+            .cert-sig-col {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 220px !important;
+                text-align: center !important;
+                align-items: center !important;
+            }
+            .cert-badge-center {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .cert-gold-seal {
+                width: 72px !important;
+                height: 72px !important;
             }
         }
     </style>
