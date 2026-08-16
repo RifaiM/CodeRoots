@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Lesson 6: Fullstack E-Commerce Product & Inventory Dashboard!
+const starterCode = `// 🏆 Lesson 6: Reactive Storefront & Inventory Dashboard!
 
 const initialCatalog = [
   { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
@@ -133,9 +133,9 @@ const jumpLessons = [
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Build a production-grade fullstack inventory and e-commerce catalog dashboard with filtering and real-time state mutation.</p>
+            <p>Build an interactive storefront catalog and product inventory dashboard with search filtering and live state updates.</p>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Your Level 8 Capstone is the mission control dashboard of a modern digital storefront 🏬: tracking stock, accepting new items, and updating shelves in real time.
+                <strong>Real-World Analogy:</strong> Your Level 8 final project is the interactive dashboard of a modern digital storefront 🏬: tracking stock, accepting new items, and updating shelves in real time.
             </div>
         </article>
     </div>
@@ -156,7 +156,7 @@ const jumpLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partG_lesson6';
-        const DEFAULT_STARTER = `// 🏆 Lesson 6: Fullstack E-Commerce Product & Inventory Dashboard!
+        const DEFAULT_STARTER = `// 🏆 Lesson 6: Reactive Storefront & Inventory Dashboard!
 
 const initialCatalog = [
   { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
@@ -297,7 +297,7 @@ root.render(<StorefrontDashboard />);
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Capstone: Live E-Commerce Dashboard',
+                    lessonTitle: 'Final Project: Reactive Storefront',
                     xp: 250,
                     completionKey: 'partG_lesson6_remake_complete',
                     nextUrl: '/7. partG/certificate.html',
