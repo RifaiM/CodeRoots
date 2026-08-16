@@ -7,16 +7,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     description="The page you are looking for could not be found. Return to the NoviCodes interactive web development dashboard or explore suggested curriculum tracks."
     showHeaderFooter={false}
 >
-    <div class="glow-sphere-1"></div>
-    <div class="glow-sphere-2"></div>
+    <!-- Background Ambient Mesh -->
+    <div class="ambient-mesh-1"></div>
+    <div class="ambient-mesh-2"></div>
 
     <main class="error-container">
         <div class="error-card">
-            <div class="badge-404">ERROR CODE: 404</div>
+            <div class="badge-404">
+                <span class="badge-dot"></span>
+                <span>ERROR CODE: 404</span>
+            </div>
             
             <div class="error-icon-wrap">🧭</div>
 
-            <h1 class="error-title">Lost in the Dojo Matrix?</h1>
+            <h1 class="error-title">Lost Your Path?</h1>
             
             <p class="error-desc" id="errorDescription">
                 The requested URL <code class="broken-path" id="brokenPathLabel">/unknown-route</code> could not be found or has moved.
@@ -26,71 +30,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="smart-suggestion-box" id="smartSuggestionBox">
                 <div class="suggestion-tag-bar">
                     <span class="suggestion-pulse"></span>
-                    <span class="suggestion-header" id="suggestionTitle">💡 Recommended Match</span>
+                    <span class="suggestion-header" id="suggestionTitle">💡 Recommended Destination</span>
                 </div>
-                <div class="suggestion-name" id="suggestionName">NoviCodes Dashboard</div>
-                <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress.</p>
+                <div class="suggestion-name" id="suggestionName">Skill Tree Dashboard</div>
+                <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress across all 10 levels.</p>
                 <div class="suggestion-action-row">
                     <a href="/" class="suggestion-btn" id="suggestionLink">
-                        <span>👉 Jump to Suggested Route ➔</span>
+                        <span id="suggestionBtnText">🚀 Jump to Suggested Route ➔</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Primary Navigation Actions -->
+            <!-- Secondary Navigation Actions (No Redundant Duplicate Primary) -->
             <div class="button-group">
-                <a href="/" class="action-btn primary-btn" id="dashboardLink">
-                    <span>🏠 Return to NoviCodes Dashboard</span>
+                <a href="/" class="action-btn secondary-btn" id="dashboardLink">
+                    <span>🏠 Skill Tree Dashboard</span>
                 </a>
                 <button id="goBackBtn" class="action-btn secondary-btn" type="button">
-                    <span>↩️ Go Back to Previous Page</span>
+                    <span>↩️ Go Back</span>
                 </button>
             </div>
 
-            <!-- Quick Curriculum Fast-Track Directory -->
+            <!-- Clean Quick-Jump Hub Selector (Replaces 10-Button Clutter) -->
             <div class="fast-track-section">
-                <div class="fast-track-title">🚀 Fast-Track Curriculum Directory</div>
-                <div class="fast-track-grid">
-                    <a href="/1. partA/web_history.html" class="fast-track-pill" title="Level 0 • Web History">
-                        <span class="pill-icon">🌐</span>
-                        <span class="pill-text">Level 0: History</span>
-                    </a>
-                    <a href="/foundations.html" class="fast-track-pill" title="Levels 1-3 • Web Foundations">
-                        <span class="pill-icon">🛡️</span>
-                        <span class="pill-text">Levels 1-3: Foundations</span>
-                    </a>
-                    <a href="/2. partB/hub.html" class="fast-track-pill" title="Level 4 • DOM Dojo">
-                        <span class="pill-icon">⚔️</span>
-                        <span class="pill-text">Level 4: DOM Dojo</span>
-                    </a>
-                    <a href="/3. partC/hub.html" class="fast-track-pill" title="Level 5 • React Dojo">
-                        <span class="pill-icon">⚛️</span>
-                        <span class="pill-text">Level 5: React Dojo</span>
-                    </a>
-                    <a href="/5. partE/hub.html" class="fast-track-pill" title="Level 6 • Python Dojo">
-                        <span class="pill-icon">🐍</span>
-                        <span class="pill-text">Level 6: Python Dojo</span>
-                    </a>
-                    <a href="/6. partF/hub.html" class="fast-track-pill" title="Level 7 • Fullstack Mastery">
-                        <span class="pill-icon">🚀</span>
-                        <span class="pill-text">Level 7: Fullstack</span>
-                    </a>
-                    <a href="/7. partG/hub.html" class="fast-track-pill" title="Level 8 • Async UI Architecture">
-                        <span class="pill-icon">🌉</span>
-                        <span class="pill-text">Level 8: Async UI</span>
-                    </a>
-                    <a href="/8. partH/hub.html" class="fast-track-pill" title="Level 9 • React Auth & Access Control">
-                        <span class="pill-icon">🛡️</span>
-                        <span class="pill-text">Level 9: Auth & DB</span>
-                    </a>
-                    <a href="/9. partI/hub.html" class="fast-track-pill" title="Level 10 • SaaS UI Architecture">
-                        <span class="pill-icon">🏆</span>
-                        <span class="pill-text">Level 10: SaaS UI</span>
-                    </a>
-                    <a href="/4. partD/devtype/devtype.html" class="fast-track-pill" title="DevType • Typing Speedrun">
-                        <span class="pill-icon">⌨️</span>
-                        <span class="pill-text">DevType Dojo</span>
-                    </a>
+                <label for="errorQuickJumpSelect" class="fast-track-label">
+                    <span>🗺️ Quick Jump to Any Track or Dojo:</span>
+                </label>
+                <div class="select-wrapper">
+                    <select id="errorQuickJumpSelect" class="fast-track-select">
+                        <option value="">⚡ Select a Foundation Track or Dojo Hub...</option>
+                        <optgroup label="📚 Foundations Academy (Level 0 – 10)">
+                            <option value="/1. partA/web_history.html">🌐 Level 0: Web Basics & Architecture</option>
+                            <option value="/foundations.html?track=html">🧱 Level 1: HTML Structure</option>
+                            <option value="/foundations.html?track=css">🎨 Level 2: CSS Styling & Layouts</option>
+                            <option value="/foundations.html?track=js">⚡ Level 3: JavaScript Interactivity</option>
+                            <option value="/foundations.html?track=react">⚛️ Level 5: React Components & State</option>
+                            <option value="/foundations.html?track=python">🐍 Level 6: Python Backend Basics</option>
+                            <option value="/foundations.html?track=cloud">☁️ Level 7A: Cloud Hosting & DevOps</option>
+                            <option value="/foundations.html?track=sql">🛢️ Level 7B: SQL Databases & Auth</option>
+                            <option value="/foundations.html?track=nextjs">⚡ Level 7C: Next.js & Server Components</option>
+                            <option value="/foundations.html?track=async">🌉 Level 8: Async UI & Skeletons</option>
+                            <option value="/foundations.html?track=auth">🛡️ Level 9: User Logins & Security</option>
+                            <option value="/foundations.html?track=saas">🏆 Level 10: Complete SaaS Architecture</option>
+                        </optgroup>
+                        <optgroup label="⚔️ Practical Coding Dojos (81 Projects)">
+                            <option value="/2. partB/hub.html">⚔️ Level 4: JS Widget Dojo (15 Projects)</option>
+                            <option value="/3. partC/hub.html">⚛️ Level 5: React Component Dojo (15 Projects)</option>
+                            <option value="/5. partE/hub.html">🐍 Level 6: Python Backend Dojo (15 Projects)</option>
+                            <option value="/6. partF/hub.html">🚀 Level 7: Specialized Developer Tracks (18 Projects)</option>
+                            <option value="/7. partG/hub.html">🌉 Level 8: Async UI & Live Data (6 Projects)</option>
+                            <option value="/8. partH/hub.html">🛡️ Level 9: User Logins & Auth (6 Projects)</option>
+                            <option value="/9. partI/hub.html">🏆 Level 10: Complete SaaS Capstone (6 Projects)</option>
+                            <option value="/4. partD/devtype/devtype.html">🎮 Arcade: DevType Speedrun</option>
+                        </optgroup>
+                    </select>
                 </div>
             </div>
         </div>
@@ -101,9 +94,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: #090d16;
-            color: #f8fafc;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -112,28 +105,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             position: relative;
         }
 
-        .glow-sphere-1 {
+        .ambient-mesh-1 {
             position: absolute;
-            top: 10%;
-            left: 15%;
-            width: 380px;
-            height: 380px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, rgba(0, 0, 0, 0) 70%);
+            top: 5%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(248, 250, 252, 0) 70%);
             border-radius: 50%;
-            filter: blur(60px);
+            filter: blur(50px);
             z-index: 0;
             pointer-events: none;
         }
 
-        .glow-sphere-2 {
+        .ambient-mesh-2 {
             position: absolute;
-            bottom: 10%;
-            right: 15%;
-            width: 420px;
-            height: 420px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.20) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: 5%;
+            right: 10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
             border-radius: 50%;
-            filter: blur(60px);
+            filter: blur(50px);
             z-index: 0;
             pointer-events: none;
         }
@@ -144,18 +137,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 24px 16px;
+            padding: 32px 16px;
             box-sizing: border-box;
         }
 
         .error-card {
             position: relative;
-            z-index: 1;
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 40px rgba(37, 99, 235, 0.15);
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.07), 0 4px 12px rgba(37, 99, 235, 0.04);
             border-radius: 24px;
             padding: 36px 28px;
             max-width: 540px;
@@ -165,84 +155,96 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
-            animation: fadeIn 0.4s ease-out forwards;
+            animation: cardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .badge-404 {
-            display: inline-block;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            color: #f87171;
-            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            font-size: 0.74rem;
             font-weight: 800;
-            letter-spacing: 1.5px;
-            padding: 5px 14px;
+            letter-spacing: 1px;
+            padding: 4px 12px;
             border-radius: 20px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             text-transform: uppercase;
         }
 
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
         .error-icon-wrap {
-            font-size: 3.8rem;
+            font-size: 3.4rem;
             line-height: 1;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.06));
         }
 
         .error-title {
             font-size: 1.65rem;
             font-weight: 800;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0 0 8px 0;
             letter-spacing: -0.5px;
         }
 
         .error-desc {
             font-size: 0.88rem;
-            color: #94a3b8;
+            color: #64748b;
             margin: 0 0 20px 0;
             line-height: 1.55;
             word-break: break-all;
         }
 
         .broken-path {
-            background: rgba(239, 68, 68, 0.15);
-            color: #fca5a5;
+            background: #fee2e2;
+            color: #b91c1c;
             padding: 2px 6px;
             border-radius: 6px;
             font-family: 'Fira Code', monospace;
-            font-size: 0.80rem;
+            font-size: 0.82rem;
+            font-weight: 600;
         }
 
+        /* Smart Suggestion Box */
         .smart-suggestion-box {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-            border: 1px solid rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+            border: 1.5px solid #bfdbfe;
             border-radius: 16px;
             padding: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             width: 100%;
             box-sizing: border-box;
             text-align: left;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
         }
 
         .suggestion-tag-bar {
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .suggestion-pulse {
             width: 8px;
             height: 8px;
-            background: #38bdf8;
+            background: #2563eb;
             border-radius: 50%;
-            box-shadow: 0 0 8px #38bdf8;
             animation: pulseDot 1.5s infinite;
         }
 
@@ -252,23 +254,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         }
 
         .suggestion-header {
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             font-weight: 800;
-            color: #38bdf8;
+            color: #1d4ed8;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
         }
 
         .suggestion-name {
             font-size: 1.05rem;
             font-weight: 800;
-            color: #ffffff;
+            color: #0f172a;
             margin-bottom: 4px;
         }
 
         .suggestion-content {
-            font-size: 0.85rem;
-            color: #cbd5e1;
+            font-size: 0.84rem;
+            color: #475569;
             margin: 0 0 12px 0;
             line-height: 1.45;
         }
@@ -282,124 +284,116 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         .suggestion-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #ffffff;
             border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.82rem;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.86rem;
             font-weight: 800;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .suggestion-btn:hover {
             background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
+        /* Secondary Action Buttons */
         .button-group {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .action-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 0.88rem;
-            font-weight: 800;
+            gap: 6px;
+            padding: 9px 14px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 750;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             box-sizing: border-box;
-            width: 100%;
+            flex: 1;
             font-family: inherit;
         }
 
-        .primary-btn {
-            background: rgba(37, 99, 235, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-        }
-
-        .primary-btn:hover {
-            background: rgba(37, 99, 235, 0.25);
-            color: #93c5fd;
-            transform: translateY(-2px);
-        }
-
         .secondary-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            border: 1px solid #334155;
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #cbd5e1;
         }
 
         .secondary-btn:hover {
-            background: #334155;
-            color: #f8fafc;
-            transform: translateY(-2px);
+            background: #ffffff;
+            color: #0f172a;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         /* Fast Track Section */
         .fast-track-section {
             width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid #e2e8f0;
             padding-top: 16px;
             text-align: left;
         }
 
-        .fast-track-title {
-            font-size: 0.74rem;
+        .fast-track-label {
+            display: block;
+            font-size: 0.75rem;
             font-weight: 800;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            letter-spacing: 0.4px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
-        .fast-track-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            justify-content: center;
+        .select-wrapper {
+            position: relative;
+            width: 100%;
         }
 
-        .fast-track-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(51, 65, 85, 0.7);
-            color: #cbd5e1;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .fast-track-pill:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: rgba(59, 130, 246, 0.5);
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .pill-icon {
+        .fast-track-select {
+            width: 100%;
+            padding: 10px 14px;
             font-size: 0.85rem;
+            font-weight: 700;
+            color: #1e293b;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .fast-track-select:hover {
+            border-color: #3b82f6;
+        }
+
+        .fast-track-select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         @media (max-width: 480px) {
@@ -409,24 +403,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             }
 
             .error-icon-wrap {
-                font-size: 3.2rem;
+                font-size: 2.8rem;
             }
 
             .error-title {
-                font-size: 1.35rem;
+                font-size: 1.4rem;
             }
 
             .error-desc {
                 font-size: 0.82rem;
             }
 
-            .suggestion-name {
-                font-size: 0.95rem;
-            }
-
-            .action-btn {
-                padding: 11px 16px;
-                font-size: 0.82rem;
+            .button-group {
+                flex-direction: column;
             }
         }
     </style>
@@ -440,30 +429,109 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             }
         });
 
+        // Quick Jump Select Listener
+        const quickSelect = document.getElementById('errorQuickJumpSelect') as HTMLSelectElement | null;
+        if (quickSelect) {
+            quickSelect.addEventListener('change', (e) => {
+                const target = (e.target as HTMLSelectElement).value;
+                if (target) {
+                    window.location.href = target;
+                }
+            });
+        }
+
         // ── Heuristic Auto-Recovery & Deep Pattern Matcher ──
         try {
             const rawPath = decodeURIComponent(window.location.pathname.toLowerCase());
+            const searchParams = new URLSearchParams(window.location.search.toLowerCase());
+            const trackQuery = searchParams.get('track') || '';
             const brokenPathLabel = document.getElementById('brokenPathLabel');
             const suggestionTitle = document.getElementById('suggestionTitle');
             const suggestionName = document.getElementById('suggestionName');
             const suggestionText = document.getElementById('suggestionText');
             const suggestionLink = document.getElementById('suggestionLink') as HTMLAnchorElement | null;
+            const suggestionBtnText = document.getElementById('suggestionBtnText');
 
             if (brokenPathLabel) {
-                brokenPathLabel.textContent = window.location.pathname;
+                brokenPathLabel.textContent = window.location.pathname + (window.location.search ? window.location.search : '');
             }
 
-            // Heuristic Match State
+            // Default State
             let targetUrl = '/';
-            let targetName = 'NoviCodes Dashboard';
+            let targetName = 'Skill Tree Dashboard';
             let targetDesc = 'Return to your interactive web development path and course overview.';
-            let tagHeader = '💡 Suggested Route';
+            let tagHeader = '💡 Recommended Destination';
 
-            // 1. Check for specific Lesson Numbers & Tracks
+            // Lesson number extractor
             const lessonMatch = rawPath.match(/lesson[_\s/-]?(\d+)/i) || rawPath.match(/\/(?:lesson)?(\d+)(?:\.html|\/|$)/i);
             const lessonNum = lessonMatch ? parseInt(lessonMatch[1], 10) : null;
 
-            if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas') || rawPath.includes('capstone') || rawPath.includes('apex')) {
+            // 1. Foundation Track Query Aliases or Broken Foundations URLs
+            if (rawPath.includes('foundations') || trackQuery) {
+                const queryOrPath = trackQuery || rawPath;
+                if (queryOrPath.includes('react') || queryOrPath.includes('component') || queryOrPath.includes('jsx')) {
+                    targetUrl = '/foundations.html?track=react';
+                    targetName = '⚛️ React Components Foundations';
+                    targetDesc = 'Master JSX, Props, State, and Virtual DOM mental models.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('python') || queryOrPath.includes('py') || queryOrPath.includes('backend')) {
+                    targetUrl = '/foundations.html?track=python';
+                    targetName = '🐍 Python & Backend Foundations';
+                    targetDesc = 'Master server models, data structures, and REST API basics.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('cloud') || queryOrPath.includes('docker') || queryOrPath.includes('devops') || queryOrPath.includes('hosting')) {
+                    targetUrl = '/foundations.html?track=cloud';
+                    targetName = '☁️ Cloud Hosting & DevOps Foundations';
+                    targetDesc = 'Master cloud deployment, DNS, CI/CD pipelines, and containers.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('sql') || queryOrPath.includes('postgres') || queryOrPath.includes('database') || queryOrPath.includes('db')) {
+                    targetUrl = '/foundations.html?track=sql';
+                    targetName = '🛢️ SQL & Database Foundations';
+                    targetDesc = 'Master relational database tables, SELECT queries, and primary keys.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('next') || queryOrPath.includes('app_router') || queryOrPath.includes('ssr')) {
+                    targetUrl = '/foundations.html?track=nextjs';
+                    targetName = '⚡ Next.js & Server Components Foundations';
+                    targetDesc = 'Master React Server Components, App Router, and server actions.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('async') || queryOrPath.includes('fetch') || queryOrPath.includes('skeleton') || queryOrPath.includes('loading')) {
+                    targetUrl = '/foundations.html?track=async';
+                    targetName = '🌉 Async UI & Skeletons Foundations';
+                    targetDesc = 'Master animated loading skeletons, error states, and optimistic UI.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('auth') || queryOrPath.includes('jwt') || queryOrPath.includes('login') || queryOrPath.includes('password')) {
+                    targetUrl = '/foundations.html?track=auth';
+                    targetName = '🛡️ User Logins & Auth Foundations';
+                    targetDesc = 'Master password hashing, JWT sessions, HTTP-only cookies, and RBAC.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('saas') || queryOrPath.includes('capstone') || queryOrPath.includes('stripe')) {
+                    targetUrl = '/foundations.html?track=saas';
+                    targetName = '🏆 SaaS Architecture Foundations';
+                    targetDesc = 'Master multi-tenancy, subscription billing, and production deployments.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('html')) {
+                    targetUrl = '/foundations.html?track=html';
+                    targetName = '🧱 HTML Structure Foundations';
+                    targetDesc = 'Master semantic tags, headings, and accessibility blueprints.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('css')) {
+                    targetUrl = '/foundations.html?track=css';
+                    targetName = '🎨 CSS Styling Foundations';
+                    targetDesc = 'Master the CSS box model, flexbox grids, and responsive layouts.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('js') || queryOrPath.includes('javascript')) {
+                    targetUrl = '/foundations.html?track=js';
+                    targetName = '⚡ JavaScript Interactivity Foundations';
+                    targetDesc = 'Master DOM manipulation, event loops, and dynamic logic.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else {
+                    targetUrl = '/foundations.html';
+                    targetName = '📚 Foundations Academy Hub';
+                    targetDesc = 'Explore all 11 foundational web and software engineering tracks.';
+                }
+            } 
+            // 2. Specific Practical Dojos & Capstones
+            else if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas') || rawPath.includes('capstone')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/9. partI/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
                     targetName = `Level 10 • SaaS UI Milestone ${lessonNum}`;
@@ -471,10 +539,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/9. partI/hub.html';
-                    targetName = 'Level 10 • SaaS UI & Design Systems Hub';
-                    targetDesc = '6 enterprise production capstone milestones, subscriptions, multi-tenancy, and deployment.';
+                    targetName = 'Level 10 • Complete SaaS Capstone Dojo';
+                    targetDesc = '6 enterprise production capstone milestones, subscriptions, and deployment.';
                 }
-            } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth') || rawPath.includes('prisma') || rawPath.includes('rbac') || rawPath.includes('jwt')) {
+            } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/8. partH/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
                     targetName = `Level 9 • React Auth Lesson ${lessonNum}`;
@@ -482,10 +550,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/8. partH/hub.html';
-                    targetName = 'Level 9 • React Auth & Access Control Hub';
-                    targetDesc = '6 fullstack authentication, Prisma ORM, JWT, and RBAC security projects.';
+                    targetName = 'Level 9 • User Logins & Auth Dojo';
+                    targetDesc = '6 fullstack authentication, Prisma ORM, JWT, and security projects.';
                 }
-            } else if (rawPath.includes('partg') || rawPath.includes('level8') || rawPath.includes('bridge') || rawPath.includes('api_bridge') || rawPath.includes('gateway')) {
+            } else if (rawPath.includes('partg') || rawPath.includes('level8') || rawPath.includes('async')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/7. partG/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
                     targetName = `Level 8 • Async UI Lesson ${lessonNum}`;
@@ -493,32 +561,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/7. partG/hub.html';
-                    targetName = 'Level 8 • Async UI & Live Data Hub';
-                    targetDesc = '6 interactive REST & WebSocket fullstack integration projects.';
+                    targetName = 'Level 8 • Async UI & Live Data Dojo';
+                    targetDesc = '6 interactive loading skeletons and live data integration projects.';
                 }
-            } else if (rawPath.includes('brancha') || rawPath.includes('7a') || rawPath.includes('cloud') || rawPath.includes('devops')) {
+            } else if (rawPath.includes('brancha') || rawPath.includes('7a') || rawPath.includes('cloud')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/6. partF/branchA/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 7A • Lesson ${lessonNum} (Cloud & DevOps)`;
+                    targetName = `Level 7A • Lesson ${lessonNum} (Cloud Hosting)`;
                     targetDesc = `Jump directly into Cloud Architecture, Docker, and CI/CD Milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/6. partF/hub.html';
-                    targetName = 'Level 7 • Track 7A: Cloud Systems & DevOps';
-                    targetDesc = 'Master cloud deployment, containerization, and production infrastructure.';
+                    targetName = 'Level 7 • Specialized Developer Tracks Hub';
+                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
                 }
-            } else if (rawPath.includes('branchb') || rawPath.includes('7b') || rawPath.includes('database') || rawPath.includes('postgres') || rawPath.includes('sql')) {
+            } else if (rawPath.includes('branchb') || rawPath.includes('7b') || rawPath.includes('sql') || rawPath.includes('database')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/6. partF/branchB/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 7B • Lesson ${lessonNum} (Postgres & Backend)`;
+                    targetName = `Level 7B • Lesson ${lessonNum} (SQL Databases)`;
                     targetDesc = `Jump directly into Relational Databases and SQL Architecture Milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/6. partF/hub.html';
-                    targetName = 'Level 7 • Track 7B: Postgres & Database Architecture';
-                    targetDesc = 'Master SQL queries, migrations, pooling, and robust backend data modeling.';
+                    targetName = 'Level 7 • Specialized Developer Tracks Hub';
+                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
                 }
-            } else if (rawPath.includes('branchc') || rawPath.includes('7c') || rawPath.includes('next') || rawPath.includes('app_router')) {
+            } else if (rawPath.includes('branchc') || rawPath.includes('7c') || rawPath.includes('next')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/6. partF/branchC/lesson${lessonNum}_remake.html`;
                     targetName = `Level 7C • Lesson ${lessonNum} (Next.js Framework)`;
@@ -526,8 +594,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/6. partF/hub.html';
-                    targetName = 'Level 7 • Track 7C: Next.js & Server Components';
-                    targetDesc = 'Master fullstack React, hybrid rendering, and production web engineering.';
+                    targetName = 'Level 7 • Specialized Developer Tracks Hub';
+                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
                 }
             } else if (rawPath.includes('parte') || rawPath.includes('level6') || rawPath.includes('python')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
@@ -538,7 +606,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else {
                     targetUrl = '/5. partE/hub.html';
                     targetName = 'Level 6 • Python Backend Dojo Hub';
-                    targetDesc = '15 interactive Python backend projects, OOP algorithms, and FastAPI.';
+                    targetDesc = '15 interactive Python backend projects, algorithms, and API endpoints.';
                 }
             } else if (rawPath.includes('partc') || rawPath.includes('level5') || rawPath.includes('react')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
@@ -548,13 +616,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/3. partC/hub.html';
-                    targetName = 'Level 5 • React Framework Dojo Hub';
-                    targetDesc = '15 interactive React component projects, hooks, context, and state management.';
+                    targetName = 'Level 5 • React Component Dojo Hub';
+                    targetDesc = '15 interactive React component projects, state hooks, and UI cards.';
                 }
             } else if (rawPath.includes('partb') || rawPath.includes('level4') || rawPath.includes('dom')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
                     targetUrl = `/2. partB/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 4 • DOM Dojo Lesson ${lessonNum}`;
+                    targetName = `Level 4 • JS DOM Dojo Lesson ${lessonNum}`;
                     targetDesc = `Jump directly into interactive DOM milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
@@ -562,38 +630,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     targetName = 'Level 4 • JavaScript DOM Mastery Hub';
                     targetDesc = '15 interactive DOM projects, dynamic state UI, and browser canvas games.';
                 }
-            } else if (rawPath.includes('certificate') || rawPath.includes('cert')) {
-                targetUrl = '/6. partF/certificate.html';
-                targetName = 'Fullstack Systems Certification';
-                targetDesc = 'Claim and export your official cryptographic certificate of mastery.';
             } else if (rawPath.includes('devtype') || rawPath.includes('typing') || rawPath.includes('speedrun')) {
                 targetUrl = '/4. partD/devtype/devtype.html';
-                targetName = 'DevType Dojo • Speedrun Engine';
-                targetDesc = 'Sharpen your coding speed and muscle memory across 7 languages.';
-            } else if (rawPath.includes('foundation') || rawPath.includes('html_foundation') || rawPath.includes('css_foundation') || rawPath.includes('js_foundation') || rawPath.includes('level1') || rawPath.includes('level2') || rawPath.includes('level3')) {
-                targetUrl = '/foundations.html';
-                targetName = 'Levels 1-3 • Web Foundations';
-                targetDesc = 'Master memory models, visual layouts, and syntax across HTML, CSS, and JS.';
-            } else if (rawPath.includes('history') || rawPath.includes('level0') || rawPath.includes('parta') || rawPath.includes('era') || rawPath.includes('packet')) {
+                targetName = 'DevType Dojo • Code Typing Speedrun';
+                targetDesc = 'Speed up your coding speed and muscle memory across 7 languages.';
+            } else if (rawPath.includes('history') || rawPath.includes('level0') || rawPath.includes('parta')) {
                 targetUrl = '/1. partA/web_history.html';
-                targetName = 'Level 0 • Web History & Architecture';
+                targetName = 'Level 0 • Web Basics & Architecture';
                 targetDesc = 'Explore web eras from 1991 to today, internet packet flow, and 4 core pillars.';
-            } else if (rawPath.includes('website_concept')) {
-                targetUrl = '/1. partA/website_concept/website_concept.html';
-                targetName = 'Pillar 1 • What is a Website?';
-                targetDesc = 'Learn about clients, cloud servers, and URL addresses.';
-            } else if (rawPath.includes('html_concept')) {
-                targetUrl = '/1. partA/html_concept/html_concept.html';
-                targetName = 'Pillar 2 • HTML Structure';
-                targetDesc = 'Learn tags, headings, and semantic DOM blueprints.';
-            } else if (rawPath.includes('css_concept')) {
-                targetUrl = '/1. partA/css_concept/css_concept.html';
-                targetName = 'Pillar 3 • CSS Styling';
-                targetDesc = 'Master colors, typography, flexbox, and layouts.';
-            } else if (rawPath.includes('javascript_concept')) {
-                targetUrl = '/1. partA/javascript_concept/javascript_concept.html';
-                targetName = 'Pillar 4 • JavaScript Interactivity';
-                targetDesc = 'Explore events, DOM manipulation, and dynamic logic.';
             } else if (rawPath.includes('privacy')) {
                 targetUrl = '/privacy.html';
                 targetName = 'Privacy Policy';
@@ -610,6 +654,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 suggestionName.textContent = targetName;
                 suggestionText.textContent = targetDesc;
                 suggestionLink.href = targetUrl;
+                if (suggestionBtnText) {
+                    suggestionBtnText.textContent = `🚀 Jump to ${targetName} ➔`;
+                }
             }
         } catch (e) {
             console.error('Error in 404 intelligent route recovery:', e);
