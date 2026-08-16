@@ -348,7 +348,7 @@ const eraData = {
         `
     },
     '2026': {
-        url: 'https://coderoots.dev/cloud-app/dashboard',
+        url: 'https://novicodes.dev/cloud-app/dashboard',
         html: `
             <div class="screen-2026">
                 <span class="modern-pill">⚡ 2026 Modern Web App Engine</span>

@@ -76,7 +76,7 @@ function addItem(list, newItem) {
         title: "The Missing Await Promise Trap",
         codeSnippet: `// An AI wrote this API request function:
 async function loadUserData() {
-    const res = fetch('https://api.coderoots.dev/user');
+    const res = fetch('https://api.novicodes.dev/user');
     const data = res.json();
     return data.username;
 }`,
@@ -262,7 +262,7 @@ const displayScore = userScore ?? 100;`,
         id: "quest_16",
         category: "🛡️ Web Best Practices",
         title: "HTTPS vs HTTP",
-        codeSnippet: `https://coderoots.dev vs http://coderoots.dev`,
+        codeSnippet: `https://novicodes.dev vs http://novicodes.dev`,
         question: "What does the 'S' in HTTPS stand for, and what technology encrypts the connection?",
         options: [
             "Secure (TLS/SSL encryption preventing packet sniffing and man-in-the-middle attacks)",

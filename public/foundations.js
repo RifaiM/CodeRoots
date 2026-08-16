@@ -428,7 +428,7 @@ function initHtmlConceptWidgets() {
             desc: 'Tells the browser: "Hey, open a new link box!" The angle brackets (<...>) act as container boundaries.'
         },
         attr: {
-            title: '⚡ Attributes (href="https://coderoots.dev")',
+            title: '⚡ Attributes (href="https://novicodes.dev")',
             desc: 'Like a luggage tag attached to a suitcase! href tells the link where to fly when clicked.'
         },
         content: {

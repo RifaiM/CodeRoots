@@ -20,8 +20,8 @@ function updateHeaderStats() {
 // 1. Tag Sandbox
 const tagSamples = {
     h1: {
-        code: `&lt;h1&gt;Welcome to CodeRoots&lt;/h1&gt;`,
-        preview: `<h1 style="margin:0; font-size:1.6rem; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif;">Welcome to CodeRoots</h1>`
+        code: `&lt;h1&gt;Welcome to NoviCodes&lt;/h1&gt;`,
+        preview: `<h1 style="margin:0; font-size:1.6rem; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif;">Welcome to NoviCodes</h1>`
     },
     p: {
         code: `&lt;p&gt;HTML creates the semantic blueprint of every webpage.&lt;/p&gt;`,
