@@ -30,7 +30,7 @@ function initHeroTypewriter() {
 
     const defaultPhrases = [
         'Doing, Not Just Watching',
-        'Building 81 Real Projects',
+        'Solving 81 Hands-On Challenges',
         'Mastering React & JavaScript',
         'Writing Real Code in Browser',
         'Building Modern Web Interfaces'
