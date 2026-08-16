@@ -664,7 +664,9 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
   padding: 16px 14px !important;
   box-sizing: border-box !important;
   border-radius: 18px !important;
-  overflow-y: auto !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
   -webkit-overflow-scrolling: touch !important;
   touch-action: pan-y !important;
 }
