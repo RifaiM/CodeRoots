@@ -28,15 +28,15 @@
         const progressPct = Math.min(Math.round((stats.totalXP / stats.maxXP) * 100), 100);
 
         const ranks = [
-            { title: 'Web Explorer', icon: '🌐', level: 'Level 0 • Web History' },
-            { title: 'Code Apprentice', icon: '🛡️', level: 'Level 1-3 • Foundations' },
-            { title: 'DOM Challenger', icon: '⚔️', level: 'Level 4 • DOM Dojo' },
-            { title: 'React Engineer', icon: '⚛️', level: 'Level 5 • Framework Dojo' },
-            { title: 'Python Backend Engineer', icon: '🐍', level: 'Level 6 • Backend Dojo' },
-            { title: 'Principal Polymath', icon: '👑', level: 'Level 7 • Specializations' },
-            { title: 'Async UI Specialist', icon: '🌉', level: 'Level 8 • Fullstack Bridge' },
-            { title: 'React Auth Specialist', icon: '🛡️', level: 'Level 9 • Auth & Persistence' },
-            { title: 'Grand Master Fullstack Engineer', icon: '👑', level: 'Level 10 • Apex SaaS Capstone' }
+            { title: 'Web Explorer', icon: '🌐', level: 'Level 0 • Web Basics' },
+            { title: 'Code Apprentice', icon: '🛡️', level: 'Level 1-3 • HTML, CSS & JS' },
+            { title: 'DOM Challenger', icon: '⚔️', level: 'Level 4 • JS Widget Dojo' },
+            { title: 'React Engineer', icon: '⚛️', level: 'Level 5 • React Component Dojo' },
+            { title: 'Python Backend Engineer', icon: '🐍', level: 'Level 6 • Python Basics Dojo' },
+            { title: 'Principal Polymath', icon: '👑', level: 'Level 7 • Specialized Tracks' },
+            { title: 'Async UI Specialist', icon: '🌉', level: 'Level 8 • Async UI & Loading' },
+            { title: 'React Auth Specialist', icon: '🛡️', level: 'Level 9 • User Logins & Auth' },
+            { title: 'Grand Master Fullstack Engineer', icon: '👑', level: 'Level 10 • Complete App Capstone' }
         ];
 
         const currentRankTitle = stats.rankTitle;
@@ -88,7 +88,7 @@
                         <!-- XP Breakdown Grid -->
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 14px;">
                             <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 0: Web History</div>
+                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 0: Web Basics</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: ${stats.isL0 ? '#10b981' : '#64748b'};">${stats.isL0 ? '250 XP ✅' : '0 / 250 XP'}</div>
                             </div>
                             <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
@@ -96,31 +96,31 @@
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${((stats.isL1 ? 300 : 0) + (stats.isL2 ? 300 : 0) + (stats.isL3 ? 400 : 0))} / 1,000 XP</div>
                             </div>
                             <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 4: DOM Dojo</div>
+                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 4: JS Widget Dojo</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #2563eb;">${stats.l4Completed * 100} / 1,500 XP</div>
                             </div>
                             <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 5: React Dojo</div>
+                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 5: React Component Dojo</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${stats.l5Completed * 150} / 2,250 XP</div>
                             </div>
                             <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 6: Python Dojo</div>
+                                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">Level 6: Python Basics Dojo</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #10b981;">${stats.l6Completed * 200} / 3,000 XP</div>
                             </div>
                             <div style="background: #faf5ff; border: 1px solid #e9d5ff; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Specialization</div>
+                                <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Specialized Tracks</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${stats.l7Completed * 250} / 4,500 XP</div>
                             </div>
                             <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #0369a1; font-weight: 700;">Level 8: API Bridge</div>
+                                <div style="font-size: 0.70rem; color: #0369a1; font-weight: 700;">Level 8: Async UI & Skeletons</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #0284c7;">${(stats.l8Completed || 0) * 250} / 1,500 XP</div>
                             </div>
                             <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #4338ca; font-weight: 700;">Level 9: Auth &amp; DB</div>
+                                <div style="font-size: 0.70rem; color: #4338ca; font-weight: 700;">Level 9: User Logins &amp; Auth</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #4f46e5;">${(stats.l9Completed || 0) * 250} / 1,500 XP</div>
                             </div>
                             <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 8px 10px; border-radius: 10px;">
-                                <div style="font-size: 0.70rem; color: #b45309; font-weight: 700;">Level 10: Apex SaaS</div>
+                                <div style="font-size: 0.70rem; color: #b45309; font-weight: 700;">Level 10: Complete App Capstone</div>
                                 <div style="font-size: 0.84rem; font-weight: 800; color: #d97706;">${(stats.l10Completed || 0) * 500} / 3,000 XP</div>
                             </div>
                             <div style="background: #fefce8; border: 1px solid #fef08a; padding: 8px 10px; border-radius: 10px; grid-column: 1 / -1;">
@@ -193,13 +193,13 @@
             }
         };
 
-        const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', '/2. partB/certificate.html', isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
-        const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', '/3. partC/certificate.html', isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
-        const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', '/5. partE/certificate.html', isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
-        const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', '/6. partF/certificate.html', isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
-        const l8Item = renderCertItem('🌉 Level 8 Certificate', 'Async UI & Client Data Specialist', '/7. partG/certificate.html', isL8Earned, stats.l8Completed || 0, 6, 'background: #f0f9ff; border: 1px solid #0284c7;', 'color: #0369a1;', '#0284c7');
-        const l9Item = renderCertItem('🛡️ Level 9 Certificate', 'React Auth & Access Control Specialist', '/8. partH/certificate.html', isL9Earned, stats.l9Completed || 0, 6, 'background: #f5f3ff; border: 1px solid #6366f1;', 'color: #4338ca;', '#4f46e5');
-        const l10Item = renderCertItem('🎓 Level 10 Diploma', 'SaaS UI & Design Systems Architect', '/9. partI/certificate.html', isL10Earned, stats.l10Completed || 0, 6, 'background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1.5px solid #f59e0b;', 'color: #78350f;', '#b45309');
+        const l4Item = renderCertItem('📜 Level 4 Certificate', 'Vanilla JavaScript Web Widgets', '/2. partB/certificate.html', isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
+        const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Reusable UI Components', '/3. partC/certificate.html', isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
+        const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Basics', '/5. partE/certificate.html', isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+        const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Specialized Developer Tracks', '/6. partF/certificate.html', isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
+        const l8Item = renderCertItem('🌉 Level 8 Certificate', 'Async UI & Loading States', '/7. partG/certificate.html', isL8Earned, stats.l8Completed || 0, 6, 'background: #f0f9ff; border: 1px solid #0284c7;', 'color: #0369a1;', '#0284c7');
+        const l9Item = renderCertItem('🛡️ Level 9 Certificate', 'User Logins & Private Member Pages', '/8. partH/certificate.html', isL9Earned, stats.l9Completed || 0, 6, 'background: #f5f3ff; border: 1px solid #6366f1;', 'color: #4338ca;', '#4f46e5');
+        const l10Item = renderCertItem('🎓 Level 10 Graduation Diploma', 'Complete Web App Capstone', '/9. partI/certificate.html', isL10Earned, stats.l10Completed || 0, 6, 'background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1.5px solid #f59e0b;', 'color: #78350f;', '#b45309');
 
         if (typeof window.Swal !== 'undefined') {
             window.Swal.fire({
@@ -241,10 +241,10 @@
                 html: `
                     <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
                         <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 10px;">
-                            You must complete all interactive projects in <strong>${title}</strong> to unlock your verified Certificate of Mastery.
+                            You must complete all lessons in <strong>${title}</strong> to unlock your verified Certificate of Mastery.
                         </p>
                         <div style="font-weight: 800; font-size: 0.95rem; color: #2563eb; background: #eff6ff; border: 1px solid #bfdbfe; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            Current Progress: ${completedCount} / ${maxCount} Projects Completed
+                            Current Progress: ${completedCount} / ${maxCount} Lessons Completed
                         </div>
                     </div>
                 `,
@@ -335,13 +335,13 @@
             }
         };
 
-        const itemL4 = renderDojoHubItem(isL4, '⚔️ Level 4: DOM Interactivity Dojo', `15 Projects • Active Lesson ${activeL4}`, '/2. partB/hub.html', 'background: #eff6ff', '#3b82f6', '#1d4ed8', 'background: #f8fafc', '#cbd5e1', '#2563eb');
-        const itemL5 = renderDojoHubItem(isL5, '⚛️ Level 5: React & Framework Dojo', `15 Projects • Active Lesson ${activeL5}`, '/3. partC/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#38bdf8', '#0284c7');
-        const itemL6 = renderDojoHubItem(isL6, '🐍 Level 6: Python & Backend Dojo', `15 Projects • Active Lesson ${activeL6}`, '/5. partE/hub.html', 'background: #ecfdf5', '#10b981', '#047857', 'background: #ecfdf5', '#10b981', '#059669');
-        const itemL7 = renderDojoHubItem(isL7, '🚀 Level 7: Specialization Hub', '3 Tracks • Cloud, Database & Next.js', '/6. partF/hub.html', 'background: #faf5ff', '#c084fc', '#7e22ce', 'background: #faf5ff', '#c084fc', '#9333ea');
-        const itemL8 = renderDojoHubItem(isL8, '🌉 Level 8: Async UI & Live Data Dojo', `6 Projects • Active Lesson ${activeL8}`, '/7. partG/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#7dd3fc', '#0284c7');
-        const itemL9 = renderDojoHubItem(isL9, '🛡️ Level 9: React Auth & Access Control Dojo', `6 Projects • Active Lesson ${activeL9}`, '/8. partH/hub.html', 'background: #f5f3ff', '#6366f1', '#4338ca', 'background: #f5f3ff', '#c7d2fe', '#4f46e5');
-        const itemL10 = renderDojoHubItem(isL10, '🏆 Level 10: SaaS UI & Design Systems Dojo', `6 Milestones • Active Milestone ${activeL10}`, '/9. partI/hub.html', 'background: #fffbeb', '#f59e0b', '#78350f', 'background: #fffbeb', '#fde68a', '#b45309');
+        const itemL4 = renderDojoHubItem(isL4, '⚔️ Level 4: JavaScript Widget Dojo', `15 Lessons • Active Lesson ${activeL4}`, '/2. partB/hub.html', 'background: #eff6ff', '#3b82f6', '#1d4ed8', 'background: #f8fafc', '#cbd5e1', '#2563eb');
+        const itemL5 = renderDojoHubItem(isL5, '⚛️ Level 5: React Component Dojo', `15 Lessons • Active Lesson ${activeL5}`, '/3. partC/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#38bdf8', '#0284c7');
+        const itemL6 = renderDojoHubItem(isL6, '🐍 Level 6: Python & Backend Basics Dojo', `15 Lessons • Active Lesson ${activeL6}`, '/5. partE/hub.html', 'background: #ecfdf5', '#10b981', '#047857', 'background: #ecfdf5', '#10b981', '#059669');
+        const itemL7 = renderDojoHubItem(isL7, '🚀 Level 7: Specialized Developer Tracks', '3 Tracks • Cloud, SQL & Next.js', '/6. partF/hub.html', 'background: #faf5ff', '#c084fc', '#7e22ce', 'background: #faf5ff', '#c084fc', '#9333ea');
+        const itemL8 = renderDojoHubItem(isL8, '🌉 Level 8: Async UI & Loading States Dojo', `6 Lessons • Active Lesson ${activeL8}`, '/7. partG/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#7dd3fc', '#0284c7');
+        const itemL9 = renderDojoHubItem(isL9, '🛡️ Level 9: User Logins & Private Pages Dojo', `6 Lessons • Active Lesson ${activeL9}`, '/8. partH/hub.html', 'background: #f5f3ff', '#6366f1', '#4338ca', 'background: #f5f3ff', '#c7d2fe', '#4f46e5');
+        const itemL10 = renderDojoHubItem(isL10, '🏆 Level 10: Complete Web App Capstone Dojo', `6 Milestones • Active Milestone ${activeL10}`, '/9. partI/hub.html', 'background: #fffbeb', '#f59e0b', '#78350f', 'background: #fffbeb', '#fde68a', '#b45309');
 
         if (typeof window.Swal !== 'undefined') {
             window.Swal.fire({

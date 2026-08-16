@@ -842,7 +842,7 @@ window.showCertLockWarning = function(levelName, count, requiredCount = 15) {
     const titleText = `🔒 ${levelName} Locked`;
     const messageText = isLevel7
         ? `You must complete any 1 Specialization Track (6 Lessons in Cloud Shipping, Databases & Auth, or Next.js) before claiming your official Level 7 Certificate! (${count}/6 Completed)`
-        : `You must complete all 15 projects in ${levelName} before claiming your official Certificate! (${count}/${requiredCount} Completed)`;
+        : `You must complete all 15 lessons in ${levelName} before claiming your official Certificate! (${count}/${requiredCount} Completed)`;
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -900,14 +900,14 @@ window.openCertificateHub = function() {
         }
     };
 
-    const l4Item = renderCertItem('📜 Level 4 Certificate', 'DOM Manipulation & Web Interactivity', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
-    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Modern Frontend Engineering', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
-    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Architecture', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
-    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Fullstack Shipping & Specialization', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
+    const l4Item = renderCertItem('📜 Level 4 Certificate', 'Vanilla JavaScript Web Widgets', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
+    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Reusable UI Components', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
+    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Basics', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
+    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Specialized Developer Tracks', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: '📜 NoviCodes Certificate Hub',
+            title: '📜 Proof-of-Work Certificates',
             customClass: {
                 popup: 'responsive-profile-modal responsive-cert-hub-modal'
             },
