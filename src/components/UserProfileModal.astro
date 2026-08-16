@@ -795,3 +795,10 @@
     window.addEventListener('storage', () => updateAllHeaderStats());
     window.addEventListener('pageshow', () => updateAllHeaderStats());
 </script>
+
+<style is:global>
+    /* Ensure all SweetAlert2 modals always layer above any sticky navigation */
+    .swal2-container {
+        z-index: 100000 !important;
+    }
+</style>

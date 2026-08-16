@@ -302,6 +302,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
    ========================================================================== */
 
 .swal2-container {
+    z-index: 100000 !important;
     overflow-y: hidden !important;
 }
 

@@ -65,7 +65,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 .platform-header {
   position: sticky !important;
   top: 0 !important;
-  z-index: 99999 !important;
+  z-index: 1000 !important;
   background: #ffffff !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
@@ -1853,6 +1853,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
    ========================================================================== */
 
 .swal2-container {
+    z-index: 100000 !important;
     overflow-y: hidden !important;
 }
 
