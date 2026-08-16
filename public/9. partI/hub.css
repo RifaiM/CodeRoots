@@ -426,6 +426,7 @@ body {
     background: #e2e8f0;
     color: #64748b !important;
     cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* Responsive */

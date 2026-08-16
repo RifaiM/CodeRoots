@@ -270,9 +270,11 @@ const navLinks = [
             if (certBtn) {
                 if (completedCount === LESSON_KEYS.length) {
                     certBtn.className = 'cert-cta-btn unlocked';
+                    certBtn.href = '/8. partH/certificate.html';
                     certBtn.innerHTML = '<span>🎓 View & Download Certificate ➔</span>';
                 } else {
                     certBtn.className = 'cert-cta-btn locked';
+                    certBtn.href = 'javascript:void(0)';
                     certBtn.innerHTML = `<span>🔒 Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
                 }
             }

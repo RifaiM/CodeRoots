@@ -134,13 +134,15 @@
             if (completedCount === total || isLessonCompleted(15)) {
                 certBtn.className = 'cert-action-btn unlocked';
                 certBtn.href = './certificate.html';
+                certBtn.onclick = null;
                 certBtn.innerHTML = '<span>🏆 Claim Certificate ➔</span>';
-                certDesc.textContent = 'Congratulations! You completed all 15 Python Backend projects. Download your official certificate.';
+                certDesc.textContent = 'Congratulations! You completed all 15 Python Dojo exercises. Download your official Level 6 Certificate.';
             } else {
                 certBtn.className = 'cert-action-btn locked';
                 certBtn.href = 'javascript:void(0)';
+                certBtn.onclick = null;
                 certBtn.innerHTML = '<span>🔒 Complete All 15 First</span>';
-                certDesc.textContent = `Finish all 15 Python and FastAPI backend projects to unlock your official Backend Architect certificate (${completedCount}/15 completed).`;
+                certDesc.textContent = `Finish all 15 interactive Python exercises to unlock your official Level 6 Certificate (${completedCount}/15 completed).`;
             }
         }
     }
