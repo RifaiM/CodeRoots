@@ -285,6 +285,7 @@ function updateHeaderStats() {
     if (rankIcon) rankIcon.textContent = stats.rankIcon;
 }
 
+/**
  * Initializes 4-Tab Segmented Switcher
  */
 function initTabNavigation() {
