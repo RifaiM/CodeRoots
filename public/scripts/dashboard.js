@@ -31,9 +31,9 @@ function initHeroTypewriter() {
     const phrases = [
         'Doing, Not Just Watching',
         'Building 81 Real Projects',
-        'Mastering React & Python',
+        'Mastering React & JavaScript',
         'Writing Real Code in Browser',
-        'Shipping Fullstack SaaS Apps'
+        'Building Modern Web Interfaces'
     ];
 
     let phraseIdx = 0;
@@ -252,7 +252,7 @@ window.getUserXPAndRank = function() {
     let rankIcon = '🌐';
 
     if (l10Completed >= 6) {
-        rankTitle = 'Grand Master Fullstack Engineer';
+        rankTitle = 'Master Web Developer';
         rankIcon = '👑';
     } else if (l10Completed > 0 || isSaasFoundations) {
         rankTitle = 'SaaS UI Architect';
@@ -517,10 +517,10 @@ function initUserProgress() {
                 total: 6,
                 xpReward: 3000,
                 unit: 'Milestones'
-            }, './9. partI/hub.html', 'Level 10 Apex SaaS Capstone');
+            }, './9. partI/hub.html', 'Level 10 SaaS Dashboard UI');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Apex Capstone Completed' : (stats.l10Completed > 0 ? `🏆 Continue Apex (${stats.l10Completed}/6) ➔` : '🏆 Launch Apex Capstone');
+                btnSpan.textContent = isFinished ? '✅ Level 10 Completed' : (stats.l10Completed > 0 ? `🏆 Continue Apex (${stats.l10Completed}/6) ➔` : '🏆 Launch Level 10 Dojo');
             }
         }
     });

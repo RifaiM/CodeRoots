@@ -16,7 +16,7 @@ const level4Lessons = [
     { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
     { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
     { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
-    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
+    { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
 
 const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Async Fetch Data</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"fetchBtn\" style=\"padding: 10px 18px; background: #7c3aed; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Fetch Data</button>\n  <div id=\"dataCard\" style=\"margin-top: 16px; padding: 14px; background: #f1f5f9; border-radius: 8px;\">Click fetch to load data.</div>\n\n  <script>\n    const btn = document.getElementById('fetchBtn');\n    const card = document.getElementById('dataCard');\n\n    // 👉 STEP 1: Define an async function named loadData() that fetches from 'https://jsonplaceholder.typicode.com/todos/1' below:\n    \n\n    // 👉 STEP 2: Parse the response with await res.json() and display data.title in card.textContent below:\n    \n\n    btn.addEventListener('click', loadData);\n  </script>\n</body>\n</html>\n";

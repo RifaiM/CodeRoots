@@ -16,18 +16,18 @@ const level4Lessons = [
     { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
     { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
     { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
-    { id: 15, title: 'Capstone: Full Interactive Web Application', url: '/2. partB/lesson15/lesson15_remake.html' }
+    { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
 
 const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Task Master Pro</title>\n  <style>\n    body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; padding: 24px; }\n    .app-container { max-width: 500px; margin: 0 auto; background: #1e293b; padding: 24px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }\n    .task-input { width: 70%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; box-sizing: border-box; }\n    .add-btn { padding: 10px 16px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }\n    .task-list { margin-top: 20px; list-style: none; padding: 0; }\n    .task-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #0f172a; border-radius: 8px; margin-bottom: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"app-container\">\n    <h2>🚀 Task Master Pro</h2>\n    <div style=\"display: flex; gap: 8px; margin-top: 14px;\">\n      <input type=\"text\" id=\"taskInput\" class=\"task-input\" placeholder=\"What needs to be done?\" />\n      <button id=\"addTaskBtn\" class=\"add-btn\">Add Task</button>\n    </div>\n    <ul id=\"taskList\" class=\"task-list\">\n      <li class=\"task-item\"><span>Master HTML5 & CSS3</span></li>\n    </ul>\n  </div>\n\n  <script>\n    const taskInput = document.getElementById('taskInput');\n    const addBtn = document.getElementById('addTaskBtn');\n    const taskList = document.getElementById('taskList');\n\n    // 👉 STEP 1: Add a click event listener to addBtn that reads taskInput.value below:\n    \n\n    // 👉 STEP 2: Create a new <li> element and append it to taskList below:\n    \n\n  </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
-    title="Project 15: Capstone: Full Interactive Web Application | Level 4 DOM Dojo"
+    title="Project 15: Final Project: Interactive Web App | Level 4 DOM Dojo"
     description={"Combine semantic HTML, modern responsive CSS, and dynamic JavaScript DOM interactivity into a complete Task Dashboard."}
     levelTag="Level 4 • DOM Dojo"
     lessonNum={15}
-    lessonTitle="Capstone: Full Interactive Web Application"
+    lessonTitle="Final Project: Interactive Web App"
     xpAmount={100}
     completionKey="partB_lesson15_remake_complete"
     
@@ -74,7 +74,7 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Task Master Pro</
 
         <!-- 🏷️ Core Building Blocks Guide -->
         <article class="concept-card">
-            <h3><span>🏷️</span> Capstone Architectural Patterns</h3>
+            <h3><span>🏷️</span> Final Project Architecture Patterns</h3>
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Harmonious integration of structure, style, and event-driven logic:</p>
             <div class="tag-demo">
                 <div class="tag-example">
@@ -196,7 +196,7 @@ const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Task Master Pro</
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Project 15: Capstone: Full Interactive Web Application',
+                    lessonTitle: 'Project 15: Final Project: Interactive Web App',
                     xp: 100,
                     completionKey: 'partB_lesson15_remake_complete',
                     mode: 'html',

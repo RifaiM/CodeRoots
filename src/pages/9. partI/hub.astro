@@ -11,13 +11,13 @@ const navLinks = [
 ---
 
 <BaseLayout
-    title="SaaS UI & Design Systems (Level 10) | NoviCodes"
+    title="Level 10: SaaS UI & Dashboard Components | NoviCodes"
     description="Architect enterprise SaaS frontends, modular layout shells, debounced search pipelines, dynamic billing switchers, and AI copilots."
     showHeaderFooter={false}
 >
     <PlatformHeader 
         slot="header"
-        tagText="Level 10 • SaaS UI Architecture"
+        tagText="Level 10 • SaaS Dashboard UI"
         tagId="headerLogoTag"
         navLinks={navLinks}
         showXpBadge={true}
@@ -27,17 +27,17 @@ const navLinks = [
     <main class="hub-container">
         <!-- Hero Section -->
         <section class="hub-hero">
-            <span class="hub-badge">🏆 Level 10 • Complete Web App Capstone</span>
-            <h1>Build a Complete, Polished Dashboard Application</h1>
+            <span class="hub-badge">🏆 Level 10 • SaaS Dashboard UI</span>
+            <h1>Build Modern SaaS Dashboard Interfaces</h1>
             <p>
-                Your graduation milestone! Put everything together to build a complete dashboard interface: sidebar navigation shell, snappy search filters, an interactive pricing & upgrade table, and a smart AI helper panel.
+                Your graduation lesson! Put everything together to build a complete dashboard interface: sidebar navigation shell, snappy search filters, an interactive pricing & upgrade table, and a smart AI helper panel.
             </p>
 
             <!-- Live Progress Bar -->
             <div class="hero-progress-wrap">
                 <div class="hero-progress-info">
                     <span>Course Progress</span>
-                    <span id="heroProgressText">0 of 6 Milestones Completed (0%)</span>
+                    <span id="heroProgressText">0 of 6 Lessons Completed (0%)</span>
                 </div>
                 <div class="hero-progress-bar">
                     <div class="hero-progress-fill" id="heroProgressFill"></div>
@@ -46,7 +46,7 @@ const navLinks = [
 
             <!-- Smart Resume CTA -->
             <a href="/9. partI/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>🚀 Start Milestone 1: App Shell Layout ➔</span>
+                <span>🚀 Start Lesson 1: App Shell Layout ➔</span>
             </a>
             <div style="margin-top: 14px; text-align: center;">
                 <a href="/foundations.html?track=saas" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #b45309; text-decoration: none; font-weight: 700; background: #fffbeb; padding: 6px 16px; border-radius: 20px; transition: all 0.2s ease;">
@@ -59,11 +59,11 @@ const navLinks = [
         <section class="hub-stats-grid">
             <div class="hub-stat-card">
                 <div class="hub-stat-val">3,000 XP</div>
-                <div class="hub-stat-lbl">Apex Bounty</div>
+                <div class="hub-stat-lbl">Level 10 Reward</div>
             </div>
             <div class="hub-stat-card">
                 <div class="hub-stat-val" id="statCompletedProjects">0 / 6</div>
-                <div class="hub-stat-lbl">Milestones Completed</div>
+                <div class="hub-stat-lbl">Lessons Completed</div>
             </div>
             <div class="hub-stat-card">
                 <div class="hub-stat-val">React 18 + SaaS Patterns</div>
@@ -81,9 +81,9 @@ const navLinks = [
                 <div class="chapter-header">
                     <div class="chapter-title-wrap">
                         <span class="chapter-num">Diploma Track</span>
-                        <h2 class="chapter-title">The 6 SaaS Dashboard Milestones</h2>
+                        <h2 class="chapter-title">The 6 SaaS Dashboard Lessons</h2>
                     </div>
-                    <span class="chapter-badge">Milestones 1–6 • 3,000 XP</span>
+                    <span class="chapter-badge">Lessons 1–6 • 3,000 XP</span>
                 </div>
 
                 <div class="lesson-cards-grid">
@@ -148,7 +148,7 @@ const navLinks = [
                             <span class="lesson-idx">MILESTONE 06</span>
                             <span class="lesson-status-pill locked" id="statusPill6">🔒 Locked</span>
                         </div>
-                        <h3 class="lesson-card-title">Apex Capstone: The Full SaaS Dashboard Suite</h3>
+                        <h3 class="lesson-card-title">Final Project: SaaS Dashboard Suite</h3>
                         <div class="card-bottom">
                             <span class="xp-tag">⚡ +500 XP</span>
                             <span class="card-action-text" id="actionText6">Locked</span>
@@ -164,10 +164,10 @@ const navLinks = [
                 <div class="cert-icon-wrap">🎓</div>
                 <div class="cert-text-wrap">
                     <h3>SaaS UI &amp; Design Systems Architect Diploma</h3>
-                    <p>Complete all 6 milestones to unlock your official Level 10 graduation diploma!</p>
+                    <p>Complete all 6 lessons to unlock your official Level 10 graduation diploma!</p>
                 </div>
                 <a href="javascript:void(0)" class="cert-cta-btn locked" id="certButton">
-                    <span>🔒 Complete 6 Milestones to Unlock</span>
+                    <span>🔒 Complete 6 Lessons to Unlock</span>
                 </a>
             </div>
         </section>
@@ -231,12 +231,12 @@ const navLinks = [
                     card.className = 'lesson-card completed';
                     pill.className = 'lesson-status-pill completed';
                     pill.textContent = '✅ Completed';
-                    action.textContent = 'Review Milestone ➔';
+                    action.textContent = 'Review Lesson ➔';
                 } else if (isUnlocked) {
                     card.className = 'lesson-card in-progress';
                     pill.className = 'lesson-status-pill in-progress';
                     pill.textContent = '⚡ In Progress';
-                    action.textContent = 'Launch Milestone ➔';
+                    action.textContent = 'Launch Lesson ➔';
                 } else {
                     card.className = 'lesson-card locked';
                     pill.className = 'lesson-status-pill locked';
@@ -251,18 +251,18 @@ const navLinks = [
             const statsVal = document.getElementById('statCompletedProjects');
 
             if (progressFill) progressFill.style.width = percent + '%';
-            if (progressText) progressText.textContent = `${completedCount} of ${LESSON_KEYS.length} Milestones Completed (${percent}%)`;
+            if (progressText) progressText.textContent = `${completedCount} of ${LESSON_KEYS.length} Lessons Completed (${percent}%)`;
             if (statsVal) statsVal.textContent = `${completedCount} / ${LESSON_KEYS.length}`;
 
             const resumeBtn = document.getElementById('heroResumeBtn');
             if (resumeBtn) {
                 if (completedCount === LESSON_KEYS.length) {
                     resumeBtn.href = '/9. partI/certificate.html';
-                    resumeBtn.innerHTML = '<span>🏆 Claim Master Diploma ➔</span>';
+                    resumeBtn.innerHTML = '<span>🏆 Claim Level 10 Certificate ➔</span>';
                     resumeBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 } else if (firstIncompleteIdx !== -1) {
                     resumeBtn.href = LESSON_URLS[firstIncompleteIdx];
-                    resumeBtn.innerHTML = `<span>🚀 Continue Milestone ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
+                    resumeBtn.innerHTML = `<span>🚀 Continue Lesson ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
                 }
             }
 
@@ -270,7 +270,7 @@ const navLinks = [
             if (certBtn) {
                 if (completedCount === LESSON_KEYS.length) {
                     certBtn.className = 'cert-cta-btn unlocked';
-                    certBtn.innerHTML = '<span>🎓 View & Download Diploma ➔</span>';
+                    certBtn.innerHTML = '<span>🎓 View & Download Certificate ➔</span>';
                 } else {
                     certBtn.className = 'cert-cta-btn locked';
                     certBtn.innerHTML = `<span>🔒 Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;

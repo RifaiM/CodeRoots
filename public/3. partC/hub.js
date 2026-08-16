@@ -28,7 +28,7 @@
         // Chapter 4: Global State, Custom Hooks & Capstone
         { id: 13, chapter: 4, title: 'Context API & Global State', xp: 150, topic: 'Context API' },
         { id: 14, chapter: 4, title: 'Performance Optimization & Memo', xp: 150, topic: 'React.memo' },
-        { id: 15, chapter: 4, title: '🏆 Capstone Framework Web App', xp: 150, topic: 'Final Capstone' }
+        { id: 15, chapter: 4, title: '🏆 Final Project: Dynamic React App', xp: 150, topic: 'Final Project' }
     ];
 
     function isLessonCompleted(id) {

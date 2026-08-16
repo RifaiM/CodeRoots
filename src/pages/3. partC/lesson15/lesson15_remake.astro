@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
+const starterCode = `// 🏆 Lesson 15: The Ultimate React Task Tracker Final Project!
 
 function TaskTracker() {
   // 👉 STEP 1: Declare state 'tasks' and 'setTasks' with React.useState(["Master React", "Ship Code"])
@@ -120,18 +120,18 @@ const level5Lessons = [
     },
     {
         "id": 15,
-        "title": "React Capstone Mini-App",
+        "title": "Final Project: React Task App",
         "url": "/3. partC/lesson15/lesson15_remake.html"
     }
 ];
 ---
 
 <LessonLayout
-    title="Project 15: React Capstone App | Level 5 React Dojo"
+    title="Project 15: Final Project: React Task App | Level 5 React Dojo"
     description="Combine state, dynamic lists, controlled inputs, and component decomposition into a complete, interactive React Task Tracker!"
     levelTag="Level 5 • Framework Dojo"
     lessonNum={15}
-    lessonTitle="React Capstone Mini-App"
+    lessonTitle="Final Project: React Task App"
     xpAmount={150}
     completionKey="partC_lesson15_remake_complete"
     nextLessonUrl="/3. partC/certificate.html"
@@ -172,7 +172,7 @@ const level5Lessons = [
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Building your capstone is like assembling your own dream racecar 🏎️ using all the precision engine components and tools you mastered throughout Level 5!
+                <strong>Real-World Analogy:</strong> Building your final project is like assembling your own dream racecar 🏎️ using all the precision engine components and tools you mastered throughout Level 5!
             </div>
         </article>
 
@@ -202,7 +202,7 @@ const level5Lessons = [
             <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
             <div class="code-snippet-box">
                 <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_15')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_15">{"function TaskManager() {\n  const [tasks, setTasks] = React.useState([\n    { id: 1, title: \"Master React Hooks\", done: true },\n    { id: 2, title: \"Build Capstone SPA\", done: false }\n  ]);\n  const [input, setInput] = React.useState(\"\");\n\n  const handleAdd = () => {\n    if (!input.trim()) return;\n    setTasks([...tasks, { id: Date.now(), title: input, done: false }]);\n    setInput(\"\");\n  };\n\n  return (\n    <div>\n      <input value={input} onChange={e => setInput(e.target.value)} />\n      <button onClick={handleAdd}>Add Task</button>\n      <ul>{tasks.map(t => <li key={t.id}>{t.title}</li>)}</ul>\n    </div>\n  );\n}"}</code></pre>
+                <pre><code id="refCodeBox_15">{"function TaskManager() {\n  const [tasks, setTasks] = React.useState([\n    { id: 1, title: \"Master React Hooks\", done: true },\n    { id: 2, title: \"Build React SPA\", done: false }\n  ]);\n  const [input, setInput] = React.useState(\"\");\n\n  const handleAdd = () => {\n    if (!input.trim()) return;\n    setTasks([...tasks, { id: Date.now(), title: input, done: false }]);\n    setInput(\"\");\n  };\n\n  return (\n    <div>\n      <input value={input} onChange={e => setInput(e.target.value)} />\n      <button onClick={handleAdd}>Add Task</button>\n      <ul>{tasks.map(t => <li key={t.id}>{t.title}</li>)}</ul>\n    </div>\n  );\n}"}</code></pre>
             </div>
         </article>
 
@@ -226,7 +226,7 @@ const level5Lessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partC_lesson15';
-        const DEFAULT_STARTER = `// 🏆 Lesson 15: The Ultimate React Task Tracker Capstone!
+        const DEFAULT_STARTER = `// 🏆 Lesson 15: The Ultimate React Task Tracker Final Project!
 
 function TaskTracker() {
   // 👉 STEP 1: Declare state 'tasks' and 'setTasks' with React.useState(["Master React", "Ship Code"])
@@ -360,7 +360,7 @@ root.render(<TaskTracker />);
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'React Capstone Mini-App',
+                    lessonTitle: 'Final Project: React Task App',
                     xp: 150,
                     completionKey: 'partC_lesson15_remake_complete',
                     nextUrl: '/3. partC/certificate.html',

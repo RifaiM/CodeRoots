@@ -25,10 +25,10 @@
         { id: 11, chapter: 3, title: 'Databases & SQL ORM Integration', xp: 200, topic: 'SQLite & ORM' },
         { id: 12, chapter: 3, title: 'RESTful Web APIs with FastAPI', xp: 200, topic: 'FastAPI' },
 
-        // Chapter 4: Backend Security, Auth & Production Capstone
+        // Chapter 4: Backend Security, Auth & Final Project
         { id: 13, chapter: 4, title: 'Authentication & Security Basics', xp: 200, topic: 'Security & Auth' },
         { id: 14, chapter: 4, title: 'Guided Mini Project: Task Manager API', xp: 200, topic: 'Mini API Project' },
-        { id: 15, chapter: 4, title: '🏆 Capstone Python Backend Service', xp: 200, topic: 'Production Capstone' }
+        { id: 15, chapter: 4, title: '🏆 Final Project: Python API Logic Service', xp: 200, topic: 'Production Capstone' }
     ];
 
     function isLessonCompleted(id) {

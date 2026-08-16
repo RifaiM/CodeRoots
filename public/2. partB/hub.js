@@ -28,7 +28,7 @@
 
         // Chapter 4: Guided Applications & Capstone
         { id: 14, chapter: 4, title: "Guided Dashboard Mini Application", xp: 100, topic: "Mini Project" },
-        { id: 15, chapter: 4, title: "🏆 Capstone Practical Web Application", xp: 100, topic: "Final Capstone" }
+        { id: 15, chapter: 4, title: "🏆 Final Project: Practical Web Widget", xp: 100, topic: "Final Project" }
     ];
 
     function isLessonCompleted(id) {

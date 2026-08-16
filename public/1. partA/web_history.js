@@ -128,7 +128,7 @@ window.getUserXPAndRank = function() {
     let rankIcon = '🌐';
 
     if (l10Completed >= 6) {
-        rankTitle = 'Grand Master Fullstack Engineer';
+        rankTitle = 'Master Web Developer';
         rankIcon = '👑';
     } else if (l10Completed > 0 || isSaasFoundations) {
         rankTitle = 'SaaS UI Architect';

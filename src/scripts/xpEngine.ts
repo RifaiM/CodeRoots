@@ -191,7 +191,7 @@ export function getUserXPAndRank(): UserStats {
     let rankIcon = '🌐';
 
     if (l10Completed >= 6) {
-        rankTitle = 'Grand Master Fullstack Engineer';
+        rankTitle = 'Master Web Developer';
         rankIcon = '👑';
     } else if (l10Completed > 0 || isSaasFoundations) {
         rankTitle = 'SaaS UI Architect';
@@ -221,10 +221,10 @@ export function getUserXPAndRank(): UserStats {
         rankTitle = 'Next.js Engineer';
         rankIcon = '⚡';
     } else if (l7Completed > 0) {
-        rankTitle = 'Fullstack Specialist';
+        rankTitle = 'Advanced Web Specialist';
         rankIcon = '🚀';
     } else if (l6Completed >= 15) {
-        rankTitle = 'Python Backend Architect';
+        rankTitle = 'Python Logic Master';
         rankIcon = '🐍';
     } else if (l6Completed > 0 || isPythonFoundations) {
         rankTitle = 'Python Backend Engineer';
