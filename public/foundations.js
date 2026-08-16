@@ -988,40 +988,96 @@ function initGlobalBackToTop() {
 }
 
 /**
- * Renders interactive 404 error page for invalid track parameters
+ * Renders interactive smart 404 recovery page for invalid track parameters
  */
 function render404TrackPage(invalidKey) {
-    document.title = "NoviCodes - 404 Track Not Found";
+    document.title = "NoviCodes - Foundation Track Not Found";
     updateHeaderStats();
 
     const mainContainer = document.querySelector('.foundations-main');
     if (!mainContainer) return;
 
     const safeKey = String(invalidKey || '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const rawLower = String(invalidKey || '').toLowerCase().trim();
+
+    // 11 Foundations Track Definitions with Aliases
+    const allTracks = [
+        { key: 'html', title: 'Level 1: HTML5 Foundations', icon: '🧱', aliases: ['html5', 'htm', 'tags', 'dom', 'markup'] },
+        { key: 'css', title: 'Level 2: Modern CSS3 Foundations', icon: '🎨', aliases: ['css3', 'style', 'styles', 'flexbox', 'grid', 'styling'] },
+        { key: 'js', title: 'Level 3: Modern JavaScript Logic', icon: '⚡', aliases: ['javascript', 'es6', 'script', 'ecmascript'] },
+        { key: 'react', title: 'Level 5: React Component Foundations', icon: '⚛️', aliases: ['reactjs', 'jsx', 'components', 'props', 'state', 'hooks'] },
+        { key: 'python', title: 'Level 6: Python & Backend Foundations', icon: '🐍', aliases: ['py', 'python3', 'backend', 'django', 'fastapi'] },
+        { key: 'cloud', title: 'Level 7A: Cloud & DevOps Foundations', icon: '☁️', aliases: ['docker', 'devops', 'cicd', 'ci-cd', 'hosting', 'nginx', 'deploy'] },
+        { key: 'sql', title: 'Level 7B: PostgreSQL & Database Foundations', icon: '🛢️', aliases: ['postgres', 'postgresql', 'database', 'db', 'sqlite', 'mysql'] },
+        { key: 'nextjs', title: 'Level 7C: Next.js & SSR Foundations', icon: '⚡', aliases: ['next', 'next.js', 'nextjss', 'ssr', 'rsc', 'server-components'] },
+        { key: 'async', title: 'Level 8: Async UI & Live Data Foundations', icon: '🌉', aliases: ['asyncui', 'skeleton', 'optimistic', 'loading', 'fetching'] },
+        { key: 'auth', title: 'Level 9: React Auth & Permissions Foundations', icon: '🛡️', aliases: ['jwt', 'login', 'authentication', 'rbac', 'security'] },
+        { key: 'saas', title: 'Level 10: SaaS UI & Architecture Foundations', icon: '🏆', aliases: ['capstone', 'saasui', 'skyscraper', 'dashboard', 'enterprise'] }
+    ];
+
+    // Smart Matcher: Exact Alias or Substring Match
+    let bestMatch = null;
+    for (const t of allTracks) {
+        if (t.key.includes(rawLower) || rawLower.includes(t.key)) {
+            bestMatch = t;
+            break;
+        }
+        if (t.aliases.some(a => a.includes(rawLower) || rawLower.includes(a))) {
+            bestMatch = t;
+            break;
+        }
+    }
+
+    // Generate Smart Match Recommendation Card
+    const suggestionHtml = bestMatch ? `
+        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #93c5fd; border-radius: 14px; padding: 18px 20px; margin: 0 auto 24px auto; text-align: left; max-width: 520px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);">
+            <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: #1d4ed8; letter-spacing: 0.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span>✨</span> Auto-Detected Match
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                <div>
+                    <div style="font-size: 1rem; font-weight: 800; color: #0f172a;">${bestMatch.icon} ${bestMatch.title}</div>
+                    <div style="font-size: 0.82rem; color: #475569; margin-top: 2px;">Did you mean to open the <code>?track=${bestMatch.key}</code> foundation guide?</div>
+                </div>
+                <a href="./foundations.html?track=${bestMatch.key}" style="background: #2563eb; color: white; padding: 9px 18px; border-radius: 10px; font-weight: 700; font-size: 0.86rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); transition: all 0.2s ease;">
+                    <span>Open Track ➔</span>
+                </a>
+            </div>
+        </div>
+    ` : '';
+
+    // Generate Clean Dropdown Options
+    const selectOptionsHtml = allTracks.map(t => `<option value="./foundations.html?track=${t.key}">${t.icon} ${t.title}</option>`).join('');
 
     mainContainer.innerHTML = `
-        <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 18px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 650px; margin: 40px auto 60px auto;">
-            <div style="font-size: 3.8rem; margin-bottom: 12px;">🔍 404</div>
-            <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Foundation Track Not Found</h2>
-            <p style="color: #64748b; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
-                The foundation track <code style="background:#fff1f2; border: 1px solid #fecdd3; padding:4px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${safeKey}"</code> does not exist on NoviCodes.
+        <div style="text-align: center; padding: 50px 24px; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.04); max-width: 620px; margin: 40px auto 60px auto;">
+            <div style="font-size: 3.2rem; margin-bottom: 12px;">🔍</div>
+            <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">Foundation Track Not Found</h2>
+            <p style="color: #64748b; font-size: 0.94rem; line-height: 1.6; margin: 0 auto 24px auto; max-width: 480px;">
+                The track <code style="background:#fff1f2; border: 1px solid #fecdd3; padding:3px 8px; border-radius:6px; color:#be123c; font-weight:700;">"?track=${safeKey}"</code> does not match any current syllabus.
             </p>
-            <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
-                Explore Available Foundation Tracks:
+
+            ${suggestionHtml}
+
+            <!-- 2 Primary Escape Actions -->
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+                <a href="./1. partA/hub.html" style="background: #2563eb; color: white; padding: 11px 22px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(37,99,235,0.2);">
+                    <span>🗺️ Browse All Foundations Hub</span>
+                </a>
+                <a href="./index.html#roadmap" style="background: #f8fafc; color: #0f172a; padding: 11px 20px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.9rem; border: 1px solid #cbd5e1; display: inline-flex; align-items: center; gap: 6px;">
+                    <span>🏠 Skill Tree Dashboard</span>
+                </a>
             </div>
-            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto;">
-                <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🧱 HTML</a>
-                <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🎨 CSS</a>
-                <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">⚡ JS</a>
-                <a href="./foundations.html?track=react" style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">⚛️ React</a>
-                <a href="./foundations.html?track=python" style="background: #059669; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🐍 Python</a>
-                <a href="./foundations.html?track=cloud" style="background: #7c3aed; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">☁️ Cloud</a>
-                <a href="./foundations.html?track=sql" style="background: #4f46e5; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🛢️ SQL</a>
-                <a href="./foundations.html?track=nextjs" style="background: #09090b; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem; border: 1px solid #3f3f46;">⚡ Next.js</a>
-                <a href="./foundations.html?track=async" style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🌉 Async UI</a>
-                <a href="./foundations.html?track=auth" style="background: #4338ca; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🛡️ Auth</a>
-                <a href="./foundations.html?track=saas" style="background: #d97706; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🏆 SaaS</a>
-                <a href="./index.html#roadmap" style="background: #f1f5f9; color: #0f172a; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem; border: 1px solid #cbd5e1;">🗺️ Skill Tree</a>
+
+            <!-- Quick Track Dropdown Selector -->
+            <div style="border-top: 1px solid #f1f5f9; padding-top: 20px; max-width: 440px; margin: 0 auto;">
+                <label for="trackQuickJumpSelect" style="display: block; font-size: 0.78rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                    ⚡ Jump Directly to Any Foundation Track
+                </label>
+                <select id="trackQuickJumpSelect" onchange="if(this.value) window.location.href=this.value;" style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.88rem; font-weight: 600; color: #1e293b; background: #ffffff; cursor: pointer; outline: none;">
+                    <option value="">-- Choose a Foundation Track --</option>
+                    ${selectOptionsHtml}
+                </select>
             </div>
         </div>
     `;
