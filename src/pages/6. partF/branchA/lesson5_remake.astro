@@ -175,7 +175,7 @@ allowed_origins = []
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?https?:\/\/coderoots\.dev/i.test(c); } },
+            { id: 'origins', label: 'Define <code>allowed_origins</code> list', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /allowed_origins\s*=\s*\[[\s\S]*?https?:\/\/novicodes\.dev/i.test(c); } },
             { id: 'middleware', label: 'Add <code>CORSMiddleware</code> to FastAPI app', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /app\.add_middleware\s*\(\s*CORSMiddleware[\s\S]*?allow_origins\s*=\s*allowed_origins/i.test(c); } }
         ], {
             containerId: 'taskChecklist',

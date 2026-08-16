@@ -3,7 +3,7 @@ import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const starterCode = `# ⚡ Lesson 3: Cloudflare Pages Configuration!
 
-# 👉 STEP 1: Specify project name = "coderoots-app"
+# 👉 STEP 1: Specify project name = "novicodes-app"
 name = ""
 
 # 👉 STEP 2: Set pages_build_output_dir = "dist"
@@ -80,7 +80,7 @@ const branchLessons = [
             </div>
             <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
                 <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Cloudflare Config] Project 'coderoots-app' ➔ Edge build output 'dist' ready!</code></div>
+                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Cloudflare Config] Project 'novicodes-app' ➔ Edge build output 'dist' ready!</code></div>
             </div>
             <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
             <div id="taskChecklist"></div>
@@ -143,7 +143,7 @@ ENVIRONMENT = "production"</code></pre>
         const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson3';
         const DEFAULT_STARTER = `# ⚡ Lesson 3: Cloudflare Pages Configuration!
 
-# 👉 STEP 1: Specify project name = "coderoots-app"
+# 👉 STEP 1: Specify project name = "novicodes-app"
 name = ""
 
 # 👉 STEP 2: Set pages_build_output_dir = "dist"
@@ -152,7 +152,7 @@ pages_build_output_dir = ""
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'name', label: 'Specify project <code>name = "coderoots-app"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /name\s*=\s*["']coderoots-app["']/i.test(c); } },
+            { id: 'name', label: 'Specify project <code>name = "novicodes-app"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /name\s*=\s*["']novicodes-app["']/i.test(c); } },
             { id: 'outdir', label: 'Set <code>pages_build_output_dir = "dist"</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /pages_build_output_dir\s*=\s*["']dist["']/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
