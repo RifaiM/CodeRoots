@@ -152,16 +152,16 @@ export function getUserXPAndRank(): UserStats {
         rankTitle = 'Grand Master Fullstack Engineer';
         rankIcon = '👑';
     } else if (l10Completed > 0) {
-        rankTitle = 'Apex SaaS Challenger';
+        rankTitle = 'SaaS UI Architect';
         rankIcon = '🏆';
     } else if (l9Completed >= 6) {
-        rankTitle = 'Fullstack Auth & DB Architect';
+        rankTitle = 'React Auth Specialist';
         rankIcon = '🛡️';
     } else if (l9Completed > 0) {
         rankTitle = 'Security Engineer';
         rankIcon = '🔐';
     } else if (l8Completed >= 6) {
-        rankTitle = 'Fullstack API Specialist';
+        rankTitle = 'Async UI Specialist';
         rankIcon = '🌉';
     } else if (l8Completed > 0) {
         rankTitle = 'API Integration Specialist';
