@@ -76,10 +76,31 @@ window.getUserXPAndRank = function() {
     const isL2 = localStorage.getItem('level2_completed') === 'true';
     const isL3 = localStorage.getItem('level3_completed') === 'true';
 
+    const isReactFoundations = localStorage.getItem('foundations_react_completed') === 'true';
+    const isPythonFoundations = localStorage.getItem('foundations_python_completed') === 'true';
+    const isCloudFoundations = localStorage.getItem('foundations_cloud_completed') === 'true';
+    const isSqlFoundations = localStorage.getItem('foundations_sql_completed') === 'true';
+    const isNextjsFoundations = localStorage.getItem('foundations_nextjs_completed') === 'true';
+    const isAsyncFoundations = localStorage.getItem('foundations_async_completed') === 'true';
+    const isAuthFoundations = localStorage.getItem('foundations_auth_completed') === 'true';
+    const isSaasFoundations = localStorage.getItem('foundations_saas_completed') === 'true';
+
+    let advancedFoundationsXP = 0;
+    if (isReactFoundations) advancedFoundationsXP += 300;
+    if (isPythonFoundations) advancedFoundationsXP += 300;
+    if (isCloudFoundations) advancedFoundationsXP += 300;
+    if (isSqlFoundations) advancedFoundationsXP += 300;
+    if (isNextjsFoundations) advancedFoundationsXP += 300;
+    if (isAsyncFoundations) advancedFoundationsXP += 300;
+    if (isAuthFoundations) advancedFoundationsXP += 300;
+    if (isSaasFoundations) advancedFoundationsXP += 500;
+
     let l4Completed = 0;
     for (let i = 1; i <= 15; i++) {
         try {
-            const isComp = localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === 'true' || localStorage.getItem(`lesson_${i}_completed`) === '1';
+            const isComp = localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true' || 
+                           localStorage.getItem(`lesson_${i}_completed`) === 'true' || 
+                           localStorage.getItem(`lesson_${i}_completed`) === '1';
             if (isComp) l4Completed++;
         } catch (e) {}
     }
@@ -110,74 +131,146 @@ window.getUserXPAndRank = function() {
     }
     const l7Completed = l7BranchA + l7BranchB + l7BranchC;
 
+    let l8Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partG_lesson${i}_remake_complete`) === 'true') l8Completed++;
+        } catch (e) {}
+    }
+
+    let l9Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partH_lesson${i}_remake_complete`) === 'true') l9Completed++;
+        } catch (e) {}
+    }
+
+    let l10Completed = 0;
+    for (let i = 1; i <= 6; i++) {
+        try {
+            if (localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true') l10Completed++;
+        } catch (e) {}
+    }
+
+    function safeParseInt(val, defaultVal) {
+        if (!val) return defaultVal || 0;
+        const parsed = parseInt(String(val), 10);
+        return (isNaN(parsed) || parsed < 0) ? (defaultVal || 0) : parsed;
+    }
+
+    const dailyQuestXP = safeParseInt(localStorage.getItem('novicodes_daily_quest_xp'), 0);
+    const streakBonusXP = safeParseInt(localStorage.getItem('novicodes_streak_bonus_xp'), 0);
+    const streakCount = safeParseInt(localStorage.getItem('novicodes_streak_count'), 0);
+
     let totalXP = 0;
     if (isL0) totalXP += 250;
     if (isL1) totalXP += 300;
     if (isL2) totalXP += 300;
     if (isL3) totalXP += 400;
+    totalXP += advancedFoundationsXP;
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
     totalXP += (l7Completed * 250);
-
-    const dailyQuestXP = parseInt(localStorage.getItem('novicodes_daily_quest_xp') || '0', 10);
-    const streakBonusXP = parseInt(localStorage.getItem('novicodes_streak_bonus_xp') || '0', 10);
+    totalXP += (l8Completed * 250);
+    totalXP += (l9Completed * 250);
+    totalXP += (l10Completed * 500);
     totalXP += (dailyQuestXP + streakBonusXP);
+    totalXP = Math.max(0, isNaN(totalXP) ? 0 : totalXP);
 
-    let rankTitle = 'Web Novice';
-    let rankIcon = '🌱';
-    if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    let rankTitle = 'Web Explorer';
+    let rankIcon = '🌐';
+
+    if (l10Completed >= 6) {
+        rankTitle = 'Grand Master Fullstack Engineer';
+        rankIcon = '👑';
+    } else if (l10Completed > 0 || isSaasFoundations) {
+        rankTitle = 'SaaS UI Architect';
+        rankIcon = '🏆';
+    } else if (l9Completed >= 6) {
+        rankTitle = 'React Auth Specialist';
+        rankIcon = '🛡️';
+    } else if (l9Completed > 0 || isAuthFoundations) {
+        rankTitle = 'Security Engineer';
+        rankIcon = '🔐';
+    } else if (l8Completed >= 6) {
+        rankTitle = 'Async UI Specialist';
+        rankIcon = '🌉';
+    } else if (l8Completed > 0 || isAsyncFoundations) {
+        rankTitle = 'API Integration Specialist';
+        rankIcon = '⚡';
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
-    } else if (l7BranchA >= 6) {
+    } else if (l7BranchA >= 6 || isCloudFoundations) {
         rankTitle = 'Cloud Specialist';
         rankIcon = '☁️';
-    } else if (l7BranchB >= 6) {
+    } else if (l7BranchB >= 6 || isSqlFoundations) {
         rankTitle = 'Database Architect';
         rankIcon = '🛢️';
-    } else if (l7BranchC >= 6) {
+    } else if (l7BranchC >= 6 || isNextjsFoundations) {
         rankTitle = 'Next.js Engineer';
         rankIcon = '⚡';
     } else if (l7Completed > 0) {
-        rankTitle = 'Mastery Challenger';
+        rankTitle = 'Fullstack Specialist';
         rankIcon = '🚀';
-    } else if (l6Completed >= 15 && l5Completed >= 15) {
-        rankTitle = 'Master Architect';
-        rankIcon = '👑';
-    } else if (l6Completed > 0) {
+    } else if (l6Completed >= 15) {
+        rankTitle = 'Python Backend Architect';
+        rankIcon = '🐍';
+    } else if (l6Completed > 0 || isPythonFoundations) {
         rankTitle = 'Python Backend Engineer';
         rankIcon = '🐍';
     } else if (l5Completed >= 15) {
-        rankTitle = 'Fullstack Master';
-        rankIcon = '🏆';
-    } else if (l5Completed > 0) {
+        rankTitle = 'React Master';
+        rankIcon = '⚛️';
+    } else if (l5Completed > 0 || isReactFoundations) {
         rankTitle = 'React Engineer';
         rankIcon = '⚛️';
     } else if (l4Completed >= 15) {
-        rankTitle = 'Dojo Master';
+        rankTitle = 'DOM Master';
         rankIcon = '⚔️';
     } else if (l4Completed > 0) {
         rankTitle = 'DOM Challenger';
         rankIcon = '⚔️';
-    } else if (isL1) {
+    } else if (isL1 || isL2 || isL3) {
         rankTitle = 'Code Apprentice';
         rankIcon = '🛡️';
-    } else if (isL0) {
-        rankTitle = 'Web Novice';
-        rankIcon = '🌱';
     } else {
         rankTitle = 'Web Explorer';
         rankIcon = '🌐';
     }
 
     return {
-        isL0, isL1, isL2, isL3,
-        l4Completed, l5Completed, l6Completed,
-        l7BranchA, l7BranchB, l7BranchC, l7Completed,
         totalXP,
-        maxXP: 12500,
+        maxXP: 21100,
         rankTitle,
-        rankIcon
+        rankIcon,
+        isL0,
+        isL1,
+        isL2,
+        isL3,
+        isReactFoundations,
+        isPythonFoundations,
+        isCloudFoundations,
+        isSqlFoundations,
+        isNextjsFoundations,
+        isAsyncFoundations,
+        isAuthFoundations,
+        isSaasFoundations,
+        advancedFoundationsXP,
+        l4Completed,
+        l5Completed,
+        l6Completed,
+        l7Completed,
+        l7BranchA,
+        l7BranchB,
+        l7BranchC,
+        l8Completed,
+        l9Completed,
+        l10Completed,
+        dailyQuestXP,
+        streakBonusXP,
+        streakCount
     };
 };
 
