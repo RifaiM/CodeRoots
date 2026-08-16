@@ -782,6 +782,8 @@ function initQuizEngine(trackData) {
             }
 
             if (correctCount === totalQuestions) {
+                const xpAmount = trackData.xpReward || 300;
+
                 // Save Track Completion State to LocalStorage
                 if (trackData.trackKey === 'html') {
                     localStorage.setItem('level1_completed', 'true');
