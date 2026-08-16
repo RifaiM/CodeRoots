@@ -16,8 +16,8 @@ interface Props {
 }
 
 const {
-    title = 'NoviCodes • Master Modern Web & Frontend Engineering',
-    description = 'Master modern web development from fundamentals through JavaScript, Python, React, and modern SaaS architecture. 10 interactive levels, 81 real projects, and 7 verifiable credentials.',
+    title = 'NoviCodes • Learn Web Development by Doing',
+    description = 'Master web development through interactive in-browser coding practice. 10 structured levels, 81 real projects in HTML, CSS, JavaScript, React, and Python with an instant AST test runner and verified proof-of-work certificates.',
     canonical = 'https://novicodes.dev',
     ogImage = '/assets/og-image.jpg',
     showHeaderFooter = true,
@@ -35,13 +35,46 @@ const {
     
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="learn web development, learn javascript by doing, interactive react tutorials, python coding practice, in-browser code editor, web development roadmap, frontend coding challenges, proof of work certificates" />
+    <meta name="author" content="NoviCodes" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonical} />
     
-    <!-- Open Graph Metadata -->
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:site_name" content="NoviCodes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json" is:inline>
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalWebSite",
+        "name": "NoviCodes",
+        "url": "https://novicodes.dev",
+        "description": "Interactive web development learning platform with in-browser coding sandbox, 81 real projects, and verified proof-of-work certificates.",
+        "inLanguage": "en-US",
+        "educationalLevel": "Beginner to Advanced",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
