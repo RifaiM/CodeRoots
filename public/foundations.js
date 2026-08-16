@@ -35,10 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (trackBadgePill) trackBadgePill.textContent = `${trackData.badgeIcon} ${trackData.title}`;
     if (trackTitle) trackTitle.textContent = trackData.title;
     if (trackSubtitle) trackSubtitle.textContent = trackData.subtitle;
-    if (headerLogoTag) {
-        if (trackKey === 'css') headerLogoTag.textContent = 'Level 2 • CSS Foundations';
-        else if (trackKey === 'js') headerLogoTag.textContent = 'Level 3 • JS Foundations';
-        else headerLogoTag.textContent = 'Level 1 • HTML Foundations';
+    if (headerLogoTag && trackData) {
+        headerLogoTag.textContent = trackData.title;
     }
 
     // Calculate User Stats from LocalStorage
@@ -1013,11 +1011,19 @@ function render404TrackPage(invalidKey) {
             <div style="font-size: 0.84rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">
                 Explore Available Foundation Tracks:
             </div>
-            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🏗️ HTML Track</a>
-                <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">🎨 CSS Track</a>
-                <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem;">⚡ JS Track</a>
-                <a href="./index.html#roadmap" style="background: #f1f5f9; color: #0f172a; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.88rem; border: 1px solid #cbd5e1;">🗺️ Skill Tree</a>
+            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto;">
+                <a href="./foundations.html?track=html" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🧱 HTML</a>
+                <a href="./foundations.html?track=css" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🎨 CSS</a>
+                <a href="./foundations.html?track=js" style="background: #2563eb; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">⚡ JS</a>
+                <a href="./foundations.html?track=react" style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">⚛️ React</a>
+                <a href="./foundations.html?track=python" style="background: #059669; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🐍 Python</a>
+                <a href="./foundations.html?track=cloud" style="background: #7c3aed; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">☁️ Cloud</a>
+                <a href="./foundations.html?track=sql" style="background: #4f46e5; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🛢️ SQL</a>
+                <a href="./foundations.html?track=nextjs" style="background: #09090b; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem; border: 1px solid #3f3f46;">⚡ Next.js</a>
+                <a href="./foundations.html?track=async" style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🌉 Async UI</a>
+                <a href="./foundations.html?track=auth" style="background: #4338ca; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🛡️ Auth</a>
+                <a href="./foundations.html?track=saas" style="background: #d97706; color: white; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem;">🏆 SaaS</a>
+                <a href="./index.html#roadmap" style="background: #f1f5f9; color: #0f172a; padding: 8px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.82rem; border: 1px solid #cbd5e1;">🗺️ Skill Tree</a>
             </div>
         </div>
     `;
