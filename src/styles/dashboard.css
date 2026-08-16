@@ -319,6 +319,42 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
   letter-spacing: -0.03em;
 }
 
+.typewriter-wrap {
+  display: inline;
+  color: #2563eb;
+  position: relative;
+  font-weight: 800;
+}
+
+.typewriter-text {
+  display: inline;
+  color: #2563eb;
+  border-bottom: 2.5px solid rgba(37, 99, 235, 0.3);
+  padding-bottom: 2px;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #2563eb;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  animation: typewriterBlink 0.9s steps(2, start) infinite;
+  vertical-align: baseline;
+  user-select: none;
+}
+
+@keyframes typewriterBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+  }
+}
+
 .hero-subtitle {
   font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: var(--text-muted);

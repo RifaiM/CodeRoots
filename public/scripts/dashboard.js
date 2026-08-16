@@ -13,7 +13,67 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalBackToTop();
     initFAQAccordion();
     initHashNavigation();
+    initHeroTypewriter();
 });
+
+/**
+ * Smooth Rotating Skill Suffix Typewriter Engine
+ * Accessible, zero-layout-shift, prefers-reduced-motion safe
+ */
+function initHeroTypewriter() {
+    const el = document.getElementById('typewriterText');
+    if (!el) return;
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    const phrases = [
+        'Doing, Not Just Watching',
+        'Building 81 Real Projects',
+        'Mastering React & Python',
+        'Writing Real Code in Browser',
+        'Shipping Fullstack SaaS Apps'
+    ];
+
+    let phraseIdx = 0;
+    let charIdx = phrases[0].length;
+    let isDeleting = true;
+    let typingSpeed = 60;
+    const pauseEnd = 2600;
+    const pauseStart = 400;
+
+    function typeLoop() {
+        const currentPhrase = phrases[phraseIdx];
+
+        if (isDeleting) {
+            charIdx--;
+            el.textContent = currentPhrase.substring(0, charIdx);
+            typingSpeed = 35;
+
+            if (charIdx <= 0) {
+                isDeleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                setTimeout(typeLoop, pauseStart);
+                return;
+            }
+        } else {
+            charIdx++;
+            el.textContent = currentPhrase.substring(0, charIdx);
+            typingSpeed = 65;
+
+            if (charIdx >= currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(typeLoop, pauseEnd);
+                return;
+            }
+        }
+
+        setTimeout(typeLoop, typingSpeed);
+    }
+
+    setTimeout(typeLoop, pauseEnd);
+}
 
 /**
  * Global Back To Top Floating Action Button Engine
