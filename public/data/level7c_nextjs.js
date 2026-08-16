@@ -231,7 +231,7 @@ return (
     <div class="nav-links">
       <button class="nav-btn active" onclick="navigate(this, '/', 'Home Dashboard', 'app/page.tsx', '⚡ Server Pre-Rendered in 18ms (0KB Client JS)')">app/page.tsx</button>
       <button class="nav-btn" onclick="navigate(this, '/blog', 'Developer Blog', 'app/blog/page.tsx', '⚡ Static Edge Cached in 4ms')">app/blog/page.tsx</button>
-      <button class="nav-btn" onclick="navigate(this, '/settings', 'Account Settings (\'use client\')', 'app/settings/page.tsx', '⚛️ Client Component (Hydrated & Interactive)')">app/settings/page.tsx</button>
+      <button class="nav-btn" onclick="navigate(this, '/settings', 'Account Settings [use client]', 'app/settings/page.tsx', '⚛️ Client Component (Hydrated & Interactive)')">app/settings/page.tsx</button>
     </div>
 
     <div class="page-box">

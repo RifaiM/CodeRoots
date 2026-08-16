@@ -205,9 +205,9 @@ WHERE orders.status = 'completed';</code></pre>
     </div>
 
     <div class="btn-row">
-      <button class="sql-btn" onclick="runQuery('SELECT * FROM users;', usersData)">SELECT ALL</button>
-      <button class="sql-btn" onclick="runQuery('SELECT * FROM users WHERE rank = \\'Master\\';', usersData.filter(u => u.rank === 'Master'))">WHERE rank='Master'</button>
-      <button class="sql-btn" onclick="runQuery('SELECT * FROM users WHERE xp &gt;= 2000;', usersData.filter(u => u.xp >= 2000))">WHERE xp &gt;= 2000</button>
+      <button class="sql-btn" onclick="queryAll()">SELECT ALL</button>
+      <button class="sql-btn" onclick="queryMaster()">WHERE rank='Master'</button>
+      <button class="sql-btn" onclick="queryHighXP()">WHERE xp &gt;= 2000</button>
     </div>
 
     <div class="query-box" id="queryDisplay">&gt; SELECT * FROM users;</div>
@@ -240,6 +240,16 @@ WHERE orders.status = 'completed';</code></pre>
         '<td>' + r.xp + ' XP</td>' +
         '<td>' + (r.status === 'Active' ? '🟢 Active' : '🟡 Pending') + '</td>' +
       '</tr>').join('');
+    }
+
+    function queryAll() {
+      runQuery('SELECT * FROM users;', usersData);
+    }
+    function queryMaster() {
+      runQuery("SELECT * FROM users WHERE rank = 'Master';", usersData.filter(u => u.rank === 'Master'));
+    }
+    function queryHighXP() {
+      runQuery("SELECT * FROM users WHERE xp >= 2000;", usersData.filter(u => u.xp >= 2000));
     }
 
     runQuery('SELECT * FROM users;', usersData);
