@@ -789,20 +789,28 @@ function initQuizEngine(trackData) {
                     localStorage.setItem('level2_completed', 'true');
                 } else if (trackData.trackKey === 'js') {
                     localStorage.setItem('level3_completed', 'true');
+                } else if (trackData.trackKey === 'react') {
+                    localStorage.setItem('foundations_react_completed', 'true');
+                } else if (trackData.trackKey === 'python') {
+                    localStorage.setItem('foundations_python_completed', 'true');
+                } else if (trackData.trackKey === 'cloud') {
+                    localStorage.setItem('foundations_cloud_completed', 'true');
+                } else if (trackData.trackKey === 'sql') {
+                    localStorage.setItem('foundations_sql_completed', 'true');
+                } else if (trackData.trackKey === 'nextjs') {
+                    localStorage.setItem('foundations_nextjs_completed', 'true');
+                } else if (trackData.trackKey === 'async') {
+                    localStorage.setItem('foundations_async_completed', 'true');
+                } else if (trackData.trackKey === 'auth') {
+                    localStorage.setItem('foundations_auth_completed', 'true');
+                } else if (trackData.trackKey === 'saas') {
+                    localStorage.setItem('foundations_saas_completed', 'true');
                 }
 
-                let nextUrl = '/';
-                let nextLabel = '🏠 Return to Dashboard';
-                if (trackData.trackKey === 'html') {
-                    nextUrl = '/foundations.html?track=css';
-                    nextLabel = '🎨 Level 2: CSS Foundations ➔';
-                } else if (trackData.trackKey === 'css') {
-                    nextUrl = '/foundations.html?track=js';
-                    nextLabel = '⚡ Level 3: JS Foundations ➔';
-                } else if (trackData.trackKey === 'js') {
-                    nextUrl = '/2. partB/hub.html';
-                    nextLabel = '⚔️ Enter Level 4 (DOM Dojo) ➔';
-                }
+                let nextUrl = trackData.nextTrackUrl || '/1. partA/hub.html';
+                let nextLabel = trackData.nextTrackName ? `⚡ ${trackData.nextTrackName} ➔` : '📚 Return to Foundations Hub ➔';
+
+                window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
 
                 if (typeof updateHeaderStats === 'function') {
                     updateHeaderStats();
@@ -919,17 +927,17 @@ function render404TrackPage(invalidKey) {
 
     // 11 Foundations Track Definitions with Aliases
     const allTracks = [
-        { key: 'html', title: 'Level 1: HTML5 Foundations', icon: '🧱', aliases: ['html5', 'htm', 'tags', 'dom', 'markup'] },
-        { key: 'css', title: 'Level 2: Modern CSS3 Foundations', icon: '🎨', aliases: ['css3', 'style', 'styles', 'flexbox', 'grid', 'styling'] },
-        { key: 'js', title: 'Level 3: Modern JavaScript Logic', icon: '⚡', aliases: ['javascript', 'es6', 'script', 'ecmascript'] },
-        { key: 'react', title: 'Level 5: React Component Foundations', icon: '⚛️', aliases: ['reactjs', 'jsx', 'components', 'props', 'state', 'hooks'] },
-        { key: 'python', title: 'Level 6: Python & Backend Foundations', icon: '🐍', aliases: ['py', 'python3', 'backend', 'django', 'fastapi'] },
-        { key: 'cloud', title: 'Level 7A: Cloud & DevOps Foundations', icon: '☁️', aliases: ['docker', 'devops', 'cicd', 'ci-cd', 'hosting', 'nginx', 'deploy'] },
-        { key: 'sql', title: 'Level 7B: PostgreSQL & Database Foundations', icon: '🛢️', aliases: ['postgres', 'postgresql', 'database', 'db', 'sqlite', 'mysql'] },
-        { key: 'nextjs', title: 'Level 7C: Next.js & SSR Foundations', icon: '⚡', aliases: ['next', 'next.js', 'nextjss', 'ssr', 'rsc', 'server-components'] },
+        { key: 'html', title: 'Level 1: HTML5 Structural Foundations', icon: '🧱', aliases: ['html5', 'htm', 'tags', 'dom', 'markup'] },
+        { key: 'css', title: 'Level 2: Modern CSS3 Styling & Layouts', icon: '🎨', aliases: ['css3', 'style', 'styles', 'flexbox', 'grid', 'styling'] },
+        { key: 'js', title: 'Level 3: Modern JavaScript (ES6+) Foundations', icon: '⚡', aliases: ['javascript', 'es6', 'script', 'ecmascript'] },
+        { key: 'react', title: 'Level 5: React & Modern UI Foundations', icon: '⚛️', aliases: ['reactjs', 'jsx', 'components', 'props', 'state', 'hooks'] },
+        { key: 'python', title: 'Level 6: Python & Server Logic Foundations', icon: '🐍', aliases: ['py', 'python3', 'backend', 'django', 'fastapi'] },
+        { key: 'cloud', title: 'Level 7A: Cloud & Deployment Foundations', icon: '☁️', aliases: ['docker', 'devops', 'cicd', 'ci-cd', 'hosting', 'nginx', 'deploy'] },
+        { key: 'sql', title: 'Level 7B: SQL & Database Foundations', icon: '🛢️', aliases: ['postgres', 'postgresql', 'database', 'db', 'sqlite', 'mysql'] },
+        { key: 'nextjs', title: 'Level 7C: Next.js & UI Architecture Foundations', icon: '⚡', aliases: ['next', 'next.js', 'nextjss', 'ssr', 'rsc', 'server-components'] },
         { key: 'async', title: 'Level 8: Async UI & Live Data Foundations', icon: '🌉', aliases: ['asyncui', 'skeleton', 'optimistic', 'loading', 'fetching'] },
-        { key: 'auth', title: 'Level 9: React Auth & Permissions Foundations', icon: '🛡️', aliases: ['jwt', 'login', 'authentication', 'rbac', 'security'] },
-        { key: 'saas', title: 'Level 10: SaaS UI & Architecture Foundations', icon: '🏆', aliases: ['capstone', 'saasui', 'skyscraper', 'dashboard', 'enterprise'] }
+        { key: 'auth', title: 'Level 9: User Logins & Security UI Foundations', icon: '🛡️', aliases: ['jwt', 'login', 'authentication', 'rbac', 'security'] },
+        { key: 'saas', title: 'Level 10: SaaS Dashboard UI Foundations', icon: '🏆', aliases: ['capstone', 'saasui', 'skyscraper', 'dashboard', 'enterprise'] }
     ];
 
     // Smart Matcher: Exact Alias or Substring Match

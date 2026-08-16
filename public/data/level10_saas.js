@@ -3,13 +3,13 @@
  */
 window.LEVEL10_SAAS_DATA = {
     "id": "level10_saas",
-    "title": "Level 10: SaaS UI Foundations",
-    "subtitle": "The Modern Skyscraper Shell: Design Systems, Instant Search, Pricing & AI Panels",
+    "title": "Level 10: SaaS Dashboard UI Foundations",
+    "subtitle": "Sidebar Navigation, Live Search, Pricing Tables & AI Chat Panels",
     "badgeIcon": "🏆",
     "xpReward": 500,
     "trackKey": "saas",
-    "nextTrackUrl": "./9. partI/hub.html",
-    "nextTrackName": "Level 10 Apex Capstone Dojo",
+    "nextTrackUrl": "../9. partI/hub.html",
+    "nextTrackName": "Level 10: SaaS Dashboard UI Suite",
     "concepts": {
         "heroAnalogy": {
             "title": "A SaaS Application is Like a High-End Commercial Skyscraper",
@@ -59,9 +59,9 @@ window.LEVEL10_SAAS_DATA = {
                 `
             },
             {
-                "title": "4. AI Copilot Drawer Architecture",
+                "title": "4. AI Chat Assistant & Insights Panel",
                 "content": `
-                <p>In 2026, top SaaS products incorporate intelligent AI assistants directly into their interface as a <strong>Slide-Out Copilot Drawer</strong>:</p>
+                <p>In 2026, top SaaS products incorporate intelligent AI assistants directly into their interface as a <strong>Slide-Out AI Insights Panel</strong>:</p>
                 <ul>
                     <li><strong>Context Awareness:</strong> The assistant knows which project or team settings you are currently looking at.</li>
                     <li><strong>Streamed Responses:</strong> Shows letters appearing in real time using Server-Sent Events (SSE).</li>
@@ -115,11 +115,11 @@ window.LEVEL10_SAAS_DATA = {
             "codeSnippet": "const [isAnnual, setIsAnnual] = useState(true);"
         },
         {
-            "term": "AI Copilot Drawer",
+            "term": "AI Chat Assistant & Insights Panel",
             "category": "AI UX",
             "definition": "A collapsible slide-out drawer interface that provides contextual AI analysis, automated insights, and guided workflows.",
             "analogy": "A smart digital co-pilot sitting in the passenger seat offering navigation tips.",
-            "codeSnippet": "<CopilotDrawer isOpen={isOpen} contextData={project} />"
+            "codeSnippet": "<AIAssistantDrawer isOpen={isOpen} contextData={project} />"
         },
         {
             "term": "Pre-Flight Audit",
@@ -130,7 +130,7 @@ window.LEVEL10_SAAS_DATA = {
         }
     ],
     "sandbox": {
-        "instructions": "Test the live SaaS App Shell simulator below! Toggle the annual pricing discount, type in the live search bar, and open the AI Copilot helper drawer.",
+        "instructions": "Test the live SaaS App Shell simulator below! Toggle the annual pricing discount, type in the live search bar, and open the AI Chat Assistant & Insights Panel.",
         "initialHTML": `<!DOCTYPE html>
 <html>
 <head>
@@ -229,10 +229,10 @@ window.LEVEL10_SAAS_DATA = {
       <button class="btn-toggle" onclick="toggleBilling()">Switch Billing</button>
     </div>
 
-    <!-- AI Copilot Panel -->
+    <!-- AI Chat Assistant & Insights Panel -->
     <div class="copilot-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-        <span style="font-weight: 800; font-size: 0.85rem; color: #a5b4fc;">🤖 AI Copilot Insights</span>
+        <span style="font-weight: 800; font-size: 0.85rem; color: #a5b4fc;">🤖 AI Insights & Recommendations</span>
         <span style="font-size: 0.7rem; color: #4ade80;">🟢 Live</span>
       </div>
       <p id="aiPromptOutput" style="font-size: 0.82rem; color: #e0e7ff; margin: 0; line-height: 1.4;">

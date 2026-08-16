@@ -3,13 +3,13 @@
  */
 window.LEVEL9_AUTH_DATA = {
     "id": "level9_auth",
-    "title": "Level 9: React Auth & Access Control Foundations",
-    "subtitle": "The Encrypted VIP Wristband: Tokens, AuthContext, Route Guards & RBAC",
+    "title": "Level 9: User Logins & Security UI Foundations",
+    "subtitle": "Login Tokens, Auth Sessions, Route Guards & Role Permissions",
     "badgeIcon": "🛡️",
     "xpReward": 300,
     "trackKey": "auth",
     "nextTrackUrl": "./foundations.html?track=saas",
-    "nextTrackName": "Level 10: SaaS Architecture Foundations",
+    "nextTrackName": "Level 10: SaaS Dashboard UI Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "Web Authentication is Like an Amusement Park VIP Wristband",

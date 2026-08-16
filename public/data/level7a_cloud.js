@@ -3,13 +3,13 @@
  */
 window.LEVEL7A_CLOUD_DATA = {
     "id": "level7a_cloud",
-    "title": "Level 7A: Cloud & DevOps Foundations",
-    "subtitle": "Standard Shipping Containers: Docker, CI/CD Pipelines & Cloud Deployment",
+    "title": "Level 7A: Cloud & Deployment Foundations",
+    "subtitle": "Static Hosting, Serverless, Containers & CI/CD Pipelines",
     "badgeIcon": "☁️",
     "xpReward": 300,
     "trackKey": "cloud",
     "nextTrackUrl": "./foundations.html?track=sql",
-    "nextTrackName": "Level 7B: SQL Foundations",
+    "nextTrackName": "Level 7B: SQL & Database Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "Docker Containers are Like Standardized Steel Shipping Cargo Containers",

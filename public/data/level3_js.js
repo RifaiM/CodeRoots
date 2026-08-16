@@ -3,13 +3,13 @@
  */
 window.LEVEL3_JS_DATA = {
     "id": "level3_js",
-    "title": "Level 3: JavaScript Foundations",
-    "subtitle": "Programming Logic, DOM Manipulation & Web Interactivity",
+    "title": "Level 3: Modern JavaScript (ES6+) Foundations",
+    "subtitle": "Variables, Functions, DOM Manipulation & Event Handlers",
     "badgeIcon": "⚡",
     "xpReward": 400,
     "trackKey": "js",
-    "nextTrackUrl": "./2. partB/lesson1/lesson1_remake.html",
-    "nextTrackName": "Level 4: Integrated Dojo",
+    "nextTrackUrl": "../2. partB/hub.html",
+    "nextTrackName": "Level 4: Interactive DOM Dojo",
     "concepts": {
         "heroAnalogy": {
             "title": "JavaScript is Like the Brain, Muscles & Electricity of a Website",

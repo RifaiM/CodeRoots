@@ -3,13 +3,13 @@
  */
 window.LEVEL6_PYTHON_DATA = {
     "id": "level6_python",
-    "title": "Level 6: Python Foundations",
-    "subtitle": "The Clean Swiss Army Knife: Indentation, Server Logic & Data Structures",
+    "title": "Level 6: Python & Server Logic Foundations",
+    "subtitle": "Indentation, Server Logic & Core Data Structures",
     "badgeIcon": "🐍",
     "xpReward": 300,
     "trackKey": "python",
     "nextTrackUrl": "./foundations.html?track=cloud",
-    "nextTrackName": "Level 7A: Cloud Foundations",
+    "nextTrackName": "Level 7A: Cloud & Deployment Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "Python is Like Clear, Everyday English Instructions for Computers",

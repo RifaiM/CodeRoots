@@ -3,13 +3,13 @@
  */
 window.LEVEL1_HTML_DATA = {
     "id": "level1_html",
-    "title": "Level 1: HTML Foundations",
-    "subtitle": "The Structural Blueprint & Skeleton of the World Wide Web",
+    "title": "Level 1: HTML5 Structural Foundations",
+    "subtitle": "The Structural Blueprint & Semantic Architecture of the Web",
     "badgeIcon": "🧱",
     "xpReward": 300,
     "trackKey": "html",
     "nextTrackUrl": "./foundations.html?track=css",
-    "nextTrackName": "Level 2: CSS Foundations",
+    "nextTrackName": "Level 2: Modern CSS3 Styling & Layouts",
     "concepts": {
         "heroAnalogy": {
             "title": "HTML is Like the Wooden Frame & Blueprint of a House",

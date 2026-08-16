@@ -3,17 +3,17 @@
  */
 window.LEVEL7C_NEXTJS_DATA = {
     "id": "level7c_nextjs",
-    "title": "Level 7C: Next.js Foundations",
-    "subtitle": "The Hybrid Restaurant: Pre-Cooked Server Pages & Live Interactive Client UI",
+    "title": "Level 7C: Next.js & UI Architecture Foundations",
+    "subtitle": "App Router, Page Layouts, Server Rendering & Client UI",
     "badgeIcon": "⚡",
     "xpReward": 300,
     "trackKey": "nextjs",
     "nextTrackUrl": "./foundations.html?track=async",
-    "nextTrackName": "Level 8: Async UI Foundations",
+    "nextTrackName": "Level 8: Async UI & Live Data Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "Next.js is Like a High-End Restaurant with Both Hot Ready Buffets & Custom Cook-to-Order Dishes",
-            "description": "Traditional single-page React apps make visitors download a massive empty JavaScript file and wait for the browser to construct the page from scratch (like giving a customer raw ingredients and a stove). Next.js is a fullstack React framework that cooks the meal on the server first, serving instant, fully-formed HTML to the user and Google search engines in milliseconds, then seamlessly attaching React click interactivity (Hydration)!",
+            "description": "Traditional single-page React apps make visitors download a massive empty JavaScript file and wait for the browser to construct the page from scratch (like giving a customer raw ingredients and a stove). Next.js is a modern React web framework with server rendering that cooks the meal on the server first, serving instant, fully-formed HTML to the user and Google search engines in milliseconds, then seamlessly attaching React click interactivity (Hydration)!",
             "icon": "⚡"
         },
         "sections": [
@@ -93,7 +93,7 @@ return (
         {
             "term": "Next.js",
             "category": "Framework",
-            "definition": "The leading production React framework that enables hybrid static and server rendering, smart routing, and fullstack capabilities.",
+            "definition": "The leading production React framework that enables hybrid static and server rendering, smart routing, and backend API route capabilities.",
             "analogy": "A fully equipped professional restaurant kitchen built on top of React's modular tools.",
             "codeSnippet": "npx create-next-app@latest"
         },
@@ -134,7 +134,7 @@ return (
         },
         {
             "term": "Server Action",
-            "category": "Fullstack API",
+            "category": "API Routes",
             "definition": "Asynchronous server functions that can be invoked directly from client components or HTML forms without manual API routes.",
             "analogy": "A dumbwaiter elevator connecting dining room orders directly to the chef's hands.",
             "codeSnippet": "async function createPost() { 'use server'; ... }"

@@ -3,13 +3,13 @@
  */
 window.LEVEL2_CSS_DATA = {
     "id": "level2_css",
-    "title": "Level 2: CSS Foundations",
-    "subtitle": "Styling, Architecture, Box Model & Modern Flexbox Layouts",
+    "title": "Level 2: Modern CSS3 Styling & Layouts",
+    "subtitle": "Box Model Geometry, Flexbox Alignment & Grid Layouts",
     "badgeIcon": "🎨",
     "xpReward": 300,
     "trackKey": "css",
     "nextTrackUrl": "./foundations.html?track=js",
-    "nextTrackName": "Level 3: JavaScript Foundations",
+    "nextTrackName": "Level 3: Modern JavaScript (ES6+) Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "CSS is Like Interior Design, Paint & Styling",

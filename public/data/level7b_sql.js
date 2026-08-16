@@ -3,13 +3,13 @@
  */
 window.LEVEL7B_SQL_DATA = {
     "id": "level7b_sql",
-    "title": "Level 7B: PostgreSQL & Database Foundations",
-    "subtitle": "The Indexed High-Speed Filing Cabinet: Relational Tables & SQL Queries",
+    "title": "Level 7B: SQL & Database Foundations",
+    "subtitle": "Relational Schemas, Primary Keys & SQL Queries",
     "badgeIcon": "🛢️",
     "xpReward": 300,
     "trackKey": "sql",
     "nextTrackUrl": "./foundations.html?track=nextjs",
-    "nextTrackName": "Level 7C: Next.js Foundations",
+    "nextTrackName": "Level 7C: Next.js & UI Architecture Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "A Relational Database is Like a High-Tech Filing Cabinet with Barcode Links",
@@ -88,7 +88,7 @@ WHERE orders.status = 'completed';</code></pre>
         {
             "term": "PostgreSQL (Postgres)",
             "category": "Database Engine",
-            "definition": "An enterprise-grade, open-source relational database management system renowned for reliability, ACID compliance, and performance.",
+            "definition": "A popular, reliable open-source relational database management system renowned for data integrity and performance.",
             "analogy": "The gold-standard vault and filing cabinet used by major global tech companies.",
             "codeSnippet": "SELECT version();"
         },

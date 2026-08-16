@@ -3,13 +3,13 @@
  */
 window.LEVEL8_ASYNC_DATA = {
     "id": "level8_async",
-    "title": "Level 8: Async UI Foundations",
-    "subtitle": "The Frictionless Drive-Thru: Skeleton Loaders, Error Boundaries & Optimistic UI",
+    "title": "Level 8: Async UI & Live Data Foundations",
+    "subtitle": "Skeleton Loaders, Error States & Optimistic Updates",
     "badgeIcon": "🌉",
     "xpReward": 300,
     "trackKey": "async",
     "nextTrackUrl": "./foundations.html?track=auth",
-    "nextTrackName": "Level 9: Auth Foundations",
+    "nextTrackName": "Level 9: User Logins & Security UI Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "Async UI is Like a Fast-Food Drive-Thru Pager & Instant Receipt",

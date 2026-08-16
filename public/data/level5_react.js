@@ -3,13 +3,13 @@
  */
 window.LEVEL5_REACT_DATA = {
     "id": "level5_react",
-    "title": "Level 5: React Foundations",
-    "subtitle": "LEGO Bricks with Live Wires: Component Trees, Props & Reactive State",
+    "title": "Level 5: React & Modern UI Foundations",
+    "subtitle": "Modular Component Trees, Props & Reactive State",
     "badgeIcon": "⚛️",
     "xpReward": 300,
     "trackKey": "react",
     "nextTrackUrl": "./foundations.html?track=python",
-    "nextTrackName": "Level 6: Python Foundations",
+    "nextTrackName": "Level 6: Python & Server Logic Foundations",
     "concepts": {
         "heroAnalogy": {
             "title": "React is Like Building with Smart, Electric LEGO Bricks",
