@@ -1,11 +1,11 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Level 10 Milestone 1: Enterprise Next.js App Router Blueprint!
+const starterCode = `// 🏆 Level 10 Milestone 1: Next.js App Router Layout & Navigation Shell!
 
 export const metadata = {
   title: "Apex SaaS Engine | NoviCodes Pro",
-  description: "Enterprise Production Microservice Architecture"
+  description: "Modular Next.js Layout Shell & Navigation"
 };
 
 export default function RootLayout({ children }) {
@@ -114,7 +114,7 @@ const jumpLessons = [
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Structure production Next.js enterprise applications with modular RootLayout wrappers and responsive navigation rails.</p>
+            <p>Structure modern Next.js applications with modular RootLayout wrappers and responsive sidebar navigation rails.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> The Next.js Root Layout is the steel structural frame of a skyscraper 🏙️: once erected, every office room inside shares plumbing, electricity, and elevators effortlessly.
             </div>
@@ -137,11 +137,11 @@ const jumpLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partI_lesson1';
-        const DEFAULT_STARTER = `// 🏆 Level 10 Milestone 1: Enterprise Next.js App Router Blueprint!
+        const DEFAULT_STARTER = `// 🏆 Level 10 Milestone 1: Next.js App Router Layout & Navigation Shell!
 
 export const metadata = {
   title: "Apex SaaS Engine | NoviCodes Pro",
-  description: "Enterprise Production Microservice Architecture"
+  description: "Modular Next.js Layout Shell & Navigation"
 };
 
 export default function RootLayout({ children }) {
@@ -259,7 +259,7 @@ root.render(<DemoPage />);
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Enterprise Next.js App Router Blueprint',
+                    lessonTitle: 'Next.js App Router Layout & Navigation Shell',
                     xp: 500,
                     completionKey: 'partI_lesson1_remake_complete',
                     nextUrl: '/9. partI/lesson2/lesson2_remake.html',

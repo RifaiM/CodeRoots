@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 💳 Milestone 3: Stripe Checkout & Subscription Tiers!
+const starterCode = `// 💳 Milestone 3: Subscription Pricing Switcher & Tier Cards!
 
 function PricingBillingCard() {
   const [tier, setTier] = React.useState("free");
@@ -114,9 +114,9 @@ const jumpLessons = [
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Handle recurring SaaS monetization by creating Stripe checkout session triggers and webhook subscription tier handlers.</p>
+            <p>Build an interactive monthly and annual subscription billing switcher with highlighted plan features and active plan states.</p>
             <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Stripe Webhooks are like digital automated courier receipts 🧾: the instant a user pays at checkout, Stripe notifies your server to upgrade their account permissions.
+                <strong>Real-World Analogy:</strong> A pricing switcher lets users toggle between monthly and annual billing rates, dynamically updating discounts and feature lists in real time.
             </div>
         </article>
     </div>
@@ -137,7 +137,7 @@ const jumpLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partI_lesson3';
-        const DEFAULT_STARTER = `// 💳 Milestone 3: Stripe Checkout & Subscription Tiers!
+        const DEFAULT_STARTER = `// 💳 Milestone 3: Subscription Pricing Switcher & Tier Cards!
 
 function PricingBillingCard() {
   const [tier, setTier] = React.useState("free");
@@ -259,7 +259,7 @@ root.render(<PricingBillingCard />);
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Stripe Checkout & Webhook Subscription Tiers',
+                    lessonTitle: 'Subscription Pricing Switcher & Tier Cards',
                     xp: 500,
                     completionKey: 'partI_lesson3_remake_complete',
                     nextUrl: '/9. partI/lesson4/lesson4_remake.html',

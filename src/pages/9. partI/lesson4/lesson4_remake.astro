@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🤖 Milestone 4: Modern AI / LLM REST API Integration!
+const starterCode = `// 🤖 Milestone 4: AI Helper Panel & Response Stream UI!
 
 function AIAssistantPanel() {
   const [summary, setSummary] = React.useState("");
@@ -116,7 +116,7 @@ const jumpLessons = [
         <!-- Analogy Explainer Card -->
         <article class="concept-card">
             <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Connect frontend applications to AI LLM inference endpoints to generate automated summaries and smart content tags.</p>
+            <p>Build an interactive AI prompt assistant with simulated response streams, dynamic loading indicators, and summary preview cards.</p>
             <div class="analogy-callout">
                 <strong>Real-World Analogy:</strong> An AI API endpoint is like having an expert executive assistant on speed dial 🤖: you hand them raw messy notes, and they hand back clean bullet points in seconds.
             </div>
@@ -139,7 +139,7 @@ const jumpLessons = [
         if (!editor) return;
 
         const DRAFT_KEY = 'novicodes_draft_partI_lesson4';
-        const DEFAULT_STARTER = `// 🤖 Milestone 4: Modern AI / LLM REST API Integration!
+        const DEFAULT_STARTER = `// 🤖 Milestone 4: AI Helper Panel & Response Stream UI!
 
 function AIAssistantPanel() {
   const [summary, setSummary] = React.useState("");
@@ -263,7 +263,7 @@ root.render(<AIAssistantPanel />);
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
                 DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Modern AI / LLM REST API Integration',
+                    lessonTitle: 'AI Helper Panel & Response Stream UI',
                     xp: 500,
                     completionKey: 'partI_lesson4_remake_complete',
                     nextUrl: '/9. partI/lesson5/lesson5_remake.html',
