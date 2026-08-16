@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalBackToTop();
     initFAQAccordion();
     initHashNavigation();
-    initDevKitShortcuts();
 });
 
 /**
