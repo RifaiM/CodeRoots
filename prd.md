@@ -3,7 +3,7 @@
 > **Version:** 2.0.0  
 > **Status:** Production Active  
 > **Platform:** 100% Client-Side Interactive Web Development Platform  
-> **Repository:** `RifaiM/CodeRoots`  
+> **Repository:** `RifaiM/NoviCodes`  
 
 ---
 

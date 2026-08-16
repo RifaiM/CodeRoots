@@ -10,7 +10,7 @@ let indexAstro = fs.readFileSync('src/pages/index.astro', 'utf-8');
 // Update SEO and Hero
 indexAstro = indexAstro.replace(
     /title="NoviCodes • Master Fullstack Engineering from Fundamentals to Production SaaS"/,
-    'title="CodeRoots • Master Modern Web & Frontend Engineering from Scratch"'
+    'title="NoviCodes • Master Modern Web & Frontend Engineering from Scratch"'
 );
 indexAstro = indexAstro.replace(
     /description="Learn HTML, CSS, JavaScript, React, Python, Cloud DevOps, PostgreSQL, and fullstack SaaS architecture by building 81 real-world projects directly in your browser\. 10 interactive tracks, zero paywalls, and 7 verifiable proof-of-work credentials\."/,
@@ -368,7 +368,7 @@ const level10_friendly = [
         mission: "Build your flagship SaaS dashboard combining layout shells, live search, pricing, and AI insights!",
         concept_body: `<article class="concept-card">
             <h3><span>🏆</span> The Final Graduation Capstone</h3>
-            <p>Congratulations on reaching the pinnacle of CodeRoots! In this grand milestone, you will unite everything you've built across all 10 levels:</p>
+            <p>Congratulations on reaching the pinnacle of NoviCodes! In this grand milestone, you will unite everything you've built across all 10 levels:</p>
             <p>A modular app layout shell, snappy live search, dynamic pricing switcher, AI assistant panel, and system launch monitors into one complete, flagship SaaS application.</p>
         </article>`
     }
@@ -383,7 +383,7 @@ function updateHub(hubPath, title, heroBadge, heroTitle, heroDesc, chapterTitle,
     let content = fs.readFileSync(hubPath, 'utf-8');
 
     // Title
-    content = content.replace(/title="[^"]*"/, `title="${title} | CodeRoots"`);
+    content = content.replace(/title="[^"]*"/, `title="${title} | NoviCodes"`);
 
     // Hero Badge & Title & Subtitle
     content = content.replace(/<span class="hub-badge"[\s\S]*?<\/span>/, `<span class="hub-badge">${heroBadge}</span>`);

@@ -20,7 +20,7 @@ const navLinks = [
 ---
 
 <BaseLayout
-    title="Async UI & Client Data Architecture (Level 8) | CodeRoots"
+    title="Async UI & Client Data Architecture (Level 8) | NoviCodes"
     description="Master asynchronous React data lifecycles, skeleton loaders, error boundaries, optimistic UI, and real-time polling."
     showHeaderFooter={false}
 >
@@ -298,7 +298,7 @@ const navLinks = [
 ---
 
 <BaseLayout
-    title="React Auth State & Access Control (Level 9) | CodeRoots"
+    title="React Auth State & Access Control (Level 9) | NoviCodes"
     description="Master client authentication lifecycles, global AuthContext providers, protected route guards, and role-based access control."
     showHeaderFooter={false}
 >
@@ -576,7 +576,7 @@ const navLinks = [
 ---
 
 <BaseLayout
-    title="SaaS UI Architecture & Design Systems (Level 10) | CodeRoots"
+    title="SaaS UI Architecture & Design Systems (Level 10) | NoviCodes"
     description="Architect enterprise SaaS frontends, modular layout shells, debounced search pipelines, dynamic billing switchers, and AI copilots."
     showHeaderFooter={false}
 >

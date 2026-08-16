@@ -174,7 +174,7 @@ const certificates = [
         sealText: 'APEX MASTER',
         trackPrefix: 'partI',
         certFilename: 'NoviCodes_Level10_Apex_Grand_Master_Diploma',
-        nextUrl: 'https://github.com/RifaiM/CodeRoots',
+        nextUrl: 'https://github.com/RifaiM/NoviCodes',
         nextLabel: '⭐ Star NoviCodes on GitHub →',
         isApex: true,
         cards: [

@@ -48,7 +48,7 @@ NoviCodes utilizes a **Decoupled Static Site Generation (SSG)** architecture pow
 ## 2. Directory Structure & Codebase Layout
 
 ```
-3. CodeRoots-refactor/
+3. NoviCodes/
 ├── public/                     # Static assets served at root
 │   ├── assets/                 # Favicons, illustrations, icons
 │   ├── 1. partA/               # Level 0 Web History & Pillars assets/scripts

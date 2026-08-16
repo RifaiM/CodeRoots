@@ -5,22 +5,22 @@ let indexContent = fs.readFileSync('src/pages/index.astro', 'utf-8');
 
 indexContent = indexContent.replace(
     /Everything You Need to Know About NoviCodes/,
-    'Everything You Need to Know About CodeRoots'
+    'Everything You Need to Know About NoviCodes'
 );
 
 indexContent = indexContent.replace(
     /<span class="faq-q-text">💰 Is NoviCodes really 100% free and open-source forever\?<\/span>/,
-    '<span class="faq-q-text">💰 Is CodeRoots really 100% free and open-source forever?</span>'
+    '<span class="faq-q-text">💰 Is NoviCodes really 100% free and open-source forever?</span>'
 );
 
 indexContent = indexContent.replace(
     /<p><strong>Yes, absolutely!<\/strong> NoviCodes is licensed under the open-source MIT License\. There are zero paywalls, zero premium tiers, no credit cards required, and no locked lessons\. Everything from Level 0 Web Concepts to Level 7 Fullstack Specializations is 100% free for all learners worldwide\.<\/p>/,
-    '<p><strong>Yes, absolutely!</strong> CodeRoots is licensed under the open-source MIT License. There are zero paywalls, zero premium tiers, no credit cards required, and no locked lessons. Everything from Level 0 Web Concepts to Level 10 SaaS Architecture is 100% free for all learners worldwide.</p>'
+    '<p><strong>Yes, absolutely!</strong> NoviCodes is licensed under the open-source MIT License. There are zero paywalls, zero premium tiers, no credit cards required, and no locked lessons. Everything from Level 0 Web Concepts to Level 10 SaaS Architecture is 100% free for all learners worldwide.</p>'
 );
 
 indexContent = indexContent.replace(
     /NoviCodes gives you the flight simulator training to pilot AI tools effectively\./,
-    'CodeRoots gives you the flight simulator training to pilot AI tools effectively.'
+    'NoviCodes gives you the flight simulator training to pilot AI tools effectively.'
 );
 
 indexContent = indexContent.replace(

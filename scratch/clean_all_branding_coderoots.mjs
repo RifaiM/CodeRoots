@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-// Master branding cleanup script to standardize "NoviCodes" -> "CodeRoots" everywhere in UI and metadata
+// Master branding cleanup script to standardize "NoviCodes" -> "NoviCodes" everywhere in UI and metadata
 
 function scanDir(dir, filterFn) {
     let results = [];
@@ -28,22 +28,22 @@ for (const file of files) {
     let original = content;
 
     // 1. Watermark & Brands in Certificates
-    content = content.replace(/<div class="cert-watermark">NOVICODES<\/div>/g, '<div class="cert-watermark">CODEROOTS</div>');
-    content = content.replace(/<div class="cert-brand">NOVICODES PLATFORM<\/div>/g, '<div class="cert-brand">CODEROOTS PLATFORM</div>');
-    content = content.replace(/NoviCodes Academic Board/g, 'CodeRoots Academic Board');
-    content = content.replace(/NoviCodes Core Team/g, 'CodeRoots Academic Board');
-    content = content.replace(/NoviCodes Platform/g, 'CodeRoots Platform');
-    content = content.replace(/NoviCodes Dashboard/g, 'CodeRoots Dashboard');
+    content = content.replace(/<div class="cert-watermark">NOVICODES<\/div>/g, '<div class="cert-watermark">NOVICODES</div>');
+    content = content.replace(/<div class="cert-brand">NOVICODES PLATFORM<\/div>/g, '<div class="cert-brand">NOVICODES PLATFORM</div>');
+    content = content.replace(/NoviCodes Academic Board/g, 'NoviCodes Academic Board');
+    content = content.replace(/NoviCodes Core Team/g, 'NoviCodes Academic Board');
+    content = content.replace(/NoviCodes Platform/g, 'NoviCodes Platform');
+    content = content.replace(/NoviCodes Dashboard/g, 'NoviCodes Dashboard');
 
     // 2. Titles in Layouts & Guides
-    content = content.replace(/\|\s*NoviCodes/g, '| CodeRoots');
-    content = content.replace(/NoviCodes •/g, 'CodeRoots •');
-    content = content.replace(/novicodes\.dev/g, 'coderoots.dev');
-    content = content.replace(/Welcome to NoviCodes/g, 'Welcome to CodeRoots');
+    content = content.replace(/\|\s*NoviCodes/g, '| NoviCodes');
+    content = content.replace(/NoviCodes •/g, 'NoviCodes •');
+    content = content.replace(/novicodes\.dev/g, 'novicodes.dev');
+    content = content.replace(/Welcome to NoviCodes/g, 'Welcome to NoviCodes');
 
     // 3. Alt tags & aria labels
-    content = content.replace(/alt="NoviCodes Logo"/g, 'alt="CodeRoots Logo"');
-    content = content.replace(/aria-label="NoviCodes/g, 'aria-label="CodeRoots');
+    content = content.replace(/alt="NoviCodes Logo"/g, 'alt="NoviCodes Logo"');
+    content = content.replace(/aria-label="NoviCodes/g, 'aria-label="NoviCodes');
 
     if (content !== original) {
         fs.writeFileSync(file, content, 'utf-8');

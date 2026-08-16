@@ -3,7 +3,7 @@ import path from 'path';
 
 function generateHubCss(theme) {
     return `/* ==========================================================================
-   CodeRoots Level ${theme.level}: ${theme.title} Hub Stylesheet
+   NoviCodes Level ${theme.level}: ${theme.title} Hub Stylesheet
    Theme: ${theme.name}
    Responsiveness: 320px, 375px, 425px, 768px, 1024px+
    ========================================================================== */

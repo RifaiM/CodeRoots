@@ -35,7 +35,7 @@ footerContent = footerContent.replace(
 );
 footerContent = footerContent.replace(
     /brandName = 'NoviCodes'/,
-    "brandName = 'CodeRoots'"
+    "brandName = 'NoviCodes'"
 );
 footerContent = footerContent.replace(
     /<span class="title-novi">Novi<\/span><span class="title-codes">Codes<\/span>/g,

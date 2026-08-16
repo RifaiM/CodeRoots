@@ -4,7 +4,7 @@ import fs from 'fs';
 let base = fs.readFileSync('src/layouts/BaseLayout.astro', 'utf-8');
 base = base.replace(
     /title = 'NoviCodes • Fullstack Web Engineering & Production SaaS Platform'/,
-    "title = 'CodeRoots • Master Modern Web & Frontend Engineering'"
+    "title = 'NoviCodes • Master Modern Web & Frontend Engineering'"
 );
 base = base.replace(
     /description = 'Master modern fullstack web development from fundamentals through React, Python, Cloud DevOps, and PostgreSQL to deploying production SaaS applications\. 10 interactive levels, 81 projects, and 7 verifiable credentials\.'/,
@@ -21,11 +21,11 @@ header = header.replace(
 );
 header = header.replace(
     /aria-label="NoviCodes Dashboard Home"/,
-    'aria-label="CodeRoots Dashboard Home"'
+    'aria-label="NoviCodes Dashboard Home"'
 );
 header = header.replace(
     /alt="NoviCodes Logo"/,
-    'alt="CodeRoots Logo"'
+    'alt="NoviCodes Logo"'
 );
 fs.writeFileSync('src/components/PlatformHeader.astro', header, 'utf-8');
 console.log('✅ Updated PlatformHeader.astro branding');
