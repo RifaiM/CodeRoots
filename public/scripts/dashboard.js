@@ -278,7 +278,7 @@ function initUserProgress() {
     trackCards.forEach(card => {
         const badge = card.querySelector('.track-level-badge');
         const statusIcon = card.querySelector('.track-status-icon');
-        const btn = card.querySelector('.track-btn');
+        const btn = card.querySelector('.dojo-btn, .gold-btn, .primary-btn') || card.querySelector('.track-btn:last-of-type') || card.querySelector('.track-btn');
         if (!badge || !statusIcon || !btn) return;
 
         const levelText = badge.textContent.trim();
