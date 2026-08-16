@@ -25,7 +25,7 @@ const inspectorDetails = {
     },
     internet: {
         title: '🌐 The Internet & DNS Network',
-        desc: 'The global highway connecting clients to servers. Routers, fiber-optic cables, and DNS servers translate human-readable names (novicodes.dev) into machine IP addresses (142.250.190.46) in milliseconds.'
+        desc: 'The global highway connecting clients to servers. Routers, fiber-optic cables, and DNS servers translate human-readable names (coderoots.dev) into machine IP addresses (142.250.190.46) in milliseconds.'
     },
     server: {
         title: '🖥️ The Web Server (Host)',

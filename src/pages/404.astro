@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout 
-    title="404: Page Not Found | NoviCodes" 
+    title="404: Page Not Found | CodeRoots" 
     description="The page you are looking for could not be found. Return to the NoviCodes interactive web development dashboard or explore suggested curriculum tracks."
     showHeaderFooter={false}
 >
@@ -28,7 +28,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <span class="suggestion-pulse"></span>
                     <span class="suggestion-header" id="suggestionTitle">💡 Recommended Match</span>
                 </div>
-                <div class="suggestion-name" id="suggestionName">NoviCodes Dashboard</div>
+                <div class="suggestion-name" id="suggestionName">CodeRoots Dashboard</div>
                 <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress.</p>
                 <div class="suggestion-action-row">
                     <a href="/" class="suggestion-btn" id="suggestionLink">
@@ -40,7 +40,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Primary Navigation Actions -->
             <div class="button-group">
                 <a href="/" class="action-btn primary-btn" id="dashboardLink">
-                    <span>🏠 Return to NoviCodes Dashboard</span>
+                    <span>🏠 Return to CodeRoots Dashboard</span>
                 </a>
                 <button id="goBackBtn" class="action-btn secondary-btn" type="button">
                     <span>↩️ Go Back to Previous Page</span>
@@ -77,7 +77,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </a>
                     <a href="/7. partG/hub.html" class="fast-track-pill" title="Level 8 • Async UI Architecture">
                         <span class="pill-icon">🌉</span>
-                        <span class="pill-text">Level 8: API Bridge</span>
+                        <span class="pill-text">Level 8: Async UI</span>
                     </a>
                     <a href="/8. partH/hub.html" class="fast-track-pill" title="Level 9 • React Auth & Access Control">
                         <span class="pill-icon">🛡️</span>
@@ -85,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </a>
                     <a href="/9. partI/hub.html" class="fast-track-pill" title="Level 10 • SaaS UI Architecture">
                         <span class="pill-icon">🏆</span>
-                        <span class="pill-text">Level 10: Apex SaaS</span>
+                        <span class="pill-text">Level 10: SaaS UI</span>
                     </a>
                     <a href="/4. partD/devtype/devtype.html" class="fast-track-pill" title="DevType • Typing Speedrun">
                         <span class="pill-icon">⌨️</span>
@@ -455,7 +455,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             // Heuristic Match State
             let targetUrl = '/';
-            let targetName = 'NoviCodes Dashboard';
+            let targetName = 'CodeRoots Dashboard';
             let targetDesc = 'Return to your interactive web development path and course overview.';
             let tagHeader = '💡 Suggested Route';
 
@@ -466,8 +466,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas') || rawPath.includes('capstone') || rawPath.includes('apex')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/9. partI/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 10 • Apex SaaS Milestone ${lessonNum}`;
-                    targetDesc = `Jump directly into production SaaS capstone milestone ${lessonNum}.`;
+                    targetName = `Level 10 • SaaS UI Milestone ${lessonNum}`;
+                    targetDesc = `Jump directly into SaaS UI & Design Systems milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/9. partI/hub.html';
@@ -477,19 +477,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth') || rawPath.includes('prisma') || rawPath.includes('rbac') || rawPath.includes('jwt')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/8. partH/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 9 • Auth & DB Dojo Lesson ${lessonNum}`;
-                    targetDesc = `Jump directly into interactive fullstack security milestone ${lessonNum}.`;
+                    targetName = `Level 9 • React Auth Lesson ${lessonNum}`;
+                    targetDesc = `Jump directly into React auth state & access control milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/8. partH/hub.html';
-                    targetName = 'Level 9 • Fullstack Auth & Database Dojo Hub';
+                    targetName = 'Level 9 • React Auth & Access Control Hub';
                     targetDesc = '6 fullstack authentication, Prisma ORM, JWT, and RBAC security projects.';
                 }
             } else if (rawPath.includes('partg') || rawPath.includes('level8') || rawPath.includes('bridge') || rawPath.includes('api_bridge') || rawPath.includes('gateway')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/7. partG/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 8 • API Bridge Dojo Lesson ${lessonNum}`;
-                    targetDesc = `Jump directly into interactive API bridge milestone ${lessonNum}.`;
+                    targetName = `Level 8 • Async UI Lesson ${lessonNum}`;
+                    targetDesc = `Jump directly into async UI & live data milestone ${lessonNum}.`;
                     tagHeader = '🚀 Exact Lesson Match';
                 } else {
                     targetUrl = '/7. partG/hub.html';
