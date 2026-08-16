@@ -755,18 +755,7 @@ function initSandboxEngine(sandboxData) {
     textarea.value = sandboxData.initialHTML;
 
     function updatePreview() {
-        try {
-            const doc = iframe.contentDocument || iframe.contentWindow.document;
-            if (doc) {
-                doc.open();
-                doc.write(textarea.value);
-                doc.close();
-            } else {
-                iframe.srcdoc = textarea.value;
-            }
-        } catch (e) {
-            iframe.srcdoc = textarea.value;
-        }
+        iframe.srcdoc = textarea.value;
     }
 
     updatePreview();

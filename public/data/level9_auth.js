@@ -248,30 +248,49 @@ function HeaderAvatar() {
   </div>
 
   <script>
+    function handleAdminDelete() {
+      alert('Danger action executed with Admin role authorization!');
+    }
+
     function setRole(role, name, label, badgeClass) {
-      document.getElementById('userName').textContent = name;
+      const userName = document.getElementById('userName');
       const b = document.getElementById('roleBadge');
-      b.textContent = label;
-      b.className = 'role-badge ' + badgeClass;
+      if (userName) userName.textContent = name;
+      if (b) {
+        b.textContent = label;
+        b.className = 'role-badge ' + badgeClass;
+      }
 
       const memContent = document.getElementById('memberRouteContent');
       const adminContent = document.getElementById('adminRouteContent');
 
       if (role === 'guest') {
-        memContent.innerHTML = '🔒 Locked: You must sign in to view team metrics.';
-        memContent.style.color = '#dc2626';
-        adminContent.innerHTML = '🔒 Locked: Admin privileges required.';
-        adminContent.style.color = '#dc2626';
+        if (memContent) {
+          memContent.innerHTML = '🔒 Locked: You must sign in to view team metrics.';
+          memContent.style.color = '#dc2626';
+        }
+        if (adminContent) {
+          adminContent.innerHTML = '🔒 Locked: Admin privileges required.';
+          adminContent.style.color = '#dc2626';
+        }
       } else if (role === 'member') {
-        memContent.innerHTML = '✅ Access Granted: Welcome to Team Workspace! (View-Only)';
-        memContent.style.color = '#16a34a';
-        adminContent.innerHTML = '🔒 Locked: Your role (Member) cannot modify billing.';
-        adminContent.style.color = '#dc2626';
+        if (memContent) {
+          memContent.innerHTML = '✅ Access Granted: Welcome to Team Workspace! (View-Only)';
+          memContent.style.color = '#16a34a';
+        }
+        if (adminContent) {
+          adminContent.innerHTML = '🔒 Locked: Your role (Member) cannot modify billing.';
+          adminContent.style.color = '#dc2626';
+        }
       } else if (role === 'admin') {
-        memContent.innerHTML = '✅ Access Granted: Welcome to Team Workspace!';
-        memContent.style.color = '#16a34a';
-        adminContent.innerHTML = '✅ Full Permissions: <button class="btn-danger" onclick="alert(\'Danger action triggered by Admin!\')">Delete Workspace</button>';
-        adminContent.style.color = '#16a34a';
+        if (memContent) {
+          memContent.innerHTML = '✅ Access Granted: Welcome to Team Workspace!';
+          memContent.style.color = '#16a34a';
+        }
+        if (adminContent) {
+          adminContent.innerHTML = '✅ Full Permissions: <button class="btn-danger" onclick="handleAdminDelete()">Delete Workspace</button>';
+          adminContent.style.color = '#16a34a';
+        }
       }
     }
   </script>

@@ -229,9 +229,9 @@ return (
     </div>
 
     <div class="nav-links">
-      <button class="nav-btn active" onclick="navigate('/', 'Home Dashboard', 'app/page.tsx', '⚡ Server Pre-Rendered in 18ms (0KB Client JS)')">app/page.tsx</button>
-      <button class="nav-btn" onclick="navigate('/blog', 'Developer Blog', 'app/blog/page.tsx', '⚡ Static Edge Cached in 4ms')">app/blog/page.tsx</button>
-      <button class="nav-btn" onclick="navigate('/settings', 'Account Settings (\'use client\')', 'app/settings/page.tsx', '⚛️ Client Component (Hydrated & Interactive)')">app/settings/page.tsx</button>
+      <button class="nav-btn active" onclick="navigate(this, '/', 'Home Dashboard', 'app/page.tsx', '⚡ Server Pre-Rendered in 18ms (0KB Client JS)')">app/page.tsx</button>
+      <button class="nav-btn" onclick="navigate(this, '/blog', 'Developer Blog', 'app/blog/page.tsx', '⚡ Static Edge Cached in 4ms')">app/blog/page.tsx</button>
+      <button class="nav-btn" onclick="navigate(this, '/settings', 'Account Settings (\'use client\')', 'app/settings/page.tsx', '⚛️ Client Component (Hydrated & Interactive)')">app/settings/page.tsx</button>
     </div>
 
     <div class="page-box">
@@ -242,7 +242,7 @@ return (
   </div>
 
   <script>
-    function navigate(path, title, file, metric) {
+    function navigate(btnEl, path, title, file, metric) {
       document.getElementById('urlPath').textContent = path;
       document.getElementById('pageTitle').textContent = title;
       document.getElementById('metricBadge').textContent = metric;
@@ -250,7 +250,7 @@ return (
       
       const btns = document.querySelectorAll('.nav-btn');
       btns.forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
     }
   </script>
 </body>
