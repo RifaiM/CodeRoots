@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Smooth Rotating Skill Suffix Typewriter Engine
  * Accessible, zero-layout-shift, prefers-reduced-motion safe
+ * Enhanced: IntersectionObserver auto-pause & Page Visibility API integration
  */
 function initHeroTypewriter() {
     const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
@@ -53,8 +54,13 @@ function initHeroTypewriter() {
         let typingSpeed = 60;
         const pauseEnd = 2400;
         const pauseStart = 350;
+        let timeoutId = null;
+        let isSectionInView = true;
+        let isPageVisible = !document.hidden;
 
         function typeLoop() {
+            if (!isSectionInView || !isPageVisible) return;
+
             const currentPhrase = phrases[phraseIdx];
 
             if (isDeleting) {
@@ -65,7 +71,7 @@ function initHeroTypewriter() {
                 if (charIdx <= 0) {
                     isDeleting = false;
                     phraseIdx = (phraseIdx + 1) % phrases.length;
-                    setTimeout(typeLoop, pauseStart);
+                    timeoutId = setTimeout(typeLoop, pauseStart);
                     return;
                 }
             } else {
@@ -75,15 +81,51 @@ function initHeroTypewriter() {
 
                 if (charIdx >= currentPhrase.length) {
                     isDeleting = true;
-                    setTimeout(typeLoop, pauseEnd);
+                    timeoutId = setTimeout(typeLoop, pauseEnd);
                     return;
                 }
             }
 
-            setTimeout(typeLoop, typingSpeed);
+            timeoutId = setTimeout(typeLoop, typingSpeed);
         }
 
-        setTimeout(typeLoop, pauseEnd);
+        // 1. IntersectionObserver: Freeze loop when user scrolls past or leaves hero section
+        const targetContainer = el.closest('.hero-section, .hub-hero, .hub-header, header, .hero') || el;
+        
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!isSectionInView) {
+                            isSectionInView = true;
+                            clearTimeout(timeoutId);
+                            timeoutId = setTimeout(typeLoop, 200);
+                        }
+                    } else {
+                        isSectionInView = false;
+                        clearTimeout(timeoutId);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.05
+            });
+
+            observer.observe(targetContainer);
+        }
+
+        // 2. Page Visibility API: Pause when tab is switched or minimized
+        document.addEventListener('visibilitychange', () => {
+            isPageVisible = !document.hidden;
+            if (isPageVisible && isSectionInView) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(typeLoop, 300);
+            } else {
+                clearTimeout(timeoutId);
+            }
+        });
+
+        timeoutId = setTimeout(typeLoop, pauseEnd);
     });
 }
 

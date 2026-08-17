@@ -317,6 +317,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
   line-height: 1.25;
   margin: 0 0 16px 0;
   letter-spacing: -0.03em;
+  min-height: 1.2em;
 }
 
 .typewriter-wrap {
@@ -324,6 +325,7 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
   color: #2563eb;
   position: relative;
   font-weight: 800;
+  white-space: normal;
 }
 
 .typewriter-text {
