@@ -115,12 +115,12 @@
 
 .foundations-ref-box {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
     background: #f8fafc;
     border: 1.5px solid #e2e8f0;
-    padding: 6px 12px;
+    padding: 10px 12px;
     border-radius: 12px;
     margin: 4px 0 16px 0;
     box-sizing: border-box;
@@ -130,37 +130,34 @@
 .foundations-ref-box:hover {
     border-color: #cbd5e1;
     background: #ffffff;
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .foundations-ref-header {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 6px;
-    height: 34px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    line-height: 1.2;
 }
 
 .ref-icon {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1;
 }
 
 .ref-label {
     color: #475569;
-    font-size: 0.80rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .foundations-ref-control {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 8px;
-    flex: 1;
-    justify-content: flex-end;
-    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .foundations-ref-select {
@@ -168,21 +165,24 @@
     -webkit-appearance: none;
     background: #ffffff url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 10px center;
     background-size: 12px;
-    border: 1px solid #cbd5e1;
-    height: 34px;
-    line-height: 32px;
+    border: 1.5px solid #cbd5e1;
+    height: 36px;
+    line-height: 34px;
     padding: 0 28px 0 10px;
     border-radius: 8px;
     font-family: inherit;
-    font-size: 0.80rem;
-    font-weight: 700;
+    font-size: 0.84rem;
+    font-weight: 600;
     color: #0f172a;
     cursor: pointer;
     outline: none;
     transition: all 0.2s ease;
     box-sizing: border-box;
-    max-width: 250px;
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .foundations-ref-select:hover,
@@ -196,15 +196,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
     background: #eff6ff;
-    border: 1px solid #bfdbfe;
+    border: 1.5px solid #bfdbfe;
     color: #1d4ed8 !important;
-    height: 34px;
-    line-height: 32px;
-    padding: 0 12px;
+    height: 36px;
+    line-height: 34px;
+    padding: 0 14px;
     border-radius: 8px;
-    font-size: 0.80rem;
+    font-size: 0.82rem;
     font-weight: 800;
     text-decoration: none;
     white-space: nowrap;
@@ -219,24 +219,6 @@
     border-color: #2563eb;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
-}
-
-@media (max-width: 640px) {
-    .foundations-ref-box {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-    }
-    .foundations-ref-header {
-        height: auto;
-    }
-    .foundations-ref-control {
-        width: 100%;
-    }
-    .foundations-ref-select {
-        flex: 1;
-        max-width: none;
-    }
 }
 
 .lesson-subtitle {
@@ -979,23 +961,23 @@
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.66rem; padding: 3px 7px; }
 
     /* Foundations Refresher Bar (425px) */
-    .foundations-ref-box { padding: 6px 10px; gap: 6px; }
-    .foundations-ref-header { height: 30px; gap: 5px; }
-    .ref-icon { font-size: 0.85rem; }
-    .ref-label { font-size: 0.74rem; }
+    .foundations-ref-box { padding: 8px 10px; gap: 6px; }
+    .foundations-ref-header { gap: 5px; }
+    .ref-icon { font-size: 0.88rem; }
+    .ref-label { font-size: 0.78rem; }
     .foundations-ref-select {
-        height: 30px;
-        line-height: 28px;
-        font-size: 0.74rem;
-        padding: 0 24px 0 8px;
-        border-radius: 6px;
+        height: 34px;
+        line-height: 32px;
+        font-size: 0.80rem;
+        padding: 0 26px 0 8px;
+        border-radius: 7px;
     }
     .ref-open-link-btn {
-        height: 30px;
-        line-height: 28px;
-        font-size: 0.74rem;
+        height: 34px;
+        line-height: 32px;
+        font-size: 0.78rem;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 7px;
     }
 
     /* Mission Card & Checklist */
@@ -1083,23 +1065,23 @@
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.62rem; padding: 2px 6px; }
 
     /* Foundations Refresher Bar (375px) */
-    .foundations-ref-box { padding: 5px 8px; gap: 5px; }
-    .foundations-ref-header { height: 28px; gap: 4px; }
-    .ref-icon { font-size: 0.78rem; }
-    .ref-label { font-size: 0.68rem; }
+    .foundations-ref-box { padding: 8px 8px; gap: 6px; }
+    .foundations-ref-header { gap: 4px; }
+    .ref-icon { font-size: 0.84rem; }
+    .ref-label { font-size: 0.76rem; }
     .foundations-ref-select {
-        height: 28px;
-        line-height: 26px;
-        font-size: 0.68rem;
-        padding: 0 22px 0 6px;
-        border-radius: 6px;
+        height: 34px;
+        line-height: 32px;
+        font-size: 0.78rem;
+        padding: 0 24px 0 7px;
+        border-radius: 7px;
     }
     .ref-open-link-btn {
-        height: 28px;
-        line-height: 26px;
-        font-size: 0.68rem;
+        height: 34px;
+        line-height: 32px;
+        font-size: 0.76rem;
         padding: 0 8px;
-        border-radius: 6px;
+        border-radius: 7px;
     }
 
     /* Mission Card & Checklist */
@@ -1177,23 +1159,23 @@
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.58rem; padding: 2px 5px; }
 
     /* Foundations Refresher Bar (320px) */
-    .foundations-ref-box { padding: 4px 6px; gap: 4px; }
-    .foundations-ref-header { height: 26px; gap: 3px; }
-    .ref-icon { font-size: 0.72rem; }
-    .ref-label { font-size: 0.62rem; }
+    .foundations-ref-box { padding: 6px 8px; gap: 5px; }
+    .foundations-ref-header { gap: 3px; }
+    .ref-icon { font-size: 0.80rem; }
+    .ref-label { font-size: 0.72rem; }
     .foundations-ref-select {
-        height: 26px;
-        line-height: 24px;
-        font-size: 0.62rem;
-        padding: 0 20px 0 5px;
-        border-radius: 5px;
+        height: 32px;
+        line-height: 30px;
+        font-size: 0.74rem;
+        padding: 0 22px 0 6px;
+        border-radius: 6px;
     }
     .ref-open-link-btn {
-        height: 26px;
-        line-height: 24px;
-        font-size: 0.62rem;
-        padding: 0 6px;
-        border-radius: 5px;
+        height: 32px;
+        line-height: 30px;
+        font-size: 0.72rem;
+        padding: 0 7px;
+        border-radius: 6px;
     }
 
     /* Mission Card & Checklist */
