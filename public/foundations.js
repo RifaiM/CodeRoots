@@ -53,19 +53,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate User Stats from LocalStorage
     updateHeaderStats();
 
-    // 3. Initialize Tab Navigation Engine
+    // 3. Initialize Track Quick Switcher Dropdown
+    const trackQuickSelect = document.getElementById('trackQuickSelect');
+    if (trackQuickSelect) {
+        trackQuickSelect.value = trackKey;
+        trackQuickSelect.addEventListener('change', (e) => {
+            const chosen = e.target.value;
+            if (chosen && chosen !== trackKey) {
+                window.location.href = `/foundations.html?track=${encodeURIComponent(chosen)}`;
+            }
+        });
+    }
+
+    // 4. Initialize Tab Navigation Engine
     initTabNavigation();
 
-    // 4. Hydrate 1. Concepts Panel
+    // 5. Hydrate 1. Concepts Panel
     hydrateConceptsPanel(trackData.concepts, trackKey);
 
-    // 5. Hydrate 2. Glossary Panel
+    // 6. Hydrate 2. Glossary Panel
     hydrateGlossaryPanel(trackData.glossary);
 
-    // 6. Hydrate 3. Code Sandbox Engine
+    // 7. Hydrate 3. Code Sandbox Engine
     initSandboxEngine(trackData.sandbox);
 
-    // 7. Hydrate 4. Quiz & Verification Engine
+    // 8. Hydrate 4. Quiz & Verification Engine
     initQuizEngine(trackData);
 });
 
@@ -334,6 +346,100 @@ function initTabNavigation() {
     });
 }
 
+const DOJO_DESTINATIONS = {
+    html: {
+        title: 'Level 4 • JavaScript Widget Dojo',
+        desc: 'Take your HTML & DOM structural knowledge into 15 hands-on interactive browser widgets.',
+        url: '/2. partB/hub.html',
+        btnText: '⚔️ Start Level 4 DOM Dojo ➔',
+        icon: '⚔️'
+    },
+    css: {
+        title: 'Level 7E • CSS Motion & Animation Dojo',
+        desc: 'Put your box model and styling theory into 10 interactive hardware-accelerated animations.',
+        url: '/6. partF/branchE/lesson1_remake.html',
+        btnText: '🎨 Start CSS Motion Dojo ➔',
+        icon: '🎨'
+    },
+    js: {
+        title: 'Level 4 • JavaScript Widget Dojo',
+        desc: 'Put variables, functions, and event listeners to work building 15 interactive browser widgets.',
+        url: '/2. partB/lesson1/lesson1_remake.html',
+        btnText: '⚡ Start Level 4 Lesson 1 (Counter Widget) ➔',
+        icon: '⚔️'
+    },
+    react: {
+        title: 'Level 5 • React Component Dojo',
+        desc: 'Put JSX, props, and useState mental models to work across 15 interactive React milestones.',
+        url: '/3. partC/lesson1/lesson1_remake.html',
+        btnText: '⚛️ Start Level 5 Lesson 1 (JSX Component) ➔',
+        icon: '⚛️'
+    },
+    python: {
+        title: 'Level 6 • Python & Backend Dojo',
+        desc: 'Practice algorithms, data structures, OOP classes, and API mocks in 15 Python challenges.',
+        url: '/5. partE/lesson1/lesson1_remake.html',
+        btnText: '🐍 Start Level 6 Lesson 1 (Python Basics) ➔',
+        icon: '🐍'
+    },
+    cloud: {
+        title: 'Level 7A • Cloud Hosting & DevOps Dojo',
+        desc: 'Write real Nginx configs, Dockerfile manifests, and automated GitHub Actions CI/CD workflows.',
+        url: '/6. partF/branchA/lesson1_remake.html',
+        btnText: '☁️ Start Level 7A Lesson 1 (Static Hosting) ➔',
+        icon: '☁️'
+    },
+    sql: {
+        title: 'Level 7B • SQL Relational Databases Dojo',
+        desc: 'Design relational tables, foreign keys, complex JOINs, and safe database transactions.',
+        url: '/6. partF/branchB/lesson1_remake.html',
+        btnText: '🛢️ Start Level 7B Lesson 1 (Create Table) ➔',
+        icon: '🛢️'
+    },
+    nextjs: {
+        title: 'Level 7C • Next.js App Router Dojo',
+        desc: 'Build with React Server Components, App Router layouts, dynamic routes, and server data fetching.',
+        url: '/6. partF/branchC/lesson1_remake.html',
+        btnText: '⚡ Start Level 7C Lesson 1 (App Router) ➔',
+        icon: '⚡'
+    },
+    typescript: {
+        title: 'Level 7D • TypeScript Mastery Dojo',
+        desc: 'Build type-safe interfaces, generics <T>, discriminated unions, and a reactive state store.',
+        url: '/6. partF/branchD/lesson1_remake.html',
+        btnText: '🔷 Start Level 7D Lesson 1 (Type Inference) ➔',
+        icon: '🔷'
+    },
+    cssmotion: {
+        title: 'Level 7E • CSS Motion & Micro-Interactions Dojo',
+        desc: 'Build GPU-accelerated transforms, keyframe spinners, card shimmer, and accessible motion.',
+        url: '/6. partF/branchE/lesson1_remake.html',
+        btnText: '🎨 Start Level 7E Lesson 1 (Transitions) ➔',
+        icon: '🎨'
+    },
+    async: {
+        title: 'Level 8 • Async UI & Live Data Dojo',
+        desc: 'Build animated skeleton placeholders, error recovery screens, and optimistic UI rollbacks.',
+        url: '/7. partG/lesson1/lesson1_remake.html',
+        btnText: '🌉 Start Level 8 Lesson 1 (Skeleton Loaders) ➔',
+        icon: '🌉'
+    },
+    auth: {
+        title: 'Level 9 • User Logins & Auth Dojo',
+        desc: 'Build JWT session gates, AuthContext providers, protected routes, and role permissions.',
+        url: '/8. partH/lesson1/lesson1_remake.html',
+        btnText: '🛡️ Start Level 9 Lesson 1 (Auth Gate) ➔',
+        icon: '🛡️'
+    },
+    saas: {
+        title: 'Level 10 • SaaS Dashboard UI Dojo',
+        desc: 'Combine layout shells, debounced live queries, subscription tiers, and AI chat panels.',
+        url: '/9. partI/lesson1/lesson1_remake.html',
+        btnText: '🏆 Start Level 10 Lesson 1 (Sidebar Shell) ➔',
+        icon: '🏆'
+    }
+};
+
 /**
  * Hydrates 1. Concepts Panel with Interactive Analogies & Live Simulators
  */
@@ -356,6 +462,41 @@ function hydrateConceptsPanel(conceptsData, trackKey) {
             <div>${section.content}</div>
         </div>
     `).join('');
+
+    // Append Practical Dojo Bridge Card at the bottom of Tab 1
+    const dojoInfo = DOJO_DESTINATIONS[trackKey] || DOJO_DESTINATIONS.html;
+    const bridgeDiv = document.createElement('div');
+    bridgeDiv.className = 'dojo-practice-bridge-card';
+    bridgeDiv.innerHTML = `
+        <div class="bridge-content-wrap">
+            <div class="bridge-icon-badge">${dojoInfo.icon}</div>
+            <div class="bridge-text-block">
+                <span class="bridge-tag">⚔️ Practical Application</span>
+                <h3 class="bridge-title">Ready to Practice in the Browser IDE?</h3>
+                <p class="bridge-desc">${escapeHtml(dojoInfo.desc)}</p>
+            </div>
+        </div>
+        <div class="bridge-action-buttons">
+            <a href="${escapeHtml(dojoInfo.url)}" class="bridge-btn-primary">
+                <span>${escapeHtml(dojoInfo.btnText)}</span>
+            </a>
+            <button type="button" class="bridge-btn-secondary" id="bridgeGoToQuizBtn">
+                <span>🧪 Take Knowledge Quiz (+300 XP)</span>
+            </button>
+        </div>
+    `;
+    listContainer.appendChild(bridgeDiv);
+
+    const quizSwitchBtn = bridgeDiv.querySelector('#bridgeGoToQuizBtn');
+    if (quizSwitchBtn) {
+        quizSwitchBtn.addEventListener('click', () => {
+            const quizTabBtn = document.querySelector('.foundations-tab-bar .tab-btn[data-tab="quiz"]');
+            if (quizTabBtn) {
+                quizTabBtn.click();
+                window.scrollTo({ top: 120, behavior: 'smooth' });
+            }
+        });
+    }
 
     // Mount Interactive Concept Engines based on Active Track
     setTimeout(() => {

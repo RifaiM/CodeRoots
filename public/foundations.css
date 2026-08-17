@@ -1810,3 +1810,211 @@
   }
 }
 
+/* ==========================================================================
+   Track Quick Switcher & Practice Bridge Card
+   ========================================================================== */
+
+.track-switcher-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 14px;
+  margin-top: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+}
+
+.track-switcher-wrap:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.track-switcher-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.track-select-box {
+  position: relative;
+}
+
+.track-quick-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #f8fafc url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 12px center;
+  background-size: 14px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 36px 8px 12px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.track-quick-select:hover,
+.track-quick-select:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Practice in Dojo Bridge Card */
+.dojo-practice-bridge-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+  border: 1.5px solid #fef3c7;
+  border-left: 5px solid #d97706;
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.07);
+  box-sizing: border-box;
+}
+
+.bridge-content-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bridge-icon-badge {
+  font-size: 2.2rem;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bridge-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bridge-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #b45309;
+}
+
+.bridge-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.bridge-desc {
+  font-size: 0.88rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.bridge-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bridge-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 0.88rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.28);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bridge-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+}
+
+.bridge-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #ffffff;
+  color: #334155 !important;
+  border: 1.5px solid #cbd5e1;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.86rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bridge-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a !important;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .dojo-practice-bridge-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+  }
+  .bridge-content-wrap {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bridge-action-buttons {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bridge-btn-primary,
+  .bridge-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .track-switcher-wrap {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  .track-quick-select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
