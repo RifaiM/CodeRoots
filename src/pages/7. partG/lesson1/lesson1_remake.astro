@@ -5,12 +5,10 @@ const starterCode = `// 🌉 Level 8 Lesson 1: Async Data Fetching & Skeletons!
 
 function ProductCatalog() {
   const [products, setProducts] = React.useState([]);
-  // 👉 STEP 1: Declare state 'isLoading' initialized to true
-  // (Hint: const [isLoading, setIsLoading] = React.useState(true);)
-  
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // 👉 STEP 2: Fetch products from API endpoint and update state:
+    // 👉 STEP 1: Fetch products from API endpoint and update state:
     // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
     
   }, []);
@@ -143,12 +141,10 @@ const jumpLessons = [
 
 function ProductCatalog() {
   const [products, setProducts] = React.useState([]);
-  // 👉 STEP 1: Declare state 'isLoading' initialized to true
-  // (Hint: const [isLoading, setIsLoading] = React.useState(true);)
-  
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // 👉 STEP 2: Fetch products from API endpoint and update state:
+    // 👉 STEP 1: Fetch products from API endpoint and update state:
     // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
     
   }, []);
@@ -179,8 +175,8 @@ root.render(<ProductCatalog />);
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'isloading', label: 'Declare <code>isLoading</code> state with <code>React.useState(true)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*isLoading[\s\n]*,[\s\n]*setIsLoading[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*true[\s\n]*\)/i.test(c); } },
-            { id: 'fetchcall', label: 'Call <code>fetch("/api/products")</code> inside <code>useEffect</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["']\/api\/products["'][\s\n]*\)/i.test(c); } }
+            { id: 'isloading', label: 'Maintain <code>isLoading</code> state with <code>React.useState(true)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*isLoading[\s\n]*,[\s\n]*setIsLoading[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*true[\s\n]*\)/i.test(c); } },
+            { id: 'fetchcall', label: 'Call <code>fetch("/api/products")</code> and update state with <code>setProducts</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["']\/api\/products["'][\s\n]*\)/i.test(c) && /setProducts[\s\n]*\(/i.test(c); } }
         ], {
             containerId: 'taskChecklist',
             mode: 'javascript'

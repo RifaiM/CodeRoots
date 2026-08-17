@@ -5,13 +5,11 @@ const starterCode = `// 🛡️ Lesson 2: Error Boundaries & HTTP Fallbacks!
 
 function SafeDataViewer() {
   const [data, setData] = React.useState(null);
-  // 👉 STEP 1: Declare state 'error' initialized to null
-  // (Hint: const [error, setError] = React.useState(null);)
-  
+  const [error, setError] = React.useState(null);
 
   const loadData = () => {
     setError(null);
-    // 👉 STEP 2: Catch errors and call setError(err.message)
+    // 👉 STEP 1: Catch errors and call setError(err.message)
     // (Hint: fetch("/api/metrics").then(res => res.json()).then(setData).catch(err => setError("Failed to connect to backend server"));)
     
   };
@@ -145,13 +143,11 @@ const jumpLessons = [
 
 function SafeDataViewer() {
   const [data, setData] = React.useState(null);
-  // 👉 STEP 1: Declare state 'error' initialized to null
-  // (Hint: const [error, setError] = React.useState(null);)
-  
+  const [error, setError] = React.useState(null);
 
   const loadData = () => {
     setError(null);
-    // 👉 STEP 2: Catch errors and call setError(err.message)
+    // 👉 STEP 1: Catch errors and call setError(err.message)
     // (Hint: fetch("/api/metrics").then(res => res.json()).then(setData).catch(err => setError("Failed to connect to backend server"));)
     
   };
@@ -183,7 +179,7 @@ root.render(<SafeDataViewer />);
 
         // 1. Initialize Real-Time Conceptual Checklist
         DojoEngine.initChecklist([
-            { id: 'error_state', label: 'Declare <code>error</code> state with <code>React.useState(null)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*error[\s\n]*,[\s\n]*setError[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*null[\s\n]*\)/i.test(c); } },
+            { id: 'error_state', label: 'Maintain <code>error</code> state with <code>React.useState(null)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*error[\s\n]*,[\s\n]*setError[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*null[\s\n]*\)/i.test(c); } },
             { id: 'catch_block', label: 'Handle fetch errors with <code>.catch(...)</code> and <code>setError</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /\.catch[\s\n]*\([\s\S]*?setError/i.test(c); } }
         ], {
             containerId: 'taskChecklist',

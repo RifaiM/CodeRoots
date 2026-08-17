@@ -198,7 +198,14 @@ root.render(<DemoPage />);
 
             // Render live React JSX preview inside iframe
             if (previewIframe) {
-                const code = editor.value;
+                const rawCode = editor.value;
+                const cleanCode = rawCode
+                    .replace(/['"]use client['"];?/g, '')
+                    .replace(/export\s+default\s+function/g, 'function')
+                    .replace(/export\s+const\s+/g, 'const ')
+                    .replace(/export\s+let\s+/g, 'let ')
+                    .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
+
                 const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
@@ -215,7 +222,7 @@ root.render(<DemoPage />);
   <div id="root"></div>
   <script type="text/babel">
     try {
-      ${code}
+      ${cleanCode}
     } catch (err) {
       document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
     }
