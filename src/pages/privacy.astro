@@ -6,7 +6,8 @@ import PlatformFooter from '../components/PlatformFooter.astro';
 const navLinks = [
     { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
     { href: '/foundations.html', label: 'Foundations', icon: '🧱', title: 'Web Foundations' },
-    { href: '/terms.html', label: 'Terms of Use', icon: '📜', title: 'Terms of Use' }
+    { href: '/terms.html', label: 'Terms of Use', icon: '📜', title: 'Terms of Use' },
+    { href: '/disclaimer.html', label: 'Disclaimer', icon: '⚠️', title: 'Disclaimer' }
 ];
 ---
 
@@ -57,9 +58,21 @@ const navLinks = [
             <p>You can clear or reset this data at any time using the <em>"Reset Course Progress"</em> button in your Learner Profile modal or by clearing your browser cache.</p>
         </div>
 
-        <!-- Section 3 -->
+        <!-- Section 3: Google AdSense & Third-Party Advertising Cookies -->
         <div class="legal-card">
-            <h2><span>⚙️</span> 3. Third-Party CDNs &amp; Open Source Assets</h2>
+            <h2><span>📢</span> 3. Google AdSense &amp; Advertising Cookies</h2>
+            <p>To fund ongoing infrastructure and keep all 103 interactive web development lessons 100% free and open to students worldwide, NoviCodes may partner with third-party advertising vendors, including Google AdSense.</p>
+            <p>Google and other third-party vendors use cookies to serve advertisements based on a user's prior visits to our website or other sites on the internet:</p>
+            <ul>
+                <li>Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to NoviCodes and/or other sites on the internet.</li>
+                <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings ↗</a> or <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">aboutads.info ↗</a>.</li>
+                <li>For more information on how Google uses data when you use partner sites, visit <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google's Privacy &amp; Terms Policy ↗</a>.</li>
+            </ul>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="legal-card">
+            <h2><span>⚙️</span> 4. Third-Party CDNs &amp; Open Source Assets</h2>
             <p>To provide high performance and reliable open-source functionality, NoviCodes loads static assets from trusted public content delivery networks (CDNs):</p>
             <ul>
                 <li><strong>Google Fonts:</strong> Loads typography fonts (Plus Jakarta Sans, Nunito, Fira Code).</li>
@@ -68,9 +81,9 @@ const navLinks = [
             <p>These CDNs may process standard technical HTTP headers (such as IP addresses) to serve static asset files securely.</p>
         </div>
 
-        <!-- Section 4 -->
+        <!-- Section 5 -->
         <div class="legal-card">
-            <h2><span>📜</span> 4. Open-Source Transparency</h2>
+            <h2><span>📜</span> 5. Open-Source Transparency</h2>
             <p>NoviCodes is 100% open-source under the MIT License. You can inspect the source code, review scripts, or fork the codebase directly on GitHub.</p>
         </div>
     </main>
