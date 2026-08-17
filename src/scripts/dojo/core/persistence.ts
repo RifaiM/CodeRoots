@@ -184,16 +184,23 @@ export class EditorPersistence {
         if (!btn || !editor) return;
 
         btn.addEventListener('click', () => {
-            if (editor.value.trim() === defaultStarter.trim()) {
-                return;
-            }
-
             const executeReset = () => {
                 editor.value = defaultStarter;
                 try {
                     localStorage.removeItem(draftKey);
                 } catch (e) {}
                 if (onReset) onReset();
+
+                if (typeof (window as any).Swal !== 'undefined') {
+                    (window as any).Swal.fire({
+                        icon: 'info',
+                        title: 'Editor Reset',
+                        text: 'Your code editor has been restored to the starter template.',
+                        timer: 1800,
+                        showConfirmButton: false,
+                        customClass: { popup: 'responsive-profile-modal' }
+                    });
+                }
             };
 
             if (typeof (window as any).Swal !== 'undefined') {

@@ -953,8 +953,32 @@ function initSandboxEngine(sandboxData) {
 
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-            textarea.value = sandboxData.initialHTML;
-            updatePreview();
+            const executeReset = () => {
+                textarea.value = sandboxData.initialHTML;
+                updatePreview();
+            };
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Reset Sandbox Code?',
+                    text: 'This will reset your sandbox editor back to the default HTML snippet.',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Yes, Reset Sandbox 🔄',
+                    cancelButtonText: 'Cancel ✕',
+                    customClass: { popup: 'responsive-profile-modal' }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        executeReset();
+                    }
+                });
+            } else {
+                if (confirm('Reset sandbox code to the default template?')) {
+                    executeReset();
+                }
+            }
         });
     }
 }
