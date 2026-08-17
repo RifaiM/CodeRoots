@@ -301,7 +301,7 @@ export function checkCertificateAccessAndRenderOverlay(opts: CertAccessCheckOpti
                 <button onclick="window.location.replace('${opts.hubUrl}')" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;border:none;border-radius:12px;font-family:inherit;font-size:0.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.25);transition:all 0.2s ease;box-sizing:border-box;">
                     <span>🚀 Return to Dojo Hub &amp; Continue ➔</span>
                 </button>
-                <a href="/" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 20px;background:#f8fafc;color:#475569;border:1px solid #cbd5e1;border-radius:12px;font-family:inherit;font-size:0.84rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;">
+                <a href="/#roadmap" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 20px;background:#f8fafc;color:#475569;border:1px solid #cbd5e1;border-radius:12px;font-family:inherit;font-size:0.84rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;">
                     <span>🏠 Dashboard Skill Tree</span>
                 </a>
             </div>

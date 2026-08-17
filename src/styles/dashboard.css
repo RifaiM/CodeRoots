@@ -402,6 +402,8 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 /* Roadmap Section */
 .roadmap-section {
   margin-top: 20px;
+
+  scroll-margin-top: 90px;
 }
 
 .section-header {
