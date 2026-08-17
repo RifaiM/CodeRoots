@@ -97,13 +97,46 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                     </div>
                     <h1 class="lesson-main-title">{lessonTitle}</h1>
                     
-                    <!-- Foundations Concept Refresher Pill -->
+                    <!-- Foundations Concept Refresher Dropdown -->
                     <div class="foundations-ref-box">
-                        <span class="ref-icon">📖</span>
-                        <span class="ref-label">Need a concept refresher?</span>
-                        <a href={foundationsUrl} target="_blank" rel="noopener noreferrer" class="ref-link" title={`Open ${foundationsRef.name} in a new tab`}>
-                            {foundationsRef.icon} Review {foundationsRef.name} ↗
-                        </a>
+                        <div class="foundations-ref-header">
+                            <span class="ref-icon">📖</span>
+                            <span class="ref-label">Need a concept refresher?</span>
+                        </div>
+                        <div class="foundations-ref-control">
+                            <select class="foundations-ref-select" id="lessonFoundationsSelect" aria-label="Review Foundations Guide in New Tab">
+                                <optgroup label="🎯 Recommended for this Level">
+                                    <option value={foundationsRef.query} selected>
+                                        {foundationsRef.icon} {foundationsRef.name}
+                                    </option>
+                                </optgroup>
+                                <optgroup label="🌱 Core Web Foundations">
+                                    <option value="history">🌐 Level 0: Web Basics & Architecture</option>
+                                    <option value="html">🧱 Level 1: HTML Page Structure</option>
+                                    <option value="css">🎨 Level 2: CSS Box Model &amp; Flexbox</option>
+                                    <option value="js">⚡ Level 3: JavaScript Interactivity</option>
+                                </optgroup>
+                                <optgroup label="🚀 Framework &amp; Backend Foundations">
+                                    <option value="react">⚛️ Level 5: React Components &amp; State</option>
+                                    <option value="python">🐍 Level 6: Python Backend &amp; APIs</option>
+                                </optgroup>
+                                <optgroup label="⚡ Level 7 Specialization Tracks">
+                                    <option value="cloud">☁️ Level 7A: Cloud Hosting &amp; CI/CD</option>
+                                    <option value="sql">🛢️ Level 7B: SQL Databases &amp; Queries</option>
+                                    <option value="nextjs">⚡ Level 7C: Next.js App Router</option>
+                                    <option value="typescript">🔷 Level 7D: TypeScript Mastery</option>
+                                    <option value="cssmotion">🎨 Level 7E: CSS Motion &amp; Animation</option>
+                                </optgroup>
+                                <optgroup label="🏆 Advanced Architecture">
+                                    <option value="async">🌉 Level 8: Async UI &amp; Skeletons</option>
+                                    <option value="auth">🛡️ Level 9: User Logins &amp; Security</option>
+                                    <option value="saas">🏆 Level 10: SaaS Dashboard UI</option>
+                                </optgroup>
+                            </select>
+                            <a href={foundationsUrl} target="_blank" rel="noopener noreferrer" class="ref-open-link-btn" id="openCurrentFoundationsBtn" title={`Open ${foundationsRef.name} in a new tab`}>
+                                <span>Open ↗</span>
+                            </a>
+                        </div>
                     </div>
 
                     <slot name="intro" />
@@ -217,6 +250,25 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 track,
                 lessonNum,
                 levelTag
+            });
+        }
+
+        // Global Foundations Concept Dropdown Auto-Open Handler
+        const foundationsSelect = document.getElementById('lessonFoundationsSelect') as HTMLSelectElement | null;
+        const openFoundationsBtn = document.getElementById('openCurrentFoundationsBtn') as HTMLAnchorElement | null;
+
+        if (foundationsSelect) {
+            foundationsSelect.addEventListener('change', () => {
+                const val = foundationsSelect.value;
+                if (!val) return;
+                let targetUrl = `/foundations.html?track=${encodeURIComponent(val)}`;
+                if (val === 'history') {
+                    targetUrl = '/1. partA/web_history.html';
+                }
+                if (openFoundationsBtn) {
+                    openFoundationsBtn.href = targetUrl;
+                }
+                window.open(targetUrl, '_blank', 'noopener,noreferrer');
             });
         }
 
