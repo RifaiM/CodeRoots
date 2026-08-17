@@ -172,7 +172,7 @@ export class EditorPersistence {
     }
 
     /**
-     * Bind Reset Button to restore starter code and clear draft storage
+     * Bind Reset Button to restore starter code and clear draft storage with safety confirmation
      */
     public static bindReset(
         btn: HTMLElement,
@@ -184,11 +184,39 @@ export class EditorPersistence {
         if (!btn || !editor) return;
 
         btn.addEventListener('click', () => {
-            editor.value = defaultStarter;
-            try {
-                localStorage.removeItem(draftKey);
-            } catch (e) {}
-            if (onReset) onReset();
+            if (editor.value.trim() === defaultStarter.trim()) {
+                return;
+            }
+
+            const executeReset = () => {
+                editor.value = defaultStarter;
+                try {
+                    localStorage.removeItem(draftKey);
+                } catch (e) {}
+                if (onReset) onReset();
+            };
+
+            if (typeof (window as any).Swal !== 'undefined') {
+                (window as any).Swal.fire({
+                    icon: 'warning',
+                    title: 'Reset Code Editor?',
+                    text: 'This will replace your current code with the starter template. Your changes will be cleared.',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Yes, Reset Code 🔄',
+                    cancelButtonText: 'Cancel ✕',
+                    customClass: { popup: 'responsive-profile-modal' }
+                }).then((result: any) => {
+                    if (result.isConfirmed) {
+                        executeReset();
+                    }
+                });
+            } else {
+                if (confirm('Are you sure you want to reset your editor to the starter code? Your changes will be lost.')) {
+                    executeReset();
+                }
+            }
         });
     }
 }

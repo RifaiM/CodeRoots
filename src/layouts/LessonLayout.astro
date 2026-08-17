@@ -271,13 +271,22 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
             });
         }
 
-        // Global Copy Reference Code Snippet Handler
+        // Global Copy Reference Code Snippet Handler (Handles both .copy-code-btn and .snippet-copy-btn)
         document.addEventListener('click', (e) => {
-            const btn = (e.target as HTMLElement).closest('.copy-code-btn');
+            const btn = (e.target as HTMLElement).closest('.copy-code-btn, .snippet-copy-btn');
             if (btn) {
                 const targetId = btn.getAttribute('data-target');
-                const targetEl = targetId ? document.getElementById(targetId) : null;
-                const textToCopy = targetEl ? targetEl.textContent || '' : '';
+                let textToCopy = '';
+                if (targetId) {
+                    const targetEl = document.getElementById(targetId);
+                    textToCopy = targetEl ? targetEl.textContent || '' : '';
+                } else {
+                    const box = btn.closest('.code-snippet-box') || btn.closest('.concept-card');
+                    const codeEl = box ? box.querySelector('code') : null;
+                    textToCopy = codeEl ? codeEl.textContent || '' : '';
+                }
+
+                if (!textToCopy) return;
 
                 const markSuccess = () => {
                     const originalHtml = btn.innerHTML;

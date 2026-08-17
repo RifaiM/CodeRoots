@@ -53,14 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate User Stats from LocalStorage
     updateHeaderStats();
 
-    // 3. Initialize Track Quick Switcher Dropdown
+    // 3. Initialize Track Quick Switcher Dropdown (with Active Tab Preservation)
     const trackQuickSelect = document.getElementById('trackQuickSelect');
     if (trackQuickSelect) {
         trackQuickSelect.value = trackKey;
         trackQuickSelect.addEventListener('change', (e) => {
             const chosen = e.target.value;
             if (chosen && chosen !== trackKey) {
-                window.location.href = `/foundations.html?track=${encodeURIComponent(chosen)}`;
+                const activeTabBtn = document.querySelector('.foundations-tab-bar .tab-btn.active');
+                const activeTab = activeTabBtn ? activeTabBtn.getAttribute('data-tab') : 'concepts';
+                const tabParam = activeTab && activeTab !== 'concepts' ? `&tab=${encodeURIComponent(activeTab)}` : '';
+                window.location.href = `/foundations.html?track=${encodeURIComponent(chosen)}${tabParam}`;
             }
         });
     }
@@ -326,24 +329,47 @@ function updateHeaderStats() {
 }
 
 /**
- * Initializes 4-Tab Segmented Switcher
+ * Initializes 4-Tab Segmented Switcher with URL History & Tab Persistence
  */
 function initTabNavigation() {
     const tabButtons = document.querySelectorAll('.foundations-tab-bar .tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
 
+    const switchTab = (targetTab) => {
+        tabButtons.forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-tab') === targetTab);
+        });
+        tabPanels.forEach(p => {
+            p.classList.toggle('active', p.id === `panel-${targetTab}`);
+        });
+
+        // Update URL state without page reload
+        try {
+            const newUrl = new URL(window.location.href);
+            if (targetTab === 'concepts') {
+                newUrl.searchParams.delete('tab');
+            } else {
+                newUrl.searchParams.set('tab', targetTab);
+            }
+            window.history.replaceState({}, '', newUrl.toString());
+        } catch (e) {}
+    };
+
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetTab = btn.getAttribute('data-tab');
-
-            tabButtons.forEach(b => b.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
-
-            btn.classList.add('active');
-            const targetPanel = document.getElementById(`panel-${targetTab}`);
-            if (targetPanel) targetPanel.classList.add('active');
+            if (targetTab) switchTab(targetTab);
         });
     });
+
+    // Restore tab from URL search param on page load
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialTab = urlParams.get('tab');
+        if (initialTab && document.getElementById(`panel-${initialTab}`)) {
+            switchTab(initialTab);
+        }
+    } catch (e) {}
 }
 
 const DOJO_DESTINATIONS = {
@@ -441,11 +467,14 @@ const DOJO_DESTINATIONS = {
 };
 
 /**
- * Hydrates 1. Concepts Panel with Interactive Analogies & Live Simulators
+ * Hydrates 1. Concepts Panel with Interactive Analogies, Live Simulators & Search Filter
  */
 function hydrateConceptsPanel(conceptsData, trackKey) {
     const heroBox = document.getElementById('heroAnalogyBox');
     const listContainer = document.getElementById('conceptSectionsList');
+    const searchInput = document.getElementById('conceptSearchInput');
+    const clearBtn = document.getElementById('clearConceptSearchBtn');
+    const statsLabel = document.getElementById('conceptSearchStats');
 
     if (!conceptsData || !heroBox || !listContainer) return;
 
@@ -455,47 +484,89 @@ function hydrateConceptsPanel(conceptsData, trackKey) {
         <p>${conceptsData.heroAnalogy.description}</p>
     `;
 
-    // Concept Sections List
-    listContainer.innerHTML = conceptsData.sections.map(section => `
-        <div class="concept-card">
-            <h3>${section.title}</h3>
-            <div>${section.content}</div>
-        </div>
-    `).join('');
+    function renderSections(sections) {
+        if (!sections || sections.length === 0) {
+            listContainer.innerHTML = `<div class="concept-card" style="text-align: center; color: #64748b; padding: 36px 16px;"><p>🔍 No concepts matching your search filter.</p></div>`;
+            return;
+        }
 
-    // Append Practical Dojo Bridge Card at the bottom of Tab 1
-    const dojoInfo = DOJO_DESTINATIONS[trackKey] || DOJO_DESTINATIONS.html;
-    const bridgeDiv = document.createElement('div');
-    bridgeDiv.className = 'dojo-practice-bridge-card';
-    bridgeDiv.innerHTML = `
-        <div class="bridge-content-wrap">
-            <div class="bridge-icon-badge">${dojoInfo.icon}</div>
-            <div class="bridge-text-block">
-                <span class="bridge-tag">⚔️ Practical Application</span>
-                <h3 class="bridge-title">Ready to Practice in the Browser IDE?</h3>
-                <p class="bridge-desc">${escapeHtml(dojoInfo.desc)}</p>
+        listContainer.innerHTML = sections.map(section => `
+            <div class="concept-card">
+                <h3>${section.title}</h3>
+                <div>${section.content}</div>
             </div>
-        </div>
-        <div class="bridge-action-buttons">
-            <a href="${escapeHtml(dojoInfo.url)}" class="bridge-btn-primary">
-                <span>${escapeHtml(dojoInfo.btnText)}</span>
-            </a>
-            <button type="button" class="bridge-btn-secondary" id="bridgeGoToQuizBtn">
-                <span>🧪 Take Knowledge Quiz (+300 XP)</span>
-            </button>
-        </div>
-    `;
-    listContainer.appendChild(bridgeDiv);
+        `).join('');
 
-    const quizSwitchBtn = bridgeDiv.querySelector('#bridgeGoToQuizBtn');
-    if (quizSwitchBtn) {
-        quizSwitchBtn.addEventListener('click', () => {
-            const quizTabBtn = document.querySelector('.foundations-tab-bar .tab-btn[data-tab="quiz"]');
-            if (quizTabBtn) {
-                quizTabBtn.click();
-                window.scrollTo({ top: 120, behavior: 'smooth' });
+        // Append Practical Dojo Bridge Card at the bottom of Tab 1
+        const dojoInfo = DOJO_DESTINATIONS[trackKey] || DOJO_DESTINATIONS.html;
+        const bridgeDiv = document.createElement('div');
+        bridgeDiv.className = 'dojo-practice-bridge-card';
+        bridgeDiv.innerHTML = `
+            <div class="bridge-content-wrap">
+                <div class="bridge-icon-badge">${dojoInfo.icon}</div>
+                <div class="bridge-text-block">
+                    <span class="bridge-tag">⚔️ Practical Application</span>
+                    <h3 class="bridge-title">Ready to Practice in the Browser IDE?</h3>
+                    <p class="bridge-desc">${escapeHtml(dojoInfo.desc)}</p>
+                </div>
+            </div>
+            <div class="bridge-action-buttons">
+                <a href="${escapeHtml(dojoInfo.url)}" class="bridge-btn-primary">
+                    <span>${escapeHtml(dojoInfo.btnText)}</span>
+                </a>
+                <button type="button" class="bridge-btn-secondary" id="bridgeGoToQuizBtn">
+                    <span>🧪 Take Knowledge Quiz (+300 XP)</span>
+                </button>
+            </div>
+        `;
+        listContainer.appendChild(bridgeDiv);
+
+        const quizSwitchBtn = bridgeDiv.querySelector('#bridgeGoToQuizBtn');
+        if (quizSwitchBtn) {
+            quizSwitchBtn.addEventListener('click', () => {
+                const quizTabBtn = document.querySelector('.foundations-tab-bar .tab-btn[data-tab="quiz"]');
+                if (quizTabBtn) {
+                    quizTabBtn.click();
+                    window.scrollTo({ top: 120, behavior: 'smooth' });
+                }
+            });
+        }
+    }
+
+    renderSections(conceptsData.sections);
+
+    if (searchInput) {
+        const handleFilter = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            if (clearBtn) clearBtn.style.display = query ? 'inline-flex' : 'none';
+
+            if (!query) {
+                if (statsLabel) statsLabel.textContent = '';
+                renderSections(conceptsData.sections);
+                return;
             }
-        });
+
+            const filtered = conceptsData.sections.filter(s => 
+                (s.title && s.title.toLowerCase().includes(query)) ||
+                (s.content && s.content.toLowerCase().includes(query))
+            );
+
+            if (statsLabel) {
+                statsLabel.textContent = `Showing ${filtered.length} of ${conceptsData.sections.length} concepts`;
+            }
+
+            renderSections(filtered);
+        };
+
+        searchInput.addEventListener('input', handleFilter);
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                handleFilter();
+                searchInput.focus();
+            });
+        }
     }
 
     // Mount Interactive Concept Engines based on Active Track
@@ -789,12 +860,14 @@ function initJsConceptWidgets() {
 function hydrateGlossaryPanel(glossaryData) {
     const cardsContainer = document.getElementById('glossaryCardsContainer');
     const searchInput = document.getElementById('glossarySearchInput');
+    const clearBtn = document.getElementById('clearGlossarySearchBtn');
+    const statsLabel = document.getElementById('glossarySearchStats');
 
     if (!glossaryData || !cardsContainer) return;
 
     function renderCards(filteredData) {
         if (filteredData.length === 0) {
-            cardsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">No matching glossary terms found.</p>`;
+            cardsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">🔍 No matching glossary terms found.</p>`;
             return;
         }
 
@@ -815,16 +888,40 @@ function hydrateGlossaryPanel(glossaryData) {
     renderCards(glossaryData);
 
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+        const handleFilter = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            if (clearBtn) clearBtn.style.display = query ? 'inline-flex' : 'none';
+
+            if (!query) {
+                if (statsLabel) statsLabel.textContent = '';
+                renderCards(glossaryData);
+                return;
+            }
+
             const filtered = glossaryData.filter(item => 
                 (item.term && item.term.toLowerCase().includes(query)) ||
                 (item.definition && item.definition.toLowerCase().includes(query)) ||
                 (item.desc && item.desc.toLowerCase().includes(query)) ||
-                (item.category && item.category.toLowerCase().includes(query))
+                (item.category && item.category.toLowerCase().includes(query)) ||
+                (item.analogy && item.analogy.toLowerCase().includes(query))
             );
+
+            if (statsLabel) {
+                statsLabel.textContent = `Showing ${filtered.length} of ${glossaryData.length} terms`;
+            }
+
             renderCards(filtered);
-        });
+        };
+
+        searchInput.addEventListener('input', handleFilter);
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                handleFilter();
+                searchInput.focus();
+            });
+        }
     }
 }
 

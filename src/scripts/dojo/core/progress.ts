@@ -5,13 +5,18 @@ export class ProgressManager {
      * Trigger SweetAlert2 success celebration with Confetti and persist completion
      */
     public static celebrate(opts: CompletionOptions, nextBtnId: string = 'nextLessonBtn'): void {
-        // 1. Mark localStorage completion
+        // 1. Mark localStorage completion & award XP once
+        let isFirstCompletion = false;
         try {
-            localStorage.setItem(opts.completionKey, 'true');
-            
-            // Add XP
-            const curXp = parseInt(localStorage.getItem('userXP') || '0', 10);
-            localStorage.setItem('userXP', (curXp + opts.xp).toString());
+            const alreadyCompleted = localStorage.getItem(opts.completionKey) === 'true';
+            if (!alreadyCompleted) {
+                isFirstCompletion = true;
+                localStorage.setItem(opts.completionKey, 'true');
+                
+                // Add XP only once
+                const curXp = parseInt(localStorage.getItem('userXP') || '0', 10);
+                localStorage.setItem('userXP', (curXp + opts.xp).toString());
+            }
         } catch (e) {}
 
         // Trigger live header stats update & broadcast
@@ -41,10 +46,17 @@ export class ProgressManager {
 
         // 4. Trigger SweetAlert2 Modal
         if (typeof (window as any).Swal !== 'undefined') {
+            const modalTitle = isFirstCompletion 
+                ? `🎉 ${opts.lessonTitle} Completed! (+${opts.xp} XP)`
+                : `🎉 ${opts.lessonTitle} Verified!`;
+            const modalText = isFirstCompletion
+                ? (opts.customMessage || `You've successfully solved the challenge and earned +${opts.xp} XP!`)
+                : `Awesome job! Your solution passed all automated checks. (XP Bounty already claimed).`;
+
             (window as any).Swal.fire({
                 icon: 'success',
-                title: `🎉 ${opts.lessonTitle} Completed! (+${opts.xp} XP)`,
-                text: opts.customMessage || `You've successfully solved the challenge and earned +${opts.xp} XP!`,
+                title: modalTitle,
+                text: modalText,
                 showDenyButton: !!opts.nextUrl,
                 showConfirmButton: true,
                 confirmButtonColor: '#10b981',
