@@ -78,10 +78,10 @@ function initHubProgress() {
         const btnEl = document.getElementById(btnId);
         if (btnEl) {
             btnEl.href = `./${branchKey}/lesson${activeLesson}_remake.html`;
-            const icon = prefix === '7A' ? '☁️' : prefix === '7B' ? '🛢️' : '⚡';
+            const icon = prefix === '7A' ? '☁️' : prefix === '7B' ? '🛢️' : prefix === '7C' ? '⚡' : prefix === '7D' ? '🔷' : '🎨';
             btnEl.querySelector('span').textContent = completedCount >= totalLessons 
                 ? `✅ Track ${prefix} Completed` 
-                : `${icon} Launch Track ${prefix} (Lesson ${activeLesson}/6)`;
+                : `${icon} Launch Track ${prefix} (Lesson ${activeLesson}/${totalLessons})`;
         }
     }
 
@@ -93,6 +93,12 @@ function initHubProgress() {
 
     // 3. Branch 7C
     updateBranch('branchC', 'fillBranch7C', 'btnBranch7C', '7C');
+
+    // 4. Branch 7D (TypeScript Mastery)
+    updateBranch('branchD', 'fillBranch7D', 'btnBranch7D', '7D', 12);
+
+    // 5. Branch 7E (CSS Motion & Micro-Interactions)
+    updateBranch('branchE', 'fillBranch7E', 'btnBranch7E', '7E', 10);
 
     // Header User Stats
     if (typeof window.getUserXPAndRank === 'function') {

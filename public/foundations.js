@@ -5,10 +5,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     initGlobalBackToTop();
 
-    // 1. Determine Active Track from Query Parameter (?track=html | css | js | react | python | cloud | sql | nextjs | async | auth | saas)
+    // 1. Determine Active Track from Query Parameter (?track=html | css | js | react | python | cloud | sql | nextjs | typescript | cssmotion | async | auth | saas)
     const urlParams = new URLSearchParams(window.location.search);
     const rawTrackParam = urlParams.get('track');
-    const validTracks = ['html', 'css', 'js', 'react', 'python', 'cloud', 'sql', 'nextjs', 'async', 'auth', 'saas'];
+    const validTracks = ['html', 'css', 'js', 'react', 'python', 'cloud', 'sql', 'nextjs', 'typescript', 'cssmotion', 'async', 'auth', 'saas'];
 
     if (rawTrackParam && !validTracks.includes(rawTrackParam.toLowerCase())) {
         render404TrackPage(rawTrackParam);
@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cloud: window.LEVEL7A_CLOUD_DATA,
         sql: window.LEVEL7B_SQL_DATA,
         nextjs: window.LEVEL7C_NEXTJS_DATA,
+        typescript: window.LEVEL7D_TYPESCRIPT_DATA,
+        cssmotion: window.LEVEL7E_CSSMOTION_DATA,
         async: window.LEVEL8_ASYNC_DATA,
         auth: window.LEVEL9_AUTH_DATA,
         saas: window.LEVEL10_SAAS_DATA
@@ -81,6 +83,8 @@ window.getUserXPAndRank = function() {
     const isCloudFoundations = localStorage.getItem('foundations_cloud_completed') === 'true';
     const isSqlFoundations = localStorage.getItem('foundations_sql_completed') === 'true';
     const isNextjsFoundations = localStorage.getItem('foundations_nextjs_completed') === 'true';
+    const isTypescriptFoundations = localStorage.getItem('foundations_typescript_completed') === 'true';
+    const isCssMotionFoundations = localStorage.getItem('foundations_cssmotion_completed') === 'true';
     const isAsyncFoundations = localStorage.getItem('foundations_async_completed') === 'true';
     const isAuthFoundations = localStorage.getItem('foundations_auth_completed') === 'true';
     const isSaasFoundations = localStorage.getItem('foundations_saas_completed') === 'true';
@@ -91,6 +95,8 @@ window.getUserXPAndRank = function() {
     if (isCloudFoundations) advancedFoundationsXP += 300;
     if (isSqlFoundations) advancedFoundationsXP += 300;
     if (isNextjsFoundations) advancedFoundationsXP += 300;
+    if (isTypescriptFoundations) advancedFoundationsXP += 300;
+    if (isCssMotionFoundations) advancedFoundationsXP += 300;
     if (isAsyncFoundations) advancedFoundationsXP += 300;
     if (isAuthFoundations) advancedFoundationsXP += 300;
     if (isSaasFoundations) advancedFoundationsXP += 500;
@@ -121,7 +127,7 @@ window.getUserXPAndRank = function() {
         } catch (e) {}
     }
 
-    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0;
+    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0, l7BranchD = 0, l7BranchE = 0;
     for (let i = 1; i <= 6; i++) {
         try {
             if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true') l7BranchA++;
@@ -129,7 +135,18 @@ window.getUserXPAndRank = function() {
             if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true') l7BranchC++;
         } catch (e) {}
     }
-    const l7Completed = l7BranchA + l7BranchB + l7BranchC;
+    for (let i = 1; i <= 12; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchD_lesson${i}_complete`) === 'true') l7BranchD++;
+        } catch (e) {}
+    }
+    for (let i = 1; i <= 10; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchE_lesson${i}_complete`) === 'true') l7BranchE++;
+        } catch (e) {}
+    }
+    const l7Completed = l7BranchA + l7BranchB + l7BranchC + l7BranchD + l7BranchE;
+    const l7XP = (l7BranchA * 250) + (l7BranchB * 250) + (l7BranchC * 250) + (l7BranchD * 150) + (l7BranchE * 150);
 
     let l8Completed = 0;
     for (let i = 1; i <= 6; i++) {
@@ -171,7 +188,7 @@ window.getUserXPAndRank = function() {
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
-    totalXP += (l7Completed * 250);
+    totalXP += l7XP;
     totalXP += (l8Completed * 250);
     totalXP += (l9Completed * 250);
     totalXP += (l10Completed * 500);
@@ -199,7 +216,7 @@ window.getUserXPAndRank = function() {
     } else if (l8Completed > 0 || isAsyncFoundations) {
         rankTitle = 'API Integration Specialist';
         rankIcon = '⚡';
-    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6 && l7BranchD >= 12 && l7BranchE >= 10) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
     } else if (l7BranchA >= 6 || isCloudFoundations) {
@@ -211,6 +228,12 @@ window.getUserXPAndRank = function() {
     } else if (l7BranchC >= 6 || isNextjsFoundations) {
         rankTitle = 'Next.js Engineer';
         rankIcon = '⚡';
+    } else if (l7BranchD >= 12 || isTypescriptFoundations) {
+        rankTitle = 'TypeScript Specialist';
+        rankIcon = '🔷';
+    } else if (l7BranchE >= 10 || isCssMotionFoundations) {
+        rankTitle = 'CSS Motion Specialist';
+        rankIcon = '🎨';
     } else if (l7Completed > 0) {
         rankTitle = 'Fullstack Specialist';
         rankIcon = '🚀';
@@ -242,7 +265,7 @@ window.getUserXPAndRank = function() {
 
     return {
         totalXP,
-        maxXP: 21100,
+        maxXP: 25000,
         rankTitle,
         rankIcon,
         isL0,
@@ -254,6 +277,8 @@ window.getUserXPAndRank = function() {
         isCloudFoundations,
         isSqlFoundations,
         isNextjsFoundations,
+        isTypescriptFoundations,
+        isCssMotionFoundations,
         isAsyncFoundations,
         isAuthFoundations,
         isSaasFoundations,
@@ -262,9 +287,12 @@ window.getUserXPAndRank = function() {
         l5Completed,
         l6Completed,
         l7Completed,
+        l7XP,
         l7BranchA,
         l7BranchB,
         l7BranchC,
+        l7BranchD,
+        l7BranchE,
         l8Completed,
         l9Completed,
         l10Completed,
@@ -631,13 +659,14 @@ function hydrateGlossaryPanel(glossaryData) {
 
         cardsContainer.innerHTML = filteredData.map(item => `
             <div class="glossary-item-card">
-                <span class="glossary-category">${escapeHtml(item.category)}</span>
-                <h3>${escapeHtml(item.term)}</h3>
-                <p>${escapeHtml(item.definition)}</p>
+                <span class="glossary-category">${escapeHtml(item.category || 'Core Concept')}</span>
+                <h3>${escapeHtml(item.term || '')}</h3>
+                <p>${escapeHtml(item.definition || item.desc || '')}</p>
+                ${(item.analogy || item.tip) ? `
                 <div class="glossary-analogy-box">
-                    <strong>💡 Real-World Analogy:</strong> ${escapeHtml(item.analogy)}
-                </div>
-                ${item.codeSnippet ? `<div class="code-explain-box"><pre><code>${escapeHtml(item.codeSnippet)}</code></pre></div>` : ''}
+                    <strong>💡 Real-World Analogy:</strong> ${escapeHtml(item.analogy || item.tip || '')}
+                </div>` : ''}
+                ${(item.codeSnippet || item.code) ? `<div class="code-explain-box"><pre><code>${escapeHtml(item.codeSnippet || item.code || '')}</code></pre></div>` : ''}
             </div>
         `).join('');
     }
@@ -648,9 +677,10 @@ function hydrateGlossaryPanel(glossaryData) {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
             const filtered = glossaryData.filter(item => 
-                item.term.toLowerCase().includes(query) ||
-                item.definition.toLowerCase().includes(query) ||
-                item.category.toLowerCase().includes(query)
+                (item.term && item.term.toLowerCase().includes(query)) ||
+                (item.definition && item.definition.toLowerCase().includes(query)) ||
+                (item.desc && item.desc.toLowerCase().includes(query)) ||
+                (item.category && item.category.toLowerCase().includes(query))
             );
             renderCards(filtered);
         });
@@ -801,6 +831,10 @@ function initQuizEngine(trackData) {
                     localStorage.setItem('foundations_sql_completed', 'true');
                 } else if (trackData.trackKey === 'nextjs') {
                     localStorage.setItem('foundations_nextjs_completed', 'true');
+                } else if (trackData.trackKey === 'typescript') {
+                    localStorage.setItem('foundations_typescript_completed', 'true');
+                } else if (trackData.trackKey === 'cssmotion') {
+                    localStorage.setItem('foundations_cssmotion_completed', 'true');
                 } else if (trackData.trackKey === 'async') {
                     localStorage.setItem('foundations_async_completed', 'true');
                 } else if (trackData.trackKey === 'auth') {
@@ -864,10 +898,11 @@ function initQuizEngine(trackData) {
 }
 
 /**
- * Utility: HTML Escaper for Code Snippets
+ * Utility: HTML Escaper for Code Snippets (Null-Safe)
  */
 function escapeHtml(str) {
-    return str
+    if (str === null || str === undefined) return '';
+    return String(str)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -937,6 +972,8 @@ function render404TrackPage(invalidKey) {
         { key: 'cloud', title: 'Level 7A: Cloud & Deployment Foundations', icon: '☁️', aliases: ['docker', 'devops', 'cicd', 'ci-cd', 'hosting', 'nginx', 'deploy'] },
         { key: 'sql', title: 'Level 7B: SQL & Database Foundations', icon: '🛢️', aliases: ['postgres', 'postgresql', 'database', 'db', 'sqlite', 'mysql'] },
         { key: 'nextjs', title: 'Level 7C: Next.js & UI Architecture Foundations', icon: '⚡', aliases: ['next', 'next.js', 'nextjss', 'ssr', 'rsc', 'server-components'] },
+        { key: 'typescript', title: 'Level 7D: TypeScript & Type Safety Foundations', icon: '🔷', aliases: ['ts', 'typescript', 'types', 'typing', 'interfaces'] },
+        { key: 'cssmotion', title: 'Level 7E: CSS Motion & Micro-Interactions Foundations', icon: '🎨', aliases: ['cssmotion', 'motion', 'animation', 'animations', 'keyframes', 'transitions', 'microinteractions', 'svgmotion'] },
         { key: 'async', title: 'Level 8: Async UI & Live Data Foundations', icon: '🌉', aliases: ['asyncui', 'skeleton', 'optimistic', 'loading', 'fetching'] },
         { key: 'auth', title: 'Level 9: User Logins & Security UI Foundations', icon: '🛡️', aliases: ['jwt', 'login', 'authentication', 'rbac', 'security'] },
         { key: 'saas', title: 'Level 10: SaaS Dashboard UI Foundations', icon: '🏆', aliases: ['capstone', 'saasui', 'skyscraper', 'dashboard', 'enterprise'] }

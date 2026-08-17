@@ -1,0 +1,345 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    background: #0f172a;
+    margin: 0;
+  }
+  .feature-card {
+    width: 260px;
+    padding: 22px;
+    background: #1e293b;
+    color: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* 👉 STEP 1: Add smooth transition for transform and box-shadow over 0.3s ease */
+
+  }
+  .feature-card:hover {
+    /* 👉 STEP 2: Elevate with transform: translateY(-6px) */
+
+    /* 👉 STEP 3: Add expanded glow box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4) */
+
+  }
+</style>
+
+<div class="feature-card">
+  <h3 style="margin: 0 0 8px 0; color: #38bdf8;">GPU Accelerated</h3>
+  <p style="margin: 0; color: #94a3b8; font-size: 0.9rem;">60 FPS elevation with zero layout reflow jank!</p>
+</div>`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Transitions 101 & Easing",
+        "url": "/6. partF/branchE/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "GPU 2D Transforms",
+        "url": "/6. partF/branchE/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "CSS Keyframes (@keyframes)",
+        "url": "/6. partF/branchE/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Cubic-Bézier Spring Physics",
+        "url": "/6. partF/branchE/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Tactile Hover & Active Clicks",
+        "url": "/6. partF/branchE/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Animated Skeletons & Shimmer",
+        "url": "/6. partF/branchE/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "Staggered Entrance Cascades",
+        "url": "/6. partF/branchE/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "SVG Path Drawing Animations",
+        "url": "/6. partF/branchE/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "prefers-reduced-motion A11y",
+        "url": "/6. partF/branchE/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "Final Project: Interactive Motion Showcase",
+        "url": "/6. partF/branchE/lesson10_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 02: GPU 2D Transforms | Level 7E • CSS Motion"
+    description="Master hardware-accelerated transforms (translate, scale, rotate) that run directly on the graphics card without triggering costly page reflows."
+    levelTag="Level 7E • CSS Motion"
+    lessonNum={2}
+    lessonTitle="GPU 2D Transforms"
+    xpAmount={150}
+    completionKey="partF_branchE_lesson2_complete"
+    nextLessonUrl="/6. partF/branchE/lesson3_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="styles.css"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchE"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Master hardware-accelerated transforms (translate, scale, rotate) that run directly on the graphics card without triggering costly page reflows.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 3</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
+        <!-- The Real-World CSS Problem -->
+        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
+            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Animating 'top', 'left', or 'margin-top' forces the browser CPU to recalculate the positions and geometry of every surrounding element on the page 60 times a second, causing noticeable stutter, battery drain, and frame drops.</p>
+        </article>
+
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Think of an actor on a theater stage. Moving the actor across the stage (transform: translateY) is effortless. But pushing the entire stage wall 10 feet to the left (top / margin) forces the entire theater crew to rebuild the building while the play is happening.
+            </div>
+        </article>
+
+        <!-- Syntax & Anatomy Breakdown -->
+        <article class="concept-card">
+            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
+            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+                <code>transform: translateY(-6px) scale(1.02);</code><br/>• <strong>translateY(-6px)</strong> → Elevates the element 6px upwards on the Y-axis<br/>• <strong>scale(1.02)</strong> → Gently zooms element by 2% without affecting neighbors<br/>• <strong>box-shadow</strong> → Enhances depth perception to complete the 3D lift
+            </div>
+        </article>
+
+        <!-- The VS Code Beginner Trap -->
+        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
+            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Don't forget to set 'transition: transform 0.3s ease, box-shadow 0.3s ease;' on the base element! If you put the transition only inside ':hover', the card will snap back instantly and violently when the mouse leaves.</p>
+        </article>
+
+        <!-- Reference Pattern / Starter Code -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchE_2">&lt;style&gt;
+  body &#123;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    background: #0f172a;
+    margin: 0;
+  &#125;
+  .feature-card &#123;
+    width: 260px;
+    padding: 22px;
+    background: #1e293b;
+    color: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* 👉 STEP 1: Add smooth transition for transform and box-shadow over 0.3s ease */
+
+  &#125;
+  .feature-card:hover &#123;
+    /* 👉 STEP 2: Elevate with transform: translateY(-6px) */
+
+    /* 👉 STEP 3: Add expanded glow box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4) */
+
+  &#125;
+&lt;/style&gt;
+
+&lt;div class="feature-card"&gt;
+  &lt;h3 style="margin: 0 0 8px 0; color: #38bdf8;"&gt;GPU Accelerated&lt;/h3&gt;
+  &lt;p style="margin: 0; color: #94a3b8; font-size: 0.9rem;"&gt;60 FPS elevation with zero layout reflow jank!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson2';
+        const DEFAULT_STARTER = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    background: #0f172a;
+    margin: 0;
+  }
+  .feature-card {
+    width: 260px;
+    padding: 22px;
+    background: #1e293b;
+    color: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* 👉 STEP 1: Add smooth transition for transform and box-shadow over 0.3s ease */
+
+  }
+  .feature-card:hover {
+    /* 👉 STEP 2: Elevate with transform: translateY(-6px) */
+
+    /* 👉 STEP 3: Add expanded glow box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4) */
+
+  }
+</style>
+
+<div class="feature-card">
+  <h3 style="margin: 0 0 8px 0; color: #38bdf8;">GPU Accelerated</h3>
+  <p style="margin: 0; color: #94a3b8; font-size: 0.9rem;">60 FPS elevation with zero layout reflow jank!</p>
+</div>`;
+
+        // 1. Initialize Real-Time Checklist
+        DojoEngine.initChecklist([
+            {
+                id: "card-transition",
+                label: "Add <code>transition: transform 0.3s ease, box-shadow 0.3s ease;</code> on <code>.feature-card</code>",
+                fn: (code) => { try { return Boolean(/\.feature-card\s*\{[^}]*transition\s*:[^}]*transform[^}]*box-shadow/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "card-translate",
+                label: "Add <code>transform: translateY(-6px)</code> on <code>.feature-card:hover</code>",
+                fn: (code) => { try { return Boolean(/\.feature-card:hover\s*\{[^}]*transform\s*:\s*translateY\(\s*-6px\s*\)/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "card-shadow",
+                label: "Add deep <code>box-shadow</code> to <code>.feature-card:hover</code>",
+                fn: (code) => { try { return Boolean(/\.feature-card:hover\s*\{[^}]*box-shadow\s*:\s*0\s+16px/i.test(code)); } catch(e) { return false; } }
+            }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Real-Time Live Preview in Iframe
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: "GPU 2D Transforms",
+                    xp: 150,
+                    completionKey: 'partF_branchE_lesson2_complete',
+                    nextUrl: '/6. partF/branchE/lesson3_remake.html',
+                    mode: 'html'
+                });
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

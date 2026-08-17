@@ -28,7 +28,7 @@
         // Chapter 4: Backend Security, Auth & Final Project
         { id: 13, chapter: 4, title: 'Authentication & Security Basics', xp: 200, topic: 'Security & Auth' },
         { id: 14, chapter: 4, title: 'Guided Mini Project: Task Manager API', xp: 200, topic: 'Mini API Project' },
-        { id: 15, chapter: 4, title: '🏆 Final Project: Python API Logic Service', xp: 200, topic: 'Production Capstone' }
+        { id: 15, chapter: 4, title: '🏆 Final Project: Python API Logic Service', xp: 200, topic: 'Final Project' }
     ];
 
     function isLessonCompleted(id) {

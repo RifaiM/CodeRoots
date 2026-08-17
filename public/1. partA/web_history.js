@@ -67,7 +67,7 @@ window.getUserXPAndRank = function() {
         } catch (e) {}
     }
 
-    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0;
+    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0, l7BranchD = 0, l7BranchE = 0;
     for (let i = 1; i <= 6; i++) {
         try {
             if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true') l7BranchA++;
@@ -75,7 +75,18 @@ window.getUserXPAndRank = function() {
             if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true') l7BranchC++;
         } catch (e) {}
     }
-    const l7Completed = l7BranchA + l7BranchB + l7BranchC;
+    for (let i = 1; i <= 12; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchD_lesson${i}_complete`) === 'true') l7BranchD++;
+        } catch (e) {}
+    }
+    for (let i = 1; i <= 10; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchE_lesson${i}_complete`) === 'true') l7BranchE++;
+        } catch (e) {}
+    }
+    const l7Completed = l7BranchA + l7BranchB + l7BranchC + l7BranchD + l7BranchE;
+    const l7XP = (l7BranchA * 250) + (l7BranchB * 250) + (l7BranchC * 250) + (l7BranchD * 150) + (l7BranchE * 150);
 
     let l8Completed = 0;
     for (let i = 1; i <= 6; i++) {
@@ -117,7 +128,7 @@ window.getUserXPAndRank = function() {
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
-    totalXP += (l7Completed * 250);
+    totalXP += l7XP;
     totalXP += (l8Completed * 250);
     totalXP += (l9Completed * 250);
     totalXP += (l10Completed * 500);
@@ -145,7 +156,7 @@ window.getUserXPAndRank = function() {
     } else if (l8Completed > 0 || isAsyncFoundations) {
         rankTitle = 'API Integration Specialist';
         rankIcon = '⚡';
-    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6 && l7BranchD >= 12 && l7BranchE >= 10) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
     } else if (l7BranchA >= 6 || isCloudFoundations) {
@@ -157,6 +168,12 @@ window.getUserXPAndRank = function() {
     } else if (l7BranchC >= 6 || isNextjsFoundations) {
         rankTitle = 'Next.js Engineer';
         rankIcon = '⚡';
+    } else if (l7BranchD >= 12 || isTypescriptFoundations) {
+        rankTitle = 'TypeScript Specialist';
+        rankIcon = '🔷';
+    } else if (l7BranchE >= 10 || isCssMotionFoundations) {
+        rankTitle = 'CSS Motion Specialist';
+        rankIcon = '🎨';
     } else if (l7Completed > 0) {
         rankTitle = 'Fullstack Specialist';
         rankIcon = '🚀';
@@ -188,7 +205,7 @@ window.getUserXPAndRank = function() {
 
     return {
         totalXP,
-        maxXP: 21100,
+        maxXP: 25000,
         rankTitle,
         rankIcon,
         isL0,
@@ -200,6 +217,8 @@ window.getUserXPAndRank = function() {
         isCloudFoundations,
         isSqlFoundations,
         isNextjsFoundations,
+        isTypescriptFoundations,
+        isCssMotionFoundations,
         isAsyncFoundations,
         isAuthFoundations,
         isSaasFoundations,
@@ -208,9 +227,12 @@ window.getUserXPAndRank = function() {
         l5Completed,
         l6Completed,
         l7Completed,
+        l7XP,
         l7BranchA,
         l7BranchB,
         l7BranchC,
+        l7BranchD,
+        l7BranchE,
         l8Completed,
         l9Completed,
         l10Completed,

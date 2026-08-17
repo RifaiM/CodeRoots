@@ -92,10 +92,10 @@ htmlFiles.forEach(file => {
     }
 });
 
-// 3. Test All 11 Foundations Data Modules
-console.log('\nTesting all 11 Foundations Data Modules...');
+// 3. Test All 13 Foundations Data Modules
+console.log('\nTesting all 13 Foundations Data Modules...');
 const dataFiles = fs.readdirSync('public/data').filter(f => f.startsWith('level'));
-assert(dataFiles.length === 11, `Expected 11 foundation data modules, found ${dataFiles.length}`);
+assert(dataFiles.length === 13, `Expected 13 foundation data modules, found ${dataFiles.length}`);
 
 dataFiles.forEach(df => {
     const filePath = path.join('public/data', df);
@@ -134,13 +134,13 @@ dataFiles.forEach(df => {
 });
 
 console.log(`\n========================================`);
-console.log(`🏆 ALL 107 PAGES & 11 DATA MODULES TEST SUMMARY:`);
+console.log(`🏆 ALL 129 PAGES & 13 DATA MODULES TEST SUMMARY:`);
 console.log(`Passed Assertions: ${passedTests}`);
 console.log(`Failed Assertions: ${failedTests}`);
 console.log(`========================================\n`);
 
 if (failedTests === 0) {
-    console.log('🎉 100% CLEAN! Zero errors across all 107 web pages!');
+    console.log('🎉 100% CLEAN! Zero errors across all 129 web pages!');
 } else {
     process.exit(1);
 }

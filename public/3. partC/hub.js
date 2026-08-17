@@ -25,7 +25,7 @@
         { id: 11, chapter: 3, title: 'Single Page Application Routing', xp: 150, topic: 'SPA Routing' },
         { id: 12, chapter: 3, title: 'Building Custom Hooks', xp: 150, topic: 'Custom Hooks' },
 
-        // Chapter 4: Global State, Custom Hooks & Capstone
+        // Chapter 4: Global State, Custom Hooks & Final Projects
         { id: 13, chapter: 4, title: 'Context API & Global State', xp: 150, topic: 'Context API' },
         { id: 14, chapter: 4, title: 'Performance Optimization & Memo', xp: 150, topic: 'React.memo' },
         { id: 15, chapter: 4, title: '🏆 Final Project: Dynamic React App', xp: 150, topic: 'Final Project' }

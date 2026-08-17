@@ -19,6 +19,8 @@ export interface UserStats {
     isCloudFoundations: boolean;
     isSqlFoundations: boolean;
     isNextjsFoundations: boolean;
+    isTypescriptFoundations: boolean;
+    isCssMotionFoundations: boolean;
     isAsyncFoundations: boolean;
     isAuthFoundations: boolean;
     isSaasFoundations: boolean;
@@ -28,9 +30,12 @@ export interface UserStats {
     l5Completed: number;
     l6Completed: number;
     l7Completed: number;
+    l7XP: number;
     l7BranchA: number;
     l7BranchB: number;
     l7BranchC: number;
+    l7BranchD: number;
+    l7BranchE: number;
     l8Completed: number;
     l9Completed: number;
     l10Completed: number;
@@ -40,7 +45,7 @@ export interface UserStats {
 }
 
 export function getUserXPAndRank(): UserStats {
-    const maxXP = 21100;
+    const maxXP = 25000;
 
     if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
         return {
@@ -57,6 +62,8 @@ export function getUserXPAndRank(): UserStats {
             isCloudFoundations: false,
             isSqlFoundations: false,
             isNextjsFoundations: false,
+            isTypescriptFoundations: false,
+            isCssMotionFoundations: false,
             isAsyncFoundations: false,
             isAuthFoundations: false,
             isSaasFoundations: false,
@@ -65,9 +72,12 @@ export function getUserXPAndRank(): UserStats {
             l5Completed: 0,
             l6Completed: 0,
             l7Completed: 0,
+            l7XP: 0,
             l7BranchA: 0,
             l7BranchB: 0,
             l7BranchC: 0,
+            l7BranchD: 0,
+            l7BranchE: 0,
             l8Completed: 0,
             l9Completed: 0,
             l10Completed: 0,
@@ -89,6 +99,8 @@ export function getUserXPAndRank(): UserStats {
     const isCloudFoundations = localStorage.getItem('foundations_cloud_completed') === 'true';
     const isSqlFoundations = localStorage.getItem('foundations_sql_completed') === 'true';
     const isNextjsFoundations = localStorage.getItem('foundations_nextjs_completed') === 'true';
+    const isTypescriptFoundations = localStorage.getItem('foundations_typescript_completed') === 'true';
+    const isCssMotionFoundations = localStorage.getItem('foundations_cssmotion_completed') === 'true';
     const isAsyncFoundations = localStorage.getItem('foundations_async_completed') === 'true';
     const isAuthFoundations = localStorage.getItem('foundations_auth_completed') === 'true';
     const isSaasFoundations = localStorage.getItem('foundations_saas_completed') === 'true';
@@ -99,6 +111,8 @@ export function getUserXPAndRank(): UserStats {
     if (isCloudFoundations) advancedFoundationsXP += 300;
     if (isSqlFoundations) advancedFoundationsXP += 300;
     if (isNextjsFoundations) advancedFoundationsXP += 300;
+    if (isTypescriptFoundations) advancedFoundationsXP += 300;
+    if (isCssMotionFoundations) advancedFoundationsXP += 300;
     if (isAsyncFoundations) advancedFoundationsXP += 300;
     if (isAuthFoundations) advancedFoundationsXP += 300;
     if (isSaasFoundations) advancedFoundationsXP += 500;
@@ -129,7 +143,7 @@ export function getUserXPAndRank(): UserStats {
         } catch (e) {}
     }
 
-    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0;
+    let l7BranchA = 0, l7BranchB = 0, l7BranchC = 0, l7BranchD = 0, l7BranchE = 0;
     for (let i = 1; i <= 6; i++) {
         try {
             if (localStorage.getItem(`partF_branchA_lesson${i}_complete`) === 'true') l7BranchA++;
@@ -137,7 +151,18 @@ export function getUserXPAndRank(): UserStats {
             if (localStorage.getItem(`partF_branchC_lesson${i}_complete`) === 'true') l7BranchC++;
         } catch (e) {}
     }
-    const l7Completed = l7BranchA + l7BranchB + l7BranchC;
+    for (let i = 1; i <= 12; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchD_lesson${i}_complete`) === 'true') l7BranchD++;
+        } catch (e) {}
+    }
+    for (let i = 1; i <= 10; i++) {
+        try {
+            if (localStorage.getItem(`partF_branchE_lesson${i}_complete`) === 'true') l7BranchE++;
+        } catch (e) {}
+    }
+    const l7Completed = l7BranchA + l7BranchB + l7BranchC + l7BranchD + l7BranchE;
+    const l7XP = (l7BranchA * 250) + (l7BranchB * 250) + (l7BranchC * 250) + (l7BranchD * 150) + (l7BranchE * 150);
 
     let l8Completed = 0;
     for (let i = 1; i <= 6; i++) {
@@ -180,7 +205,7 @@ export function getUserXPAndRank(): UserStats {
     totalXP += (l4Completed * 100);
     totalXP += (l5Completed * 150);
     totalXP += (l6Completed * 200);
-    totalXP += (l7Completed * 250);
+    totalXP += l7XP;
     totalXP += (l8Completed * 250);
     totalXP += (l9Completed * 250);
     totalXP += (l10Completed * 500);
@@ -208,7 +233,7 @@ export function getUserXPAndRank(): UserStats {
     } else if (l8Completed > 0 || isAsyncFoundations) {
         rankTitle = 'API Integration Specialist';
         rankIcon = '⚡';
-    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6) {
+    } else if (l7BranchA >= 6 && l7BranchB >= 6 && l7BranchC >= 6 && l7BranchD >= 12 && l7BranchE >= 10) {
         rankTitle = 'Principal Polymath';
         rankIcon = '👑';
     } else if (l7BranchA >= 6 || isCloudFoundations) {
@@ -220,11 +245,17 @@ export function getUserXPAndRank(): UserStats {
     } else if (l7BranchC >= 6 || isNextjsFoundations) {
         rankTitle = 'Next.js Engineer';
         rankIcon = '⚡';
+    } else if (l7BranchD >= 12 || isTypescriptFoundations) {
+        rankTitle = 'TypeScript Specialist';
+        rankIcon = '🔷';
+    } else if (l7BranchE >= 10 || isCssMotionFoundations) {
+        rankTitle = 'CSS Motion Specialist';
+        rankIcon = '🎨';
     } else if (l7Completed > 0) {
-        rankTitle = 'Advanced Web Specialist';
+        rankTitle = 'Fullstack Specialist';
         rankIcon = '🚀';
     } else if (l6Completed >= 15) {
-        rankTitle = 'Python Logic Master';
+        rankTitle = 'Python Backend Architect';
         rankIcon = '🐍';
     } else if (l6Completed > 0 || isPythonFoundations) {
         rankTitle = 'Python Backend Engineer';
@@ -263,6 +294,8 @@ export function getUserXPAndRank(): UserStats {
         isCloudFoundations,
         isSqlFoundations,
         isNextjsFoundations,
+        isTypescriptFoundations,
+        isCssMotionFoundations,
         isAsyncFoundations,
         isAuthFoundations,
         isSaasFoundations,
@@ -271,9 +304,12 @@ export function getUserXPAndRank(): UserStats {
         l5Completed,
         l6Completed,
         l7Completed,
+        l7XP,
         l7BranchA,
         l7BranchB,
         l7BranchC,
+        l7BranchD,
+        l7BranchE,
         l8Completed,
         l9Completed,
         l10Completed,
@@ -298,30 +334,33 @@ export function updateAllHeaderStats(): UserStats {
     try {
         const xpBadgeLabels = document.querySelectorAll('.xp-badge .badge-label, #userTotalXPDisplay');
         xpBadgeLabels.forEach(el => {
-            if (el) el.textContent = `${stats.totalXP.toLocaleString()} XP`;
+            el.textContent = `${stats.totalXP.toLocaleString()} XP`;
         });
 
-        const rankLabels = document.querySelectorAll('#userRankLabel');
-        rankLabels.forEach(el => {
-            if (el) el.textContent = stats.rankTitle;
+        const xpBadgeTracks = document.querySelectorAll('.xp-badge');
+        xpBadgeTracks.forEach(el => {
+            el.setAttribute('title', `Rank: ${stats.rankTitle} • ${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} Total XP`);
         });
 
-        const rankIcons = document.querySelectorAll('#userRankIcon');
-        rankIcons.forEach(el => {
-            if (el) el.textContent = stats.rankIcon;
+        const rankBadgeLabels = document.querySelectorAll('.rank-badge .badge-label, #userRankTitleDisplay');
+        rankBadgeLabels.forEach(el => {
+            el.textContent = stats.rankTitle;
         });
 
-        const userLevelBadges = document.querySelectorAll('#userLevelBadge');
-        userLevelBadges.forEach(el => {
-            if (el) el.textContent = stats.rankIcon;
+        const rankBadgeIcons = document.querySelectorAll('.rank-badge .badge-icon, #userRankIconDisplay');
+        rankBadgeIcons.forEach(el => {
+            el.textContent = stats.rankIcon;
         });
-    } catch (e) {}
 
-    isUpdating = false;
+        const rankBadgeElements = document.querySelectorAll('.rank-badge');
+        rankBadgeElements.forEach(el => {
+            el.setAttribute('title', `Current Milestone: ${stats.rankTitle} (${stats.rankIcon})`);
+        });
+    } catch (e) {
+        console.error('[XP Engine] Error hydrating UI badges:', e);
+    } finally {
+        isUpdating = false;
+    }
+
     return stats;
-}
-
-if (typeof window !== 'undefined') {
-    (window as any).getUserXPAndRank = getUserXPAndRank;
-    (window as any).updateHeaderStats = updateAllHeaderStats;
 }

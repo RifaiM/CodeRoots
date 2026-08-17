@@ -30,7 +30,7 @@ const navLinks = [
             <section class="generator-card">
                 <div class="generator-header">
                     <h2>🎓 Level 7 Certificate Generator</h2>
-                    <p>Enter your full name to generate your verified proof-of-work certificate in SPECIALIZED WEB TRACKS (CLOUD, SQL & NEXT.JS).</p>
+                    <p>Enter your full name to generate your verified proof-of-work certificate in SPECIALIZED DEVELOPER TRACKS (CSS MOTION, TYPESCRIPT, NEXT.JS, CLOUD &amp; SQL).</p>
                 </div>
 
                 <div class="generator-inputs">
@@ -64,13 +64,13 @@ const navLinks = [
                     </div>
 
                     <div class="cert-headline">CERTIFICATE OF MASTERY</div>
-                    <div class="cert-subheadline">Specialized Developer Focus Tracks</div>
+                    <div class="cert-subheadline" id="certSubheadline">Specialized Developer Focus Tracks</div>
 
                     <div class="cert-awarded-text">THIS CERTIFIES THAT</div>
                     <div class="cert-recipient-name" id="certRecipientName">Web Developer</div>
 
-                    <div class="cert-body-text">
-                        has demonstrated verified proficiency by completing a specialized focus track on NoviCodes, covering Cloud Hosting &amp; automated CI/CD workflows, SQL Database queries &amp; password authentication, or modern Next.js App Router application development.
+                    <div class="cert-body-text" id="certBodyText">
+                        has demonstrated verified proficiency by completing a specialized focus track on NoviCodes, covering CSS Animations &amp; Micro-Interactions, TypeScript Mastery, Next.js Web Apps, Cloud Deployment, or SQL Database Systems.
                     </div>
 
                     <div class="cert-footer-row">
@@ -102,23 +102,28 @@ const navLinks = [
                     You have mastered this level's core engineering competencies. Here is how to apply your verified skills to real-world production:
                 </p>
                 <div class="whats-next-grid">
-                    
+                    <div class="wn-card">
+                        <div class="wn-icon">🔷</div>
+                        <h3>Build in Strict TypeScript</h3>
+                        <p>Apply strict types, interfaces, generics, and runtime validation across your frontend and backend projects.</p>
+                        <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener noreferrer" class="wn-link">TypeScript Handbook →</a>
+                    </div>
+                    <div class="wn-card">
+                        <div class="wn-icon">🎨</div>
+                        <h3>Craft Micro-Interactions</h3>
+                        <p>Bring interfaces alive with GPU-accelerated transforms, spring physics, and accessible reduced-motion support.</p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations" target="_blank" rel="noopener noreferrer" class="wn-link">MDN CSS Animations →</a>
+                    </div>
                     <div class="wn-card">
                         <div class="wn-icon">🗄️</div>
                         <h3>Connect a Real Database</h3>
-                        <p>You have mastered relational SQL schemas. Now connect to a live cloud PostgreSQL database with Supabase or Neon.tech for free.</p>
+                        <p>You have mastered relational SQL schemas. Connect to a live cloud PostgreSQL database with Supabase or Neon.tech.</p>
                         <a href="https://supabase.com/docs/guides/database" target="_blank" rel="noopener noreferrer" class="wn-link">Supabase Postgres Guide →</a>
                     </div>
                     <div class="wn-card">
-                        <div class="wn-icon">🔐</div>
-                        <h3>Add Real Authentication</h3>
-                        <p>Implement production auth with Clerk or NextAuth.js (Auth.js). Secure session tokens, OAuth providers, and user management.</p>
-                        <a href="https://clerk.com/docs" target="_blank" rel="noopener noreferrer" class="wn-link">Clerk Auth Docs →</a>
-                    </div>
-                    <div class="wn-card">
                         <div class="wn-icon">🚀</div>
-                        <h3>Deploy Web App to Vercel</h3>
-                        <p>Deploy your Next.js frontend and React projects straight to Vercel global edge network.</p>
+                        <h3>Deploy Web Apps to Vercel</h3>
+                        <p>Deploy your Next.js frontend, React components, and static sites straight to the Vercel global edge network.</p>
                         <a href="https://vercel.com/guides/nextjs-prisma-postgres" target="_blank" rel="noopener noreferrer" class="wn-link">Vercel Deployment Guide →</a>
                     </div>
                 </div>
@@ -490,13 +495,13 @@ const navLinks = [
     <script is:inline src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script>
-        import { checkCertificateAccessAndRenderOverlay } from '../../scripts/dojo/core/protection';
+        import { checkCertificateAccessAndRenderOverlay, getCompletedLessonsCount } from '../../scripts/dojo/core/protection';
 
         // 1. Watertight Certificate Security Verification (Immediate Overlay Guard)
         const isAccessible = checkCertificateAccessAndRenderOverlay({
             track: 'partF',
             levelTag: 'Level 7',
-            totalProjects: 18,
+            totalProjects: 40,
             hubUrl: '/6. partF/hub.html',
             certName: 'Level 7: Specialized Developer Tracks'
         });
@@ -508,10 +513,44 @@ const navLinks = [
                 const genBtn = document.getElementById('generateCertBtn');
                 const dlBtn = document.getElementById('downloadCertBtn');
                 const dateSpan = document.getElementById('certIssueDate');
+                const subheadlineEl = document.getElementById('certSubheadline');
+                const bodyTextEl = document.getElementById('certBodyText');
 
                 if (dateSpan) {
                     dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
                 }
+
+                // 2. Dynamic Specialization Track Detection & Endorsement
+                function updateCertificateText() {
+                    const isBranchA = localStorage.getItem('partF_branchA_completed') === 'true' || getCompletedLessonsCount('partF_branchA') >= 6;
+                    const isBranchB = localStorage.getItem('partF_branchB_completed') === 'true' || getCompletedLessonsCount('partF_branchB') >= 6;
+                    const isBranchC = localStorage.getItem('partF_branchC_completed') === 'true' || getCompletedLessonsCount('partF_branchC') >= 6;
+                    const isBranchD = localStorage.getItem('partF_branchD_completed') === 'true' || getCompletedLessonsCount('partF_branchD') >= 12;
+                    const isBranchE = localStorage.getItem('partF_branchE_completed') === 'true' || getCompletedLessonsCount('partF_branchE') >= 10;
+
+                    const completedTracks: { name: string; desc: string }[] = [];
+                    if (isBranchE) completedTracks.push({ name: 'CSS Animations & Motion', desc: 'CSS Animations & Micro-Interactions (GPU acceleration, keyframe choreography & spring physics)' });
+                    if (isBranchD) completedTracks.push({ name: 'TypeScript Mastery', desc: 'TypeScript Mastery (strict type safety, generic data stores & runtime narrowing)' });
+                    if (isBranchC) completedTracks.push({ name: 'Next.js Web Apps', desc: 'Next.js App Router Architecture (server components, dynamic routing & layout shells)' });
+                    if (isBranchA) completedTracks.push({ name: 'Cloud Hosting', desc: 'Cloud Hosting & DevOps (static deployments, environment configs & CI/CD workflows)' });
+                    if (isBranchB) completedTracks.push({ name: 'SQL Databases', desc: 'SQL Database Architecture (relational schemas, primary keys & structured queries)' });
+
+                    if (completedTracks.length === 5) {
+                        if (subheadlineEl) subheadlineEl.textContent = 'Principal Polymath • Full Specialization Mastery';
+                        if (bodyTextEl) {
+                            bodyTextEl.innerHTML = 'has demonstrated exceptional multi-disciplinary mastery by completing <strong>all 5 specialized tracks</strong> on NoviCodes: CSS Animations &amp; Micro-Interactions, TypeScript Mastery, Next.js Server UI Architecture, Cloud Hosting CI/CD, and SQL Database Systems across 40 production milestones.';
+                        }
+                    } else if (completedTracks.length > 0) {
+                        const trackNames = completedTracks.map(t => t.name).join(' • ');
+                        const trackDescriptions = completedTracks.map(t => t.desc).join('; and ');
+                        if (subheadlineEl) subheadlineEl.textContent = `Specialized Focus: ${trackNames}`;
+                        if (bodyTextEl) {
+                            bodyTextEl.innerHTML = `has demonstrated verified practical proficiency by completing ${completedTracks.length === 1 ? 'the specialized focus track in' : 'the specialized focus tracks in'} <strong>${trackNames}</strong> on NoviCodes, mastering ${trackDescriptions}.`;
+                        }
+                    }
+                }
+
+                updateCertificateText();
 
                 function updateName() {
                     if (certName && nameInput) {

@@ -26,7 +26,7 @@
         { id: 12, chapter: 3, title: "Event Listeners & User Interactions", xp: 100, topic: "Event Engine" },
         { id: 13, chapter: 3, title: "Controlled Forms & Live Input Validation", xp: 100, topic: "Form Validation" },
 
-        // Chapter 4: Guided Applications & Capstone
+        // Chapter 4: Guided Applications & Final Projects
         { id: 14, chapter: 4, title: "Guided Dashboard Mini Application", xp: 100, topic: "Mini Project" },
         { id: 15, chapter: 4, title: "🏆 Final Project: Practical Web Widget", xp: 100, topic: "Final Project" }
     ];

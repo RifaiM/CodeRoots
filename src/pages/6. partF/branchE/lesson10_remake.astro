@@ -1,0 +1,453 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    background: #0f172a;
+    margin: 0;
+  }
+
+  /* 👉 STEP 1: Configure .pro-card with smooth GPU transition for transform and box-shadow over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-card {
+    width: 290px;
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+
+  }
+  /* 👉 STEP 2: Elevate .pro-card on :hover with translateY(-8px) and border-color: #f43f5e */
+  .pro-card:hover {
+
+  }
+
+  /* 👉 STEP 3: Configure .pro-btn with spring transition over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+
+  }
+  /* 👉 STEP 4: Add .pro-btn:hover (scale 1.04) and .pro-btn:active (scale 0.96) */
+  .pro-btn:hover {
+
+  }
+  .pro-btn:active {
+
+  }
+
+  /* 👉 STEP 5: Add @media (prefers-reduced-motion: reduce) fallback */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<div class="pro-card">
+  <span style="background: #f43f5e; color: white; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;">Premium UI</span>
+  <h3 style="margin: 10px 0 6px 0;">Motion Design Suite</h3>
+  <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Hardware accelerated, tactile micro-interactions, and accessible.</p>
+  <button class="pro-btn">Upgrade Workspace 🚀</button>
+</div>`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Transitions 101 & Easing",
+        "url": "/6. partF/branchE/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "GPU 2D Transforms",
+        "url": "/6. partF/branchE/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "CSS Keyframes (@keyframes)",
+        "url": "/6. partF/branchE/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Cubic-Bézier Spring Physics",
+        "url": "/6. partF/branchE/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Tactile Hover & Active Clicks",
+        "url": "/6. partF/branchE/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Animated Skeletons & Shimmer",
+        "url": "/6. partF/branchE/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "Staggered Entrance Cascades",
+        "url": "/6. partF/branchE/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "SVG Path Drawing Animations",
+        "url": "/6. partF/branchE/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "prefers-reduced-motion A11y",
+        "url": "/6. partF/branchE/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "Final Project: Interactive Motion Showcase",
+        "url": "/6. partF/branchE/lesson10_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 10: Final Project: Interactive Motion Showcase | Level 7E • CSS Motion"
+    description="Build a complete production-grade feature card featuring glowing border shimmer, floating badge, tactile CTA, and spring animations."
+    levelTag="Level 7E • CSS Motion"
+    lessonNum={10}
+    lessonTitle="Final Project: Interactive Motion Showcase"
+    xpAmount={150}
+    completionKey="partF_branchE_lesson10_complete"
+    nextLessonUrl="/6. partF/certificate.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="styles.css"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchE"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Build a complete production-grade feature card featuring glowing border shimmer, floating badge, tactile CTA, and spring animations.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 6</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
+        <!-- The Real-World CSS Problem -->
+        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
+            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Building individual isolated animations is easy, but combining multiple micro-interactions (hover elevation, spring physics, active feedback, accessibility) into a cohesive production design requires architectural discipline.</p>
+        </article>
+
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Think of an orchestra symphony. The violins (hover lift), percussion (active click), and brass (border glow) must harmonize with precise timing curves without drowning each other out.
+            </div>
+        </article>
+
+        <!-- Syntax & Anatomy Breakdown -->
+        <article class="concept-card">
+            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
+            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+                <code>.card:hover &#123; transform: translateY(-6px); &#125;</code><br/><code>.cta-btn:hover &#123; transform: scale(1.06); &#125;</code><br/><code>.cta-btn:active &#123; transform: scale(0.96); &#125;</code>
+            </div>
+        </article>
+
+        <!-- The VS Code Beginner Trap -->
+        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
+            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Never mix CPU-heavy properties (like animating border-width or margin) with GPU transforms. Stick purely to transform, opacity, and box-shadow for flawless 60 FPS performance.</p>
+        </article>
+
+        <!-- Reference Pattern / Starter Code -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchE_10">&lt;style&gt;
+  body &#123;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    background: #0f172a;
+    margin: 0;
+  &#125;
+
+  /* 👉 STEP 1: Configure .pro-card with smooth GPU transition for transform and box-shadow over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-card &#123;
+    width: 290px;
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+
+  &#125;
+  /* 👉 STEP 2: Elevate .pro-card on :hover with translateY(-8px) and border-color: #f43f5e */
+  .pro-card:hover &#123;
+
+  &#125;
+
+  /* 👉 STEP 3: Configure .pro-btn with spring transition over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-btn &#123;
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+
+  &#125;
+  /* 👉 STEP 4: Add .pro-btn:hover (scale 1.04) and .pro-btn:active (scale 0.96) */
+  .pro-btn:hover &#123;
+
+  &#125;
+  .pro-btn:active &#123;
+
+  &#125;
+
+  /* 👉 STEP 5: Add @media (prefers-reduced-motion: reduce) fallback */
+  @media (prefers-reduced-motion: reduce) &#123;
+    *, *::before, *::after &#123;
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    &#125;
+  &#125;
+&lt;/style&gt;
+
+&lt;div class="pro-card"&gt;
+  &lt;span style="background: #f43f5e; color: white; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;"&gt;Premium UI&lt;/span&gt;
+  &lt;h3 style="margin: 10px 0 6px 0;"&gt;Motion Design Suite&lt;/h3&gt;
+  &lt;p style="margin: 0; color: #94a3b8; font-size: 0.85rem;"&gt;Hardware accelerated, tactile micro-interactions, and accessible.&lt;/p&gt;
+  &lt;button class="pro-btn"&gt;Upgrade Workspace 🚀&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson10';
+        const DEFAULT_STARTER = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    background: #0f172a;
+    margin: 0;
+  }
+
+  /* 👉 STEP 1: Configure .pro-card with smooth GPU transition for transform and box-shadow over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-card {
+    width: 290px;
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+
+  }
+  /* 👉 STEP 2: Elevate .pro-card on :hover with translateY(-8px) and border-color: #f43f5e */
+  .pro-card:hover {
+
+  }
+
+  /* 👉 STEP 3: Configure .pro-btn with spring transition over 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) */
+  .pro-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+
+  }
+  /* 👉 STEP 4: Add .pro-btn:hover (scale 1.04) and .pro-btn:active (scale 0.96) */
+  .pro-btn:hover {
+
+  }
+  .pro-btn:active {
+
+  }
+
+  /* 👉 STEP 5: Add @media (prefers-reduced-motion: reduce) fallback */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<div class="pro-card">
+  <span style="background: #f43f5e; color: white; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;">Premium UI</span>
+  <h3 style="margin: 10px 0 6px 0;">Motion Design Suite</h3>
+  <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Hardware accelerated, tactile micro-interactions, and accessible.</p>
+  <button class="pro-btn">Upgrade Workspace 🚀</button>
+</div>`;
+
+        // 1. Initialize Real-Time Checklist
+        DojoEngine.initChecklist([
+            {
+                id: "card-spring",
+                label: "Add <code>transition: transform 0.3s cubic-bezier...</code> to <code>.pro-card</code>",
+                fn: (code) => { try { return Boolean(/\.pro-card\s*\{[^}]*transition\s*:[^}]*transform/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "card-hover-elevate",
+                label: "Add <code>transform: translateY(-8px)</code> and <code>border-color: #f43f5e</code> on <code>.pro-card:hover</code>",
+                fn: (code) => { try { return Boolean(/\.pro-card:hover\s*\{[^}]*translateY\(\s*-8px\s*\)[^}]*border-color/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "btn-spring",
+                label: "Add <code>transition: transform 0.3s</code> to <code>.pro-btn</code>",
+                fn: (code) => { try { return Boolean(/\.pro-btn\s*\{[^}]*transition\s*:[^}]*transform/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "btn-hover-scale",
+                label: "Add <code>transform: scale(1.04)</code> on <code>.pro-btn:hover</code>",
+                fn: (code) => { try { return Boolean(/\.pro-btn:hover\s*\{[^}]*scale\(\s*1\.04\s*\)/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "btn-active-press",
+                label: "Add <code>transform: scale(0.96)</code> on <code>.pro-btn:active</code>",
+                fn: (code) => { try { return Boolean(/\.pro-btn:active\s*\{[^}]*scale\(\s*0\.96\s*\)/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "a11y-fallback",
+                label: "Ensure <code>@media (prefers-reduced-motion: reduce)</code> is present",
+                fn: (code) => { try { return Boolean(/@media\s*\(\s*prefers-reduced-motion\s*:\s*reduce\s*\)/i.test(code)); } catch(e) { return false; } }
+            }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Real-Time Live Preview in Iframe
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: "Final Project: Interactive Motion Showcase",
+                    xp: 150,
+                    completionKey: 'partF_branchE_lesson10_complete',
+                    nextUrl: '/6. partF/hub.html',
+                    mode: 'html'
+                });
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

@@ -45,7 +45,7 @@
             const isCurrent = currentRankTitle === r.title || 
                               (r.title === 'DOM Challenger' && currentRankTitle === 'Dojo Master') ||
                               (r.title === 'React Engineer' && currentRankTitle === 'Fullstack Master') ||
-                              (r.title === 'Principal Polymath' && ['Cloud Specialist', 'Database Architect', 'Next.js Engineer', 'Principal Polymath'].includes(currentRankTitle)) ||
+                              (r.title === 'Principal Polymath' && ['Cloud Specialist', 'Database Architect', 'Next.js Engineer', 'TypeScript Specialist', 'CSS Motion Specialist', 'Principal Polymath'].includes(currentRankTitle)) ||
                               (r.title === 'Async UI Specialist' && ['Async UI Specialist', 'API Integration Specialist'].includes(currentRankTitle)) ||
                               (r.title === 'React Auth Specialist' && ['React Auth Specialist', 'Security Engineer'].includes(currentRankTitle)) ||
                               (r.title === 'Master Web Developer' && ['Master Web Developer', 'SaaS UI Architect'].includes(currentRankTitle));
@@ -109,7 +109,7 @@
                             </div>
                             <div style="background: #faf5ff; border: 1px solid #e9d5ff; padding: 8px 10px; border-radius: 10px;">
                                 <div style="font-size: 0.70rem; color: #7e22ce; font-weight: 700;">Level 7: Specialized Tracks</div>
-                                <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${stats.l7Completed * 250} / 4,500 XP</div>
+                                <div style="font-size: 0.84rem; font-weight: 800; color: #9333ea;">${(stats.l7XP || 0).toLocaleString()} / 7,800 XP</div>
                             </div>
                             <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 8px 10px; border-radius: 10px;">
                                 <div style="font-size: 0.70rem; color: #0369a1; font-weight: 700;">Level 8: Async UI & Skeletons</div>
@@ -338,7 +338,7 @@
         const itemL4 = renderDojoHubItem(isL4, '⚔️ Level 4: JavaScript Widget Dojo', `15 Lessons • Active Lesson ${activeL4}`, '/2. partB/hub.html', 'background: #eff6ff', '#3b82f6', '#1d4ed8', 'background: #f8fafc', '#cbd5e1', '#2563eb');
         const itemL5 = renderDojoHubItem(isL5, '⚛️ Level 5: React Component Dojo', `15 Lessons • Active Lesson ${activeL5}`, '/3. partC/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#38bdf8', '#0284c7');
         const itemL6 = renderDojoHubItem(isL6, '🐍 Level 6: Python & Backend Basics Dojo', `15 Lessons • Active Lesson ${activeL6}`, '/5. partE/hub.html', 'background: #ecfdf5', '#10b981', '#047857', 'background: #ecfdf5', '#10b981', '#059669');
-        const itemL7 = renderDojoHubItem(isL7, '🚀 Level 7: Specialized Developer Tracks', '3 Tracks • Cloud, SQL & Next.js', '/6. partF/hub.html', 'background: #faf5ff', '#c084fc', '#7e22ce', 'background: #faf5ff', '#c084fc', '#9333ea');
+        const itemL7 = renderDojoHubItem(isL7, '🚀 Level 7: Specialized Developer Tracks', '5 Tracks • CSS Motion, TypeScript, Cloud, SQL & Next.js', '/6. partF/hub.html', 'background: #faf5ff', '#c084fc', '#7e22ce', 'background: #faf5ff', '#c084fc', '#9333ea');
         const itemL8 = renderDojoHubItem(isL8, '🌉 Level 8: Async UI & Loading States Dojo', `6 Lessons • Active Lesson ${activeL8}`, '/7. partG/hub.html', 'background: #f0f9ff', '#0284c7', '#0369a1', 'background: #f0f9ff', '#7dd3fc', '#0284c7');
         const itemL9 = renderDojoHubItem(isL9, '🛡️ Level 9: User Logins & Private Pages Dojo', `6 Lessons • Active Lesson ${activeL9}`, '/8. partH/hub.html', 'background: #f5f3ff', '#6366f1', '#4338ca', 'background: #f5f3ff', '#c7d2fe', '#4f46e5');
         const itemL10 = renderDojoHubItem(isL10, '🏆 Level 10: SaaS Dashboard UI Dojo', `6 Lessons • Active Lesson ${activeL10}`, '/9. partI/hub.html', 'background: #fffbeb', '#f59e0b', '#78350f', 'background: #fffbeb', '#fde68a', '#b45309');
@@ -507,6 +507,8 @@
                 localStorage.setItem('foundations_cloud_completed', 'true');
                 localStorage.setItem('foundations_sql_completed', 'true');
                 localStorage.setItem('foundations_nextjs_completed', 'true');
+                localStorage.setItem('foundations_typescript_completed', 'true');
+                localStorage.setItem('foundations_cssmotion_completed', 'true');
                 localStorage.setItem('foundations_async_completed', 'true');
                 localStorage.setItem('foundations_auth_completed', 'true');
                 localStorage.setItem('foundations_saas_completed', 'true');
@@ -515,6 +517,8 @@
                 localStorage.setItem('partF_branchA_completed', 'true');
                 localStorage.setItem('partF_branchB_completed', 'true');
                 localStorage.setItem('partF_branchC_completed', 'true');
+                localStorage.setItem('partF_branchD_completed', 'true');
+                localStorage.setItem('partF_branchE_completed', 'true');
                 localStorage.setItem('partG_completed', 'true');
                 localStorage.setItem('partH_completed', 'true');
                 localStorage.setItem('partI_completed', 'true');
@@ -534,7 +538,15 @@
                     localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
                 }
 
-                console.log('%c🔓 [NoviCodes DevKit] All 10 Levels, 81 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+                for (let i = 1; i <= 12; i++) {
+                    localStorage.setItem(`partF_branchD_lesson${i}_complete`, 'true');
+                }
+
+                for (let i = 1; i <= 10; i++) {
+                    localStorage.setItem(`partF_branchE_lesson${i}_complete`, 'true');
+                }
+
+                console.log('%c🔓 [NoviCodes DevKit] All 10 Levels, 13 Tracks, 103 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
                 updateAllHeaderStats();
                 window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
 
@@ -545,10 +557,10 @@
                         html: `
                             <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">
                                 <p style="color: #475569; margin-bottom: 14px; font-size: 0.92rem;">
-                                    All <strong>11 Foundation Tracks</strong>, <strong>81 Real Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing!
+                                    All <strong>13 Foundation Tracks</strong>, <strong>103 Real Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing!
                                 </p>
                                 <span style="font-size: 0.80rem; background: #ecfdf5; color: #047857; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                                    21,100 / 21,100 Total XP (Grand Master Rank)
+                                    25,000 / 25,000 Total XP (Master Web Developer Rank)
                                 </span>
                             </div>
                         `,
@@ -609,6 +621,10 @@
                 localStorage.removeItem('foundations_cloud_completed');
                 localStorage.removeItem('foundations_sql_completed');
                 localStorage.removeItem('foundations_nextjs_completed');
+                localStorage.removeItem('foundations_typescript_completed');
+                localStorage.removeItem('foundations_async_completed');
+                localStorage.removeItem('foundations_typescript_completed');
+                localStorage.removeItem('foundations_cssmotion_completed');
                 localStorage.removeItem('foundations_async_completed');
                 localStorage.removeItem('foundations_auth_completed');
                 localStorage.removeItem('foundations_saas_completed');
@@ -622,6 +638,10 @@
                 localStorage.removeItem('partF_branchB_complete');
                 localStorage.removeItem('partF_branchC_completed');
                 localStorage.removeItem('partF_branchC_complete');
+                localStorage.removeItem('partF_branchD_completed');
+                localStorage.removeItem('partF_branchD_complete');
+                localStorage.removeItem('partF_branchE_completed');
+                localStorage.removeItem('partF_branchE_complete');
                 localStorage.removeItem('partG_completed');
                 localStorage.removeItem('partG_complete');
                 localStorage.removeItem('partH_completed');
@@ -669,6 +689,20 @@
                     localStorage.removeItem(`partI_lesson${i}_remake_complete`);
                     localStorage.removeItem(`partI_lesson${i}_remake_completed`);
                     localStorage.removeItem(`partI_lesson${i}_draft`);
+                }
+
+                for (let i = 1; i <= 12; i++) {
+                    localStorage.removeItem(`partF_branchD_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchD_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchD_lesson${i}_draft`);
+                    localStorage.removeItem(`draft_partF_branchD_lesson${i}`);
+                }
+
+                for (let i = 1; i <= 10; i++) {
+                    localStorage.removeItem(`partF_branchE_lesson${i}_complete`);
+                    localStorage.removeItem(`partF_branchE_lesson${i}_completed`);
+                    localStorage.removeItem(`partF_branchE_lesson${i}_draft`);
+                    localStorage.removeItem(`draft_partF_branchE_lesson${i}`);
                 }
 
                 // 7. Reset Certificate Recipient Names
@@ -733,9 +767,9 @@
                     'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
                     'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
                     'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
-                    'Level 7 (Mastery Dojo)': `${stats.l7Completed}/18 Lessons (A:${stats.l7BranchA}, B:${stats.l7BranchB}, C:${stats.l7BranchC})`,
-                    'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Projects`,
-                    'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Projects`,
+                    'Level 7 (Mastery Dojo)': `${stats.l7Completed}/40 Lessons (A:${stats.l7BranchA}/6, B:${stats.l7BranchB}/6, C:${stats.l7BranchC}/6, D:${stats.l7BranchD}/12, E:${stats.l7BranchE}/10)`,
+                    'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Lessons`,
+                    'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Lessons`,
                     'Level 10 (SaaS Dashboard UI)': `${stats.l10Completed || 0}/6 Lessons`
                 });
             }

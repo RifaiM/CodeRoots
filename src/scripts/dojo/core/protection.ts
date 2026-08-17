@@ -31,6 +31,12 @@ export function isLessonCompleted(track: string, id: number): boolean {
     } else if (track === 'partF_branchC' || track === 'branchC') {
         return localStorage.getItem(`partF_branchC_lesson${id}_complete`) === 'true' ||
                localStorage.getItem(`partF_branchC_lesson${id}_completed`) === 'true';
+    } else if (track === 'partF_branchD' || track === 'branchD') {
+        return localStorage.getItem(`partF_branchD_lesson${id}_complete`) === 'true' ||
+               localStorage.getItem(`partF_branchD_lesson${id}_completed`) === 'true';
+    } else if (track === 'partF_branchE' || track === 'branchE') {
+        return localStorage.getItem(`partF_branchE_lesson${id}_complete`) === 'true' ||
+               localStorage.getItem(`partF_branchE_lesson${id}_completed`) === 'true';
     } else if (track === 'partG') {
         return localStorage.getItem(`partG_lesson${id}_remake_complete`) === 'true';
     } else if (track === 'partH') {
@@ -70,7 +76,14 @@ export function getHighestAccessibleLesson(track: string, totalLessons: number =
 export function getCompletedLessonsCount(track: string): number {
     if (typeof localStorage === 'undefined') return 0;
     let count = 0;
-    const total = (track.includes('branch') || track.startsWith('partF') || track === 'partG' || track === 'partH' || track === 'partI') ? 6 : 15;
+    let total = 6;
+    if (track === 'partB' || track === 'partC' || track === 'partE') {
+        total = 15;
+    } else if (track.includes('branchD')) {
+        total = 12;
+    } else if (track.includes('branchE')) {
+        total = 10;
+    }
     for (let i = 1; i <= total; i++) {
         if (isLessonCompleted(track, i)) count++;
     }
@@ -91,9 +104,13 @@ export function isCertificateAccessible(track: string): boolean {
         return localStorage.getItem('partF_branchA_completed') === 'true' ||
                localStorage.getItem('partF_branchB_completed') === 'true' ||
                localStorage.getItem('partF_branchC_completed') === 'true' ||
+               localStorage.getItem('partF_branchD_completed') === 'true' ||
+               localStorage.getItem('partF_branchE_completed') === 'true' ||
                getCompletedLessonsCount('partF_branchA') >= 6 ||
                getCompletedLessonsCount('partF_branchB') >= 6 ||
-               getCompletedLessonsCount('partF_branchC') >= 6;
+               getCompletedLessonsCount('partF_branchC') >= 6 ||
+               getCompletedLessonsCount('partF_branchD') >= 12 ||
+               getCompletedLessonsCount('partF_branchE') >= 10;
     } else if (track === 'partG') {
         return getCompletedLessonsCount('partG') >= 6;
     } else if (track === 'partH') {

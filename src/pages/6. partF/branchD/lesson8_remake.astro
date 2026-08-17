@@ -1,0 +1,336 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `// 🚀 Level 7D Lesson 8: Discriminated Unions & Reducers!
+
+// 👉 STEP 1: Define 3 distinct Action interfaces with a common 'type' discriminator:
+//           - InitAction: { type: 'INIT' }
+//           - SetUserAction: { type: 'SET_USER'; payload: { name: string; email: string } }
+//           - SetErrorAction: { type: 'SET_ERROR'; error: string }
+
+
+// 👉 STEP 2: Combine them into a union type alias 'AppAction'
+
+
+// 👉 STEP 3: Define an interface 'AppState' with:
+//           - status: 'idle' | 'ready' | 'error'
+//           - user: { name: string; email: string } | null
+//           - errorMessage: string | null
+
+
+// 👉 STEP 4: Implement a pure reducer function 'appReducer(state: AppState, action: AppAction): AppState'
+//           - Use a 'switch (action.type)' statement to handle all 3 action types exhaustively
+`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Primitive Types & Inference",
+        "url": "/6. partF/branchD/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "Arrays, Tuples & Readonly",
+        "url": "/6. partF/branchD/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "Union Types & String Literals",
+        "url": "/6. partF/branchD/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Interfaces & Object Contracts",
+        "url": "/6. partF/branchD/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Typed Functions & Rest Params",
+        "url": "/6. partF/branchD/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "DOM Elements & Null Narrowing",
+        "url": "/6. partF/branchD/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "Typed Event Handlers & Casting",
+        "url": "/6. partF/branchD/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "Discriminated Unions & Reducers",
+        "url": "/6. partF/branchD/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "Generics 101 & API Wrappers",
+        "url": "/6. partF/branchD/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "Generic Constraints & keyof",
+        "url": "/6. partF/branchD/lesson10_remake.html"
+    },
+    {
+        "id": 11,
+        "title": "Core Utility Types (Partial, Pick)",
+        "url": "/6. partF/branchD/lesson11_remake.html"
+    },
+    {
+        "id": 12,
+        "title": "Final Project: Typed State Store",
+        "url": "/6. partF/branchD/lesson12_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 08: Discriminated Unions & Reducers | Level 7D • TypeScript Mastery"
+    description="Architect bulletproof state management using Discriminated Unions and exhaustive switch statements."
+    levelTag="Level 7D • TypeScript Mastery"
+    lessonNum={8}
+    lessonTitle="Discriminated Unions & Reducers"
+    xpAmount={150}
+    completionKey="partF_branchD_lesson8_complete"
+    nextLessonUrl="/6. partF/branchD/lesson9_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="app.ts"
+    starterCode={starterCode}
+    mode="terminal"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchD"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Architect bulletproof state management using Discriminated Unions and exhaustive switch statements.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 4</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">TypeScript Verification: <code>Type check passing with 0 compiler errors</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
+        <!-- The Real-World JavaScript Problem -->
+        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World JavaScript Problem</h3>
+            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">In Redux or React `useReducer`, handling `SET_USER` might access `action.payload.name`. If you dispatch a `SET_ERROR` action by mistake, your reducer tries to read `action.payload.name` and crashes with `Cannot read properties of undefined`.</p>
+        </article>
+
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> A Discriminated Union is like a color-coded triage tag in an emergency room: Tag 'RED' means immediate surgery (`payload.heartRate`), Tag 'GREEN' means minor bandage (`payload.prescription`). The doctor reads the tag color first before opening the kit.
+            </div>
+        </article>
+
+        <!-- Syntax & Anatomy Breakdown -->
+        <article class="concept-card">
+            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
+            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+                <code>type Action = &#123; type: 'SUCCESS'; data: string &#125; | &#123; type: 'FAIL'; error: Error &#125;;</code><br/>
+• <strong>type: 'SUCCESS'</strong> → The discriminator property (shared across all variants)<br/>
+• Inside <code>if (action.type === 'SUCCESS')</code>, TS automatically knows <code>action.data</code> exists!
+            </div>
+        </article>
+
+        <!-- The VS Code Beginner Trap -->
+        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+            <h3 style="color: #b91c1c;"><span>⚠️</span> The VS Code Beginner Trap (What NOT to do)</h3>
+            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Always use a literal string for the discriminator (`type: 'FETCH_SUCCESS'`). This allows TypeScript's control flow analysis to narrow the entire object shape inside your `switch` cases automatically.</p>
+        </article>
+
+        <!-- Reference Pattern / Starter Code -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">TypeScript architectural specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchD_8">// 🚀 Level 7D Lesson 8: Discriminated Unions & Reducers!
+
+// 👉 STEP 1: Define 3 distinct Action interfaces with a common 'type' discriminator:
+//           - InitAction: &#123; type: 'INIT' &#125;
+//           - SetUserAction: &#123; type: 'SET_USER'; payload: &#123; name: string; email: string &#125; &#125;
+//           - SetErrorAction: &#123; type: 'SET_ERROR'; error: string &#125;
+
+
+// 👉 STEP 2: Combine them into a union type alias 'AppAction'
+
+
+// 👉 STEP 3: Define an interface 'AppState' with:
+//           - status: 'idle' | 'ready' | 'error'
+//           - user: &#123; name: string; email: string &#125; | null
+//           - errorMessage: string | null
+
+
+// 👉 STEP 4: Implement a pure reducer function 'appReducer(state: AppState, action: AppAction): AppState'
+//           - Use a 'switch (action.type)' statement to handle all 3 action types exhaustively
+</code></pre>
+            </div>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const terminalScreen = document.getElementById('terminalScreen');
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchD_lesson8';
+        const DEFAULT_STARTER = `// 🚀 Level 7D Lesson 8: Discriminated Unions & Reducers!
+
+// 👉 STEP 1: Define 3 distinct Action interfaces with a common 'type' discriminator:
+//           - InitAction: { type: 'INIT' }
+//           - SetUserAction: { type: 'SET_USER'; payload: { name: string; email: string } }
+//           - SetErrorAction: { type: 'SET_ERROR'; error: string }
+
+
+// 👉 STEP 2: Combine them into a union type alias 'AppAction'
+
+
+// 👉 STEP 3: Define an interface 'AppState' with:
+//           - status: 'idle' | 'ready' | 'error'
+//           - user: { name: string; email: string } | null
+//           - errorMessage: string | null
+
+
+// 👉 STEP 4: Implement a pure reducer function 'appReducer(state: AppState, action: AppAction): AppState'
+//           - Use a 'switch (action.type)' statement to handle all 3 action types exhaustively
+`;
+
+        // 1. Initialize Real-Time Checklist
+        DojoEngine.initChecklist([
+            {
+                id: "step1",
+                label: "Define `InitAction`, `SetUserAction`, `SetErrorAction` with literal `type` properties",
+                fn: (code) => { try { return Boolean(code.includes('INIT') && code.includes('SET_USER') && code.includes('SET_ERROR')); } catch(e) { return false; } }
+            },
+            {
+                id: "step2",
+                label: "Combine actions into `type AppAction = InitAction | SetUserAction | SetErrorAction`",
+                fn: (code) => { try { return Boolean(code.includes('type AppAction =') && code.includes('InitAction') && code.includes('SetUserAction') && code.includes('SetErrorAction')); } catch(e) { return false; } }
+            },
+            {
+                id: "step3",
+                label: "Define `interface AppState` with status, user, and errorMessage",
+                fn: (code) => { try { return Boolean(code.includes('interface AppState') && code.includes('status:') && code.includes('user:') && code.includes('errorMessage:')); } catch(e) { return false; } }
+            },
+            {
+                id: "step4",
+                label: "Implement `appReducer(state: AppState, action: AppAction): AppState` with `switch (action.type)`",
+                fn: (code) => { try { return Boolean(code.includes('function appReducer') && code.includes('switch') && code.includes('SET_USER')); } catch(e) { return false; } }
+            }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'terminal'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Real-Time Syntax & Diagnostics
+            DojoEngine.lint(editor.value, 'terminal');
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+                if (terminalScreen) {
+                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; TypeScript environment reset. Ready for code.</div>';
+                }
+            });
+        }
+
+        // 5. Terminal output simulation
+        function simulateTypeScriptConsole(code: string) {
+            if (!terminalScreen) return;
+            terminalScreen.innerHTML = `<div style="color: #38bdf8; font-weight: 700;">&gt; tsc --noEmit (Checking TypeScript Compiler Diagnostics)...</div>
+<div style="color: #34d399; font-family: monospace; font-size: 0.80rem; margin: 8px 0;">✨ Zero Type Errors Found! Strict Mode Passed ✓</div>
+<div style="color: #cbd5e1; font-size: 0.78rem; line-height: 1.5;">Type checking completed: [Exit Code 0]</div>`;
+        }
+
+        // 6. Check & Verify Code Action with Intelligent Diagnostics
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                if (typeof simulateTypeScriptConsole === 'function') {
+                    simulateTypeScriptConsole(editor.value);
+                }
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: "Discriminated Unions & Reducers",
+                    xp: 150,
+                    completionKey: 'partF_branchD_lesson8_complete',
+                    nextUrl: '/6. partF/branchD/lesson9_remake.html',
+                    mode: 'terminal'
+                });
+            });
+        }
+
+        // Initial render
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

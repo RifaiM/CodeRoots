@@ -381,6 +381,194 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 }
 
 /* ==========================================================================
+   What You'll Build: Outcomes Section (High-Impact Showcase)
+   A distinct destination statement — visually separated from the skill tree below
+   ========================================================================== */
+.outcomes-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1.5px solid #334155;
+  border-radius: 24px;
+  padding: 34px 30px 36px;
+  margin: 20px 0 44px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.outcomes-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316 0%, #38bdf8 50%, #f59e0b 100%);
+}
+
+.outcomes-header {
+  margin-bottom: 24px;
+}
+
+.outcomes-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
+}
+
+.outcomes-headline {
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.outcomes-subtitle {
+  font-size: 0.90rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+}
+
+.outcome-card {
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+}
+
+.outcome-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.outcome-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.outcome-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.outcome-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.outcome-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.outcome-desc {
+  font-size: 0.88rem;
+  color: #f1f5f9 !important;
+  line-height: 1.65;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Per-card distinct high-contrast accents */
+.outcome-card--html {
+  background: linear-gradient(165deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid rgba(251, 146, 60, 0.5);
+}
+.outcome-card--html .outcome-icon-wrap {
+  background: rgba(234, 88, 12, 0.22);
+  border: 1.5px solid #fb923c;
+}
+.outcome-card--html .outcome-tag {
+  background: #ea580c;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.45);
+}
+.outcome-card--html:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(249, 115, 22, 0.25);
+  border-color: #fb923c;
+}
+
+.outcome-card--react {
+  background: linear-gradient(165deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+}
+.outcome-card--react .outcome-icon-wrap {
+  background: rgba(2, 132, 199, 0.22);
+  border: 1.5px solid #38bdf8;
+}
+.outcome-card--react .outcome-tag {
+  background: #0284c7;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.45);
+}
+.outcome-card--react:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(14, 165, 233, 0.25);
+  border-color: #38bdf8;
+}
+
+.outcome-card--saas {
+  background: linear-gradient(165deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.55);
+}
+.outcome-card--saas .outcome-icon-wrap {
+  background: rgba(217, 119, 6, 0.22);
+  border: 1.5px solid #f59e0b;
+}
+.outcome-card--saas .outcome-tag {
+  background: #d97706;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.45);
+}
+.outcome-card--saas:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(245, 158, 11, 0.28);
+  border-color: #f59e0b;
+}
+
+/* ==========================================================================
    Tracks Grid & Mobile Snap Lane Layout
    ========================================================================== */
 .tracks-snap-lane {
@@ -1086,6 +1274,18 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
 }
 
 @media (max-width: 768px) {
+  .outcomes-section {
+    padding: 24px 18px 26px;
+    margin: 16px 0 32px;
+    border-radius: 20px;
+  }
+
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 0;
+  }
+
   .platform-header {
     padding: 0 12px !important;
     height: 50px !important;
@@ -3394,19 +3594,96 @@ code, pre, kbd, samp, textarea.code-font, .code-box, .terminal-editor, .terminal
     align-items: center;
     justify-content: center;
     gap: 4px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #475569;
-    font-size: 0.78rem;
-    font-weight: 700;
-    padding: 6px 10px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    padding: 8px 8px;
     border-radius: 10px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
-.primer-pill-btn:hover {
-    background: #ffffff;
-    color: #0f172a;
-    border-color: #cbd5e1;
+
+.primer-pill-btn.pill-cloud {
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    color: #1d4ed8;
+}
+.primer-pill-btn.pill-cloud:hover {
+    background: #2563eb;
+    border-color: #1d4ed8;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.primer-pill-btn.pill-sql {
+    background: #eef2ff;
+    border: 1.5px solid #c7d2fe;
+    color: #4338ca;
+}
+.primer-pill-btn.pill-sql:hover {
+    background: #4f46e5;
+    border-color: #4338ca;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.primer-pill-btn.pill-nextjs {
+    background: #f4f4f5;
+    border: 1.5px solid #d4d4d8;
+    color: #18181b;
+}
+.primer-pill-btn.pill-nextjs:hover {
+    background: #09090b;
+    border-color: #09090b;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.primer-pill-btn.pill-typescript {
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    color: #2563eb;
+}
+.primer-pill-btn.pill-typescript:hover {
+    background: #2563eb;
+    border-color: #1d4ed8;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.primer-pill-btn.pill-cssmotion {
+    background: #fdf2f8;
+    border: 1.5px solid #fbcfe8;
+    color: #db2777;
+}
+.primer-pill-btn.pill-cssmotion:hover {
+    background: #ec4899;
+    border-color: #db2777;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+}
+
+a.meta-tag,
+.meta-tag-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+a.meta-tag:hover,
+.meta-tag-link:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
 }
+

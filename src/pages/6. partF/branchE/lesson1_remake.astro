@@ -1,0 +1,333 @@
+---
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+
+const starterCode = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: #0f172a;
+    margin: 0;
+  }
+  .btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    /* 👉 STEP 1: Add transition for background-color and transform over 0.25s ease */
+
+  }
+  .btn:hover {
+    /* 👉 STEP 2: Change background-color to #1d4ed8 and transform: scale(1.06) on hover */
+
+  }
+</style>
+
+<button class="btn">Launch Rocket 🚀</button>`;
+
+const branchLessons = [
+    {
+        "id": 1,
+        "title": "Transitions 101 & Easing",
+        "url": "/6. partF/branchE/lesson1_remake.html"
+    },
+    {
+        "id": 2,
+        "title": "GPU 2D Transforms",
+        "url": "/6. partF/branchE/lesson2_remake.html"
+    },
+    {
+        "id": 3,
+        "title": "CSS Keyframes (@keyframes)",
+        "url": "/6. partF/branchE/lesson3_remake.html"
+    },
+    {
+        "id": 4,
+        "title": "Cubic-Bézier Spring Physics",
+        "url": "/6. partF/branchE/lesson4_remake.html"
+    },
+    {
+        "id": 5,
+        "title": "Tactile Hover & Active Clicks",
+        "url": "/6. partF/branchE/lesson5_remake.html"
+    },
+    {
+        "id": 6,
+        "title": "Animated Skeletons & Shimmer",
+        "url": "/6. partF/branchE/lesson6_remake.html"
+    },
+    {
+        "id": 7,
+        "title": "Staggered Entrance Cascades",
+        "url": "/6. partF/branchE/lesson7_remake.html"
+    },
+    {
+        "id": 8,
+        "title": "SVG Path Drawing Animations",
+        "url": "/6. partF/branchE/lesson8_remake.html"
+    },
+    {
+        "id": 9,
+        "title": "prefers-reduced-motion A11y",
+        "url": "/6. partF/branchE/lesson9_remake.html"
+    },
+    {
+        "id": 10,
+        "title": "Final Project: Interactive Motion Showcase",
+        "url": "/6. partF/branchE/lesson10_remake.html"
+    }
+];
+---
+
+<LessonLayout
+    title="Milestone 01: Transitions 101 & Easing | Level 7E • CSS Motion"
+    description="Learn how to smoothly animate between two element states on hover using transition-property, transition-duration, and transition-timing-function."
+    levelTag="Level 7E • CSS Motion"
+    lessonNum={1}
+    lessonTitle="Transitions 101 & Easing"
+    xpAmount={150}
+    completionKey="partF_branchE_lesson1_complete"
+    nextLessonUrl="/6. partF/branchE/lesson2_remake.html"
+    hubUrl="/6. partF/hub.html"
+    hubTitle="Level 7 Hub"
+    hubIcon="🚀"
+    fileTab="styles.css"
+    starterCode={starterCode}
+    mode="html"
+    jumpLessons={branchLessons}
+    certificateUrl="/6. partF/certificate.html"
+    trackPrefix="partF_branchE"
+>
+    <!-- Intro Slot -->
+    <p class="lesson-subtitle" slot="intro">
+        Learn how to smoothly animate between two element states on hover using transition-property, transition-duration, and transition-timing-function.
+    </p>
+
+    <!-- Concept Slot (Left Pane) -->
+    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+        <article class="concept-card mission-card">
+            <div class="mission-header">
+                <h3><span>🎯</span> Your Mission</h3>
+                <span class="checklist-counter" id="checklistCounter">0 / 3</span>
+            </div>
+            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+                <strong style="color: #334155;">🖼️ Target Goal:</strong>
+                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+            </div>
+            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+            <div id="taskChecklist"></div>
+        </article>
+        
+        <!-- The Real-World CSS Problem -->
+        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
+            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Without CSS transitions, hovering or clicking an element causes instant, jarring pixel jumps. The UI feels like an unresponsive 1990s static document instead of a modern software application.</p>
+        </article>
+
+        <!-- Core Concept & Analogy -->
+        <article class="concept-card">
+            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
+            <div class="analogy-callout">
+                <strong>Real-World Analogy:</strong> Think of CSS transitions like a smooth dimmer switch on a light fixture. Instead of violently flicking the light switch ON and OFF instantly, the dimmer glides smoothly between brightness levels over a quarter of a second.
+            </div>
+        </article>
+
+        <!-- Syntax & Anatomy Breakdown -->
+        <article class="concept-card">
+            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
+            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+                <code>transition: background-color 0.25s ease, transform 0.25s ease;</code><br/>• <strong>transition-property</strong> → Which properties to animate (e.g. background-color, transform)<br/>• <strong>transition-duration</strong> → How long the interpolation takes (e.g. 0.25s or 250ms)<br/>• <strong>transition-timing-function</strong> → The acceleration curve (ease, ease-out, ease-in-out)
+            </div>
+        </article>
+
+        <!-- The VS Code Beginner Trap -->
+        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
+            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Never write 'transition: all 0.25s;'. It forces the browser to monitor all 300+ CSS properties on the element, leading to unintended animations (like height or borders snapping during page resize) and significant memory waste.</p>
+        </article>
+
+        <!-- Reference Pattern / Starter Code -->
+        <article class="concept-card">
+            <h3><span>💻</span> Reference Pattern</h3>
+            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+            <div class="code-snippet-box">
+                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
+                <pre><code id="refCodeBox_branchE_1">&lt;style&gt;
+  body &#123;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: #0f172a;
+    margin: 0;
+  &#125;
+  .btn &#123;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    /* 👉 STEP 1: Add transition for background-color and transform over 0.25s ease */
+
+  &#125;
+  .btn:hover &#123;
+    /* 👉 STEP 2: Change background-color to #1d4ed8 and transform: scale(1.06) on hover */
+
+  &#125;
+&lt;/style&gt;
+
+&lt;button class="btn"&gt;Launch Rocket 🚀&lt;/button&gt;</code></pre>
+            </div>
+        </article>
+
+    </div>
+</LessonLayout>
+
+<!-- Client-Side Scripts & Verification Engine -->
+<script>
+    import { DojoEngine } from '../../../scripts/dojo';
+
+    function initLesson() {
+        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+        const lineNumbers = document.getElementById('ideLineNumbers');
+        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+        const checkBtn = document.getElementById('checkAnswerBtn');
+        const resetBtn = document.getElementById('resetEditorBtn');
+
+        if (!editor) return;
+
+        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson1';
+        const DEFAULT_STARTER = `<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: #0f172a;
+    margin: 0;
+  }
+  .btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    /* 👉 STEP 1: Add transition for background-color and transform over 0.25s ease */
+
+  }
+  .btn:hover {
+    /* 👉 STEP 2: Change background-color to #1d4ed8 and transform: scale(1.06) on hover */
+
+  }
+</style>
+
+<button class="btn">Launch Rocket 🚀</button>`;
+
+        // 1. Initialize Real-Time Checklist
+        DojoEngine.initChecklist([
+            {
+                id: "transition",
+                label: "Add <code>transition</code> with duration <code>0.25s</code> or <code>250ms</code> to <code>.btn</code>",
+                fn: (code) => { try { return Boolean(/\.btn\s*\{[^}]*transition\s*:[^}]*(0\.25s|250ms)/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "hover-bg",
+                label: "Change <code>background-color</code> to <code>#1d4ed8</code> inside <code>.btn:hover</code>",
+                fn: (code) => { try { return Boolean(/\.btn:hover\s*\{[^}]*background(-color)?\s*:\s*#1d4ed8/i.test(code)); } catch(e) { return false; } }
+            },
+            {
+                id: "hover-scale",
+                label: "Add <code>transform: scale(1.06)</code> inside <code>.btn:hover</code>",
+                fn: (code) => { try { return Boolean(/\.btn:hover\s*\{[^}]*transform\s*:\s*scale\(\s*1\.06\s*\)/i.test(code)); } catch(e) { return false; } }
+            }
+        ], {
+            containerId: 'taskChecklist',
+            mode: 'html'
+        });
+
+        // 2. Line numbers & scroll sync
+        function syncScroll() {
+            if (lineNumbersInner && editor) {
+                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+            }
+        }
+
+        function updateEditor() {
+            if (!editor || !lineNumbersInner) return;
+            const lines = editor.value.split('\n');
+            const lineCount = Math.max(lines.length, 1);
+            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+            syncScroll();
+
+            // Real-Time Live Preview in Iframe
+            if (previewIframe) {
+                previewIframe.srcdoc = editor.value;
+            }
+
+            // Real-Time Checklist Verification
+            DojoEngine.runChecklist(editor.value);
+        }
+
+        // 3. Draft Auto-Save & Crash Resilience
+        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+
+        editor.addEventListener('scroll', syncScroll);
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 2;
+                updateEditor();
+            }
+        });
+
+        // 4. Safe Reset Button Handler
+        if (resetBtn) {
+            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+                updateEditor();
+            });
+        }
+
+        // 5. Check & Verify Code Action
+        if (checkBtn) {
+            checkBtn.addEventListener('click', () => {
+                DojoEngine.verifySubmission(editor.value, {
+                    lessonTitle: "Transitions 101 & Easing",
+                    xp: 150,
+                    completionKey: 'partF_branchE_lesson1_complete',
+                    nextUrl: '/6. partF/branchE/lesson2_remake.html',
+                    mode: 'html'
+                });
+            });
+        }
+
+        // Initial render
+        updateEditor();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLesson);
+    } else {
+        initLesson();
+    }
+</script>

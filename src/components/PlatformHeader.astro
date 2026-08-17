@@ -410,6 +410,12 @@ const {
             } else if (t.includes('branchC')) {
                 return localStorage.getItem(`partF_branchC_lesson${num}_complete`) === 'true' ||
                        localStorage.getItem(`partF_branchC_lesson${num}_completed`) === 'true';
+            } else if (t.includes('branchD')) {
+                return localStorage.getItem(`partF_branchD_lesson${num}_complete`) === 'true' ||
+                       localStorage.getItem(`partF_branchD_lesson${num}_completed`) === 'true';
+            } else if (t.includes('branchE')) {
+                return localStorage.getItem(`partF_branchE_lesson${num}_complete`) === 'true' ||
+                       localStorage.getItem(`partF_branchE_lesson${num}_completed`) === 'true';
             } else if (t === 'partG') {
                 return localStorage.getItem(`partG_lesson${num}_remake_complete`) === 'true';
             } else if (t === 'partH') {

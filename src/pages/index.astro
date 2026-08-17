@@ -38,7 +38,7 @@ const navLinks = [
                     Learn Web Development by <span class="typewriter-wrap"><span class="typewriter-text" id="typewriterText" aria-label="Doing, Not Just Watching">Doing, Not Just Watching</span><span class="typewriter-cursor" aria-hidden="true">|</span></span>
                 </h1>
                 <p class="hero-subtitle">
-                    Skip the passive video lectures. Practice HTML, CSS, JavaScript, React, and Python through 81 step-by-step interactive challenges with instant live feedback and verifiable certificates.
+                    Work through 81 hands-on coding challenges — no videos, no setup, no paywall. By the end, you can build interactive web pages, React apps, and a complete SaaS dashboard UI, all from scratch, right in your browser.
                 </p>
             </div>
         </section>
@@ -63,6 +63,47 @@ const navLinks = [
                     <span class="section-emoji">🗺️</span> Curriculum Skill Tree
                 </h2>
                 <p class="section-desc">Follow the structured path or jump to your desired track below.</p>
+            </div>
+
+            <!-- What You'll Build: 3 Concrete, Honest Outcomes -->
+            <div class="outcomes-section" aria-label="What you will be able to build by Level 10">
+                <div class="outcomes-header">
+                    <span class="outcomes-badge">🎯 Concrete Outcomes</span>
+                    <h3 class="outcomes-headline">What You Will Actually Be Able to Build by Level 10</h3>
+                    <p class="outcomes-subtitle">No vague promises or fake claims. Here is the exact portfolio of work you create across your journey:</p>
+                </div>
+                <div class="outcomes-grid">
+                    <div class="outcome-card outcome-card--html">
+                        <div class="outcome-top">
+                            <div class="outcome-icon-wrap">
+                                <span class="outcome-icon">🧱</span>
+                            </div>
+                            <span class="outcome-tag">Levels 1–4</span>
+                        </div>
+                        <h4 class="outcome-title">Interactive Web Interfaces</h4>
+                        <p class="outcome-desc">Navigation bars, responsive product cards, modal dialogs, and validated input forms built step-by-step with HTML5, CSS3, and JavaScript.</p>
+                    </div>
+                    <div class="outcome-card outcome-card--react">
+                        <div class="outcome-top">
+                            <div class="outcome-icon-wrap">
+                                <span class="outcome-icon">⚛️</span>
+                            </div>
+                            <span class="outcome-tag">Levels 5–9</span>
+                        </div>
+                        <h4 class="outcome-title">React &amp; Live Data Applications</h4>
+                        <p class="outcome-desc">A live task tracker with state management, async data fetching with loading skeletons, user authentication gates, and Python scripts.</p>
+                    </div>
+                    <div class="outcome-card outcome-card--saas">
+                        <div class="outcome-top">
+                            <div class="outcome-icon-wrap">
+                                <span class="outcome-icon">👑</span>
+                            </div>
+                            <span class="outcome-tag">Level 10 Final Project</span>
+                        </div>
+                        <h4 class="outcome-title">Complete SaaS Dashboard UI</h4>
+                        <p class="outcome-desc">A production-ready application shell: collapsible sidebar navigation, live search filters, monthly/annual pricing tables, and an AI helper panel.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Vertical Step-by-Step Tracks Container (Total 9 Cards Starting from Level 0) -->
@@ -258,28 +299,28 @@ const navLinks = [
                 <article class="track-card advanced-track gsap-reveal" data-category="advanced">
                     <div class="card-top">
                         <span class="track-level-badge" style="background: linear-gradient(135deg, #a855f7, #7e22ce); color: white;">Level 7</span>
-                        <span class="track-status-icon ready">⚡ +1,500 XP / Track</span>
+                        <span class="track-status-icon ready">⚡ +1,500–1,800 XP</span>
                     </div>
                     <div class="card-icon-wrap cloud-gradient">
                         <span class="card-icon">🚀</span>
                     </div>
                     <h3 class="card-title">Specialized Developer Tracks</h3>
                     <p class="card-desc">
-                        Pick your next focus: Cloud Hosting &amp; CI/CD Pipelines, SQL Databases &amp; User Passwords, or Modern Next.js Web Apps across 3 focused mini-tracks.
+                        Choose your next focus: CSS Animations &amp; Micro-Interactions, TypeScript Mastery, Next.js Web Apps, Cloud Hosting, or SQL Databases across 5 deep specialization tracks.
                     </p>
                     <div class="card-meta">
-                        <span class="meta-tag">☁️ Web Hosting</span>
-                        <span class="meta-tag">🛢️ SQL Databases</span>
-                        <span class="meta-tag">⚡ Next.js Apps</span>
+                        <a href="/foundations.html?track=cssmotion" class="meta-tag meta-tag-link" title="Open CSS Motion Foundations">🎨 CSS Motion</a>
+                        <a href="/foundations.html?track=typescript" class="meta-tag meta-tag-link" title="Open TypeScript Foundations">🔷 TypeScript</a>
+                        <a href="/foundations.html?track=nextjs" class="meta-tag meta-tag-link" title="Open Next.js Foundations">⚡ Next.js</a>
+                        <a href="/foundations.html?track=cloud" class="meta-tag meta-tag-link" title="Open Cloud Foundations">☁️ Cloud</a>
+                        <a href="/foundations.html?track=sql" class="meta-tag meta-tag-link" title="Open SQL Foundations">🛢️ SQL</a>
                     </div>
                     <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <div style="display: flex; gap: 6px;">
-                            <a href="/foundations.html?track=cloud" class="primer-pill-btn pill-cloud" style="flex: 1;" title="Read Cloud & DevOps Foundations">☁️ Cloud</a>
-                            <a href="/foundations.html?track=sql" class="primer-pill-btn pill-sql" style="flex: 1;" title="Read PostgreSQL & Database Foundations">🛢️ SQL</a>
-                            <a href="/foundations.html?track=nextjs" class="primer-pill-btn pill-nextjs" style="flex: 1;" title="Read Next.js & Server Components Foundations">⚡ Next.js</a>
-                        </div>
+                        <a href="/1. partA/hub.html#level7-tracks" class="primer-btn" title="Browse all 5 Level 7 Foundation Guides">
+                            <span>📖 Browse Level 7 Foundations (5 Tracks)</span>
+                        </a>
                         <a href="/6. partF/hub.html" class="track-btn gold-btn dojo-btn">
-                            <span>🚀 Enter Level 7 Hub</span>
+                            <span>🚀 Enter Level 7 Specialization Hub ➔</span>
                         </a>
                     </div>
                 </article>
