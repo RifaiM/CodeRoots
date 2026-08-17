@@ -46,6 +46,28 @@ const {
 const navLinks = [
     { href: hubUrl, label: `${hubTitle}`, icon: hubIcon, title: `Return to ${hubTitle}` }
 ];
+
+const foundationsTrackMap: Record<string, { query: string; name: string; icon: string }> = {
+    'partB': { query: 'js', name: 'JavaScript Foundations', icon: '⚡' },
+    'partC': { query: 'react', name: 'React Foundations', icon: '⚛️' },
+    'partE': { query: 'python', name: 'Python Foundations', icon: '🐍' },
+    'partF_branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', icon: '☁️' },
+    'branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', icon: '☁️' },
+    'partF_branchB': { query: 'sql', name: 'SQL & Database Foundations', icon: '🛢️' },
+    'branchB': { query: 'sql', name: 'SQL & Database Foundations', icon: '🛢️' },
+    'partF_branchC': { query: 'nextjs', name: 'Next.js Foundations', icon: '⚡' },
+    'branchC': { query: 'nextjs', name: 'Next.js Foundations', icon: '⚡' },
+    'partF_branchD': { query: 'typescript', name: 'TypeScript Foundations', icon: '🔷' },
+    'branchD': { query: 'typescript', name: 'TypeScript Foundations', icon: '🔷' },
+    'partF_branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', icon: '🎨' },
+    'branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', icon: '🎨' },
+    'partG': { query: 'async', name: 'Async UI Foundations', icon: '🌉' },
+    'partH': { query: 'auth', name: 'Security & Auth Foundations', icon: '🛡️' },
+    'partI': { query: 'saas', name: 'SaaS UI Foundations', icon: '🏆' },
+};
+
+const foundationsRef = foundationsTrackMap[trackPrefix] || foundationsTrackMap['partB'];
+const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
 ---
 
 <BaseLayout title={title} description={description} showHeaderFooter={false} noPageContentWrapper={true}>
@@ -74,6 +96,16 @@ const navLinks = [
                         <span class="lesson-xp-pill">⚡ +{xpAmount} XP Bounty</span>
                     </div>
                     <h1 class="lesson-main-title">{lessonTitle}</h1>
+                    
+                    <!-- Foundations Concept Refresher Pill -->
+                    <div class="foundations-ref-box">
+                        <span class="ref-icon">📖</span>
+                        <span class="ref-label">Need a concept refresher?</span>
+                        <a href={foundationsUrl} target="_blank" rel="noopener noreferrer" class="ref-link" title={`Open ${foundationsRef.name} in a new tab`}>
+                            {foundationsRef.icon} Review {foundationsRef.name} ↗
+                        </a>
+                    </div>
+
                     <slot name="intro" />
                 </div>
                 <slot name="concept" />
