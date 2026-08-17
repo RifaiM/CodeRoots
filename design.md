@@ -1,6 +1,6 @@
 # 🎨 Design System & UI Specifications — NoviCodes
 
-> **Version:** 2.0.0  
+> **Version:** 2.5.0  
 > **Aesthetic Philosophy:** Premium, Function-Driven, Fluidly Responsive, Zero Cliché  
 > **CSS Engine:** Vanilla CSS3 with Harmonious HSL/HEX Design Tokens  
 
@@ -20,6 +20,8 @@ Track Theme Palettes:
   --color-level5-cyan:   #0284c7 (Level 5 React Framework Dojo)
   --color-level6-green:  #10b981 (Level 6 Python Backend Dojo)
   --color-level7-purple: #9333ea (Level 7 Specialization Hub)
+  --color-level7d-ts:    #3178c6 (Level 7D TypeScript Track)
+  --color-level7e-motion:#ec4899 (Level 7E CSS Motion Track)
   --color-level8-sky:    #0284c7 (Level 8 API Bridge Dojo)
   --color-level9-indigo: #4f46e5 (Level 9 Fullstack Auth & Database)
   --color-level10-amber: #f59e0b (Level 10 Apex SaaS Capstone)
@@ -75,22 +77,27 @@ Viewport Width (px)
 
 ---
 
-## 4. UI Component Architecture
+## 4. UI Component Specifications
 
-### 4.1 Mission Card & Real-Time Checklist
+### 4.1 2-Tier Stacked Foundations Refresher Bar (`.foundations-ref-box`)
+- **Row 1:** Direct label (`📖 Concept Refresher:`) with `0.82rem` font weight 700.
+- **Row 2:** Full-width select control (`flex: 1`, `min-width: 0`, `text-overflow: ellipsis`) + Open Guide button (`flex-shrink: 0`, `height: 36px`, `font-weight: 800`).
+- **Mobile Calibration:** Retains 13–14px typography and native OS picker trigger without horizontal squash.
+
+### 4.2 Foundations Instant Search & Track Switcher
+- **Search Input:** Dual-state focus with `rgba(37, 99, 235, 0.12)` halo ring and circular `✕` clear button.
+- **Track Switcher:** Stable desktop wrapper (`max-width: 520px`) preventing width jumps across track selections.
+
+### 4.3 Reference Code Snippet & Copy Action
+- **Positioning:** Top-right anchored inside code blocks with dark-mode contrast.
+- **State Feedback:** Instant transition to emerald green (`#10b981`) with `✅ Copied!` text and `scale(1.04)` micro-animation.
+
+### 4.4 Mission Card & Real-Time Checklist
 - **Container:** Rounded `#f8fafc` card with left accent border corresponding to the level theme color.
 - **Counter Badge:** `#checklistCounter` (`X / Y`) pills that dynamically update background from neutral gray to green (`#10b981`) when all tasks are complete.
 - **Checklist Item:** Interactive SVG checkmark circle transitioning from gray outline to filled green check upon rule satisfaction.
 
-### 4.2 IDE Workspace & Line Number Synchronization
-- Textarea with `white-space: pre-wrap; word-break: break-word;` eliminating horizontal scrollbars on mobile viewports.
-- Line numbers container with `translateY(-${editor.scrollTop}px)` sync ensuring exact line-by-line parity during vertical scrolling.
-
-### 4.3 High-Resolution Canvas Proof-of-Work Certificates
+### 4.5 High-Resolution Canvas Proof-of-Work Certificates
 - Frame rendered with double borders (`14px` dark slate outer, `3px` themed inner).
-- Scaled for high-DPI export: `1200x800px` rendering canvas exporting crisp 300 DPI PNG graphics.
+- Scaled for high-DPI export: `1200x800px` rendering canvas exporting crisp 300 DPI PNG graphics and `@media print` landscape layouts.
 
-### 4.4 SweetAlert2 Modals Design Token
-- **Backdrop:** `rgba(15, 23, 42, 0.75)` with `backdrop-filter: blur(12px)`.
-- **Card Background:** `#ffffff` with `border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);`.
-- **Confirm Buttons:** `border-radius: 12px; font-weight: 800; font-family: 'Plus Jakarta Sans', sans-serif;`.
