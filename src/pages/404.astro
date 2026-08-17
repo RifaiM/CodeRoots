@@ -35,7 +35,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="suggestion-name" id="suggestionName">Skill Tree Dashboard</div>
                 <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress across all 10 levels.</p>
                 <div class="suggestion-action-row">
-                    <a href="/" class="suggestion-btn" id="suggestionLink">
+                    <a href="/#roadmap" class="suggestion-btn" id="suggestionLink">
                         <span id="suggestionBtnText">🚀 Jump to Suggested Route ➔</span>
                     </a>
                 </div>
@@ -484,7 +484,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else if (queryOrPath.includes('cloud') || queryOrPath.includes('docker') || queryOrPath.includes('devops') || queryOrPath.includes('hosting')) {
                     targetUrl = '/foundations.html?track=cloud';
                     targetName = '☁️ Cloud Hosting & DevOps Foundations';
-                    targetDesc = 'Learn cloud hosting configs, Git workflows, and CI/CD pipelines.';;
+                    targetDesc = 'Learn cloud hosting configs, Git workflows, and CI/CD pipelines.';
                     tagHeader = '🚀 Foundations Track Match';
                 } else if (queryOrPath.includes('sql') || queryOrPath.includes('postgres') || queryOrPath.includes('database') || queryOrPath.includes('db')) {
                     targetUrl = '/foundations.html?track=sql';
@@ -494,7 +494,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else if (queryOrPath.includes('next') || queryOrPath.includes('app_router') || queryOrPath.includes('ssr')) {
                     targetUrl = '/foundations.html?track=nextjs';
                     targetName = '⚡ Next.js & Server Components Foundations';
-                    targetDesc = 'Master React Server Components, App Router, and server actions.';
+                    targetDesc = 'Master React Server Components, App Router, and server rendering.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('typescript') || queryOrPath.includes('ts') || queryOrPath.includes('type')) {
+                    targetUrl = '/foundations.html?track=typescript';
+                    targetName = '🔷 TypeScript & Type Safety Foundations';
+                    targetDesc = 'Master strict type safety, interfaces, DOM narrowing, and generic types.';
+                    tagHeader = '🚀 Foundations Track Match';
+                } else if (queryOrPath.includes('cssmotion') || queryOrPath.includes('motion') || queryOrPath.includes('animation') || queryOrPath.includes('transition')) {
+                    targetUrl = '/foundations.html?track=cssmotion';
+                    targetName = '🎨 CSS Motion & Micro-Interactions Foundations';
+                    targetDesc = 'Master hardware GPU transforms, keyframes, and spring micro-interactions.';
                     tagHeader = '🚀 Foundations Track Match';
                 } else if (queryOrPath.includes('async') || queryOrPath.includes('fetch') || queryOrPath.includes('skeleton') || queryOrPath.includes('loading')) {
                     targetUrl = '/foundations.html?track=async';
@@ -509,7 +519,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else if (queryOrPath.includes('saas') || queryOrPath.includes('capstone') || queryOrPath.includes('stripe')) {
                     targetUrl = '/foundations.html?track=saas';
                     targetName = '🏆 SaaS Architecture Foundations';
-                    targetDesc = 'Learn Next.js App Router, pricing switchers, and SaaS UI components.';;
+                    targetDesc = 'Learn Next.js App Router, pricing switchers, and SaaS UI components.';
                     tagHeader = '🚀 Foundations Track Match';
                 } else if (queryOrPath.includes('html')) {
                     targetUrl = '/foundations.html?track=html';
@@ -527,13 +537,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     targetDesc = 'Master DOM manipulation, event loops, and dynamic logic.';
                     tagHeader = '🚀 Foundations Track Match';
                 } else {
-                    targetUrl = '/foundations.html';
+                    targetUrl = '/1. partA/hub.html';
                     targetName = '📚 Foundations Academy Hub';
-                    targetDesc = 'Explore all 11 foundational web and software engineering tracks.';
+                    targetDesc = 'Explore all 13 foundational web and software engineering tracks.';
                 }
             } 
-            // 2. Specific Practical Dojos & Capstones
-            else if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas') || rawPath.includes('capstone')) {
+            // 2. Specific Practical Dojos & Specializations
+            else if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/9. partI/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
                     targetName = `Level 10 • SaaS UI Milestone ${lessonNum}`;
@@ -542,7 +552,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else {
                     targetUrl = '/9. partI/hub.html';
                     targetName = 'Level 10 • SaaS Dashboard UI Dojo';
-                    targetDesc = '6 interactive lessons covering SaaS layout shells, search filters, and pricing tables.';;
+                    targetDesc = '6 interactive lessons covering SaaS layout shells, search filters, and pricing tables.';
                 }
             } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
@@ -575,7 +585,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else {
                     targetUrl = '/6. partF/hub.html';
                     targetName = 'Level 7 • Specialized Developer Tracks Hub';
-                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
+                    targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
                 }
             } else if (rawPath.includes('branchb') || rawPath.includes('7b') || rawPath.includes('sql') || rawPath.includes('database')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
@@ -586,9 +596,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else {
                     targetUrl = '/6. partF/hub.html';
                     targetName = 'Level 7 • Specialized Developer Tracks Hub';
-                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
+                    targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
                 }
-            } else if (rawPath.includes('branchc') || rawPath.includes('7c') || rawPath.includes('next')) {
+            } else if (rawPath.includes('branchc') || rawPath.includes('7c') || (rawPath.includes('next') && !rawPath.includes('foundations'))) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
                     targetUrl = `/6. partF/branchC/lesson${lessonNum}_remake.html`;
                     targetName = `Level 7C • Lesson ${lessonNum} (Next.js Framework)`;
@@ -597,7 +607,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 } else {
                     targetUrl = '/6. partF/hub.html';
                     targetName = 'Level 7 • Specialized Developer Tracks Hub';
-                    targetDesc = 'Pick between Cloud Hosting, SQL Databases, or Next.js Web Apps.';
+                    targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
+                }
+            } else if (rawPath.includes('branchd') || rawPath.includes('7d') || (rawPath.includes('typescript') && !rawPath.includes('foundations')) || (rawPath.includes('ts') && !rawPath.includes('foundations'))) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 12) {
+                    targetUrl = `/6. partF/branchD/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 7D • Lesson ${lessonNum} (TypeScript Mastery)`;
+                    targetDesc = `Jump directly into TypeScript Interfaces, Generics, and Store Milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/6. partF/hub.html';
+                    targetName = 'Level 7 • Specialized Developer Tracks Hub';
+                    targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
+                }
+            } else if (rawPath.includes('branche') || rawPath.includes('7e') || (rawPath.includes('cssmotion') && !rawPath.includes('foundations')) || (rawPath.includes('motion') && !rawPath.includes('foundations'))) {
+                if (lessonNum && lessonNum >= 1 && lessonNum <= 10) {
+                    targetUrl = `/6. partF/branchE/lesson${lessonNum}_remake.html`;
+                    targetName = `Level 7E • Lesson ${lessonNum} (CSS Motion)`;
+                    targetDesc = `Jump directly into CSS Animations, Keyframes, and Micro-Interactions Milestone ${lessonNum}.`;
+                    tagHeader = '🚀 Exact Lesson Match';
+                } else {
+                    targetUrl = '/6. partF/hub.html';
+                    targetName = 'Level 7 • Specialized Developer Tracks Hub';
+                    targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
                 }
             } else if (rawPath.includes('parte') || rawPath.includes('level6') || rawPath.includes('python')) {
                 if (lessonNum && lessonNum >= 1 && lessonNum <= 15) {
