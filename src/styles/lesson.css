@@ -978,6 +978,26 @@
 
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.66rem; padding: 3px 7px; }
 
+    /* Foundations Refresher Bar (425px) */
+    .foundations-ref-box { padding: 6px 10px; gap: 6px; }
+    .foundations-ref-header { height: 30px; gap: 5px; }
+    .ref-icon { font-size: 0.85rem; }
+    .ref-label { font-size: 0.74rem; }
+    .foundations-ref-select {
+        height: 30px;
+        line-height: 28px;
+        font-size: 0.74rem;
+        padding: 0 24px 0 8px;
+        border-radius: 6px;
+    }
+    .ref-open-link-btn {
+        height: 30px;
+        line-height: 28px;
+        font-size: 0.74rem;
+        padding: 0 10px;
+        border-radius: 6px;
+    }
+
     /* Mission Card & Checklist */
     .mission-card        { padding: 10px 10px !important; }
     .mission-header h3   { font-size: 0.90rem !important; }
@@ -1062,6 +1082,26 @@
 
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.62rem; padding: 2px 6px; }
 
+    /* Foundations Refresher Bar (375px) */
+    .foundations-ref-box { padding: 5px 8px; gap: 5px; }
+    .foundations-ref-header { height: 28px; gap: 4px; }
+    .ref-icon { font-size: 0.78rem; }
+    .ref-label { font-size: 0.68rem; }
+    .foundations-ref-select {
+        height: 28px;
+        line-height: 26px;
+        font-size: 0.68rem;
+        padding: 0 22px 0 6px;
+        border-radius: 6px;
+    }
+    .ref-open-link-btn {
+        height: 28px;
+        line-height: 26px;
+        font-size: 0.68rem;
+        padding: 0 8px;
+        border-radius: 6px;
+    }
+
     /* Mission Card & Checklist */
     .mission-card        { padding: 8px 8px !important; }
     .mission-header h3   { font-size: 0.84rem !important; }
@@ -1135,6 +1175,26 @@
     .intro-highlight     { font-size: 0.68rem; padding: 5px 6px; }
 
     .lesson-level-pill, .lesson-xp-pill { font-size: 0.58rem; padding: 2px 5px; }
+
+    /* Foundations Refresher Bar (320px) */
+    .foundations-ref-box { padding: 4px 6px; gap: 4px; }
+    .foundations-ref-header { height: 26px; gap: 3px; }
+    .ref-icon { font-size: 0.72rem; }
+    .ref-label { font-size: 0.62rem; }
+    .foundations-ref-select {
+        height: 26px;
+        line-height: 24px;
+        font-size: 0.62rem;
+        padding: 0 20px 0 5px;
+        border-radius: 5px;
+    }
+    .ref-open-link-btn {
+        height: 26px;
+        line-height: 24px;
+        font-size: 0.62rem;
+        padding: 0 6px;
+        border-radius: 5px;
+    }
 
     /* Mission Card & Checklist */
     .mission-card        { padding: 6px 6px !important; }
