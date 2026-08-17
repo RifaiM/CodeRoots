@@ -101,7 +101,7 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                     <div class="foundations-ref-box">
                         <div class="foundations-ref-header">
                             <span class="ref-icon">📖</span>
-                            <span class="ref-label">Need a concept refresher?</span>
+                            <span class="ref-label">Concept Refresher:</span>
                         </div>
                         <div class="foundations-ref-control">
                             <select class="foundations-ref-select" id="lessonFoundationsSelect" aria-label="Review Foundations Guide in New Tab">
@@ -134,7 +134,7 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                                 </optgroup>
                             </select>
                             <a href={foundationsUrl} target="_blank" rel="noopener noreferrer" class="ref-open-link-btn" id="openCurrentFoundationsBtn" title={`Open ${foundationsRef.name} in a new tab`}>
-                                <span>Open ↗</span>
+                                <span>📖 Open Guide ↗</span>
                             </a>
                         </div>
                     </div>
@@ -253,7 +253,7 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
             });
         }
 
-        // Global Foundations Concept Dropdown Auto-Open Handler
+        // Global Foundations Concept Dropdown Sync Handler
         const foundationsSelect = document.getElementById('lessonFoundationsSelect') as HTMLSelectElement | null;
         const openFoundationsBtn = document.getElementById('openCurrentFoundationsBtn') as HTMLAnchorElement | null;
 
@@ -268,7 +268,6 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 if (openFoundationsBtn) {
                     openFoundationsBtn.href = targetUrl;
                 }
-                window.open(targetUrl, '_blank', 'noopener,noreferrer');
             });
         }
 
