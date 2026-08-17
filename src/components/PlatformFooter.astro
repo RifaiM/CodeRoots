@@ -26,6 +26,21 @@ const {
                 <span class="footer-badge-pill">⚖️ MIT License</span>
                 <span class="footer-badge-pill">✨ 100% Free</span>
             </div>
+
+            <!-- Support Ra Labs Creator Pills -->
+            <div class="footer-support-wrap">
+                <span class="footer-support-title">💖 Support the Creator:</span>
+                <div class="footer-support-btns">
+                    <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="support-pill-btn kofi" title="Buy Ra Labs a Coffee (USD / Global)">
+                        <span class="support-pill-icon">☕</span>
+                        <span class="support-pill-text">Ko-fi (Global)</span>
+                    </a>
+                    <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="support-pill-btn trakteer" title="Support Ra Labs on Trakteer (IDR / QRIS)">
+                        <span class="support-pill-icon">🍜</span>
+                        <span class="support-pill-text">Trakteer (IDR)</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Column 2: Foundations & Concepts -->
@@ -64,11 +79,13 @@ const {
         <!-- Column 4: Platform & Legal -->
         <div class="footer-col">
             <h3 class="footer-heading">
-                <span class="col-icon">⚖️</span> Platform &amp; Legal
+                <span class="col-icon">⚖️</span> Platform &amp; Support
             </h3>
             <ul class="footer-nav-list">
                 <li><a href="/#dailyQuestSection">Daily 2-Minute Quests</a></li>
                 <li><a href="javascript:void(0)" onclick="if(typeof openCertificateHub==='function'){openCertificateHub();}else if(typeof window.openCertificateHub==='function'){window.openCertificateHub();}else{window.location.href='/9. partI/certificate.html';}">Proof-of-Work Certificates</a></li>
+                <li><a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="support-direct-link">☕ Buy on Ko-fi (Global) ↗</a></li>
+                <li><a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="support-direct-link">🍜 Support on Trakteer (IDR) ↗</a></li>
                 <li><a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
                 <li><a href="/terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
                 <li><a href="https://rifaim.github.io/Portfolio" target="_blank" rel="noopener noreferrer">Creator Portfolio ↗</a></li>
@@ -159,6 +176,80 @@ const {
         font-size: 0.75rem;
         font-weight: 700;
         color: #475569;
+    }
+
+    /* Creator Support Section in Footer */
+    .footer-support-wrap {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .footer-support-title {
+        font-size: 0.76rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #be185d;
+    }
+
+    .footer-support-btns {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .support-pill-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .support-pill-btn.kofi {
+        background: #f0fdfa;
+        border: 1px solid #99f6e4;
+        color: #0d9488;
+    }
+
+    .support-pill-btn.kofi:hover {
+        background: #29abe0;
+        border-color: #29abe0;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(41, 171, 224, 0.3);
+    }
+
+    .support-pill-btn.trakteer {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+    }
+
+    .support-pill-btn.trakteer:hover {
+        background: #c0392b;
+        border-color: #c0392b;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+    }
+
+    .support-direct-link {
+        color: #e11d48 !important;
+        font-weight: 700 !important;
+    }
+
+    .support-direct-link:hover {
+        color: #be185d !important;
     }
 
     /* Navigation Link Columns */
