@@ -88,7 +88,7 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
     />
 
     <!-- Dual 50/50 Lesson Workspace: Natural scroll on both lanes -->
-    <main class="lesson-workspace-outer" data-track={trackPrefix} data-lesson-num={lessonNum} data-level-tag={levelTag}>
+    <main class="lesson-workspace-outer" data-track={trackPrefix} data-lesson-num={lessonNum} data-level-tag={levelTag} data-completion-key={completionKey}>
         <div class="lesson-grid">
             
             <!-- LEFT LANE: Concept, Widgets, Reference Code, Goal // scrolls freely -->
@@ -251,6 +251,24 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 track,
                 lessonNum,
                 levelTag
+            });
+        }
+
+        // ── Next Lesson / Continue Button Guard & Persistence Sync ──
+        const nextBtn = document.getElementById('nextLessonBtn') as HTMLAnchorElement | null;
+        if (nextBtn) {
+            const compKey = mainEl?.dataset.completionKey;
+            if (compKey && localStorage.getItem(compKey) === 'true') {
+                nextBtn.classList.remove('locked', 'disabled');
+                nextBtn.classList.add('active');
+            }
+
+            nextBtn.addEventListener('click', (e) => {
+                if (!nextBtn.classList.contains('active')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
             });
         }
 

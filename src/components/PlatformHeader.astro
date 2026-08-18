@@ -97,6 +97,7 @@ const {
                                         <span class="jump-item-num">§ {String(l.id).padStart(2, '0')}</span>
                                         <span class="jump-item-name">{l.title}</span>
                                     </div>
+                                    <span class="jump-item-status" aria-label="Status"></span>
                                 </a>
                             ))}
                         </div>
@@ -109,6 +110,7 @@ const {
                                         <span class="jump-item-num">PROOF OF WORK</span>
                                         <span class="jump-item-name">Official Certificate →</span>
                                     </div>
+                                    <span class="jump-item-status" aria-label="Status">🔒</span>
                                 </a>
                             </div>
                         )}
@@ -253,6 +255,8 @@ const {
     .jump-item {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        gap: 8px;
         padding: 6px 8px;
         border-radius: 2px;
         text-decoration: none;
@@ -274,9 +278,26 @@ const {
         color: var(--accent-oxide);
     }
 
+    .jump-item.completed .jump-item-num {
+        color: #2F5233;
+        font-weight: 600;
+    }
+
     .jump-item.locked {
-        opacity: 0.5;
+        opacity: 0.45;
         cursor: not-allowed;
+    }
+
+    .jump-item-status {
+        font-size: 0.76rem;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .jump-item.completed .jump-item-status {
+        color: #2F5233;
     }
 
     .jump-item-info {
@@ -435,14 +456,29 @@ const {
             if (isComp) {
                 item.classList.add('completed');
                 item.classList.remove('locked');
-                if (statusSpan && !isCurrent) statusSpan.textContent = '✅';
+                if (statusSpan) {
+                    statusSpan.textContent = '✅';
+                    statusSpan.title = 'Completed';
+                }
+            } else if (isCurrent) {
+                item.classList.remove('locked', 'completed');
+                if (statusSpan) {
+                    statusSpan.textContent = '👉';
+                    statusSpan.title = 'Current Lesson';
+                }
             } else if (isAccessible) {
                 item.classList.remove('locked', 'completed');
-                if (statusSpan && !isCurrent) statusSpan.textContent = '🔓';
+                if (statusSpan) {
+                    statusSpan.textContent = '🔓';
+                    statusSpan.title = 'Available';
+                }
             } else {
                 item.classList.add('locked');
                 item.classList.remove('completed');
-                if (statusSpan && !isCurrent) statusSpan.textContent = '🔒';
+                if (statusSpan) {
+                    statusSpan.textContent = '🔒';
+                    statusSpan.title = 'Locked - Complete previous lesson first';
+                }
             }
 
             // Guard click event for locked items

@@ -39,7 +39,7 @@ export class ProgressManager {
         // 3. Enable Next button in DOM if present
         const nextBtn = document.getElementById(nextBtnId) as HTMLElement | null;
         if (nextBtn) {
-            nextBtn.classList.remove('locked');
+            nextBtn.classList.remove('locked', 'disabled');
             nextBtn.classList.add('active');
             if ('disabled' in nextBtn) (nextBtn as any).disabled = false;
         }

@@ -843,6 +843,8 @@
     font-weight: 800;
     text-decoration: none;
     cursor: not-allowed;
+    pointer-events: none !important;
+    user-select: none;
     transition: all .2s ease;
     display: inline-flex;
     align-items: center;
@@ -855,6 +857,7 @@
     border-color: #10b981;
     color: #ffffff;
     cursor: pointer;
+    pointer-events: auto !important;
     box-shadow: 0 4px 14px rgba(16,185,129,.25);
 }
 
