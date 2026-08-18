@@ -4,9 +4,10 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
-    { href: 'javascript:void(0)', label: 'Foundations', icon: '📚', active: true, title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', active: true, title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -30,7 +31,7 @@ const navLinks = [
         
         <!-- Hero Section -->
         <section class="hub-hero">
-            <span class="hub-badge">🏛️ Foundations Academy • Levels 0–3</span>
+            <span class="hub-badge">Foundations Academy • Levels 0–3</span>
             <h1>Master Core <span class="typewriter-wrap theme-blue"><span class="typewriter-text" data-phrases='["Building Blocks of Web", "HTML & CSS Box Model", "Flexbox & Grid Layouts", "JavaScript ES6+ Logic", "Web Architecture Models"]' aria-label="Building Blocks of Web">Building Blocks of Web</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
             <p>
                 Build unbreakable mental models before you start writing complex applications. Learn internet architecture, semantic HTML structure, modern CSS styling, and reactive JavaScript logic with zero setup required.
@@ -49,7 +50,7 @@ const navLinks = [
 
             <!-- Smart Resume CTA -->
             <a href="/1. partA/web_history.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>🚀 Start Level 0: Web History ➔</span>
+                <span>Start Level 0: Web History ➔</span>
             </a>
         </section>
 
@@ -82,131 +83,124 @@ const navLinks = [
 
             <!-- Core Web Foundations Grid -->
             <div style="margin-bottom: 24px;">
-                <h3 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                    <span>🧱</span> Core Web Foundations (Levels 0–3)
+                <h3 class="subgroup-title">
+                    <span class="subgroup-tag">Section 01</span> Core Web Foundations (Levels 0–3)
                 </h3>
                 <div class="tracks-grid">
                     
-                
-                <!-- Track 0: Web History & Concepts -->
-                <a href="/1. partA/web_history.html" class="track-hub-card card-l0" id="cardL0">
-                    <div>
-                        <div class="track-hub-header">
-                            <div class="track-icon-badge">🌐</div>
-                            <span class="track-status-pill available" id="pillL0">⚡ Up Next</span>
+                    <!-- Track 0: Web History & Concepts -->
+                    <a href="/1. partA/web_history.html" class="track-hub-card card-l0" id="cardL0">
+                        <div>
+                            <div class="track-hub-header">
+                                <span class="track-card-level">Level 0 • Architecture</span>
+                                <span class="track-status-pill available" id="pillL0">UP NEXT</span>
+                            </div>
+                            <h3 class="track-card-title">Web History &amp; Core Concepts</h3>
+                            <p class="track-card-desc">
+                                Discover how the World Wide Web was born. Learn how clients, servers, DNS, HTTP protocols, and browser rendering engines interact.
+                            </p>
+                            <div class="track-module-list">
+                                <span class="module-pill">Web History</span>
+                                <span class="module-pill">Clients &amp; Servers</span>
+                                <span class="module-pill">DNS &amp; IP</span>
+                                <span class="module-pill">HTTP Cycle</span>
+                            </div>
                         </div>
-                        <div class="track-card-level">Level 0 • Architecture</div>
-                        <h3 class="track-card-title">Web History &amp; Core Concepts</h3>
-                        <p class="track-card-desc">
-                            Discover how the World Wide Web was born. Learn how clients, servers, DNS, HTTP protocols, and browser rendering engines interact.
-                        </p>
-                        <div class="track-module-list">
-                            <span class="module-pill">Web History</span>
-                            <span class="module-pill">Clients &amp; Servers</span>
-                            <span class="module-pill">DNS &amp; IP</span>
-                            <span class="module-pill">HTTP Cycle</span>
+                        <div class="track-card-footer">
+                            <span class="track-xp-badge">+100 XP</span>
+                            <span class="track-btn-action" id="actionL0">Start Track ➔</span>
                         </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <span class="track-xp-badge">⚡ +100 XP</span>
-                        <span class="track-btn-action" id="actionL0">Start Track ➔</span>
-                    </div>
-                </a>
+                    </a>
 
-                <!-- Track 1: HTML Foundations -->
-                <a href="/foundations.html?track=html" class="track-hub-card card-l1" id="cardL1">
-                    <div>
-                        <div class="track-hub-header">
-                            <div class="track-icon-badge">🧱</div>
-                            <span class="track-status-pill locked" id="pillL1">🔒 Locked</span>
+                    <!-- Track 1: HTML Foundations -->
+                    <a href="/foundations.html?track=html" class="track-hub-card card-l1" id="cardL1">
+                        <div>
+                            <div class="track-hub-header">
+                                <span class="track-card-level">Level 1 • Structure</span>
+                                <span class="track-status-pill locked" id="pillL1">LOCKED</span>
+                            </div>
+                            <h3 class="track-card-title">HTML5 Structural Foundations</h3>
+                            <p class="track-card-desc">
+                                The skeleton of every website. Learn tags, elements, nested structures, forms, links, media, and semantic document architecture.
+                            </p>
+                            <div class="track-module-list">
+                                <span class="module-pill">Analogy &amp; Concept</span>
+                                <span class="module-pill">Term Glossary</span>
+                                <span class="module-pill">Code Sandbox</span>
+                                <span class="module-pill">Knowledge Quiz</span>
+                            </div>
                         </div>
-                        <div class="track-card-level">Level 1 • Structure</div>
-                        <h3 class="track-card-title">HTML5 Structural Foundations</h3>
-                        <p class="track-card-desc">
-                            The skeleton of every website. Learn tags, elements, nested structures, forms, links, media, and semantic document architecture.
-                        </p>
-                        <div class="track-module-list">
-                            <span class="module-pill">📖 Analogy &amp; Concept</span>
-                            <span class="module-pill">📚 Term Glossary</span>
-                            <span class="module-pill">💻 Code Sandbox</span>
-                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        <div class="track-card-footer">
+                            <span class="track-xp-badge">+400 XP</span>
+                            <span class="track-btn-action" id="actionL1">Locked</span>
                         </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <span class="track-xp-badge">⚡ +400 XP</span>
-                        <span class="track-btn-action" id="actionL1">Locked</span>
-                    </div>
-                </a>
+                    </a>
 
-                <!-- Track 2: CSS Foundations -->
-                <a href="/foundations.html?track=css" class="track-hub-card card-l2" id="cardL2">
-                    <div>
-                        <div class="track-hub-header">
-                            <div class="track-icon-badge">🎨</div>
-                            <span class="track-status-pill locked" id="pillL2">🔒 Locked</span>
+                    <!-- Track 2: CSS Foundations -->
+                    <a href="/foundations.html?track=css" class="track-hub-card card-l2" id="cardL2">
+                        <div>
+                            <div class="track-hub-header">
+                                <span class="track-card-level">Level 2 • Styling</span>
+                                <span class="track-status-pill locked" id="pillL2">LOCKED</span>
+                            </div>
+                            <h3 class="track-card-title">Modern CSS3 Styling &amp; Layouts</h3>
+                            <p class="track-card-desc">
+                                Bring structure to life with visual style. Master selectors, the CSS Cascade, the Box Model, Flexbox alignment, and responsive design.
+                            </p>
+                            <div class="track-module-list">
+                                <span class="module-pill">Analogy &amp; Concept</span>
+                                <span class="module-pill">Term Glossary</span>
+                                <span class="module-pill">Code Sandbox</span>
+                                <span class="module-pill">Knowledge Quiz</span>
+                            </div>
                         </div>
-                        <div class="track-card-level">Level 2 • Styling</div>
-                        <h3 class="track-card-title">Modern CSS3 Styling &amp; Layouts</h3>
-                        <p class="track-card-desc">
-                            Bring structure to life with visual style. Master selectors, the CSS Cascade, the Box Model, Flexbox alignment, and responsive design.
-                        </p>
-                        <div class="track-module-list">
-                            <span class="module-pill">📖 Analogy &amp; Concept</span>
-                            <span class="module-pill">📚 Term Glossary</span>
-                            <span class="module-pill">💻 Code Sandbox</span>
-                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        <div class="track-card-footer">
+                            <span class="track-xp-badge">+400 XP</span>
+                            <span class="track-btn-action" id="actionL2">Locked</span>
                         </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <span class="track-xp-badge">⚡ +400 XP</span>
-                        <span class="track-btn-action" id="actionL2">Locked</span>
-                    </div>
-                </a>
+                    </a>
 
-                <!-- Track 3: JavaScript Foundations -->
-                <a href="/foundations.html?track=js" class="track-hub-card card-l3" id="cardL3">
-                    <div>
-                        <div class="track-hub-header">
-                            <div class="track-icon-badge">⚡</div>
-                            <span class="track-status-pill locked" id="pillL3">🔒 Locked</span>
+                    <!-- Track 3: JavaScript Foundations -->
+                    <a href="/foundations.html?track=js" class="track-hub-card card-l3" id="cardL3">
+                        <div>
+                            <div class="track-hub-header">
+                                <span class="track-card-level">Level 3 • Logic</span>
+                                <span class="track-status-pill locked" id="pillL3">LOCKED</span>
+                            </div>
+                            <h3 class="track-card-title">Modern JavaScript (ES6+) Logic</h3>
+                            <p class="track-card-desc">
+                                Give your web pages interactive superpowers. Master variables, functions, conditional flow, DOM event listeners, and API fetching.
+                            </p>
+                            <div class="track-module-list">
+                                <span class="module-pill">Analogy &amp; Concept</span>
+                                <span class="module-pill">Term Glossary</span>
+                                <span class="module-pill">Code Sandbox</span>
+                                <span class="module-pill">Knowledge Quiz</span>
+                            </div>
                         </div>
-                        <div class="track-card-level">Level 3 • Logic</div>
-                        <h3 class="track-card-title">Modern JavaScript (ES6+) Logic</h3>
-                        <p class="track-card-desc">
-                            Give your web pages interactive superpowers. Master variables, functions, conditional flow, DOM event listeners, and API fetching.
-                        </p>
-                        <div class="track-module-list">
-                            <span class="module-pill">📖 Analogy &amp; Concept</span>
-                            <span class="module-pill">📚 Term Glossary</span>
-                            <span class="module-pill">💻 Code Sandbox</span>
-                            <span class="module-pill">🧪 Knowledge Quiz</span>
+                        <div class="track-card-footer">
+                            <span class="track-xp-badge">+400 XP</span>
+                            <span class="track-btn-action" id="actionL3">Locked</span>
                         </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <span class="track-xp-badge">⚡ +400 XP</span>
-                        <span class="track-btn-action" id="actionL3">Locked</span>
-                    </div>
-                </a>
+                    </a>
 
-            
                 </div>
             </div>
 
             <!-- Advanced Architecture Foundations Grid -->
             <div style="margin-top: 36px;">
-                <h3 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                    <span>🚀</span> Advanced Framework & Architecture Foundations (Levels 5–10)
+                <h3 class="subgroup-title">
+                    <span class="subgroup-tag">Section 02</span> Advanced Framework & Architecture Foundations (Levels 5–10)
                 </h3>
                 <div class="tracks-grid">
                     <!-- Track 5: React Foundations -->
                     <a href="/foundations.html?track=react" class="track-hub-card" id="cardL5">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #e0f2fe; color: #0284c7;">⚛️</div>
-                                <span class="track-status-pill available" id="pillL5">⚡ Available</span>
+                                <span class="track-card-level">Level 5 • Framework</span>
+                                <span class="track-status-pill available" id="pillL5">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 5 • Framework</div>
-                            <h3 class="track-card-title">React & Modern UI Foundations</h3>
+                            <h3 class="track-card-title">React &amp; Modern UI Foundations</h3>
                             <p class="track-card-desc">Building modular web interfaces: Component trees, JSX syntax, passing props, useState, and useEffect API fetching.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Component Trees</span>
@@ -216,7 +210,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL5">Start Track ➔</span>
                         </div>
                     </a>
@@ -225,11 +219,10 @@ const navLinks = [
                     <a href="/foundations.html?track=python" class="track-hub-card" id="cardL6">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #ecfdf5; color: #059669;">🐍</div>
-                                <span class="track-status-pill available" id="pillL6">⚡ Available</span>
+                                <span class="track-card-level">Level 6 • Backend</span>
+                                <span class="track-status-pill available" id="pillL6">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 6 • Backend</div>
-                            <h3 class="track-card-title">Python & Server Logic Foundations</h3>
+                            <h3 class="track-card-title">Python &amp; Server Logic Foundations</h3>
                             <p class="track-card-desc">Backend logic fundamentals: Python indentation, lists and dictionaries, error handling, classes, and simple REST APIs.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Python Syntax</span>
@@ -239,7 +232,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL6">Start Track ➔</span>
                         </div>
                     </a>
@@ -251,11 +244,10 @@ const navLinks = [
                     <a href="/foundations.html?track=cloud" class="track-hub-card" id="cardL7A">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #faf5ff; color: #7e22ce;">☁️</div>
-                                <span class="track-status-pill available" id="pillL7A">⚡ Available</span>
+                                <span class="track-card-level">Level 7A • Cloud</span>
+                                <span class="track-status-pill available" id="pillL7A">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 7A • Cloud</div>
-                            <h3 class="track-card-title">Cloud & Deployment Foundations</h3>
+                            <h3 class="track-card-title">Cloud &amp; Deployment Foundations</h3>
                             <p class="track-card-desc">How modern websites go live: Static hosting vs serverless, config files (vercel.json), and environment variables.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Static vs Serverless</span>
@@ -265,7 +257,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL7A">Start Track ➔</span>
                         </div>
                     </a>
@@ -274,11 +266,10 @@ const navLinks = [
                     <a href="/foundations.html?track=sql" class="track-hub-card" id="cardL7B">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #eef2ff; color: #4338ca;">🛢️</div>
-                                <span class="track-status-pill available" id="pillL7B">⚡ Available</span>
+                                <span class="track-card-level">Level 7B • Databases</span>
+                                <span class="track-status-pill available" id="pillL7B">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 7B • Databases</div>
-                            <h3 class="track-card-title">SQL & Database Foundations</h3>
+                            <h3 class="track-card-title">SQL &amp; Database Foundations</h3>
                             <p class="track-card-desc">Organizing data in tables: Relational schemas, primary keys, and basic SQL queries (SELECT, INSERT, WHERE).</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Tables &amp; Rows</span>
@@ -288,7 +279,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL7B">Start Track ➔</span>
                         </div>
                     </a>
@@ -297,11 +288,10 @@ const navLinks = [
                     <a href="/foundations.html?track=nextjs" class="track-hub-card" id="cardL7C">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #f4f4f5; color: #18181b;">⚡</div>
-                                <span class="track-status-pill available" id="pillL7C">⚡ Available</span>
+                                <span class="track-card-level">Level 7C • Next.js</span>
+                                <span class="track-status-pill available" id="pillL7C">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 7C • Next.js & UI</div>
-                            <h3 class="track-card-title">Next.js & UI Architecture Foundations</h3>
+                            <h3 class="track-card-title">Next.js &amp; UI Architecture Foundations</h3>
                             <p class="track-card-desc">Modern framework structure: File-based routing, page layouts, client components, and server rendering.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">App Router</span>
@@ -311,7 +301,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL7C">Start Track ➔</span>
                         </div>
                     </a>
@@ -320,10 +310,9 @@ const navLinks = [
                     <a href="/foundations.html?track=typescript" class="track-hub-card" id="cardL7D">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #eff6ff; color: #2563eb;">🔷</div>
-                                <span class="track-status-pill available" id="pillL7D">⚡ Available</span>
+                                <span class="track-card-level">Level 7D • Type Systems</span>
+                                <span class="track-status-pill available" id="pillL7D">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 7D • Type Systems</div>
                             <h3 class="track-card-title">TypeScript &amp; Type Safety Foundations</h3>
                             <p class="track-card-desc">Production type safety: Type inference, interface contracts, DOM element narrowing, and generics &lt;T&gt;.</p>
                             <div class="track-module-list">
@@ -334,7 +323,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL7D">Start Track ➔</span>
                         </div>
                     </a>
@@ -343,10 +332,9 @@ const navLinks = [
                     <a href="/foundations.html?track=cssmotion" class="track-hub-card" id="cardL7E">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #fff1f2; color: #e11d48;">🎨</div>
-                                <span class="track-status-pill available" id="pillL7E">⚡ Available</span>
+                                <span class="track-card-level">Level 7E • Motion Design</span>
+                                <span class="track-status-pill available" id="pillL7E">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 7E • Motion Design</div>
                             <h3 class="track-card-title">CSS Motion &amp; Micro-Interactions Foundations</h3>
                             <p class="track-card-desc">Hardware-accelerated web animations: 2D GPU transforms, keyframes, cubic-bezier spring physics, and SVG path drawing.</p>
                             <div class="track-module-list">
@@ -357,7 +345,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL7E">Start Track ➔</span>
                         </div>
                     </a>
@@ -366,11 +354,10 @@ const navLinks = [
                     <a href="/foundations.html?track=async" class="track-hub-card" id="cardL8">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #f0f9ff; color: #0284c7;">🌉</div>
-                                <span class="track-status-pill available" id="pillL8">⚡ Available</span>
+                                <span class="track-card-level">Level 8 • Async UI</span>
+                                <span class="track-status-pill available" id="pillL8">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 8 • Async UI</div>
-                            <h3 class="track-card-title">Async UI & Live Data Foundations</h3>
+                            <h3 class="track-card-title">Async UI &amp; Live Data Foundations</h3>
                             <p class="track-card-desc">Making apps feel instant: Skeleton loading screens, friendly retry error screens, optimistic updates, and live polling.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Skeleton Loaders</span>
@@ -380,7 +367,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL8">Start Track ➔</span>
                         </div>
                     </a>
@@ -389,11 +376,10 @@ const navLinks = [
                     <a href="/foundations.html?track=auth" class="track-hub-card" id="cardL9">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #f5f3ff; color: #4f46e5;">🛡️</div>
-                                <span class="track-status-pill available" id="pillL9">⚡ Available</span>
+                                <span class="track-card-level">Level 9 • Security</span>
+                                <span class="track-status-pill available" id="pillL9">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 9 • Security</div>
-                            <h3 class="track-card-title">User Logins & Security UI Foundations</h3>
+                            <h3 class="track-card-title">User Logins &amp; Security UI Foundations</h3>
                             <p class="track-card-desc">Managing member access: Login tokens, global user sessions with React Context, protected pages, and role permissions.</p>
                             <div class="track-module-list">
                                 <span class="module-pill">Login Tokens</span>
@@ -403,7 +389,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +300 XP</span>
+                            <span class="track-xp-badge">+300 XP</span>
                             <span class="track-btn-action" id="actionL9">Start Track ➔</span>
                         </div>
                     </a>
@@ -412,10 +398,9 @@ const navLinks = [
                     <a href="/foundations.html?track=saas" class="track-hub-card" id="cardL10">
                         <div>
                             <div class="track-hub-header">
-                                <div class="track-icon-badge" style="background: #fffbeb; color: #b45309;">🏆</div>
-                                <span class="track-status-pill available" id="pillL10">⚡ Available</span>
+                                <span class="track-card-level">Level 10 • SaaS</span>
+                                <span class="track-status-pill available" id="pillL10">AVAILABLE</span>
                             </div>
-                            <div class="track-card-level">Level 10 • SaaS</div>
                             <h3 class="track-card-title">SaaS Dashboard UI Foundations</h3>
                             <p class="track-card-desc">Putting it all together: Sidebar layout shells, debounced search inputs, subscription pricing cards, and AI chat panels.</p>
                             <div class="track-module-list">
@@ -426,7 +411,7 @@ const navLinks = [
                             </div>
                         </div>
                         <div class="track-card-footer">
-                            <span class="track-xp-badge">⚡ +500 XP</span>
+                            <span class="track-xp-badge">+500 XP</span>
                             <span class="track-btn-action" id="actionL10">Start Track ➔</span>
                         </div>
                     </a>
@@ -437,7 +422,6 @@ const navLinks = [
         <!-- Gateway Box to Practical Coding Dojos & Dashboard -->
         <section class="dojo-gateway-box">
             <div class="gateway-info-wrap">
-                <div class="gateway-icon">🚀</div>
                 <div>
                     <h3 class="gateway-title">Ready to Put Foundations into Practice?</h3>
                     <p class="gateway-desc">
@@ -447,15 +431,22 @@ const navLinks = [
             </div>
             <div class="gateway-actions">
                 <a href="/2. partB/hub.html" class="gateway-btn primary">
-                    <span>⚔️ Start Level 4 DOM Dojo ➔</span>
+                    <span>Start Level 4 DOM Dojo ➔</span>
                 </a>
                 <a href="/#roadmap" class="gateway-btn secondary">
-                    <span>🗺️ Dashboard Skill Tree</span>
+                    <span>Dashboard Roadmap</span>
                 </a>
             </div>
         </section>
 
     </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Platform Footer -->
     <PlatformFooter />

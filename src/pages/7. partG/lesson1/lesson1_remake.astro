@@ -24,7 +24,7 @@ function ProductCatalog() {
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {products.map(p => (
             <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
-              <strong>{p.name}</strong> — \${p.price}
+              <strong>{p.name}</strong>: \${p.price}
             </li>
           ))}
         </ul>
@@ -160,7 +160,7 @@ function ProductCatalog() {
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {products.map(p => (
             <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
-              <strong>{p.name}</strong> — \${p.price}
+              <strong>{p.name}</strong>: \${p.price}
             </li>
           ))}
         </ul>

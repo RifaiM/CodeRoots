@@ -1,11 +1,14 @@
 /**
  * Level 7 Specialization Hub Engine
- * Dynamically tracks 7A, 7B, 7C branch progress, active lesson URLs, and individual syllabus lock/completion states.
+ * Dynamically tracks 7A, 7B, 7C, 7D, 7E branch progress, active lesson URLs, and individual syllabus lock/completion states.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHubProgress();
 });
+window.addEventListener('novicodes:xp_updated', () => initHubProgress());
+window.addEventListener('storage', () => initHubProgress());
+window.addEventListener('pageshow', () => initHubProgress());
 
 function initHubProgress() {
     const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
@@ -39,13 +42,13 @@ function initHubProgress() {
                 if (isCompleted) {
                     itemEl.className = 'syllabus-item completed';
                     itemEl.href = `./${branchKey}/lesson${i}_remake.html`;
-                    statEl.textContent = '✅ Completed';
-                    statEl.style.color = '#34d399';
+                    statEl.textContent = 'COMPLETED';
+                    statEl.removeAttribute('style');
                 } else if (isAccessible) {
                     itemEl.className = 'syllabus-item available';
                     itemEl.href = `./${branchKey}/lesson${i}_remake.html`;
-                    statEl.textContent = '⚡ Up Next';
-                    statEl.style.color = '#38bdf8';
+                    statEl.textContent = 'UP NEXT';
+                    statEl.removeAttribute('style');
                 } else {
                     itemEl.className = 'syllabus-item locked';
                     itemEl.href = 'javascript:void(0)';
@@ -54,14 +57,14 @@ function initHubProgress() {
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
                                 icon: 'info',
-                                title: '🔒 Lesson Locked',
+                                title: 'Lesson Locked',
                                 text: `Please complete Lesson ${i - 1} before accessing Lesson ${i}.`,
-                                confirmButtonColor: '#7e22ce'
+                                confirmButtonColor: '#A33B24'
                             });
                         }
                     };
-                    statEl.textContent = '🔒 Locked';
-                    statEl.style.color = '#94a3b8';
+                    statEl.textContent = 'LOCKED';
+                    statEl.removeAttribute('style');
                 }
             }
         }
@@ -78,10 +81,13 @@ function initHubProgress() {
         const btnEl = document.getElementById(btnId);
         if (btnEl) {
             btnEl.href = `./${branchKey}/lesson${activeLesson}_remake.html`;
-            const icon = prefix === '7A' ? '☁️' : prefix === '7B' ? '🛢️' : prefix === '7C' ? '⚡' : prefix === '7D' ? '🔷' : '🎨';
-            btnEl.querySelector('span').textContent = completedCount >= totalLessons 
-                ? `✅ Track ${prefix} Completed` 
-                : `${icon} Launch Track ${prefix} (Lesson ${activeLesson}/${totalLessons})`;
+            if (completedCount >= totalLessons) {
+                btnEl.classList.add('completed-track');
+                btnEl.querySelector('span').textContent = `Track ${prefix} Mastered (${completedCount}/${totalLessons}) ➔`;
+            } else {
+                btnEl.classList.remove('completed-track');
+                btnEl.querySelector('span').textContent = `Launch Track ${prefix} (Lesson ${activeLesson}/${totalLessons}) ➔`;
+            }
         }
     }
 

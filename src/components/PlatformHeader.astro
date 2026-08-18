@@ -31,7 +31,7 @@ interface Props {
 }
 
 const { 
-    tagText = 'From Novice to Dev',
+    tagText = 'Field Guide // Vol. 2.5',
     tagId = 'headerLogoTag',
     navLinks = [],
     showStreakBadge = false,
@@ -47,7 +47,7 @@ const {
 
 <header class="platform-header">
     <div class="header-inner">
-        <a href="/" class="platform-logo" aria-label="NoviCodes Dashboard Home">
+        <a href="/" class="platform-logo" aria-label="NoviCodes Field Journal Home">
             <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" />
             <div class="logo-text">
                 <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
@@ -66,7 +66,7 @@ const {
                     onclick={link.onClick}
                 >
                     {link.icon && <span class="nav-icon">{link.icon}</span>}
-                    <span class="nav-text">&nbsp;{link.label}</span>
+                    <span class="nav-text">{link.label}</span>
                 </a>
             ))}
 
@@ -74,15 +74,14 @@ const {
             {showJumpDropdown && jumpLessons.length > 0 && (
                 <div class="lesson-jump-dropdown-wrap" data-track={trackPrefix}>
                     <button class="lesson-jump-btn" id="lessonJumpBtn" aria-expanded="false" aria-haspopup="true">
-                        <span class="jump-icon">📚</span>
-                        <span class="jump-text">Jump to Lesson</span>
+                        <span class="jump-text">Index</span>
                         <span class="jump-arrow">▼</span>
                     </button>
 
                     <!-- Dropdown Drawer Menu -->
                     <div class="lesson-jump-menu" id="lessonJumpMenu" role="menu">
                         <div class="jump-menu-header">
-                            <span class="jump-menu-title">Curriculum Lessons</span>
+                            <span class="jump-menu-title">Lesson Index</span>
                             <span class="jump-menu-subtitle">{jumpLessons.length} Projects</span>
                         </div>
                         <div class="jump-lessons-list" id="jumpLessonsList">
@@ -94,9 +93,8 @@ const {
                                     data-lesson-id={l.id}
                                     role="menuitem"
                                 >
-                                    <span class="jump-item-status">{l.id === currentLessonId ? '📍' : '🔒'}</span>
                                     <div class="jump-item-info">
-                                        <span class="jump-item-num">Lesson {l.id}</span>
+                                        <span class="jump-item-num">§ {String(l.id).padStart(2, '0')}</span>
                                         <span class="jump-item-name">{l.title}</span>
                                     </div>
                                 </a>
@@ -107,10 +105,9 @@ const {
                             <div class="jump-cert-section" id="jumpCertSection">
                                 <div class="jump-divider"></div>
                                 <a href={certificateUrl} class="jump-item jump-cert-item" id="jumpCertItem" role="menuitem">
-                                    <span class="jump-item-status">🏆</span>
                                     <div class="jump-item-info">
-                                        <span class="jump-item-num">Certificate</span>
-                                        <span class="jump-item-name">Official Proof of Work</span>
+                                        <span class="jump-item-num">PROOF OF WORK</span>
+                                        <span class="jump-item-name">Official Certificate →</span>
                                     </div>
                                 </a>
                             </div>
@@ -126,12 +123,11 @@ const {
                 <div 
                     class="stat-badge streak-badge" 
                     id="headerStreakBadge" 
-                    title="Click to view Daily Coding Streak & Rewards" 
+                    title="Click to view Daily Coding Streak" 
                     onclick="if(typeof openStreakModal==='function') openStreakModal();" 
                     style="cursor: pointer;"
                 >
-                    <span class="badge-icon">🔥</span>
-                    <span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span><span class="streak-days-text"> Days</span></span>
+                    <span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span>d<span class="streak-days-text">&nbsp;streak</span></span>
                 </div>
             )}
 
@@ -142,7 +138,6 @@ const {
                     onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
                     style="cursor: pointer;"
                 >
-                    <span class="badge-icon">⚡</span>
                     <span class="badge-label" id="userXpLabel">0 XP</span>
                 </div>
             )}
@@ -154,8 +149,7 @@ const {
                     onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
                     style="cursor: pointer;"
                 >
-                    <span class="badge-icon" id="userRankIcon">🌐</span>
-                    <span class="badge-label" id="userRankLabel">Web Explorer</span>
+                    <span class="badge-label" id="userRankLabel">Novice</span>
                 </div>
             )}
         </div>
@@ -173,25 +167,26 @@ const {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(255, 255, 255, 0.12);
-        border: none;
-        padding: 6px 12px;
-        border-radius: 10px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #334155;
+        background: var(--canvas-base);
+        border: 1px solid var(--border-subtle);
+        padding: 5px 10px;
+        border-radius: 2px;
+        font-family: var(--font-mono);
+        font-size: 0.76rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--text-title);
         cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: inherit;
+        transition: border-color 0.15s ease;
     }
 
     .lesson-jump-btn:hover {
-        background: rgba(255, 255, 255, 0.22);
-        color: #0f172a;
+        border-color: var(--border-dark);
     }
 
     .jump-arrow {
-        font-size: 0.65rem;
+        font-size: 0.60rem;
         transition: transform 0.2s ease;
     }
 
@@ -202,14 +197,14 @@ const {
     /* Dropdown Drawer Menu */
     .lesson-jump-menu {
         position: absolute;
-        top: calc(100% + 8px);
+        top: calc(100% + 4px);
         right: 0;
         width: 300px;
-        max-height: 420px;
-        background: #ffffff;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 14px;
-        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+        max-height: 400px;
+        background: var(--card-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: 2px;
+        box-shadow: none;
         padding: 8px;
         display: none;
         flex-direction: column;
@@ -224,76 +219,64 @@ const {
 
     .jump-menu-header {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
-        padding: 8px 10px 10px 10px;
-        border-bottom: 1px solid #f1f5f9;
+        padding: 6px 8px 8px 8px;
+        border-bottom: 1px solid var(--border-subtle);
         margin-bottom: 6px;
     }
 
     .jump-menu-title {
-        font-size: 0.80rem;
-        font-weight: 800;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #475569;
+        letter-spacing: 0.05em;
+        color: var(--text-title);
     }
 
     .jump-menu-subtitle {
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #94a3b8;
-        background: #f1f5f9;
-        padding: 2px 6px;
-        border-radius: 6px;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: var(--text-muted);
     }
 
     .jump-lessons-list {
         display: flex;
         flex-direction: column;
-        gap: 3px;
-        max-height: 280px;
+        gap: 2px;
+        max-height: 260px;
         overflow-y: auto;
     }
 
     .jump-item {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 8px 10px;
-        border-radius: 8px;
+        padding: 6px 8px;
+        border-radius: 2px;
         text-decoration: none;
-        color: #334155;
+        color: var(--text-body);
         transition: all 0.15s ease;
         background: transparent;
+        border: 1px solid transparent;
     }
 
     .jump-item:hover {
-        background: #f1f5f9;
-        color: #0f172a;
+        background: var(--canvas-base);
+        border-color: var(--border-subtle);
+        color: var(--text-title);
     }
 
     .jump-item.current {
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        color: #1d4ed8;
-        font-weight: 700;
+        background: var(--canvas-base);
+        border-color: var(--border-subtle);
+        color: var(--accent-oxide);
     }
 
     .jump-item.locked {
-        opacity: 0.55;
+        opacity: 0.5;
         cursor: not-allowed;
-        background: #f8fafc;
-    }
-
-    .jump-item.locked:hover {
-        background: #fef2f2;
-        color: #ef4444;
-    }
-
-    .jump-item-status {
-        font-size: 0.95rem;
-        flex-shrink: 0;
     }
 
     .jump-item-info {
@@ -304,13 +287,15 @@ const {
     }
 
     .jump-item-num {
-        font-size: 0.70rem;
-        color: #64748b;
-        font-weight: 700;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     .jump-item.current .jump-item-num {
-        color: #2563eb;
+        color: var(--accent-oxide);
     }
 
     .jump-item-name {
@@ -323,18 +308,17 @@ const {
 
     .jump-divider {
         height: 1px;
-        background: #f1f5f9;
+        background: var(--border-subtle);
         margin: 6px 0;
     }
 
     .jump-cert-item {
-        background: #fefce8;
-        border: 1px solid #fef08a;
-        color: #854d0e;
+        background: var(--canvas-base);
+        border: 1px solid var(--border-subtle);
     }
 
     .jump-cert-item:hover {
-        background: #fef9c3;
+        border-color: var(--border-dark);
     }
 
     /* ── ≤576px: Hide jump button label text ─── */
@@ -367,11 +351,12 @@ const {
 
 <script>
     // Jump Drawer Toggle Logic & Dynamic Completion Hydration
-    document.addEventListener('DOMContentLoaded', () => {
+    function initHeaderDropdown() {
         const wrap = document.querySelector('.lesson-jump-dropdown-wrap');
         const btn = document.getElementById('lessonJumpBtn');
 
-        if (btn && wrap) {
+        if (btn && wrap && !(btn as any)._hasClickListener) {
+            (btn as any)._hasClickListener = true;
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const isOpen = wrap.classList.toggle('open');
@@ -386,6 +371,10 @@ const {
             });
         }
 
+        hydrateJumpMenu();
+    }
+
+    function hydrateJumpMenu() {
         // Hydrate completion badges & enforce sequential locking in jump dropdown
         const items = document.querySelectorAll('.jump-item[data-lesson-id]');
         const dropdownWrap = document.querySelector('.lesson-jump-dropdown-wrap') as HTMLElement | null;
@@ -457,25 +446,28 @@ const {
             }
 
             // Guard click event for locked items
-            item.addEventListener('click', (e) => {
-                if (item.classList.contains('locked')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const reqId = id - 1;
-                    if (typeof (window as any).Swal !== 'undefined') {
-                        (window as any).Swal.fire({
-                            icon: 'warning',
-                            title: '🔒 Lesson Locked',
-                            html: `You must complete <strong>Lesson ${reqId}</strong> first to unlock <strong>Lesson ${id}</strong>!`,
-                            confirmButtonColor: '#2563eb',
-                            confirmButtonText: 'Got It ⚡',
-                            customClass: { popup: 'responsive-profile-modal' }
-                        });
-                    } else {
-                        alert(`🔒 Lesson Locked: Complete Lesson ${reqId} first to unlock Lesson ${id}!`);
+            if (!(item as any)._hasLockGuard) {
+                (item as any)._hasLockGuard = true;
+                item.addEventListener('click', (e) => {
+                    if (item.classList.contains('locked')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const reqId = id - 1;
+                        if (typeof (window as any).Swal !== 'undefined') {
+                            (window as any).Swal.fire({
+                                icon: 'warning',
+                                title: 'Lesson Locked',
+                                html: `You must complete <strong>Lesson ${reqId}</strong> first to unlock <strong>Lesson ${id}</strong>.`,
+                                confirmButtonColor: '#A33B24',
+                                confirmButtonText: 'Acknowledge',
+                                customClass: { popup: 'responsive-profile-modal' }
+                            });
+                        } else {
+                            alert(`Lesson Locked: Complete Lesson ${reqId} first to unlock Lesson ${id}.`);
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 
         // Check and enforce Certificate unlocking in jump dropdown
@@ -513,31 +505,39 @@ const {
             const certStatus = certItem.querySelector('.jump-item-status');
             if (isCertUnlocked) {
                 certItem.classList.remove('locked');
-                if (certStatus) certStatus.textContent = '🏆';
+                if (certStatus) certStatus.textContent = '✓';
             } else {
                 certItem.classList.add('locked');
                 if (certStatus) certStatus.textContent = '🔒';
             }
 
-            certItem.addEventListener('click', (e) => {
-                if (certItem.classList.contains('locked')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const reqDesc = (track.includes('branch') || track.startsWith('partF')) ? 'at least 1 full track (6 projects)' : 'all 15 interactive projects';
-                    if (typeof (window as any).Swal !== 'undefined') {
-                        (window as any).Swal.fire({
-                            icon: 'warning',
-                            title: '🔒 Certificate Locked',
-                            html: `You must complete <strong>${reqDesc}</strong> in this level to claim your verified Certificate of Mastery!<br><br><span style="color:#64748b; font-size:0.88rem;">Current Progress: ${completedCount}/${totalRequired} completed</span>`,
-                            confirmButtonColor: '#2563eb',
-                            confirmButtonText: 'Continue Coding 🚀',
-                            customClass: { popup: 'responsive-profile-modal' }
-                        });
-                    } else {
-                        alert(`🔒 Certificate Locked: You must complete ${reqDesc} to claim your Certificate!`);
+            if (!(certItem as any)._hasLockGuard) {
+                (certItem as any)._hasLockGuard = true;
+                certItem.addEventListener('click', (e) => {
+                    if (certItem.classList.contains('locked')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const reqDesc = (track.includes('branch') || track.startsWith('partF')) ? 'at least 1 full track (6 projects)' : 'all 15 interactive projects';
+                        if (typeof (window as any).Swal !== 'undefined') {
+                            (window as any).Swal.fire({
+                                icon: 'warning',
+                                title: 'Certificate Locked',
+                                html: `You must complete <strong>${reqDesc}</strong> in this level to claim your verified Certificate of Mastery.<br><br><span style="color: #686760; font-family: var(--font-mono, monospace); font-size: 0.82rem;">Current Progress: ${completedCount}/${totalRequired} completed</span>`,
+                                confirmButtonColor: '#A33B24',
+                                confirmButtonText: 'Continue Practice →',
+                                customClass: { popup: 'responsive-profile-modal' }
+                            });
+                        } else {
+                            alert(`Certificate Locked: You must complete ${reqDesc} to claim your Certificate.`);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
-    });
+    }
+
+    document.addEventListener('DOMContentLoaded', initHeaderDropdown);
+    window.addEventListener('novicodes:xp_updated', hydrateJumpMenu);
+    window.addEventListener('storage', hydrateJumpMenu);
+    window.addEventListener('pageshow', hydrateJumpMenu);
 </script>

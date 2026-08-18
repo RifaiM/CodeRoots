@@ -4,20 +4,21 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
     { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', active: true, extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="React Auth & Permission Gates (Level 9) | NoviCodes"
-    description="Master client authentication lifecycles, global AuthContext providers, protected route guards, and role-based access control."
+    title="Level 9: User Logins & Auth UI Patterns | NoviCodes"
+    description="Master user login tokens, global session contexts, route protection guards, and role permissions across 6 interactive React security lessons."
     showHeaderFooter={false}
 >
     <PlatformHeader 
         slot="header"
-        tagText="Level 9 • React Auth & Access Control"
+        tagText="Level 9 • User Logins & Auth"
         tagId="headerLogoTag"
         navLinks={navLinks}
         showXpBadge={true}
@@ -27,10 +28,10 @@ const navLinks = [
     <main class="hub-container">
         <!-- Hero Section -->
         <section class="hub-hero">
-            <span class="hub-badge">🛡️ Level 9 • User Logins & Private Pages</span>
-            <h1>Build User Logins & <span class="typewriter-wrap theme-indigo"><span class="typewriter-text" data-phrases='["Security UI Gates", "AuthContext Sessions", "Protected Route Guards", "Password Strength Meters", "Role-Based Team Boards"]' aria-label="Security UI Gates">Security UI Gates</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+            <span class="hub-badge">Level 9 • User Logins &amp; Auth</span>
+            <h1>Master Modern <span class="typewriter-wrap theme-purple"><span class="typewriter-text" data-phrases='["User Logins & Auth", "JWT Token Storage", "Global Session Context", "Protected Route Guards", "Role Permissions (RBAC)"]' aria-label="User Logins & Auth">User Logins &amp; Auth</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
             <p>
-                Every real web app has members, accounts, and private dashboards. Learn how React apps manage active login sessions, share user info across pages with Context, lock private pages from non-members, and hide admin buttons from regular users!
+                Learn how to build secure login experiences in client-side web apps. Master JWT token storage, global React auth state, protecting private pages, and showing admin-only features.
             </p>
 
             <!-- Live Progress Bar -->
@@ -46,11 +47,11 @@ const navLinks = [
 
             <!-- Smart Resume CTA -->
             <a href="/8. partH/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>🚀 Start Lesson 1: Token Authentication ➔</span>
+                <span>Start Lesson 1: Token Authentication ➔</span>
             </a>
             <div style="margin-top: 14px; text-align: center;">
-                <a href="/foundations.html?track=auth" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #4338ca; text-decoration: none; font-weight: 700; background: #f5f3ff; padding: 6px 16px; border-radius: 20px; transition: all 0.2s ease;">
-                    <span>📖 New to React Auth? Read the Level 9 Foundations Guide ➔</span>
+                <a href="/foundations.html?track=auth" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
+                    <span>Explore Level 9 Foundations Guide ➔</span>
                 </a>
             </div>
         </section>
@@ -66,11 +67,11 @@ const navLinks = [
                 <div class="hub-stat-lbl">Lessons Completed</div>
             </div>
             <div class="hub-stat-card">
-                <div class="hub-stat-val">React Context + RBAC</div>
-                <div class="hub-stat-lbl">Security Stack</div>
+                <div class="hub-stat-val">React Context Auth</div>
+                <div class="hub-stat-lbl">Security Pattern</div>
             </div>
             <div class="hub-stat-card">
-                <div class="hub-stat-val">Auth UI Specialist</div>
+                <div class="hub-stat-val">Level 9 Auth</div>
                 <div class="hub-stat-lbl">Official Certificate</div>
             </div>
         </section>
@@ -80,8 +81,8 @@ const navLinks = [
             <div class="chapter-block">
                 <div class="chapter-header">
                     <div class="chapter-title-wrap">
-                        <span class="chapter-num">Auth &amp; Security Track</span>
-                        <h2 class="chapter-title">The 6 User Login & Security Lessons</h2>
+                        <span class="chapter-num">Diploma Track</span>
+                        <h2 class="chapter-title">The 6 User Auth Lessons</h2>
                     </div>
                     <span class="chapter-badge">Lessons 1–6 • 1,500 XP</span>
                 </div>
@@ -91,66 +92,66 @@ const navLinks = [
                     <a href="/8. partH/lesson1/lesson1_remake.html" class="lesson-card locked" id="lessonCard1">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 01</span>
-                            <span class="lesson-status-pill locked" id="statusPill1">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill1">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Managing Login Tokens in State</h3>
+                        <h3 class="lesson-card-title">Token-Based Authentication &amp; Local Persistence</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText1">Locked</span>
                         </div>
                     </a>
                     <a href="/8. partH/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 02</span>
-                            <span class="lesson-status-pill locked" id="statusPill2">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Global Session Provider (AuthContext)</h3>
+                        <h3 class="lesson-card-title">Global AuthContext &amp; Custom useAuth Hook</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText2">Locked</span>
                         </div>
                     </a>
                     <a href="/8. partH/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 03</span>
-                            <span class="lesson-status-pill locked" id="statusPill3">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Locking Private Pages (Route Guards)</h3>
+                        <h3 class="lesson-card-title">Protected Routes &amp; Unauthenticated Redirects</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText3">Locked</span>
                         </div>
                     </a>
                     <a href="/8. partH/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 04</span>
-                            <span class="lesson-status-pill locked" id="statusPill4">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Managing Team Member Lists (Clean State)</h3>
+                        <h3 class="lesson-card-title">Role-Based Access Control (Admin/Member Gates)</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText4">Locked</span>
                         </div>
                     </a>
                     <a href="/8. partH/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 05</span>
-                            <span class="lesson-status-pill locked" id="statusPill5">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Role Gates (Admin vs Member Views)</h3>
+                        <h3 class="lesson-card-title">Automatic Session Expiry &amp; Safe Logout</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText5">Locked</span>
                         </div>
                     </a>
                     <a href="/8. partH/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 06</span>
-                            <span class="lesson-status-pill locked" id="statusPill6">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
                         </div>
                         <h3 class="lesson-card-title">Final Project: Secure Team Workspace</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText6">Locked</span>
                         </div>
                     </a>
@@ -158,22 +159,25 @@ const navLinks = [
             </div>
         </section>
 
-        <!-- Certificate Showcase Card -->
-        <section class="hub-cert-card">
-            <div class="cert-card-inner">
-                <div class="cert-icon-wrap">🎓</div>
-                <div class="cert-text-wrap">
-                    <h3>React Auth &amp; Access Control Specialist Certificate</h3>
-                    <p>Complete all 6 security lessons to earn your official Level 9 verification certificate!</p>
-                </div>
-                <a href="javascript:void(0)" class="cert-cta-btn locked" id="certButton">
-                    <span>🔒 Complete 6 Lessons to Unlock</span>
-                </a>
+        <!-- Certificate Milestone Box -->
+        <section class="cert-callout-card">
+            <div class="cert-callout-info">
+                <h3>React Auth &amp; Access Control Specialist Certificate</h3>
+                <p>Complete all 6 security lessons to earn your official Level 9 verification certificate!</p>
             </div>
+            <a href="javascript:void(0)" class="cert-callout-btn locked" id="certButton">
+                <span>Complete 6 Lessons to Unlock</span>
+            </a>
         </section>
     </main>
 
     <PlatformFooter slot="footer" />
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/8. partH/hub.css" />
     <script is:inline src="/scripts/dashboard.js"></script>
@@ -212,9 +216,11 @@ const navLinks = [
             let completedCount = 0;
             let firstIncompleteIdx = -1;
 
+            const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
             LESSON_KEYS.forEach((key, idx) => {
                 const isComplete = localStorage.getItem(key) === 'true';
-                const isUnlocked = idx === 0 || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
+                const isUnlocked = idx === 0 || isPracticeUnlocked || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
 
                 if (isComplete) completedCount++;
                 if (!isComplete && firstIncompleteIdx === -1 && isUnlocked) {
@@ -230,17 +236,17 @@ const navLinks = [
                 if (isComplete) {
                     card.className = 'lesson-card completed';
                     pill.className = 'lesson-status-pill completed';
-                    pill.textContent = '✅ Completed';
+                    pill.textContent = 'COMPLETED';
                     action.textContent = 'Review Project ➔';
                 } else if (isUnlocked) {
                     card.className = 'lesson-card in-progress';
-                    pill.className = 'lesson-status-pill in-progress';
-                    pill.textContent = '⚡ In Progress';
+                    pill.className = 'lesson-status-pill available';
+                    pill.textContent = 'UP NEXT';
                     action.textContent = 'Launch Project ➔';
                 } else {
                     card.className = 'lesson-card locked';
                     pill.className = 'lesson-status-pill locked';
-                    pill.textContent = '🔒 Locked';
+                    pill.textContent = 'LOCKED';
                     action.textContent = 'Locked';
                 }
             });
@@ -258,29 +264,30 @@ const navLinks = [
             if (resumeBtn) {
                 if (completedCount === LESSON_KEYS.length) {
                     resumeBtn.href = '/8. partH/certificate.html';
-                    resumeBtn.innerHTML = '<span>🏆 Claim Specialist Certificate ➔</span>';
-                    resumeBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    resumeBtn.innerHTML = '<span>Claim Specialist Certificate ➔</span>';
                 } else if (firstIncompleteIdx !== -1) {
                     resumeBtn.href = LESSON_URLS[firstIncompleteIdx];
-                    resumeBtn.innerHTML = `<span>🚀 Continue Project ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
+                    resumeBtn.innerHTML = `<span>Continue Project ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
                 }
             }
 
             const certBtn = document.getElementById('certButton');
             if (certBtn) {
                 if (completedCount === LESSON_KEYS.length) {
-                    certBtn.className = 'cert-cta-btn unlocked';
+                    certBtn.className = 'cert-callout-btn unlocked';
                     certBtn.href = '/8. partH/certificate.html';
-                    certBtn.innerHTML = '<span>🎓 View & Download Certificate ➔</span>';
+                    certBtn.innerHTML = '<span>View &amp; Download Certificate ➔</span>';
                 } else {
-                    certBtn.className = 'cert-cta-btn locked';
+                    certBtn.className = 'cert-callout-btn locked';
                     certBtn.href = 'javascript:void(0)';
-                    certBtn.innerHTML = `<span>🔒 Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
+                    certBtn.innerHTML = `<span>Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
                 }
             }
         }
 
         document.addEventListener('DOMContentLoaded', initHub);
+        window.addEventListener('novicodes:xp_updated', initHub);
         window.addEventListener('storage', initHub);
+        window.addEventListener('pageshow', initHub);
     })();
 </script>

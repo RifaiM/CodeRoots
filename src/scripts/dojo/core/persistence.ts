@@ -209,10 +209,10 @@ export class EditorPersistence {
                     title: 'Reset Code Editor?',
                     text: 'This will replace your current code with the starter template. Your changes will be cleared.',
                     showCancelButton: true,
-                    confirmButtonColor: '#ef4444',
-                    cancelButtonColor: '#64748b',
-                    confirmButtonText: 'Yes, Reset Code 🔄',
-                    cancelButtonText: 'Cancel ✕',
+                    confirmButtonColor: '#A33B24',
+                    cancelButtonColor: '#BAB4A6',
+                    confirmButtonText: 'Reset Code',
+                    cancelButtonText: 'Cancel',
                     customClass: { popup: 'responsive-profile-modal' }
                 }).then((result: any) => {
                     if (result.isConfirmed) {
@@ -220,7 +220,7 @@ export class EditorPersistence {
                     }
                 });
             } else {
-                if (confirm('Are you sure you want to reset your editor to the starter code? Your changes will be lost.')) {
+                if (confirm('Reset code editor to starter template?')) {
                     executeReset();
                 }
             }

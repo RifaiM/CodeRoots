@@ -223,18 +223,19 @@
         promptCustomTimer(btnEl) {
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
-                    title: '⚙️ Custom Speedrun Timer',
+                    title: 'Custom Speedrun Timer',
                     input: 'number',
-                    inputLabel: 'Enter custom timer duration in seconds (5 to 600 seconds):',
+                    inputLabel: 'Enter duration in seconds (5 to 600 seconds):',
                     inputValue: 45,
                     showCancelButton: true,
-                    confirmButtonColor: '#2563eb',
-                    cancelButtonColor: '#475569',
-                    confirmButtonText: 'Set Timer ⏱️',
+                    confirmButtonColor: '#A33B24',
+                    cancelButtonColor: '#BAB4A6',
+                    confirmButtonText: 'Set Timer',
+                    cancelButtonText: 'Cancel',
                     inputValidator: (value) => {
                         const num = parseInt(value, 10);
                         if (!value || isNaN(num) || num < 5 || num > 600) {
-                            return 'Please enter a duration between 5 and 600 seconds!';
+                            return 'Please enter a duration between 5 and 600 seconds.';
                         }
                     }
                 }).then((result) => {
@@ -469,28 +470,28 @@
 
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
-                    title: isNewRecord ? '🏆 NEW PERSONAL RECORD!' : '⏱️ Speedrun Complete!',
+                    title: isNewRecord ? 'Personal Record Achieved' : 'Speedrun Session Complete',
                     html: `
-                        <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; padding: 6px 0;">
-                            <div style="display: flex; justify-content: center; gap: 20px; margin: 16px 0; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <div style="font-family: var(--font-sans, sans-serif); text-align: center; padding: 6px 0;">
+                            <div style="display: flex; justify-content: center; gap: 20px; margin: 16px 0; background: var(--canvas-base, #F1EEE7); padding: 16px; border-radius: 2px; border: 1px solid var(--border-subtle, #D5D0C6);">
                                 <div>
-                                    <div style="font-size: 0.76rem; color: #64748b; font-weight: 700;">SPEED</div>
-                                    <div style="font-size: 1.8rem; font-weight: 800; color: #2563eb;">${finalWpm} <span style="font-size:0.9rem;">WPM</span></div>
+                                    <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); font-weight: 600; text-transform: uppercase;">VELOCITY</div>
+                                    <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">${finalWpm} <span style="font-size:0.85rem;">WPM</span></div>
                                 </div>
-                                <div style="border-right: 1px solid #cbd5e1;"></div>
+                                <div style="border-right: 1px solid var(--border-subtle, #D5D0C6);"></div>
                                 <div>
-                                    <div style="font-size: 0.76rem; color: #64748b; font-weight: 700;">ACCURACY</div>
-                                    <div style="font-size: 1.8rem; font-weight: 800; color: #10b981;">${finalAccuracy}</div>
+                                    <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); font-weight: 600; text-transform: uppercase;">ACCURACY</div>
+                                    <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: #2F5233;">${finalAccuracy}</div>
                                 </div>
                             </div>
-                            ${isNewRecord ? '<p style="color: #10b981; font-weight: 800;">🏆 You set a new personal typing speed record!</p>' : ''}
+                            ${isNewRecord ? '<p style="color: #2F5233; font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">NEW PERSONAL RECORD REGISTERED</p>' : ''}
                         </div>
                     `,
                     showCancelButton: true,
-                    confirmButtonColor: '#2563eb',
-                    cancelButtonColor: '#64748b',
-                    confirmButtonText: '⏭ Next Speedrun',
-                    cancelButtonText: '🔄 Retry Session'
+                    confirmButtonColor: '#A33B24',
+                    cancelButtonColor: '#BAB4A6',
+                    confirmButtonText: 'Next Snippet →',
+                    cancelButtonText: 'Retry Session'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.nextSnippet();
@@ -515,29 +516,29 @@
 window.showArcadeHelpModal = function() {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: '🎮 How Arcade Mode Works',
+            title: 'Arcade Mode Specifications',
             html: `
-                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 0; font-size: 0.9rem; color: #475569;">
-                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; border-radius: 12px; margin-bottom: 12px;">
-                        <strong style="color: #0f172a;">⏱️ Speedrun Timers (15s / 30s / 60s):</strong><br>
-                        Race against the clock! Type as many code characters as you can before time expires to achieve your highest WPM & accuracy.
+                <div style="font-family: var(--font-sans, sans-serif); text-align: left; padding: 4px 0; font-size: 0.90rem; color: var(--text-body, #20211F); line-height: 1.55;">
+                    <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px; border-radius: 2px; margin-bottom: 10px;">
+                        <strong style="font-family: var(--font-mono, monospace); font-size: 0.76rem; text-transform: uppercase; color: var(--accent-oxide, #A33B24);">01 / TIMED SPEEDRUN (15s / 30s / 60s):</strong><br>
+                        Race against the countdown. Type as many syntax characters as possible before expiry to calibrate WPM and accuracy metrics.
                     </div>
-                    <div style="background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px; border-radius: 12px; margin-bottom: 12px;">
-                        <strong style="color: #0369a1;">∞ No Timer Mode:</strong><br>
-                        No countdown timer! Type the full code snippet at your own comfortable pace to master syntax and muscle memory.
+                    <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px; border-radius: 2px; margin-bottom: 10px;">
+                        <strong style="font-family: var(--font-mono, monospace); font-size: 0.76rem; text-transform: uppercase; color: var(--accent-industrial, #314C52);">02 / UNTIMED STUDY MODE:</strong><br>
+                        No timer pressure. Type complete real-world snippets at your own pace to build muscle memory for brackets and idioms.
                     </div>
-                    <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 12px; border-radius: 12px;">
-                        <strong style="color: #6d28d9;">⌨️ VS Code Shortcut Keys:</strong><br>
-                        • Press <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">Tab</kbd> to insert 2-space indentation.<br>
-                        • Press <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">Esc</kbd> to restart current snippet instantly.
+                    <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px; border-radius: 2px;">
+                        <strong style="font-family: var(--font-mono, monospace); font-size: 0.76rem; text-transform: uppercase; color: var(--text-title, #20211F);">03 / SHORTCUT KEYS:</strong><br>
+                        • <kbd style="background: #FFFFFF; border: 1px solid #D5D0C6; padding: 2px 6px; border-radius: 2px; font-family: var(--font-mono, monospace);">Tab</kbd> inserts 2-space indentation.<br>
+                        • <kbd style="background: #FFFFFF; border: 1px solid #D5D0C6; padding: 2px 6px; border-radius: 2px; font-family: var(--font-mono, monospace);">Esc</kbd> resets snippet state instantly.
                     </div>
                 </div>
             `,
-            confirmButtonColor: '#8b5cf6',
-            confirmButtonText: 'Got It, Let\'s Code!',
+            confirmButtonColor: '#A33B24',
+            confirmButtonText: 'Acknowledge',
             showCloseButton: true
         });
     } else {
-        alert('🎮 Speedrun Timers (15s/30s/60s): Race the clock.\n∞ Untimed Mode: Type full snippet at your own pace with no timer.');
+        alert('Speedrun Timers (15s/30s/60s): Race the clock.\nUntimed Mode: Type full snippet at your own pace with no timer.');
     }
 };

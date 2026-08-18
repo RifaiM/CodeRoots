@@ -70,9 +70,10 @@
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
                     icon: 'info',
-                    title: '⚡ Already Completed Today!',
-                    text: 'You have already solved today\'s quest and extended your streak. Come back tomorrow for a new quest!',
-                    confirmButtonColor: '#2563eb'
+                    title: 'Exercise Already Completed',
+                    text: 'You have already solved today\'s quest and extended your streak. A new exercise unlocks tomorrow.',
+                    confirmButtonColor: '#A33B24',
+                    confirmButtonText: 'Acknowledge'
                 });
             }
             return;
@@ -85,10 +86,10 @@
             btn.disabled = true;
             if (idx === quest.correctIndex) {
                 btn.classList.add('correct');
-                btn.innerHTML = `<span class="opt-icon">✅</span> <span>${escapeHtml(quest.options[idx])}</span>`;
+                btn.innerHTML = `<span class="opt-icon">✓</span> <span>${escapeHtml(quest.options[idx])}</span>`;
             } else if (idx === selectedOptionIndex) {
                 btn.classList.add('incorrect');
-                btn.innerHTML = `<span class="opt-icon">❌</span> <span>${escapeHtml(quest.options[idx])}</span>`;
+                btn.innerHTML = `<span class="opt-icon">✗</span> <span>${escapeHtml(quest.options[idx])}</span>`;
             }
         });
 
@@ -98,10 +99,19 @@
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Almost there!',
-                        html: `<strong>${escapeHtml(quest.options[selectedOptionIndex])}</strong> is not quite right.<br><br><div style="text-align:left; background:#eff6ff; padding:12px; border-radius:8px; font-size:0.88rem; color:#1e3a8a;"><strong>💡 Hint:</strong> ${escapeHtml(quest.explanation)}</div>`,
-                        confirmButtonText: '🔄 Try Again',
-                        confirmButtonColor: '#2563eb'
+                        title: 'Incorrect Selection',
+                        html: `
+                            <div style="text-align: left; font-family: var(--font-sans, sans-serif);">
+                                <p style="font-size: 0.90rem; color: var(--text-body, #20211F); margin-bottom: 12px;">
+                                    <strong>${escapeHtml(quest.options[selectedOptionIndex])}</strong> is not the intended solution.
+                                </p>
+                                <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 12px; font-size: 0.86rem; color: var(--text-body, #20211F); line-height: 1.55;">
+                                    <strong style="font-family: var(--font-mono, monospace); font-size: 0.74rem; text-transform: uppercase; color: var(--accent-oxide, #A33B24);">TECHNICAL HINT:</strong><br>${escapeHtml(quest.explanation)}
+                                </div>
+                            </div>
+                        `,
+                        confirmButtonText: 'Try Again →',
+                        confirmButtonColor: '#A33B24'
                     }).then(() => {
                         optionBtns.forEach((btn, idx) => {
                             btn.disabled = false;
@@ -198,14 +208,14 @@
                     icon: 'success',
                     title: milestoneTitle ? milestoneTitle : `🔥 ${newStreak}-Day Streak Extended!`,
                     html: `
-                        <div style="font-size: 1.1rem; margin-bottom: 12px;">You earned <strong style="color: #2563eb;">+${totalAwarded} XP</strong> today!</div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #334155;">
-                            <strong>💡 Key Takeaway:</strong><br>${escapeHtml(quest.explanation)}
+                        <div style="font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 12px; text-transform: uppercase;">BOUNTY EARNED // <strong style="color: var(--accent-oxide);">+${totalAwarded} XP</strong></div>
+                        <div style="background: var(--canvas-base); border: 1px solid var(--border-subtle); border-radius: 2px; padding: 14px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: var(--text-body);">
+                            <strong style="font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase; color: var(--accent-oxide);">SOLUTION ANALYSIS:</strong><br>${escapeHtml(quest.explanation)}
                         </div>
-                        <p style="margin-top: 14px; color: #64748b; font-size: 0.84rem;">Come back tomorrow at midnight for your next daily quest! ⏰</p>
+                        <p style="margin-top: 14px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase;">NEXT EXERCISE UNLOCKS AT 00:00 UTC</p>
                     `,
-                    confirmButtonText: '⚡ Awesome, Keep Going!',
-                    confirmButtonColor: '#2563eb'
+                    confirmButtonText: 'CONTINUE →',
+                    confirmButtonColor: '#A33B24'
                 }).then(() => {
                     renderDailyQuestCard();
                 });
@@ -231,26 +241,24 @@
                 <div class="daily-quest-card completed-card">
                     <div class="quest-card-header">
                         <div class="quest-header-left">
-                            <span class="quest-pill-completed">✅ Today's Quest Completed</span>
+                            <span class="quest-pill-completed">STATUS // COMPLETED</span>
                             <span class="quest-category-badge">${escapeHtml(quest.category)}</span>
                         </div>
                         <div class="quest-streak-badge">
-                            <span class="streak-flame">🔥</span>
-                            <span class="streak-num">${streakData.currentStreak}-Day Streak</span>
+                            <span class="streak-num">STREAK // ${streakData.currentStreak} DAYS</span>
                         </div>
                     </div>
 
                     <div class="quest-completed-body">
-                        <div class="completed-check-icon">🏆</div>
-                        <h3>You've claimed today's +50 XP!</h3>
-                        <p>Your coding habit is on fire! Today's challenge was: <em>"${escapeHtml(quest.title)}"</em>.</p>
+                        <h3 class="quest-title">Daily +50 XP Bounty Claimed</h3>
+                        <p class="quest-question">Challenge: <em>"${escapeHtml(quest.title)}"</em></p>
                         
                         <div class="quest-explanation-banner">
-                            <strong>💡 Solution Summary:</strong> ${escapeHtml(quest.explanation)}
+                            <strong>SOLUTION ANALYSIS:</strong> ${escapeHtml(quest.explanation)}
                         </div>
 
                         <div class="next-quest-countdown-box">
-                            <span class="countdown-label">⏰ Next Daily Quest Unlocks In:</span>
+                            <span class="countdown-label">NEXT EXERCISE UNLOCKS IN:</span>
                             <span class="countdown-timer" id="dailyQuestCountdown">--:--:--</span>
                         </div>
                     </div>
@@ -265,11 +273,11 @@
             <div class="daily-quest-card active-card">
                 <div class="quest-card-header">
                     <div class="quest-header-left">
-                        <span class="quest-pill-active"><span class="pulse-dot"></span> Daily 2-Min Quest</span>
+                        <span class="quest-pill-active">EXERCISE // DAILY BUG AUDIT</span>
                         <span class="quest-category-badge">${escapeHtml(quest.category)}</span>
                     </div>
                     <div class="quest-reward-pill">
-                        <span>⚡ +50 XP</span>
+                        <span>+50 XP BOUNTY</span>
                     </div>
                 </div>
 
@@ -286,7 +294,7 @@
                     <div class="quest-options-grid">
                         ${quest.options.map((opt, idx) => `
                             <button class="quest-option-btn" onclick="submitDailyQuestAnswer(${idx})">
-                                <span class="opt-icon">${String.fromCharCode(65 + idx)}</span>
+                                <span class="opt-icon">[ ${String.fromCharCode(65 + idx)} ]</span>
                                 <span class="opt-text">${escapeHtml(opt)}</span>
                             </button>
                         `).join('')}
@@ -295,10 +303,10 @@
 
                 <div class="quest-card-footer">
                     <div class="quest-footer-hint">
-                        <span>🎯 Test your skills in 2 minutes & maintain your daily streak!</span>
+                        <span>DAILY RETENTION CHALLENGE • 2-MINUTE AUDIT</span>
                     </div>
                     <div class="quest-footer-streak">
-                        <span>Current Streak: <strong>🔥 ${streakData.currentStreak} Days</strong></span>
+                        <span>CURRENT STREAK: <strong>${streakData.currentStreak} DAYS</strong></span>
                     </div>
                 </div>
             </div>
@@ -339,11 +347,10 @@
         const daysText = document.querySelector('#userStreakLabel .streak-days-text');
         const label = document.getElementById('userStreakLabel');
 
-        if (numVal && daysText) {
+        if (numVal) {
             numVal.textContent = streakData.currentStreak;
-            daysText.textContent = streakData.currentStreak === 1 ? ' Day' : ' Days';
         } else if (label) {
-            label.innerHTML = `<span class="streak-num-val">${streakData.currentStreak}</span><span class="streak-days-text">${streakData.currentStreak === 1 ? ' Day' : ' Days'}</span>`;
+            label.innerHTML = `<span class="streak-num-val">${streakData.currentStreak}</span>d<span class="streak-days-text">&nbsp;streak</span>`;
         }
 
         if (badge) {
@@ -361,66 +368,69 @@
         const streakData = window.getStreakData();
 
         const milestones = [
-            { days: 3, xp: 100, title: '🔥 3-Day Spark', icon: '✨' },
-            { days: 7, xp: 250, title: '🌋 7-Day Flame', icon: '🌟' },
-            { days: 14, xp: 500, title: '👑 14-Day Inferno', icon: '💎' }
+            { days: 3, xp: 100, title: '3-Day Retention Milestone', sub: '3 consecutive daily exercises' },
+            { days: 7, xp: 250, title: '7-Day Retention Milestone', sub: '7 consecutive daily exercises' },
+            { days: 14, xp: 500, title: '14-Day Retention Milestone', sub: '14 consecutive daily exercises' }
         ];
 
-        let milestonesHTML = milestones.map(m => {
-            const isUnlocked = streakData.currentStreak >= m.days || streakData.longestStreak >= m.days;
+        const milestonesHTML = milestones.map((m, idx) => {
+            const isUnlocked = streakData.currentStreak >= m.days;
+            const bg = isUnlocked ? 'background: var(--card-bg, #FFFFFF); border: 1px solid var(--border-dark, #BAB4A6);' : 'background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6);';
+            const badgeBg = isUnlocked ? 'background: var(--accent-slate, #314C52); color: #F8F6F1;' : 'background: var(--border-hairline, #E5E1D8); color: var(--text-muted, #686760);';
+
             return `
-                <div style="display:flex; align-items:center; justify-content:space-between; padding:12px; background:${isUnlocked ? '#eff6ff' : '#f8fafc'}; border:1px solid ${isUnlocked ? '#bfdbfe' : '#e2e8f0'}; border-radius:10px;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="font-size:1.4rem;">${m.icon}</span>
-                        <div>
-                            <div style="font-weight:800; font-size:0.9rem; color:#0f172a;">${m.title}</div>
-                            <div style="font-size:0.78rem; color:#64748b;">${m.days} consecutive daily quests</div>
-                        </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; ${bg} border-radius: 2px;">
+                    <div style="text-align: left;">
+                        <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${m.days}-DAY GOAL</div>
+                        <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-title, #20211F);">${m.title}</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted, #686760);">${m.sub}</div>
                     </div>
-                    <div>
-                        <span style="background:${isUnlocked ? '#2563eb' : '#cbd5e1'}; color:white; font-size:0.78rem; font-weight:800; padding:4px 10px; border-radius:20px;">
-                            ${isUnlocked ? 'CLAIMED ✅' : `+${m.xp} XP`}
-                        </span>
-                    </div>
+                    <span style="${badgeBg} font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">
+                        ${isUnlocked ? 'CLAIMED' : `+${m.xp} XP`}
+                    </span>
                 </div>
             `;
         }).join('');
 
         if (typeof Swal !== 'undefined') {
             Swal.fire({
-                title: '🔥 Daily Coding Streak & Rewards',
+                title: 'Daily Retention Streak & Milestones',
                 customClass: {
                     popup: 'responsive-profile-modal responsive-streak-modal'
                 },
                 scrollbarPadding: false,
                 showCloseButton: true,
                 html: `
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
-                        <div style="background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; padding:14px; text-align:center;">
-                            <div style="font-size:0.78rem; font-weight:800; color:#ea580c; text-transform:uppercase;">Current Streak</div>
-                            <div style="font-size:1.8rem; font-weight:900; color:#c2410c; margin-top:2px;">🔥 ${streakData.currentStreak}</div>
-                            <div style="font-size:0.75rem; color:#9a3412;">${streakData.isTodayCompleted ? 'Completed Today ✅' : 'Pending Today ⏳'}</div>
+                    <div style="font-family: var(--font-sans, sans-serif); text-align: left;">
+                        
+                        <!-- 2-Column Streak Stats -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
+                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--accent-oxide, #A33B24); text-transform: uppercase; letter-spacing: 0.04em;">CURRENT STREAK</div>
+                                <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${streakData.currentStreak} DAYS</div>
+                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">${streakData.isTodayCompleted ? 'COMPLETED TODAY' : 'PENDING TODAY'}</div>
+                            </div>
+                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
+                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.04em;">LONGEST STREAK</div>
+                                <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${streakData.longestStreak} DAYS</div>
+                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">PERSONAL RECORD</div>
+                            </div>
                         </div>
-                        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:12px; padding:14px; text-align:center;">
-                            <div style="font-size:0.78rem; font-weight:800; color:#2563eb; text-transform:uppercase;">Longest Streak</div>
-                            <div style="font-size:1.8rem; font-weight:900; color:#1e40af; margin-top:2px;">🏆 ${streakData.longestStreak}</div>
-                            <div style="font-size:0.75rem; color:#1d4ed8;">Personal Record</div>
+
+                        <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+                            01 / MILESTONE BOUNTIES
                         </div>
-                    </div>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+                            ${milestonesHTML}
+                        </div>
 
-                    <div style="text-align:left; margin-bottom:8px; font-weight:800; font-size:0.86rem; color:#475569;">
-                        🎯 Milestone Streak Bonuses:
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;">
-                        ${milestonesHTML}
-                    </div>
-
-                    <div style="background:#f1f5f9; border-radius:10px; padding:10px 14px; margin-top:10px; font-size:0.80rem; color:#64748b; text-align:center;">
-                        🛡️ <strong>Streak Saver Active:</strong> Complete a 2-minute quest every 24 hours to keep your flame blazing!
+                        <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 10px 14px; font-family: var(--font-mono, monospace); font-size: 0.74rem; color: var(--text-muted, #686760); text-align: center; text-transform: uppercase; letter-spacing: 0.03em;">
+                            STREAK SAVER // Complete 1 daily exercise every 24 hours to maintain your progression.
+                        </div>
                     </div>
                 `,
-                confirmButtonText: '⚡ Got It!',
-                confirmButtonColor: '#2563eb'
+                confirmButtonText: 'CONTINUE →',
+                confirmButtonColor: '#A33B24'
             });
         }
     };

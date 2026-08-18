@@ -4,20 +4,21 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Dashboard', icon: '🏠', title: 'Dashboard Home' },
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
     { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Practical Dojo', icon: '⚔️', title: 'Practical Dojo Hub', active: true, extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' }
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="Async UI & Live Data Patterns (Level 8) | NoviCodes"
-    description="Master asynchronous React data lifecycles, skeleton loaders, error boundaries, optimistic UI, and real-time polling."
+    title="Level 8: Async UI & Live Data Patterns | NoviCodes"
+    description="Master asynchronous React UI, skeleton screens, error boundaries, optimistic updates, and polling across 6 hands-on lessons."
     showHeaderFooter={false}
 >
     <PlatformHeader 
         slot="header"
-        tagText="Level 8 • Async UI Architecture"
+        tagText="Level 8 • Async UI"
         tagId="headerLogoTag"
         navLinks={navLinks}
         showXpBadge={true}
@@ -27,10 +28,10 @@ const navLinks = [
     <main class="hub-container">
         <!-- Hero Section -->
         <section class="hub-hero">
-            <span class="hub-badge">🌉 Level 8 • Async UI & Loading States</span>
-            <h1>Master Async UI & <span class="typewriter-wrap theme-sky"><span class="typewriter-text" data-phrases='["Live Data Patterns", "Skeleton Loading States", "Debounced Live Search", "Optimistic UI Updates", "Real-Time Data Polling"]' aria-label="Live Data Patterns">Live Data Patterns</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+            <span class="hub-badge">Level 8 • Async UI &amp; Live Data</span>
+            <h1>Master Modern <span class="typewriter-wrap theme-blue"><span class="typewriter-text" data-phrases='["Async UI & Live Data", "Skeleton Loading States", "Optimistic Mutations", "Retry Error Boundaries", "Real-Time Feed Polling"]' aria-label="Async UI & Live Data">Async UI &amp; Live Data</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
             <p>
-                Ever wonder how apps like YouTube and Instagram never freeze or show blank screens? Learn how to show animated loading skeletons, friendly retry error screens, instant like buttons, and live-updating data!
+                Learn how to make modern web apps feel instant. Handle network delays, loading skeletons, error screens with retry buttons, optimistic updates, and background data polling.
             </p>
 
             <!-- Live Progress Bar -->
@@ -46,11 +47,11 @@ const navLinks = [
 
             <!-- Smart Resume CTA -->
             <a href="/7. partG/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>🚀 Start Lesson 1: Async Data Fetching ➔</span>
+                <span>Start Lesson 1: Async Data Fetching ➔</span>
             </a>
             <div style="margin-top: 14px; text-align: center;">
-                <a href="/foundations.html?track=async" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #0284c7; text-decoration: none; font-weight: 700; background: #f0f9ff; padding: 6px 16px; border-radius: 20px; transition: all 0.2s ease;">
-                    <span>📖 New to Async UI? Read the Level 8 Foundations Guide ➔</span>
+                <a href="/foundations.html?track=async" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
+                    <span>Explore Level 8 Foundations Guide ➔</span>
                 </a>
             </div>
         </section>
@@ -66,11 +67,11 @@ const navLinks = [
                 <div class="hub-stat-lbl">Lessons Completed</div>
             </div>
             <div class="hub-stat-card">
-                <div class="hub-stat-val">React 18 + Async Hooks</div>
-                <div class="hub-stat-lbl">Core Stack</div>
+                <div class="hub-stat-val">React 18 Async</div>
+                <div class="hub-stat-lbl">State Pattern</div>
             </div>
             <div class="hub-stat-card">
-                <div class="hub-stat-val">Async UI Specialist</div>
+                <div class="hub-stat-val">Level 8 Async</div>
                 <div class="hub-stat-lbl">Official Certificate</div>
             </div>
         </section>
@@ -80,77 +81,76 @@ const navLinks = [
             <div class="chapter-block">
                 <div class="chapter-header">
                     <div class="chapter-title-wrap">
-                        <span class="chapter-num">Async UI Track</span>
-                        <h2 class="chapter-title">The 6 Async Frontend Lessons</h2>
+                        <span class="chapter-num">Diploma Track</span>
+                        <h2 class="chapter-title">The 6 Async UI Lessons</h2>
                     </div>
                     <span class="chapter-badge">Lessons 1–6 • 1,500 XP</span>
                 </div>
 
                 <div class="lesson-cards-grid">
-                    
                     <a href="/7. partG/lesson1/lesson1_remake.html" class="lesson-card locked" id="lessonCard1">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 01</span>
-                            <span class="lesson-status-pill locked" id="statusPill1">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill1">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Smooth Skeleton Loaders</h3>
+                        <h3 class="lesson-card-title">Clean Async Data Fetching &amp; Skeleton Loaders</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText1">Locked</span>
                         </div>
                     </a>
                     <a href="/7. partG/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 02</span>
-                            <span class="lesson-status-pill locked" id="statusPill2">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Friendly Error Screens & 1-Click Retry</h3>
+                        <h3 class="lesson-card-title">Graceful Error Handling &amp; Retry Triggers</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText2">Locked</span>
                         </div>
                     </a>
                     <a href="/7. partG/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 03</span>
-                            <span class="lesson-status-pill locked" id="statusPill3">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Smarter Forms (Prevent Double Submits)</h3>
+                        <h3 class="lesson-card-title">Controlled Form Submissions &amp; Double-Submit Guards</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText3">Locked</span>
                         </div>
                     </a>
                     <a href="/7. partG/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 04</span>
-                            <span class="lesson-status-pill locked" id="statusPill4">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
                         </div>
                         <h3 class="lesson-card-title">Instant Optimistic Likes (Zero Lag)</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText4">Locked</span>
                         </div>
                     </a>
                     <a href="/7. partG/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 05</span>
-                            <span class="lesson-status-pill locked" id="statusPill5">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
                         </div>
-                        <h3 class="lesson-card-title">Live Activity Badges & Safe Timers</h3>
+                        <h3 class="lesson-card-title">Live Activity Badges &amp; Safe Timers</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText5">Locked</span>
                         </div>
                     </a>
                     <a href="/7. partG/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
                         <div class="card-top">
                             <span class="lesson-idx">LESSON 06</span>
-                            <span class="lesson-status-pill locked" id="statusPill6">🔒 Locked</span>
+                            <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
                         </div>
                         <h3 class="lesson-card-title">Final Project: Reactive Storefront</h3>
                         <div class="card-bottom">
-                            <span class="xp-tag">⚡ +250 XP</span>
+                            <span class="xp-tag">+250 XP</span>
                             <span class="card-action-text" id="actionText6">Locked</span>
                         </div>
                     </a>
@@ -158,22 +158,25 @@ const navLinks = [
             </div>
         </section>
 
-        <!-- Certificate Showcase Card -->
-        <section class="hub-cert-card">
-            <div class="cert-card-inner">
-                <div class="cert-icon-wrap">🎓</div>
-                <div class="cert-text-wrap">
-                    <h3>Async UI &amp; Client Data Specialist Certificate</h3>
-                    <p>Complete all 6 async lessons to earn your official Level 8 verification certificate!</p>
-                </div>
-                <a href="javascript:void(0)" class="cert-cta-btn locked" id="certButton">
-                    <span>🔒 Complete 6 Lessons to Unlock</span>
-                </a>
+        <!-- Certificate Milestone Box -->
+        <section class="cert-callout-card">
+            <div class="cert-callout-info">
+                <h3>Async UI &amp; Client Data Specialist Certificate</h3>
+                <p>Complete all 6 async lessons to earn your official Level 8 verification certificate!</p>
             </div>
+            <a href="javascript:void(0)" class="cert-callout-btn locked" id="certButton">
+                <span>Complete 6 Lessons to Unlock</span>
+            </a>
         </section>
     </main>
 
     <PlatformFooter slot="footer" />
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/7. partG/hub.css" />
     <script is:inline src="/scripts/dashboard.js"></script>
@@ -212,9 +215,11 @@ const navLinks = [
             let completedCount = 0;
             let firstIncompleteIdx = -1;
 
+            const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
             LESSON_KEYS.forEach((key, idx) => {
                 const isComplete = localStorage.getItem(key) === 'true';
-                const isUnlocked = idx === 0 || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
+                const isUnlocked = idx === 0 || isPracticeUnlocked || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
 
                 if (isComplete) completedCount++;
                 if (!isComplete && firstIncompleteIdx === -1 && isUnlocked) {
@@ -230,17 +235,17 @@ const navLinks = [
                 if (isComplete) {
                     card.className = 'lesson-card completed';
                     pill.className = 'lesson-status-pill completed';
-                    pill.textContent = '✅ Completed';
+                    pill.textContent = 'COMPLETED';
                     action.textContent = 'Review Project ➔';
                 } else if (isUnlocked) {
                     card.className = 'lesson-card in-progress';
-                    pill.className = 'lesson-status-pill in-progress';
-                    pill.textContent = '⚡ In Progress';
+                    pill.className = 'lesson-status-pill available';
+                    pill.textContent = 'UP NEXT';
                     action.textContent = 'Launch Project ➔';
                 } else {
                     card.className = 'lesson-card locked';
                     pill.className = 'lesson-status-pill locked';
-                    pill.textContent = '🔒 Locked';
+                    pill.textContent = 'LOCKED';
                     action.textContent = 'Locked';
                 }
             });
@@ -258,29 +263,30 @@ const navLinks = [
             if (resumeBtn) {
                 if (completedCount === LESSON_KEYS.length) {
                     resumeBtn.href = '/7. partG/certificate.html';
-                    resumeBtn.innerHTML = '<span>🏆 Claim Specialist Certificate ➔</span>';
-                    resumeBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    resumeBtn.innerHTML = '<span>Claim Specialist Certificate ➔</span>';
                 } else if (firstIncompleteIdx !== -1) {
                     resumeBtn.href = LESSON_URLS[firstIncompleteIdx];
-                    resumeBtn.innerHTML = `<span>🚀 Continue Project ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
+                    resumeBtn.innerHTML = `<span>Continue Project ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
                 }
             }
 
             const certBtn = document.getElementById('certButton');
             if (certBtn) {
                 if (completedCount === LESSON_KEYS.length) {
-                    certBtn.className = 'cert-cta-btn unlocked';
+                    certBtn.className = 'cert-callout-btn unlocked';
                     certBtn.href = '/7. partG/certificate.html';
-                    certBtn.innerHTML = '<span>🎓 View & Download Certificate ➔</span>';
+                    certBtn.innerHTML = '<span>View &amp; Download Certificate ➔</span>';
                 } else {
-                    certBtn.className = 'cert-cta-btn locked';
+                    certBtn.className = 'cert-callout-btn locked';
                     certBtn.href = 'javascript:void(0)';
-                    certBtn.innerHTML = `<span>🔒 Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
+                    certBtn.innerHTML = `<span>Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
                 }
             }
         }
 
         document.addEventListener('DOMContentLoaded', initHub);
+        window.addEventListener('novicodes:xp_updated', initHub);
         window.addEventListener('storage', initHub);
+        window.addEventListener('pageshow', initHub);
     })();
 </script>

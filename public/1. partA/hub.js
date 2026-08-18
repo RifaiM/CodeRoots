@@ -192,15 +192,16 @@
                         e.preventDefault();
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
-                                icon: 'info',
-                                title: '🔒 Track Locked',
+                                icon: 'warning',
+                                title: 'Track Locked',
                                 text: `Please complete ${track.id === 1 ? 'Level 0' : `Level ${track.id - 1}`} before unlocking this track.`,
-                                confirmButtonColor: '#2563eb'
+                                confirmButtonColor: '#A33B24',
+                                confirmButtonText: 'Acknowledge'
                             });
                         }
                     };
                     pill.className = 'track-status-pill locked';
-                    pill.textContent = '🔒 Locked';
+                    pill.textContent = 'LOCKED';
                     action.innerHTML = 'Locked';
                 }
             }

@@ -163,30 +163,29 @@ export function checkLessonAccessAndRenderOverlay(opts: AccessCheckOptions): boo
         if (!document.getElementById('_ad-styles')) {
             const s = document.createElement('style');
             s.id = '_ad-styles';
-            s.textContent = '@keyframes _adFadeIn{from{opacity:0}to{opacity:1}}@keyframes _adSlideIn{from{opacity:0;transform:scale(.88) translateY(-16px)}to{opacity:1;transform:scale(1) translateY(0)}}@keyframes _adFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}';
+            s.textContent = '@keyframes _adFadeIn{from{opacity:0}to{opacity:1}}@keyframes _adSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}';
             document.head.appendChild(s);
         }
 
         const overlay = document.createElement('div');
         overlay.id = '_access-denied-overlay';
-        overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:linear-gradient(135deg,#090d16 0%,#0f172a 50%,#1e293b 100%);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_adFadeIn 0.3s ease;font-family:\'Plus Jakarta Sans\',system-ui,-apple-system,sans-serif;');
+        overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:rgba(32,33,31,0.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_adFadeIn 0.2s ease;font-family:\'IBM Plex Sans\',system-ui,sans-serif;');
 
         const card = document.createElement('div');
-        card.setAttribute('style', 'position:relative;z-index:1;background:rgba(15,23,42,0.92);border:1px solid rgba(51,65,85,0.8);border-top:4px solid #ef4444;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;padding:38px 28px;max-width:480px;width:90%;text-align:center;box-shadow:0 24px 50px rgba(0,0,0,0.6), 0 0 30px rgba(239,68,68,0.2);animation:_adSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);box-sizing:border-box;');
+        card.setAttribute('style', 'position:relative;z-index:1;background:#F8F6F1;border:1px solid #D5D0C6;border-radius:2px;padding:32px 24px;max-width:460px;width:95%;text-align:center;box-shadow:0 16px 40px rgba(32,33,31,0.18);animation:_adSlideIn 0.25s ease;box-sizing:border-box;');
 
         card.innerHTML = `
-            <div style="display:inline-block;background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);font-family:'Fira Code',monospace;font-size:0.80rem;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:0.5px;">🔒 PREREQUISITE REQUIRED</div>
-            <div style="font-size:3.6rem;margin-bottom:12px;line-height:1;filter:drop-shadow(0 8px 16px rgba(239,68,68,0.25));animation:_adFloat 3s ease-in-out infinite;">🔒</div>
-            <h2 style="color:#ffffff;margin:0 0 10px;font-size:1.55rem;font-weight:800;letter-spacing:-0.3px;">Access Restricted</h2>
-            <p style="margin:0 0 24px;line-height:1.6;color:#94a3b8;font-size:0.92rem;">
-                You must complete <strong style="color:#f8fafc;">Lesson ${requiredLesson}</strong> before accessing <strong style="color:#f8fafc;">Lesson ${opts.lessonNum}</strong> in ${opts.levelTag}.
+            <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">§ 00 // PREREQUISITE REQUIRED</div>
+            <h2 style="color:#20211F;margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-size:1.55rem;font-weight:500;letter-spacing:-0.01em;">Access Restricted</h2>
+            <p style="margin:0 0 20px;line-height:1.6;color:#686760;font-size:0.90rem;">
+                You must complete <strong style="color:#20211F;">Lesson ${requiredLesson}</strong> before accessing <strong style="color:#20211F;">Lesson ${opts.lessonNum}</strong> in ${opts.levelTag}.
             </p>
-            <div style="display:flex;flex-direction:column;gap:10px;width:100%;box-sizing:border-box;">
-                <button onclick="window.location.href='${targetUrl}'" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;border:none;border-radius:24px;font-family:inherit;font-size:0.90rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,0.35);transition:all 0.2s ease;box-sizing:border-box;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
-                    <span>🚀 Take Me to Lesson ${highestAccessible} ➔</span>
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;box-sizing:border-box;">
+                <button onclick="window.location.href='${targetUrl}'" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 16px;background:#A33B24;color:#F8F6F1;border:1px solid #A33B24;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;cursor:pointer;transition:all 0.15s ease;box-sizing:border-box;">
+                    <span>Open Lesson ${highestAccessible} →</span>
                 </button>
-                <a href="${opts.dashboardUrl || '/'}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:#1e293b;color:#f8fafc;border:1px solid #334155;border-radius:24px;font-family:inherit;font-size:0.86rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;" onmouseover="this.style.background='#334155';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#1e293b';this.style.transform=''">
-                    <span>🏠 Return to Dashboard</span>
+                <a href="${opts.dashboardUrl || '/'}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 16px;background:#F1EEE7;color:#20211F;border:1px solid #D5D0C6;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;text-decoration:none;box-sizing:border-box;transition:all 0.15s ease;">
+                    <span>Return to Curriculum Roadmap</span>
                 </a>
             </div>
         `;
@@ -216,28 +215,28 @@ export function showCertLockWarning(levelTag: string, completed: number, total: 
     const remaining = Math.max(0, total - completed);
     if (typeof (window as any).Swal !== 'undefined') {
         (window as any).Swal.fire({
-            icon: 'info',
-            title: `${levelTag} Certificate Locked 📜`,
+            icon: 'warning',
+            title: `${levelTag} Certificate Locked`,
             html: `
-                <div style="text-align: center; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
-                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 16px; line-height: 1.55;">
-                        Complete all <strong>${total} interactive projects</strong> in this Dojo to claim and download your verified official certificate!
+                <div style="text-align: center; font-family: var(--font-sans, sans-serif);">
+                    <p style="font-size: 0.90rem; color: var(--text-body, #20211F); margin-bottom: 16px; line-height: 1.55;">
+                        Complete all <strong>${total} interactive projects</strong> in this Dojo to claim and download your verified official certificate.
                     </p>
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 14px; display: flex; justify-content: space-around; margin-bottom: 12px;">
+                    <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px; border-radius: 2px; display: flex; justify-content: space-around; margin-bottom: 12px;">
                         <div>
-                            <div style="font-size: 1.4rem; font-weight: 800; color: #10b981;">${completed} / ${total}</div>
-                            <div style="font-size: 0.75rem; color: #64748b; font-weight: 700;">Completed</div>
+                            <div style="font-family: var(--font-mono, monospace); font-size: 1.25rem; font-weight: 600; color: #2F5233;">${completed} / ${total}</div>
+                            <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">Completed</div>
                         </div>
-                        <div style="width: 1px; background: #e2e8f0;"></div>
+                        <div style="width: 1px; background: var(--border-subtle, #D5D0C6);"></div>
                         <div>
-                            <div style="font-size: 1.4rem; font-weight: 800; color: #ef4444;">${remaining}</div>
-                            <div style="font-size: 0.75rem; color: #64748b; font-weight: 700;">Remaining</div>
+                            <div style="font-family: var(--font-mono, monospace); font-size: 1.25rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">${remaining}</div>
+                            <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">Remaining</div>
                         </div>
                     </div>
                 </div>
             `,
-            confirmButtonColor: '#2563eb',
-            confirmButtonText: '🚀 Keep Coding',
+            confirmButtonColor: '#A33B24',
+            confirmButtonText: 'Continue Practice →',
             customClass: { popup: 'responsive-profile-modal' }
         });
     }
@@ -266,43 +265,42 @@ export function checkCertificateAccessAndRenderOverlay(opts: CertAccessCheckOpti
         if (!document.getElementById('_cert-ad-styles')) {
             const s = document.createElement('style');
             s.id = '_cert-ad-styles';
-            s.textContent = '@keyframes _certFadeIn{from{opacity:0}to{opacity:1}}@keyframes _certSlideIn{from{opacity:0;transform:scale(.92) translateY(-14px)}to{opacity:1;transform:scale(1) translateY(0)}}';
+            s.textContent = '@keyframes _certFadeIn{from{opacity:0}to{opacity:1}}@keyframes _certSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}';
             document.head.appendChild(s);
         }
 
         const overlay = document.createElement('div');
         overlay.id = '_cert-access-denied-overlay';
-        overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:linear-gradient(135deg,#f8fafc 0%,#f1f5f9 100%);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_certFadeIn 0.3s ease;font-family:\'Plus Jakarta Sans\',system-ui,-apple-system,sans-serif;');
+        overlay.setAttribute('style', 'position:fixed;inset:0;width:100vw;height:100vh;background:rgba(32,33,31,0.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:_certFadeIn 0.2s ease;font-family:\'IBM Plex Sans\',system-ui,sans-serif;');
 
         const card = document.createElement('div');
-        card.setAttribute('style', 'position:relative;background:#ffffff;border:1.5px solid #e2e8f0;border-top:4px solid #ef4444;border-radius:24px;padding:36px 28px;max-width:480px;width:95%;text-align:center;box-shadow:0 20px 50px rgba(15,23,42,0.08), 0 4px 14px rgba(239,68,68,0.06);animation:_certSlideIn 0.35s cubic-bezier(0.16,1,0.3,1);box-sizing:border-box;');
+        card.setAttribute('style', 'position:relative;background:#F8F6F1;border:1px solid #D5D0C6;border-radius:2px;padding:32px 24px;max-width:460px;width:95%;text-align:center;box-shadow:0 16px 40px rgba(32,33,31,0.18);animation:_certSlideIn 0.25s ease;box-sizing:border-box;');
 
         card.innerHTML = `
-            <div style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:0.75rem;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:0.5px;text-transform:uppercase;">🔒 CERTIFICATE LOCKED</div>
-            <div style="font-size:3.4rem;margin-bottom:10px;line-height:1;">📜</div>
-            <h2 style="color:#0f172a;margin:0 0 8px;font-size:1.5rem;font-weight:800;letter-spacing:-0.4px;">${opts.levelTag} Certificate Locked</h2>
-            <p style="margin:0 0 20px;line-height:1.6;color:#64748b;font-size:0.90rem;">
-                You must complete all <strong style="color:#0f172a;">${opts.totalProjects} projects</strong> in ${opts.certName} before unlocking your verified proof-of-work certificate.
+            <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">§ 00 // CERTIFICATE LOCKED</div>
+            <h2 style="color:#20211F;margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-size:1.55rem;font-weight:500;letter-spacing:-0.01em;">${opts.levelTag} Certificate Locked</h2>
+            <p style="margin:0 0 20px;line-height:1.6;color:#686760;font-size:0.90rem;">
+                You must complete all <strong style="color:#20211F;">${opts.totalProjects} projects</strong> in ${opts.certName} before unlocking your verified proof-of-work certificate.
             </p>
             
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px;display:flex;justify-content:space-around;margin-bottom:22px;">
+            <div style="background:#F1EEE7;border:1px solid #D5D0C6;border-radius:2px;padding:12px;display:flex;justify-content:space-around;margin-bottom:20px;">
                 <div>
-                    <div style="font-size:1.4rem;font-weight:800;color:#10b981;">${count} / ${opts.totalProjects}</div>
-                    <div style="font-size:0.75rem;color:#64748b;font-weight:700;">Completed</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:1.25rem;font-weight:600;color:#2F5233;">${count} / ${opts.totalProjects}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#686760;text-transform:uppercase;">Completed</div>
                 </div>
-                <div style="width:1px;background:#e2e8f0;"></div>
+                <div style="width:1px;background:#D5D0C6;"></div>
                 <div>
-                    <div style="font-size:1.4rem;font-weight:800;color:#ef4444;">${remaining}</div>
-                    <div style="font-size:0.75rem;color:#64748b;font-weight:700;">Remaining</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:1.25rem;font-weight:600;color:#A33B24;">${remaining}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#686760;text-transform:uppercase;">Remaining</div>
                 </div>
             </div>
 
-            <div style="display:flex;flex-direction:column;gap:10px;width:100%;box-sizing:border-box;">
-                <button onclick="window.location.replace('${opts.hubUrl}')" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;border:none;border-radius:12px;font-family:inherit;font-size:0.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.25);transition:all 0.2s ease;box-sizing:border-box;">
-                    <span>🚀 Return to Dojo Hub &amp; Continue ➔</span>
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;box-sizing:border-box;">
+                <button onclick="window.location.replace('${opts.hubUrl}')" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 16px;background:#A33B24;color:#F8F6F1;border:1px solid #A33B24;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;cursor:pointer;transition:all 0.15s ease;box-sizing:border-box;">
+                    <span>Return to Dojo Hub →</span>
                 </button>
-                <a href="/#roadmap" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 20px;background:#f8fafc;color:#475569;border:1px solid #cbd5e1;border-radius:12px;font-family:inherit;font-size:0.84rem;font-weight:700;text-decoration:none;box-sizing:border-box;transition:all 0.2s ease;">
-                    <span>🏠 Dashboard Skill Tree</span>
+                <a href="/#roadmap" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 16px;background:#F1EEE7;color:#20211F;border:1px solid #D5D0C6;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;text-decoration:none;box-sizing:border-box;transition:all 0.15s ease;">
+                    <span>Curriculum Roadmap</span>
                 </a>
             </div>
         `;

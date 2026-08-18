@@ -14,19 +14,20 @@ import '../../../styles/devtype.css';
     <!-- Compact Top Navbar -->
     <header class="devtype-navbar">
         <a href="/#roadmap" class="nav-back-btn">
-            <span class="btn-icon">🏠</span>
-            <span class="btn-text">Dashboard</span>
+            <span class="btn-text">← DASHBOARD</span>
         </a>
 
-        <h1 class="nav-title">
-            <span>⌨️ DevType Dojo</span>
-            <span class="nav-sub">Code Typing Speedrun</span>
-        </h1>
+        <div class="nav-title-group">
+            <h1 class="nav-title">DEVTYPE ARCADE</h1>
+            <span class="nav-sub">SPEEDRUN TYPING</span>
+        </div>
 
         <div class="high-score-badge">
-            <button id="howItWorksBtn" type="button" onclick="showArcadeHelpModal()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; padding: 3px 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; margin-right: 8px; transition: all 0.2s ease;">❓ How it Works</button>
-            <span>🏆 Best:</span>
-            <strong id="highScoreVal">0 WPM</strong>
+            <button id="howItWorksBtn" type="button" onclick="showArcadeHelpModal()" class="how-it-works-btn">[ HOW IT WORKS ]</button>
+            <div class="score-display">
+                <span class="score-label">BEST:</span>
+                <strong id="highScoreVal">0 WPM</strong>
+            </div>
         </div>
     </header>
 
@@ -34,49 +35,49 @@ import '../../../styles/devtype.css';
         <!-- Compact Control Bar (Mode & Timer Selectors in One Row) -->
         <div class="compact-controls-bar">
             <div class="mode-selector-bar">
-                <button class="mode-btn" data-mode="html" title="Practice HTML5 structure & tags">🌐 HTML</button>
-                <button class="mode-btn" data-mode="css" title="Practice CSS3 layout & styles">🎨 CSS</button>
-                <button class="mode-btn active" data-mode="js" title="Practice ES6+ JavaScript syntax">⚡ JS</button>
-                <button class="mode-btn" data-mode="react" title="Practice React 18/19 components & hooks">⚛️ React</button>
-                <button class="mode-btn" data-mode="python" title="Practice Python 3 backend & FastAPI">🐍 Python</button>
-                <button class="mode-btn" data-mode="sql" title="Practice Relational SQL queries & JOINs">🛢️ SQL</button>
-                <button class="mode-btn" data-mode="nextjs" title="Practice Next.js App Router & Server Actions">⚡ Next.js</button>
+                <button class="mode-btn" data-mode="html" title="Practice HTML5 structure & tags">HTML</button>
+                <button class="mode-btn" data-mode="css" title="Practice CSS3 layout & styles">CSS</button>
+                <button class="mode-btn active" data-mode="js" title="Practice ES6+ JavaScript syntax">JS</button>
+                <button class="mode-btn" data-mode="react" title="Practice React components & hooks">REACT</button>
+                <button class="mode-btn" data-mode="python" title="Practice Python backend syntax">PYTHON</button>
+                <button class="mode-btn" data-mode="sql" title="Practice Relational SQL queries">SQL</button>
+                <button class="mode-btn" data-mode="nextjs" title="Practice Next.js Server Components">NEXT.JS</button>
             </div>
 
             <div class="timer-divider"></div>
 
             <div class="timer-selector-bar">
-                <span class="timer-label">⏱️ Mode:</span>
-                <button class="timer-btn" data-time="15" title="15 second speedrun sprint">15s</button>
-                <button class="timer-btn active" data-time="30" title="30 second standard speedrun">30s</button>
-                <button class="timer-btn" data-time="60" title="60 second endurance speedrun">60s</button>
-                <button class="timer-btn" data-time="custom" id="customTimerBtn" title="Set a custom speedrun countdown duration">⚙️ Custom</button>
-                <button class="timer-btn" data-time="0" title="No Timer Mode: Type full code snippet at your own pace with no countdown timer!">∞ No Timer</button>
+                <span class="timer-label">DURATION:</span>
+                <button class="timer-btn" data-time="15" title="15 second sprint">15S</button>
+                <button class="timer-btn active" data-time="30" title="30 second standard run">30S</button>
+                <button class="timer-btn" data-time="60" title="60 second endurance run">60S</button>
+                <button class="timer-btn" data-time="custom" id="customTimerBtn" title="Set a custom countdown duration">CUSTOM</button>
+                <button class="timer-btn" data-time="0" title="No Timer Mode: Type full code snippet at your own pace">UNTIMED</button>
             </div>
         </div>
 
         <!-- Live Stats HUD Bar -->
         <div class="stats-hud-bar">
             <div class="hud-item">
-                <span class="hud-label">🚀 Speed</span>
+                <span class="hud-label">SPEED</span>
                 <span class="hud-value" id="wpmVal">0 WPM</span>
             </div>
             <div class="hud-item">
-                <span class="hud-label">⏱️ Time</span>
+                <span class="hud-label">TIME</span>
                 <span class="hud-value highlight-amber" id="timerVal">30s</span>
             </div>
             <div class="hud-item">
-                <span class="hud-label">🎯 Accuracy</span>
+                <span class="hud-label">ACCURACY</span>
                 <span class="hud-value" id="accuracyVal">100%</span>
             </div>
             <div class="hud-item">
-                <span class="hud-label">⌨️ CPM</span>
+                <span class="hud-label">CPM</span>
                 <span class="hud-value" id="cpmVal">0</span>
             </div>
         </div>
 
         <!-- Main Code Typing Area -->
-        <div class="typing-area-card" title="Click to start typing code!">
+        <div class="typing-area-card" title="Click to start typing code">
             <div class="code-display" id="codeDisplay"></div>
             <textarea id="hiddenInput" spellcheck="false" autocomplete="off" capitalize="off"></textarea>
         </div>
@@ -85,15 +86,15 @@ import '../../../styles/devtype.css';
         <div class="action-footer">
             <div class="action-buttons">
                 <button class="action-btn retry-btn" id="retryBtn">
-                    <span>🔄 Retry</span><span class="btn-full-text">&nbsp;Snippet</span>
+                    <span>[ RETRY SNIPPET ]</span>
                 </button>
                 <button class="action-btn next-btn" id="nextBtn">
-                    <span>⏭ Next</span><span class="btn-full-text">&nbsp;Snippet</span>
+                    <span>[ NEXT SNIPPET → ]</span>
                 </button>
             </div>
 
             <div class="shortcut-text">
-                Press <kbd>Tab</kbd> to indent code like VS Code | Press <kbd>Esc</kbd> to restart
+                PRESS <kbd>TAB</kbd> TO INDENT • PRESS <kbd>ESC</kbd> TO RESTART
             </div>
         </div>
     </main>

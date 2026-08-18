@@ -47,11 +47,11 @@ export class ProgressManager {
         // 4. Trigger SweetAlert2 Modal
         if (typeof (window as any).Swal !== 'undefined') {
             const modalTitle = isFirstCompletion 
-                ? `🎉 ${opts.lessonTitle} Completed! (+${opts.xp} XP)`
-                : `🎉 ${opts.lessonTitle} Verified!`;
+                ? `${opts.lessonTitle} Completed`
+                : `${opts.lessonTitle} Verified`;
             const modalText = isFirstCompletion
-                ? (opts.customMessage || `You've successfully solved the challenge and earned +${opts.xp} XP!`)
-                : `Awesome job! Your solution passed all automated checks. (XP Bounty already claimed).`;
+                ? (opts.customMessage || `Challenge solved successfully. +${opts.xp} XP bounty credited.`)
+                : `Solution passed all automated verification checks.`;
 
             (window as any).Swal.fire({
                 icon: 'success',
@@ -59,10 +59,10 @@ export class ProgressManager {
                 text: modalText,
                 showDenyButton: !!opts.nextUrl,
                 showConfirmButton: true,
-                confirmButtonColor: '#10b981',
-                denyButtonColor: '#475569',
-                confirmButtonText: opts.nextUrl ? (opts.continueText || 'Continue to Next Lesson 🚀') : 'Awesome! 🎉',
-                denyButtonText: opts.stayAndPracticeText || 'Stay & Practice 🛠️',
+                confirmButtonColor: '#A33B24',
+                denyButtonColor: '#BAB4A6',
+                confirmButtonText: opts.nextUrl ? 'Next Lesson →' : 'Acknowledge',
+                denyButtonText: 'Stay on Current Lesson',
                 customClass: {
                     popup: 'responsive-profile-modal'
                 }

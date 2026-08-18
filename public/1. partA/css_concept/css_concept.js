@@ -3,6 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initBackToTop();
     updateHeaderStats();
     initStylerPlayground();
     initConceptQuiz();
@@ -187,20 +188,22 @@ window.markConceptComplete = function() {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             icon: 'success',
-            title: '🎉 Concept 3 Mastered!',
+            title: 'Concept 3 Verified',
             html: `
-                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
-                    <div style="font-size: 1.15rem; font-weight: 800; color: #db2777; margin-bottom: 6px;">+50 XP Earned!</div>
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5;">
-                        You have mastered CSS styling and the Box Model! Ready for the final pillar: <strong>JavaScript Interactivity</strong>?
+                <div style="font-family: var(--font-sans, sans-serif); text-align: center;">
+                    <div style="font-family: var(--font-mono, monospace); font-size: 0.84rem; font-weight: 600; color: #2F5233; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 6px 14px; border-radius: 2px; display: inline-block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em;">
+                        BOUNTY // +50 XP EARNED
+                    </div>
+                    <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.55;">
+                        You have mastered CSS styling rules and the Box Model. Ready for the final pillar: <strong>JavaScript Interactivity</strong>?
                     </p>
                 </div>
             `,
             showCancelButton: true,
-            confirmButtonText: '⚡ Next: JavaScript Concept ➔',
-            cancelButtonText: '🗺️ Back to Web History',
-            confirmButtonColor: '#db2777',
-            cancelButtonColor: '#64748b'
+            confirmButtonText: 'Next: JavaScript Concept →',
+            cancelButtonText: 'Web History Roadmap',
+            confirmButtonColor: '#A33B24',
+            cancelButtonColor: '#BAB4A6'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = '../javascript_concept/javascript_concept.html';
@@ -216,17 +219,17 @@ window.markConceptComplete = function() {
 function showLockedModal() {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            icon: 'info',
-            title: '🔒 Verification Required',
+            icon: 'warning',
+            title: 'Verification Incomplete',
             html: `
-                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 8px;">
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 10px;">
-                        Please answer all 3 questions in <strong>Section 3: Concept Verification Check</strong> to prove your understanding before claiming this concept (+50 XP)!
+                <div style="font-family: var(--font-sans, sans-serif); text-align: left; padding: 4px 8px;">
+                    <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.55; margin-bottom: 10px;">
+                        Please answer all 3 questions in <strong>Section 3: Concept Verification Check</strong> to prove your understanding before claiming this milestone (+50 XP).
                     </p>
                 </div>
             `,
-            confirmButtonColor: '#db2777',
-            confirmButtonText: 'Take Verification Check 🚀'
+            confirmButtonColor: '#A33B24',
+            confirmButtonText: 'Take Verification Check →'
         });
     }
 }
@@ -253,4 +256,21 @@ function updateCompletionButton() {
 
 function checkIfAlreadyCompleted() {
     updateCompletionButton();
+}
+
+function initBackToTop() {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 150) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }

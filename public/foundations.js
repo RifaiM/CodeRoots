@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const trackSubtitle = document.getElementById('trackSubtitle');
     const headerLogoTag = document.getElementById('headerLogoTag');
 
-    if (trackBadgePill) trackBadgePill.textContent = `${trackData.badgeIcon} ${trackData.title}`;
+    if (trackBadgePill) trackBadgePill.textContent = trackData.title;
     if (trackTitle) trackTitle.textContent = trackData.title;
     if (trackSubtitle) trackSubtitle.textContent = trackData.subtitle;
     if (headerLogoTag && trackData) {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSandboxEngine(trackData.sandbox);
 
     // 8. Hydrate 4. Quiz & Verification Engine
-    initQuizEngine(trackData);
+    initInteractiveQuiz(trackData);
 });
 
 /**
@@ -588,31 +588,39 @@ function initHtmlConceptWidgets() {
 
     const explanations = {
         open: {
-            title: '🏷️ Opening Tag (<a>)',
-            desc: 'Tells the browser: "Hey, open a new link box!" The angle brackets (<...>) act as container boundaries.'
+            title: '🏷️ Opening Tag (<a ... >)',
+            desc: 'Tells the browser to construct a new link element in the DOM tree. The opening tag bracket (<a) and closing bracket (>) define the start of the container.'
         },
         attr: {
             title: '⚡ Attributes (href="https://novicodes.dev")',
-            desc: 'Like a luggage tag attached to a suitcase! href tells the link where to fly when clicked.'
+            desc: 'Attributes provide settings, properties, and destination targets for elements. href defines the URL where the user will be navigated upon clicking.'
         },
         content: {
             title: '📝 Element Content ("Explore Code Dojo")',
-            desc: 'The actual visible item packed inside the box that visitors read and click on.'
+            desc: 'The human-readable text or nested child tags packed between the opening and closing tags that users see on the screen.'
         },
         close: {
             title: '🛑 Closing Tag (</a>)',
-            desc: 'Tells the browser: "The link box ends here! Tape it shut with a forward slash (/)." Everything after this is outside the link.'
+            desc: 'Tells the browser parser that this link container ends here. The forward slash (/) terminates the element boundary.'
         }
     };
 
     chunks.forEach(chunk => {
         chunk.addEventListener('click', () => {
-            chunks.forEach(c => c.classList.remove('active'));
-            chunk.classList.add('active');
             const part = chunk.dataset.part;
+            chunks.forEach(c => {
+                c.classList.toggle('active', c.dataset.part === part);
+            });
             const info = explanations[part];
             if (info && detailBox) {
-                detailBox.innerHTML = `<strong>${info.title}</strong><p style="margin: 6px 0 0 0;">${info.desc}</p>`;
+                detailBox.innerHTML = `
+                    <div style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--text-title, #20211F); font-size: 0.88rem; margin-bottom: 6px;">
+                        ${info.title}
+                    </div>
+                    <p style="color: var(--text-body, #20211F); font-size: 0.88rem; line-height: 1.55; margin: 0;">
+                        ${info.desc}
+                    </p>
+                `;
             }
         });
     });
@@ -625,30 +633,76 @@ function initHtmlConceptWidgets() {
 
 // ── 2. CSS Interactive Concept Widgets ──
 function initCssConceptWidgets() {
-    // A. Box Model Explorer
-    const layers = [
-        { id: 'bmMarginLayer', name: 'Margin 🚚', desc: 'Outer space in the delivery truck separating this box from neighbor elements so they don\'t smash together.' },
-        { id: 'bmBorderLayer', name: 'Border 📦', desc: 'The visible cardboard box outline surrounding the inner cushion (e.g. 2px solid #f59e0b).' },
-        { id: 'bmPaddingLayer', name: 'Padding 🛡️', desc: 'The protective inner cushion inside the box giving your text/image breathing room from the cardboard walls.' },
-        { id: 'bmContentLayer', name: 'Content ☕', desc: 'The actual valuable item inside the box (your text headline, paragraph, photo, or button).' }
-    ];
-
+    // A. Box Model Explorer (Bidirectional Free-Hover Engine)
+    const container = document.getElementById('cssBoxModelWidget');
     const readout = document.getElementById('boxModelReadout');
-    if (readout) {
-        readout.innerHTML = `<strong>💡 Hover over any Box Model layer above</strong> to see its purpose and real-world shipping box analogy!`;
+    const allLayerEls = container ? container.querySelectorAll('[data-layer]') : [];
+
+    const layerDescriptions = {
+        margin: {
+            name: 'Margin 🚚',
+            badgeColor: '#A33B24',
+            desc: 'Outer buffer space in the delivery truck separating this element from neighbor boxes so they do not collide or touch.'
+        },
+        border: {
+            name: 'Border 📦',
+            badgeColor: '#854D0E',
+            desc: 'The visible cardboard box outline surrounding the inner cushion (e.g. <code>2px solid #2C2D2B</code>).'
+        },
+        padding: {
+            name: 'Padding 🛡️',
+            badgeColor: '#2F5233',
+            desc: 'The protective inner cushion inside the box giving your text/image breathing room from the cardboard walls.'
+        },
+        content: {
+            name: 'Content ☕',
+            badgeColor: '#1B1C1A',
+            desc: 'The actual valuable item inside the box (your text headline, paragraph, photo, or button).'
+        }
+    };
+
+    function setActiveLayer(layerKey) {
+        allLayerEls.forEach(el => {
+            el.classList.toggle('layer-active', el.getAttribute('data-layer') === layerKey);
+        });
+
+        if (readout) {
+            if (layerKey && layerDescriptions[layerKey]) {
+                const info = layerDescriptions[layerKey];
+                readout.innerHTML = `
+                    <div style="text-align: left; width: 100%;">
+                        <strong style="color: ${info.badgeColor}; font-family: var(--font-mono, monospace); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; display: inline-block; margin-right: 6px;">
+                            ${info.name} Layer:
+                        </strong>
+                        <span style="color: var(--text-body, #20211F); line-height: 1.5;">${info.desc}</span>
+                    </div>
+                `;
+            } else {
+                readout.innerHTML = `<span><strong>💡 Hover over any Box Model layer above</strong> to see its real-world shipping box analogy!</span>`;
+            }
+        }
     }
 
-    layers.forEach(l => {
-        const el = document.getElementById(l.id);
-        if (el) {
-            el.addEventListener('mouseenter', (e) => {
-                e.stopPropagation();
-                if (readout) {
-                    readout.innerHTML = `<span style="color: #2563eb; font-weight: 800;">${l.name} Layer:</span> ${l.desc}`;
-                }
-            });
-        }
-    });
+    if (container) {
+        // Use mouseover & pointermove to guarantee bidirectional detection (inner->outer and outer->inner)
+        const handleLayerHover = (e) => {
+            const layerEl = e.target.closest('[data-layer]');
+            if (layerEl && container.contains(layerEl)) {
+                const key = layerEl.getAttribute('data-layer');
+                setActiveLayer(key);
+            }
+        };
+
+        container.addEventListener('mouseover', handleLayerHover);
+        container.addEventListener('pointermove', handleLayerHover);
+
+        container.addEventListener('mouseleave', () => {
+            setActiveLayer(null);
+        });
+    }
+
+    // Set initial default message
+    setActiveLayer(null);
 
     // B. Flexbox Playground
     const flexViewport = document.getElementById('flexSandboxViewport');
@@ -672,9 +726,9 @@ function initCssConceptWidgets() {
 // ── 3. JavaScript Interactive Concept Widgets ──
 function initJsConceptWidgets() {
     // A. Triad Harmonizer
-    const checkHtml = document.getElementById('checkHtml');
-    const checkCss = document.getElementById('checkCss');
-    const checkJs = document.getElementById('checkJs');
+    const btnHtml = document.getElementById('btnToggleHtml') || document.getElementById('checkHtml');
+    const btnCss = document.getElementById('btnToggleCss') || document.getElementById('checkCss');
+    const btnJs = document.getElementById('btnToggleJs') || document.getElementById('checkJs');
     const screen = document.getElementById('triadPreviewScreen');
 
     let triadCount = 0;
@@ -682,20 +736,56 @@ function initJsConceptWidgets() {
     let hasCss = true;
     let hasJs = true;
 
+    function syncButtonState(btn, isActive) {
+        if (!btn) return;
+        btn.classList.toggle('active', isActive);
+        btn.classList.toggle('checked', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        const statusSpan = btn.querySelector('.triad-btn-status');
+        if (statusSpan) {
+            statusSpan.textContent = isActive ? 'ON' : 'OFF';
+        }
+    }
+
     function updateTriad() {
         if (!screen) return;
         if (!hasHtml) {
-            screen.innerHTML = '<div style="color: #94a3b8; text-align: center; padding: 30px 0; font-style: italic;">(HTML is unchecked — No structural content exists!)</div>';
+            screen.innerHTML = `
+                <div style="background: var(--canvas-base, #F1EEE7); border: 1px dashed var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 24px 16px; text-align: center; font-family: var(--font-mono, monospace);">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">💀</div>
+                    <strong style="color: var(--accent-oxide, #A33B24); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 6px;">[STRUCTURE OFFLINE]</strong>
+                    <p style="color: var(--text-muted, #686760); font-size: 0.82rem; margin: 0; max-width: 440px; margin: 0 auto; line-height: 1.5;">HTML is turned off. Without HTML bones, no elements exist in the browser DOM. There is nothing for CSS to paint or for JavaScript to attach events to!</p>
+                </div>
+            `;
             return;
         }
 
-        screen.innerHTML = `
-            <div id="triadContentBox" style="text-align: center;">
-                <h3 id="triadTitle" style="margin: 0 0 8px 0; color: ${hasCss ? '#0f172a' : '#000000'}; font-family: ${hasCss ? 'inherit' : 'monospace'}; font-size: ${hasCss ? '1.2rem' : '1rem'};">Live Interactive App</h3>
-                <p id="triadText" style="color: ${hasCss ? '#64748b' : '#333333'}; font-size: ${hasCss ? '0.9rem' : '0.85rem'}; margin-bottom: 14px;">Click the button below to test interactivity:</p>
-                <button id="triadActionBtn" style="${hasCss ? 'background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: transform 0.15s ease;' : 'background: #e0e0e0; color: black; border: 1px solid black; padding: 4px 8px; cursor: pointer;'}">⚡ Click Me (Count: <span id="triadCountDisplay">${triadCount}</span>)</button>
-            </div>
-        `;
+        if (hasCss) {
+            screen.innerHTML = `
+                <div id="triadContentBox" style="background: #FFFFFF; border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 20px; text-align: center; max-width: 360px; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                    <span style="display: inline-block; font-family: var(--font-mono, monospace); font-size: 0.70rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: ${hasJs ? '#2F5233' : '#A33B24'}; background: ${hasJs ? '#EBF3EC' : '#F6ECE9'}; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px;">
+                        ${hasJs ? '⚡ Interactive Widget Active' : '🔒 Static Widget (No JS)'}
+                    </span>
+                    <h3 id="triadTitle" style="font-family: var(--font-serif, 'Newsreader', serif); font-size: 1.2rem; font-weight: 600; color: var(--text-title, #20211F); margin: 0 0 6px 0;">Live Web Counter</h3>
+                    <p id="triadText" style="color: var(--text-muted, #686760); font-size: 0.84rem; margin: 0 0 14px 0; line-height: 1.5;">Click the button below to test interactivity and state updates:</p>
+                    <button type="button" id="triadActionBtn" style="background: var(--accent-oxide, #A33B24); color: #F8F6F1; border: 1px solid var(--accent-oxide, #A33B24); padding: 8px 16px; border-radius: 2px; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.15s ease;">
+                        ⚡ Increment Count: <span id="triadCountDisplay">${triadCount}</span>
+                    </button>
+                </div>
+            `;
+        } else {
+            // Raw unstyled HTML fallback
+            screen.innerHTML = `
+                <div id="triadContentBox" style="background: #FFFFFF; border: 1px solid #767676; padding: 14px; font-family: 'Times New Roman', Times, serif; color: #000000; text-align: left;">
+                    <div style="font-size: 0.76rem; font-family: monospace; color: #666666; margin-bottom: 6px;">&lt;!-- Raw Unstyled HTML (CSS is OFF) --&gt;</div>
+                    <h3 id="triadTitle" style="margin: 0 0 6px 0; font-size: 1.15rem; font-weight: bold; color: #000000;">Live Web Counter</h3>
+                    <p id="triadText" style="margin: 0 0 10px 0; font-size: 0.90rem; color: #000000;">Click the button below to test interactivity and state updates:</p>
+                    <button type="button" id="triadActionBtn" style="background: #e9e9ed; color: #000000; border: 1px solid #767676; padding: 3px 8px; font-size: 0.82rem; cursor: pointer;">
+                        Click Me (Count: <span id="triadCountDisplay">${triadCount}</span>)
+                    </button>
+                </div>
+            `;
+        }
 
         const newBtn = document.getElementById('triadActionBtn');
         const newCount = document.getElementById('triadCountDisplay');
@@ -704,47 +794,63 @@ function initJsConceptWidgets() {
                 if (hasJs) {
                     triadCount++;
                     if (newCount) newCount.textContent = triadCount;
-                    newBtn.style.transform = 'scale(1.1)';
-                    setTimeout(() => newBtn.style.transform = 'scale(1)', 120);
+                    newBtn.style.transform = 'scale(1.06)';
+                    setTimeout(() => newBtn.style.transform = 'scale(1)', 100);
                 } else {
                     if (typeof Swal !== 'undefined') {
                         Swal.fire({
                             icon: 'warning',
-                            title: '⚡ JavaScript is Disabled!',
-                            text: 'Without JavaScript, buttons are completely static and cannot calculate math or react to user clicks.',
-                            confirmButtonColor: '#2563eb'
+                            title: 'JavaScript Offline',
+                            html: `
+                                <div style="font-family: var(--font-sans, sans-serif); text-align: left; padding: 4px 8px;">
+                                    <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.55; margin-bottom: 8px;">
+                                        Because <strong>JavaScript</strong> is turned off, this button cannot listen for click events or update state in memory.
+                                    </p>
+                                    <p style="color: var(--text-muted, #686760); font-size: 0.84rem; line-height: 1.5; margin: 0;">
+                                        Turn <strong>⚡ 3. JavaScript</strong> back ON to restore dynamic click reaction!
+                                    </p>
+                                </div>
+                            `,
+                            confirmButtonColor: '#A33B24',
+                            confirmButtonText: 'Acknowledge'
                         });
                     } else {
-                        alert('JavaScript is disabled! Without JS, buttons cannot react to clicks.');
+                        alert('JavaScript is OFF! Without JS, elements cannot react to events.');
                     }
                 }
             });
         }
     }
 
-    if (checkHtml) {
-        checkHtml.addEventListener('click', () => {
+    if (btnHtml) {
+        btnHtml.addEventListener('click', (e) => {
+            e.preventDefault();
             hasHtml = !hasHtml;
-            checkHtml.classList.toggle('checked', hasHtml);
+            syncButtonState(btnHtml, hasHtml);
             updateTriad();
         });
     }
-    if (checkCss) {
-        checkCss.addEventListener('click', () => {
+    if (btnCss) {
+        btnCss.addEventListener('click', (e) => {
+            e.preventDefault();
             hasCss = !hasCss;
-            checkCss.classList.toggle('checked', hasCss);
+            syncButtonState(btnCss, hasCss);
             updateTriad();
         });
     }
-    if (checkJs) {
-        checkJs.addEventListener('click', () => {
+    if (btnJs) {
+        btnJs.addEventListener('click', (e) => {
+            e.preventDefault();
             hasJs = !hasJs;
-            checkJs.classList.toggle('checked', hasJs);
+            syncButtonState(btnJs, hasJs);
             updateTriad();
         });
     }
 
-    // Initial invocation so button click handler is active on page load!
+    // Initial invocation so button state & preview screen are synced on page load
+    syncButtonState(btnHtml, hasHtml);
+    syncButtonState(btnCss, hasCss);
+    syncButtonState(btnJs, hasJs);
     updateTriad();
 
     // B. Live Event Reactor
@@ -815,14 +921,24 @@ function initJsConceptWidgets() {
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
                     icon: 'error',
-                    title: '🛑 TypeError: Assignment to constant variable!',
-                    html: '<strong>appName</strong> was declared using <code>const</code> (Permanent Sharpie 🔒).<br><br>In JavaScript, once a <code>const</code> variable is assigned, its value is locked forever and cannot be overwritten!',
-                    confirmButtonColor: '#ef4444'
+                    title: 'TypeError: Assignment to constant variable',
+                    html: `
+                        <div style="text-align: left; font-family: var(--font-sans, sans-serif);">
+                            <p style="color: var(--text-body, #20211F); font-size: 0.90rem; margin-bottom: 12px;">
+                                <code>appName</code> was declared with <code>const</code> (immutable reference).
+                            </p>
+                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 12px; font-size: 0.86rem; color: var(--text-body, #20211F); line-height: 1.55;">
+                                In JavaScript, once a <code>const</code> identifier is assigned, its reference cannot be re-bound.
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonColor: '#A33B24',
+                    confirmButtonText: 'Acknowledge'
                 });
             } else {
-                alert('🛑 TypeError: Assignment to constant variable!\nconst appName is locked with permanent sharpie and cannot be changed.');
+                alert('TypeError: Assignment to constant variable. const bindings cannot be reassigned.');
             }
-            appendLog(`[ERROR] Uncaught TypeError: Assignment to constant variable 'appName'`, '#f87171');
+            appendLog(`[ERROR] Uncaught TypeError: Assignment to constant variable 'appName'`, '#A33B24');
         });
     }
 
@@ -942,7 +1058,6 @@ function initSandboxEngine(sandboxData) {
     function updatePreview() {
         iframe.srcdoc = textarea.value;
     }
-
     updatePreview();
 
     let debounceTimer;
@@ -964,10 +1079,10 @@ function initSandboxEngine(sandboxData) {
                     title: 'Reset Sandbox Code?',
                     text: 'This will reset your sandbox editor back to the default HTML snippet.',
                     showCancelButton: true,
-                    confirmButtonColor: '#ef4444',
-                    cancelButtonColor: '#64748b',
-                    confirmButtonText: 'Yes, Reset Sandbox 🔄',
-                    cancelButtonText: 'Cancel ✕',
+                    confirmButtonColor: '#A33B24',
+                    cancelButtonColor: '#BAB4A6',
+                    confirmButtonText: 'Reset Sandbox',
+                    cancelButtonText: 'Cancel',
                     customClass: { popup: 'responsive-profile-modal' }
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -984,76 +1099,79 @@ function initSandboxEngine(sandboxData) {
 }
 
 /**
- * Initializes 4. Quiz & Knowledge Verification Engine
+ * Tab 4: Interactive Knowledge Verification Quiz
  */
-function initQuizEngine(trackData) {
-    const container = document.getElementById('quizQuestionsContainer');
+function initInteractiveQuiz(trackData) {
+    const quizContainer = document.getElementById('quizQuestionsContainer');
     const submitBtn = document.getElementById('submitQuizBtn');
 
-    if (!trackData || !trackData.quizzes || !container) return;
+    const quizList = (trackData && (trackData.quizzes || trackData.quiz)) || [];
+    if (!quizContainer || !quizList.length) return;
 
-    const userAnswers = {}; // QuestionID -> selectedOptionIndex
+    let userAnswers = {};
+    const totalQuestions = quizList.length;
 
-    container.innerHTML = trackData.quizzes.map((q, qIdx) => `
-        <div class="quiz-card" id="quiz-card-${q.id}">
-            <h3>${qIdx + 1}. ${q.question}</h3>
+    // Render Questions matching Technical Field Journal card styles
+    quizContainer.innerHTML = quizList.map((q, qIndex) => `
+        <div class="quiz-card" data-qindex="${qIndex}">
+            <h3>Q${qIndex + 1}. ${escapeHtml(q.question)}</h3>
             <div class="quiz-options">
-                ${q.options.map((opt, optIdx) => `
-                    <button class="quiz-option-btn" data-qid="${q.id}" data-optidx="${optIdx}">
-                        <span class="opt-radio">⚪</span>
-                        <span>${escapeHtml(opt)}</span>
+                ${q.options.map((opt, optIndex) => `
+                    <button type="button" class="quiz-option-btn quiz-opt-btn" data-qindex="${qIndex}" data-optindex="${optIndex}">
+                        <span><strong>${String.fromCharCode(65 + optIndex)}.</strong> ${escapeHtml(opt)}</span>
                     </button>
                 `).join('')}
             </div>
-            <div class="quiz-explanation" id="explanation-${q.id}">
-                <strong>💡 Explanation:</strong> ${q.explanation}
+            <div class="quiz-explanation" id="quiz-exp-${qIndex}">
+                <strong>💡 Concept Verification:</strong> ${escapeHtml(q.explanation)}
             </div>
         </div>
     `).join('');
 
-    // Bind Option Click Handlers
-    container.querySelectorAll('.quiz-option-btn').forEach(btn => {
+    // Option Click Handlers
+    const optButtons = quizContainer.querySelectorAll('.quiz-opt-btn');
+    optButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const qid = btn.getAttribute('data-qid');
-            const optIdx = parseInt(btn.getAttribute('data-optidx'), 10);
+            const qIdx = parseInt(btn.getAttribute('data-qindex'), 10);
+            const optIdx = parseInt(btn.getAttribute('data-optindex'), 10);
 
-            userAnswers[qid] = optIdx;
+            // Deselect other options in this question
+            const siblings = quizContainer.querySelectorAll(`.quiz-opt-btn[data-qindex="${qIdx}"]`);
+            siblings.forEach(s => s.classList.remove('selected'));
 
-            // Highlight selected button
-            const parentCard = document.getElementById(`quiz-card-${qid}`);
-            parentCard.querySelectorAll('.quiz-option-btn').forEach(b => {
-                b.classList.remove('selected', 'selected-correct', 'selected-wrong');
-                b.querySelector('.opt-radio').textContent = '⚪';
-            });
-
+            // Select clicked
             btn.classList.add('selected');
-            btn.querySelector('.opt-radio').textContent = '🔘';
+            userAnswers[qIdx] = optIdx;
         });
     });
 
-    // Submit Quiz Handler
-    if (submitBtn) {
+    // Submit Verification Handler
+    if (submitBtn && !submitBtn._hasQuizListener) {
+        submitBtn._hasQuizListener = true;
         submitBtn.addEventListener('click', () => {
             let correctCount = 0;
-            const totalQuestions = trackData.quizzes.length;
 
-            trackData.quizzes.forEach(q => {
-                const selectedOpt = userAnswers[q.id];
-                const card = document.getElementById(`quiz-card-${q.id}`);
-                const expBox = document.getElementById(`explanation-${q.id}`);
+            quizList.forEach((q, qIdx) => {
+                const selectedOpt = userAnswers[qIdx];
+                const questionEl = quizContainer.querySelector(`.quiz-card[data-qindex="${qIdx}"]`);
+                if (!questionEl) return;
+                const optionsBtns = questionEl.querySelectorAll('.quiz-opt-btn');
+                const expBox = document.getElementById(`quiz-exp-${qIdx}`);
 
-                if (selectedOpt === undefined) return;
-
-                const optionsBtns = card.querySelectorAll('.quiz-option-btn');
+                optionsBtns.forEach(b => b.classList.remove('selected-correct', 'selected-wrong'));
 
                 if (selectedOpt === q.correctIndex) {
                     correctCount++;
-                    optionsBtns[selectedOpt].classList.add('selected-correct');
-                    optionsBtns[selectedOpt].querySelector('.opt-radio').textContent = '✅';
+                    if (optionsBtns[selectedOpt]) {
+                        optionsBtns[selectedOpt].classList.add('selected-correct');
+                    }
                 } else {
-                    optionsBtns[selectedOpt].classList.add('selected-wrong');
-                    optionsBtns[selectedOpt].querySelector('.opt-radio').textContent = '❌';
-                    optionsBtns[q.correctIndex].classList.add('selected-correct');
+                    if (selectedOpt !== undefined && optionsBtns[selectedOpt]) {
+                        optionsBtns[selectedOpt].classList.add('selected-wrong');
+                    }
+                    if (optionsBtns[q.correctIndex]) {
+                        optionsBtns[q.correctIndex].classList.add('selected-correct');
+                    }
                 }
 
                 if (expBox) expBox.classList.add('visible');
@@ -1063,9 +1181,10 @@ function initQuizEngine(trackData) {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Incomplete Quiz',
-                        text: 'Please answer all 3 questions before submitting your verification!',
-                        confirmButtonColor: '#2563eb'
+                        title: 'Incomplete Verification',
+                        text: 'Please answer all 3 questions before submitting your verification.',
+                        confirmButtonColor: '#A33B24',
+                        confirmButtonText: 'Acknowledge'
                     });
                 } else {
                     alert('Please answer all 3 questions before submitting!');
@@ -1106,7 +1225,7 @@ function initQuizEngine(trackData) {
                 }
 
                 let nextUrl = trackData.nextTrackUrl || '/1. partA/hub.html';
-                let nextLabel = trackData.nextTrackName ? `⚡ ${trackData.nextTrackName} ➔` : '📚 Return to Foundations Hub ➔';
+                let nextLabel = trackData.nextTrackName ? `${trackData.nextTrackName} →` : 'Return to Foundations Hub →';
 
                 window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
 
@@ -1117,21 +1236,21 @@ function initQuizEngine(trackData) {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'success',
-                        title: '🎉 Foundations Track Completed!',
+                        title: 'Foundations Track Verified',
                         html: `
-                            <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center; padding: 4px 0;">
-                                <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
-                                    Awesome job! You answered <strong>${totalQuestions}/${totalQuestions}</strong> Knowledge Check questions correctly for <strong>${escapeHtml(trackData.title)}</strong>!
+                            <div style="font-family: var(--font-sans, sans-serif); text-align: center; padding: 4px 0;">
+                                <p style="color: var(--text-body, #20211F); font-size: 0.92rem; line-height: 1.6; margin-bottom: 16px;">
+                                    All <strong>${totalQuestions}/${totalQuestions}</strong> knowledge check criteria satisfied for <strong>${escapeHtml(trackData.title)}</strong>.
                                 </p>
-                                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 18px; border-radius: 12px; font-weight: 800; color: #166534; font-size: 0.95rem; display: inline-block; margin-bottom: 10px;">
-                                    ⚡ +${xpAmount} XP Earned!
+                                <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 16px; border-radius: 2px; font-family: var(--font-mono, monospace); font-weight: 600; color: #2F5233; font-size: 0.85rem; display: inline-block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em;">
+                                    BOUNTY // +${xpAmount} XP EARNED
                                 </div>
                             </div>
                         `,
                         showCancelButton: true,
-                        cancelButtonText: '🏠 Dashboard',
-                        cancelButtonColor: '#64748b',
-                        confirmButtonColor: '#2563eb',
+                        cancelButtonText: 'Dashboard Skill Tree',
+                        cancelButtonColor: '#BAB4A6',
+                        confirmButtonColor: '#A33B24',
                         confirmButtonText: nextLabel,
                         allowOutsideClick: false
                     }).then((res) => {
@@ -1142,22 +1261,28 @@ function initQuizEngine(trackData) {
                         }
                     });
                 } else {
-                    alert(`🎉 Track Completed! You earned +${xpAmount} XP!`);
+                    alert(`Track Completed! You earned +${xpAmount} XP!`);
                     window.location.href = nextUrl;
                 }
             } else {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         icon: 'info',
-                        title: 'Keep Going!',
-                        text: `You scored ${correctCount}/${totalQuestions}. Review the explanations above and select the correct answers!`,
-                        confirmButtonColor: '#2563eb'
+                        title: 'Verification Incomplete',
+                        text: `You scored ${correctCount}/${totalQuestions}. Review the explanations and update your answers to continue.`,
+                        confirmButtonColor: '#A33B24',
+                        confirmButtonText: 'Review Answers'
                     });
+                } else {
+                    alert(`You scored ${correctCount}/${totalQuestions}. Review the explanations and try again.`);
                 }
             }
         });
     }
 }
+
+// Global alias for compatibility
+window.initQuizEngine = initInteractiveQuiz;
 
 /**
  * Utility: HTML Escaper for Code Snippets (Null-Safe)
@@ -1183,7 +1308,7 @@ function initGlobalBackToTop() {
         btn.className = 'back-to-top-btn';
         btn.setAttribute('aria-label', 'Back to Top');
         btn.innerHTML = `
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="18 15 12 9 6 15"></polyline>
             </svg>
         `;

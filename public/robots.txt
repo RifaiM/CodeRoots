@@ -1,0 +1,6 @@
+# robots.txt for NoviCodes (https://novicodes.dev)
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://novicodes.dev/sitemap.xml

@@ -1,5 +1,5 @@
 /**
- * Level 5: React & Framework Dojo Landing Hub Controller
+ * Level 5: React & Component Dojo Landing Hub Controller
  * Manages dynamic syllabus rendering, live lesson statuses, and smart resume CTA.
  */
 
@@ -7,28 +7,28 @@
     'use strict';
 
     const level5Lessons = [
-        // Chapter 1: React Fundamentals & Component Trees
-        { id: 1, chapter: 1, title: 'ES6+ Superpowers for Frameworks', xp: 150, topic: 'ES6 Syntax' },
-        { id: 2, chapter: 1, title: 'The Component Mental Model', xp: 150, topic: 'Component Tree' },
-        { id: 3, chapter: 1, title: 'JSX Syntax & Dynamic Rendering', xp: 150, topic: 'JSX Engine' },
-        { id: 4, chapter: 1, title: 'Component Props & Composition', xp: 150, topic: 'Props' },
+        // Chapter 1: Modern JS & Component Fundamentals
+        { id: 1, chapter: 1, title: 'ES6+ Syntax & Component Trees', xp: 150, topic: 'ES6+ & JSX' },
+        { id: 2, chapter: 1, title: 'JSX Structure & Virtual DOM', xp: 150, topic: 'JSX & VDOM' },
+        { id: 3, chapter: 1, title: 'Dynamic Props & Component Reusability', xp: 150, topic: 'Props' },
+        { id: 4, chapter: 1, title: 'Conditional Rendering & List Mapping', xp: 150, topic: 'Lists & Keys' },
 
-        // Chapter 2: State Hooks & Interactive UI
-        { id: 5, chapter: 2, title: 'Interactivity with useState', xp: 150, topic: 'useState Hook' },
-        { id: 6, chapter: 2, title: 'Complex & Nested State Management', xp: 150, topic: 'Nested State' },
-        { id: 7, chapter: 2, title: 'Side Effects & useEffect Hook', xp: 150, topic: 'useEffect Hook' },
-        { id: 8, chapter: 2, title: 'Fetching REST APIs in React', xp: 150, topic: 'API Fetching' },
+        // Chapter 2: State Management & Reactive UI with Hooks
+        { id: 5, chapter: 2, title: 'Interactive State with useState()', xp: 150, topic: 'useState' },
+        { id: 6, chapter: 2, title: 'Form Inputs & Controlled Components', xp: 150, topic: 'Forms & State' },
+        { id: 7, chapter: 2, title: 'Side Effects & API Data with useEffect()', xp: 150, topic: 'useEffect' },
+        { id: 8, chapter: 2, title: 'Lifting State Up & Prop Drilling', xp: 150, topic: 'State Architecture' },
 
-        // Chapter 3: Controlled Inputs, Routing & DOM Access
-        { id: 9, chapter: 3, title: 'Controlled Forms & Validation', xp: 150, topic: 'Controlled Forms' },
-        { id: 10, chapter: 3, title: 'DOM Access & useRef Hook', xp: 150, topic: 'useRef Hook' },
-        { id: 11, chapter: 3, title: 'Single Page Application Routing', xp: 150, topic: 'SPA Routing' },
-        { id: 12, chapter: 3, title: 'Building Custom Hooks', xp: 150, topic: 'Custom Hooks' },
+        // Chapter 3: Advanced Hooks & Application Architecture
+        { id: 9, chapter: 3, title: 'Global State with React Context API', xp: 150, topic: 'Context API' },
+        { id: 10, chapter: 3, title: 'Complex State with useReducer()', xp: 150, topic: 'useReducer' },
+        { id: 11, chapter: 2, title: 'Custom Reusable React Hooks', xp: 150, topic: 'Custom Hooks' },
+        { id: 12, chapter: 3, title: 'Performance: useMemo() & useCallback()', xp: 150, topic: 'Performance' },
 
-        // Chapter 4: Global State, Custom Hooks & Final Projects
-        { id: 13, chapter: 4, title: 'Context API & Global State', xp: 150, topic: 'Context API' },
-        { id: 14, chapter: 4, title: 'Performance Optimization & Memo', xp: 150, topic: 'React.memo' },
-        { id: 15, chapter: 4, title: '🏆 Final Project: Dynamic React App', xp: 150, topic: 'Final Project' }
+        // Chapter 4: Guided Applications & Production Projects
+        { id: 13, chapter: 4, title: 'Single Page Routing with React Router', xp: 150, topic: 'SPA Routing' },
+        { id: 14, chapter: 4, title: 'Guided Mini App: Real-Time Task Tracker', xp: 150, topic: 'Mini Project' },
+        { id: 15, chapter: 4, title: 'Final Project: Production Component Showcase', xp: 150, topic: 'Final Project' }
     ];
 
     function isLessonCompleted(id) {
@@ -70,13 +70,13 @@
                     card.className = 'lesson-card completed';
                     card.href = `./lesson${lesson.id}/lesson${lesson.id}_remake.html`;
                     statusPill.className = 'lesson-status-pill completed';
-                    statusPill.textContent = '✅ Completed';
+                    statusPill.textContent = 'COMPLETED';
                     actionText.innerHTML = 'Review ➔';
                 } else if (accessible) {
                     card.className = 'lesson-card available';
                     card.href = `./lesson${lesson.id}/lesson${lesson.id}_remake.html`;
                     statusPill.className = 'lesson-status-pill available';
-                    statusPill.textContent = '⚡ Up Next';
+                    statusPill.textContent = 'UP NEXT';
                     actionText.innerHTML = 'Start Project ➔';
                 } else {
                     card.className = 'lesson-card locked';
@@ -86,14 +86,14 @@
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
                                 icon: 'info',
-                                title: '🔒 Lesson Locked',
+                                title: 'Lesson Locked',
                                 text: `Please complete Lesson ${lesson.id - 1} before accessing Lesson ${lesson.id}.`,
-                                confirmButtonColor: '#0284c7'
+                                confirmButtonColor: '#A33B24'
                             });
                         }
                     };
                     statusPill.className = 'lesson-status-pill locked';
-                    statusPill.textContent = '🔒 Locked';
+                    statusPill.textContent = 'LOCKED';
                     actionText.innerHTML = 'Locked';
                 }
             }
@@ -116,14 +116,14 @@
         if (resumeBtn) {
             if (completedCount === total || isLessonCompleted(15)) {
                 resumeBtn.href = './certificate.html';
-                resumeBtn.innerHTML = '<span>🏆 View Official Certificate ➔</span>';
+                resumeBtn.innerHTML = '<span>View Official Certificate ➔</span>';
             } else if (completedCount === 0) {
                 resumeBtn.href = './lesson1/lesson1_remake.html';
-                resumeBtn.innerHTML = '<span>🚀 Start Lesson 1: ES6+ Superpowers ➔</span>';
+                resumeBtn.innerHTML = '<span>Start Lesson 1: ES6+ Superpowers ➔</span>';
             } else {
                 const nextLessonObj = level5Lessons.find(l => l.id === nextAccessibleLesson) || level5Lessons[0];
                 resumeBtn.href = `./lesson${nextLessonObj.id}/lesson${nextLessonObj.id}_remake.html`;
-                resumeBtn.innerHTML = `<span>⚡ Continue Lesson ${nextLessonObj.id}: ${nextLessonObj.title} ➔</span>`;
+                resumeBtn.innerHTML = `<span>Continue Lesson ${nextLessonObj.id}: ${nextLessonObj.title} ➔</span>`;
             }
         }
 
@@ -135,17 +135,20 @@
                 certBtn.className = 'cert-action-btn unlocked';
                 certBtn.href = './certificate.html';
                 certBtn.onclick = null;
-                certBtn.innerHTML = '<span>🏆 Claim Certificate ➔</span>';
+                certBtn.innerHTML = '<span>Claim Certificate ➔</span>';
                 certDesc.textContent = 'Congratulations! You completed all 15 React Dojo exercises. Download your official Level 5 Certificate.';
             } else {
                 certBtn.className = 'cert-action-btn locked';
                 certBtn.href = 'javascript:void(0)';
                 certBtn.onclick = null;
-                certBtn.innerHTML = '<span>🔒 Complete All 15 First</span>';
+                certBtn.innerHTML = '<span>Complete All 15 First</span>';
                 certDesc.textContent = `Finish all 15 interactive React exercises to unlock your official Level 5 Certificate (${completedCount}/15 completed).`;
             }
         }
     }
 
     document.addEventListener('DOMContentLoaded', initHub);
+    window.addEventListener('novicodes:xp_updated', initHub);
+    window.addEventListener('storage', initHub);
+    window.addEventListener('pageshow', initHub);
 })();

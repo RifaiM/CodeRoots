@@ -28,7 +28,7 @@
         // Chapter 4: Backend Security, Auth & Final Project
         { id: 13, chapter: 4, title: 'Authentication & Security Basics', xp: 200, topic: 'Security & Auth' },
         { id: 14, chapter: 4, title: 'Guided Mini Project: Task Manager API', xp: 200, topic: 'Mini API Project' },
-        { id: 15, chapter: 4, title: '🏆 Final Project: Python API Logic Service', xp: 200, topic: 'Final Project' }
+        { id: 15, chapter: 4, title: 'Final Project: Python API Logic Service', xp: 200, topic: 'Final Project' }
     ];
 
     function isLessonCompleted(id) {
@@ -70,13 +70,13 @@
                     card.className = 'lesson-card completed';
                     card.href = `./lesson${lesson.id}/lesson${lesson.id}_remake.html`;
                     statusPill.className = 'lesson-status-pill completed';
-                    statusPill.textContent = '✅ Completed';
+                    statusPill.textContent = 'COMPLETED';
                     actionText.innerHTML = 'Review ➔';
                 } else if (accessible) {
                     card.className = 'lesson-card available';
                     card.href = `./lesson${lesson.id}/lesson${lesson.id}_remake.html`;
                     statusPill.className = 'lesson-status-pill available';
-                    statusPill.textContent = '⚡ Up Next';
+                    statusPill.textContent = 'UP NEXT';
                     actionText.innerHTML = 'Start Project ➔';
                 } else {
                     card.className = 'lesson-card locked';
@@ -86,14 +86,14 @@
                         if (typeof Swal !== 'undefined') {
                             Swal.fire({
                                 icon: 'info',
-                                title: '🔒 Lesson Locked',
+                                title: 'Lesson Locked',
                                 text: `Please complete Lesson ${lesson.id - 1} before accessing Lesson ${lesson.id}.`,
-                                confirmButtonColor: '#059669'
+                                confirmButtonColor: '#A33B24'
                             });
                         }
                     };
                     statusPill.className = 'lesson-status-pill locked';
-                    statusPill.textContent = '🔒 Locked';
+                    statusPill.textContent = 'LOCKED';
                     actionText.innerHTML = 'Locked';
                 }
             }
@@ -116,14 +116,14 @@
         if (resumeBtn) {
             if (completedCount === total || isLessonCompleted(15)) {
                 resumeBtn.href = './certificate.html';
-                resumeBtn.innerHTML = '<span>🏆 View Official Certificate ➔</span>';
+                resumeBtn.innerHTML = '<span>View Official Certificate ➔</span>';
             } else if (completedCount === 0) {
                 resumeBtn.href = './lesson1/lesson1_remake.html';
-                resumeBtn.innerHTML = '<span>🚀 Start Lesson 1: Python Essentials ➔</span>';
+                resumeBtn.innerHTML = '<span>Start Lesson 1: Python Essentials ➔</span>';
             } else {
                 const nextLessonObj = level6Lessons.find(l => l.id === nextAccessibleLesson) || level6Lessons[0];
                 resumeBtn.href = `./lesson${nextLessonObj.id}/lesson${nextLessonObj.id}_remake.html`;
-                resumeBtn.innerHTML = `<span>⚡ Continue Lesson ${nextLessonObj.id}: ${nextLessonObj.title} ➔</span>`;
+                resumeBtn.innerHTML = `<span>Continue Lesson ${nextLessonObj.id}: ${nextLessonObj.title} ➔</span>`;
             }
         }
 
@@ -135,17 +135,20 @@
                 certBtn.className = 'cert-action-btn unlocked';
                 certBtn.href = './certificate.html';
                 certBtn.onclick = null;
-                certBtn.innerHTML = '<span>🏆 Claim Certificate ➔</span>';
+                certBtn.innerHTML = '<span>Claim Certificate ➔</span>';
                 certDesc.textContent = 'Congratulations! You completed all 15 Python Dojo exercises. Download your official Level 6 Certificate.';
             } else {
                 certBtn.className = 'cert-action-btn locked';
                 certBtn.href = 'javascript:void(0)';
                 certBtn.onclick = null;
-                certBtn.innerHTML = '<span>🔒 Complete All 15 First</span>';
+                certBtn.innerHTML = '<span>Complete All 15 First</span>';
                 certDesc.textContent = `Finish all 15 interactive Python exercises to unlock your official Level 6 Certificate (${completedCount}/15 completed).`;
             }
         }
     }
 
     document.addEventListener('DOMContentLoaded', initHub);
+    window.addEventListener('novicodes:xp_updated', initHub);
+    window.addEventListener('storage', initHub);
+    window.addEventListener('pageshow', initHub);
 })();

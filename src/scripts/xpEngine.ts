@@ -332,7 +332,8 @@ export function updateAllHeaderStats(): UserStats {
     isUpdating = true;
 
     try {
-        const xpBadgeLabels = document.querySelectorAll('.xp-badge .badge-label, #userTotalXPDisplay');
+        // 1. XP Badge Labels
+        const xpBadgeLabels = document.querySelectorAll('.xp-badge .badge-label, #userXpLabel, #userTotalXPDisplay');
         xpBadgeLabels.forEach(el => {
             el.textContent = `${stats.totalXP.toLocaleString()} XP`;
         });
@@ -342,19 +343,26 @@ export function updateAllHeaderStats(): UserStats {
             el.setAttribute('title', `Rank: ${stats.rankTitle} • ${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} Total XP`);
         });
 
-        const rankBadgeLabels = document.querySelectorAll('.rank-badge .badge-label, #userRankTitleDisplay');
+        // 2. Rank / Level Badge Labels
+        const rankBadgeLabels = document.querySelectorAll('.rank-badge .badge-label, .level-badge .badge-label, #userRankLabel, #userRankTitleDisplay');
         rankBadgeLabels.forEach(el => {
             el.textContent = stats.rankTitle;
         });
 
-        const rankBadgeIcons = document.querySelectorAll('.rank-badge .badge-icon, #userRankIconDisplay');
+        const rankBadgeIcons = document.querySelectorAll('.rank-badge .badge-icon, .level-badge .badge-icon, #userRankIcon, #userRankIconDisplay');
         rankBadgeIcons.forEach(el => {
             el.textContent = stats.rankIcon;
         });
 
-        const rankBadgeElements = document.querySelectorAll('.rank-badge');
+        const rankBadgeElements = document.querySelectorAll('.rank-badge, .level-badge');
         rankBadgeElements.forEach(el => {
-            el.setAttribute('title', `Current Milestone: ${stats.rankTitle} (${stats.rankIcon})`);
+            el.setAttribute('title', `Developer Rank: ${stats.rankTitle}`);
+        });
+
+        // 3. Streak Badge Labels
+        const streakValues = document.querySelectorAll('.streak-badge .streak-num-val, #userStreakLabel .streak-num-val');
+        streakValues.forEach(el => {
+            el.textContent = String(stats.streakCount);
         });
     } catch (e) {
         console.error('[XP Engine] Error hydrating UI badges:', e);

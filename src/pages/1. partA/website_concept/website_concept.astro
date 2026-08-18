@@ -4,14 +4,16 @@ import PlatformHeader from '../../../components/PlatformHeader.astro';
 import PlatformFooter from '../../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
-    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
     title="Pillar 1: What is a Website? Fundamentals Guide | NoviCodes"
-    description="A beginner-friendly breakdown of how browsers, web servers, DNS, IP addresses, and URLs work together to deliver digital experiences."
+    description="A technical breakdown of how browsers, web servers, DNS, IP addresses, and URLs work together to deliver digital experiences."
     showHeaderFooter={false}
 >
     <!-- Standardized Platform Header -->
@@ -28,48 +30,48 @@ const navLinks = [
         
         <!-- Hero Banner -->
         <section class="concept-hero">
-            <span class="concept-badge-pill">🌐 Pillar 1 of 4 • 50 XP</span>
+            <span class="concept-badge-pill">01 // PILLAR 1 OF 4 • +50 XP</span>
             <h1>What is a Website?</h1>
             <p>
-                Discover the digital architecture connecting clients, internet routing, and cloud servers to deliver modern web apps to billions of users.
+                Discover the digital architecture connecting clients, internet routing, and cloud servers to deliver modern web applications to billions of users.
             </p>
         </section>
 
         <!-- 1. The Core Architecture -->
         <section class="concept-card">
-            <h2><span>🏗️</span> 1. The 3 Core Components of the Web</h2>
+            <h2>1. The 3 Core Components of the Web</h2>
             <p>
-                Every website on earth operates on a <strong>Client-Server model</strong>. Click each component below to inspect its role:
+                Every website on earth operates on a <strong>Client-Server model</strong>. Click each component below to inspect its operational role:
             </p>
 
             <div class="inspector-grid">
                 <button class="inspector-node-btn active" data-target="client">
                     <span class="inspector-icon">💻</span>
-                    <span class="inspector-title">1. The Client</span>
+                    <span class="inspector-title">01 / CLIENT</span>
                 </button>
                 <button class="inspector-node-btn" data-target="internet">
                     <span class="inspector-icon">🌐</span>
-                    <span class="inspector-title">2. Internet &amp; DNS</span>
+                    <span class="inspector-title">02 / INTERNET &amp; DNS</span>
                 </button>
                 <button class="inspector-node-btn" data-target="server">
                     <span class="inspector-icon">🖥️</span>
-                    <span class="inspector-title">3. The Web Server</span>
+                    <span class="inspector-title">03 / WEB SERVER</span>
                 </button>
             </div>
 
             <div class="inspector-detail-box" id="inspectorDetailBox">
-                <strong>💻 The Client (Web Browser)</strong>
+                <strong>THE CLIENT (WEB BROWSER)</strong>
                 <p style="margin: 6px 0 0 0;">
-                    The client is your personal device (laptop, smartphone, or tablet) running a web browser like Chrome, Safari, or Firefox. The browser makes requests, downloads code files, builds the visual DOM layout, and executes JavaScript.
+                    The client is your personal device (laptop, smartphone, or workstation) running a browser engine like Chrome, Safari, or Firefox. The browser issues HTTP requests, parses responses, constructs the DOM tree, and executes JavaScript.
                 </p>
             </div>
         </section>
 
         <!-- 2. URL Anatomy Breakdown -->
         <section class="concept-card">
-            <h2><span>🔗</span> 2. Anatomy of a Web Address (URL)</h2>
+            <h2>2. Anatomy of a Web Address (URL)</h2>
             <p>
-                A URL (Uniform Resource Locator) is like a postal address telling the internet where to locate a file:
+                A URL (Uniform Resource Locator) is an explicit technical address directing the browser where to locate a file:
             </p>
 
             <div class="url-bar-container">
@@ -78,17 +80,17 @@ const navLinks = [
                 <span class="url-chunk chunk-path">/courses/html</span>
             </div>
 
-            <ul style="color: var(--text-secondary); font-size: 0.90rem; line-height: 1.7; padding-left: 20px; margin: 0;">
-                <li><strong>Protocol (https://)</strong>: The secure communication rule between client and server.</li>
-                <li><strong>Domain Name (novicodes.dev)</strong>: The human-readable name mapped to a server's IP address.</li>
-                <li><strong>Path (/courses/html)</strong>: The specific route or folder on the server you are visiting.</li>
+            <ul>
+                <li><strong>Protocol (https://)</strong>: The encrypted transport rule between client and host.</li>
+                <li><strong>Domain Name (novicodes.dev)</strong>: The human-readable name mapped to a server's numeric IP address.</li>
+                <li><strong>Path (/courses/html)</strong>: The specific endpoint route or resource located on the host.</li>
             </ul>
         </section>
 
         <!-- 3. Mini Knowledge Check -->
         <section class="concept-card">
             <div class="section-header-row">
-                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <h2>3. Concept Verification Check</h2>
                 <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
             </div>
             <p id="quizQText">Loading question...</p>
@@ -98,14 +100,21 @@ const navLinks = [
 
         <!-- 4. Complete & Continue -->
         <section class="complete-card">
-            <h3>🎉 Mastered This Concept?</h3>
-            <p>Claim your +50 XP and continue to Pillar 2: HTML Structure!</p>
+            <h3>Concept 1 Complete?</h3>
+            <p>Pass the verification check above to claim your +50 XP bounty and advance to Pillar 2.</p>
             <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
-                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+                <span>Complete Verification Above to Unlock (+50 XP)</span>
             </button>
         </section>
 
     </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Platform Footer -->
     <PlatformFooter />

@@ -6,86 +6,78 @@ interface Props {
 
 const { 
     brandName = 'NoviCodes',
-    tagline = 'Learn web development by doing, not just watching. 100% free and open-source for learners worldwide.'
+    tagline = 'An open, practical curriculum for web development. Practice directly in your browser with zero setup.'
 } = Astro.props;
 ---
 
 <footer class="platform-footer" id="footer" aria-label="Platform Footer">
     <div class="footer-inner">
-        <!-- Column 1: Brand & Mission (Equal Height with Badges) -->
+        <!-- Column 1: Brand & Mission -->
         <div class="footer-col footer-col-brand">
-            <a href="/" class="platform-logo" aria-label="NoviCodes Footer Home Link">
-                <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" width="38" height="38" loading="lazy" />
+            <a href="/" class="platform-logo" aria-label="NoviCodes Field Journal Home">
+                <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" width="28" height="28" loading="lazy" />
                 <div class="logo-text">
                     <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                    <span class="logo-tag">From Novice to Dev</span>
+                    <span class="logo-tag">Field Guide // Vol. 2.5</span>
                 </div>
             </a>
             <p class="footer-mission-text">{tagline}</p>
             <div class="footer-badges-wrap">
-                <span class="footer-badge-pill">⚖️ MIT License</span>
-                <span class="footer-badge-pill">✨ 100% Free</span>
+                <span class="footer-badge-pill">MIT License</span>
+                <span class="footer-badge-pill">100% Free</span>
             </div>
 
-            <!-- Support Ra Labs Creator Pills -->
+            <!-- Support Ra Labs Creator Section -->
             <div class="footer-support-wrap">
-                <span class="footer-support-title">💖 Support the Creator:</span>
+                <span class="footer-support-title">Support the Creator:</span>
                 <div class="footer-support-btns">
-                    <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="support-pill-btn kofi" title="Buy Ra Labs a Coffee (USD / Global)">
-                        <span class="support-pill-icon">☕</span>
-                        <span class="support-pill-text">Ko-fi (Global)</span>
+                    <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="support-pill-btn kofi" title="Buy Ra Labs a Coffee (Global / USD)">
+                        <span class="support-pill-text">Ko-fi (Global) →</span>
                     </a>
                     <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="support-pill-btn trakteer" title="Support Ra Labs on Trakteer (IDR / QRIS)">
-                        <span class="support-pill-icon">🍜</span>
-                        <span class="support-pill-text">Trakteer (IDR)</span>
+                        <span class="support-pill-text">Trakteer (IDR) →</span>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Column 2: Foundations & Concepts -->
+        <!-- Column 2: Foundations -->
         <div class="footer-col">
-            <h3 class="footer-heading">
-                <span class="col-icon">🧱</span> Foundations
-            </h3>
+            <h3 class="footer-heading">01 / Foundations</h3>
             <ul class="footer-nav-list">
-                <li><a href="/1. partA/web_history.html">Level 0 • How the Web Works</a></li>
-                <li><a href="/foundations.html?track=html">Level 1 • HTML Page Structure</a></li>
-                <li><a href="/foundations.html?track=css">Level 2 • CSS Box Model &amp; Flexbox</a></li>
-                <li><a href="/foundations.html?track=js">Level 3 • JavaScript Interactivity</a></li>
-                <li><a href="/foundations.html?track=typescript">Level 7D • TypeScript Mastery</a></li>
-                <li><a href="/foundations.html?track=cssmotion">Level 7E • CSS Motion &amp; Animation</a></li>
-                <li><a href="/1. partA/hub.html">📚 Browse All 13 Foundations →</a></li>
+                <li><a href="/1. partA/web_history.html">Level 00 • How the Web Works</a></li>
+                <li><a href="/foundations.html?track=html">Level 01 • HTML Page Structure</a></li>
+                <li><a href="/foundations.html?track=css">Level 02 • CSS Box Model &amp; Flexbox</a></li>
+                <li><a href="/foundations.html?track=js">Level 03 • JavaScript Interactivity</a></li>
+                <li><a href="/foundations.html?track=typescript">Level 07D • TypeScript Mastery</a></li>
+                <li><a href="/foundations.html?track=cssmotion">Level 07E • CSS Motion &amp; Animation</a></li>
+                <li><a href="/1. partA/hub.html">Browse All 13 Foundations →</a></li>
             </ul>
         </div>
 
-        <!-- Column 3: Dojos & Masteries -->
+        <!-- Column 3: Practice Workbench -->
         <div class="footer-col">
-            <h3 class="footer-heading">
-                <span class="col-icon">⚔️</span> Dojos &amp; Mastery
-            </h3>
+            <h3 class="footer-heading">02 / Practice Workbench</h3>
             <ul class="footer-nav-list">
-                <li><a href="/2. partB/hub.html">Level 4 • JavaScript Widget Dojo</a></li>
-                <li><a href="/3. partC/hub.html">Level 5 • React Component Dojo</a></li>
-                <li><a href="/5. partE/hub.html">Level 6 • Python &amp; Backend Basics</a></li>
-                <li><a href="/6. partF/hub.html">Level 7 • Specialized Developer Tracks</a></li>
-                <li><a href="/7. partG/hub.html">Level 8 • Polished UI: Skeletons &amp; Errors</a></li>
-                <li><a href="/8. partH/hub.html">Level 9 • User Logins &amp; Private Pages</a></li>
-                <li><a href="/9. partI/hub.html">Level 10 • SaaS Dashboard UI & Widgets</a></li>
+                <li><a href="/2. partB/hub.html">Level 04 • JavaScript Widget Dojo</a></li>
+                <li><a href="/3. partC/hub.html">Level 05 • React Component Dojo</a></li>
+                <li><a href="/5. partE/hub.html">Level 06 • Python &amp; Backend Basics</a></li>
+                <li><a href="/6. partF/hub.html">Level 07 • Specialized Tracks</a></li>
+                <li><a href="/7. partG/hub.html">Level 08 • UI States: Skeletons &amp; Errors</a></li>
+                <li><a href="/8. partH/hub.html">Level 09 • Auth &amp; Protected Routes</a></li>
+                <li><a href="/9. partI/hub.html">Level 10 • SaaS Dashboard Project</a></li>
                 <li><a href="/4. partD/devtype/devtype.html">DevType Typing Speedrun</a></li>
             </ul>
         </div>
 
         <!-- Column 4: Platform & Legal -->
         <div class="footer-col">
-            <h3 class="footer-heading">
-                <span class="col-icon">⚖️</span> Platform &amp; Support
-            </h3>
+            <h3 class="footer-heading">03 / Platform &amp; Legal</h3>
             <ul class="footer-nav-list">
                 <li><a href="/#dailyQuestSection">Daily 2-Minute Quests</a></li>
                 <li><a href="javascript:void(0)" onclick="if(typeof openCertificateHub==='function'){openCertificateHub();}else if(typeof window.openCertificateHub==='function'){window.openCertificateHub();}else{window.location.href='/9. partI/certificate.html';}">Proof-of-Work Certificates</a></li>
-                <li><a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="support-direct-link">☕ Buy on Ko-fi (Global) ↗</a></li>
-                <li><a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="support-direct-link">🍜 Support on Trakteer (IDR) ↗</a></li>
+                <li><a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer">Support via Ko-fi (Global) ↗</a></li>
+                <li><a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer">Support via Trakteer (IDR) ↗</a></li>
                 <li><a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
                 <li><a href="/terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
                 <li><a href="/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a></li>
@@ -97,34 +89,34 @@ const {
     <!-- Bottom Copyright Row -->
     <div class="footer-bottom">
         <div class="footer-bottom-inner">
-            <p class="copyright-text">© 2026 {brandName} • 100% Free &amp; Open-Source for All Learners Worldwide</p>
+            <p class="copyright-text">© 2026 {brandName} • Open Curriculum for Learners Worldwide</p>
         </div>
     </div>
 </footer>
 
 <style is:global>
     /* ==========================================================================
-       Master Pixel-Perfect Equal-Height Platform Footer
+       Master Platform Footer System (Archival Colophon)
        ========================================================================== */
     .platform-footer {
-        background: #ffffff;
-        border-top: 1px solid #e2e8f0;
-        padding: 56px 24px 28px 24px;
+        background: var(--card-elevated);
+        border-top: 1px solid var(--border-subtle);
+        padding: 48px 24px 32px 24px;
         margin-top: 60px;
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        color: #334155;
+        font-family: var(--font-sans);
+        color: var(--text-body);
         width: 100%;
         box-sizing: border-box;
     }
 
     .footer-inner {
-        max-width: 1240px;
+        max-width: 1140px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1.8fr 1.2fr 1.2fr 1.2fr;
         gap: 36px;
-        padding-bottom: 36px;
-        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border-subtle);
         box-sizing: border-box;
         align-items: start;
     }
@@ -145,16 +137,17 @@ const {
     }
 
     .footer-col-brand .brand-logo-img {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 2px;
+        border: 1px solid var(--border-subtle);
         object-fit: cover;
     }
 
     .footer-mission-text {
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         line-height: 1.6;
-        color: #64748b;
+        color: var(--text-muted);
         margin: 0 0 16px 0;
         max-width: 320px;
     }
@@ -162,21 +155,24 @@ const {
     .footer-badges-wrap {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
     }
 
     .footer-badge-pill {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #475569;
+        gap: 4px;
+        background: var(--canvas-base);
+        border: 1px solid var(--border-subtle);
+        padding: 2px 7px;
+        border-radius: 2px;
+        font-family: var(--font-mono);
+        font-size: 0.70rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     /* Creator Support Section in Footer */
@@ -184,17 +180,18 @@ const {
         margin-top: 16px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
         width: 100%;
         max-width: 320px;
     }
 
     .footer-support-title {
-        font-size: 0.76rem;
-        font-weight: 800;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #be185d;
+        letter-spacing: 0.05em;
+        color: var(--accent-oxide);
     }
 
     .footer-support-btns {
@@ -206,47 +203,38 @@ const {
     .support-pill-btn {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
         padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.78rem;
-        font-weight: 700;
+        border-radius: 2px;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
         text-decoration: none;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.15s ease;
     }
 
     .support-pill-btn.kofi {
-        background: #f0fdfa;
-        border: 1px solid #99f6e4;
-        color: #0d9488;
+        background: var(--canvas-base);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-title);
     }
 
     .support-pill-btn.kofi:hover {
-        background: #29abe0;
-        border-color: #29abe0;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(41, 171, 224, 0.3);
+        background: var(--surface-muted);
+        border-color: var(--border-dark);
+        color: var(--accent-oxide);
     }
 
     .support-pill-btn.trakteer {
-        background: #fef2f2;
-        border: 1px solid #fecaca;
-        color: #dc2626;
+        background: var(--accent-oxide);
+        border: 1px solid var(--accent-oxide);
+        color: #F8F6F1;
     }
 
     .support-pill-btn.trakteer:hover {
-        background: #c0392b;
-        border-color: #c0392b;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
-    }
-
-    .support-direct-link {
-        color: #e11d48 !important;
-        font-weight: 700 !important;
+        background: var(--accent-oxide-hover);
+        border-color: var(--accent-oxide-hover);
     }
 
     .support-direct-link:hover {

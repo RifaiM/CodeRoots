@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroTypewriter();
 });
 
+// Real-time reactive updates for DevKit (Ctrl+Alt+D) & cross-tab progress sync
+window.addEventListener('novicodes:xp_updated', () => initUserProgress());
+window.addEventListener('storage', () => initUserProgress());
+window.addEventListener('pageshow', () => initUserProgress());
+
 /**
  * Smooth Rotating Skill Suffix Typewriter Engine
  * Accessible, zero-layout-shift, prefers-reduced-motion safe
@@ -140,7 +145,7 @@ function initGlobalBackToTop() {
         btn.className = 'back-to-top-btn';
         btn.setAttribute('aria-label', 'Back to Top');
         btn.innerHTML = `
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="18 15 12 9 6 15"></polyline>
             </svg>
         `;
@@ -471,8 +476,10 @@ function initUserProgress() {
         if (!badge || !statusIcon || !btn) return;
 
         const levelText = badge.textContent.trim();
+        const levelMatch = levelText.match(/Level\s*(\d+)/i);
+        const levelNum = levelMatch ? parseInt(levelMatch[1], 10) : -1;
 
-        if (levelText === 'Level 0') {
+        if (levelNum === 0) {
             const p1 = localStorage.getItem('readWebsite') === 'true';
             const p2 = localStorage.getItem('readHTML') === 'true';
             const p3 = localStorage.getItem('readCSS') === 'true';
@@ -488,24 +495,36 @@ function initUserProgress() {
 
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isLevel0Complete ? '✅ Level 0 Completed' : (pillarsCount > 0 ? `📖 Continue Pillar ${Math.min(pillarsCount + 1, 4)} ➔` : '📖 Read Web History & Concepts');
+                btnSpan.textContent = isLevel0Complete ? '✅ Level 00 Completed' : (pillarsCount > 0 ? `📖 Continue Pillar ${Math.min(pillarsCount + 1, 4)} ➔` : '📖 Read Web History & Concepts');
             }
-        } else if (levelText === 'Level 1') {
+        } else if (levelNum === 1) {
             updateTrackCardState(card, statusIcon, btn, isLevel1Complete, {
                 xpReward: 300,
                 unit: 'Foundations'
             }, './foundations.html?track=html', 'HTML Foundations');
-        } else if (levelText === 'Level 2') {
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isLevel1Complete ? '✅ Level 01 Completed' : 'Start HTML Foundations →';
+            }
+        } else if (levelNum === 2) {
             updateTrackCardState(card, statusIcon, btn, isLevel2Complete, {
                 xpReward: 300,
                 unit: 'Foundations'
             }, './foundations.html?track=css', 'CSS Foundations');
-        } else if (levelText === 'Level 3') {
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isLevel2Complete ? '✅ Level 02 Completed' : 'Start CSS Foundations →';
+            }
+        } else if (levelNum === 3) {
             updateTrackCardState(card, statusIcon, btn, isLevel3Complete, {
                 xpReward: 400,
                 unit: 'Foundations'
             }, './foundations.html?track=js', 'JS Foundations');
-        } else if (levelText === 'Level 4') {
+            const btnSpan = btn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = isLevel3Complete ? '✅ Level 03 Completed' : 'Start JS Foundations →';
+            }
+        } else if (levelNum === 4) {
             const isFinished = l4Completed >= 15;
             const targetUrl = './2. partB/hub.html';
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -516,9 +535,9 @@ function initUserProgress() {
             }, targetUrl, 'Level 4 DOM Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 4 Completed' : (l4Completed > 0 ? `⚔️ Continue Dojo (${l4Completed}/15) ➔` : '⚔️ Enter Level 4 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 04 Completed' : (l4Completed > 0 ? `⚔️ Continue Dojo (${l4Completed}/15) ➔` : '⚔️ Enter Level 04 Dojo');
             }
-        } else if (levelText === 'Level 5') {
+        } else if (levelNum === 5) {
             const isFinished = l5Completed >= 15;
             const targetUrl = './3. partC/hub.html';
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -529,9 +548,9 @@ function initUserProgress() {
             }, targetUrl, 'Level 5 React Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 5 Completed' : (l5Completed > 0 ? `⚛️ Continue Dojo (${l5Completed}/15) ➔` : '⚛️ Enter Level 5 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 05 Completed' : (l5Completed > 0 ? `⚛️ Continue Dojo (${l5Completed}/15) ➔` : '⚛️ Enter Level 05 Dojo');
             }
-        } else if (levelText === 'Level 6') {
+        } else if (levelNum === 6) {
             let l6CompletedCount = 0;
             for (let i = 1; i <= 15; i++) {
                 if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
@@ -548,9 +567,9 @@ function initUserProgress() {
             }, targetUrl, 'Level 6 Python Dojo');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 6 Completed' : (l6CompletedCount > 0 ? `🐍 Continue Dojo (${l6CompletedCount}/15) ➔` : '🐍 Enter Level 6 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 06 Completed' : (l6CompletedCount > 0 ? `🐍 Continue Dojo (${l6CompletedCount}/15) ➔` : '🐍 Enter Level 06 Dojo');
             }
-        } else if (levelText === 'Level 7') {
+        } else if (levelNum === 7) {
             const stats = window.getUserXPAndRank();
             const isFinished = (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6);
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -561,9 +580,9 @@ function initUserProgress() {
             }, './6. partF/hub.html', 'Level 7 Specialization Hub');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 7 Completed' : (stats.l7Completed > 0 ? `🚀 Continue Hub (${stats.l7Completed}/18) ➔` : '🚀 Enter Level 7 Hub');
+                btnSpan.textContent = isFinished ? '✅ Level 07 Completed' : (stats.l7Completed > 0 ? `🚀 Continue Hub (${stats.l7Completed}/18) ➔` : '🚀 Enter Level 07 Hub');
             }
-        } else if (levelText === 'Level 8') {
+        } else if (levelNum === 8) {
             const stats = window.getUserXPAndRank();
             const isFinished = stats.l8Completed >= 6;
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -571,12 +590,12 @@ function initUserProgress() {
                 total: 6,
                 xpReward: 1500,
                 unit: 'Projects'
-            }, './7. partG/hub.html', 'Level 8 Fullstack Bridge');
+            }, './7. partG/hub.html', 'Level 8 Async UI');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 8 Completed' : (stats.l8Completed > 0 ? `🌉 Continue Dojo (${stats.l8Completed}/6) ➔` : '🌉 Enter Level 8 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 08 Completed' : (stats.l8Completed > 0 ? `🌉 Continue Dojo (${stats.l8Completed}/6) ➔` : '🌉 Enter Level 08 Dojo');
             }
-        } else if (levelText === 'Level 9') {
+        } else if (levelNum === 9) {
             const stats = window.getUserXPAndRank();
             const isFinished = stats.l9Completed >= 6;
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -587,9 +606,9 @@ function initUserProgress() {
             }, './8. partH/hub.html', 'Level 9 Auth & Database');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 9 Completed' : (stats.l9Completed > 0 ? `🛡️ Continue Dojo (${stats.l9Completed}/6) ➔` : '🛡️ Enter Level 9 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 09 Completed' : (stats.l9Completed > 0 ? `🛡️ Continue Dojo (${stats.l9Completed}/6) ➔` : '🛡️ Enter Level 09 Dojo');
             }
-        } else if (levelText.includes('Level 10') || levelText.includes('LEVEL 10')) {
+        } else if (levelNum === 10) {
             const stats = window.getUserXPAndRank();
             const isFinished = stats.l10Completed >= 6;
             updateTrackCardState(card, statusIcon, btn, isFinished, {
@@ -600,7 +619,13 @@ function initUserProgress() {
             }, './9. partI/hub.html', 'Level 10 SaaS Dashboard UI');
             const btnSpan = btn.querySelector('span');
             if (btnSpan) {
-                btnSpan.textContent = isFinished ? '✅ Level 10 Completed' : (stats.l10Completed > 0 ? `🏆 Continue Apex (${stats.l10Completed}/6) ➔` : '🏆 Launch Level 10 Dojo');
+                btnSpan.textContent = isFinished ? '✅ Level 10 Completed' : (stats.l10Completed > 0 ? `🏆 Continue Dojo (${stats.l10Completed}/6) ➔` : '🏆 Launch Level 10 Dojo');
+            }
+        } else if (levelText.toLowerCase().includes('arcade') || levelText.toLowerCase().includes('devtype')) {
+            const wpm = parseInt(localStorage.getItem('devtype_high_wpm') || '0', 10);
+            if (wpm > 0) {
+                statusIcon.className = 'track-status-icon completed';
+                statusIcon.textContent = `⚡ High: ${wpm} WPM`;
             }
         }
     });
@@ -623,19 +648,22 @@ function updateTrackCardState(card, statusIcon, btn, isCompleted, progressInfo, 
     btn.classList.remove('disabled', 'locked-btn');
 
     if (isCompleted) {
+        card.classList.add('completed');
         statusIcon.className = 'track-status-icon completed';
         statusIcon.textContent = progressInfo && progressInfo.total ? `✅ Mastered (${progressInfo.total}/${progressInfo.total})` : (progressInfo && progressInfo.xpReward ? `✅ Mastered (+${progressInfo.xpReward} XP)` : '✅ Mastered');
-    } else if (progressInfo && progressInfo.count > 0) {
-        statusIcon.className = 'track-status-icon in-progress';
-        statusIcon.textContent = `🔥 In Progress: ${progressInfo.count}/${progressInfo.total}`;
-    } else if (progressInfo && progressInfo.xpReward) {
-        statusIcon.className = 'track-status-icon ready';
-        statusIcon.textContent = `⚡ +${progressInfo.xpReward.toLocaleString()} XP`;
     } else {
-        statusIcon.className = 'track-status-icon ready';
-        statusIcon.textContent = '🟢 Active Track';
+        card.classList.remove('completed');
+        if (progressInfo && progressInfo.count > 0) {
+            statusIcon.className = 'track-status-icon in-progress';
+            statusIcon.textContent = `🔥 In Progress: ${progressInfo.count}/${progressInfo.total}`;
+        } else if (progressInfo && progressInfo.xpReward) {
+            statusIcon.className = 'track-status-icon ready';
+            statusIcon.textContent = `⚡ +${progressInfo.xpReward.toLocaleString()} XP`;
+        } else {
+            statusIcon.className = 'track-status-icon ready';
+            statusIcon.textContent = '🟢 Active Track';
+        }
     }
-
     if (btn.tagName.toLowerCase() === 'a') {
         btn.href = linkUrl;
         btn.onclick = null;
@@ -746,9 +774,8 @@ function showTrackPreview(title, description) {
         Swal.fire({
             title: escapeHTML(title),
             text: escapeHTML(description),
-            icon: 'info',
-            confirmButtonText: 'Got It!',
-            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'CLOSE',
+            confirmButtonColor: '#A33B24',
             customClass: {
                 popup: 'swal-soft-popup',
                 title: 'swal-soft-title'
@@ -763,19 +790,18 @@ function showTrackPreview(title, description) {
  * 6. Global Certificate Hub Selection Modal
  */
 window.showCertLockWarning = function(levelName, count, requiredCount = 15) {
-    const isLevel7 = levelName.includes('Level 7');
-    const titleText = `🔒 ${levelName} Locked`;
+    const isLevel7 = levelName.includes('Level 07') || levelName.includes('Level 7');
+    const titleText = `${levelName} Locked`;
     const messageText = isLevel7
-        ? `You must complete any 1 Specialization Track (6 Lessons in Cloud Shipping, Databases & Auth, or Next.js) before claiming your official Level 7 Certificate! (${count}/6 Completed)`
-        : `You must complete all 15 lessons in ${levelName} before claiming your official Certificate! (${count}/${requiredCount} Completed)`;
+        ? `Complete any 1 Specialization Track (6 Lessons) before generating your Level 07 Certificate. (${count}/6 Completed)`
+        : `Complete all 15 lessons in ${levelName} before generating your Certificate. (${count}/${requiredCount} Completed)`;
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            icon: 'warning',
             title: titleText,
             text: messageText,
-            confirmButtonColor: '#2563eb',
-            confirmButtonText: 'Got It!'
+            confirmButtonColor: '#A33B24',
+            confirmButtonText: 'CLOSE'
         });
     }
 };
@@ -801,48 +827,48 @@ window.openCertificateHub = function() {
     const isL6Earned = isUnlocked || stats.l6Completed >= 15;
     const isL7Earned = isUnlocked || (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6 || stats.l7Completed >= 6);
 
-    const renderCertItem = (title, sub, url, isEarned, completedCount, maxCount, bgStyle, textStyle, btnColor) => {
+    const renderCertItem = (title, sub, url, isEarned, completedCount, maxCount) => {
         if (isEarned) {
             return `
-                <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; ${bgStyle} padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+                <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
                     <div style="text-align: left; flex: 1;">
-                        <div style="font-weight: 800; font-size: 0.92rem; ${textStyle}">${title}</div>
-                        <div style="font-size: 0.76rem; color: #64748b;">${sub}</div>
+                        <div style="font-weight: 600; font-size: 0.90rem;">${title}</div>
+                        <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">${sub}</div>
                     </div>
-                    <span class="badge-action" style="font-weight: 800; color: ${btnColor}; font-size: 0.85rem;">View &rarr;</span>
+                    <span class="badge-action" style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">VIEW &rarr;</span>
                 </a>
             `;
         } else {
             return `
-                <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #94a3b8; transition: all 0.2s ease;">
+                <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px dashed var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: var(--text-muted); transition: all 0.15s ease;">
                     <div style="text-align: left; flex: 1;">
-                        <div style="font-weight: 800; font-size: 0.92rem; color: #64748b;">${title}</div>
-                        <div style="font-size: 0.76rem; color: #94a3b8;">${sub} • ${completedCount}/${maxCount} Completed</div>
+                        <div style="font-weight: 600; font-size: 0.90rem; color: var(--text-muted);">${title}</div>
+                        <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">${sub} • ${completedCount}/${maxCount} COMPLETED</div>
                     </div>
-                    <span class="badge-action" style="font-weight: 800; color: #64748b; font-size: 0.80rem; background: #e2e8f0; padding: 4px 8px; border-radius: 8px;">🔒 Locked</span>
+                    <span class="badge-action" style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); background: var(--border-hairline, #E5E1D8); padding: 2px 6px; border-radius: 2px;">LOCKED</span>
                 </div>
             `;
         }
     };
 
-    const l4Item = renderCertItem('📜 Level 4 Certificate', 'Vanilla JavaScript Web Widgets', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 15, 'background: #f8fafc; border: 1px solid #cbd5e1;', '', '#2563eb');
-    const l5Item = renderCertItem('⚛️ Level 5 Certificate', 'React & Reusable UI Components', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 15, 'background: #f0f9ff; border: 1px solid #38bdf8;', 'color: #0369a1;', '#0284c7');
-    const l6Item = renderCertItem('🐍 Level 6 Certificate', 'Python & Backend Basics', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 15, 'background: #ecfdf5; border: 1px solid #10b981;', 'color: #047857;', '#059669');
-    const l7Item = renderCertItem('🚀 Level 7 Certificate', 'Specialized Developer Tracks', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 6, 'background: #faf5ff; border: 1px solid #c084fc;', 'color: #7e22ce;', '#9333ea');
+    const l4Item = renderCertItem('Level 04 Certificate', 'DOM & Vanilla JavaScript Widgets', `${rootPrefix}2. partB/certificate.html`, isL4Earned, stats.l4Completed, 15);
+    const l5Item = renderCertItem('Level 05 Certificate', 'React Component Architecture', `${rootPrefix}3. partC/certificate.html`, isL5Earned, stats.l5Completed, 15);
+    const l6Item = renderCertItem('Level 06 Certificate', 'Python Backend & REST APIs', `${rootPrefix}5. partE/certificate.html`, isL6Earned, stats.l6Completed, 15);
+    const l7Item = renderCertItem('Level 07 Certificate', 'Specialized Developer Tracks', `${rootPrefix}6. partF/certificate.html`, isL7Earned, stats.l7Completed, 6);
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: '📜 Proof-of-Work Certificates',
+            title: 'Proof-of-Work Certificates',
             customClass: {
                 popup: 'responsive-profile-modal responsive-cert-hub-modal'
             },
             html: `
-                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;">
-                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.5;">
-                        Select an earned certificate to view, print, or download your official Proof of Work:
+                <div style="text-align: center; font-family: var(--font-sans), sans-serif; padding: 6px 0;">
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
+                        Select an unlocked milestone to view, print, or download your official Proof of Work:
                     </p>
                     
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         ${l4Item}
                         ${l5Item}
                         ${l6Item}
@@ -859,7 +885,7 @@ window.openCertificateHub = function() {
 };
 
 /**
- * 7. Practical Dojo Level Selection Hub Modal (100% Open Access)
+ * 7. Practical Dojo Level Selection Hub Modal
  */
 window.openDojoHub = function() {
     const rootPrefix = getRelativeRootPrefix();
@@ -892,97 +918,97 @@ window.openDojoHub = function() {
 
     const itemL4 = isL4
         ? `
-            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #eff6ff; border: 2px solid #3b82f6; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #1d4ed8;">⚔️ Level 4: DOM Interactivity Dojo</div>
-                    <div style="font-size: 0.76rem; color: #2563eb;">15 Projects • Active Lesson ${activeL4}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide);">Level 04: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL4}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #1d4ed8; font-size: 0.80rem; background: #dbeafe; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.72rem; background: var(--border-hairline); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
             </div>
         `
         : `
-            <a href="${rootPrefix}2. partB/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+            <a href="${rootPrefix}2. partB/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem;">⚔️ Level 4: DOM Interactivity Dojo</div>
-                    <div style="font-size: 0.76rem; color: #64748b;">15 Projects • Active Lesson ${activeL4}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem;">Level 04: DOM Interactivity Dojo</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL4}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #2563eb; font-size: 0.85rem;">Enter Hub &rarr;</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.76rem;">ENTER HUB &rarr;</span>
             </a>
         `;
 
     const itemL5 = isL5
         ? `
-            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 2px solid #0284c7; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
-                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide);">Level 05: React Component Dojo</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL5}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #0369a1; font-size: 0.80rem; background: #e0f2fe; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.72rem; background: var(--border-hairline); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
             </div>
         `
         : `
-            <a href="${rootPrefix}3. partC/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #f0f9ff; border: 1px solid #38bdf8; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+            <a href="${rootPrefix}3. partC/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #0369a1;">⚛️ Level 5: React & Framework Dojo</div>
-                    <div style="font-size: 0.76rem; color: #0284c7;">15 Projects • Active Lesson ${activeL5}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem;">Level 05: React Component Dojo</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL5}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #0284c7; font-size: 0.85rem;">Enter Hub &rarr;</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.76rem;">ENTER HUB &rarr;</span>
             </a>
         `;
 
     const itemL6 = isL6
         ? `
-            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 2px solid #059669; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
-                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide);">Level 06: Python &amp; Backend Basics</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL6}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #047857; font-size: 0.80rem; background: #d1fae5; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.72rem; background: var(--border-hairline); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
             </div>
         `
         : `
-            <a href="${rootPrefix}5. partE/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #ecfdf5; border: 1px solid #10b981; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+            <a href="${rootPrefix}5. partE/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #047857;">🐍 Level 6: Python & Backend Dojo</div>
-                    <div style="font-size: 0.76rem; color: #059669;">15 Projects • Active Lesson ${activeL6}</div>
+                    <div style="font-weight: 600; font-size: 0.90rem;">Level 06: Python &amp; Backend Basics</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">15 PROJECTS • ACTIVE LESSON ${activeL6}</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #059669; font-size: 0.85rem;">Enter Hub &rarr;</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.76rem;">ENTER HUB &rarr;</span>
             </a>
         `;
 
     const itemL7 = isL7
         ? `
-            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 2px solid #c084fc; padding: 12px 16px; border-radius: 12px; cursor: pointer; color: #0f172a; transition: all 0.2s ease;">
+            <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
-                    <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
+                    <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide);">Level 07: Specialized Tracks</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">5 TRACKS • CLOUD, SQL, NEXT.JS, TS, MOTION</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #7e22ce; font-size: 0.80rem; background: #f3e8ff; padding: 4px 10px; border-radius: 8px;">📍 Active Page</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.72rem; background: var(--border-hairline); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
             </div>
         `
         : `
-            <a href="${rootPrefix}6. partF/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: #faf5ff; border: 1px solid #c084fc; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #0f172a; transition: all 0.2s ease;">
+            <a href="${rootPrefix}6. partF/hub.html" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
                 <div style="text-align: left; flex: 1;">
-                    <div style="font-weight: 800; font-size: 0.92rem; color: #7e22ce;">🚀 Level 7: Mastery Specialization Hub</div>
-                    <div style="font-size: 0.76rem; color: #9333ea;">3 Tracks • Cloud, Database & Next.js</div>
+                    <div style="font-weight: 600; font-size: 0.90rem;">Level 07: Specialized Tracks</div>
+                    <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--text-muted);">5 TRACKS • CLOUD, SQL, NEXT.JS, TS, MOTION</div>
                 </div>
-                <span class="badge-action" style="font-weight: 800; color: #9333ea; font-size: 0.85rem;">Enter Hub &rarr;</span>
+                <span class="badge-action" style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-oxide); font-size: 0.76rem;">ENTER HUB &rarr;</span>
             </a>
         `;
 
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: '⚔️ Practical Dojo Hub',
+            title: 'Curriculum Workbench Hub',
             customClass: {
                 popup: 'responsive-profile-modal responsive-cert-hub-modal'
             },
             html: `
-                <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;">
-                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.5;">
-                        Select a Practical Dojo level to jump into live interactive coding:
+                <div style="text-align: center; font-family: var(--font-sans), sans-serif; padding: 6px 0;">
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
+                        Select a practical workbench level to begin coding:
                     </p>
                     
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         ${itemL4}
                         ${itemL5}
                         ${itemL6}

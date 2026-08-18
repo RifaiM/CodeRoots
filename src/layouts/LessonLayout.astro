@@ -44,26 +44,29 @@ const {
 } = Astro.props;
 
 const navLinks = [
-    { href: hubUrl, label: `${hubTitle}`, icon: hubIcon, title: `Return to ${hubTitle}` }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 
 const foundationsTrackMap: Record<string, { query: string; name: string; icon: string }> = {
-    'partB': { query: 'js', name: 'JavaScript Foundations', icon: '⚡' },
-    'partC': { query: 'react', name: 'React Foundations', icon: '⚛️' },
-    'partE': { query: 'python', name: 'Python Foundations', icon: '🐍' },
-    'partF_branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', icon: '☁️' },
-    'branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', icon: '☁️' },
-    'partF_branchB': { query: 'sql', name: 'SQL & Database Foundations', icon: '🛢️' },
-    'branchB': { query: 'sql', name: 'SQL & Database Foundations', icon: '🛢️' },
-    'partF_branchC': { query: 'nextjs', name: 'Next.js Foundations', icon: '⚡' },
-    'branchC': { query: 'nextjs', name: 'Next.js Foundations', icon: '⚡' },
-    'partF_branchD': { query: 'typescript', name: 'TypeScript Foundations', icon: '🔷' },
-    'branchD': { query: 'typescript', name: 'TypeScript Foundations', icon: '🔷' },
-    'partF_branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', icon: '🎨' },
-    'branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', icon: '🎨' },
-    'partG': { query: 'async', name: 'Async UI Foundations', icon: '🌉' },
-    'partH': { query: 'auth', name: 'Security & Auth Foundations', icon: '🛡️' },
-    'partI': { query: 'saas', name: 'SaaS UI Foundations', icon: '🏆' },
+    'partB': { query: 'js', name: 'JavaScript Foundations', },
+    'partC': { query: 'react', name: 'React Foundations', },
+    'partE': { query: 'python', name: 'Python Foundations', },
+    'partF_branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', },
+    'branchA': { query: 'cloud', name: 'Cloud & CI/CD Foundations', },
+    'partF_branchB': { query: 'sql', name: 'SQL & Database Foundations', },
+    'branchB': { query: 'sql', name: 'SQL & Database Foundations', },
+    'partF_branchC': { query: 'nextjs', name: 'Next.js Foundations', },
+    'branchC': { query: 'nextjs', name: 'Next.js Foundations', },
+    'partF_branchD': { query: 'typescript', name: 'TypeScript Foundations', },
+    'branchD': { query: 'typescript', name: 'TypeScript Foundations', },
+    'partF_branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', },
+    'branchE': { query: 'cssmotion', name: 'CSS Motion Foundations', },
+    'partG': { query: 'async', name: 'Async UI Foundations', },
+    'partH': { query: 'auth', name: 'Security & Auth Foundations', },
+    'partI': { query: 'saas', name: 'SaaS UI Foundations', },
 };
 
 const foundationsRef = foundationsTrackMap[trackPrefix] || foundationsTrackMap['partB'];
@@ -88,53 +91,52 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
     <main class="lesson-workspace-outer" data-track={trackPrefix} data-lesson-num={lessonNum} data-level-tag={levelTag}>
         <div class="lesson-grid">
             
-            <!-- LEFT LANE: Concept, Widgets, Reference Code, Goal — scrolls freely -->
+            <!-- LEFT LANE: Concept, Widgets, Reference Code, Goal // scrolls freely -->
             <section class="lesson-instructions-pane">
                 <div class="lesson-header-card">
                     <div class="lesson-badge-row">
-                        <span class="lesson-level-pill">{levelTag} • Project {lessonNum.toString().padStart(2, '0')}</span>
-                        <span class="lesson-xp-pill">⚡ +{xpAmount} XP Bounty</span>
+                        <span class="lesson-level-pill">{levelTag} // EXERCISE {lessonNum.toString().padStart(2, '0')}</span>
+                        <span class="lesson-xp-pill">+{xpAmount} XP BOUNTY</span>
                     </div>
                     <h1 class="lesson-main-title">{lessonTitle}</h1>
                     
                     <!-- Foundations Concept Refresher Dropdown -->
                     <div class="foundations-ref-box">
                         <div class="foundations-ref-header">
-                            <span class="ref-icon">📖</span>
-                            <span class="ref-label">Concept Refresher:</span>
+                            <span class="ref-label">Reference Guide:</span>
                         </div>
                         <div class="foundations-ref-control">
                             <select class="foundations-ref-select" id="lessonFoundationsSelect" aria-label="Review Foundations Guide in New Tab">
-                                <optgroup label="🎯 Recommended for this Level">
+                                <optgroup label="Recommended for this Level">
                                     <option value={foundationsRef.query} selected>
-                                        {foundationsRef.icon} {foundationsRef.name}
+                                        {foundationsRef.name}
                                     </option>
                                 </optgroup>
-                                <optgroup label="🌱 Core Web Foundations">
-                                    <option value="history">🌐 Level 0: Web Basics & Architecture</option>
-                                    <option value="html">🧱 Level 1: HTML Page Structure</option>
-                                    <option value="css">🎨 Level 2: CSS Box Model &amp; Flexbox</option>
-                                    <option value="js">⚡ Level 3: JavaScript Interactivity</option>
+                                <optgroup label="Core Web Foundations">
+                                    <option value="history">Level 00: Web Architecture</option>
+                                    <option value="html">Level 01: HTML Page Structure</option>
+                                    <option value="css">Level 02: CSS Box Model &amp; Flexbox</option>
+                                    <option value="js">Level 03: JavaScript Interactivity</option>
                                 </optgroup>
-                                <optgroup label="🚀 Framework &amp; Backend Foundations">
-                                    <option value="react">⚛️ Level 5: React Components &amp; State</option>
-                                    <option value="python">🐍 Level 6: Python Backend &amp; APIs</option>
+                                <optgroup label="Framework &amp; Backend Foundations">
+                                    <option value="react">Level 05: React Components &amp; State</option>
+                                    <option value="python">Level 06: Python Backend &amp; APIs</option>
                                 </optgroup>
-                                <optgroup label="⚡ Level 7 Specialization Tracks">
-                                    <option value="cloud">☁️ Level 7A: Cloud Hosting &amp; CI/CD</option>
-                                    <option value="sql">🛢️ Level 7B: SQL Databases &amp; Queries</option>
-                                    <option value="nextjs">⚡ Level 7C: Next.js App Router</option>
-                                    <option value="typescript">🔷 Level 7D: TypeScript Mastery</option>
-                                    <option value="cssmotion">🎨 Level 7E: CSS Motion &amp; Animation</option>
+                                <optgroup label="Level 07 Specialization Tracks">
+                                    <option value="cloud">Level 07A: Cloud Hosting &amp; CI/CD</option>
+                                    <option value="sql">Level 07B: SQL Databases &amp; Queries</option>
+                                    <option value="nextjs">Level 07C: Next.js App Router</option>
+                                    <option value="typescript">Level 07D: TypeScript Mastery</option>
+                                    <option value="cssmotion">Level 07E: CSS Motion &amp; Animation</option>
                                 </optgroup>
-                                <optgroup label="🏆 Advanced Architecture">
-                                    <option value="async">🌉 Level 8: Async UI &amp; Skeletons</option>
-                                    <option value="auth">🛡️ Level 9: User Logins &amp; Security</option>
-                                    <option value="saas">🏆 Level 10: SaaS Dashboard UI</option>
+                                <optgroup label="Advanced Architecture">
+                                    <option value="async">Level 08: Async UI &amp; Skeletons</option>
+                                    <option value="auth">Level 09: User Logins &amp; Security</option>
+                                    <option value="saas">Level 10: SaaS Dashboard UI</option>
                                 </optgroup>
                             </select>
                             <a href={foundationsUrl} target="_blank" rel="noopener noreferrer" class="ref-open-link-btn" id="openCurrentFoundationsBtn" title={`Open ${foundationsRef.name} in a new tab`}>
-                                <span>📖 Open Guide ↗</span>
+                                <span>VIEW GUIDE ↗</span>
                             </a>
                         </div>
                     </div>
@@ -144,19 +146,18 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 <slot name="concept" />
             </section>
 
-            <!-- RIGHT LANE: Sticky IDE Workspace — large editor + large preview -->
+            <!-- RIGHT LANE: Sticky IDE Workspace // large editor + large preview -->
             <section class="lesson-ide-pane">
                 
                 <!-- Code Editor (Large, wrap-based, no h-scroll) -->
                 <div class="ide-window">
                     <div class="ide-top-bar">
                         <div class="ide-tab">
-                            <span>📄</span>
                             <span>{fileTab}</span>
                         </div>
                         <div class="ide-controls">
                             <button class="ide-reset-btn" id="resetEditorBtn" title="Reset to starter code">
-                                🔄 Reset
+                                RESET
                             </button>
                         </div>
                     </div>
@@ -186,26 +187,26 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
 
                 {/* Python Terminal Screen */}
                 {mode === 'python' && (
-                    <div class="ide-output-window" style="background: #0f172a; border-color: #334155;">
-                        <div class="ide-output-header" style="background: #1e293b; border-color: #334155; color: #94a3b8;">
+                    <div class="ide-output-window" style="background: #141514; border-color: #2C2D2B;">
+                        <div class="ide-output-header" style="background: #1B1C1A; border-color: #2C2D2B; color: #BAB4A6;">
                             <span>🖥️ Python Terminal &amp; Output</span>
-                            <span class="live-badge" style="color: #38bdf8;">🐍 Python 3.12</span>
+                            <span class="live-badge" style="color: #A33B24;">🐍 Python 3.12</span>
                         </div>
-                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
-                            <div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal ready. Click Check &amp; Verify Code to execute main.py</div>
+                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #141514; color: #F1EEE7; font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
+                            <div class="terminal-prompt" style="color: #BAB4A6;">&gt; Python Terminal ready. Click Check &amp; Verify Code to execute main.py</div>
                         </div>
                     </div>
                 )}
 
                 {/* Terminal / CLI / Bash / DevOps Output Screen */}
                 {(mode === 'terminal' || mode === 'bash' || mode === 'sql') && (
-                    <div class="ide-output-window" style="background: #0f172a; border-color: #334155;">
-                        <div class="ide-output-header" style="background: #1e293b; border-color: #334155; color: #94a3b8;">
+                    <div class="ide-output-window" style="background: #141514; border-color: #2C2D2B;">
+                        <div class="ide-output-header" style="background: #1B1C1A; border-color: #2C2D2B; color: #BAB4A6;">
                             <span>🖥️ CLI / Terminal Output</span>
-                            <span class="live-badge" style="color: #38bdf8;">⚡ Terminal</span>
+                            <span class="live-badge" style="color: #A33B24;">⚡ Terminal</span>
                         </div>
-                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
-                            <div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal ready. Click Check &amp; Verify Code to execute commands.</div>
+                        <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #141514; color: #F1EEE7; font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
+                            <div class="terminal-prompt" style="color: #BAB4A6;">&gt; Terminal ready. Click Check &amp; Verify Code to execute commands.</div>
                         </div>
                     </div>
                 )}

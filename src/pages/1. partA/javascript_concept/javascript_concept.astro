@@ -4,8 +4,10 @@ import PlatformHeader from '../../../components/PlatformHeader.astro';
 import PlatformFooter from '../../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
-    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -28,53 +30,53 @@ const navLinks = [
         
         <!-- Hero Banner -->
         <section class="concept-hero">
-            <span class="concept-badge-pill">⚡ Pillar 4 of 4 • 50 XP</span>
-            <h1>JavaScript - The Brain &amp; Interactivity</h1>
+            <span class="concept-badge-pill">04 // PILLAR 4 OF 4 • +50 XP</span>
+            <h1>JavaScript — Dynamic State &amp; Events</h1>
             <p>
-                Learn how JavaScript brings websites to life by reacting to user events, calculating dynamic values, and communicating with cloud APIs.
+                Learn how JavaScript brings web pages to life by reacting to user events, calculating dynamic state, and communicating with external APIs.
             </p>
         </section>
 
         <!-- 1. The Web Development Triad -->
         <section class="concept-card">
-            <h2><span>🏛️</span> 1. The Web Development Triad in Action</h2>
+            <h2>1. The Web Development Triad in Action</h2>
             <p>
-                Every modern website is an orchestra of three technologies working in perfect harmony:
+                Every client application is an integrated assembly of three distinct technological layers:
             </p>
 
             <div class="triad-grid">
-                <div class="triad-card" style="border-top: 4px solid #ea580c;">
+                <div class="triad-card">
                     <div class="triad-icon">🧱</div>
-                    <h3 class="triad-title">HTML (The Skeleton)</h3>
-                    <p class="triad-desc">Provides the structural blueprint and semantic tags.</p>
+                    <h3 class="triad-title">01 / HTML (Structure)</h3>
+                    <p class="triad-desc">Provides the document skeleton, semantic tags, and content hierarchy.</p>
                 </div>
-                <div class="triad-card" style="border-top: 4px solid #db2777;">
+                <div class="triad-card">
                     <div class="triad-icon">🎨</div>
-                    <h3 class="triad-title">CSS (The Skin)</h3>
-                    <p class="triad-desc">Styles colors, fonts, responsive layouts, and visual appeal.</p>
+                    <h3 class="triad-title">02 / CSS (Presentation)</h3>
+                    <p class="triad-desc">Applies typography, color schemes, responsive flow, and visual balance.</p>
                 </div>
-                <div class="triad-card" style="border-top: 4px solid #eab308;">
+                <div class="triad-card">
                     <div class="triad-icon">⚡</div>
-                    <h3 class="triad-title">JavaScript (The Brain)</h3>
-                    <p class="triad-desc">Executes logic, listens to user events, and fetches data.</p>
+                    <h3 class="triad-title">03 / JavaScript (Behavior)</h3>
+                    <p class="triad-desc">Executes logic, manages component state, and handles user interactions.</p>
                 </div>
             </div>
         </section>
 
         <!-- 2. Interactive Event Playground -->
         <section class="concept-card">
-            <h2><span>🎮</span> 2. Interactive Event Counter Playground</h2>
+            <h2>2. Interactive Event Counter Playground</h2>
             <p>
-                Click the action buttons below to see JavaScript event listeners manipulate the DOM in real-time:
+                Trigger the controls below to observe how JavaScript event listeners calculate state and update the DOM:
             </p>
 
             <div class="sandbox-card-box">
-                <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Live Dynamic Counter</span>
+                <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; color: #BAB4A6; text-transform: uppercase; letter-spacing: 0.05em;">Live State Machine</span>
                 <div class="counter-value-display" id="counterValueDisplay">0</div>
                 <div class="sandbox-btn-row">
-                    <button class="event-action-btn" id="btnInc">➕ Increment (Add 1)</button>
-                    <button class="event-action-btn" id="btnDec" style="background:#f1f5f9; color:#0f172a;">➖ Decrement (Minus 1)</button>
-                    <button class="event-action-btn" id="btnReset" style="background:#fee2e2; color:#b91c1c;">🔄 Reset</button>
+                    <button class="event-action-btn" id="btnInc">Increment (+1)</button>
+                    <button class="event-action-btn" id="btnDec">Decrement (-1)</button>
+                    <button class="event-action-btn" id="btnReset">Reset (0)</button>
                 </div>
             </div>
         </section>
@@ -82,7 +84,7 @@ const navLinks = [
         <!-- 3. Mini Knowledge Check -->
         <section class="concept-card">
             <div class="section-header-row">
-                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <h2>3. Concept Verification Check</h2>
                 <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
             </div>
             <p id="quizQText">Loading question...</p>
@@ -92,14 +94,21 @@ const navLinks = [
 
         <!-- 4. Complete & Return to Roadmap -->
         <section class="complete-card">
-            <h3>🎉 Mastered All 4 Pillars?</h3>
-            <p>Claim your +50 XP and return to the Web History roadmap to finalize Level 0!</p>
+            <h3>All 4 Pillars Mastered?</h3>
+            <p>Pass the verification check above to claim your +50 XP and return to the Web History roadmap to complete Level 0.</p>
             <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
-                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+                <span>Complete Verification Above to Unlock (+50 XP)</span>
             </button>
         </section>
 
     </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Platform Footer -->
     <PlatformFooter />

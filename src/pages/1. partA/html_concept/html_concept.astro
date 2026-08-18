@@ -4,8 +4,10 @@ import PlatformHeader from '../../../components/PlatformHeader.astro';
 import PlatformFooter from '../../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
-    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -28,18 +30,18 @@ const navLinks = [
         
         <!-- Hero Banner -->
         <section class="concept-hero">
-            <span class="concept-badge-pill">🧱 Pillar 2 of 4 • 50 XP</span>
-            <h1>HTML - The Skeleton of the Web</h1>
+            <span class="concept-badge-pill">02 // PILLAR 2 OF 4 • +50 XP</span>
+            <h1>HTML — The Skeleton of the Web</h1>
             <p>
-                Learn how HyperText Markup Language structures text, images, and buttons into an organized semantic Document Object Model (DOM).
+                Learn how HyperText Markup Language structures text, images, and controls into an organized semantic Document Object Model (DOM).
             </p>
         </section>
 
         <!-- 1. Interactive Tag Sandbox -->
         <section class="concept-card">
-            <h2><span>🏷️</span> 1. Interactive HTML Tag Inspector</h2>
+            <h2>1. Interactive HTML Tag Inspector</h2>
             <p>
-                Click any tag below to see the underlying HTML code and its immediate browser rendering:
+                Select any tag below to inspect the underlying source code and its live browser DOM rendering:
             </p>
 
             <div class="tag-selector-row">
@@ -51,15 +53,15 @@ const navLinks = [
 
             <div class="tag-display-grid">
                 <div>
-                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">HTML Code</span>
+                    <span style="font-family: var(--font-mono, monospace); font-size: 0.74rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; letter-spacing: 0.04em;">HTML Source</span>
                     <div class="code-box-pane" id="tagCodePane">
                         <code>&lt;h1&gt;Welcome to NoviCodes&lt;/h1&gt;</code>
                     </div>
                 </div>
                 <div>
-                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Live Browser Output</span>
+                    <span style="font-family: var(--font-mono, monospace); font-size: 0.74rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; letter-spacing: 0.04em;">Rendered View</span>
                     <div class="preview-pane-box" id="tagPreviewPane">
-                        <div style="margin:0; font-size:1.6rem; font-weight:800; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif;">Welcome to NoviCodes</div>
+                        <div style="margin:0; font-size:1.4rem; font-weight:600; color:#20211F; font-family:'Newsreader', serif;">Welcome to NoviCodes</div>
                     </div>
                 </div>
             </div>
@@ -67,25 +69,25 @@ const navLinks = [
 
         <!-- 2. DOM Tree Hierarchy Visualizer -->
         <section class="concept-card">
-            <h2><span>🌳</span> 2. The DOM Tree Hierarchy</h2>
+            <h2>2. The DOM Tree Hierarchy</h2>
             <p>
-                Browsers parse HTML into a nested tree structure called the <strong>Document Object Model (DOM)</strong>:
+                Browsers parse raw HTML into a structured tree model called the <strong>Document Object Model (DOM)</strong>:
             </p>
 
             <div class="dom-tree-box">
                 <span class="tree-root">&lt;html&gt;</span> (The Root Document)<br />
                 &nbsp;&nbsp;├── <span class="tree-branch">&lt;head&gt;</span> (Page Title, Favicon, SEO Metadata)<br />
-                &nbsp;&nbsp;└── <span class="tree-branch">&lt;body&gt;</span> (Visible Content)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;h1&gt;</span> (Main Page Title)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;p&gt;</span> (Article Body Text)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="tree-leaf">&lt;button&gt;</span> (Interactive Clickable Action)
+                &nbsp;&nbsp;└── <span class="tree-branch">&lt;body&gt;</span> (Visible Viewport Content)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;h1&gt;</span> (Main Article Heading)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-leaf">&lt;p&gt;</span> (Section Body Paragraph)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="tree-leaf">&lt;button&gt;</span> (Interactive Action Control)
             </div>
         </section>
 
         <!-- 3. Mini Knowledge Check -->
         <section class="concept-card">
             <div class="section-header-row">
-                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <h2>3. Concept Verification Check</h2>
                 <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
             </div>
             <p id="quizQText">Loading question...</p>
@@ -95,14 +97,21 @@ const navLinks = [
 
         <!-- 4. Complete & Continue -->
         <section class="complete-card">
-            <h3>🎉 Mastered HTML Fundamentals?</h3>
-            <p>Claim your +50 XP and continue to Pillar 3: CSS Styling!</p>
+            <h3>Concept 2 Complete?</h3>
+            <p>Pass the verification check above to claim your +50 XP bounty and advance to Pillar 3.</p>
             <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
-                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+                <span>Complete Verification Above to Unlock (+50 XP)</span>
             </button>
         </section>
 
     </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Platform Footer -->
     <PlatformFooter />

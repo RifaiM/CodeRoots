@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core & Hub Pages -->
+  <url>
+    <loc>https://novicodes.dev/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/foundations.html</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/web_history.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/website_concept/website_concept.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/html_concept/html_concept.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/css_concept/css_concept.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/1.%20partA/javascript_concept/javascript_concept.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/2.%20partB/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/3.%20partC/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/4.%20partD/devtype/devtype.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/5.%20partE/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/6.%20partF/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/7.%20partG/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/8.%20partH/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://novicodes.dev/9.%20partI/hub.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Level 4 DOM Dojo Lessons -->
+  <url><loc>https://novicodes.dev/2.%20partB/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson7/lesson7_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson8/lesson8_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson9/lesson9_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson10/lesson10_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson11/lesson11_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson12/lesson12_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson13/lesson13_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson14/lesson14_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/2.%20partB/lesson15/lesson15_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Level 5 React Dojo Lessons -->
+  <url><loc>https://novicodes.dev/3.%20partC/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson7/lesson7_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson8/lesson8_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson9/lesson9_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson10/lesson10_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson11/lesson11_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson12/lesson12_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson13/lesson13_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson14/lesson14_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/3.%20partC/lesson15/lesson15_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Level 6 Python Dojo Lessons -->
+  <url><loc>https://novicodes.dev/5.%20partE/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson7/lesson7_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson8/lesson8_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson9/lesson9_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson10/lesson10_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson11/lesson11_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson12/lesson12_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson13/lesson13_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson14/lesson14_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/5.%20partE/lesson15/lesson15_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Level 7 Specialization Tracks -->
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson1_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson2_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson3_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson4_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson5_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchA/lesson6_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson1_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson2_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson3_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson4_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson5_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchB/lesson6_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson1_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson2_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson3_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson4_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson5_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchC/lesson6_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson1_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson2_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson3_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson4_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson5_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson6_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson7_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson8_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson9_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson10_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson11_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchD/lesson12_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson1_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson2_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson3_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson4_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson5_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson6_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson7_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson8_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson9_remake.html</loc><priority>0.65</priority></url>
+  <url><loc>https://novicodes.dev/6.%20partF/branchE/lesson10_remake.html</loc><priority>0.65</priority></url>
+
+  <!-- Level 8 Async UI Lessons -->
+  <url><loc>https://novicodes.dev/7.%20partG/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/7.%20partG/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/7.%20partG/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/7.%20partG/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/7.%20partG/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/7.%20partG/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Level 9 User Auth Lessons -->
+  <url><loc>https://novicodes.dev/8.%20partH/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/8.%20partH/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/8.%20partH/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/8.%20partH/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/8.%20partH/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/8.%20partH/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Level 10 SaaS UI Lessons -->
+  <url><loc>https://novicodes.dev/9.%20partI/lesson1/lesson1_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/9.%20partI/lesson2/lesson2_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/9.%20partI/lesson3/lesson3_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/9.%20partI/lesson4/lesson4_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/9.%20partI/lesson5/lesson5_remake.html</loc><priority>0.70</priority></url>
+  <url><loc>https://novicodes.dev/9.%20partI/lesson6/lesson6_remake.html</loc><priority>0.70</priority></url>
+
+  <!-- Legal & Info -->
+  <url><loc>https://novicodes.dev/privacy.html</loc><priority>0.30</priority></url>
+  <url><loc>https://novicodes.dev/terms.html</loc><priority>0.30</priority></url>
+  <url><loc>https://novicodes.dev/disclaimer.html</loc><priority>0.30</priority></url>
+</urlset>

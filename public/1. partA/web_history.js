@@ -265,8 +265,8 @@ const eraData = {
                 <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.</p>
                 <p>Everything there is online at CERN is linked directly or indirectly to this document.</p>
                 <ul>
-                    <li><a href="javascript:void(0)" onclick="Swal.fire('Hypertext Link', 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', 'info')">What is Hypertext?</a></li>
-                    <li><a href="javascript:void(0)" onclick="Swal.fire('Tim Berners-Lee', 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', 'info')">Technical Project Documentation</a></li>
+                    <li><a href="javascript:void(0)" onclick="Swal.fire({ title: 'Hypertext Protocol', text: 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', icon: 'info' })">What is Hypertext?</a></li>
+                    <li><a href="javascript:void(0)" onclick="Swal.fire({ title: 'Tim Berners-Lee', text: 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', icon: 'info' })">Technical Project Documentation</a></li>
                 </ul>
             </div>
         `
@@ -274,17 +274,17 @@ const eraData = {
     '2004': {
         url: 'https://web2004.portal.net/my-blog/dev-journal',
         html: `
-            <div class="screen-2004">
-                <div class="blog-header">
-                    📻 Web 2.0 Community Blog • Powered by CSS & Early AJAX
+            <div class="screen-2004" style="background: #FFFFFF; border: 1px solid #D5D0C6; border-radius: 2px; padding: 18px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: #A33B24; font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">
+                    Web 2.0 Community Journal • Powered by CSS & Early AJAX
                 </div>
-                <h3 style="margin: 0 0 6px 0; color: #1e3a8a;">Welcome to the Read-Write Web!</h3>
-                <p style="font-size: 0.88rem; line-height: 1.5; color: #475569; margin: 0 0 10px 0;">
-                    Web 2.0 transformed the internet from static read-only documents into collaborative social networks, blogs, and interactive web widgets.
+                <h3 style="font-family: 'Newsreader', Georgia, serif; font-size: 1.3rem; margin: 0 0 8px 0; color: #20211F;">Welcome to the Read-Write Web</h3>
+                <p style="font-size: 0.88rem; line-height: 1.55; color: #686760; margin: 0 0 14px 0;">
+                    Web 2.0 transformed the internet from static read-only documents into collaborative platforms, blogs, and dynamic client-side widgets.
                 </p>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="Swal.fire('Dynamic DOM', 'JavaScript in 2004 introduced XMLHttpRequest to update pages without full reload!', 'success')" style="background: #2563eb; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.80rem;">👍 Leave a Comment (AJAX)</button>
-                    <span style="font-size: 0.78rem; color: #64748b; display: flex; align-items: center;">⭐ 1,420 Readers</span>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button onclick="Swal.fire({ title: 'Dynamic DOM (AJAX)', text: 'JavaScript in 2004 introduced XMLHttpRequest to update web pages without a full reload.', icon: 'success' })" style="background: #A33B24; color: #F8F6F1; border: 1px solid #A33B24; padding: 6px 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; font-weight: 600; text-transform: uppercase; cursor: pointer;">Post Comment (AJAX)</button>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: #686760;">1,420 READERS</span>
                 </div>
             </div>
         `
@@ -292,15 +292,17 @@ const eraData = {
     '2026': {
         url: 'https://novicodes.dev/cloud-app/dashboard',
         html: `
-            <div class="screen-2026">
-                <span class="modern-pill">⚡ 2026 Modern Web App Engine</span>
-                <h3 style="margin: 0 0 8px 0; font-size: 1.25rem;">Fullstack Serverless & Instant Edge Delivery</h3>
-                <p style="font-size: 0.88rem; color: #cbd5e1; margin: 0 0 14px 0; line-height: 1.55;">
-                    Modern web development combines React Server Components, Python microservices, zero-latency global edge CDNs, and AI-accelerated dev tools.
+            <div class="screen-2026" style="background: #20211F; color: #F8F6F1; border: 1px solid #D5D0C6; border-radius: 2px; padding: 18px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: #EAC9C0; font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">
+                    Modern Web Architecture • Fullstack Edge Engine
+                </div>
+                <h3 style="font-family: 'Newsreader', Georgia, serif; font-size: 1.3rem; margin: 0 0 8px 0; color: #F8F6F1;">Serverless Delivery & Reactive Edge UI</h3>
+                <p style="font-size: 0.88rem; color: #D5D0C6; margin: 0 0 14px 0; line-height: 1.55;">
+                    Modern web applications combine React Server Components, Python microservices, zero-latency edge CDNs, and hardware-accelerated CSS animations.
                 </p>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <span style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700;">🟢 Edge Latency: 12ms</span>
-                    <span style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700;">⚛️ Next.js + Python SSR</span>
+                    <span style="background: #314C52; color: #EBF0F1; border: 1px solid #C2CED0; padding: 3px 8px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.70rem; font-weight: 600;">EDGE LATENCY // 12MS</span>
+                    <span style="background: #314C52; color: #EBF0F1; border: 1px solid #C2CED0; padding: 3px 8px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.70rem; font-weight: 600;">REACT + FASTAPI SSR</span>
                 </div>
             </div>
         `
@@ -475,20 +477,20 @@ function updateClaimButtonState(pillarCount, isQuizComplete, isL0) {
                 if (!isQuizComplete) missing.push(`• <strong>Pass Knowledge Challenge:</strong> Complete the 5-question quiz below (+50 XP)`);
 
                 Swal.fire({
-                    icon: 'info',
-                    title: '🔒 Level 0 Requirements Remaining',
+                    icon: 'warning',
+                    title: 'Level 0 Prerequisites Incomplete',
                     html: `
-                        <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; padding: 4px 8px;">
-                            <p style="color: #475569; font-size: 0.92rem; margin-bottom: 12px; line-height: 1.5;">
+                        <div style="font-family: var(--font-sans, sans-serif); text-align: left; padding: 4px 8px;">
+                            <p style="color: var(--text-body, #20211F); font-size: 0.90rem; margin-bottom: 12px; line-height: 1.5;">
                                 Complete both milestones below to claim your official <strong>Level 0 (+250 XP)</strong> reward and unlock Level 1 Foundations:
                             </p>
-                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; font-size: 0.88rem; color: #1e293b; line-height: 1.7;">
+                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 12px 14px; font-size: 0.86rem; color: var(--text-title, #20211F); line-height: 1.7;">
                                 ${missing.join('<br>')}
                             </div>
                         </div>
                     `,
-                    confirmButtonColor: '#2563eb',
-                    confirmButtonText: 'Got It! Let\'s Finish Up 🚀'
+                    confirmButtonColor: '#A33B24',
+                    confirmButtonText: 'Continue Practice →'
                 });
             }
         };
@@ -630,25 +632,27 @@ function handleOptionClick(selectedBtn, isCorrect, explanation) {
 
         if (!isFinalQuestion) {
             feedbackBox.innerHTML = `
-                <strong>${isCorrect ? '🎉 Correct Answer!' : '💡 Key Concept:'}</strong>
-                <p style="margin: 4px 0 8px 0;">${explanation}</p>
-                <button onclick="window.nextQuestion()" style="background: ${isCorrect ? '#16a34a' : '#2563eb'}; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.80rem;">
-                    Next Question ➡️
+                <div style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; color: ${isCorrect ? '#314C52' : '#A33B24'};">
+                    ${isCorrect ? '[ CORRECT ANSWER ]' : '[ KEY CONCEPT ]'}
+                </div>
+                <p style="margin: 4px 0 12px 0; color: #20211F; font-size: 0.88rem; line-height: 1.5;">${explanation}</p>
+                <button onclick="window.nextQuestion()" style="background: #A33B24; color: #F8F6F1; border: 1px solid #A33B24; padding: 6px 14px; border-radius: 2px; font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; cursor: pointer;">
+                    Next Question ➔
                 </button>
             `;
         } else {
             feedbackBox.innerHTML = `
                 <div style="padding: 4px 0;">
-                    <div style="font-size: 1rem; font-weight: 800; color: #16a34a; margin-bottom: 4px;">🎉 Level 0 Knowledge Challenge Completed!</div>
-                    <p style="margin: 4px 0 10px 0; color: #334155;">
-                        You scored <strong>${quizScore}/${questions.length} correct</strong>! You have mastered web history, browser evolution, and packet architecture.
+                    <div style="font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: #314C52; margin-bottom: 6px;">Knowledge Challenge Completed</div>
+                    <p style="margin: 4px 0 14px 0; color: #686760; font-size: 0.88rem; line-height: 1.5;">
+                        You scored <strong>${quizScore}/${questions.length} correct</strong>. You have mastered web history, browser evolution, and packet architecture.
                     </p>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <button onclick="window.scrollToClaim()" style="background: #16a34a; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.84rem;">
-                            🌟 Continue to Claim Level 0 ➔
+                        <button onclick="window.scrollToClaim()" style="background: #A33B24; color: #F8F6F1; border: 1px solid #A33B24; padding: 8px 16px; border-radius: 2px; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; cursor: pointer;">
+                            Proceed to Claim Reward ➔
                         </button>
-                        <button onclick="window.initQuizEngine()" style="background: #e2e8f0; color: #475569; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.82rem;">
-                            🔄 Retake Quiz
+                        <button onclick="window.initQuizEngine()" style="background: #FFFFFF; color: #20211F; border: 1px solid #D5D0C6; padding: 8px 14px; border-radius: 2px; font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; cursor: pointer;">
+                            Retake Quiz
                         </button>
                     </div>
                 </div>
@@ -695,21 +699,22 @@ window.claimLevel0Completion = function() {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             icon: 'success',
-            title: '🎉 Level 0 Complete!',
+            title: 'Level 0 Milestone Completed',
             html: `
-                <div style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 8px;">🌱 ➔ 🛡️</div>
-                    <div style="font-size: 1.15rem; font-weight: 800; color: #16a34a; margin-bottom: 6px;">+250 XP Earned!</div>
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 14px;">
-                        Congratulations! You have mastered the history, architecture, and 4 core pillars of web development. You have earned the <strong>Web Explorer</strong> milestone and unlocked Level 1 HTML Foundations!
+                <div style="font-family: var(--font-sans, sans-serif); text-align: center;">
+                    <div style="font-family: var(--font-mono, monospace); font-size: 0.84rem; font-weight: 600; color: #2F5233; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 6px 14px; border-radius: 2px; display: inline-block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em;">
+                        BOUNTY // +250 XP EARNED
+                    </div>
+                    <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.55; margin-bottom: 14px;">
+                        Congratulations! You have mastered the history, architecture, and 4 core pillars of web development. You have earned the <strong>Web Explorer</strong> milestone and unlocked Level 1 HTML Foundations.
                     </p>
                 </div>
             `,
             showCancelButton: true,
-            cancelButtonText: '🏠 Dashboard',
-            cancelButtonColor: '#64748b',
-            confirmButtonText: '🧱 Next: Level 1 (HTML Foundations) ➔',
-            confirmButtonColor: '#2563eb',
+            cancelButtonText: 'Curriculum Roadmap',
+            cancelButtonColor: '#BAB4A6',
+            confirmButtonText: 'Next: Level 1 (HTML Foundations) →',
+            confirmButtonColor: '#A33B24',
             allowOutsideClick: false
         }).then((res) => {
             if (res.isConfirmed) {

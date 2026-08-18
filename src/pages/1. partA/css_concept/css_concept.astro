@@ -4,14 +4,16 @@ import PlatformHeader from '../../../components/PlatformHeader.astro';
 import PlatformFooter from '../../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' },
-    { href: '/1. partA/web_history.html', label: 'Web History', icon: '🌱', title: 'Web History Roadmap' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
     title="Pillar 3: CSS Styling Fundamentals Guide | NoviCodes"
-    description="Discover how Cascading Style Sheets (CSS) transform raw HTML into beautiful, responsive, and animated user interfaces."
+    description="Discover how Cascading Style Sheets (CSS) transform raw HTML into structured, responsive, and tactile user interfaces."
     showHeaderFooter={false}
 >
     <!-- Standardized Platform Header -->
@@ -28,48 +30,48 @@ const navLinks = [
         
         <!-- Hero Banner -->
         <section class="concept-hero">
-            <span class="concept-badge-pill">🎨 Pillar 3 of 4 • 50 XP</span>
-            <h1>CSS - The Visual Style &amp; Palette</h1>
+            <span class="concept-badge-pill">03 // PILLAR 3 OF 4 • +50 XP</span>
+            <h1>CSS — Visual Presentation &amp; Layout</h1>
             <p>
-                Learn how Cascading Style Sheets transform plain markup into vibrant colors, typography, responsive grids, and delightful micro-interactions.
+                Learn how Cascading Style Sheets transform unstyled markup into refined palettes, typography, grid layouts, and responsive components.
             </p>
         </section>
 
         <!-- 1. Interactive Styler Playground -->
         <section class="concept-card">
-            <h2><span>🎨</span> 1. Interactive Live CSS Styler</h2>
+            <h2>1. Interactive Live CSS Styler</h2>
             <p>
-                Click the style controls below to see instant visual CSS transformations applied to the card:
+                Toggle the controls below to inspect how individual CSS property rules modify the target component in real-time:
             </p>
 
             <div class="styler-controls-grid">
-                <button class="style-toggle-btn" id="styleToggleColor">🎨 Toggle Gradient Color</button>
-                <button class="style-toggle-btn" id="styleToggleRadius">🔘 Toggle Border Radius</button>
-                <button class="style-toggle-btn" id="styleToggleShadow">✨ Toggle Glow Shadow</button>
+                <button class="style-toggle-btn" id="styleToggleColor">Accent Color</button>
+                <button class="style-toggle-btn" id="styleToggleRadius">Border Radius</button>
+                <button class="style-toggle-btn" id="styleToggleShadow">Elevation Shadow</button>
             </div>
 
             <div class="styler-live-box">
                 <div class="demo-element-card" id="demoElementCard">
-                    🎨 Live CSS Element
+                    Live CSS Element
                 </div>
             </div>
         </section>
 
         <!-- 2. CSS Box Model Visualizer -->
         <section class="concept-card">
-            <h2><span>📦</span> 2. The CSS Box Model</h2>
+            <h2>2. The CSS Box Model</h2>
             <p>
-                Every HTML element on a webpage is treated as a rectangular box with 4 nested layers:
+                Every rendered HTML element in the browser engine conforms to a four-tier rectangular box model:
             </p>
 
             <div class="box-model-diagram">
-                MARGIN (Outer Space between Elements)
+                MARGIN // EXTERNAL SPACING AROUND ELEMENT
                 <div class="box-border">
-                    BORDER (Visible Stroke Outline)
+                    BORDER // VISIBLE 1PX STROKE BOUNDARY
                     <div class="box-padding">
-                        PADDING (Inner Breathing Space)
+                        PADDING // INTERNAL BREATHING SPACE
                         <div class="box-content">
-                            CONTENT (Text, Image, Icon)
+                            CONTENT // INNER TEXT &amp; MEDIA
                         </div>
                     </div>
                 </div>
@@ -79,7 +81,7 @@ const navLinks = [
         <!-- 3. Mini Knowledge Check -->
         <section class="concept-card">
             <div class="section-header-row">
-                <h2><span>🧠</span> 3. Concept Verification Check</h2>
+                <h2>3. Concept Verification Check</h2>
                 <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
             </div>
             <p id="quizQText">Loading question...</p>
@@ -89,14 +91,21 @@ const navLinks = [
 
         <!-- 4. Complete & Continue -->
         <section class="complete-card">
-            <h3>🎉 Mastered CSS Styling?</h3>
-            <p>Claim your +50 XP and continue to Pillar 4: JavaScript Interactivity!</p>
+            <h3>Concept 3 Complete?</h3>
+            <p>Pass the verification check above to claim your +50 XP bounty and advance to Pillar 4.</p>
             <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
-                <span>🔒 Complete Verification Check Above to Unlock (+50 XP)</span>
+                <span>Complete Verification Above to Unlock (+50 XP)</span>
             </button>
         </section>
 
     </main>
+
+    <!-- Universal Back to Top Floating Action Button -->
+    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Platform Footer -->
     <PlatformFooter />

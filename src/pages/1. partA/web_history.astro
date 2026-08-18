@@ -4,7 +4,10 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/1. partA/hub.html', label: 'Foundations Hub', icon: '📚', title: 'Return to Foundations Academy Hub' }
+    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -27,7 +30,7 @@ const navLinks = [
         
         <!-- Hero Banner -->
         <section class="history-hero">
-            <span class="hero-pill-badge">🌱 Level 0 • Zero Coding Required • 250 XP</span>
+            <span class="hero-pill-badge">Level 0 • Zero Coding Required • +250 XP</span>
             <h1>Journey Through Web History &amp; Digital Architecture</h1>
             <p>
                 Discover how the World Wide Web evolved from plain scientific documents into the powerhouse running our global digital world. Master the history and mechanics before writing your first line of code!
@@ -37,7 +40,7 @@ const navLinks = [
         <!-- 1. The Web Era Time Machine -->
         <section class="history-section">
             <div class="section-header-row">
-                <h2 class="section-title"><span>⏱️</span> 1. The Web Era Time Machine</h2>
+                <h2 class="section-title">1. The Web Era Time Machine</h2>
                 <span class="quiz-badge">Interactive Simulator</span>
             </div>
             <p class="section-subtitle">
@@ -46,13 +49,13 @@ const navLinks = [
 
             <div class="era-tabs-nav" role="tablist">
                 <button class="era-tab-btn active" data-era="1991" role="tab">
-                    <span>📜</span> 1991: Web 1.0 (Read-Only)
+                    1991: Web 1.0 (Read-Only)
                 </button>
                 <button class="era-tab-btn" data-era="2004" role="tab">
-                    <span>📻</span> 2004: Web 2.0 (Dynamic &amp; Social)
+                    2004: Web 2.0 (Dynamic &amp; Social)
                 </button>
                 <button class="era-tab-btn" data-era="2026" role="tab">
-                    <span>⚡</span> 2026: Modern Web & Edge UI
+                    2026: Modern Web &amp; Edge UI
                 </button>
             </div>
 
@@ -73,8 +76,8 @@ const navLinks = [
                         <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.</p>
                         <p>Everything there is online at CERN is linked directly or indirectly to this document.</p>
                         <ul>
-                            <li><a href="javascript:void(0)" onclick="Swal.fire('Hypertext Link', 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', 'info')">What is Hypertext?</a></li>
-                            <li><a href="javascript:void(0)" onclick="Swal.fire('Tim Berners-Lee', 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', 'info')">Technical Project Documentation</a></li>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire({ title: 'Hypertext Protocol', text: 'In 1991, clicking blue links retrieved raw text over HTTP port 80.', icon: 'info' })">What is Hypertext?</a></li>
+                            <li><a href="javascript:void(0)" onclick="Swal.fire({ title: 'Tim Berners-Lee', text: 'Created HTML, HTTP, and URLs on a NeXT Computer at CERN.', icon: 'info' })">Technical Project Documentation</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +87,7 @@ const navLinks = [
         <!-- 2. How the Internet Actually Works in 4 Steps -->
         <section class="history-section">
             <div class="section-header-row">
-                <h2 class="section-title"><span>🌐</span> 2. How the Internet Works in 4 Steps</h2>
+                <h2 class="section-title">2. How the Internet Works in 4 Steps</h2>
                 <span class="quiz-badge">Packet Journey</span>
             </div>
             <p class="section-subtitle">
@@ -93,25 +96,25 @@ const navLinks = [
 
             <div class="packet-flow-grid">
                 <div class="flow-step-card active" id="flowStep1">
-                    <div class="flow-step-num">1</div>
+                    <div class="flow-step-num">Step 01</div>
                     <div class="flow-icon">💻</div>
                     <div class="flow-title">1. URL Typed</div>
                     <p class="flow-desc">Your browser creates an HTTP/HTTPS GET request for the web address.</p>
                 </div>
                 <div class="flow-step-card" id="flowStep2">
-                    <div class="flow-step-num">2</div>
+                    <div class="flow-step-num">Step 02</div>
                     <div class="flow-icon">🧭</div>
                     <div class="flow-title">2. DNS Lookup</div>
                     <p class="flow-desc">DNS translates the domain name into an IP address (e.g. 142.250.190.46).</p>
                 </div>
                 <div class="flow-step-card" id="flowStep3">
-                    <div class="flow-step-num">3</div>
+                    <div class="flow-step-num">Step 03</div>
                     <div class="flow-icon">🖧</div>
                     <div class="flow-title">3. Server Response</div>
                     <p class="flow-desc">The web server receives the request and returns HTML, CSS, &amp; JS bundles.</p>
                 </div>
                 <div class="flow-step-card" id="flowStep4">
-                    <div class="flow-step-num">4</div>
+                    <div class="flow-step-num">Step 04</div>
                     <div class="flow-icon">🎨</div>
                     <div class="flow-title">4. DOM Rendering</div>
                     <p class="flow-desc">Your browser builds the DOM tree, applies styles, and executes JavaScript.</p>
@@ -120,7 +123,7 @@ const navLinks = [
 
             <div class="packet-action-row">
                 <button class="simulate-packet-btn" id="simulatePacketBtn">
-                    <span>🚀 Send Test Data Packet</span>
+                    <span>Send Test Data Packet ➔</span>
                 </button>
             </div>
         </section>
@@ -128,7 +131,7 @@ const navLinks = [
         <!-- 3. Browser Evolution Timeline -->
         <section class="history-section">
             <div class="section-header-row">
-                <h2 class="section-title"><span>🧭</span> 3. Evolution of Web Browsers</h2>
+                <h2 class="section-title">3. Evolution of Web Browsers</h2>
                 <div class="filter-pills-row">
                     <button class="filter-pill-btn active" data-filter="all">All (1990 - 2026)</button>
                     <button class="filter-pill-btn" data-filter="pioneers">Pioneers (1990-1994)</button>
@@ -148,7 +151,7 @@ const navLinks = [
         <!-- 4. The 4 Core Pillars of Web Development -->
         <section class="history-section">
             <div class="section-header-row">
-                <h2 class="section-title"><span>🎓</span> 4. The 4 Core Pillars of Web Development</h2>
+                <h2 class="section-title">4. The 4 Core Pillars of Web Development</h2>
                 <span class="quiz-badge">Progress: <span id="pillarProgressCount">0/4</span> Concepts</span>
             </div>
             <p class="section-subtitle">
@@ -213,7 +216,7 @@ const navLinks = [
         <!-- 5. Level 0 Knowledge Challenge (Quiz) -->
         <section class="history-section">
             <div class="section-header-row">
-                <h2 class="section-title"><span>🧠</span> 5. Level 0 Knowledge Challenge</h2>
+                <h2 class="section-title">5. Level 0 Knowledge Challenge</h2>
                 <span class="quiz-badge" id="quizQBadge">Question 1 of 5</span>
             </div>
             <p class="section-subtitle">
@@ -231,10 +234,10 @@ const navLinks = [
 
         <!-- 6. Claim Level 0 Completion -->
         <section class="completion-banner">
-            <h2>🎉 Ready to Complete Level 0?</h2>
+            <h2>Ready to Complete Level 0?</h2>
             <p id="claimLevel0Desc">Explore all 4 Core Pillars and complete the Knowledge Challenge to claim your +250 XP reward and unlock Level 1: HTML Foundations on your Dashboard roadmap!</p>
             <button class="claim-level0-btn locked" id="claimLevel0Btn" onclick="claimLevel0Completion()">
-                <span>🔒 Complete 4 Pillars (0/4) &amp; Knowledge Challenge to Unlock (+250 XP)</span>
+                <span>Complete 4 Pillars (0/4) &amp; Knowledge Challenge to Unlock (+250 XP)</span>
             </button>
         </section>
 
@@ -245,7 +248,7 @@ const navLinks = [
 
     <!-- Universal Back to Top Floating Action Button -->
     <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
