@@ -1,0 +1,39 @@
+---
+import { ICONS } from '../scripts/icons';
+
+interface Props {
+    name: string;
+    size?: number | string;
+    class?: string;
+    color?: string;
+    strokeWidth?: number | string;
+    style?: string;
+}
+
+const {
+    name,
+    size = 20,
+    class: className = '',
+    color = 'currentColor',
+    strokeWidth = 1.8,
+    style = ''
+} = Astro.props;
+
+const pathContent = ICONS[name] || ICONS['sparkles'];
+---
+
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke={color} 
+    stroke-width={strokeWidth} 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    class={`novi-icon novi-icon-${name} ${className}`.trim()}
+    style={`vertical-align: middle; display: inline-block; flex-shrink: 0; ${style}`.trim()}
+    aria-hidden="true"
+    set:html={pathContent}
+/>

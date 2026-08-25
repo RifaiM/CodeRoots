@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import PlatformHeader, { type JumpLessonItem } from '../components/PlatformHeader.astro';
 import PlatformFooter from '../components/PlatformFooter.astro';
 
@@ -178,8 +179,8 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 {(mode === 'html' || mode === 'react') && (
                     <div class="ide-output-window">
                         <div class="ide-output-header">
-                            <span>👀 Live Preview</span>
-                            <span class="live-badge">🟢 Real-Time</span>
+                            <span>Live Preview</span>
+                            <span class="live-badge"><span class="realtime-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#16a34a;margin-right:5px;box-shadow:0 0 6px #16a34a;"></span>Real-Time</span>
                         </div>
                         <iframe id="livePreviewIframe" class="ide-preview-iframe" title="Live Preview Result" sandbox="allow-scripts allow-modals allow-same-origin"></iframe>
                     </div>
@@ -189,8 +190,8 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 {mode === 'python' && (
                     <div class="ide-output-window" style="background: #141514; border-color: #2C2D2B;">
                         <div class="ide-output-header" style="background: #1B1C1A; border-color: #2C2D2B; color: #BAB4A6;">
-                            <span>🖥️ Python Terminal &amp; Output</span>
-                            <span class="live-badge" style="color: #A33B24;">🐍 Python 3.12</span>
+                            <span>Python Terminal &amp; Output</span>
+                            <span class="live-badge" style="color: #A33B24;">Python 3.12</span>
                         </div>
                         <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #141514; color: #F1EEE7; font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
                             <div class="terminal-prompt" style="color: #BAB4A6;">&gt; Python Terminal ready. Click Check &amp; Verify Code to execute main.py</div>
@@ -202,8 +203,8 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 {(mode === 'terminal' || mode === 'bash' || mode === 'sql') && (
                     <div class="ide-output-window" style="background: #141514; border-color: #2C2D2B;">
                         <div class="ide-output-header" style="background: #1B1C1A; border-color: #2C2D2B; color: #BAB4A6;">
-                            <span>🖥️ CLI / Terminal Output</span>
-                            <span class="live-badge" style="color: #A33B24;">⚡ Terminal</span>
+                            <span>CLI / Terminal Output</span>
+                            <span class="live-badge" style="color: #A33B24;">Terminal</span>
                         </div>
                         <div id="terminalScreen" class="ide-terminal-screen" style="padding: 14px; background: #141514; color: #F1EEE7; font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 0.82rem; line-height: 1.5; min-height: 140px; max-height: 280px; overflow-y: auto; white-space: pre-wrap;">
                             <div class="terminal-prompt" style="color: #BAB4A6;">&gt; Terminal ready. Click Check &amp; Verify Code to execute commands.</div>
@@ -217,7 +218,7 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
                 <!-- Action Bar -->
                 <div class="ide-action-bar">
                     <button class="verify-code-btn" id="checkAnswerBtn">
-                        <span>🔍 Check &amp; Verify Code</span>
+                        <span>Check &amp; Verify Code</span>
                     </button>
                     {nextLessonUrl ? (
                         <a href={nextLessonUrl} class="next-action-btn" id="nextLessonBtn">
