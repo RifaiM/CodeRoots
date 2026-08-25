@@ -2,327 +2,327 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const starterCode = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  }
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ }
 
-  /* 👉 STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
+ /* STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
 
 
-  .check-svg {
-    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
-  }
-  .check-path {
-    stroke-dasharray: 60;
-    stroke-dashoffset: 60;
-    /* 👉 STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
+ .check-svg {
+ filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+ }
+ .check-path {
+ stroke-dasharray: 60;
+ stroke-dashoffset: 60;
+ /* STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
 
-  }
+ }
 </style>
 
 <svg class="check-svg" width="90" height="90" viewBox="0 0 50 50">
-  <circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" />
-  <path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+ <circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" />
+ <path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Transitions 101 & Easing",
-        "url": "/6. partF/branchE/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "GPU 2D Transforms",
-        "url": "/6. partF/branchE/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "CSS Keyframes (@keyframes)",
-        "url": "/6. partF/branchE/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Cubic-Bézier Spring Physics",
-        "url": "/6. partF/branchE/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Tactile Hover & Active Clicks",
-        "url": "/6. partF/branchE/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Animated Skeletons & Shimmer",
-        "url": "/6. partF/branchE/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Staggered Entrance Cascades",
-        "url": "/6. partF/branchE/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "SVG Path Drawing Animations",
-        "url": "/6. partF/branchE/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "prefers-reduced-motion A11y",
-        "url": "/6. partF/branchE/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Final Project: Interactive Motion Showcase",
-        "url": "/6. partF/branchE/lesson10_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Transitions 101 & Easing",
+ "url": "/6. partF/branchE/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "GPU 2D Transforms",
+ "url": "/6. partF/branchE/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "CSS Keyframes (@keyframes)",
+ "url": "/6. partF/branchE/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Cubic-Bézier Spring Physics",
+ "url": "/6. partF/branchE/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Tactile Hover & Active Clicks",
+ "url": "/6. partF/branchE/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Animated Skeletons & Shimmer",
+ "url": "/6. partF/branchE/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Staggered Entrance Cascades",
+ "url": "/6. partF/branchE/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "SVG Path Drawing Animations",
+ "url": "/6. partF/branchE/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "prefers-reduced-motion A11y",
+ "url": "/6. partF/branchE/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Final Project: Interactive Motion Showcase",
+ "url": "/6. partF/branchE/lesson10_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 08: SVG Path Drawing Animations | Level 7E • CSS Motion"
-    description="Draw animated vector lines and checkmark icons dynamically using stroke-dasharray and stroke-dashoffset."
-    levelTag="Level 7E • CSS Motion"
-    lessonNum={8}
-    lessonTitle="SVG Path Drawing Animations"
-    xpAmount={150}
-    completionKey="partF_branchE_lesson8_complete"
-    nextLessonUrl="/6. partF/branchE/lesson9_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="styles.css"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchE"
+ title="Milestone 08: SVG Path Drawing Animations | Level 7E • CSS Motion"
+ description="Draw animated vector lines and checkmark icons dynamically using stroke-dasharray and stroke-dashoffset."
+ levelTag="Level 7E • CSS Motion"
+ lessonNum={8}
+ lessonTitle="SVG Path Drawing Animations"
+ xpAmount={150}
+ completionKey="partF_branchE_lesson8_complete"
+ nextLessonUrl="/6. partF/branchE/lesson9_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="styles.css"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchE"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Draw animated vector lines and checkmark icons dynamically using stroke-dasharray and stroke-dashoffset.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Draw animated vector lines and checkmark icons dynamically using stroke-dasharray and stroke-dashoffset.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- The Real-World CSS Problem -->
-        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
-            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
-            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Static SVG icons feel ordinary. Animating the vector outline of a checkmark when a task completes gives the user a massive dopamine rush of achievement.</p>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- The Real-World CSS Problem -->
+ <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+ <h3 style="color: #c2410c;"><span></span> The Real-World Problem</h3>
+ <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Static SVG icons feel ordinary. Animating the vector outline of a checkmark when a task completes gives the user a massive dopamine rush of achievement.</p>
+ </article>
 
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Think of stroke-dasharray like drawing with a dashed pen where the dash is as long as the entire drawing (100px). By shifting the offset from 100px to 0px, the invisible dash glides into view, looking like a pen drawing the line in real-time.
-            </div>
-        </article>
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Think of stroke-dasharray like drawing with a dashed pen where the dash is as long as the entire drawing (100px). By shifting the offset from 100px to 0px, the invisible dash glides into view, looking like a pen drawing the line in real-time.
+ </div>
+ </article>
 
-        <!-- Syntax & Anatomy Breakdown -->
-        <article class="concept-card">
-            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
-            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
-                @keyframes drawPath &#123;<br/>&nbsp;&nbsp;to &#123; stroke-dashoffset: 0; &#125;<br/>&#125;<br/><code>stroke-dasharray: 100;</code><br/><code>stroke-dashoffset: 100;</code><br/><code>animation: drawPath 0.8s ease forwards;</code>
-            </div>
-        </article>
+ <!-- Syntax & Anatomy Breakdown -->
+ <article class="concept-card">
+ <h3><span></span> Syntax &amp; Anatomy Breakdown</h3>
+ <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+ @keyframes drawPath &#123;<br/>&nbsp;&nbsp;to &#123; stroke-dashoffset: 0; &#125;<br/>&#125;<br/><code>stroke-dasharray: 100;</code><br/><code>stroke-dashoffset: 100;</code><br/><code>animation: drawPath 0.8s ease forwards;</code>
+ </div>
+ </article>
 
-        <!-- The VS Code Beginner Trap -->
-        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
-            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
-            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">If your SVG path doesn't draw all the way, your 'stroke-dasharray' value was too small! Always set stroke-dasharray equal to or slightly greater than the total path length (e.g. 100).</p>
-        </article>
+ <!-- The VS Code Beginner Trap -->
+ <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+ <h3 style="color: #b91c1c;"><span>️</span> The Browser &amp; CSS Beginner Trap</h3>
+ <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">If your SVG path doesn't draw all the way, your 'stroke-dasharray' value was too small! Always set stroke-dasharray equal to or slightly greater than the total path length (e.g. 100).</p>
+ </article>
 
-        <!-- Reference Pattern / Starter Code -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchE_8">&lt;style&gt;
-  body &#123;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  &#125;
+ <!-- Reference Pattern / Starter Code -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchE_8">&lt;style&gt;
+ body &#123;
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ &#125;
 
-  /* 👉 STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
+ /* STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
 
 
-  .check-svg &#123;
-    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
-  &#125;
-  .check-path &#123;
-    stroke-dasharray: 60;
-    stroke-dashoffset: 60;
-    /* 👉 STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
+ .check-svg &#123;
+ filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+ &#125;
+ .check-path &#123;
+ stroke-dasharray: 60;
+ stroke-dashoffset: 60;
+ /* STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
 
-  &#125;
+ &#125;
 &lt;/style&gt;
 
 &lt;svg class="check-svg" width="90" height="90" viewBox="0 0 50 50"&gt;
-  &lt;circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" /&gt;
-  &lt;path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /&gt;
+ &lt;circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" /&gt;
+ &lt;path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /&gt;
 &lt;/svg&gt;</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson8';
-        const DEFAULT_STARTER = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  }
+ const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson8';
+ const DEFAULT_STARTER = `<style>
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ }
 
-  /* 👉 STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
+ /* STEP 1: Define @keyframes drawCheck that animates stroke-dashoffset to 0 */
 
 
-  .check-svg {
-    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
-  }
-  .check-path {
-    stroke-dasharray: 60;
-    stroke-dashoffset: 60;
-    /* 👉 STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
+ .check-svg {
+ filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+ }
+ .check-path {
+ stroke-dasharray: 60;
+ stroke-dashoffset: 60;
+ /* STEP 2: Apply animation: drawCheck 0.8s ease-out forwards */
 
-  }
+ }
 </style>
 
 <svg class="check-svg" width="90" height="90" viewBox="0 0 50 50">
-  <circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" />
-  <path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+ <circle cx="25" cy="25" r="21" fill="none" stroke="#10b981" stroke-width="4" />
+ <path class="check-path" d="M14 26 L22 34 L36 18" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
-        // 1. Initialize Real-Time Checklist
-        DojoEngine.initChecklist([
-            {
-                id: "draw-keyframes",
-                label: "Define <code>@keyframes drawCheck</code> animating <code>to { stroke-dashoffset: 0; }</code>",
-                fn: (code) => { try { return Boolean(/@keyframes\s+drawCheck\s*\{[^}]*(to|100%)\s*\{[^}]*stroke-dashoffset\s*:\s*0/is.test(code)); } catch(e) { return false; } }
-            },
-            {
-                id: "draw-animation",
-                label: "Apply <code>animation: drawCheck 0.8s ease-out forwards;</code> to <code>.check-path</code>",
-                fn: (code) => { try { return Boolean(/\.check-path\s*\{[^}]*animation\s*:[^}]*drawCheck[^}]*0\.8s[^}]*forwards/i.test(code)); } catch(e) { return false; } }
-            }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Checklist
+ DojoEngine.initChecklist([
+ {
+ id: "draw-keyframes",
+ label: "Define <code>@keyframes drawCheck</code> animating <code>to { stroke-dashoffset: 0; }</code>",
+ fn: (code) => { try { return Boolean(/@keyframes\s+drawCheck\s*\{[^}]*(to|100%)\s*\{[^}]*stroke-dashoffset\s*:\s*0/is.test(code)); } catch(e) { return false; } }
+ },
+ {
+ id: "draw-animation",
+ label: "Apply <code>animation: drawCheck 0.8s ease-out forwards;</code> to <code>.check-path</code>",
+ fn: (code) => { try { return Boolean(/\.check-path\s*\{[^}]*animation\s*:[^}]*drawCheck[^}]*0\.8s[^}]*forwards/i.test(code)); } catch(e) { return false; } }
+ }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'html'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Real-Time Live Preview in Iframe
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Real-Time Live Preview in Iframe
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: "SVG Path Drawing Animations",
-                    xp: 150,
-                    completionKey: 'partF_branchE_lesson8_complete',
-                    nextUrl: '/6. partF/branchE/lesson9_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: "SVG Path Drawing Animations",
+ xp: 150,
+ completionKey: 'partF_branchE_lesson8_complete',
+ nextUrl: '/6. partF/branchE/lesson9_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

@@ -4,364 +4,364 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="React & Frontend Framework Dojo (Level 5) | NoviCodes"
-    description="Master component architecture, stateful hooks, and Single Page Applications across 15 interactive React lessons."
-    showHeaderFooter={false}
+ title="React & Frontend Framework Dojo (Level 5) | NoviCodes"
+ description="Master component architecture, stateful hooks, and Single Page Applications across 15 interactive React lessons."
+ showHeaderFooter={false}
 >
-    <!-- Top Global Header -->
-    <PlatformHeader 
-        slot="header"
-        tagText="React Dojo"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={true}
-        showLevelBadge={true}
-    />
+ <!-- Top Global Header -->
+ <PlatformHeader 
+ slot="header"
+ tagText="React Dojo"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={true}
+ showLevelBadge={true}
+ />
 
-    <main class="hub-container">
-        
-        <!-- Hero Section -->
-        <section class="hub-hero">
-            <span class="hub-badge">Level 5 • React Component Dojo</span>
-            <h1>Master React 18 & <span class="typewriter-wrap theme-sky"><span class="typewriter-text" data-phrases='["Component Architecture", "Dynamic useState Hooks", "Lifecycle useEffect Feeds", "Custom Hook Systems", "Interactive Task Apps"]' aria-label="Component Architecture">Component Architecture</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
-            <p>
-                Learn how modern websites are built. Master React components, pass data with props, manage dynamic state with useState, fetch live APIs with useEffect, and build a task tracker across 15 guided exercises.
-            </p>
+ <main class="hub-container">
+ 
+ <!-- Hero Section -->
+ <section class="hub-hero">
+ <span class="hub-badge">Level 5 • React Component Dojo</span>
+ <h1>Master React 18 & <span class="typewriter-wrap theme-sky"><span class="typewriter-text" data-phrases='["Component Architecture", "Dynamic useState Hooks", "Lifecycle useEffect Feeds", "Custom Hook Systems", "Interactive Task Apps"]' aria-label="Component Architecture">Component Architecture</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+ <p>
+ Learn how modern websites are built. Master React components, pass data with props, manage dynamic state with useState, fetch live APIs with useEffect, and build a task tracker across 15 guided exercises.
+ </p>
 
-            <!-- Live Progress Bar -->
-            <div class="hero-progress-wrap">
-                <div class="hero-progress-info">
-                    <span>Course Progress</span>
-                    <span id="heroProgressText">0 of 15 Lessons Completed (0%)</span>
-                </div>
-                <div class="hero-progress-bar">
-                    <div class="hero-progress-fill" id="heroProgressFill"></div>
-                </div>
-            </div>
+ <!-- Live Progress Bar -->
+ <div class="hero-progress-wrap">
+ <div class="hero-progress-info">
+ <span>Course Progress</span>
+ <span id="heroProgressText">0 of 15 Lessons Completed (0%)</span>
+ </div>
+ <div class="hero-progress-bar">
+ <div class="hero-progress-fill" id="heroProgressFill"></div>
+ </div>
+ </div>
 
-            <!-- Smart Resume CTA -->
-            <a href="/3. partC/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>Start Lesson 1: ES6+ Superpowers ➔</span>
-            </a>
-            <div style="margin-top: 14px; text-align: center;">
-                <a href="/foundations.html?track=react" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
-                    <span>Explore Level 5 Foundations &amp; Analogy Bank ➔</span>
-                </a>
-            </div>
-        </section>
+ <!-- Smart Resume CTA -->
+ <a href="/3. partC/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
+ <span>Start Lesson 1: ES6+ Superpowers </span>
+ </a>
+ <div style="margin-top: 14px; text-align: center;">
+ <a href="/foundations.html?track=react" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
+ <span>Explore Level 5 Foundations &amp; Analogy Bank </span>
+ </a>
+ </div>
+ </section>
 
-        <!-- Stats Overview Row -->
-        <section class="hub-stats-grid">
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">2,250 XP</div>
-                <div class="hub-stat-lbl">Total XP Bounty</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val" id="statCompletedProjects">0 / 15</div>
-                <div class="hub-stat-lbl">Lessons Completed</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">React 18/19 JSX</div>
-                <div class="hub-stat-lbl">Component Engine</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">Level 5 React</div>
-                <div class="hub-stat-lbl">Official Certificate</div>
-            </div>
-        </section>
+ <!-- Stats Overview Row -->
+ <section class="hub-stats-grid">
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">2,250 XP</div>
+ <div class="hub-stat-lbl">Total XP Bounty</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val" id="statCompletedProjects">0 / 15</div>
+ <div class="hub-stat-lbl">Lessons Completed</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">React 18/19 JSX</div>
+ <div class="hub-stat-lbl">Component Engine</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">Level 5 React</div>
+ <div class="hub-stat-lbl">Official Certificate</div>
+ </div>
+ </section>
 
-        <!-- Curriculum Breakdown by Chapter -->
-        <section class="curriculum-section">
-            
-            <!-- Chapter 1: React Fundamentals & Component Trees -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 1</span>
-                        <h2 class="chapter-title">React Basics & Reusable Components</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 1–4 • 600 XP</span>
-                </div>
+ <!-- Curriculum Breakdown by Chapter -->
+ <section class="curriculum-section">
+ 
+ <!-- Chapter 1: React Fundamentals & Component Trees -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 1</span>
+ <h2 class="chapter-title">React Basics & Reusable Components</h2>
+ </div>
+ <span class="chapter-badge">Lessons 1–4 • 600 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 1 -->
-                    <a href="/3. partC/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 01</span>
-                            <span class="lesson-status-pill available" id="statusPill1">UP NEXT</span>
-                        </div>
-                        <h3 class="lesson-card-title">ES6+ Superpowers for Frameworks</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText1">Start ➔</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 1 -->
+ <a href="/3. partC/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 01</span>
+ <span class="lesson-status-pill available" id="statusPill1">UP NEXT</span>
+ </div>
+ <h3 class="lesson-card-title">ES6+ Superpowers for Frameworks</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText1">Start </span>
+ </div>
+ </a>
 
-                    <!-- Lesson 2 -->
-                    <a href="/3. partC/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 02</span>
-                            <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">The Component Mental Model</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText2">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 2 -->
+ <a href="/3. partC/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 02</span>
+ <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">The Component Mental Model</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText2">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 3 -->
-                    <a href="/3. partC/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 03</span>
-                            <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">JSX Syntax & Dynamic Rendering</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText3">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 3 -->
+ <a href="/3. partC/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 03</span>
+ <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">JSX Syntax & Dynamic Rendering</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText3">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 4 -->
-                    <a href="/3. partC/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 04</span>
-                            <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Component Props & Composition</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText4">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 4 -->
+ <a href="/3. partC/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 04</span>
+ <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Component Props & Composition</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText4">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 2: State Hooks & Interactive UI -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 2</span>
-                        <h2 class="chapter-title">State Hooks & Interactive UI</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 5–8 • 600 XP</span>
-                </div>
+ <!-- Chapter 2: State Hooks & Interactive UI -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 2</span>
+ <h2 class="chapter-title">State Hooks & Interactive UI</h2>
+ </div>
+ <span class="chapter-badge">Lessons 5–8 • 600 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 5 -->
-                    <a href="/3. partC/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 05</span>
-                            <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Interactivity with useState</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText5">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 5 -->
+ <a href="/3. partC/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 05</span>
+ <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Interactivity with useState</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText5">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 6 -->
-                    <a href="/3. partC/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 06</span>
-                            <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Complex & Nested State Management</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText6">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 6 -->
+ <a href="/3. partC/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 06</span>
+ <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Complex & Nested State Management</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText6">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 7 -->
-                    <a href="/3. partC/lesson7/lesson7_remake.html" class="lesson-card locked" id="lessonCard7">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 07</span>
-                            <span class="lesson-status-pill locked" id="statusPill7">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Side Effects & useEffect Hook</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText7">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 7 -->
+ <a href="/3. partC/lesson7/lesson7_remake.html" class="lesson-card locked" id="lessonCard7">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 07</span>
+ <span class="lesson-status-pill locked" id="statusPill7">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Side Effects & useEffect Hook</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText7">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 8 -->
-                    <a href="/3. partC/lesson8/lesson8_remake.html" class="lesson-card locked" id="lessonCard8">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 08</span>
-                            <span class="lesson-status-pill locked" id="statusPill8">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Fetching REST APIs in React</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText8">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 8 -->
+ <a href="/3. partC/lesson8/lesson8_remake.html" class="lesson-card locked" id="lessonCard8">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 08</span>
+ <span class="lesson-status-pill locked" id="statusPill8">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Fetching REST APIs in React</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText8">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 3: Controlled Inputs, Routing & DOM Access -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 3</span>
-                        <h2 class="chapter-title">Controlled Inputs, Routing & DOM Access</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 9–12 • 600 XP</span>
-                </div>
+ <!-- Chapter 3: Controlled Inputs, Routing & DOM Access -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 3</span>
+ <h2 class="chapter-title">Controlled Inputs, Routing & DOM Access</h2>
+ </div>
+ <span class="chapter-badge">Lessons 9–12 • 600 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 9 -->
-                    <a href="/3. partC/lesson9/lesson9_remake.html" class="lesson-card locked" id="lessonCard9">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 09</span>
-                            <span class="lesson-status-pill locked" id="statusPill9">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Controlled Forms & Validation</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText9">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 9 -->
+ <a href="/3. partC/lesson9/lesson9_remake.html" class="lesson-card locked" id="lessonCard9">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 09</span>
+ <span class="lesson-status-pill locked" id="statusPill9">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Controlled Forms & Validation</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText9">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 10 -->
-                    <a href="/3. partC/lesson10/lesson10_remake.html" class="lesson-card locked" id="lessonCard10">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 10</span>
-                            <span class="lesson-status-pill locked" id="statusPill10">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">DOM Access & useRef Hook</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText10">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 10 -->
+ <a href="/3. partC/lesson10/lesson10_remake.html" class="lesson-card locked" id="lessonCard10">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 10</span>
+ <span class="lesson-status-pill locked" id="statusPill10">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">DOM Access & useRef Hook</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText10">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 11 -->
-                    <a href="/3. partC/lesson11/lesson11_remake.html" class="lesson-card locked" id="lessonCard11">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 11</span>
-                            <span class="lesson-status-pill locked" id="statusPill11">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Single Page Application Routing</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText11">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 11 -->
+ <a href="/3. partC/lesson11/lesson11_remake.html" class="lesson-card locked" id="lessonCard11">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 11</span>
+ <span class="lesson-status-pill locked" id="statusPill11">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Single Page Application Routing</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText11">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 12 -->
-                    <a href="/3. partC/lesson12/lesson12_remake.html" class="lesson-card locked" id="lessonCard12">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 12</span>
-                            <span class="lesson-status-pill locked" id="statusPill12">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Building Custom Hooks</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText12">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 12 -->
+ <a href="/3. partC/lesson12/lesson12_remake.html" class="lesson-card locked" id="lessonCard12">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 12</span>
+ <span class="lesson-status-pill locked" id="statusPill12">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Building Custom Hooks</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText12">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 4: Global State, Performance & Final Project -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 4</span>
-                        <h2 class="chapter-title">Global State, Performance & Final Project</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 13–15 • 450 XP</span>
-                </div>
+ <!-- Chapter 4: Global State, Performance & Final Project -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 4</span>
+ <h2 class="chapter-title">Global State, Performance & Final Project</h2>
+ </div>
+ <span class="chapter-badge">Lessons 13–15 • 450 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 13 -->
-                    <a href="/3. partC/lesson13/lesson13_remake.html" class="lesson-card locked" id="lessonCard13">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 13</span>
-                            <span class="lesson-status-pill locked" id="statusPill13">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Context API & Global State</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText13">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 13 -->
+ <a href="/3. partC/lesson13/lesson13_remake.html" class="lesson-card locked" id="lessonCard13">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 13</span>
+ <span class="lesson-status-pill locked" id="statusPill13">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Context API & Global State</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText13">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 14 -->
-                    <a href="/3. partC/lesson14/lesson14_remake.html" class="lesson-card locked" id="lessonCard14">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 14</span>
-                            <span class="lesson-status-pill locked" id="statusPill14">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Performance Optimization & Memo</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText14">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 14 -->
+ <a href="/3. partC/lesson14/lesson14_remake.html" class="lesson-card locked" id="lessonCard14">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 14</span>
+ <span class="lesson-status-pill locked" id="statusPill14">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Performance Optimization & Memo</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText14">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 15 -->
-                    <a href="/3. partC/lesson15/lesson15_remake.html" class="lesson-card locked" id="lessonCard15">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 15 • FINAL PROJECT</span>
-                            <span class="lesson-status-pill locked" id="statusPill15">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Final Project: Dynamic React App</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+150 XP</span>
-                            <span class="card-action-text" id="actionText15">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 15 -->
+ <a href="/3. partC/lesson15/lesson15_remake.html" class="lesson-card locked" id="lessonCard15">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 15 • FINAL PROJECT</span>
+ <span class="lesson-status-pill locked" id="statusPill15">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Final Project: Dynamic React App</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+150 XP</span>
+ <span class="card-action-text" id="actionText15">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-        </section>
+ </section>
 
-        <!-- Certificate Milestone Box -->
-        <section class="certificate-preview-box">
-            <div class="cert-info-wrap">
-                <div class="cert-trophy-icon"></div>
-                <div>
-                    <h3 class="cert-title">React Framework Specialist Certificate</h3>
-                    <p class="cert-desc" id="certDescText">
-                        Complete all 15 modern React framework projects to unlock your official React Component Specialist Certificate.
-                    </p>
-                </div>
-            </div>
-            <a href="javascript:void(0)" class="cert-action-btn locked" id="certActionBtn">
-                <span>Complete All 15 First</span>
-            </a>
-        </section>
+ <!-- Certificate Milestone Box -->
+ <section class="certificate-preview-box">
+ <div class="cert-info-wrap">
+ <div class="cert-trophy-icon"></div>
+ <div>
+ <h3 class="cert-title">React Framework Specialist Certificate</h3>
+ <p class="cert-desc" id="certDescText">
+ Complete all 15 modern React framework projects to unlock your official React Component Specialist Certificate.
+ </p>
+ </div>
+ </div>
+ <a href="javascript:void(0)" class="cert-action-btn locked" id="certActionBtn">
+ <span>Complete All 15 First</span>
+ </a>
+ </section>
 
-    </main>
+ </main>
 
-    <!-- Platform Footer -->
-    <PlatformFooter />
+ <!-- Platform Footer -->
+ <PlatformFooter />
 
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/3. partC/hub.css" />
+ <!-- Stylesheet -->
+ <link rel="stylesheet" href="/3. partC/hub.css" />
 
-    <!-- JavaScript Engines -->
-    <script is:inline src="/scripts/dashboard.js"></script>
-    <script is:inline src="/3. partC/hub.js"></script>
+ <!-- JavaScript Engines -->
+ <script is:inline src="/scripts/dashboard.js"></script>
+ <script is:inline src="/3. partC/hub.js"></script>
 </BaseLayout>

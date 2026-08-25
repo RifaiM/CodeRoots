@@ -1,292 +1,292 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = "// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n  const [category, setCategory] = React.useState(\"react\");\n  const [articles, setArticles] = React.useState([]);\n\n  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n  // Write useEffect hook here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n      <h2>📰 Developer News Digest</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <button onClick={() => setCategory(\"react\")}>⚛️ React</button>\n        <button onClick={() => setCategory(\"nextjs\")}>⚡ Next.js</button>\n        <button onClick={() => setCategory(\"typescript\")}>🔷 TypeScript</button>\n      </div>\n      <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
+const starterCode = "// Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n const [category, setCategory] = React.useState(\"react\");\n const [articles, setArticles] = React.useState([]);\n\n // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n // Write useEffect hook here:\n\n\n return (\n <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n <h2> Developer News Digest</h2>\n <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n <button onClick={() => setCategory(\"react\")}>React</button>\n <button onClick={() => setCategory(\"nextjs\")}> Next.js</button>\n <button onClick={() => setCategory(\"typescript\")}> TypeScript</button>\n </div>\n <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n </div>\n );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
 
 const level5Lessons = [
-    {
-        "id": 1,
-        "title": "ES6+ Powers: Spread & Destructuring",
-        "url": "/3. partC/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "React Component Tree",
-        "url": "/3. partC/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Dynamic Lists with .map()",
-        "url": "/3. partC/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Passing Props to Components",
-        "url": "/3. partC/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Interactive State with useState()",
-        "url": "/3. partC/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Real-Time Input Binding",
-        "url": "/3. partC/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Effects with useEffect()",
-        "url": "/3. partC/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Component Slots with children",
-        "url": "/3. partC/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Lifting State Up",
-        "url": "/3. partC/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Conditional UI with Ternaries",
-        "url": "/3. partC/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Multi-Input Forms with Dynamic Keys",
-        "url": "/3. partC/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "Loading Guards & Fallback UIs",
-        "url": "/3. partC/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Fetching Live REST APIs",
-        "url": "/3. partC/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Debounced Search & Cleanup",
-        "url": "/3. partC/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Final Project: React Task App",
-        "url": "/3. partC/lesson15/lesson15_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "ES6+ Powers: Spread & Destructuring",
+ "url": "/3. partC/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "React Component Tree",
+ "url": "/3. partC/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Dynamic Lists with .map()",
+ "url": "/3. partC/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Passing Props to Components",
+ "url": "/3. partC/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Interactive State with useState()",
+ "url": "/3. partC/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Real-Time Input Binding",
+ "url": "/3. partC/lesson6/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Effects with useEffect()",
+ "url": "/3. partC/lesson7/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "Component Slots with children",
+ "url": "/3. partC/lesson8/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "Lifting State Up",
+ "url": "/3. partC/lesson9/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Conditional UI with Ternaries",
+ "url": "/3. partC/lesson10/lesson10_remake.html"
+ },
+ {
+ "id": 11,
+ "title": "Multi-Input Forms with Dynamic Keys",
+ "url": "/3. partC/lesson11/lesson11_remake.html"
+ },
+ {
+ "id": 12,
+ "title": "Loading Guards & Fallback UIs",
+ "url": "/3. partC/lesson12/lesson12_remake.html"
+ },
+ {
+ "id": 13,
+ "title": "Fetching Live REST APIs",
+ "url": "/3. partC/lesson13/lesson13_remake.html"
+ },
+ {
+ "id": 14,
+ "title": "Debounced Search & Cleanup",
+ "url": "/3. partC/lesson14/lesson14_remake.html"
+ },
+ {
+ "id": 15,
+ "title": "Final Project: React Task App",
+ "url": "/3. partC/lesson15/lesson15_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Project 07: React JSX Fundamentals | Level 5 React Dojo"
-    description="Trigger side effects and automated reactions when state changes using React's useEffect hook with dependency arrays."
-    levelTag="Level 5 • Framework Dojo"
-    lessonNum={7}
-    lessonTitle="Effects with useEffect()"
-    xpAmount={150}
-    completionKey="partC_lesson7_remake_complete"
-    nextLessonUrl="/3. partC/lesson8/lesson8_remake.html"
-    hubUrl="/3. partC/hub.html"
-    hubTitle="Level 5 Hub"
-    hubIcon="⚛️"
-    fileTab="App.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={level5Lessons}
-    certificateUrl="/3. partC/certificate.html"
-    trackPrefix="partC"
+ title="Project 07: React JSX Fundamentals | Level 5 React Dojo"
+ description="Trigger side effects and automated reactions when state changes using React's useEffect hook with dependency arrays."
+ levelTag="Level 5 • Framework Dojo"
+ lessonNum={7}
+ lessonTitle="Effects with useEffect()"
+ xpAmount={150}
+ completionKey="partC_lesson7_remake_complete"
+ nextLessonUrl="/3. partC/lesson8/lesson8_remake.html"
+ hubUrl="/3. partC/hub.html"
+ hubTitle="Level 5 Hub"
+ hubIcon="️"
+ fileTab="App.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={level5Lessons}
+ certificateUrl="/3. partC/certificate.html"
+ trackPrefix="partC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Understand JSX compilation, React elements, and embedding JavaScript expressions inside declarative markup.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Understand JSX compilation, React elements, and embedding JavaScript expressions inside declarative markup.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">A category filter where changing the category from 'Frontend' to 'Backend' automatically logs ⚡ 'Fetching tutorials for: Backend'!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> <code>useEffect</code> is like an automatic motion-sensor light 💡. Whenever someone walks into the room (dependency value changes), the light turns on automatically.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">A category filter where changing the category from 'Frontend' to 'Backend' automatically logs 'Fetching tutorials for: Backend'!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> <code>useEffect</code> is like an automatic motion-sensor light . Whenever someone walks into the room (dependency value changes), the light turns on automatically.
+ </div>
+ </article>
 
-        <!-- Interactive Feature Explorer -->
-        <article class="concept-card">
-            <h3><span>⚛️</span> useEffect Lifecycle & Dependency Array</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">{"useEffect(() => { ... }, [])"}</div>
-                    <div class="tag-result">{"Runs once on initial component mount"}</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"useEffect(() => { ... }, [id])"}</div>
-                    <div class="tag-result">{"Re-runs whenever 'id' variable changes"}</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"return () => cleanup()"}</div>
-                    <div class="tag-result">{"Cleanup function runs on component unmount"}</div>
-                </div>
-            </div>
-        </article>
+ <!-- Interactive Feature Explorer -->
+ <article class="concept-card">
+ <h3><span>️</span> useEffect Lifecycle & Dependency Array</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">{"useEffect(() => { ... }, [])"}</div>
+ <div class="tag-result">{"Runs once on initial component mount"}</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"useEffect(() => { ... }, [id])"}</div>
+ <div class="tag-result">{"Re-runs whenever 'id' variable changes"}</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"return () => cleanup()"}</div>
+ <div class="tag-result">{"Cleanup function runs on component unmount"}</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Architecture Snippet -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Architecture Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_7">{"function NewsFeed({ category }) {\n  const [articles, setArticles] = React.useState([]);\n\n  React.useEffect(() => {\n    fetchNews(category).then(data => setArticles(data));\n  }, [category]);\n\n  return <div>{articles.length} articles loaded</div>;\n}"}</code></pre>
-            </div>
-        </article>
+ <!-- Working Reference Code & Architecture Snippet -->
+ <article class="concept-card">
+ <h3><span></span> Reference Architecture Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_7')?.innerText || '')"> Copy</button>
+ <pre><code id="refCodeBox_7">{"function NewsFeed({ category }) {\n const [articles, setArticles] = React.useState([]);\n\n React.useEffect(() => {\n fetchNews(category).then(data => setArticles(data));\n }, [category]);\n\n return <div>{articles.length} articles loaded</div>;\n}"}</code></pre>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partC_lesson7';
-        const DEFAULT_STARTER = "// 🔄 Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n  const [category, setCategory] = React.useState(\"react\");\n  const [articles, setArticles] = React.useState([]);\n\n  // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n  // Write useEffect hook here:\n\n\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n      <h2>📰 Developer News Digest</h2>\n      <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n        <button onClick={() => setCategory(\"react\")}>⚛️ React</button>\n        <button onClick={() => setCategory(\"nextjs\")}>⚡ Next.js</button>\n        <button onClick={() => setCategory(\"typescript\")}>🔷 TypeScript</button>\n      </div>\n      <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n    </div>\n  );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
+ const DRAFT_KEY = 'novicodes_draft_partC_lesson7';
+ const DEFAULT_STARTER = "// Lesson 7: Component Lifecycle & Side Effects with useEffect!\n\nfunction DevNewsFetcher() {\n const [category, setCategory] = React.useState(\"react\");\n const [articles, setArticles] = React.useState([]);\n\n // Step 1: Use React.useEffect() with dependency array [category] to load articles on category change\n // Write useEffect hook here:\n\n\n return (\n <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto' }}>\n <h2> Developer News Digest</h2>\n <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>\n <button onClick={() => setCategory(\"react\")}>React</button>\n <button onClick={() => setCategory(\"nextjs\")}> Next.js</button>\n <button onClick={() => setCategory(\"typescript\")}> TypeScript</button>\n </div>\n <p>Active Category: <strong>{category}</strong> ({articles.length} articles)</p>\n </div>\n );\n}\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(<DevNewsFetcher />);";
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'useeffect', label: 'Call <code>React.useEffect(() => { ... }, [category])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\(/i.test(c); } },
-            { id: 'deps', label: 'Include <code>[category]</code> in the dependency array', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*category\s*\]\s*\)/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'useeffect', label: 'Call <code>React.useEffect(() => { ... }, [category])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\(/i.test(c); } },
+ { id: 'deps', label: 'Include <code>[category]</code> in the dependency array', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /(?:React\.)?useEffect\s*\([\s\S]*?,\s*\[\s*category\s*\]\s*\)/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time JavaScript & React Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time JavaScript & React Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Progate Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Effects with useEffect()',
-                    xp: 150,
-                    completionKey: 'partC_lesson7_remake_complete',
-                    nextUrl: '/3. partC/lesson8/lesson8_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Progate Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Effects with useEffect()',
+ xp: 150,
+ completionKey: 'partC_lesson7_remake_complete',
+ nextUrl: '/3. partC/lesson8/lesson8_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

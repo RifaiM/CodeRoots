@@ -2,330 +2,330 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const starterCode = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  }
-  .spring-btn {
-    background: linear-gradient(135deg, #f43f5e, #e11d48);
-    color: #ffffff;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
-    /* 👉 STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ }
+ .spring-btn {
+ background: linear-gradient(135deg, #f43f5e, #e11d48);
+ color: #ffffff;
+ padding: 14px 28px;
+ border: none;
+ border-radius: 12px;
+ font-size: 1.05rem;
+ font-weight: 800;
+ cursor: pointer;
+ box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+ /* STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
 
-  }
-  .spring-btn:hover {
-    /* 👉 STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
+ }
+ .spring-btn:hover {
+ /* STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
 
-  }
+ }
 </style>
 
-<button class="spring-btn">Interactive Spring Button ⚡</button>`;
+<button class="spring-btn">Interactive Spring Button </button>`;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Transitions 101 & Easing",
-        "url": "/6. partF/branchE/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "GPU 2D Transforms",
-        "url": "/6. partF/branchE/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "CSS Keyframes (@keyframes)",
-        "url": "/6. partF/branchE/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Cubic-Bézier Spring Physics",
-        "url": "/6. partF/branchE/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Tactile Hover & Active Clicks",
-        "url": "/6. partF/branchE/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Animated Skeletons & Shimmer",
-        "url": "/6. partF/branchE/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Staggered Entrance Cascades",
-        "url": "/6. partF/branchE/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "SVG Path Drawing Animations",
-        "url": "/6. partF/branchE/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "prefers-reduced-motion A11y",
-        "url": "/6. partF/branchE/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Final Project: Interactive Motion Showcase",
-        "url": "/6. partF/branchE/lesson10_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Transitions 101 & Easing",
+ "url": "/6. partF/branchE/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "GPU 2D Transforms",
+ "url": "/6. partF/branchE/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "CSS Keyframes (@keyframes)",
+ "url": "/6. partF/branchE/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Cubic-Bézier Spring Physics",
+ "url": "/6. partF/branchE/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Tactile Hover & Active Clicks",
+ "url": "/6. partF/branchE/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Animated Skeletons & Shimmer",
+ "url": "/6. partF/branchE/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Staggered Entrance Cascades",
+ "url": "/6. partF/branchE/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "SVG Path Drawing Animations",
+ "url": "/6. partF/branchE/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "prefers-reduced-motion A11y",
+ "url": "/6. partF/branchE/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Final Project: Interactive Motion Showcase",
+ "url": "/6. partF/branchE/lesson10_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 04: Cubic-Bézier Spring Physics | Level 7E • CSS Motion"
-    description="Build natural physical bounce and spring damping into your UI buttons using custom 4-point cubic-bezier timing curves."
-    levelTag="Level 7E • CSS Motion"
-    lessonNum={4}
-    lessonTitle="Cubic-Bézier Spring Physics"
-    xpAmount={150}
-    completionKey="partF_branchE_lesson4_complete"
-    nextLessonUrl="/6. partF/branchE/lesson5_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="styles.css"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchE"
+ title="Milestone 04: Cubic-Bézier Spring Physics | Level 7E • CSS Motion"
+ description="Build natural physical bounce and spring damping into your UI buttons using custom 4-point cubic-bezier timing curves."
+ levelTag="Level 7E • CSS Motion"
+ lessonNum={4}
+ lessonTitle="Cubic-Bézier Spring Physics"
+ xpAmount={150}
+ completionKey="partF_branchE_lesson4_complete"
+ nextLessonUrl="/6. partF/branchE/lesson5_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="styles.css"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchE"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Build natural physical bounce and spring damping into your UI buttons using custom 4-point cubic-bezier timing curves.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Build natural physical bounce and spring damping into your UI buttons using custom 4-point cubic-bezier timing curves.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- The Real-World CSS Problem -->
-        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
-            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
-            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Standard linear and default ease curves feel robotic and lifeless. Modern interactive apps (like iOS or macOS UI) feel premium because elements have physical inertia, overshoot, and spring bounce.</p>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- The Real-World CSS Problem -->
+ <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+ <h3 style="color: #c2410c;"><span></span> The Real-World Problem</h3>
+ <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Standard linear and default ease curves feel robotic and lifeless. Modern interactive apps (like iOS or macOS UI) feel premium because elements have physical inertia, overshoot, and spring bounce.</p>
+ </article>
 
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Think of cubic-bezier(0.34, 1.56, 0.64, 1) like a rubber band pulling a wooden block. When released, the block overshoots its target by a fraction of an inch (1.56) before snapping back into its resting position.
-            </div>
-        </article>
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Think of cubic-bezier(0.34, 1.56, 0.64, 1) like a rubber band pulling a wooden block. When released, the block overshoots its target by a fraction of an inch (1.56) before snapping back into its resting position.
+ </div>
+ </article>
 
-        <!-- Syntax & Anatomy Breakdown -->
-        <article class="concept-card">
-            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
-            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
-                <code>transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);</code><br/>• <strong>0.34, 1.56</strong> → Control point 1 (Y value 1.56 exceeds 1.0, creating physical overshoot)<br/>• <strong>0.64, 1</strong> → Control point 2 (Settles smoothly back down to target size 1.0)
-            </div>
-        </article>
+ <!-- Syntax & Anatomy Breakdown -->
+ <article class="concept-card">
+ <h3><span></span> Syntax &amp; Anatomy Breakdown</h3>
+ <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+ <code>transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);</code><br/>• <strong>0.34, 1.56</strong> → Control point 1 (Y value 1.56 exceeds 1.0, creating physical overshoot)<br/>• <strong>0.64, 1</strong> → Control point 2 (Settles smoothly back down to target size 1.0)
+ </div>
+ </article>
 
-        <!-- The VS Code Beginner Trap -->
-        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
-            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
-            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Don't make your spring duration too long! A spring transition should be between 0.3s and 0.45s. Anything longer than 0.5s feels sluggish and annoys users trying to get work done quickly.</p>
-        </article>
+ <!-- The VS Code Beginner Trap -->
+ <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+ <h3 style="color: #b91c1c;"><span>️</span> The Browser &amp; CSS Beginner Trap</h3>
+ <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Don't make your spring duration too long! A spring transition should be between 0.3s and 0.45s. Anything longer than 0.5s feels sluggish and annoys users trying to get work done quickly.</p>
+ </article>
 
-        <!-- Reference Pattern / Starter Code -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchE_4">&lt;style&gt;
-  body &#123;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  &#125;
-  .spring-btn &#123;
-    background: linear-gradient(135deg, #f43f5e, #e11d48);
-    color: #ffffff;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
-    /* 👉 STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
+ <!-- Reference Pattern / Starter Code -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchE_4">&lt;style&gt;
+ body &#123;
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ &#125;
+ .spring-btn &#123;
+ background: linear-gradient(135deg, #f43f5e, #e11d48);
+ color: #ffffff;
+ padding: 14px 28px;
+ border: none;
+ border-radius: 12px;
+ font-size: 1.05rem;
+ font-weight: 800;
+ cursor: pointer;
+ box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+ /* STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
 
-  &#125;
-  .spring-btn:hover &#123;
-    /* 👉 STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
+ &#125;
+ .spring-btn:hover &#123;
+ /* STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
 
-  &#125;
+ &#125;
 &lt;/style&gt;
 
-&lt;button class="spring-btn"&gt;Interactive Spring Button ⚡&lt;/button&gt;</code></pre>
-            </div>
-        </article>
+&lt;button class="spring-btn"&gt;Interactive Spring Button &lt;/button&gt;</code></pre>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson4';
-        const DEFAULT_STARTER = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #0f172a;
-    margin: 0;
-  }
-  .spring-btn {
-    background: linear-gradient(135deg, #f43f5e, #e11d48);
-    color: #ffffff;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
-    /* 👉 STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
+ const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson4';
+ const DEFAULT_STARTER = `<style>
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 200px;
+ background: #0f172a;
+ margin: 0;
+ }
+ .spring-btn {
+ background: linear-gradient(135deg, #f43f5e, #e11d48);
+ color: #ffffff;
+ padding: 14px 28px;
+ border: none;
+ border-radius: 12px;
+ font-size: 1.05rem;
+ font-weight: 800;
+ cursor: pointer;
+ box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+ /* STEP 1: Add transition for transform over 0.4s using cubic-bezier(0.34, 1.56, 0.64, 1) */
 
-  }
-  .spring-btn:hover {
-    /* 👉 STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
+ }
+ .spring-btn:hover {
+ /* STEP 2: Scale up to 1.12 on hover to trigger the elastic spring bounce */
 
-  }
+ }
 </style>
 
-<button class="spring-btn">Interactive Spring Button ⚡</button>`;
+<button class="spring-btn">Interactive Spring Button </button>`;
 
-        // 1. Initialize Real-Time Checklist
-        DojoEngine.initChecklist([
-            {
-                id: "cubic-bezier",
-                label: "Add <code>transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);</code> on <code>.spring-btn</code>",
-                fn: (code) => { try { return Boolean(/\.spring-btn\s*\{[^}]*transition\s*:[^}]*transform[^}]*0\.4s[^}]*cubic-bezier\(\s*0\.34\s*,\s*1\.56\s*,\s*0\.64\s*,\s*1\s*\)/i.test(code)); } catch(e) { return false; } }
-            },
-            {
-                id: "hover-overshoot",
-                label: "Add <code>transform: scale(1.12)</code> inside <code>.spring-btn:hover</code>",
-                fn: (code) => { try { return Boolean(/\.spring-btn:hover\s*\{[^}]*transform\s*:\s*scale\(\s*1\.12\s*\)/i.test(code)); } catch(e) { return false; } }
-            }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Checklist
+ DojoEngine.initChecklist([
+ {
+ id: "cubic-bezier",
+ label: "Add <code>transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);</code> on <code>.spring-btn</code>",
+ fn: (code) => { try { return Boolean(/\.spring-btn\s*\{[^}]*transition\s*:[^}]*transform[^}]*0\.4s[^}]*cubic-bezier\(\s*0\.34\s*,\s*1\.56\s*,\s*0\.64\s*,\s*1\s*\)/i.test(code)); } catch(e) { return false; } }
+ },
+ {
+ id: "hover-overshoot",
+ label: "Add <code>transform: scale(1.12)</code> inside <code>.spring-btn:hover</code>",
+ fn: (code) => { try { return Boolean(/\.spring-btn:hover\s*\{[^}]*transform\s*:\s*scale\(\s*1\.12\s*\)/i.test(code)); } catch(e) { return false; } }
+ }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'html'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Real-Time Live Preview in Iframe
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Real-Time Live Preview in Iframe
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: "Cubic-Bézier Spring Physics",
-                    xp: 150,
-                    completionKey: 'partF_branchE_lesson4_complete',
-                    nextUrl: '/6. partF/branchE/lesson5_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: "Cubic-Bézier Spring Physics",
+ xp: 150,
+ completionKey: 'partF_branchE_lesson4_complete',
+ nextUrl: '/6. partF/branchE/lesson5_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

@@ -3,897 +3,897 @@
 ---
 
 <script>
-    import { getUserXPAndRank, updateAllHeaderStats } from '../scripts/xpEngine';
-
-    declare global {
-        interface Window {
-            openUserProfileModal: () => void;
-            openCertificateHub: () => void;
-            openDojoHub: () => void;
-            openStreakModal: () => void;
-            showCertLockWarning: (title: string, completedCount: number, maxCount: number) => void;
-            confirmResetProgress: () => void;
-            getUserXPAndRank: typeof getUserXPAndRank;
-            updateHeaderStats: typeof updateAllHeaderStats;
-            Swal: any;
-        }
-    }
-
-    window.getUserXPAndRank = getUserXPAndRank;
-    window.updateHeaderStats = updateAllHeaderStats;
-
-    // ── 1. Learner Profile & Developer Rank Modal ──
-    window.openUserProfileModal = function() {
-        const stats = getUserXPAndRank();
-        const progressPct = Math.min(Math.round((stats.totalXP / stats.maxXP) * 100), 100);
-
-        const ranks = [
-            { title: 'Web Explorer', level: 'Level 00 • Web Architecture' },
-            { title: 'Code Apprentice', level: 'Levels 01–03 • HTML, CSS & JS' },
-            { title: 'DOM Challenger', level: 'Level 04 • JS Widget Dojo' },
-            { title: 'React Engineer', level: 'Level 05 • React Component Dojo' },
-            { title: 'Python Backend Engineer', level: 'Level 06 • Python Backend Basics' },
-            { title: 'Principal Polymath', level: 'Level 07 • Specialized Tracks' },
-            { title: 'Async UI Specialist', level: 'Level 08 • Async UI & Loading' },
-            { title: 'React Auth Specialist', level: 'Level 09 • User Logins & Auth' },
-            { title: 'Master Web Developer', level: 'Level 10 • SaaS Dashboard UI' }
-        ];
-
-        const currentRankTitle = stats.rankTitle;
-
-        const rankLadderHTML = ranks.map((r, idx) => {
-            const isCurrent = currentRankTitle === r.title || 
-                              (r.title === 'DOM Challenger' && currentRankTitle === 'Dojo Master') ||
-                              (r.title === 'React Engineer' && currentRankTitle === 'Fullstack Master') ||
-                              (r.title === 'Principal Polymath' && ['Cloud Specialist', 'Database Architect', 'Next.js Engineer', 'TypeScript Specialist', 'CSS Motion Specialist', 'Principal Polymath'].includes(currentRankTitle)) ||
-                              (r.title === 'Async UI Specialist' && ['Async UI Specialist', 'API Integration Specialist'].includes(currentRankTitle)) ||
-                              (r.title === 'React Auth Specialist' && ['React Auth Specialist', 'Security Engineer'].includes(currentRankTitle)) ||
-                              (r.title === 'Master Web Developer' && ['Master Web Developer', 'SaaS UI Architect'].includes(currentRankTitle));
-            
-            const bg = isCurrent ? 'background: var(--card-bg, #FFFFFF); border: 1px solid var(--accent-oxide, #A33B24);' : 'background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6);';
-            const badgeStyle = isCurrent ? 'background: var(--accent-oxide, #A33B24); color: #F8F6F1;' : 'background: var(--border-hairline, #E5E1D8); color: var(--text-muted, #686760);';
-            const badgeText = isCurrent ? 'ACTIVE' : 'LOCKED';
-
-            return `
-                <div style="${bg} padding: 8px 12px; border-radius: 2px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                    <div style="text-align: left;">
-                        <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${r.level}</div>
-                        <div style="font-weight: 600; font-size: 0.88rem; color: ${isCurrent ? 'var(--accent-oxide, #A33B24)' : 'var(--text-title, #20211F)'};">${r.title}</div>
-                    </div>
-                    <span style="${badgeStyle} font-family: var(--font-mono, monospace); font-size: 0.68rem; font-weight: 600; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">${badgeText}</span>
-                </div>
-            `;
-        }).join('');
-
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
-                title: 'Learner Profile & Curriculum Record',
-                html: `
-                    <div style="font-family: var(--font-sans, sans-serif); text-align: center; max-width: 100%; box-sizing: border-box;">
-                        
-                        <!-- Rank Banner -->
-                        <div style="background: var(--carbon, #20211F); color: #F8F6F1; padding: 18px 16px; border-radius: 2px; margin-bottom: 16px; border: 1px solid var(--border-subtle, #D5D0C6); text-align: left;">
-                            <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #BAB4A6; text-transform: uppercase; letter-spacing: 0.05em;">DEVELOPER RANK // VERIFIED STATUS</div>
-                            <div style="font-family: var(--font-serif, serif); font-size: 1.45rem; font-weight: 500; margin: 2px 0 6px 0; color: #FFFFFF;">${stats.rankTitle}</div>
-                            <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; color: #D5D0C6;">TOTAL BOUNTY: ${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} XP (${progressPct}%)</div>
-                            
-                            <!-- Progress Bar -->
-                            <div style="background: rgba(255,255,255,0.15); height: 4px; border-radius: 2px; margin-top: 12px; overflow: hidden;">
-                                <div style="background: var(--accent-oxide, #A33B24); height: 100%; width: ${progressPct}%; transition: width 0.4s ease;"></div>
-                            </div>
-                        </div>
-
-                        <!-- Section: Breakdown Grid -->
-                        <div style="text-align: left; margin-bottom: 8px;">
-                            <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em;">
-                                01 / CURRICULUM LEVEL BREAKDOWN
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 00: Web Architecture</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.isL0 ? '250 / 250 XP' : '0 / 250 XP'}</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Levels 01–03: Foundations</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${((stats.isL1 ? 300 : 0) + (stats.isL2 ? 300 : 0) + (stats.isL3 ? 400 : 0))} / 1,000 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 04: JS Widget Dojo</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l4Completed * 100} / 1,500 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 05: React Component Dojo</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l5Completed * 150} / 2,250 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 06: Python Backend Basics</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l6Completed * 200} / 3,000 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 07: Specialized Tracks</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l7XP || 0).toLocaleString()} / 7,800 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 08: Async UI & Skeletons</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l8Completed || 0) * 250} / 1,500 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 09: User Logins & Auth</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l9Completed || 0) * 250} / 1,500 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 10: SaaS Dashboard UI</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l10Completed || 0) * 500} / 3,000 XP</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px; grid-column: 1 / -1;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Daily Exercises & Retention Streaks</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">+${(stats.dailyQuestXP + stats.streakBonusXP).toLocaleString()} XP (${stats.streakCount}-Day Streak)</div>
-                            </div>
-                        </div>
-
-                        <!-- Section: Rank Progression Roadmap -->
-                        <div style="text-align: left; margin-bottom: 16px;">
-                            <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
-                                02 / DEVELOPER RANK PROGRESSION
-                            </div>
-                            <div style="display: flex; flex-direction: column; gap: 6px;">
-                                ${rankLadderHTML}
-                            </div>
-                        </div>
-
-                        <!-- Section: Creator Support Card -->
-                        <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; margin-bottom: 16px; text-align: left;">
-                            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px;">
-                                <span style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--accent-oxide, #A33B24); text-transform: uppercase;">
-                                    03 / SUSTAINING THE OPEN ACCESS PROJECT
-                                </span>
-                                <span style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">
-                                    100% Free & Ad-Free
-                                </span>
-                            </div>
-                            <p style="font-size: 0.84rem; color: var(--text-body, #20211F); margin: 0 0 12px 0; line-height: 1.5;">
-                                NoviCodes is an independent, ad-free learning resource. If these 103 hands-on lessons help your engineering path, consider supporting hosting and authoring:
-                            </p>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 130px; background: var(--card-bg, #FFFFFF); color: var(--text-title, #20211F); text-decoration: none; padding: 8px 12px; border-radius: 2px; border: 1px solid var(--border-subtle, #D5D0C6); font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
-                                    <span>SUPPORT // KO-FI (GLOBAL) →</span>
-                                </a>
-                                <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 130px; background: var(--card-bg, #FFFFFF); color: var(--text-title, #20211F); text-decoration: none; padding: 8px 12px; border-radius: 2px; border: 1px solid var(--border-subtle, #D5D0C6); font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
-                                    <span>SUPPORT // TRAKTEER (IDR) →</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Reset Progress Action -->
-                        <div style="border-top: 1px solid var(--border-hairline, #E5E1D8); padding-top: 12px; text-align: center;">
-                            <button onclick="window.confirmResetProgress()" style="background: transparent; border: 1px solid var(--border-subtle, #D5D0C6); color: var(--accent-oxide, #A33B24); padding: 6px 14px; border-radius: 2px; font-family: var(--font-mono, monospace); font-weight: 600; font-size: 0.74rem; cursor: pointer; text-transform: uppercase;">
-                                [ RESET PROGRESS DATA ]
-                            </button>
-                        </div>
-                    </div>
-                `,
-                showConfirmButton: false,
-                showCloseButton: true,
-                customClass: {
-                    popup: 'responsive-profile-modal'
-                }
-            });
-        }
-    };
-
-    // ── 2. Proof-of-Work Certificates Modal (Universal) ──
-    window.openCertificateHub = function() {
-        const stats = getUserXPAndRank();
-        const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-
-        const isL4Earned = isUnlocked || stats.l4Completed >= 15;
-        const isL5Earned = isUnlocked || stats.l5Completed >= 15;
-        const isL6Earned = isUnlocked || stats.l6Completed >= 15;
-        const isL7Earned = isUnlocked || (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6 || stats.l7Completed >= 6);
-        const isL8Earned = isUnlocked || (stats.l8Completed || 0) >= 6;
-        const isL9Earned = isUnlocked || (stats.l9Completed || 0) >= 6;
-        const isL10Earned = isUnlocked || (stats.l10Completed || 0) >= 6;
-
-        const renderCertItem = (title: string, sub: string, url: string, isEarned: boolean, completedCount: number, maxCount: number) => {
-            if (isEarned) {
-                return `
-                    <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
-                        <div style="text-align: left; flex: 1;">
-                            <div style="font-weight: 600; font-size: 0.90rem;">${title}</div>
-                            <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
-                        </div>
-                        <span class="badge-action" style="font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">VIEW &rarr;</span>
-                    </a>
-                `;
-            } else {
-                return `
-                    <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px dashed var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: var(--text-muted, #686760); transition: all 0.15s ease;">
-                        <div style="text-align: left; flex: 1;">
-                            <div style="font-weight: 600; font-size: 0.90rem; color: var(--text-muted, #686760);">${title}</div>
-                            <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub} • ${completedCount}/${maxCount} COMPLETED</div>
-                        </div>
-                        <span class="badge-action" style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); background: var(--border-hairline, #E5E1D8); padding: 2px 6px; border-radius: 2px;">LOCKED</span>
-                    </div>
-                `;
-            }
-        };
-
-        const l4Item = renderCertItem('Level 04 Certificate', 'DOM & Vanilla JavaScript Widgets', '/2. partB/certificate.html', isL4Earned, stats.l4Completed, 15);
-        const l5Item = renderCertItem('Level 05 Certificate', 'React Component Architecture', '/3. partC/certificate.html', isL5Earned, stats.l5Completed, 15);
-        const l6Item = renderCertItem('Level 06 Certificate', 'Python Backend & REST APIs', '/5. partE/certificate.html', isL6Earned, stats.l6Completed, 15);
-        const l7Item = renderCertItem('Level 07 Certificate', 'Specialized Developer Tracks', '/6. partF/certificate.html', isL7Earned, stats.l7Completed, 6);
-        const l8Item = renderCertItem('Level 08 Certificate', 'Async UI & Loading States', '/7. partG/certificate.html', isL8Earned, stats.l8Completed || 0, 6);
-        const l9Item = renderCertItem('Level 09 Certificate', 'User Logins & Private Member Pages', '/8. partH/certificate.html', isL9Earned, stats.l9Completed || 0, 6);
-        const l10Item = renderCertItem('Level 10 Certificate', 'Modern SaaS Dashboard UI', '/9. partI/certificate.html', isL10Earned, stats.l10Completed || 0, 6);
-
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
-                title: 'Proof-of-Work Certificates',
-                customClass: {
-                    popup: 'responsive-profile-modal responsive-cert-hub-modal'
-                },
-                html: `
-                    <div style="text-align: center; font-family: var(--font-sans, sans-serif); padding: 6px 0;">
-                        <p style="color: var(--text-muted, #686760); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
-                            Select an unlocked milestone to view, print, or download your official Proof of Work:
-                        </p>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            ${l4Item}
-                            ${l5Item}
-                            ${l6Item}
-                            ${l7Item}
-                            ${l8Item}
-                            ${l9Item}
-                            ${l10Item}
-                        </div>
-                    </div>
-                `,
-                showConfirmButton: false,
-                showCloseButton: true
-            });
-        } else {
-            window.location.href = isL10Earned ? '/9. partI/certificate.html' : '/2. partB/certificate.html';
-        }
-    };
-
-    // ── 3. Certificate Lock Warning Modal ──
-    window.showCertLockWarning = function(title: string, completedCount: number, maxCount: number) {
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
-                title: `${title} Locked`,
-                html: `
-                    <div style="font-family: var(--font-sans, sans-serif); text-align: center;">
-                        <p style="color: var(--text-muted, #686760); font-size: 0.90rem; line-height: 1.5; margin-bottom: 12px;">
-                            Complete all lessons in <strong>${title}</strong> to unlock your verified Certificate of Mastery.
-                        </p>
-                        <div style="font-family: var(--font-mono, monospace); font-size: 0.80rem; font-weight: 600; color: var(--accent-oxide, #A33B24); background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 6px 12px; border-radius: 2px; display: inline-block;">
-                            PROGRESS: ${completedCount} / ${maxCount} LESSONS COMPLETED
-                        </div>
-                    </div>
-                `,
-                confirmButtonColor: '#A33B24',
-                confirmButtonText: 'CLOSE',
-                showCloseButton: true,
-                customClass: {
-                    popup: 'responsive-profile-modal'
-                }
-            });
-        }
-    };
-
-    // ── 4. Practical Dojo Level Selection Hub Modal ──
-    window.openDojoHub = function() {
-        const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
-        const isL4 = rawPath.includes('partb/hub.html') || rawPath.includes('2. partb/hub.html');
-        const isL5 = rawPath.includes('partc/hub.html') || rawPath.includes('3. partc/hub.html');
-        const isL6 = rawPath.includes('parte/hub.html') || rawPath.includes('5. parte/hub.html');
-        const isL7 = rawPath.includes('partf/hub.html') || rawPath.includes('6. partf/hub.html');
-        const isL8 = rawPath.includes('partg/hub.html') || rawPath.includes('7. partg/hub.html');
-        const isL9 = rawPath.includes('parth/hub.html') || rawPath.includes('8. parth/hub.html');
-        const isL10 = rawPath.includes('parti/hub.html') || rawPath.includes('9. parti/hub.html');
-
-        let activeL4 = 1;
-        for (let i = 1; i <= 15; i++) {
-            if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
-                activeL4 = Math.min(i + 1, 15);
-            }
-        }
-
-        let activeL5 = 1;
-        for (let i = 1; i <= 15; i++) {
-            if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
-                activeL5 = Math.min(i + 1, 15);
-            }
-        }
-
-        let activeL6 = 1;
-        for (let i = 1; i <= 15; i++) {
-            if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
-                activeL6 = Math.min(i + 1, 15);
-            }
-        }
-
-        let activeL8 = 1;
-        for (let i = 1; i <= 6; i++) {
-            if (localStorage.getItem(`partG_lesson${i}_remake_complete`) === 'true') {
-                activeL8 = Math.min(i + 1, 6);
-            }
-        }
-
-        let activeL9 = 1;
-        for (let i = 1; i <= 6; i++) {
-            if (localStorage.getItem(`partH_lesson${i}_remake_complete`) === 'true') {
-                activeL9 = Math.min(i + 1, 6);
-            }
-        }
-
-        let activeL10 = 1;
-        for (let i = 1; i <= 6; i++) {
-            if (localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true') {
-                activeL10 = Math.min(i + 1, 6);
-            }
-        }
-
-        const renderDojoItem = (title: string, sub: string, url: string, isActive: boolean) => {
-            if (isActive) {
-                return `
-                    <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
-                        <div style="text-align: left; flex: 1;">
-                            <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide, #A33B24);">${title}</div>
-                            <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
-                        </div>
-                        <span class="badge-action" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.72rem; background: var(--border-hairline, #E5E1D8); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
-                    </div>
-                `;
-            }
-            return `
-                <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
-                    <div style="text-align: left; flex: 1;">
-                        <div style="font-weight: 600; font-size: 0.90rem;">${title}</div>
-                        <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
-                    </div>
-                    <span class="badge-action" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.76rem;">ENTER HUB &rarr;</span>
-                </a>
-            `;
-        };
-
-        const itemL4 = renderDojoItem('Level 04: DOM Interactivity Dojo', `15 PROJECTS • ACTIVE LESSON ${activeL4}`, '/2. partB/hub.html', isL4);
-        const itemL5 = renderDojoItem('Level 05: React Component Dojo', `15 PROJECTS • ACTIVE LESSON ${activeL5}`, '/3. partC/hub.html', isL5);
-        const itemL6 = renderDojoItem('Level 06: Python Backend Basics', `15 PROJECTS • ACTIVE LESSON ${activeL6}`, '/5. partE/hub.html', isL6);
-        const itemL7 = renderDojoItem('Level 07: Specialized Tracks', '5 TRACKS • CLOUD, SQL, NEXT.JS, TS, MOTION', '/6. partF/hub.html', isL7);
-        const itemL8 = renderDojoItem('Level 08: Async UI & Skeletons', '6 HANDS-ON PROJECTS', '/7. partG/hub.html', isL8);
-        const itemL9 = renderDojoItem('Level 09: User Logins & Auth', '6 HANDS-ON PROJECTS', '/8. partH/hub.html', isL9);
-        const itemL10 = renderDojoItem('Level 10: SaaS Dashboard UI', '6 HANDS-ON PROJECTS', '/9. partI/hub.html', isL10);
-
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
-                title: 'Curriculum Workbench Hub',
-                customClass: {
-                    popup: 'responsive-profile-modal responsive-cert-hub-modal'
-                },
-                html: `
-                    <div style="text-align: center; font-family: var(--font-sans, sans-serif); padding: 6px 0;">
-                        <p style="color: var(--text-muted, #686760); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
-                            Select a practical workbench level to begin coding:
-                        </p>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            ${itemL4}
-                            ${itemL5}
-                            ${itemL6}
-                            ${itemL7}
-                            ${itemL8}
-                            ${itemL9}
-                            ${itemL10}
-                        </div>
-                    </div>
-                `,
-                showConfirmButton: false,
-                showCloseButton: true
-            });
-        }
-    };
-
-    // ── 5. Daily Coding Streak & Rewards Modal (Universal) ──
-    window.openStreakModal = function() {
-        const stats = getUserXPAndRank();
-        const streakCount = stats.streakCount;
-        const todayStr = new Date().toISOString().split('T')[0];
-        const isTodayCompleted = localStorage.getItem(`quest_completed_${todayStr}`) === 'true';
-
-        const milestones = [
-            { days: 3, xp: 100, title: '3-Day Retention Milestone', sub: '3 consecutive daily exercises' },
-            { days: 7, xp: 250, title: '7-Day Retention Milestone', sub: '7 consecutive daily exercises' },
-            { days: 14, xp: 500, title: '14-Day Retention Milestone', sub: '14 consecutive daily exercises' }
-        ];
-
-        const milestonesHTML = milestones.map((m, idx) => {
-            const isUnlocked = streakCount >= m.days;
-            const bg = isUnlocked ? 'background: var(--card-bg, #FFFFFF); border: 1px solid var(--border-dark, #BAB4A6);' : 'background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6);';
-            const badgeBg = isUnlocked ? 'background: var(--accent-slate, #314C52); color: #F8F6F1;' : 'background: var(--border-hairline, #E5E1D8); color: var(--text-muted, #686760);';
-
-            return `
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; ${bg} border-radius: 2px;">
-                    <div style="text-align: left;">
-                        <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${m.days}-DAY GOAL</div>
-                        <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-title, #20211F);">${m.title}</div>
-                        <div style="font-size: 0.74rem; color: var(--text-muted, #686760);">${m.sub}</div>
-                    </div>
-                    <span style="${badgeBg} font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">
-                        ${isUnlocked ? 'CLAIMED' : `+${m.xp} XP`}
-                    </span>
-                </div>
-            `;
-        }).join('');
-
-        if (typeof window.Swal !== 'undefined') {
-            window.Swal.fire({
-                title: 'Daily Retention Streak & Milestones',
-                customClass: {
-                    popup: 'responsive-profile-modal responsive-streak-modal'
-                },
-                showCloseButton: true,
-                html: `
-                    <div style="font-family: var(--font-sans, sans-serif); text-align: left;">
-                        
-                        <!-- 2-Column Streak Stats -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--accent-oxide, #A33B24); text-transform: uppercase; letter-spacing: 0.04em;">CURRENT STREAK</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${streakCount} DAYS</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">${isTodayCompleted ? 'COMPLETED TODAY' : 'PENDING TODAY'}</div>
-                            </div>
-                            <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.04em;">LONGEST STREAK</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${Math.max(streakCount, parseInt(localStorage.getItem('novicodes_longest_streak') || '0', 10))} DAYS</div>
-                                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">PERSONAL RECORD</div>
-                            </div>
-                        </div>
-
-                        <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
-                            01 / MILESTONE BOUNTIES
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
-                            ${milestonesHTML}
-                        </div>
-
-                        <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 10px 14px; font-family: var(--font-mono, monospace); font-size: 0.74rem; color: var(--text-muted, #686760); text-align: center; text-transform: uppercase; letter-spacing: 0.03em;">
-                            STREAK SAVER // Complete 1 daily exercise every 24 hours to maintain your progression.
-                        </div>
-                    </div>
-                `,
-                confirmButtonText: 'CONTINUE →',
-                confirmButtonColor: '#A33B24'
-            });
-        }
-    };
-
-    // ── 6. Course Progress Reset Confirmation Modal ──
-    window.confirmResetProgress = function() {
-        if (typeof (window as any).Swal !== 'undefined') {
-            (window as any).Swal.fire({
-                title: 'Reset All Course Progress?',
-                html: `
-                    <div style="font-family: var(--font-sans, sans-serif); text-align: left;">
-                        <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.6; margin-bottom: 12px;">
-                            This operation resets your <strong>XP back to 0</strong>, clears your <strong>Daily Streaks & Bounties</strong>, and resets all completed lesson checkmarks across <strong>Levels 00 through 10</strong>.
-                        </p>
-                        <div style="background: #FDF2F0; border: 1px solid var(--accent-oxide, #A33B24); padding: 10px 12px; border-radius: 2px; font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.76rem; text-transform: uppercase;">
-                            CAUTION: This action cannot be reversed.
-                        </div>
-                    </div>
-                `,
-                showCancelButton: true,
-                confirmButtonColor: '#A33B24',
-                cancelButtonColor: '#314C52',
-                confirmButtonText: 'CONFIRM RESET',
-                cancelButtonText: 'CANCEL',
-                showCloseButton: true,
-                customClass: {
-                    popup: 'responsive-profile-modal'
-                }
-            }).then((result: any) => {
-                if (result.isConfirmed) {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    updateAllHeaderStats();
-                    window.location.reload();
-                }
-            });
-        }
-    };
-
-    // ── 7. Universal Developer Toolkit & Shortcuts (Local Development Only) ──
-    if (import.meta.env.DEV) {
-        (window as any).NoviCodes = {
-            unlockAll: function() {
-                localStorage.setItem('practice_mode_unlocked', 'true');
-                localStorage.setItem('level0_completed', 'true');
-                localStorage.setItem('readWebsite', 'true');
-                localStorage.setItem('readHTML', 'true');
-                localStorage.setItem('readCSS', 'true');
-                localStorage.setItem('readJavaScript', 'true');
-                localStorage.setItem('level0_quiz_completed', 'true');
-                localStorage.setItem('level1_completed', 'true');
-                localStorage.setItem('level2_completed', 'true');
-                localStorage.setItem('level3_completed', 'true');
-                localStorage.setItem('level4_completed', 'true');
-                localStorage.setItem('level5_completed', 'true');
-                localStorage.setItem('level6_completed', 'true');
-                localStorage.setItem('level7_completed', 'true');
-                localStorage.setItem('level8_completed', 'true');
-                localStorage.setItem('level9_completed', 'true');
-                localStorage.setItem('level10_completed', 'true');
-
-                // Advanced Foundations (L5 - L10)
-                localStorage.setItem('foundations_react_completed', 'true');
-                localStorage.setItem('foundations_python_completed', 'true');
-                localStorage.setItem('foundations_cloud_completed', 'true');
-                localStorage.setItem('foundations_sql_completed', 'true');
-                localStorage.setItem('foundations_nextjs_completed', 'true');
-                localStorage.setItem('foundations_typescript_completed', 'true');
-                localStorage.setItem('foundations_cssmotion_completed', 'true');
-                localStorage.setItem('foundations_async_completed', 'true');
-                localStorage.setItem('foundations_auth_completed', 'true');
-                localStorage.setItem('foundations_saas_completed', 'true');
-
-                localStorage.setItem('partF_completed', 'true');
-                localStorage.setItem('partF_branchA_completed', 'true');
-                localStorage.setItem('partF_branchB_completed', 'true');
-                localStorage.setItem('partF_branchC_completed', 'true');
-                localStorage.setItem('partF_branchD_completed', 'true');
-                localStorage.setItem('partF_branchE_completed', 'true');
-                localStorage.setItem('partG_completed', 'true');
-                localStorage.setItem('partH_completed', 'true');
-                localStorage.setItem('partI_completed', 'true');
-
-                for (let i = 1; i <= 15; i++) {
-                    localStorage.setItem(`partB_lesson${i}_remake_complete`, 'true');
-                    localStorage.setItem(`partC_lesson${i}_remake_complete`, 'true');
-                    localStorage.setItem(`partE_lesson${i}_remake_complete`, 'true');
-                }
-
-                for (let i = 1; i <= 6; i++) {
-                    localStorage.setItem(`partF_branchA_lesson${i}_complete`, 'true');
-                    localStorage.setItem(`partF_branchB_lesson${i}_complete`, 'true');
-                    localStorage.setItem(`partF_branchC_lesson${i}_complete`, 'true');
-                    localStorage.setItem(`partG_lesson${i}_remake_complete`, 'true');
-                    localStorage.setItem(`partH_lesson${i}_remake_complete`, 'true');
-                    localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
-                }
-
-                for (let i = 1; i <= 12; i++) {
-                    localStorage.setItem(`partF_branchD_lesson${i}_complete`, 'true');
-                }
-
-                for (let i = 1; i <= 10; i++) {
-                    localStorage.setItem(`partF_branchE_lesson${i}_complete`, 'true');
-                }
-
-                console.log('%c🔓 [NoviCodes DevKit] All 10 Levels, 13 Tracks, 103 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
-                updateAllHeaderStats();
-                window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
-
-                if (typeof (window as any).Swal !== 'undefined') {
-                    (window as any).Swal.fire({
-                        icon: 'success',
-                        title: 'Dev Mode: All Content Unlocked',
-                        html: `
-                            <div style="text-align: center; font-family: var(--font-sans, sans-serif);">
-                                <p style="color: var(--text-body, #20211F); margin-bottom: 14px; font-size: 0.90rem; line-height: 1.5;">
-                                    All <strong>13 Foundation Tracks</strong>, <strong>103 Real Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing.
-                                </p>
-                                <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; background: var(--canvas-base, #F1EEE7); color: #2F5233; border: 1px solid var(--border-subtle, #D5D0C6); padding: 4px 10px; border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
-                                    25,000 / 25,000 Total XP (Master Web Developer)
-                                </span>
-                            </div>
-                        `,
-                        confirmButtonColor: '#A33B24',
-                        confirmButtonText: 'Reload to Apply →',
-                        showCancelButton: true,
-                        cancelButtonText: 'Stay on Current Page',
-                        allowOutsideClick: true,
-                        allowEscapeKey: true
-                    }).then((res: any) => {
-                        if (res.isConfirmed) {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    window.location.reload();
-                }
-            },
-
-            lockAll: function() {
-                // 1. Reset Dev Unlock Flag
-                localStorage.removeItem('practice_mode_unlocked');
-                localStorage.removeItem('progression_mode');
-
-                // 2. Reset User XP & Streaks
-                localStorage.removeItem('userXP');
-                localStorage.removeItem('novicodes_user_xp');
-                localStorage.removeItem('novicodes_xp');
-                localStorage.removeItem('novicodes_streak_count');
-                localStorage.removeItem('novicodes_longest_streak');
-                localStorage.removeItem('novicodes_last_quest_date');
-                localStorage.removeItem('novicodes_daily_quest_xp');
-                localStorage.removeItem('novicodes_streak_bonus_xp');
-                localStorage.removeItem('novicodes_streak_freeze');
-
-                // 3. Reset Level Completion & Concept Flags (Levels 0–10)
-                localStorage.removeItem('level0_completed');
-                localStorage.removeItem('level0_quiz_completed');
-                localStorage.removeItem('level0_quiz_score');
-                localStorage.removeItem('readWebsite');
-                localStorage.removeItem('readHTML');
-                localStorage.removeItem('readCSS');
-                localStorage.removeItem('readJavaScript');
-                localStorage.removeItem('level1_completed');
-                localStorage.removeItem('level2_completed');
-                localStorage.removeItem('level3_completed');
-                localStorage.removeItem('level4_completed');
-                localStorage.removeItem('level5_completed');
-                localStorage.removeItem('level6_completed');
-                localStorage.removeItem('level7_completed');
-                localStorage.removeItem('level8_completed');
-                localStorage.removeItem('level9_completed');
-                localStorage.removeItem('level10_completed');
-
-                // Reset Advanced Foundations Keys
-                localStorage.removeItem('foundations_react_completed');
-                localStorage.removeItem('foundations_python_completed');
-                localStorage.removeItem('foundations_cloud_completed');
-                localStorage.removeItem('foundations_sql_completed');
-                localStorage.removeItem('foundations_nextjs_completed');
-                localStorage.removeItem('foundations_typescript_completed');
-                localStorage.removeItem('foundations_async_completed');
-                localStorage.removeItem('foundations_typescript_completed');
-                localStorage.removeItem('foundations_cssmotion_completed');
-                localStorage.removeItem('foundations_async_completed');
-                localStorage.removeItem('foundations_auth_completed');
-                localStorage.removeItem('foundations_saas_completed');
-
-                // 4. Reset Track Completion Flags (Levels 7–10)
-                localStorage.removeItem('partF_completed');
-                localStorage.removeItem('partF_complete');
-                localStorage.removeItem('partF_branchA_completed');
-                localStorage.removeItem('partF_branchA_complete');
-                localStorage.removeItem('partF_branchB_completed');
-                localStorage.removeItem('partF_branchB_complete');
-                localStorage.removeItem('partF_branchC_completed');
-                localStorage.removeItem('partF_branchC_complete');
-                localStorage.removeItem('partF_branchD_completed');
-                localStorage.removeItem('partF_branchD_complete');
-                localStorage.removeItem('partF_branchE_completed');
-                localStorage.removeItem('partF_branchE_complete');
-                localStorage.removeItem('partG_completed');
-                localStorage.removeItem('partG_complete');
-                localStorage.removeItem('partH_completed');
-                localStorage.removeItem('partH_complete');
-                localStorage.removeItem('partI_completed');
-                localStorage.removeItem('partI_complete');
-
-                // 5. Reset Lessons (Levels 4–6)
-                for (let i = 1; i <= 20; i++) {
-                    localStorage.removeItem(`partB_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partB_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partB_lesson${i}_draft`);
-                    localStorage.removeItem(`partC_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partC_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partC_lesson${i}_draft`);
-                    localStorage.removeItem(`partE_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partE_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partE_lesson${i}_draft`);
-                    localStorage.removeItem(`lesson_${i}_completed`);
-                    localStorage.removeItem(`lesson_${i}_complete`);
-                }
-
-                // 6. Reset Lessons (Levels 7–10)
-                for (let i = 1; i <= 6; i++) {
-                    localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
-                    localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
-
-                    localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
-                    localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
-
-                    localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
-                    localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
-
-                    localStorage.removeItem(`partG_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partG_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partG_lesson${i}_draft`);
-
-                    localStorage.removeItem(`partH_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partH_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partH_lesson${i}_draft`);
-
-                    localStorage.removeItem(`partI_lesson${i}_remake_complete`);
-                    localStorage.removeItem(`partI_lesson${i}_remake_completed`);
-                    localStorage.removeItem(`partI_lesson${i}_draft`);
-                }
-
-                for (let i = 1; i <= 12; i++) {
-                    localStorage.removeItem(`partF_branchD_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchD_lesson${i}_completed`);
-                    localStorage.removeItem(`partF_branchD_lesson${i}_draft`);
-                    localStorage.removeItem(`draft_partF_branchD_lesson${i}`);
-                }
-
-                for (let i = 1; i <= 10; i++) {
-                    localStorage.removeItem(`partF_branchE_lesson${i}_complete`);
-                    localStorage.removeItem(`partF_branchE_lesson${i}_completed`);
-                    localStorage.removeItem(`partF_branchE_lesson${i}_draft`);
-                    localStorage.removeItem(`draft_partF_branchE_lesson${i}`);
-                }
-
-                // 7. Reset Certificate Recipient Names
-                localStorage.removeItem('partB_cert_student_name');
-                localStorage.removeItem('partC_cert_student_name');
-                localStorage.removeItem('partE_cert_student_name');
-                localStorage.removeItem('partF_cert_student_name');
-                localStorage.removeItem('partG_cert_student_name');
-                localStorage.removeItem('partH_cert_student_name');
-                localStorage.removeItem('partI_cert_student_name');
-
-                console.log('%c🔒 [NoviCodes DevKit] Strict sequential progression & 0 XP RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
-                updateAllHeaderStats();
-                window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
-
-                if (typeof (window as any).Swal !== 'undefined') {
-                    (window as any).Swal.fire({
-                        icon: 'info',
-                        title: 'Standard Mode Restored',
-                        html: `
-                            <div style="text-align: center; font-family: var(--font-sans, sans-serif);">
-                                <p style="color: var(--text-body, #20211F); margin-bottom: 14px; font-size: 0.90rem; line-height: 1.5;">
-                                    Strict sequential progression and <strong>0 XP</strong> have been restored across all levels (0–10).
-                                </p>
-                            </div>
-                        `,
-                        confirmButtonColor: '#A33B24',
-                        confirmButtonText: 'Reload to Apply →',
-                        showCancelButton: true,
-                        cancelButtonText: 'Stay on Current Page',
-                        allowOutsideClick: true,
-                        allowEscapeKey: true
-                    }).then((res: any) => {
-                        if (res.isConfirmed) {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    window.location.reload();
-                }
-            },
-
-            maxXP: function() {
-                (this as any).unlockAll();
-                localStorage.setItem('novicodes_daily_quest_xp', '2500');
-                localStorage.setItem('novicodes_streak_bonus_xp', '1000');
-                console.log('%c⚡ [NoviCodes DevKit] Max XP and Grand Master rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
-            },
-
-            status: function() {
-                const stats = getUserXPAndRank();
-                const isDev = localStorage.getItem('practice_mode_unlocked') === 'true';
-                console.log('%c📊 [NoviCodes Status Report]', 'color: #3b82f6; font-weight: 800; font-size: 14px;');
-                console.table({
-                    'Dev Mode Unlocked': isDev ? 'YES' : 'NO',
-                    'Total XP': stats.totalXP.toLocaleString() + ' / ' + stats.maxXP.toLocaleString() + ' XP',
-                    'Rank': stats.rankTitle + ' ' + stats.rankIcon,
-                    'Level 0 (History)': stats.isL0 ? 'Completed' : 'Pending',
-                    'Level 1 (HTML)': stats.isL1 ? 'Completed' : 'Pending',
-                    'Level 2 (CSS)': stats.isL2 ? 'Completed' : 'Pending',
-                    'Level 3 (JS)': stats.isL3 ? 'Completed' : 'Pending',
-                    'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
-                    'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
-                    'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
-                    'Level 7 (Mastery Dojo)': `${stats.l7Completed}/40 Lessons (A:${stats.l7BranchA}/6, B:${stats.l7BranchB}/6, C:${stats.l7BranchC}/6, D:${stats.l7BranchD}/12, E:${stats.l7BranchE}/10)`,
-                    'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Lessons`,
-                    'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Lessons`,
-                    'Level 10 (SaaS Dashboard UI)': `${stats.l10Completed || 0}/6 Lessons`
-                });
-            }
-        };
-
-        function initDevKitShortcuts() {
-            if ((window as any)._novicodes_devkit_installed) return;
-            (window as any)._novicodes_devkit_installed = true;
-
-            let isToggling = false;
-
-            // 1. Five rapid clicks on navbar logo (or logo icon/title)
-            const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand, .logo-icon, .logo-text');
-            let logoClicks = 0;
-            let logoClickTimer: any = null;
-
-            logos.forEach(logo => {
-                logo.addEventListener('click', (e) => {
-                    logoClicks++;
-
-                    if (logoClicks > 1 && logoClicks < 5) {
-                        // Prevent link navigation during rapid tapping sequence
-                        e.preventDefault();
-                        if (logoClickTimer) clearTimeout(logoClickTimer);
-                        logoClickTimer = setTimeout(() => {
-                            logoClicks = 0;
-                        }, 1200);
-                    } else if (logoClicks >= 5) {
-                        // 5 Rapid Clicks Reached! Prevent navigation and trigger Dev Mode toggle
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (logoClickTimer) clearTimeout(logoClickTimer);
-                        logoClicks = 0;
-
-                        if (isToggling) return;
-                        isToggling = true;
-                        setTimeout(() => { isToggling = false; }, 800);
-
-                        const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-                        if (isCurrentlyUnlocked) {
-                            (window as any).NoviCodes.lockAll();
-                        } else {
-                            (window as any).NoviCodes.unlockAll();
-                        }
-                    } else {
-                        // First click: wait 350ms before clearing counter if no second click follows
-                        if (logoClickTimer) clearTimeout(logoClickTimer);
-                        logoClickTimer = setTimeout(() => {
-                            logoClicks = 0;
-                        }, 1200);
-                    }
-                });
-            });
-
-            // 2. Keyboard shortcut Ctrl + Alt + D
-            window.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D' || e.code === 'KeyD')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (isToggling) return;
-                    isToggling = true;
-                    setTimeout(() => { isToggling = false; }, 800);
-
-                    const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
-                    if (isCurrentlyUnlocked) {
-                        (window as any).NoviCodes.lockAll();
-                    } else {
-                        (window as any).NoviCodes.unlockAll();
-                    }
-                }
-            }, { capture: true });
-        }
-
-        // Initialize keyboard shortcuts & triggers
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => initDevKitShortcuts());
-        } else {
-            initDevKitShortcuts();
-        }
-    }
-
-    // Hydrate all user stats badges on page load & listen for real-time events
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => updateAllHeaderStats());
-    } else {
-        updateAllHeaderStats();
-    }
-
-    // Real-time event listeners for instant reactive sync
-    window.addEventListener('novicodes:xp_updated', () => updateAllHeaderStats());
-    window.addEventListener('storage', () => updateAllHeaderStats());
-    window.addEventListener('pageshow', () => updateAllHeaderStats());
+ import { getUserXPAndRank, updateAllHeaderStats } from '../scripts/xpEngine';
+
+ declare global {
+ interface Window {
+ openUserProfileModal: () => void;
+ openCertificateHub: () => void;
+ openDojoHub: () => void;
+ openStreakModal: () => void;
+ showCertLockWarning: (title: string, completedCount: number, maxCount: number) => void;
+ confirmResetProgress: () => void;
+ getUserXPAndRank: typeof getUserXPAndRank;
+ updateHeaderStats: typeof updateAllHeaderStats;
+ Swal: any;
+ }
+ }
+
+ window.getUserXPAndRank = getUserXPAndRank;
+ window.updateHeaderStats = updateAllHeaderStats;
+
+ // ── 1. Learner Profile & Developer Rank Modal ──
+ window.openUserProfileModal = function() {
+ const stats = getUserXPAndRank();
+ const progressPct = Math.min(Math.round((stats.totalXP / stats.maxXP) * 100), 100);
+
+ const ranks = [
+ { title: 'Web Explorer', level: 'Level 00 • Web Architecture' },
+ { title: 'Code Apprentice', level: 'Levels 01–03 • HTML, CSS & JS' },
+ { title: 'DOM Challenger', level: 'Level 04 • JS Widget Dojo' },
+ { title: 'React Engineer', level: 'Level 05 • React Component Dojo' },
+ { title: 'Python Backend Engineer', level: 'Level 06 • Python Backend Basics' },
+ { title: 'Principal Polymath', level: 'Level 07 • Specialized Tracks' },
+ { title: 'Async UI Specialist', level: 'Level 08 • Async UI & Loading' },
+ { title: 'React Auth Specialist', level: 'Level 09 • User Logins & Auth' },
+ { title: 'Master Web Developer', level: 'Level 10 • SaaS Dashboard UI' }
+ ];
+
+ const currentRankTitle = stats.rankTitle;
+
+ const rankLadderHTML = ranks.map((r, idx) => {
+ const isCurrent = currentRankTitle === r.title || 
+ (r.title === 'DOM Challenger' && currentRankTitle === 'Dojo Master') ||
+ (r.title === 'React Engineer' && currentRankTitle === 'Fullstack Master') ||
+ (r.title === 'Principal Polymath' && ['Cloud Specialist', 'Database Architect', 'Next.js Engineer', 'TypeScript Specialist', 'CSS Motion Specialist', 'Principal Polymath'].includes(currentRankTitle)) ||
+ (r.title === 'Async UI Specialist' && ['Async UI Specialist', 'API Integration Specialist'].includes(currentRankTitle)) ||
+ (r.title === 'React Auth Specialist' && ['React Auth Specialist', 'Security Engineer'].includes(currentRankTitle)) ||
+ (r.title === 'Master Web Developer' && ['Master Web Developer', 'SaaS UI Architect'].includes(currentRankTitle));
+ 
+ const bg = isCurrent ? 'background: var(--card-bg, #FFFFFF); border: 1px solid var(--accent-oxide, #A33B24);' : 'background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6);';
+ const badgeStyle = isCurrent ? 'background: var(--accent-oxide, #A33B24); color: #F8F6F1;' : 'background: var(--border-hairline, #E5E1D8); color: var(--text-muted, #686760);';
+ const badgeText = isCurrent ? 'ACTIVE' : 'LOCKED';
+
+ return `
+ <div style="${bg} padding: 8px 12px; border-radius: 2px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+ <div style="text-align: left;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${r.level}</div>
+ <div style="font-weight: 600; font-size: 0.88rem; color: ${isCurrent ? 'var(--accent-oxide, #A33B24)' : 'var(--text-title, #20211F)'};">${r.title}</div>
+ </div>
+ <span style="${badgeStyle} font-family: var(--font-mono, monospace); font-size: 0.68rem; font-weight: 600; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">${badgeText}</span>
+ </div>
+ `;
+ }).join('');
+
+ if (typeof window.Swal !== 'undefined') {
+ window.Swal.fire({
+ title: 'Learner Profile & Curriculum Record',
+ html: `
+ <div style="font-family: var(--font-sans, sans-serif); text-align: center; max-width: 100%; box-sizing: border-box;">
+ 
+ <!-- Rank Banner -->
+ <div style="background: var(--carbon, #20211F); color: #F8F6F1; padding: 18px 16px; border-radius: 2px; margin-bottom: 16px; border: 1px solid var(--border-subtle, #D5D0C6); text-align: left;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #BAB4A6; text-transform: uppercase; letter-spacing: 0.05em;">DEVELOPER RANK // VERIFIED STATUS</div>
+ <div style="font-family: var(--font-serif, serif); font-size: 1.45rem; font-weight: 500; margin: 2px 0 6px 0; color: #FFFFFF;">${stats.rankTitle}</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; color: #D5D0C6;">TOTAL BOUNTY: ${stats.totalXP.toLocaleString()} / ${stats.maxXP.toLocaleString()} XP (${progressPct}%)</div>
+ 
+ <!-- Progress Bar -->
+ <div style="background: rgba(255,255,255,0.15); height: 4px; border-radius: 2px; margin-top: 12px; overflow: hidden;">
+ <div style="background: var(--accent-oxide, #A33B24); height: 100%; width: ${progressPct}%; transition: width 0.4s ease;"></div>
+ </div>
+ </div>
+
+ <!-- Section: Breakdown Grid -->
+ <div style="text-align: left; margin-bottom: 8px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em;">
+ 01 / CURRICULUM LEVEL BREAKDOWN
+ </div>
+ </div>
+
+ <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 00: Web Architecture</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.isL0 ? '250 / 250 XP' : '0 / 250 XP'}</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Levels 01–03: Foundations</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${((stats.isL1 ? 300 : 0) + (stats.isL2 ? 300 : 0) + (stats.isL3 ? 400 : 0))} / 1,000 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 04: JS Widget Dojo</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l4Completed * 100} / 1,500 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 05: React Component Dojo</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l5Completed * 150} / 2,250 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 06: Python Backend Basics</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.l6Completed * 200} / 3,000 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 07: Specialized Tracks</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l7XP || 0).toLocaleString()} / 7,800 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 08: Async UI & Skeletons</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l8Completed || 0) * 250} / 1,500 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 09: User Logins & Auth</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l9Completed || 0) * 250} / 1,500 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 10: SaaS Dashboard UI</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l10Completed || 0) * 500} / 3,000 XP</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px; grid-column: 1 / -1;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Daily Exercises & Retention Streaks</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">+${(stats.dailyQuestXP + stats.streakBonusXP).toLocaleString()} XP (${stats.streakCount}-Day Streak)</div>
+ </div>
+ </div>
+
+ <!-- Section: Rank Progression Roadmap -->
+ <div style="text-align: left; margin-bottom: 16px;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+ 02 / DEVELOPER RANK PROGRESSION
+ </div>
+ <div style="display: flex; flex-direction: column; gap: 6px;">
+ ${rankLadderHTML}
+ </div>
+ </div>
+
+ <!-- Section: Creator Support Card -->
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; margin-bottom: 16px; text-align: left;">
+ <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px;">
+ <span style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--accent-oxide, #A33B24); text-transform: uppercase;">
+ 03 / SUSTAINING THE OPEN ACCESS PROJECT
+ </span>
+ <span style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">
+ 100% Free & Ad-Free
+ </span>
+ </div>
+ <p style="font-size: 0.84rem; color: var(--text-body, #20211F); margin: 0 0 12px 0; line-height: 1.5;">
+ NoviCodes is an independent, ad-free learning resource. If these 103 hands-on lessons help your engineering path, consider supporting hosting and authoring:
+ </p>
+ <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+ <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 130px; background: var(--card-bg, #FFFFFF); color: var(--text-title, #20211F); text-decoration: none; padding: 8px 12px; border-radius: 2px; border: 1px solid var(--border-subtle, #D5D0C6); font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+ <span>SUPPORT // KO-FI (GLOBAL) →</span>
+ </a>
+ <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 130px; background: var(--card-bg, #FFFFFF); color: var(--text-title, #20211F); text-decoration: none; padding: 8px 12px; border-radius: 2px; border: 1px solid var(--border-subtle, #D5D0C6); font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+ <span>SUPPORT // TRAKTEER (IDR) →</span>
+ </a>
+ </div>
+ </div>
+
+ <!-- Reset Progress Action -->
+ <div style="border-top: 1px solid var(--border-hairline, #E5E1D8); padding-top: 12px; text-align: center;">
+ <button onclick="window.confirmResetProgress()" style="background: transparent; border: 1px solid var(--border-subtle, #D5D0C6); color: var(--accent-oxide, #A33B24); padding: 6px 14px; border-radius: 2px; font-family: var(--font-mono, monospace); font-weight: 600; font-size: 0.74rem; cursor: pointer; text-transform: uppercase;">
+ [ RESET PROGRESS DATA ]
+ </button>
+ </div>
+ </div>
+ `,
+ showConfirmButton: false,
+ showCloseButton: true,
+ customClass: {
+ popup: 'responsive-profile-modal'
+ }
+ });
+ }
+ };
+
+ // ── 2. Proof-of-Work Certificates Modal (Universal) ──
+ window.openCertificateHub = function() {
+ const stats = getUserXPAndRank();
+ const isUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+
+ const isL4Earned = isUnlocked || stats.l4Completed >= 15;
+ const isL5Earned = isUnlocked || stats.l5Completed >= 15;
+ const isL6Earned = isUnlocked || stats.l6Completed >= 15;
+ const isL7Earned = isUnlocked || (stats.l7BranchA >= 6 || stats.l7BranchB >= 6 || stats.l7BranchC >= 6 || stats.l7Completed >= 6);
+ const isL8Earned = isUnlocked || (stats.l8Completed || 0) >= 6;
+ const isL9Earned = isUnlocked || (stats.l9Completed || 0) >= 6;
+ const isL10Earned = isUnlocked || (stats.l10Completed || 0) >= 6;
+
+ const renderCertItem = (title: string, sub: string, url: string, isEarned: boolean, completedCount: number, maxCount: number) => {
+ if (isEarned) {
+ return `
+ <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
+ <div style="text-align: left; flex: 1;">
+ <div style="font-weight: 600; font-size: 0.90rem;">${title}</div>
+ <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
+ </div>
+ <span class="badge-action" style="font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; color: var(--accent-oxide, #A33B24);">VIEW &rarr;</span>
+ </a>
+ `;
+ } else {
+ return `
+ <div onclick="window.showCertLockWarning('${title}', ${completedCount}, ${maxCount})" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px dashed var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: var(--text-muted, #686760); transition: all 0.15s ease;">
+ <div style="text-align: left; flex: 1;">
+ <div style="font-weight: 600; font-size: 0.90rem; color: var(--text-muted, #686760);">${title}</div>
+ <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub} • ${completedCount}/${maxCount} COMPLETED</div>
+ </div>
+ <span class="badge-action" style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); background: var(--border-hairline, #E5E1D8); padding: 2px 6px; border-radius: 2px;">LOCKED</span>
+ </div>
+ `;
+ }
+ };
+
+ const l4Item = renderCertItem('Level 04 Certificate', 'DOM & Vanilla JavaScript Widgets', '/2. partB/certificate.html', isL4Earned, stats.l4Completed, 15);
+ const l5Item = renderCertItem('Level 05 Certificate', 'React Component Architecture', '/3. partC/certificate.html', isL5Earned, stats.l5Completed, 15);
+ const l6Item = renderCertItem('Level 06 Certificate', 'Python Backend & REST APIs', '/5. partE/certificate.html', isL6Earned, stats.l6Completed, 15);
+ const l7Item = renderCertItem('Level 07 Certificate', 'Specialized Developer Tracks', '/6. partF/certificate.html', isL7Earned, stats.l7Completed, 6);
+ const l8Item = renderCertItem('Level 08 Certificate', 'Async UI & Loading States', '/7. partG/certificate.html', isL8Earned, stats.l8Completed || 0, 6);
+ const l9Item = renderCertItem('Level 09 Certificate', 'User Logins & Private Member Pages', '/8. partH/certificate.html', isL9Earned, stats.l9Completed || 0, 6);
+ const l10Item = renderCertItem('Level 10 Certificate', 'Modern SaaS Dashboard UI', '/9. partI/certificate.html', isL10Earned, stats.l10Completed || 0, 6);
+
+ if (typeof window.Swal !== 'undefined') {
+ window.Swal.fire({
+ title: 'Proof-of-Work Certificates',
+ customClass: {
+ popup: 'responsive-profile-modal responsive-cert-hub-modal'
+ },
+ html: `
+ <div style="text-align: center; font-family: var(--font-sans, sans-serif); padding: 6px 0;">
+ <p style="color: var(--text-muted, #686760); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
+ Select an unlocked milestone to view, print, or download your official Proof of Work:
+ </p>
+ 
+ <div style="display: flex; flex-direction: column; gap: 8px;">
+ ${l4Item}
+ ${l5Item}
+ ${l6Item}
+ ${l7Item}
+ ${l8Item}
+ ${l9Item}
+ ${l10Item}
+ </div>
+ </div>
+ `,
+ showConfirmButton: false,
+ showCloseButton: true
+ });
+ } else {
+ window.location.href = isL10Earned ? '/9. partI/certificate.html' : '/2. partB/certificate.html';
+ }
+ };
+
+ // ── 3. Certificate Lock Warning Modal ──
+ window.showCertLockWarning = function(title: string, completedCount: number, maxCount: number) {
+ if (typeof window.Swal !== 'undefined') {
+ window.Swal.fire({
+ title: `${title} Locked`,
+ html: `
+ <div style="font-family: var(--font-sans, sans-serif); text-align: center;">
+ <p style="color: var(--text-muted, #686760); font-size: 0.90rem; line-height: 1.5; margin-bottom: 12px;">
+ Complete all lessons in <strong>${title}</strong> to unlock your verified Certificate of Mastery.
+ </p>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.80rem; font-weight: 600; color: var(--accent-oxide, #A33B24); background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 6px 12px; border-radius: 2px; display: inline-block;">
+ PROGRESS: ${completedCount} / ${maxCount} LESSONS COMPLETED
+ </div>
+ </div>
+ `,
+ confirmButtonColor: '#A33B24',
+ confirmButtonText: 'CLOSE',
+ showCloseButton: true,
+ customClass: {
+ popup: 'responsive-profile-modal'
+ }
+ });
+ }
+ };
+
+ // ── 4. Practical Dojo Level Selection Hub Modal ──
+ window.openDojoHub = function() {
+ const rawPath = decodeURIComponent(window.location.pathname).toLowerCase();
+ const isL4 = rawPath.includes('partb/hub.html') || rawPath.includes('2. partb/hub.html');
+ const isL5 = rawPath.includes('partc/hub.html') || rawPath.includes('3. partc/hub.html');
+ const isL6 = rawPath.includes('parte/hub.html') || rawPath.includes('5. parte/hub.html');
+ const isL7 = rawPath.includes('partf/hub.html') || rawPath.includes('6. partf/hub.html');
+ const isL8 = rawPath.includes('partg/hub.html') || rawPath.includes('7. partg/hub.html');
+ const isL9 = rawPath.includes('parth/hub.html') || rawPath.includes('8. parth/hub.html');
+ const isL10 = rawPath.includes('parti/hub.html') || rawPath.includes('9. parti/hub.html');
+
+ let activeL4 = 1;
+ for (let i = 1; i <= 15; i++) {
+ if (localStorage.getItem(`partB_lesson${i}_remake_complete`) === 'true') {
+ activeL4 = Math.min(i + 1, 15);
+ }
+ }
+
+ let activeL5 = 1;
+ for (let i = 1; i <= 15; i++) {
+ if (localStorage.getItem(`partC_lesson${i}_remake_complete`) === 'true') {
+ activeL5 = Math.min(i + 1, 15);
+ }
+ }
+
+ let activeL6 = 1;
+ for (let i = 1; i <= 15; i++) {
+ if (localStorage.getItem(`partE_lesson${i}_remake_complete`) === 'true') {
+ activeL6 = Math.min(i + 1, 15);
+ }
+ }
+
+ let activeL8 = 1;
+ for (let i = 1; i <= 6; i++) {
+ if (localStorage.getItem(`partG_lesson${i}_remake_complete`) === 'true') {
+ activeL8 = Math.min(i + 1, 6);
+ }
+ }
+
+ let activeL9 = 1;
+ for (let i = 1; i <= 6; i++) {
+ if (localStorage.getItem(`partH_lesson${i}_remake_complete`) === 'true') {
+ activeL9 = Math.min(i + 1, 6);
+ }
+ }
+
+ let activeL10 = 1;
+ for (let i = 1; i <= 6; i++) {
+ if (localStorage.getItem(`partI_lesson${i}_remake_complete`) === 'true') {
+ activeL10 = Math.min(i + 1, 6);
+ }
+ }
+
+ const renderDojoItem = (title: string, sub: string, url: string, isActive: boolean) => {
+ if (isActive) {
+ return `
+ <div onclick="if(typeof Swal !== 'undefined') Swal.close()" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 2px solid var(--accent-oxide, #A33B24); padding: 12px 16px; border-radius: 2px; cursor: pointer; color: #20211F; transition: all 0.15s ease;">
+ <div style="text-align: left; flex: 1;">
+ <div style="font-weight: 600; font-size: 0.90rem; color: var(--accent-oxide, #A33B24);">${title}</div>
+ <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
+ </div>
+ <span class="badge-action" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.72rem; background: var(--border-hairline, #E5E1D8); padding: 2px 6px; border-radius: 2px;">CURRENT PAGE</span>
+ </div>
+ `;
+ }
+ return `
+ <a href="${url}" class="hub-modal-card" style="display: flex; align-items: center; justify-content: space-between; background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 12px 16px; border-radius: 2px; text-decoration: none; color: #20211F; transition: all 0.15s ease;">
+ <div style="text-align: left; flex: 1;">
+ <div style="font-weight: 600; font-size: 0.90rem;">${title}</div>
+ <div style="font-size: 0.74rem; font-family: var(--font-mono, monospace); color: var(--text-muted, #686760);">${sub}</div>
+ </div>
+ <span class="badge-action" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.76rem;">ENTER HUB &rarr;</span>
+ </a>
+ `;
+ };
+
+ const itemL4 = renderDojoItem('Level 04: DOM Interactivity Dojo', `15 PROJECTS • ACTIVE LESSON ${activeL4}`, '/2. partB/hub.html', isL4);
+ const itemL5 = renderDojoItem('Level 05: React Component Dojo', `15 PROJECTS • ACTIVE LESSON ${activeL5}`, '/3. partC/hub.html', isL5);
+ const itemL6 = renderDojoItem('Level 06: Python Backend Basics', `15 PROJECTS • ACTIVE LESSON ${activeL6}`, '/5. partE/hub.html', isL6);
+ const itemL7 = renderDojoItem('Level 07: Specialized Tracks', '5 TRACKS • CLOUD, SQL, NEXT.JS, TS, MOTION', '/6. partF/hub.html', isL7);
+ const itemL8 = renderDojoItem('Level 08: Async UI & Skeletons', '6 HANDS-ON PROJECTS', '/7. partG/hub.html', isL8);
+ const itemL9 = renderDojoItem('Level 09: User Logins & Auth', '6 HANDS-ON PROJECTS', '/8. partH/hub.html', isL9);
+ const itemL10 = renderDojoItem('Level 10: SaaS Dashboard UI', '6 HANDS-ON PROJECTS', '/9. partI/hub.html', isL10);
+
+ if (typeof window.Swal !== 'undefined') {
+ window.Swal.fire({
+ title: 'Curriculum Workbench Hub',
+ customClass: {
+ popup: 'responsive-profile-modal responsive-cert-hub-modal'
+ },
+ html: `
+ <div style="text-align: center; font-family: var(--font-sans, sans-serif); padding: 6px 0;">
+ <p style="color: var(--text-muted, #686760); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5;">
+ Select a practical workbench level to begin coding:
+ </p>
+ 
+ <div style="display: flex; flex-direction: column; gap: 8px;">
+ ${itemL4}
+ ${itemL5}
+ ${itemL6}
+ ${itemL7}
+ ${itemL8}
+ ${itemL9}
+ ${itemL10}
+ </div>
+ </div>
+ `,
+ showConfirmButton: false,
+ showCloseButton: true
+ });
+ }
+ };
+
+ // ── 5. Daily Coding Streak & Rewards Modal (Universal) ──
+ window.openStreakModal = function() {
+ const stats = getUserXPAndRank();
+ const streakCount = stats.streakCount;
+ const todayStr = new Date().toISOString().split('T')[0];
+ const isTodayCompleted = localStorage.getItem(`quest_completed_${todayStr}`) === 'true';
+
+ const milestones = [
+ { days: 3, xp: 100, title: '3-Day Retention Milestone', sub: '3 consecutive daily exercises' },
+ { days: 7, xp: 250, title: '7-Day Retention Milestone', sub: '7 consecutive daily exercises' },
+ { days: 14, xp: 500, title: '14-Day Retention Milestone', sub: '14 consecutive daily exercises' }
+ ];
+
+ const milestonesHTML = milestones.map((m, idx) => {
+ const isUnlocked = streakCount >= m.days;
+ const bg = isUnlocked ? 'background: var(--card-bg, #FFFFFF); border: 1px solid var(--border-dark, #BAB4A6);' : 'background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6);';
+ const badgeBg = isUnlocked ? 'background: var(--accent-slate, #314C52); color: #F8F6F1;' : 'background: var(--border-hairline, #E5E1D8); color: var(--text-muted, #686760);';
+
+ return `
+ <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; ${bg} border-radius: 2px;">
+ <div style="text-align: left;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${m.days}-DAY GOAL</div>
+ <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-title, #20211F);">${m.title}</div>
+ <div style="font-size: 0.74rem; color: var(--text-muted, #686760);">${m.sub}</div>
+ </div>
+ <span style="${badgeBg} font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">
+ ${isUnlocked ? 'CLAIMED' : `+${m.xp} XP`}
+ </span>
+ </div>
+ `;
+ }).join('');
+
+ if (typeof window.Swal !== 'undefined') {
+ window.Swal.fire({
+ title: 'Daily Retention Streak & Milestones',
+ customClass: {
+ popup: 'responsive-profile-modal responsive-streak-modal'
+ },
+ showCloseButton: true,
+ html: `
+ <div style="font-family: var(--font-sans, sans-serif); text-align: left;">
+ 
+ <!-- 2-Column Streak Stats -->
+ <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--accent-oxide, #A33B24); text-transform: uppercase; letter-spacing: 0.04em;">CURRENT STREAK</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${streakCount} DAYS</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">${isTodayCompleted ? 'COMPLETED TODAY' : 'PENDING TODAY'}</div>
+ </div>
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 14px; text-align: center;">
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.04em;">LONGEST STREAK</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 1.8rem; font-weight: 600; color: var(--text-title, #20211F); margin: 2px 0;">${Math.max(streakCount, parseInt(localStorage.getItem('novicodes_longest_streak') || '0', 10))} DAYS</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">PERSONAL RECORD</div>
+ </div>
+ </div>
+
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 600; color: var(--text-muted, #686760); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+ 01 / MILESTONE BOUNTIES
+ </div>
+ <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+ ${milestonesHTML}
+ </div>
+
+ <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); border-radius: 2px; padding: 10px 14px; font-family: var(--font-mono, monospace); font-size: 0.74rem; color: var(--text-muted, #686760); text-align: center; text-transform: uppercase; letter-spacing: 0.03em;">
+ STREAK SAVER // Complete 1 daily exercise every 24 hours to maintain your progression.
+ </div>
+ </div>
+ `,
+ confirmButtonText: 'CONTINUE →',
+ confirmButtonColor: '#A33B24'
+ });
+ }
+ };
+
+ // ── 6. Course Progress Reset Confirmation Modal ──
+ window.confirmResetProgress = function() {
+ if (typeof (window as any).Swal !== 'undefined') {
+ (window as any).Swal.fire({
+ title: 'Reset All Course Progress?',
+ html: `
+ <div style="font-family: var(--font-sans, sans-serif); text-align: left;">
+ <p style="color: var(--text-body, #20211F); font-size: 0.90rem; line-height: 1.6; margin-bottom: 12px;">
+ This operation resets your <strong>XP back to 0</strong>, clears your <strong>Daily Streaks & Bounties</strong>, and resets all completed lesson checkmarks across <strong>Levels 00 through 10</strong>.
+ </p>
+ <div style="background: #FDF2F0; border: 1px solid var(--accent-oxide, #A33B24); padding: 10px 12px; border-radius: 2px; font-family: var(--font-mono, monospace); font-weight: 600; color: var(--accent-oxide, #A33B24); font-size: 0.76rem; text-transform: uppercase;">
+ CAUTION: This action cannot be reversed.
+ </div>
+ </div>
+ `,
+ showCancelButton: true,
+ confirmButtonColor: '#A33B24',
+ cancelButtonColor: '#314C52',
+ confirmButtonText: 'CONFIRM RESET',
+ cancelButtonText: 'CANCEL',
+ showCloseButton: true,
+ customClass: {
+ popup: 'responsive-profile-modal'
+ }
+ }).then((result: any) => {
+ if (result.isConfirmed) {
+ localStorage.clear();
+ sessionStorage.clear();
+ updateAllHeaderStats();
+ window.location.reload();
+ }
+ });
+ }
+ };
+
+ // ── 7. Universal Developer Toolkit & Shortcuts (Local Development Only) ──
+ if (import.meta.env.DEV) {
+ (window as any).NoviCodes = {
+ unlockAll: function() {
+ localStorage.setItem('practice_mode_unlocked', 'true');
+ localStorage.setItem('level0_completed', 'true');
+ localStorage.setItem('readWebsite', 'true');
+ localStorage.setItem('readHTML', 'true');
+ localStorage.setItem('readCSS', 'true');
+ localStorage.setItem('readJavaScript', 'true');
+ localStorage.setItem('level0_quiz_completed', 'true');
+ localStorage.setItem('level1_completed', 'true');
+ localStorage.setItem('level2_completed', 'true');
+ localStorage.setItem('level3_completed', 'true');
+ localStorage.setItem('level4_completed', 'true');
+ localStorage.setItem('level5_completed', 'true');
+ localStorage.setItem('level6_completed', 'true');
+ localStorage.setItem('level7_completed', 'true');
+ localStorage.setItem('level8_completed', 'true');
+ localStorage.setItem('level9_completed', 'true');
+ localStorage.setItem('level10_completed', 'true');
+
+ // Advanced Foundations (L5 - L10)
+ localStorage.setItem('foundations_react_completed', 'true');
+ localStorage.setItem('foundations_python_completed', 'true');
+ localStorage.setItem('foundations_cloud_completed', 'true');
+ localStorage.setItem('foundations_sql_completed', 'true');
+ localStorage.setItem('foundations_nextjs_completed', 'true');
+ localStorage.setItem('foundations_typescript_completed', 'true');
+ localStorage.setItem('foundations_cssmotion_completed', 'true');
+ localStorage.setItem('foundations_async_completed', 'true');
+ localStorage.setItem('foundations_auth_completed', 'true');
+ localStorage.setItem('foundations_saas_completed', 'true');
+
+ localStorage.setItem('partF_completed', 'true');
+ localStorage.setItem('partF_branchA_completed', 'true');
+ localStorage.setItem('partF_branchB_completed', 'true');
+ localStorage.setItem('partF_branchC_completed', 'true');
+ localStorage.setItem('partF_branchD_completed', 'true');
+ localStorage.setItem('partF_branchE_completed', 'true');
+ localStorage.setItem('partG_completed', 'true');
+ localStorage.setItem('partH_completed', 'true');
+ localStorage.setItem('partI_completed', 'true');
+
+ for (let i = 1; i <= 15; i++) {
+ localStorage.setItem(`partB_lesson${i}_remake_complete`, 'true');
+ localStorage.setItem(`partC_lesson${i}_remake_complete`, 'true');
+ localStorage.setItem(`partE_lesson${i}_remake_complete`, 'true');
+ }
+
+ for (let i = 1; i <= 6; i++) {
+ localStorage.setItem(`partF_branchA_lesson${i}_complete`, 'true');
+ localStorage.setItem(`partF_branchB_lesson${i}_complete`, 'true');
+ localStorage.setItem(`partF_branchC_lesson${i}_complete`, 'true');
+ localStorage.setItem(`partG_lesson${i}_remake_complete`, 'true');
+ localStorage.setItem(`partH_lesson${i}_remake_complete`, 'true');
+ localStorage.setItem(`partI_lesson${i}_remake_complete`, 'true');
+ }
+
+ for (let i = 1; i <= 12; i++) {
+ localStorage.setItem(`partF_branchD_lesson${i}_complete`, 'true');
+ }
+
+ for (let i = 1; i <= 10; i++) {
+ localStorage.setItem(`partF_branchE_lesson${i}_complete`, 'true');
+ }
+
+ console.log('%c [NoviCodes DevKit] All 10 Levels, 13 Tracks, 103 Lessons, and 7 Certificates UNLOCKED!', 'color: #10b981; font-weight: 800; font-size: 14px;');
+ updateAllHeaderStats();
+ window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+
+ if (typeof (window as any).Swal !== 'undefined') {
+ (window as any).Swal.fire({
+ icon: 'success',
+ title: 'Dev Mode: All Content Unlocked',
+ html: `
+ <div style="text-align: center; font-family: var(--font-sans, sans-serif);">
+ <p style="color: var(--text-body, #20211F); margin-bottom: 14px; font-size: 0.90rem; line-height: 1.5;">
+ All <strong>13 Foundation Tracks</strong>, <strong>103 Real Lessons</strong>, and <strong>7 Official Certificates</strong> are now unlocked for testing.
+ </p>
+ <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; background: var(--canvas-base, #F1EEE7); color: #2F5233; border: 1px solid var(--border-subtle, #D5D0C6); padding: 4px 10px; border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+ 25,000 / 25,000 Total XP (Master Web Developer)
+ </span>
+ </div>
+ `,
+ confirmButtonColor: '#A33B24',
+ confirmButtonText: 'Reload to Apply →',
+ showCancelButton: true,
+ cancelButtonText: 'Stay on Current Page',
+ allowOutsideClick: true,
+ allowEscapeKey: true
+ }).then((res: any) => {
+ if (res.isConfirmed) {
+ window.location.reload();
+ }
+ });
+ } else {
+ window.location.reload();
+ }
+ },
+
+ lockAll: function() {
+ // 1. Reset Dev Unlock Flag
+ localStorage.removeItem('practice_mode_unlocked');
+ localStorage.removeItem('progression_mode');
+
+ // 2. Reset User XP & Streaks
+ localStorage.removeItem('userXP');
+ localStorage.removeItem('novicodes_user_xp');
+ localStorage.removeItem('novicodes_xp');
+ localStorage.removeItem('novicodes_streak_count');
+ localStorage.removeItem('novicodes_longest_streak');
+ localStorage.removeItem('novicodes_last_quest_date');
+ localStorage.removeItem('novicodes_daily_quest_xp');
+ localStorage.removeItem('novicodes_streak_bonus_xp');
+ localStorage.removeItem('novicodes_streak_freeze');
+
+ // 3. Reset Level Completion & Concept Flags (Levels 0–10)
+ localStorage.removeItem('level0_completed');
+ localStorage.removeItem('level0_quiz_completed');
+ localStorage.removeItem('level0_quiz_score');
+ localStorage.removeItem('readWebsite');
+ localStorage.removeItem('readHTML');
+ localStorage.removeItem('readCSS');
+ localStorage.removeItem('readJavaScript');
+ localStorage.removeItem('level1_completed');
+ localStorage.removeItem('level2_completed');
+ localStorage.removeItem('level3_completed');
+ localStorage.removeItem('level4_completed');
+ localStorage.removeItem('level5_completed');
+ localStorage.removeItem('level6_completed');
+ localStorage.removeItem('level7_completed');
+ localStorage.removeItem('level8_completed');
+ localStorage.removeItem('level9_completed');
+ localStorage.removeItem('level10_completed');
+
+ // Reset Advanced Foundations Keys
+ localStorage.removeItem('foundations_react_completed');
+ localStorage.removeItem('foundations_python_completed');
+ localStorage.removeItem('foundations_cloud_completed');
+ localStorage.removeItem('foundations_sql_completed');
+ localStorage.removeItem('foundations_nextjs_completed');
+ localStorage.removeItem('foundations_typescript_completed');
+ localStorage.removeItem('foundations_async_completed');
+ localStorage.removeItem('foundations_typescript_completed');
+ localStorage.removeItem('foundations_cssmotion_completed');
+ localStorage.removeItem('foundations_async_completed');
+ localStorage.removeItem('foundations_auth_completed');
+ localStorage.removeItem('foundations_saas_completed');
+
+ // 4. Reset Track Completion Flags (Levels 7–10)
+ localStorage.removeItem('partF_completed');
+ localStorage.removeItem('partF_complete');
+ localStorage.removeItem('partF_branchA_completed');
+ localStorage.removeItem('partF_branchA_complete');
+ localStorage.removeItem('partF_branchB_completed');
+ localStorage.removeItem('partF_branchB_complete');
+ localStorage.removeItem('partF_branchC_completed');
+ localStorage.removeItem('partF_branchC_complete');
+ localStorage.removeItem('partF_branchD_completed');
+ localStorage.removeItem('partF_branchD_complete');
+ localStorage.removeItem('partF_branchE_completed');
+ localStorage.removeItem('partF_branchE_complete');
+ localStorage.removeItem('partG_completed');
+ localStorage.removeItem('partG_complete');
+ localStorage.removeItem('partH_completed');
+ localStorage.removeItem('partH_complete');
+ localStorage.removeItem('partI_completed');
+ localStorage.removeItem('partI_complete');
+
+ // 5. Reset Lessons (Levels 4–6)
+ for (let i = 1; i <= 20; i++) {
+ localStorage.removeItem(`partB_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partB_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partB_lesson${i}_draft`);
+ localStorage.removeItem(`partC_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partC_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partC_lesson${i}_draft`);
+ localStorage.removeItem(`partE_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partE_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partE_lesson${i}_draft`);
+ localStorage.removeItem(`lesson_${i}_completed`);
+ localStorage.removeItem(`lesson_${i}_complete`);
+ }
+
+ // 6. Reset Lessons (Levels 7–10)
+ for (let i = 1; i <= 6; i++) {
+ localStorage.removeItem(`partF_branchA_lesson${i}_complete`);
+ localStorage.removeItem(`partF_branchA_lesson${i}_completed`);
+ localStorage.removeItem(`partF_branchA_lesson${i}_draft`);
+
+ localStorage.removeItem(`partF_branchB_lesson${i}_complete`);
+ localStorage.removeItem(`partF_branchB_lesson${i}_completed`);
+ localStorage.removeItem(`partF_branchB_lesson${i}_draft`);
+
+ localStorage.removeItem(`partF_branchC_lesson${i}_complete`);
+ localStorage.removeItem(`partF_branchC_lesson${i}_completed`);
+ localStorage.removeItem(`partF_branchC_lesson${i}_draft`);
+
+ localStorage.removeItem(`partG_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partG_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partG_lesson${i}_draft`);
+
+ localStorage.removeItem(`partH_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partH_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partH_lesson${i}_draft`);
+
+ localStorage.removeItem(`partI_lesson${i}_remake_complete`);
+ localStorage.removeItem(`partI_lesson${i}_remake_completed`);
+ localStorage.removeItem(`partI_lesson${i}_draft`);
+ }
+
+ for (let i = 1; i <= 12; i++) {
+ localStorage.removeItem(`partF_branchD_lesson${i}_complete`);
+ localStorage.removeItem(`partF_branchD_lesson${i}_completed`);
+ localStorage.removeItem(`partF_branchD_lesson${i}_draft`);
+ localStorage.removeItem(`draft_partF_branchD_lesson${i}`);
+ }
+
+ for (let i = 1; i <= 10; i++) {
+ localStorage.removeItem(`partF_branchE_lesson${i}_complete`);
+ localStorage.removeItem(`partF_branchE_lesson${i}_completed`);
+ localStorage.removeItem(`partF_branchE_lesson${i}_draft`);
+ localStorage.removeItem(`draft_partF_branchE_lesson${i}`);
+ }
+
+ // 7. Reset Certificate Recipient Names
+ localStorage.removeItem('partB_cert_student_name');
+ localStorage.removeItem('partC_cert_student_name');
+ localStorage.removeItem('partE_cert_student_name');
+ localStorage.removeItem('partF_cert_student_name');
+ localStorage.removeItem('partG_cert_student_name');
+ localStorage.removeItem('partH_cert_student_name');
+ localStorage.removeItem('partI_cert_student_name');
+
+ console.log('%c [NoviCodes DevKit] Strict sequential progression & 0 XP RESTORED.', 'color: #ef4444; font-weight: 800; font-size: 14px;');
+ updateAllHeaderStats();
+ window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+
+ if (typeof (window as any).Swal !== 'undefined') {
+ (window as any).Swal.fire({
+ icon: 'info',
+ title: 'Standard Mode Restored',
+ html: `
+ <div style="text-align: center; font-family: var(--font-sans, sans-serif);">
+ <p style="color: var(--text-body, #20211F); margin-bottom: 14px; font-size: 0.90rem; line-height: 1.5;">
+ Strict sequential progression and <strong>0 XP</strong> have been restored across all levels (0–10).
+ </p>
+ </div>
+ `,
+ confirmButtonColor: '#A33B24',
+ confirmButtonText: 'Reload to Apply →',
+ showCancelButton: true,
+ cancelButtonText: 'Stay on Current Page',
+ allowOutsideClick: true,
+ allowEscapeKey: true
+ }).then((res: any) => {
+ if (res.isConfirmed) {
+ window.location.reload();
+ }
+ });
+ } else {
+ window.location.reload();
+ }
+ },
+
+ maxXP: function() {
+ (this as any).unlockAll();
+ localStorage.setItem('novicodes_daily_quest_xp', '2500');
+ localStorage.setItem('novicodes_streak_bonus_xp', '1000');
+ console.log('%c [NoviCodes DevKit] Max XP and Grand Master rank applied!', 'color: #f59e0b; font-weight: 800; font-size: 14px;');
+ },
+
+ status: function() {
+ const stats = getUserXPAndRank();
+ const isDev = localStorage.getItem('practice_mode_unlocked') === 'true';
+ console.log('%c [NoviCodes Status Report]', 'color: #3b82f6; font-weight: 800; font-size: 14px;');
+ console.table({
+ 'Dev Mode Unlocked': isDev ? 'YES' : 'NO',
+ 'Total XP': stats.totalXP.toLocaleString() + ' / ' + stats.maxXP.toLocaleString() + ' XP',
+ 'Rank': stats.rankTitle + ' ' + stats.rankIcon,
+ 'Level 0 (History)': stats.isL0 ? 'Completed' : 'Pending',
+ 'Level 1 (HTML)': stats.isL1 ? 'Completed' : 'Pending',
+ 'Level 2 (CSS)': stats.isL2 ? 'Completed' : 'Pending',
+ 'Level 3 (JS)': stats.isL3 ? 'Completed' : 'Pending',
+ 'Level 4 (DOM Dojo)': `${stats.l4Completed}/15 Lessons`,
+ 'Level 5 (React Dojo)': `${stats.l5Completed}/15 Lessons`,
+ 'Level 6 (Python Dojo)': `${stats.l6Completed}/15 Lessons`,
+ 'Level 7 (Mastery Dojo)': `${stats.l7Completed}/40 Lessons (A:${stats.l7BranchA}/6, B:${stats.l7BranchB}/6, C:${stats.l7BranchC}/6, D:${stats.l7BranchD}/12, E:${stats.l7BranchE}/10)`,
+ 'Level 8 (API Bridge)': `${stats.l8Completed || 0}/6 Lessons`,
+ 'Level 9 (Auth & DB)': `${stats.l9Completed || 0}/6 Lessons`,
+ 'Level 10 (SaaS Dashboard UI)': `${stats.l10Completed || 0}/6 Lessons`
+ });
+ }
+ };
+
+ function initDevKitShortcuts() {
+ if ((window as any)._novicodes_devkit_installed) return;
+ (window as any)._novicodes_devkit_installed = true;
+
+ let isToggling = false;
+
+ // 1. Five rapid clicks on navbar logo (or logo icon/title)
+ const logos = document.querySelectorAll('.platform-logo, .brand-logo, .logo-title, .header-brand, .logo-icon, .logo-text');
+ let logoClicks = 0;
+ let logoClickTimer: any = null;
+
+ logos.forEach(logo => {
+ logo.addEventListener('click', (e) => {
+ logoClicks++;
+
+ if (logoClicks > 1 && logoClicks < 5) {
+ // Prevent link navigation during rapid tapping sequence
+ e.preventDefault();
+ if (logoClickTimer) clearTimeout(logoClickTimer);
+ logoClickTimer = setTimeout(() => {
+ logoClicks = 0;
+ }, 1200);
+ } else if (logoClicks >= 5) {
+ // 5 Rapid Clicks Reached! Prevent navigation and trigger Dev Mode toggle
+ e.preventDefault();
+ e.stopPropagation();
+ if (logoClickTimer) clearTimeout(logoClickTimer);
+ logoClicks = 0;
+
+ if (isToggling) return;
+ isToggling = true;
+ setTimeout(() => { isToggling = false; }, 800);
+
+ const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+ if (isCurrentlyUnlocked) {
+ (window as any).NoviCodes.lockAll();
+ } else {
+ (window as any).NoviCodes.unlockAll();
+ }
+ } else {
+ // First click: wait 350ms before clearing counter if no second click follows
+ if (logoClickTimer) clearTimeout(logoClickTimer);
+ logoClickTimer = setTimeout(() => {
+ logoClicks = 0;
+ }, 1200);
+ }
+ });
+ });
+
+ // 2. Keyboard shortcut Ctrl + Alt + D
+ window.addEventListener('keydown', (e) => {
+ if (e.ctrlKey && e.altKey && (e.key === 'd' || e.key === 'D' || e.code === 'KeyD')) {
+ e.preventDefault();
+ e.stopPropagation();
+ if (isToggling) return;
+ isToggling = true;
+ setTimeout(() => { isToggling = false; }, 800);
+
+ const isCurrentlyUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+ if (isCurrentlyUnlocked) {
+ (window as any).NoviCodes.lockAll();
+ } else {
+ (window as any).NoviCodes.unlockAll();
+ }
+ }
+ }, { capture: true });
+ }
+
+ // Initialize keyboard shortcuts & triggers
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', () => initDevKitShortcuts());
+ } else {
+ initDevKitShortcuts();
+ }
+ }
+
+ // Hydrate all user stats badges on page load & listen for real-time events
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', () => updateAllHeaderStats());
+ } else {
+ updateAllHeaderStats();
+ }
+
+ // Real-time event listeners for instant reactive sync
+ window.addEventListener('novicodes:xp_updated', () => updateAllHeaderStats());
+ window.addEventListener('storage', () => updateAllHeaderStats());
+ window.addEventListener('pageshow', () => updateAllHeaderStats());
 </script>
 
 <style is:global>
-    /* Ensure all SweetAlert2 modals always layer above any sticky navigation */
-    .swal2-container {
-        z-index: 100000 !important;
-    }
+ /* Ensure all SweetAlert2 modals always layer above any sticky navigation */
+ .swal2-container {
+ z-index: 100000 !important;
+ }
 </style>

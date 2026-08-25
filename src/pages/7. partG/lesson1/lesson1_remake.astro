@@ -1,36 +1,36 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🌉 Level 8 Lesson 1: Async Data Fetching & Skeletons!
+const starterCode = `// Level 8 Lesson 1: Async Data Fetching & Skeletons!
 
 function ProductCatalog() {
-  const [products, setProducts] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+ const [products, setProducts] = React.useState([]);
+ const [isLoading, setIsLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    // 👉 STEP 1: Fetch products from API endpoint and update state:
-    // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
-    
-  }, []);
+ React.useEffect(() => {
+ // STEP 1: Fetch products from API endpoint and update state:
+ // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
+ 
+ }, []);
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🛍️ Storefront Catalog</h2>
-      {isLoading ? (
-        <div style={{ padding: '20px', background: '#f1f5f9', borderRadius: '10px', textAlign: 'center', color: '#64748b' }}>
-          ⏳ Loading fresh products from server...
-        </div>
-      ) : (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {products.map(p => (
-            <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
-              <strong>{p.name}</strong>: \${p.price}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+ <h2>️ Storefront Catalog</h2>
+ {isLoading ? (
+ <div style={{ padding: '20px', background: '#f1f5f9', borderRadius: '10px', textAlign: 'center', color: '#64748b' }}>
+ ⏳ Loading fresh products from server...
+ </div>
+ ) : (
+ <ul style={{ listStyle: 'none', padding: 0 }}>
+ {products.map(p => (
+ <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
+ <strong>{p.name}</strong>: \${p.price}
+ </li>
+ ))}
+ </ul>
+ )}
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,243 +38,243 @@ root.render(<ProductCatalog />);
 `;
 
 const jumpLessons = [
-    {
-        "id": 1,
-        "title": "Smooth Skeleton Loaders",
-        "url": "/7. partG/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Friendly Error Screens & 1-Click Retry",
-        "url": "/7. partG/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Smarter Forms (Prevent Double Submits)",
-        "url": "/7. partG/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Instant Optimistic Likes (Zero Lag)",
-        "url": "/7. partG/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Live Activity Badges & Safe Timers",
-        "url": "/7. partG/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Reactive Storefront",
-        "url": "/7. partG/lesson6/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Smooth Skeleton Loaders",
+ "url": "/7. partG/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Friendly Error Screens & 1-Click Retry",
+ "url": "/7. partG/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Smarter Forms (Prevent Double Submits)",
+ "url": "/7. partG/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Instant Optimistic Likes (Zero Lag)",
+ "url": "/7. partG/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Live Activity Badges & Safe Timers",
+ "url": "/7. partG/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Reactive Storefront",
+ "url": "/7. partG/lesson6/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Smooth Skeleton Loaders | Level 8 • Async UI Architecture"
-    description="Make your app look fast and polished by showing animated loading skeletons while fetching data."
-    levelTag="Level 8 • Async UI Architecture"
-    lessonNum={1}
-    lessonTitle="Smooth Skeleton Loaders"
-    xpAmount={250}
-    completionKey="partG_lesson1_remake_complete"
-    nextLessonUrl="/7. partG/lesson2/lesson2_remake.html"
-    hubUrl="/7. partG/hub.html"
-    hubTitle="Level 8 Hub"
-    hubIcon="🌉"
-    fileTab="App.jsx"
-    mode="react"
-    jumpLessons={jumpLessons}
-    certificateUrl="/7. partG/certificate.html"
-    trackPrefix="partG"
-    starterCode={starterCode}
+ title="Smooth Skeleton Loaders | Level 8 • Async UI Architecture"
+ description="Make your app look fast and polished by showing animated loading skeletons while fetching data."
+ levelTag="Level 8 • Async UI Architecture"
+ lessonNum={1}
+ lessonTitle="Smooth Skeleton Loaders"
+ xpAmount={250}
+ completionKey="partG_lesson1_remake_complete"
+ nextLessonUrl="/7. partG/lesson2/lesson2_remake.html"
+ hubUrl="/7. partG/hub.html"
+ hubTitle="Level 8 Hub"
+ hubIcon=""
+ fileTab="App.jsx"
+ mode="react"
+ jumpLessons={jumpLessons}
+ certificateUrl="/7. partG/certificate.html"
+ trackPrefix="partG"
+ starterCode={starterCode}
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Make your app look fast and polished by showing animated loading skeletons while fetching data.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Make your app look fast and polished by showing animated loading skeletons while fetching data.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a product catalog that shows a smooth loading skeleton while data is on its way!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Build a product catalog that shows a smooth loading skeleton while data is on its way!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- Analogy Explainer Card -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons.</p>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Think of data fetching with loading skeletons like receiving a buzzer at a restaurant 🎫: while the kitchen prepares your order (fetching API data), the buzzer reassures you that food is coming.
-            </div>
-        </article>
-    </div>
+ <!-- Analogy Explainer Card -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <p>Fetch asynchronous data from backend REST APIs with React useEffect and render responsive loading skeletons.</p>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Think of data fetching with loading skeletons like receiving a buzzer at a restaurant : while the kitchen prepares your order (fetching API data), the buzzer reassures you that food is coming.
+ </div>
+ </article>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partG_lesson1';
-        const DEFAULT_STARTER = `// 🌉 Level 8 Lesson 1: Async Data Fetching & Skeletons!
+ const DRAFT_KEY = 'novicodes_draft_partG_lesson1';
+ const DEFAULT_STARTER = `// Level 8 Lesson 1: Async Data Fetching & Skeletons!
 
 function ProductCatalog() {
-  const [products, setProducts] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+ const [products, setProducts] = React.useState([]);
+ const [isLoading, setIsLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    // 👉 STEP 1: Fetch products from API endpoint and update state:
-    // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
-    
-  }, []);
+ React.useEffect(() => {
+ // STEP 1: Fetch products from API endpoint and update state:
+ // (Hint: fetch("/api/products").then(res => res.json()).then(data => { setProducts(data); setIsLoading(false); });)
+ 
+ }, []);
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
-      <h2>🛍️ Storefront Catalog</h2>
-      {isLoading ? (
-        <div style={{ padding: '20px', background: '#f1f5f9', borderRadius: '10px', textAlign: 'center', color: '#64748b' }}>
-          ⏳ Loading fresh products from server...
-        </div>
-      ) : (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {products.map(p => (
-            <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
-              <strong>{p.name}</strong>: \${p.price}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto' }}>
+ <h2>️ Storefront Catalog</h2>
+ {isLoading ? (
+ <div style={{ padding: '20px', background: '#f1f5f9', borderRadius: '10px', textAlign: 'center', color: '#64748b' }}>
+ ⏳ Loading fresh products from server...
+ </div>
+ ) : (
+ <ul style={{ listStyle: 'none', padding: 0 }}>
+ {products.map(p => (
+ <li key={p.id} style={{ padding: '12px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '8px' }}>
+ <strong>{p.name}</strong>: \${p.price}
+ </li>
+ ))}
+ </ul>
+ )}
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<ProductCatalog />);
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'isloading', label: 'Maintain <code>isLoading</code> state with <code>React.useState(true)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*isLoading[\s\n]*,[\s\n]*setIsLoading[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*true[\s\n]*\)/i.test(c); } },
-            { id: 'fetchcall', label: 'Call <code>fetch("/api/products")</code> and update state with <code>setProducts</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["']\/api\/products["'][\s\n]*\)/i.test(c) && /setProducts[\s\n]*\(/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'isloading', label: 'Maintain <code>isLoading</code> state with <code>React.useState(true)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const[\s\n]+\[[\s\n]*isLoading[\s\n]*,[\s\n]*setIsLoading[\s\n]*\][\s\n]*=[\s\n]*(?:React\.)?useState[\s\n]*\([\s\n]*true[\s\n]*\)/i.test(c); } },
+ { id: 'fetchcall', label: 'Call <code>fetch("/api/products")</code> and update state with <code>setProducts</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["']\/api\/products["'][\s\n]*\)/i.test(c) && /setProducts[\s\n]*\(/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Async Data Fetching & Skeletons',
-                    xp: 250,
-                    completionKey: 'partG_lesson1_remake_complete',
-                    nextUrl: '/7. partG/lesson2/lesson2_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Async Data Fetching & Skeletons',
+ xp: 250,
+ completionKey: 'partG_lesson1_remake_complete',
+ nextUrl: '/7. partG/lesson2/lesson2_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

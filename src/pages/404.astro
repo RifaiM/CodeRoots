@@ -3,498 +3,498 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout 
-    title="404: Document Not Found | NoviCodes" 
-    description="The requested curriculum document or lesson could not be found. Navigate to active tracks or the skill tree."
-    showHeaderFooter={false}
+ title="404: Document Not Found | NoviCodes" 
+ description="The requested curriculum document or lesson could not be found. Navigate to active tracks or the skill tree."
+ showHeaderFooter={false}
 >
-    <main class="error-container">
-        <div class="error-card">
-            <div class="badge-404">
-                <span>HTTP 404 // ROUTE UNRESOLVED</span>
-            </div>
+ <main class="error-container">
+ <div class="error-card">
+ <div class="badge-404">
+ <span>HTTP 404 // ROUTE UNRESOLVED</span>
+ </div>
 
-            <h1 class="error-title">Document Not Found</h1>
-            
-            <p class="error-desc" id="errorDescription">
-                The requested URL path <code class="broken-path" id="brokenPathLabel">/unknown-route</code> does not exist in the curriculum index.
-            </p>
+ <h1 class="error-title">Document Not Found</h1>
+ 
+ <p class="error-desc" id="errorDescription">
+ The requested URL path <code class="broken-path" id="brokenPathLabel">/unknown-route</code> does not exist in the curriculum index.
+ </p>
 
-            <!-- Auto-Recovery Suggestion Banner -->
-            <div class="smart-suggestion-box" id="smartSuggestionBox">
-                <div class="suggestion-tag-bar">
-                    <span class="suggestion-header" id="suggestionTitle">RECOMMENDED DESTINATION</span>
-                </div>
-                <div class="suggestion-name" id="suggestionName">Skill Tree Dashboard</div>
-                <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress across all 10 levels.</p>
-                <div class="suggestion-action-row">
-                    <a href="/#roadmap" class="suggestion-btn" id="suggestionLink">
-                        <span id="suggestionBtnText">[ PROCEED TO ROADMAP → ]</span>
-                    </a>
-                </div>
-            </div>
+ <!-- Auto-Recovery Suggestion Banner -->
+ <div class="smart-suggestion-box" id="smartSuggestionBox">
+ <div class="suggestion-tag-bar">
+ <span class="suggestion-header" id="suggestionTitle">RECOMMENDED DESTINATION</span>
+ </div>
+ <div class="suggestion-name" id="suggestionName">Skill Tree Dashboard</div>
+ <p class="suggestion-content" id="suggestionText">Return to your active learning path and track your progress across all 10 levels.</p>
+ <div class="suggestion-action-row">
+ <a href="/#roadmap" class="suggestion-btn" id="suggestionLink">
+ <span id="suggestionBtnText">[ PROCEED TO ROADMAP → ]</span>
+ </a>
+ </div>
+ </div>
 
-            <!-- Secondary Navigation Actions -->
-            <div class="button-group">
-                <a href="/#roadmap" class="action-btn secondary-btn" id="dashboardLink">
-                    <span>[ CURRICULUM INDEX ]</span>
-                </a>
-                <button id="goBackBtn" class="action-btn secondary-btn" type="button">
-                    <span>[ GO BACK ]</span>
-                </button>
-            </div>
+ <!-- Secondary Navigation Actions -->
+ <div class="button-group">
+ <a href="/#roadmap" class="action-btn secondary-btn" id="dashboardLink">
+ <span>[ CURRICULUM INDEX ]</span>
+ </a>
+ <button id="goBackBtn" class="action-btn secondary-btn" type="button">
+ <span>[ GO BACK ]</span>
+ </button>
+ </div>
 
-            <!-- Quick-Jump Hub Selector -->
-            <div class="fast-track-section">
-                <label for="errorQuickJumpSelect" class="fast-track-label">
-                    <span>QUICK JUMP TO TRACK OR WORKBENCH:</span>
-                </label>
-                <div class="select-wrapper">
-                    <select id="errorQuickJumpSelect" class="fast-track-select">
-                        <option value="">Select a Foundation Track or Dojo Hub...</option>
-                        <optgroup label="Foundations Academy (Levels 00 – 10)">
-                            <option value="/1. partA/web_history.html">Level 00: Web Architecture</option>
-                            <option value="/foundations.html?track=html">Level 01: HTML Structure</option>
-                            <option value="/foundations.html?track=css">Level 02: CSS Styling & Layouts</option>
-                            <option value="/foundations.html?track=js">Level 03: JavaScript Interactivity</option>
-                            <option value="/foundations.html?track=react">Level 05: React Components & State</option>
-                            <option value="/foundations.html?track=python">Level 06: Python Backend Basics</option>
-                            <option value="/foundations.html?track=cloud">Level 07A: Cloud Hosting & DevOps</option>
-                            <option value="/foundations.html?track=sql">Level 07B: SQL Databases & Auth</option>
-                            <option value="/foundations.html?track=nextjs">Level 07C: Next.js & Server Components</option>
-                            <option value="/foundations.html?track=typescript">Level 07D: TypeScript Mastery</option>
-                            <option value="/foundations.html?track=cssmotion">Level 07E: CSS Motion & Animation</option>
-                            <option value="/foundations.html?track=async">Level 08: Async UI & Skeletons</option>
-                            <option value="/foundations.html?track=auth">Level 09: User Logins & Security</option>
-                            <option value="/foundations.html?track=saas">Level 10: Complete SaaS Architecture</option>
-                        </optgroup>
-                        <optgroup label="Practical Coding Dojos (103 Challenges)">
-                            <option value="/2. partB/hub.html">Level 04: JS Widget Dojo (15 Lessons)</option>
-                            <option value="/3. partC/hub.html">Level 05: React Component Dojo (15 Lessons)</option>
-                            <option value="/5. partE/hub.html">Level 06: Python Backend Dojo (15 Lessons)</option>
-                            <option value="/6. partF/hub.html">Level 07: Specialized Developer Tracks (40 Lessons)</option>
-                            <option value="/7. partG/hub.html">Level 08: Async UI & Skeletons (6 Lessons)</option>
-                            <option value="/8. partH/hub.html">Level 09: User Logins & Auth (6 Lessons)</option>
-                            <option value="/9. partI/hub.html">Level 10: SaaS Dashboard UI (6 Lessons)</option>
-                            <option value="/4. partD/devtype/devtype.html">Arcade: DevType Speedrun</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </main>
+ <!-- Quick-Jump Hub Selector -->
+ <div class="fast-track-section">
+ <label for="errorQuickJumpSelect" class="fast-track-label">
+ <span>QUICK JUMP TO TRACK OR WORKBENCH:</span>
+ </label>
+ <div class="select-wrapper">
+ <select id="errorQuickJumpSelect" class="fast-track-select">
+ <option value="">Select a Foundation Track or Dojo Hub...</option>
+ <optgroup label="Foundations Academy (Levels 00 – 10)">
+ <option value="/1. partA/web_history.html">Level 00: Web Architecture</option>
+ <option value="/foundations.html?track=html">Level 01: HTML Structure</option>
+ <option value="/foundations.html?track=css">Level 02: CSS Styling & Layouts</option>
+ <option value="/foundations.html?track=js">Level 03: JavaScript Interactivity</option>
+ <option value="/foundations.html?track=react">Level 05: React Components & State</option>
+ <option value="/foundations.html?track=python">Level 06: Python Backend Basics</option>
+ <option value="/foundations.html?track=cloud">Level 07A: Cloud Hosting & DevOps</option>
+ <option value="/foundations.html?track=sql">Level 07B: SQL Databases & Auth</option>
+ <option value="/foundations.html?track=nextjs">Level 07C: Next.js & Server Components</option>
+ <option value="/foundations.html?track=typescript">Level 07D: TypeScript Mastery</option>
+ <option value="/foundations.html?track=cssmotion">Level 07E: CSS Motion & Animation</option>
+ <option value="/foundations.html?track=async">Level 08: Async UI & Skeletons</option>
+ <option value="/foundations.html?track=auth">Level 09: User Logins & Security</option>
+ <option value="/foundations.html?track=saas">Level 10: Complete SaaS Architecture</option>
+ </optgroup>
+ <optgroup label="Practical Coding Dojos (103 Challenges)">
+ <option value="/2. partB/hub.html">Level 04: JS Widget Dojo (15 Lessons)</option>
+ <option value="/3. partC/hub.html">Level 05: React Component Dojo (15 Lessons)</option>
+ <option value="/5. partE/hub.html">Level 06: Python Backend Dojo (15 Lessons)</option>
+ <option value="/6. partF/hub.html">Level 07: Specialized Developer Tracks (40 Lessons)</option>
+ <option value="/7. partG/hub.html">Level 08: Async UI & Skeletons (6 Lessons)</option>
+ <option value="/8. partH/hub.html">Level 09: User Logins & Auth (6 Lessons)</option>
+ <option value="/9. partI/hub.html">Level 10: SaaS Dashboard UI (6 Lessons)</option>
+ <option value="/4. partD/devtype/devtype.html">Arcade: DevType Speedrun</option>
+ </optgroup>
+ </select>
+ </div>
+ </div>
+ </div>
+ </main>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: var(--canvas-base, #F1EEE7);
-            color: var(--text-body, #20211F);
-            font-family: var(--font-sans, sans-serif);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            overflow-x: hidden;
-        }
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ min-height: 100vh;
+ background: var(--canvas-base, #F1EEE7);
+ color: var(--text-body, #20211F);
+ font-family: var(--font-sans, sans-serif);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-sizing: border-box;
+ overflow-x: hidden;
+ }
 
-        .error-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 32px 16px;
-            box-sizing: border-box;
-        }
+ .error-container {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ padding: 32px 16px;
+ box-sizing: border-box;
+ }
 
-        .error-card {
-            background: var(--card-bg, #FFFFFF);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            padding: 32px 28px;
-            max-width: 540px;
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
+ .error-card {
+ background: var(--card-bg, #FFFFFF);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ padding: 32px 28px;
+ max-width: 540px;
+ width: 100%;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ box-sizing: border-box;
+ }
 
-        .badge-404 {
-            display: inline-flex;
-            align-items: center;
-            background: var(--canvas-base, #F1EEE7);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            color: var(--accent-oxide, #A33B24);
-            font-family: var(--font-mono, monospace);
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            padding: 3px 8px;
-            border-radius: 2px;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
+ .badge-404 {
+ display: inline-flex;
+ align-items: center;
+ background: var(--canvas-base, #F1EEE7);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ color: var(--accent-oxide, #A33B24);
+ font-family: var(--font-mono, monospace);
+ font-size: 0.72rem;
+ font-weight: 600;
+ letter-spacing: 0.05em;
+ padding: 3px 8px;
+ border-radius: 2px;
+ margin-bottom: 16px;
+ text-transform: uppercase;
+ }
 
-        .error-title {
-            font-family: var(--font-serif, serif);
-            font-size: 1.65rem;
-            font-weight: 500;
-            color: var(--text-title, #20211F);
-            margin: 0 0 10px 0;
-            line-height: 1.25;
-        }
+ .error-title {
+ font-family: var(--font-serif, serif);
+ font-size: 1.65rem;
+ font-weight: 500;
+ color: var(--text-title, #20211F);
+ margin: 0 0 10px 0;
+ line-height: 1.25;
+ }
 
-        .error-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted, #686760);
-            line-height: 1.5;
-            margin: 0 0 20px 0;
-            max-width: 440px;
-        }
+ .error-desc {
+ font-size: 0.88rem;
+ color: var(--text-muted, #686760);
+ line-height: 1.5;
+ margin: 0 0 20px 0;
+ max-width: 440px;
+ }
 
-        .broken-path {
-            font-family: var(--font-mono, monospace);
-            background: var(--canvas-base, #F1EEE7);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            color: var(--accent-oxide, #A33B24);
-            padding: 2px 6px;
-            border-radius: 2px;
-            font-size: 0.82rem;
-            word-break: break-all;
-        }
+ .broken-path {
+ font-family: var(--font-mono, monospace);
+ background: var(--canvas-base, #F1EEE7);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ color: var(--accent-oxide, #A33B24);
+ padding: 2px 6px;
+ border-radius: 2px;
+ font-size: 0.82rem;
+ word-break: break-all;
+ }
 
-        .smart-suggestion-box {
-            background: var(--canvas-base, #F1EEE7);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            padding: 16px;
-            margin-bottom: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: left;
-        }
+ .smart-suggestion-box {
+ background: var(--canvas-base, #F1EEE7);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ padding: 16px;
+ margin-bottom: 20px;
+ width: 100%;
+ box-sizing: border-box;
+ text-align: left;
+ }
 
-        .suggestion-tag-bar {
-            margin-bottom: 6px;
-        }
+ .suggestion-tag-bar {
+ margin-bottom: 6px;
+ }
 
-        .suggestion-header {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.68rem;
-            font-weight: 600;
-            color: var(--accent-oxide, #A33B24);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
+ .suggestion-header {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.68rem;
+ font-weight: 600;
+ color: var(--accent-oxide, #A33B24);
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ }
 
-        .suggestion-name {
-            font-family: var(--font-serif, serif);
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-title, #20211F);
-            margin-bottom: 4px;
-        }
+ .suggestion-name {
+ font-family: var(--font-serif, serif);
+ font-size: 1.15rem;
+ font-weight: 500;
+ color: var(--text-title, #20211F);
+ margin-bottom: 4px;
+ }
 
-        .suggestion-content {
-            font-size: 0.82rem;
-            color: var(--text-muted, #686760);
-            margin: 0 0 12px 0;
-            line-height: 1.45;
-        }
+ .suggestion-content {
+ font-size: 0.82rem;
+ color: var(--text-muted, #686760);
+ margin: 0 0 12px 0;
+ line-height: 1.45;
+ }
 
-        .suggestion-action-row {
-            display: flex;
-        }
+ .suggestion-action-row {
+ display: flex;
+ }
 
-        .suggestion-btn {
-            background: var(--accent-oxide, #A33B24);
-            color: #F8F6F1;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 2px;
-            font-family: var(--font-mono, monospace);
-            font-size: 0.76rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            transition: all 0.15s ease;
-        }
+ .suggestion-btn {
+ background: var(--accent-oxide, #A33B24);
+ color: #F8F6F1;
+ text-decoration: none;
+ padding: 6px 12px;
+ border-radius: 2px;
+ font-family: var(--font-mono, monospace);
+ font-size: 0.76rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ transition: all 0.15s ease;
+ }
 
-        .suggestion-btn:hover {
-            background: #872e1a;
-        }
+ .suggestion-btn:hover {
+ background: #872e1a;
+ }
 
-        .button-group {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+ .button-group {
+ display: flex;
+ gap: 8px;
+ width: 100%;
+ margin-bottom: 20px;
+ }
 
-        .action-btn {
-            flex: 1;
-            background: var(--canvas-base, #F1EEE7);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            color: var(--text-title, #20211F);
-            padding: 8px 12px;
-            border-radius: 2px;
-            font-family: var(--font-mono, monospace);
-            font-size: 0.74rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s ease;
-            text-transform: uppercase;
-        }
+ .action-btn {
+ flex: 1;
+ background: var(--canvas-base, #F1EEE7);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ color: var(--text-title, #20211F);
+ padding: 8px 12px;
+ border-radius: 2px;
+ font-family: var(--font-mono, monospace);
+ font-size: 0.74rem;
+ font-weight: 600;
+ text-decoration: none;
+ cursor: pointer;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ transition: all 0.15s ease;
+ text-transform: uppercase;
+ }
 
-        .action-btn:hover {
-            background: var(--border-hairline, #E5E1D8);
-        }
+ .action-btn:hover {
+ background: var(--border-hairline, #E5E1D8);
+ }
 
-        .fast-track-section {
-            width: 100%;
-            text-align: left;
-            border-top: 1px solid var(--border-hairline, #E5E1D8);
-            padding-top: 16px;
-        }
+ .fast-track-section {
+ width: 100%;
+ text-align: left;
+ border-top: 1px solid var(--border-hairline, #E5E1D8);
+ padding-top: 16px;
+ }
 
-        .fast-track-label {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.70rem;
-            font-weight: 600;
-            color: var(--text-muted, #686760);
-            display: block;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
+ .fast-track-label {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.70rem;
+ font-weight: 600;
+ color: var(--text-muted, #686760);
+ display: block;
+ margin-bottom: 8px;
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ }
 
-        .select-wrapper {
-            width: 100%;
-        }
+ .select-wrapper {
+ width: 100%;
+ }
 
-        .fast-track-select {
-            width: 100%;
-            padding: 8px 10px;
-            font-family: var(--font-mono, monospace);
-            font-size: 0.74rem;
-            background: var(--canvas-base, #F1EEE7);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            color: var(--text-title, #20211F);
-            cursor: pointer;
-            box-sizing: border-box;
-        }
+ .fast-track-select {
+ width: 100%;
+ padding: 8px 10px;
+ font-family: var(--font-mono, monospace);
+ font-size: 0.74rem;
+ background: var(--canvas-base, #F1EEE7);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ color: var(--text-title, #20211F);
+ cursor: pointer;
+ box-sizing: border-box;
+ }
 
-        @media (max-width: 480px) {
-            .error-container {
-                padding: 16px 10px;
-            }
+ @media (max-width: 480px) {
+ .error-container {
+ padding: 16px 10px;
+ }
 
-            .error-card {
-                padding: 20px 14px;
-            }
+ .error-card {
+ padding: 20px 14px;
+ }
 
-            .button-group {
-                flex-direction: column;
-                gap: 8px;
-            }
+ .button-group {
+ flex-direction: column;
+ gap: 8px;
+ }
 
-            .error-title {
-                font-size: 1.30rem;
-            }
+ .error-title {
+ font-size: 1.30rem;
+ }
 
-            .error-desc {
-                font-size: 0.82rem;
-            }
+ .error-desc {
+ font-size: 0.82rem;
+ }
 
-            .smart-suggestion-box {
-                padding: 12px 10px;
-            }
-        }
+ .smart-suggestion-box {
+ padding: 12px 10px;
+ }
+ }
 
-        @media (max-width: 360px) {
-            .error-container {
-                padding: 12px 6px;
-            }
+ @media (max-width: 360px) {
+ .error-container {
+ padding: 12px 6px;
+ }
 
-            .error-card {
-                padding: 16px 10px;
-            }
+ .error-card {
+ padding: 16px 10px;
+ }
 
-            .error-title {
-                font-size: 1.15rem;
-            }
+ .error-title {
+ font-size: 1.15rem;
+ }
 
-            .smart-suggestion-box {
-                padding: 10px 8px;
-            }
-        }
-    </style>
+ .smart-suggestion-box {
+ padding: 10px 8px;
+ }
+ }
+ </style>
 
-    <script is:inline>
-        // Intelligent Route Detection & Auto-Recovery
-        try {
-            const rawPath = window.location.pathname.toLowerCase();
-            const rawQuery = window.location.search.toLowerCase();
-            const fullUrl = rawPath + rawQuery;
+ <script is:inline>
+ // Intelligent Route Detection & Auto-Recovery
+ try {
+ const rawPath = window.location.pathname.toLowerCase();
+ const rawQuery = window.location.search.toLowerCase();
+ const fullUrl = rawPath + rawQuery;
 
-            const brokenLabel = document.getElementById('brokenPathLabel');
-            if (brokenLabel) {
-                brokenLabel.textContent = window.location.pathname || '/unknown';
-            }
+ const brokenLabel = document.getElementById('brokenPathLabel');
+ if (brokenLabel) {
+ brokenLabel.textContent = window.location.pathname || '/unknown';
+ }
 
-            const goBackBtn = document.getElementById('goBackBtn');
-            if (goBackBtn) {
-                goBackBtn.addEventListener('click', () => {
-                    if (window.history.length > 1) {
-                        window.history.back();
-                    } else {
-                        window.location.href = '/#roadmap';
-                    }
-                });
-            }
+ const goBackBtn = document.getElementById('goBackBtn');
+ if (goBackBtn) {
+ goBackBtn.addEventListener('click', () => {
+ if (window.history.length > 1) {
+ window.history.back();
+ } else {
+ window.location.href = '/#roadmap';
+ }
+ });
+ }
 
-            const quickJumpSelect = document.getElementById('errorQuickJumpSelect');
-            if (quickJumpSelect) {
-                quickJumpSelect.addEventListener('change', (e) => {
-                    if (e.target.value) {
-                        window.location.href = e.target.value;
-                    }
-                });
-            }
+ const quickJumpSelect = document.getElementById('errorQuickJumpSelect');
+ if (quickJumpSelect) {
+ quickJumpSelect.addEventListener('change', (e) => {
+ if (e.target.value) {
+ window.location.href = e.target.value;
+ }
+ });
+ }
 
-            const suggestionTitle = document.getElementById('suggestionTitle');
-            const suggestionName = document.getElementById('suggestionName');
-            const suggestionText = document.getElementById('suggestionText');
-            const suggestionLink = document.getElementById('suggestionLink');
-            const suggestionBtnText = document.getElementById('suggestionBtnText');
+ const suggestionTitle = document.getElementById('suggestionTitle');
+ const suggestionName = document.getElementById('suggestionName');
+ const suggestionText = document.getElementById('suggestionText');
+ const suggestionLink = document.getElementById('suggestionLink');
+ const suggestionBtnText = document.getElementById('suggestionBtnText');
 
-            let targetUrl = '/#roadmap';
-            let targetName = 'Curriculum Skill Tree';
-            let targetDesc = 'Return to the main curriculum roadmap and track your progress across all 10 levels.';
-            let tagHeader = 'RECOMMENDED DESTINATION';
+ let targetUrl = '/#roadmap';
+ let targetName = 'Curriculum Skill Tree';
+ let targetDesc = 'Return to the main curriculum roadmap and track your progress across all 10 levels.';
+ let tagHeader = 'RECOMMENDED DESTINATION';
 
-            let lessonNum = null;
-            const lessonMatch = rawPath.match(/lesson(\d+)/i) || rawQuery.match(/lesson=(\d+)/i);
-            if (lessonMatch) {
-                lessonNum = parseInt(lessonMatch[1], 10);
-            }
+ let lessonNum = null;
+ const lessonMatch = rawPath.match(/lesson(\d+)/i) || rawQuery.match(/lesson=(\d+)/i);
+ if (lessonMatch) {
+ lessonNum = parseInt(lessonMatch[1], 10);
+ }
 
-            if (rawPath.includes('foundations') || rawQuery.includes('track=')) {
-                const queryOrPath = fullUrl;
-                if (queryOrPath.includes('react')) {
-                    targetUrl = '/foundations.html?track=react';
-                    targetName = 'React Components & State';
-                    targetDesc = 'Master component props, JSX, and unidirectional state flows.';
-                } else if (queryOrPath.includes('python')) {
-                    targetUrl = '/foundations.html?track=python';
-                    targetName = 'Python Backend Basics';
-                    targetDesc = 'Master Python types, lists, dictionaries, functions, and FastAPI.';
-                } else if (queryOrPath.includes('cloud') || queryOrPath.includes('docker') || queryOrPath.includes('devops')) {
-                    targetUrl = '/foundations.html?track=cloud';
-                    targetName = 'Cloud Hosting & DevOps';
-                    targetDesc = 'Master Linux servers, Docker containers, reverse proxies, and CI/CD.';
-                } else if (queryOrPath.includes('sql') || queryOrPath.includes('database')) {
-                    targetUrl = '/foundations.html?track=sql';
-                    targetName = 'SQL Databases & Auth';
-                    targetDesc = 'Master relational database queries, JOIN operations, and transactions.';
-                } else if (queryOrPath.includes('next') || queryOrPath.includes('nextjs')) {
-                    targetUrl = '/foundations.html?track=nextjs';
-                    targetName = 'Next.js App Router & Server Components';
-                    targetDesc = 'Master React Server Components, Server Actions, and SSR.';
-                } else if (queryOrPath.includes('typescript') || queryOrPath.includes('ts')) {
-                    targetUrl = '/foundations.html?track=typescript';
-                    targetName = 'TypeScript & Type Safety';
-                    targetDesc = 'Master strict type safety, interfaces, DOM narrowing, and generics.';
-                } else if (queryOrPath.includes('html')) {
-                    targetUrl = '/foundations.html?track=html';
-                    targetName = 'HTML Structure Foundations';
-                    targetDesc = 'Master semantic tags, headings, and accessibility blueprints.';
-                } else if (queryOrPath.includes('css')) {
-                    targetUrl = '/foundations.html?track=css';
-                    targetName = 'CSS Styling Foundations';
-                    targetDesc = 'Master the CSS box model, flexbox grids, and responsive layouts.';
-                } else if (queryOrPath.includes('js') || queryOrPath.includes('javascript')) {
-                    targetUrl = '/foundations.html?track=js';
-                    targetName = 'JavaScript Interactivity';
-                    targetDesc = 'Master DOM manipulation, event loops, and dynamic logic.';
-                } else {
-                    targetUrl = '/1. partA/hub.html';
-                    targetName = 'Foundations Academy Hub';
-                    targetDesc = 'Explore all foundational web and software engineering tracks.';
-                }
-            } else if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas')) {
-                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
-                    targetUrl = `/9. partI/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 10 • SaaS UI Milestone ${lessonNum}`;
-                    targetDesc = `Jump directly into SaaS UI milestone ${lessonNum}.`;
-                } else {
-                    targetUrl = '/9. partI/hub.html';
-                    targetName = 'Level 10 • SaaS Dashboard UI Dojo';
-                    targetDesc = '6 interactive lessons covering SaaS layout shells and search filters.';
-                }
-            } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth')) {
-                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
-                    targetUrl = `/8. partH/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 09 • React Auth Lesson ${lessonNum}`;
-                    targetDesc = `Jump directly into React auth access control milestone ${lessonNum}.`;
-                } else {
-                    targetUrl = '/8. partH/hub.html';
-                    targetName = 'Level 09 • User Logins & Auth Dojo';
-                    targetDesc = '6 fullstack authentication, Prisma ORM, and JWT security projects.';
-                }
-            } else if (rawPath.includes('partg') || rawPath.includes('level8') || rawPath.includes('async')) {
-                if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
-                    targetUrl = `/7. partG/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
-                    targetName = `Level 08 • Async UI Lesson ${lessonNum}`;
-                    targetDesc = `Jump directly into async UI & live data milestone ${lessonNum}.`;
-                } else {
-                    targetUrl = '/7. partG/hub.html';
-                    targetName = 'Level 08 • Async UI & Live Data Dojo';
-                    targetDesc = '6 interactive loading skeletons and live data integration projects.';
-                }
-            } else if (rawPath.includes('partf') || rawPath.includes('level7')) {
-                targetUrl = '/6. partF/hub.html';
-                targetName = 'Level 07 • Specialized Developer Tracks';
-                targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
-            } else if (rawPath.includes('parte') || rawPath.includes('level6') || rawPath.includes('python')) {
-                targetUrl = '/5. partE/hub.html';
-                targetName = 'Level 06 • Python Backend Dojo';
-                targetDesc = '15 interactive Python backend projects, algorithms, and API endpoints.';
-            } else if (rawPath.includes('partc') || rawPath.includes('level5') || rawPath.includes('react')) {
-                targetUrl = '/3. partC/hub.html';
-                targetName = 'Level 05 • React Component Dojo';
-                targetDesc = '15 interactive React component projects, state hooks, and UI cards.';
-            } else if (rawPath.includes('partb') || rawPath.includes('level4') || rawPath.includes('dom')) {
-                targetUrl = '/2. partB/hub.html';
-                targetName = 'Level 04 • JavaScript Widget Dojo';
-                targetDesc = '15 interactive DOM projects and dynamic state interfaces.';
-            } else if (rawPath.includes('devtype') || rawPath.includes('typing') || rawPath.includes('speedrun')) {
-                targetUrl = '/4. partD/devtype/devtype.html';
-                targetName = 'DevType Dojo • Code Typing Speedrun';
-                targetDesc = 'Sharpen your coding speed and muscle memory across 7 languages.';
-            } else if (rawPath.includes('history') || rawPath.includes('level0') || rawPath.includes('parta')) {
-                targetUrl = '/1. partA/web_history.html';
-                targetName = 'Level 00 • Web Architecture & History';
-                targetDesc = 'Explore web eras from 1991 to today, internet packet flow, and core protocols.';
-            }
+ if (rawPath.includes('foundations') || rawQuery.includes('track=')) {
+ const queryOrPath = fullUrl;
+ if (queryOrPath.includes('react')) {
+ targetUrl = '/foundations.html?track=react';
+ targetName = 'React Components & State';
+ targetDesc = 'Master component props, JSX, and unidirectional state flows.';
+ } else if (queryOrPath.includes('python')) {
+ targetUrl = '/foundations.html?track=python';
+ targetName = 'Python Backend Basics';
+ targetDesc = 'Master Python types, lists, dictionaries, functions, and FastAPI.';
+ } else if (queryOrPath.includes('cloud') || queryOrPath.includes('docker') || queryOrPath.includes('devops')) {
+ targetUrl = '/foundations.html?track=cloud';
+ targetName = 'Cloud Hosting & DevOps';
+ targetDesc = 'Master Linux servers, Docker containers, reverse proxies, and CI/CD.';
+ } else if (queryOrPath.includes('sql') || queryOrPath.includes('database')) {
+ targetUrl = '/foundations.html?track=sql';
+ targetName = 'SQL Databases & Auth';
+ targetDesc = 'Master relational database queries, JOIN operations, and transactions.';
+ } else if (queryOrPath.includes('next') || queryOrPath.includes('nextjs')) {
+ targetUrl = '/foundations.html?track=nextjs';
+ targetName = 'Next.js App Router & Server Components';
+ targetDesc = 'Master React Server Components, Server Actions, and SSR.';
+ } else if (queryOrPath.includes('typescript') || queryOrPath.includes('ts')) {
+ targetUrl = '/foundations.html?track=typescript';
+ targetName = 'TypeScript & Type Safety';
+ targetDesc = 'Master strict type safety, interfaces, DOM narrowing, and generics.';
+ } else if (queryOrPath.includes('html')) {
+ targetUrl = '/foundations.html?track=html';
+ targetName = 'HTML Structure Foundations';
+ targetDesc = 'Master semantic tags, headings, and accessibility blueprints.';
+ } else if (queryOrPath.includes('css')) {
+ targetUrl = '/foundations.html?track=css';
+ targetName = 'CSS Styling Foundations';
+ targetDesc = 'Master the CSS box model, flexbox grids, and responsive layouts.';
+ } else if (queryOrPath.includes('js') || queryOrPath.includes('javascript')) {
+ targetUrl = '/foundations.html?track=js';
+ targetName = 'JavaScript Interactivity';
+ targetDesc = 'Master DOM manipulation, event loops, and dynamic logic.';
+ } else {
+ targetUrl = '/1. partA/hub.html';
+ targetName = 'Foundations Academy Hub';
+ targetDesc = 'Explore all foundational web and software engineering tracks.';
+ }
+ } else if (rawPath.includes('parti') || rawPath.includes('level10') || rawPath.includes('saas')) {
+ if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+ targetUrl = `/9. partI/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+ targetName = `Level 10 • SaaS UI Milestone ${lessonNum}`;
+ targetDesc = `Jump directly into SaaS UI milestone ${lessonNum}.`;
+ } else {
+ targetUrl = '/9. partI/hub.html';
+ targetName = 'Level 10 • SaaS Dashboard UI Dojo';
+ targetDesc = '6 interactive lessons covering SaaS layout shells and search filters.';
+ }
+ } else if (rawPath.includes('parth') || rawPath.includes('level9') || rawPath.includes('auth')) {
+ if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+ targetUrl = `/8. partH/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+ targetName = `Level 09 • React Auth Lesson ${lessonNum}`;
+ targetDesc = `Jump directly into React auth access control milestone ${lessonNum}.`;
+ } else {
+ targetUrl = '/8. partH/hub.html';
+ targetName = 'Level 09 • User Logins & Auth Dojo';
+ targetDesc = '6 fullstack authentication, Prisma ORM, and JWT security projects.';
+ }
+ } else if (rawPath.includes('partg') || rawPath.includes('level8') || rawPath.includes('async')) {
+ if (lessonNum && lessonNum >= 1 && lessonNum <= 6) {
+ targetUrl = `/7. partG/lesson${lessonNum}/lesson${lessonNum}_remake.html`;
+ targetName = `Level 08 • Async UI Lesson ${lessonNum}`;
+ targetDesc = `Jump directly into async UI & live data milestone ${lessonNum}.`;
+ } else {
+ targetUrl = '/7. partG/hub.html';
+ targetName = 'Level 08 • Async UI & Live Data Dojo';
+ targetDesc = '6 interactive loading skeletons and live data integration projects.';
+ }
+ } else if (rawPath.includes('partf') || rawPath.includes('level7')) {
+ targetUrl = '/6. partF/hub.html';
+ targetName = 'Level 07 • Specialized Developer Tracks';
+ targetDesc = 'Pick between CSS Motion, TypeScript, Next.js, Cloud Hosting, or SQL Databases.';
+ } else if (rawPath.includes('parte') || rawPath.includes('level6') || rawPath.includes('python')) {
+ targetUrl = '/5. partE/hub.html';
+ targetName = 'Level 06 • Python Backend Dojo';
+ targetDesc = '15 interactive Python backend projects, algorithms, and API endpoints.';
+ } else if (rawPath.includes('partc') || rawPath.includes('level5') || rawPath.includes('react')) {
+ targetUrl = '/3. partC/hub.html';
+ targetName = 'Level 05 • React Component Dojo';
+ targetDesc = '15 interactive React component projects, state hooks, and UI cards.';
+ } else if (rawPath.includes('partb') || rawPath.includes('level4') || rawPath.includes('dom')) {
+ targetUrl = '/2. partB/hub.html';
+ targetName = 'Level 04 • JavaScript Widget Dojo';
+ targetDesc = '15 interactive DOM projects and dynamic state interfaces.';
+ } else if (rawPath.includes('devtype') || rawPath.includes('typing') || rawPath.includes('speedrun')) {
+ targetUrl = '/4. partD/devtype/devtype.html';
+ targetName = 'DevType Dojo • Code Typing Speedrun';
+ targetDesc = 'Sharpen your coding speed and muscle memory across 7 languages.';
+ } else if (rawPath.includes('history') || rawPath.includes('level0') || rawPath.includes('parta')) {
+ targetUrl = '/1. partA/web_history.html';
+ targetName = 'Level 00 • Web Architecture & History';
+ targetDesc = 'Explore web eras from 1991 to today, internet packet flow, and core protocols.';
+ }
 
-            if (suggestionTitle && suggestionName && suggestionText && suggestionLink) {
-                suggestionTitle.textContent = tagHeader;
-                suggestionName.textContent = targetName;
-                suggestionText.textContent = targetDesc;
-                suggestionLink.href = targetUrl;
-                if (suggestionBtnText) {
-                    suggestionBtnText.textContent = `[ OPEN ${targetName.toUpperCase()} → ]`;
-                }
-            }
-        } catch (e) {
-            console.error('Error in 404 intelligent route recovery:', e);
-        }
-    </script>
+ if (suggestionTitle && suggestionName && suggestionText && suggestionLink) {
+ suggestionTitle.textContent = tagHeader;
+ suggestionName.textContent = targetName;
+ suggestionText.textContent = targetDesc;
+ suggestionLink.href = targetUrl;
+ if (suggestionBtnText) {
+ suggestionBtnText.textContent = `[ OPEN ${targetName.toUpperCase()} → ]`;
+ }
+ }
+ } catch (e) {
+ console.error('Error in 404 intelligent route recovery:', e);
+ }
+ </script>
 </BaseLayout>

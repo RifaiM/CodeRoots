@@ -1,280 +1,280 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🤖 Lesson 6: GitHub Actions CI/CD Pipeline!
+const starterCode = `# Lesson 6: GitHub Actions CI/CD Pipeline!
 name: Production CI/CD
 
-# 👉 STEP 1: Trigger on push to branch main
+# STEP 1: Trigger on push to branch main
 on:
 
 
 jobs:
-  build_and_test:
-    # 👉 STEP 2: Set runs-on: ubuntu-latest
-    runs-on: 
+ build_and_test:
+ # STEP 2: Set runs-on: ubuntu-latest
+ runs-on: 
 
-    steps:
-      # 👉 STEP 3: Checkout code using actions/checkout@v4
-      - name: Checkout Code
-        uses: 
+ steps:
+ # STEP 3: Checkout code using actions/checkout@v4
+ - name: Checkout Code
+ uses: 
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Git & GitHub Workflow",
-        "url": "/6. partF/branchA/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Vercel & Netlify Deploy",
-        "url": "/6. partF/branchA/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Cloudflare Pages & Edge",
-        "url": "/6. partF/branchA/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Render & Fly.io Deploy",
-        "url": "/6. partF/branchA/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "FastAPI CORS Security",
-        "url": "/6. partF/branchA/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "GitHub Actions CI/CD",
-        "url": "/6. partF/branchA/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Git & GitHub Workflow",
+ "url": "/6. partF/branchA/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Vercel & Netlify Deploy",
+ "url": "/6. partF/branchA/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Cloudflare Pages & Edge",
+ "url": "/6. partF/branchA/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Render & Fly.io Deploy",
+ "url": "/6. partF/branchA/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "FastAPI CORS Security",
+ "url": "/6. partF/branchA/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "GitHub Actions CI/CD",
+ "url": "/6. partF/branchA/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 06: GitHub Actions CI/CD | Level 7A • Cloud & DevOps"
-    description="Automate code testing and production deployment workflows using GitHub Actions YAML pipelines."
-    levelTag="Level 7A • Cloud & DevOps"
-    lessonNum={6}
-    lessonTitle="GitHub Actions CI/CD"
-    xpAmount={250}
-    completionKey="partF_branchA_lesson6_complete"
-    nextLessonUrl="/6. partF/certificate.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="terminal.sh"
-    starterCode={starterCode}
-    mode="terminal"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchA"
+ title="Milestone 06: GitHub Actions CI/CD | Level 7A • Cloud & DevOps"
+ description="Automate code testing and production deployment workflows using GitHub Actions YAML pipelines."
+ levelTag="Level 7A • Cloud & DevOps"
+ lessonNum={6}
+ lessonTitle="GitHub Actions CI/CD"
+ xpAmount={250}
+ completionKey="partF_branchA_lesson6_complete"
+ nextLessonUrl="/6. partF/certificate.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="terminal.sh"
+ starterCode={starterCode}
+ mode="terminal"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchA"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Automate build pipelines and test execution using GitHub Actions YAML workflows triggered on main branch pushes.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Automate build pipelines and test execution using GitHub Actions YAML workflows triggered on main branch pushes.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [CI/CD Pipeline] Trigger: push on main • Ubuntu Runner • Checkout + Tests Passed!</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A CI/CD pipeline is like a car factory quality inspection line 🏎️: every time new parts arrive, automated robots inspect, test, and polish the car before shipping.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [CI/CD Pipeline] Trigger: push on main • Ubuntu Runner • Checkout + Tests Passed!</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> A CI/CD pipeline is like a car factory quality inspection line ️: every time new parts arrive, automated robots inspect, test, and polish the car before shipping.
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>🤖</span> CI/CD Workflow Schema</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">on: push: branches: [main]</div>
-                        <div class="tag-result">Event Trigger: executes on commit push</div>
-                    </div>
-                    <div class="tag-example">
-                        <div class="tag-code">runs-on: ubuntu-latest</div>
-                        <div class="tag-result">Runner Environment: clean Linux virtual machine</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> CI/CD Workflow Schema</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">on: push: branches: [main]</div>
+ <div class="tag-result">Event Trigger: executes on commit push</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">runs-on: ubuntu-latest</div>
+ <div class="tag-result">Runner Environment: clean Linux virtual machine</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchA_6">name: Deploy Production
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchA_6">name: Deploy Production
 
 on:
-  push:
-    branches:
-      - main
+ push:
+ branches:
+ - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Install &amp; Test
-        run: npm test</code></pre>
-            </div>
-        </article>
+ deploy:
+ runs-on: ubuntu-latest
+ steps:
+ - name: Checkout Code
+ uses: actions/checkout@v4
+ - name: Install &amp; Test
+ run: npm test</code></pre>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson6';
-        const DEFAULT_STARTER = `# 🤖 Lesson 6: GitHub Actions CI/CD Pipeline!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchA_lesson6';
+ const DEFAULT_STARTER = `# Lesson 6: GitHub Actions CI/CD Pipeline!
 name: Production CI/CD
 
-# 👉 STEP 1: Trigger on push to branch main
+# STEP 1: Trigger on push to branch main
 on:
 
 
 jobs:
-  build_and_test:
-    # 👉 STEP 2: Set runs-on: ubuntu-latest
-    runs-on: 
+ build_and_test:
+ # STEP 2: Set runs-on: ubuntu-latest
+ runs-on: 
 
-    steps:
-      # 👉 STEP 3: Checkout code using actions/checkout@v4
-      - name: Checkout Code
-        uses: 
+ steps:
+ # STEP 3: Checkout code using actions/checkout@v4
+ - name: Checkout Code
+ uses: 
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'trigger', label: 'Trigger on <code>push</code> to <code>main</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /on\s*:[\s\S]*?push[\s\S]*?branches\s*:\s*\[?\s*main/i.test(c); } },
-            { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /runs-on\s*:\s*ubuntu-latest/i.test(c); } },
-            { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /uses\s*:\s*actions\/checkout@v4/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'terminal'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'trigger', label: 'Trigger on <code>push</code> to <code>main</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /on\s*:[\s\S]*?push[\s\S]*?branches\s*:\s*\[?\s*main/i.test(c); } },
+ { id: 'runner', label: 'Set <code>runs-on: ubuntu-latest</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /runs-on\s*:\s*ubuntu-latest/i.test(c); } },
+ { id: 'checkout', label: 'Use <code>actions/checkout@v4</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /uses\s*:\s*actions\/checkout@v4/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'terminal'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Preview update if HTML mode
-            if (previewIframe) {
-                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
-            }
+ // Preview update if HTML mode
+ if (previewIframe) {
+ previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'terminal');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'terminal');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'GitHub Actions CI/CD',
-                    xp: 250,
-                    completionKey: 'partF_branchA_lesson6_complete',
-                    nextUrl: '/6. partF/certificate.html',
-                    mode: 'terminal'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'GitHub Actions CI/CD',
+ xp: 250,
+ completionKey: 'partF_branchA_lesson6_complete',
+ nextUrl: '/6. partF/certificate.html',
+ mode: 'terminal'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

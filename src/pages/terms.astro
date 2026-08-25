@@ -4,288 +4,288 @@ import PlatformHeader from '../components/PlatformHeader.astro';
 import PlatformFooter from '../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout 
-    title="Terms of Use | NoviCodes" 
-    description="Review the terms and conditions for using the NoviCodes interactive coding platform, resources, and sandbox tools."
-    showHeaderFooter={false}
+ title="Terms of Use | NoviCodes" 
+ description="Review the terms and conditions for using the NoviCodes interactive coding platform, resources, and sandbox tools."
+ showHeaderFooter={false}
 >
-    <PlatformHeader 
-        slot="header"
-        tagText="Field Guide // Governance"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={false}
-        showLevelBadge={false}
-    />
+ <PlatformHeader 
+ slot="header"
+ tagText="Field Guide // Governance"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={false}
+ showLevelBadge={false}
+ />
 
-    <!-- Main Content -->
-    <main class="legal-container">
-        <!-- Hero -->
-        <div class="legal-hero">
-            <span class="legal-meta">§ 02.00 // TERMS &amp; CONDITIONS</span>
-            <h1>Terms of Use</h1>
-            <p>MIT License Open Source • Open Educational Curriculum</p>
-        </div>
+ <!-- Main Content -->
+ <main class="legal-container">
+ <!-- Hero -->
+ <div class="legal-hero">
+ <span class="legal-meta">§ 02.00 // TERMS &amp; CONDITIONS</span>
+ <h1>Terms of Use</h1>
+ <p>MIT License Open Source • Open Educational Curriculum</p>
+ </div>
 
-        <!-- Highlight Callout -->
-        <div class="highlight-card">
-            <h3>§ 02.01 • MIT License Permissiveness</h3>
-            <p>NoviCodes is free, open-source software released under the MIT License. You have complete freedom to learn, build, adapt, modify, and utilize all code exercises, projects, and educational content for personal or commercial projects.</p>
-        </div>
+ <!-- Highlight Callout -->
+ <div class="highlight-card">
+ <h3>§ 02.01 • MIT License Permissiveness</h3>
+ <p>NoviCodes is free, open-source software released under the MIT License. You have complete freedom to learn, build, adapt, modify, and utilize all code exercises, projects, and educational content for personal or commercial projects.</p>
+ </div>
 
-        <!-- Section 1 -->
-        <div class="legal-card">
-            <h2>§ 02.02 • Educational Access</h2>
-            <p>NoviCodes provides a zero-barrier learning engine for web developers worldwide. All 103 lessons, interactive sandboxes, and Dojo challenges across Level 00 through Level 10 are openly accessible without fees or locked paywalls.</p>
-        </div>
+ <!-- Section 1 -->
+ <div class="legal-card">
+ <h2>§ 02.02 • Educational Access</h2>
+ <p>NoviCodes provides a zero-barrier learning engine for web developers worldwide. All 103 lessons, interactive sandboxes, and Dojo challenges across Level 00 through Level 10 are openly accessible without fees or locked paywalls.</p>
+ </div>
 
-        <!-- Section 2 -->
-        <div class="legal-card">
-            <h2>§ 02.03 • Code Ownership &amp; User Projects</h2>
-            <p>All code written by you inside the NoviCodes interactive sandboxes or Dojo projects belongs entirely to you. You are free to publish, adapt, and deploy your completed projects in personal portfolios, commercial repositories, or client work.</p>
-        </div>
+ <!-- Section 2 -->
+ <div class="legal-card">
+ <h2>§ 02.03 • Code Ownership &amp; User Projects</h2>
+ <p>All code written by you inside the NoviCodes interactive sandboxes or Dojo projects belongs entirely to you. You are free to publish, adapt, and deploy your completed projects in personal portfolios, commercial repositories, or client work.</p>
+ </div>
 
-        <!-- Section 3 -->
-        <div class="legal-card">
-            <h2>§ 02.04 • Standard MIT License Text</h2>
-            <p>The formal legal terms governing the platform are set forth below under the standard MIT Open Source License:</p>
+ <!-- Section 3 -->
+ <div class="legal-card">
+ <h2>§ 02.04 • Standard MIT License Text</h2>
+ <p>The formal legal terms governing the platform are set forth below under the standard MIT Open Source License:</p>
 
-            <div class="code-box">
+ <div class="code-box">
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-            </div>
-        </div>
+ </div>
+ </div>
 
-        <!-- Section 4 -->
-        <div class="legal-card">
-            <h2>§ 02.05 • Completion Certificates</h2>
-            <p>Official course completion certificates generated by NoviCodes serve as client-verified proof of your hands-on coding work. Certificates are cryptographically keyed to your completed curriculum milestones.</p>
-        </div>
-    </main>
+ <!-- Section 4 -->
+ <div class="legal-card">
+ <h2>§ 02.05 • Completion Certificates</h2>
+ <p>Official course completion certificates generated by NoviCodes serve as client-verified proof of your hands-on coding work. Certificates are cryptographically keyed to your completed curriculum milestones.</p>
+ </div>
+ </main>
 
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
 
-    <PlatformFooter />
+ <PlatformFooter />
 
-    <script is:inline>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('backToTopBtn');
-            if (!btn) return;
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 150) {
-                    btn.classList.add('visible');
-                } else {
-                    btn.classList.remove('visible');
-                }
-            }, { passive: true });
-            btn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-    </script>
+ <script is:inline>
+ document.addEventListener('DOMContentLoaded', () => {
+ const btn = document.getElementById('backToTopBtn');
+ if (!btn) return;
+ window.addEventListener('scroll', () => {
+ if (window.scrollY > 150) {
+ btn.classList.add('visible');
+ } else {
+ btn.classList.remove('visible');
+ }
+ }, { passive: true });
+ btn.addEventListener('click', () => {
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+ });
+ </script>
 </BaseLayout>
 
 <style is:global>
-    .legal-container {
-        max-width: 820px;
-        margin: 36px auto 60px auto;
-        padding: 0 20px;
-        box-sizing: border-box;
-        font-family: var(--font-sans);
-        color: var(--text-body);
-    }
+ .legal-container {
+ max-width: 820px;
+ margin: 36px auto 60px auto;
+ padding: 0 20px;
+ box-sizing: border-box;
+ font-family: var(--font-sans);
+ color: var(--text-body);
+ }
 
-    .legal-hero {
-        background: var(--card-elevated);
-        border: 1px solid var(--border-subtle);
-        color: var(--text-title);
-        padding: 32px 28px;
-        border-radius: 2px;
-        margin-bottom: 24px;
-        text-align: left;
-    }
+ .legal-hero {
+ background: var(--card-elevated);
+ border: 1px solid var(--border-subtle);
+ color: var(--text-title);
+ padding: 32px 28px;
+ border-radius: 2px;
+ margin-bottom: 24px;
+ text-align: left;
+ }
 
-    .legal-meta {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--accent-oxide);
-        display: block;
-        margin-bottom: 8px;
-    }
+ .legal-meta {
+ font-family: var(--font-mono);
+ font-size: 0.72rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ color: var(--accent-oxide);
+ display: block;
+ margin-bottom: 8px;
+ }
 
-    .legal-hero h1 {
-        font-family: var(--font-serif);
-        font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-        margin: 0 0 6px 0;
-        font-weight: 500;
-        line-height: 1.2;
-    }
+ .legal-hero h1 {
+ font-family: var(--font-serif);
+ font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+ margin: 0 0 6px 0;
+ font-weight: 500;
+ line-height: 1.2;
+ }
 
-    .legal-hero p {
-        color: var(--text-muted);
-        font-size: 0.92rem;
-        margin: 0;
-    }
+ .legal-hero p {
+ color: var(--text-muted);
+ font-size: 0.92rem;
+ margin: 0;
+ }
 
-    .highlight-card {
-        background: var(--card-elevated);
-        border: 1px solid var(--border-subtle);
-        border-left: 3px solid var(--accent-oxide);
-        padding: 18px 20px;
-        border-radius: 2px;
-        margin-bottom: 24px;
-        color: var(--text-body);
-    }
+ .highlight-card {
+ background: var(--card-elevated);
+ border: 1px solid var(--border-subtle);
+ border-left: 3px solid var(--accent-oxide);
+ padding: 18px 20px;
+ border-radius: 2px;
+ margin-bottom: 24px;
+ color: var(--text-body);
+ }
 
-    .highlight-card h3 {
-        margin: 0 0 6px 0;
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--accent-oxide);
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
+ .highlight-card h3 {
+ margin: 0 0 6px 0;
+ font-family: var(--font-mono);
+ font-size: 0.82rem;
+ font-weight: 600;
+ color: var(--accent-oxide);
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ }
 
-    .highlight-card p {
-        margin: 0;
-        font-size: 0.90rem;
-        line-height: 1.6;
-    }
+ .highlight-card p {
+ margin: 0;
+ font-size: 0.90rem;
+ line-height: 1.6;
+ }
 
-    .legal-card {
-        background: var(--card-elevated);
-        border: 1px solid var(--border-subtle);
-        border-radius: 2px;
-        padding: 24px 22px;
-        margin-bottom: 20px;
-    }
+ .legal-card {
+ background: var(--card-elevated);
+ border: 1px solid var(--border-subtle);
+ border-radius: 2px;
+ padding: 24px 22px;
+ margin-bottom: 20px;
+ }
 
-    .legal-card h2 {
-        font-family: var(--font-mono);
-        font-size: 0.92rem;
-        font-weight: 600;
-        color: var(--text-title);
-        margin: 0 0 12px 0;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
+ .legal-card h2 {
+ font-family: var(--font-mono);
+ font-size: 0.92rem;
+ font-weight: 600;
+ color: var(--text-title);
+ margin: 0 0 12px 0;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ }
 
-    .legal-card p {
-        font-size: 0.90rem;
-        line-height: 1.65;
-        color: var(--text-body);
-        margin: 0 0 12px 0;
-    }
+ .legal-card p {
+ font-size: 0.90rem;
+ line-height: 1.65;
+ color: var(--text-body);
+ margin: 0 0 12px 0;
+ }
 
-    .legal-card p:last-child {
-        margin-bottom: 0;
-    }
+ .legal-card p:last-child {
+ margin-bottom: 0;
+ }
 
-    .code-box {
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        line-height: 1.6;
-        background: var(--surface-muted);
-        border: 1px solid var(--border-subtle);
-        padding: 14px 18px;
-        border-radius: 2px;
-        white-space: pre-wrap;
-        color: var(--text-title);
-        margin-top: 10px;
-    }
+ .code-box {
+ font-family: var(--font-mono);
+ font-size: 0.78rem;
+ line-height: 1.6;
+ background: var(--surface-muted);
+ border: 1px solid var(--border-subtle);
+ padding: 14px 18px;
+ border-radius: 2px;
+ white-space: pre-wrap;
+ color: var(--text-title);
+ margin-top: 10px;
+ }
 
-    @media (max-width: 576px) {
-        .legal-container {
-            margin: 20px auto 40px auto;
-            padding: 0 14px;
-        }
-        .legal-hero {
-            padding: 20px 16px;
-            margin-bottom: 16px;
-        }
-        .legal-hero h1 {
-            font-size: 1.5rem;
-        }
-        .legal-hero p {
-            font-size: 0.84rem;
-        }
-        .highlight-card {
-            padding: 14px 14px;
-            margin-bottom: 16px;
-        }
-        .highlight-card p {
-            font-size: 0.84rem;
-        }
-        .legal-card {
-            padding: 18px 16px;
-            margin-bottom: 14px;
-        }
-        .legal-card h2 {
-            font-size: 0.86rem;
-        }
-        .legal-card p {
-            font-size: 0.84rem;
-        }
-        .code-box {
-            padding: 10px 12px;
-            font-size: 0.72rem;
-        }
-    }
+ @media (max-width: 576px) {
+ .legal-container {
+ margin: 20px auto 40px auto;
+ padding: 0 14px;
+ }
+ .legal-hero {
+ padding: 20px 16px;
+ margin-bottom: 16px;
+ }
+ .legal-hero h1 {
+ font-size: 1.5rem;
+ }
+ .legal-hero p {
+ font-size: 0.84rem;
+ }
+ .highlight-card {
+ padding: 14px 14px;
+ margin-bottom: 16px;
+ }
+ .highlight-card p {
+ font-size: 0.84rem;
+ }
+ .legal-card {
+ padding: 18px 16px;
+ margin-bottom: 14px;
+ }
+ .legal-card h2 {
+ font-size: 0.86rem;
+ }
+ .legal-card p {
+ font-size: 0.84rem;
+ }
+ .code-box {
+ padding: 10px 12px;
+ font-size: 0.72rem;
+ }
+ }
 
-    @media (max-width: 425px) {
-        .legal-container {
-            margin: 16px auto 32px auto;
-            padding: 0 10px;
-        }
-        .legal-hero {
-            padding: 16px 12px;
-            margin-bottom: 12px;
-        }
-        .legal-hero h1 {
-            font-size: 1.30rem;
-        }
-        .highlight-card {
-            padding: 12px 12px;
-            margin-bottom: 12px;
-        }
-        .legal-card {
-            padding: 14px 12px;
-            margin-bottom: 12px;
-        }
-    }
+ @media (max-width: 425px) {
+ .legal-container {
+ margin: 16px auto 32px auto;
+ padding: 0 10px;
+ }
+ .legal-hero {
+ padding: 16px 12px;
+ margin-bottom: 12px;
+ }
+ .legal-hero h1 {
+ font-size: 1.30rem;
+ }
+ .highlight-card {
+ padding: 12px 12px;
+ margin-bottom: 12px;
+ }
+ .legal-card {
+ padding: 14px 12px;
+ margin-bottom: 12px;
+ }
+ }
 
-    @media (max-width: 360px) {
-        .legal-container {
-            padding: 0 6px;
-        }
-        .legal-hero {
-            padding: 12px 8px;
-        }
-        .legal-hero h1 {
-            font-size: 1.15rem;
-        }
-        .highlight-card {
-            padding: 10px 8px;
-        }
-        .legal-card {
-            padding: 12px 8px;
-        }
-    }
+ @media (max-width: 360px) {
+ .legal-container {
+ padding: 0 6px;
+ }
+ .legal-hero {
+ padding: 12px 8px;
+ }
+ .legal-hero h1 {
+ font-size: 1.15rem;
+ }
+ .highlight-card {
+ padding: 10px 8px;
+ }
+ .legal-card {
+ padding: 12px 8px;
+ }
+ }
 </style>

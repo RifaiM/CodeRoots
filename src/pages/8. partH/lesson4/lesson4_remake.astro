@@ -1,47 +1,47 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🛢️ Lesson 4: Cloud Database Relational CRUD!
+const starterCode = `// ️ Lesson 4: Cloud Database Relational CRUD!
 
 const initialUsers = [
-  { id: 101, username: "sarah_tech", role: "engineer" },
-  { id: 102, username: "david_dev", role: "designer" }
+ { id: 101, username: "sarah_tech", role: "engineer" },
+ { id: 102, username: "david_dev", role: "designer" }
 ];
 
 function CloudDatabaseManager() {
-  const [users, setUsers] = React.useState(initialUsers);
-  const [newUsername, setNewUsername] = React.useState("");
+ const [users, setUsers] = React.useState(initialUsers);
+ const [newUsername, setNewUsername] = React.useState("");
 
-  const handleCreateUser = (e) => {
-    e.preventDefault();
-    if (!newUsername.trim()) return;
+ const handleCreateUser = (e) => {
+ e.preventDefault();
+ if (!newUsername.trim()) return;
 
-    // 👉 STEP 1: Create user record object and append immutably to users array:
-    // (Hint: const newUser = { id: Date.now(), username: newUsername, role: "engineer" }; setUsers([...users, newUser]); setNewUsername("");)
-    
+ // STEP 1: Create user record object and append immutably to users array:
+ // (Hint: const newUser = { id: Date.now(), username: newUsername, role: "engineer" }; setUsers([...users, newUser]); setNewUsername("");)
+ 
 
-  };
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-      <h2>🛢️ Cloud PostgreSQL Table: users</h2>
-      <form onSubmit={handleCreateUser} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-        <input value={newUsername} onChange={e => setNewUsername(e.target.value)} placeholder="New username..." style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
-        <button type="submit" style={{ padding: '10px 16px', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>
-          + Insert
-        </button>
-      </form>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+ <h2>️ Cloud PostgreSQL Table: users</h2>
+ <form onSubmit={handleCreateUser} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+ <input value={newUsername} onChange={e => setNewUsername(e.target.value)} placeholder="New username..." style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
+ <button type="submit" style={{ padding: '10px 16px', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>
+ + Insert
+ </button>
+ </form>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {users.map(u => (
-          <li key={u.id} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-            <span><strong>{u.username}</strong> (ID: {u.id})</span>
-            <span style={{ color: '#4f46e5', fontWeight: 600, fontSize: '0.82rem' }}>{u.role}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {users.map(u => (
+ <li key={u.id} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
+ <span><strong>{u.username}</strong> (ID: {u.id})</span>
+ <span style={{ color: '#4f46e5', fontWeight: 600, fontSize: '0.82rem' }}>{u.role}</span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -49,254 +49,254 @@ root.render(<CloudDatabaseManager />);
 `;
 
 const jumpLessons = [
-    {
-        "id": 1,
-        "title": "Managing Login Tokens in State",
-        "url": "/8. partH/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Global Session Provider (AuthContext)",
-        "url": "/8. partH/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Locking Private Pages (Route Guards)",
-        "url": "/8. partH/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Managing Team Member Lists (Clean State)",
-        "url": "/8. partH/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Role Gates (Admin vs Member Views)",
-        "url": "/8. partH/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Secure Team Workspace",
-        "url": "/8. partH/lesson6/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Managing Login Tokens in State",
+ "url": "/8. partH/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Global Session Provider (AuthContext)",
+ "url": "/8. partH/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Locking Private Pages (Route Guards)",
+ "url": "/8. partH/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Managing Team Member Lists (Clean State)",
+ "url": "/8. partH/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Role Gates (Admin vs Member Views)",
+ "url": "/8. partH/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Secure Team Workspace",
+ "url": "/8. partH/lesson6/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Managing Team Member Lists (Clean State) | Level 9 • React Auth & Access Control"
-    description="Add and manage team members with clean, immutable React state updates."
-    levelTag="Level 9 • React Auth & Access Control"
-    lessonNum={4}
-    lessonTitle="Managing Team Member Lists (Clean State)"
-    xpAmount={250}
-    completionKey="partH_lesson4_remake_complete"
-    nextLessonUrl="/8. partH/lesson5/lesson5_remake.html"
-    hubUrl="/8. partH/hub.html"
-    hubTitle="Level 9 Hub"
-    hubIcon="🛡️"
-    fileTab="Auth.jsx"
-    mode="react"
-    jumpLessons={jumpLessons}
-    certificateUrl="/8. partH/certificate.html"
-    trackPrefix="partH"
-    starterCode={starterCode}
+ title="Managing Team Member Lists (Clean State) | Level 9 • React Auth & Access Control"
+ description="Add and manage team members with clean, immutable React state updates."
+ levelTag="Level 9 • React Auth & Access Control"
+ lessonNum={4}
+ lessonTitle="Managing Team Member Lists (Clean State)"
+ xpAmount={250}
+ completionKey="partH_lesson4_remake_complete"
+ nextLessonUrl="/8. partH/lesson5/lesson5_remake.html"
+ hubUrl="/8. partH/hub.html"
+ hubTitle="Level 9 Hub"
+ hubIcon="️"
+ fileTab="Auth.jsx"
+ mode="react"
+ jumpLessons={jumpLessons}
+ certificateUrl="/8. partH/certificate.html"
+ trackPrefix="partH"
+ starterCode={starterCode}
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Add and manage team members with clean, immutable React state updates.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Add and manage team members with clean, immutable React state updates.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a team directory that immutably adds new members without mutating existing state!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Build a team directory that immutably adds new members without mutating existing state!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- Analogy Explainer Card -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Define database table models and write structured query operations using Python and SQLAlchemy ORM syntax.</p>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Database CRUD operations are the 4 fundamental drawers of a digital bank vault 🏦: Create (deposit), Read (view balance), Update (change email), Delete (close account).
-            </div>
-        </article>
-    </div>
+ <!-- Analogy Explainer Card -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <p>Define database table models and write structured query operations using Python and SQLAlchemy ORM syntax.</p>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Database CRUD operations are the 4 fundamental drawers of a digital bank vault : Create (deposit), Read (view balance), Update (change email), Delete (close account).
+ </div>
+ </article>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partH_lesson4';
-        const DEFAULT_STARTER = `// 🛢️ Lesson 4: Cloud Database Relational CRUD!
+ const DRAFT_KEY = 'novicodes_draft_partH_lesson4';
+ const DEFAULT_STARTER = `// ️ Lesson 4: Cloud Database Relational CRUD!
 
 const initialUsers = [
-  { id: 101, username: "sarah_tech", role: "engineer" },
-  { id: 102, username: "david_dev", role: "designer" }
+ { id: 101, username: "sarah_tech", role: "engineer" },
+ { id: 102, username: "david_dev", role: "designer" }
 ];
 
 function CloudDatabaseManager() {
-  const [users, setUsers] = React.useState(initialUsers);
-  const [newUsername, setNewUsername] = React.useState("");
+ const [users, setUsers] = React.useState(initialUsers);
+ const [newUsername, setNewUsername] = React.useState("");
 
-  const handleCreateUser = (e) => {
-    e.preventDefault();
-    if (!newUsername.trim()) return;
+ const handleCreateUser = (e) => {
+ e.preventDefault();
+ if (!newUsername.trim()) return;
 
-    // 👉 STEP 1: Create user record object and append immutably to users array:
-    // (Hint: const newUser = { id: Date.now(), username: newUsername, role: "engineer" }; setUsers([...users, newUser]); setNewUsername("");)
-    
+ // STEP 1: Create user record object and append immutably to users array:
+ // (Hint: const newUser = { id: Date.now(), username: newUsername, role: "engineer" }; setUsers([...users, newUser]); setNewUsername("");)
+ 
 
-  };
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-      <h2>🛢️ Cloud PostgreSQL Table: users</h2>
-      <form onSubmit={handleCreateUser} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-        <input value={newUsername} onChange={e => setNewUsername(e.target.value)} placeholder="New username..." style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
-        <button type="submit" style={{ padding: '10px 16px', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>
-          + Insert
-        </button>
-      </form>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '440px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+ <h2>️ Cloud PostgreSQL Table: users</h2>
+ <form onSubmit={handleCreateUser} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+ <input value={newUsername} onChange={e => setNewUsername(e.target.value)} placeholder="New username..." style={{ flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
+ <button type="submit" style={{ padding: '10px 16px', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>
+ + Insert
+ </button>
+ </form>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {users.map(u => (
-          <li key={u.id} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-            <span><strong>{u.username}</strong> (ID: {u.id})</span>
-            <span style={{ color: '#4f46e5', fontWeight: 600, fontSize: '0.82rem' }}>{u.role}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {users.map(u => (
+ <li key={u.id} style={{ padding: '10px 12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '6px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
+ <span><strong>{u.username}</strong> (ID: {u.id})</span>
+ <span style={{ color: '#4f46e5', fontWeight: 600, fontSize: '0.82rem' }}>{u.role}</span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<CloudDatabaseManager />);
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'insert_record', label: 'Append record with <code>setUsers([...users, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setUsers[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.users/i.test(c); } },
-            { id: 'clear_input', label: 'Clear input with <code>setNewUsername("")</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setNewUsername[\s\n]*\([\s\n]*["']["'][\s\n]*\)/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'insert_record', label: 'Append record with <code>setUsers([...users, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setUsers[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.users/i.test(c); } },
+ { id: 'clear_input', label: 'Clear input with <code>setNewUsername("")</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setNewUsername[\s\n]*\([\s\n]*["']["'][\s\n]*\)/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Cloud Database Relational CRUD',
-                    xp: 250,
-                    completionKey: 'partH_lesson4_remake_complete',
-                    nextUrl: '/8. partH/lesson5/lesson5_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Cloud Database Relational CRUD',
+ xp: 250,
+ completionKey: 'partH_lesson4_remake_complete',
+ nextUrl: '/8. partH/lesson5/lesson5_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

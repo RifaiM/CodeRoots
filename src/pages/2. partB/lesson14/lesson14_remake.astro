@@ -2,216 +2,216 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const level4Lessons = [
-    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
-    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
-    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
-    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
-    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
-    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
-    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
-    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
-    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
-    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
-    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
-    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
-    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
-    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
-    { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
+ { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+ { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+ { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+ { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+ { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+ { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+ { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+ { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+ { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+ { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+ { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+ { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+ { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+ { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+ { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
 
-const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Async Fetch Data</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"fetchBtn\" style=\"padding: 10px 18px; background: #7c3aed; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Fetch Data</button>\n  <div id=\"dataCard\" style=\"margin-top: 16px; padding: 14px; background: #f1f5f9; border-radius: 8px;\">Click fetch to load data.</div>\n\n  <script>\n    const btn = document.getElementById('fetchBtn');\n    const card = document.getElementById('dataCard');\n\n    // 👉 STEP 1: Define an async function named loadData() that fetches from 'https://jsonplaceholder.typicode.com/todos/1' below:\n    \n\n    // 👉 STEP 2: Parse the response with await res.json() and display data.title in card.textContent below:\n    \n\n    btn.addEventListener('click', loadData);\n  </script>\n</body>\n</html>\n";
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n <title>Async Fetch Data</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n <button id=\"fetchBtn\" style=\"padding: 10px 18px; background: #7c3aed; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Fetch Data</button>\n <div id=\"dataCard\" style=\"margin-top: 16px; padding: 14px; background: #f1f5f9; border-radius: 8px;\">Click fetch to load data.</div>\n\n <script>\n const btn = document.getElementById('fetchBtn');\n const card = document.getElementById('dataCard');\n\n // STEP 1: Define an async function named loadData() that fetches from 'https://jsonplaceholder.typicode.com/todos/1' below:\n \n\n // STEP 2: Parse the response with await res.json() and display data.title in card.textContent below:\n \n\n btn.addEventListener('click', loadData);\n </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
-    title="Project 14: Asynchronous JavaScript & REST APIs | Level 4 DOM Dojo"
-    description={"Fetch data asynchronously from REST APIs using modern async/await syntax and render JSON responses into the UI."}
-    levelTag="Level 4 • DOM Dojo"
-    lessonNum={14}
-    lessonTitle="Asynchronous JavaScript & REST APIs"
-    xpAmount={100}
-    completionKey="partB_lesson14_remake_complete"
-    nextLessonUrl="/2. partB/lesson15/lesson15_remake.html"
-    hubUrl="/2. partB/hub.html"
-    hubTitle="Level 4 Hub"
-    hubIcon="⚔️"
-    fileTab="index.html"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={level4Lessons}
-    certificateUrl="/2. partB/certificate.html"
-    trackPrefix="partB"
+ title="Project 14: Asynchronous JavaScript & REST APIs | Level 4 DOM Dojo"
+ description={"Fetch data asynchronously from REST APIs using modern async/await syntax and render JSON responses into the UI."}
+ levelTag="Level 4 • DOM Dojo"
+ lessonNum={14}
+ lessonTitle="Asynchronous JavaScript & REST APIs"
+ xpAmount={100}
+ completionKey="partB_lesson14_remake_complete"
+ nextLessonUrl="/2. partB/lesson15/lesson15_remake.html"
+ hubUrl="/2. partB/hub.html"
+ hubTitle="Level 4 Hub"
+ hubIcon="️"
+ fileTab="index.html"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={level4Lessons}
+ certificateUrl="/2. partB/certificate.html"
+ trackPrefix="partB"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Fetch data asynchronously from REST APIs using modern async/await syntax and render JSON responses into the UI.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Fetch data asynchronously from REST APIs using modern async/await syntax and render JSON responses into the UI.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <div class="mission-title-box">
-                    <span style="font-size: 1.25rem;">🎯</span>
-                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
-                </div>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
-                Complete these step-by-step instructions in the code editor on the right:
-            </p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <div class="mission-title-box">
+ <span style="font-size: 1.25rem;"></span>
+ <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+ </div>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+ Complete these step-by-step instructions in the code editor on the right:
+ </p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- 💡 Core Concept & Real-World Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> `fetch` is like ordering takeout: `async/await` lets your code do other work while the kitchen cooks, then delivers the warm food (JSON data) the moment it is ready.
-            </div>
-        </article>
+ <!-- Core Concept & Real-World Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> `fetch` is like ordering takeout: `async/await` lets your code do other work while the kitchen cooks, then delivers the warm food (JSON data) the moment it is ready.
+ </div>
+ </article>
 
-        <!-- 🏷️ Core Building Blocks Guide -->
-        <article class="concept-card">
-            <h3><span>🏷️</span> Asynchronous Keywords</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Handle network requests and JSON data effortlessly:</p>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">{"async function getData() { ... }"}</div>
-                    <div class="tag-result">Declares an asynchronous function</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"const res = await fetch(url)"}</div>
-                    <div class="tag-result">Waits for HTTP response without freezing UI</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"const data = await res.json()"}</div>
-                    <div class="tag-result">Parses JSON payload into JS object</div>
-                </div>
-            </div>
-        </article>
+ <!-- ️ Core Building Blocks Guide -->
+ <article class="concept-card">
+ <h3><span>️</span> Asynchronous Keywords</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Handle network requests and JSON data effortlessly:</p>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">{"async function getData() { ... }"}</div>
+ <div class="tag-result">Declares an asynchronous function</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"const res = await fetch(url)"}</div>
+ <div class="tag-result">Waits for HTTP response without freezing UI</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"const data = await res.json()"}</div>
+ <div class="tag-result">Parses JSON payload into JS object</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 🧩 Architecture Blueprint -->
-        <article class="concept-card">
-            <h3><span>🧩</span> Async Fetch Data Pipeline</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The 3 steps of modern REST API communication:</p>
-            <div class="blueprint-icons-grid">
-                <div class="blueprint-icon-card">
-                    <span class="em">📡</span>
-                    <div class="name">{"fetch(url)"}</div>
-                    <div class="desc">HTTP GET request</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">📦</span>
-                    <div class="name">{"res.json()"}</div>
-                    <div class="desc">Parse JSON stream</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">🖥️</span>
-                    <div class="name">{"DOM Render"}</div>
-                    <div class="desc">Display in view</div>
-                </div>
-            </div>
-        </article>
+ <!-- Architecture Blueprint -->
+ <article class="concept-card">
+ <h3><span></span> Async Fetch Data Pipeline</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The 3 steps of modern REST API communication:</p>
+ <div class="blueprint-icons-grid">
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"fetch(url)"}</div>
+ <div class="desc">HTTP GET request</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"res.json()"}</div>
+ <div class="desc">Parse JSON stream</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em">️</span>
+ <div class="name">{"DOM Render"}</div>
+ <div class="desc">Display in view</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 💻 Working Reference Code Pattern -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Code Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_14')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_14">{"async function loadData() {\n  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');\n  const data = await res.json();\n  card.textContent = 'Task: ' + data.title;\n}"}</code></pre>
-            </div>
-        </article>
+ <!-- Working Reference Code Pattern -->
+ <article class="concept-card">
+ <h3><span></span> Reference Code Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_14')?.innerText || '')"> Copy</button>
+ <pre><code id="refCodeBox_14">{"async function loadData() {\n const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');\n const data = await res.json();\n card.textContent = 'Task: ' + data.title;\n}"}</code></pre>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'partB_lesson14_remake_draft';
-        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>Async Fetch Data</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n  <button id=\"fetchBtn\" style=\"padding: 10px 18px; background: #7c3aed; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Fetch Data</button>\n  <div id=\"dataCard\" style=\"margin-top: 16px; padding: 14px; background: #f1f5f9; border-radius: 8px;\">Click fetch to load data.</div>\n\n  <script>\n    const btn = document.getElementById('fetchBtn');\n    const card = document.getElementById('dataCard');\n\n    // 👉 STEP 1: Define an async function named loadData() that fetches from 'https://jsonplaceholder.typicode.com/todos/1' below:\n    \n\n    // 👉 STEP 2: Parse the response with await res.json() and display data.title in card.textContent below:\n    \n\n    btn.addEventListener('click', loadData);\n  <\/script>\n</body>\n</html>\n";
+ const DRAFT_KEY = 'partB_lesson14_remake_draft';
+ const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n <title>Async Fetch Data</title>\n</head>\n<body style=\"padding: 20px; font-family: sans-serif;\">\n <button id=\"fetchBtn\" style=\"padding: 10px 18px; background: #7c3aed; color: #fff; border: none; border-radius: 8px; cursor: pointer;\">Fetch Data</button>\n <div id=\"dataCard\" style=\"margin-top: 16px; padding: 14px; background: #f1f5f9; border-radius: 8px;\">Click fetch to load data.</div>\n\n <script>\n const btn = document.getElementById('fetchBtn');\n const card = document.getElementById('dataCard');\n\n // STEP 1: Define an async function named loadData() that fetches from 'https://jsonplaceholder.typicode.com/todos/1' below:\n \n\n // STEP 2: Parse the response with await res.json() and display data.title in card.textContent below:\n \n\n btn.addEventListener('click', loadData);\n <\/script>\n</body>\n</html>\n";
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'async_fn', label: '<strong>Step 1:</strong> Declare an <code>async function</code> containing <code>await fetch()</code>', fn: (c) => /async\s+function/i.test(c) && /await\s+fetch/i.test(c) },
-            { id: 'json_parse', label: '<strong>Step 2:</strong> Parse JSON with <code>await res.json()</code> and update card text', fn: (c) => /await\s+[^.]+\.json\s*\(\s*\)/i.test(c) && /card\.textContent\s*=/i.test(c) }
-        ], {
-            containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'async_fn', label: '<strong>Step 1:</strong> Declare an <code>async function</code> containing <code>await fetch()</code>', fn: (c) => /async\s+function/i.test(c) && /await\s+fetch/i.test(c) },
+ { id: 'json_parse', label: '<strong>Step 2:</strong> Parse JSON with <code>await res.json()</code> and update card text', fn: (c) => /await\s+[^.]+\.json\s*\(\s*\)/i.test(c) && /card\.textContent\s*=/i.test(c) }
+ ], {
+ containerId: 'taskChecklist',
+ submitBtnId: 'checkAnswerBtn',
+ nextBtnId: 'nextLessonBtn',
+ mode: 'html'
+ });
 
-        // 2. Line numbers and scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers and scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live preview instantly via srcdoc
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Render live preview instantly via srcdoc
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Intelligent Linter
-            DojoEngine.lint(editor.value, 'html');
+ // Real-Time Intelligent Linter
+ DojoEngine.lint(editor.value, 'html');
 
-            // Real-Time Checklist
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ }
 
-        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Project 14: Asynchronous JavaScript & REST APIs',
-                    xp: 100,
-                    completionKey: 'partB_lesson14_remake_complete',
-                    nextUrl: '/2. partB/lesson15/lesson15_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Project 14: Asynchronous JavaScript & REST APIs',
+ xp: 100,
+ completionKey: 'partB_lesson14_remake_complete',
+ nextUrl: '/2. partB/lesson15/lesson15_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

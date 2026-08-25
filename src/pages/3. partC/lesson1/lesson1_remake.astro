@@ -1,367 +1,367 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🛠️ Level 5 Lesson 1: ES6+ Powers!
+const starterCode = `// ️ Level 5 Lesson 1: ES6+ Powers!
 
 // Initial developer profile object
 const developer = {
-    name: "Alex",
-    role: "Frontend Developer",
-    skills: ["HTML5", "CSS3", "JavaScript"]
+ name: "Alex",
+ role: "Frontend Developer",
+ skills: ["HTML5", "CSS3", "JavaScript"]
 };
 
-// 👉 STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
+// STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
 // (Hint: const updatedDev = { ...developer, level: "Level 5 Master" };)
 
 
-// 👉 STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
+// STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
 // (Hint: const { name, role, skills, level } = updatedDev;)
 
 
 // Render developer profile to screen
 function renderProfile() {
-    const devName = typeof name !== 'undefined' ? name : 'Developer';
-    const devRole = typeof role !== 'undefined' ? role : 'Role';
-    const devLevel = typeof level !== 'undefined' ? level : 'Level 0';
-    const devSkills = typeof skills !== 'undefined' ? skills.join(', ') : 'None';
+ const devName = typeof name !== 'undefined' ? name : 'Developer';
+ const devRole = typeof role !== 'undefined' ? role : 'Role';
+ const devLevel = typeof level !== 'undefined' ? level : 'Level 0';
+ const devSkills = typeof skills !== 'undefined' ? skills.join(', ') : 'None';
 
-    return (
-        '<div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">' +
-            '<h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 ' + devName + '</h2>' +
-            '<p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;">💻 ' + devRole + '</p>' +
-            '<p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;">🏆 ' + devLevel + '</p>' +
-            '<div style="color: #334155; font-size: 13px;">⚡ Skills: ' + devSkills + '</div>' +
-        '</div>'
-    );
+ return (
+ '<div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">' +
+ '<h2 style="margin: 0 0 6px 0; color: #0f172a;"> ' + devName + '</h2>' +
+ '<p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;"> ' + devRole + '</p>' +
+ '<p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;"> ' + devLevel + '</p>' +
+ '<div style="color: #334155; font-size: 13px;"> Skills: ' + devSkills + '</div>' +
+ '</div>'
+ );
 }
 
 const root = document.getElementById('root');
 if (root) {
-    root.innerHTML = renderProfile();
+ root.innerHTML = renderProfile();
 }
 `;
 const level5Lessons = [
-    {
-        "id": 1,
-        "title": "ES6+ Powers: Spread & Destructuring",
-        "url": "/3. partC/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "React Component Tree",
-        "url": "/3. partC/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Dynamic Lists with .map()",
-        "url": "/3. partC/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Passing Props to Components",
-        "url": "/3. partC/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Interactive State with useState()",
-        "url": "/3. partC/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Real-Time Input Binding",
-        "url": "/3. partC/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Effects with useEffect()",
-        "url": "/3. partC/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Component Slots with children",
-        "url": "/3. partC/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "Lifting State Up",
-        "url": "/3. partC/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Conditional UI with Ternaries",
-        "url": "/3. partC/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "Multi-Input Forms with Dynamic Keys",
-        "url": "/3. partC/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "Loading Guards & Fallback UIs",
-        "url": "/3. partC/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Fetching Live REST APIs",
-        "url": "/3. partC/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Debounced Search & Cleanup",
-        "url": "/3. partC/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Final Project: React Task App",
-        "url": "/3. partC/lesson15/lesson15_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "ES6+ Powers: Spread & Destructuring",
+ "url": "/3. partC/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "React Component Tree",
+ "url": "/3. partC/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Dynamic Lists with .map()",
+ "url": "/3. partC/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Passing Props to Components",
+ "url": "/3. partC/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Interactive State with useState()",
+ "url": "/3. partC/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Real-Time Input Binding",
+ "url": "/3. partC/lesson6/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Effects with useEffect()",
+ "url": "/3. partC/lesson7/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "Component Slots with children",
+ "url": "/3. partC/lesson8/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "Lifting State Up",
+ "url": "/3. partC/lesson9/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Conditional UI with Ternaries",
+ "url": "/3. partC/lesson10/lesson10_remake.html"
+ },
+ {
+ "id": 11,
+ "title": "Multi-Input Forms with Dynamic Keys",
+ "url": "/3. partC/lesson11/lesson11_remake.html"
+ },
+ {
+ "id": 12,
+ "title": "Loading Guards & Fallback UIs",
+ "url": "/3. partC/lesson12/lesson12_remake.html"
+ },
+ {
+ "id": 13,
+ "title": "Fetching Live REST APIs",
+ "url": "/3. partC/lesson13/lesson13_remake.html"
+ },
+ {
+ "id": 14,
+ "title": "Debounced Search & Cleanup",
+ "url": "/3. partC/lesson14/lesson14_remake.html"
+ },
+ {
+ "id": 15,
+ "title": "Final Project: React Task App",
+ "url": "/3. partC/lesson15/lesson15_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Project 01: ES6+ JavaScript Powers | Level 5 React Dojo"
-    description="Master modern ES6+ JavaScript syntax: clone objects immutably with spread (...) and unpack values directly with destructuring."
-    levelTag="Level 5 • Framework Dojo"
-    lessonNum={1}
-    lessonTitle="ES6+ Powers: Spread & Destructuring"
-    xpAmount={150}
-    completionKey="partC_lesson1_remake_complete"
-    nextLessonUrl="/3. partC/lesson2/lesson2_remake.html"
-    hubUrl="/3. partC/hub.html"
-    hubTitle="Level 5 Hub"
-    hubIcon="⚛️"
-    fileTab="App.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={level5Lessons}
-    certificateUrl="/3. partC/certificate.html"
-    trackPrefix="partC"
+ title="Project 01: ES6+ JavaScript Powers | Level 5 React Dojo"
+ description="Master modern ES6+ JavaScript syntax: clone objects immutably with spread (...) and unpack values directly with destructuring."
+ levelTag="Level 5 • Framework Dojo"
+ lessonNum={1}
+ lessonTitle="ES6+ Powers: Spread & Destructuring"
+ xpAmount={150}
+ completionKey="partC_lesson1_remake_complete"
+ nextLessonUrl="/3. partC/lesson2/lesson2_remake.html"
+ hubUrl="/3. partC/hub.html"
+ hubTitle="Level 5 Hub"
+ hubIcon="️"
+ fileTab="App.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={level5Lessons}
+ certificateUrl="/3. partC/certificate.html"
+ trackPrefix="partC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Master modern ES6+ JavaScript syntax, arrow functions, and template literals required for React framework mastery.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">A developer profile card showing 👤 <strong>Alex</strong>, role <strong>Frontend Developer</strong>, and upgraded rank 🏆 <strong>Level 5 Master</strong>!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Think of the spread operator (<code>...</code>) like a photocopy machine that duplicates an existing document and lets you write in a new title, while destructuring is like opening a gift box and taking out just the items you want with clean variable names.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">A developer profile card showing <strong>Alex</strong>, role <strong>Frontend Developer</strong>, and upgraded rank <strong>Level 5 Master</strong>!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Think of the spread operator (<code>...</code>) like a photocopy machine that duplicates an existing document and lets you write in a new title, while destructuring is like opening a gift box and taking out just the items you want with clean variable names.
+ </div>
+ </article>
 
-        <!-- Interactive Feature Explorer -->
-        <article class="concept-card">
-            <h3><span>⚛️</span> Modern ES6+ Syntax Breakdown</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">{"{ ...dev, rank: 'Pro' }"}</div>
-                    <div class="tag-result">{"Spread: Creates immutable copies with new keys"}</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"const { name, role } = dev"}</div>
-                    <div class="tag-result">{"Destructure: Extracts properties into variables"}</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"skills.map(s => `<li>${s}</li>`)"}</div>
-                    <div class="tag-result">{"Array Map: Transforms items into UI strings"}</div>
-                </div>
-            </div>
-        </article>
+ <!-- Interactive Feature Explorer -->
+ <article class="concept-card">
+ <h3><span>️</span> Modern ES6+ Syntax Breakdown</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Key syntax building blocks and architecture patterns:</p>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">{"{ ...dev, rank: 'Pro' }"}</div>
+ <div class="tag-result">{"Spread: Creates immutable copies with new keys"}</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"const { name, role } = dev"}</div>
+ <div class="tag-result">{"Destructure: Extracts properties into variables"}</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"skills.map(s => `<li>${s}</li>`)"}</div>
+ <div class="tag-result">{"Array Map: Transforms items into UI strings"}</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Architecture Snippet -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Architecture Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_1">{"const dev = { name: \"Alex\", role: \"Frontend\" };\n// 1. Spread Operator\nconst updated = { ...dev, level: \"Level 5 Master\" };\n\n// 2. Destructuring\nconst { name, role, level } = updated;\n\n// 3. Arrow Function & Template String\nconst renderProfile = () => {\n    return `<div class=\"card\"><h2>${name}</h2><p>${role}</p></div>`;\n};"}</code></pre>
-            </div>
-        </article>
+ <!-- Working Reference Code & Architecture Snippet -->
+ <article class="concept-card">
+ <h3><span></span> Reference Architecture Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this pattern is structured in production React applications:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')"> Copy</button>
+ <pre><code id="refCodeBox_1">{"const dev = { name: \"Alex\", role: \"Frontend\" };\n// 1. Spread Operator\nconst updated = { ...dev, level: \"Level 5 Master\" };\n\n// 2. Destructuring\nconst { name, role, level } = updated;\n\n// 3. Arrow Function & Template String\nconst renderProfile = () => {\n return `<div class=\"card\"><h2>${name}</h2><p>${role}</p></div>`;\n};"}</code></pre>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partC_lesson1';
-        const DEFAULT_STARTER = `// 🛠️ Level 5 Lesson 1: ES6+ Powers!
+ const DRAFT_KEY = 'novicodes_draft_partC_lesson1';
+ const DEFAULT_STARTER = `// ️ Level 5 Lesson 1: ES6+ Powers!
 
 // Initial developer profile object
 const developer = {
-    name: "Alex",
-    role: "Frontend Developer",
-    skills: ["HTML5", "CSS3", "JavaScript"]
+ name: "Alex",
+ role: "Frontend Developer",
+ skills: ["HTML5", "CSS3", "JavaScript"]
 };
 
-// 👉 STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
+// STEP 1: Create an updated copy named 'updatedDev' with a new property level: "Level 5 Master"
 // (Hint: const updatedDev = { ...developer, level: "Level 5 Master" };)
 
 
-// 👉 STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
+// STEP 2: Unpack { name, role, skills, level } from 'updatedDev' using destructuring
 // (Hint: const { name, role, skills, level } = updatedDev;)
 
 
 // Render developer profile to screen
 function renderProfile() {
-    const devName = typeof name !== 'undefined' ? name : 'Developer';
-    const devRole = typeof role !== 'undefined' ? role : 'Role';
-    const devLevel = typeof level !== 'undefined' ? level : 'Level 0';
-    const devSkills = typeof skills !== 'undefined' ? skills.join(', ') : 'None';
+ const devName = typeof name !== 'undefined' ? name : 'Developer';
+ const devRole = typeof role !== 'undefined' ? role : 'Role';
+ const devLevel = typeof level !== 'undefined' ? level : 'Level 0';
+ const devSkills = typeof skills !== 'undefined' ? skills.join(', ') : 'None';
 
-    return (
-        '<div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">' +
-            '<h2 style="margin: 0 0 6px 0; color: #0f172a;">👤 ' + devName + '</h2>' +
-            '<p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;">💻 ' + devRole + '</p>' +
-            '<p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;">🏆 ' + devLevel + '</p>' +
-            '<div style="color: #334155; font-size: 13px;">⚡ Skills: ' + devSkills + '</div>' +
-        '</div>'
-    );
+ return (
+ '<div style="font-family: sans-serif; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #cbd5e1; max-width: 380px;">' +
+ '<h2 style="margin: 0 0 6px 0; color: #0f172a;"> ' + devName + '</h2>' +
+ '<p style="margin: 0 0 8px 0; color: #64748b; font-weight: 600;"> ' + devRole + '</p>' +
+ '<p style="margin: 0 0 14px 0; color: #059669; font-weight: 700; font-size: 13px;"> ' + devLevel + '</p>' +
+ '<div style="color: #334155; font-size: 13px;"> Skills: ' + devSkills + '</div>' +
+ '</div>'
+ );
 }
 
 const root = document.getElementById('root');
 if (root) {
-    root.innerHTML = renderProfile();
+ root.innerHTML = renderProfile();
 }
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'spread', label: 'Create <code>updatedDev</code> with spread <code>{ ...developer, level: "Level 5 Master" }</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+updatedDev\s*=\s*\{\s*\.\.\.developer\s*,\s*level\s*:\s*["']Level 5 Master["']/i.test(c); } },
-            { id: 'destructure', label: 'Destructure <code>const { name, role, skills, level } = updatedDev;</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\{\s*name\s*,\s*role\s*,\s*skills\s*,\s*level\s*\}\s*=\s*updatedDev/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'spread', label: 'Create <code>updatedDev</code> with spread <code>{ ...developer, level: "Level 5 Master" }</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+updatedDev\s*=\s*\{\s*\.\.\.developer\s*,\s*level\s*:\s*["']Level 5 Master["']/i.test(c); } },
+ { id: 'destructure', label: 'Destructure <code>const { name, role, skills, level } = updatedDev;</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\{\s*name\s*,\s*role\s*,\s*skills\s*,\s*level\s*\}\s*=\s*updatedDev/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time JavaScript & React Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time JavaScript & React Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Progate Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'ES6+ Powers: Spread & Destructuring',
-                    xp: 150,
-                    completionKey: 'partC_lesson1_remake_complete',
-                    nextUrl: '/3. partC/lesson2/lesson2_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Progate Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'ES6+ Powers: Spread & Destructuring',
+ xp: 150,
+ completionKey: 'partC_lesson1_remake_complete',
+ nextUrl: '/3. partC/lesson2/lesson2_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

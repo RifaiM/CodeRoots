@@ -2,221 +2,221 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const level4Lessons = [
-    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
-    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
-    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
-    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
-    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
-    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
-    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
-    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
-    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
-    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
-    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
-    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
-    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
-    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
-    { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
+ { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+ { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+ { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+ { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+ { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+ { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+ { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+ { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+ { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+ { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+ { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+ { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+ { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+ { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+ { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
 
-const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>My First Webpage</title>\n</head>\n<body>\n\n  <!-- 👉 STEP 1: Add an <h1> heading that says \"My First Webpage\" below: -->\n\n\n  <!-- 👉 STEP 2: Add a <p> paragraph introducing yourself below: -->\n\n\n</body>\n</html>\n";
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n <title>My First Webpage</title>\n</head>\n<body>\n\n <!-- STEP 1: Add an <h1> heading that says \"My First Webpage\" below: -->\n\n\n <!-- STEP 2: Add a <p> paragraph introducing yourself below: -->\n\n\n</body>\n</html>\n";
 ---
 
 <LessonLayout
-    title="Project 01: Interactive HTML Page Structure | Level 4 DOM Dojo"
-    description={"Master fundamental HTML page structure, semantic layout tags, and document anatomy with beginner-friendly interactive exercises."}
-    levelTag="Level 4 • DOM Dojo"
-    lessonNum={1}
-    lessonTitle="Interactive HTML Page Structure"
-    xpAmount={100}
-    completionKey="partB_lesson1_remake_complete"
-    nextLessonUrl="/2. partB/lesson2/lesson2_remake.html"
-    hubUrl="/2. partB/hub.html"
-    hubTitle="Level 4 Hub"
-    hubIcon="⚔️"
-    fileTab="index.html"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={level4Lessons}
-    certificateUrl="/2. partB/certificate.html"
-    trackPrefix="partB"
+ title="Project 01: Interactive HTML Page Structure | Level 4 DOM Dojo"
+ description={"Master fundamental HTML page structure, semantic layout tags, and document anatomy with beginner-friendly interactive exercises."}
+ levelTag="Level 4 • DOM Dojo"
+ lessonNum={1}
+ lessonTitle="Interactive HTML Page Structure"
+ xpAmount={100}
+ completionKey="partB_lesson1_remake_complete"
+ nextLessonUrl="/2. partB/lesson2/lesson2_remake.html"
+ hubUrl="/2. partB/hub.html"
+ hubTitle="Level 4 Hub"
+ hubIcon="️"
+ fileTab="index.html"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={level4Lessons}
+ certificateUrl="/2. partB/certificate.html"
+ trackPrefix="partB"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Master fundamental HTML page structure, semantic layout tags, and document anatomy with beginner-friendly interactive exercises.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Master fundamental HTML page structure, semantic layout tags, and document anatomy with beginner-friendly interactive exercises.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <div class="mission-title-box">
-                    <span style="font-size: 1.25rem;">🎯</span>
-                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
-                </div>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
-                Complete these step-by-step instructions in the code editor on the right:
-            </p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <div class="mission-title-box">
+ <span style="font-size: 1.25rem;"></span>
+ <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+ </div>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+ Complete these step-by-step instructions in the code editor on the right:
+ </p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- 💡 Core Concept & Real-World Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> HTML is the skeleton that gives structure to your content. Tags are labels that wrap around content to tell the web browser what each piece means.
-            </div>
-        </article>
+ <!-- Core Concept & Real-World Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> HTML is the skeleton that gives structure to your content. Tags are labels that wrap around content to tell the web browser what each piece means.
+ </div>
+ </article>
 
-        <!-- 🏷️ Core Building Blocks Guide -->
-        <article class="concept-card">
-            <h3><span>🏷️</span> Core HTML Building Blocks</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Essential HTML tags and what each element creates on the page:</p>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">{"<h1>Hello World</h1>"}</div>
-                    <div class="tag-result">Creates a prominent title headline</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"<p>This is text</p>"}</div>
-                    <div class="tag-result">Creates a readable paragraph block</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"<button>Click Me</button>"}</div>
-                    <div class="tag-result">Creates an interactive clickable button</div>
-                </div>
-            </div>
-        </article>
+ <!-- ️ Core Building Blocks Guide -->
+ <article class="concept-card">
+ <h3><span>️</span> Core HTML Building Blocks</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Essential HTML tags and what each element creates on the page:</p>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">{"<h1>Hello World</h1>"}</div>
+ <div class="tag-result">Creates a prominent title headline</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"<p>This is text</p>"}</div>
+ <div class="tag-result">Creates a readable paragraph block</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"<button>Click Me</button>"}</div>
+ <div class="tag-result">Creates an interactive clickable button</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 🧩 Architecture Blueprint -->
-        <article class="concept-card">
-            <h3><span>🧩</span> Website Building Blocks</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Modern websites are organized into standardized semantic zones:</p>
-            <div class="blueprint-icons-grid">
-                <div class="blueprint-icon-card">
-                    <span class="em">🏠</span>
-                    <div class="name">{"<header>"}</div>
-                    <div class="desc">Logo & Brand</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">🧭</span>
-                    <div class="name">{"<nav>"}</div>
-                    <div class="desc">Menu Links</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">📄</span>
-                    <div class="name">{"<main>"}</div>
-                    <div class="desc">Main Body</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">📜</span>
-                    <div class="name">{"<footer>"}</div>
-                    <div class="desc">Copyright & Info</div>
-                </div>
-            </div>
-        </article>
+ <!-- Architecture Blueprint -->
+ <article class="concept-card">
+ <h3><span></span> Website Building Blocks</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">Modern websites are organized into standardized semantic zones:</p>
+ <div class="blueprint-icons-grid">
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"<header>"}</div>
+ <div class="desc">Logo & Brand</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"<nav>"}</div>
+ <div class="desc">Menu Links</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"<main>"}</div>
+ <div class="desc">Main Body</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"<footer>"}</div>
+ <div class="desc">Copyright & Info</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 💻 Working Reference Code Pattern -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Code Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_1">{"<!DOCTYPE html>\n<html>\n<head>\n  <title>My First Webpage</title>\n</head>\n<body>\n  <h1>My First Webpage</h1>\n  <p>Welcome! I am learning frontend engineering with NoviCodes.</p>\n</body>\n</html>"}</code></pre>
-            </div>
-        </article>
+ <!-- Working Reference Code Pattern -->
+ <article class="concept-card">
+ <h3><span></span> Reference Code Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_1')?.innerText || '')"> Copy</button>
+ <pre><code id="refCodeBox_1">{"<!DOCTYPE html>\n<html>\n<head>\n <title>My First Webpage</title>\n</head>\n<body>\n <h1>My First Webpage</h1>\n <p>Welcome! I am learning frontend engineering with NoviCodes.</p>\n</body>\n</html>"}</code></pre>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'partB_lesson1_remake_draft';
-        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>My First Webpage</title>\n</head>\n<body>\n\n  <!-- 👉 STEP 1: Add an <h1> heading that says \"My First Webpage\" below: -->\n\n\n  <!-- 👉 STEP 2: Add a <p> paragraph introducing yourself below: -->\n\n\n</body>\n</html>\n";
+ const DRAFT_KEY = 'partB_lesson1_remake_draft';
+ const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n <title>My First Webpage</title>\n</head>\n<body>\n\n <!-- STEP 1: Add an <h1> heading that says \"My First Webpage\" below: -->\n\n\n <!-- STEP 2: Add a <p> paragraph introducing yourself below: -->\n\n\n</body>\n</html>\n";
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'h1_tag', label: '<strong>Step 1:</strong> Add an <code>&lt;h1&gt;</code> heading with text <code>"My First Webpage"</code> inside <code>&lt;body&gt;</code>', fn: (c) => /<h1[^>]*>\s*My First Webpage\s*<\/h1>/i.test(c) },
-            { id: 'p_tag', label: '<strong>Step 2:</strong> Add a <code>&lt;p&gt;</code> paragraph introducing yourself below the heading', fn: (c) => /<p[^>]*>[^<]{4,}<\/p>/i.test(c) }
-        ], {
-            containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'h1_tag', label: '<strong>Step 1:</strong> Add an <code>&lt;h1&gt;</code> heading with text <code>"My First Webpage"</code> inside <code>&lt;body&gt;</code>', fn: (c) => /<h1[^>]*>\s*My First Webpage\s*<\/h1>/i.test(c) },
+ { id: 'p_tag', label: '<strong>Step 2:</strong> Add a <code>&lt;p&gt;</code> paragraph introducing yourself below the heading', fn: (c) => /<p[^>]*>[^<]{4,}<\/p>/i.test(c) }
+ ], {
+ containerId: 'taskChecklist',
+ submitBtnId: 'checkAnswerBtn',
+ nextBtnId: 'nextLessonBtn',
+ mode: 'html'
+ });
 
-        // 2. Line numbers and scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers and scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live preview instantly via srcdoc
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Render live preview instantly via srcdoc
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Intelligent Linter
-            DojoEngine.lint(editor.value, 'html');
+ // Real-Time Intelligent Linter
+ DojoEngine.lint(editor.value, 'html');
 
-            // Real-Time Checklist
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ }
 
-        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Project 01: Interactive HTML Page Structure',
-                    xp: 100,
-                    completionKey: 'partB_lesson1_remake_complete',
-                    nextUrl: '/2. partB/lesson2/lesson2_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Project 01: Interactive HTML Page Structure',
+ xp: 100,
+ completionKey: 'partB_lesson1_remake_complete',
+ nextUrl: '/2. partB/lesson2/lesson2_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

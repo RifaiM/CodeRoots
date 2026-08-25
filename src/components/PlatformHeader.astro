@@ -1,591 +1,591 @@
 ---
 export interface NavLink {
-    href: string;
-    label: string;
-    icon?: string;
-    title?: string;
-    active?: boolean;
-    id?: string;
-    onClick?: string;
-    extraClass?: string;
+ href: string;
+ label: string;
+ icon?: string;
+ title?: string;
+ active?: boolean;
+ id?: string;
+ onClick?: string;
+ extraClass?: string;
 }
 
 export interface JumpLessonItem {
-    id: number;
-    title: string;
-    url: string;
+ id: number;
+ title: string;
+ url: string;
 }
 
 interface Props {
-    tagText?: string;
-    tagId?: string;
-    navLinks?: NavLink[];
-    showStreakBadge?: boolean;
-    showLevelBadge?: boolean;
-    showXpBadge?: boolean;
-    showJumpDropdown?: boolean;
-    currentLessonId?: number;
-    jumpLessons?: JumpLessonItem[];
-    certificateUrl?: string;
-    trackPrefix?: string;
+ tagText?: string;
+ tagId?: string;
+ navLinks?: NavLink[];
+ showStreakBadge?: boolean;
+ showLevelBadge?: boolean;
+ showXpBadge?: boolean;
+ showJumpDropdown?: boolean;
+ currentLessonId?: number;
+ jumpLessons?: JumpLessonItem[];
+ certificateUrl?: string;
+ trackPrefix?: string;
 }
 
 import Icon from './Icon.astro';
 
 const { 
-    tagText = 'Field Guide // Vol. 2.5',
-    tagId = 'headerLogoTag',
-    navLinks = [],
-    showStreakBadge = false,
-    showLevelBadge = false,
-    showXpBadge = true,
-    showJumpDropdown = false,
-    currentLessonId = 1,
-    jumpLessons = [],
-    certificateUrl,
-    trackPrefix = 'partB'
+ tagText = 'Field Guide // Vol. 2.5',
+ tagId = 'headerLogoTag',
+ navLinks = [],
+ showStreakBadge = false,
+ showLevelBadge = false,
+ showXpBadge = true,
+ showJumpDropdown = false,
+ currentLessonId = 1,
+ jumpLessons = [],
+ certificateUrl,
+ trackPrefix = 'partB'
 } = Astro.props;
 ---
 
 <header class="platform-header">
-    <div class="header-inner">
-        <a href="/" class="platform-logo" aria-label="NoviCodes Field Journal Home">
-            <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" />
-            <div class="logo-text">
-                <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
-                <span class="logo-tag" id={tagId}>{tagText}</span>
-            </div>
-        </a>
+ <div class="header-inner">
+ <a href="/" class="platform-logo" aria-label="NoviCodes Field Journal Home">
+ <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="brand-logo-img" />
+ <div class="logo-text">
+ <span class="logo-title"><span class="title-novi">Novi</span><span class="title-codes">Codes</span></span>
+ <span class="logo-tag" id={tagId}>{tagText}</span>
+ </div>
+ </a>
 
-        <!-- Header Nav Links & Jump to Lesson Dropdown -->
-        <nav class="header-nav-links" aria-label="Main Navigation">
-            {navLinks.map(link => (
-                <a 
-                    href={link.href} 
-                    id={link.id}
-                    class={`nav-link ${link.active ? 'active' : ''} ${link.extraClass || ''}`}
-                    title={link.title || link.label}
-                    onclick={link.onClick}
-                >
-                    {link.icon && (
-                    <span class="nav-icon">
-                        {link.icon === '🗺️' && <Icon name="map" size={15} />}
-                        {link.icon === '📚' && <Icon name="book-open" size={15} />}
-                        {link.icon === '⚔️' && <Icon name="swords" size={15} />}
-                        {link.icon === '📜' && <Icon name="certificate" size={15} />}
-                        {link.icon === '🏠' && <Icon name="home" size={15} />}
-                        {link.icon === '🔥' && <Icon name="flame" size={15} />}
-                        {!['🗺️', '📚', '⚔️', '📜', '🏠', '🔥'].includes(link.icon) && link.icon}
-                    </span>
-                )}
-                    <span class="nav-text">{link.label}</span>
-                </a>
-            ))}
+ <!-- Header Nav Links & Jump to Lesson Dropdown -->
+ <nav class="header-nav-links" aria-label="Main Navigation">
+ {navLinks.map(link => (
+ <a 
+ href={link.href} 
+ id={link.id}
+ class={`nav-link ${link.active ? 'active' : ''} ${link.extraClass || ''}`}
+ title={link.title || link.label}
+ onclick={link.onClick}
+ >
+ {link.icon && (
+ <span class="nav-icon">
+ {link.icon === '️' && <Icon name="map" size={15} />}
+ {link.icon === '' && <Icon name="book-open" size={15} />}
+ {link.icon === '️' && <Icon name="swords" size={15} />}
+ {link.icon === '' && <Icon name="certificate" size={15} />}
+ {link.icon === '' && <Icon name="home" size={15} />}
+ {link.icon === '' && <Icon name="flame" size={15} />}
+ {!['️', '', '️', '', '', ''].includes(link.icon) && link.icon}
+ </span>
+ )}
+ <span class="nav-text">{link.label}</span>
+ </a>
+ ))}
 
-            <!-- Interactive Jump to Lesson Drawer Button -->
-            {showJumpDropdown && jumpLessons.length > 0 && (
-                <div class="lesson-jump-dropdown-wrap" data-track={trackPrefix}>
-                    <button class="lesson-jump-btn" id="lessonJumpBtn" aria-expanded="false" aria-haspopup="true">
-                        <span class="jump-text">Index</span>
-                        <span class="jump-arrow">▼</span>
-                    </button>
+ <!-- Interactive Jump to Lesson Drawer Button -->
+ {showJumpDropdown && jumpLessons.length > 0 && (
+ <div class="lesson-jump-dropdown-wrap" data-track={trackPrefix}>
+ <button class="lesson-jump-btn" id="lessonJumpBtn" aria-expanded="false" aria-haspopup="true">
+ <span class="jump-text">Index</span>
+ <span class="jump-arrow">▼</span>
+ </button>
 
-                    <!-- Dropdown Drawer Menu -->
-                    <div class="lesson-jump-menu" id="lessonJumpMenu" role="menu">
-                        <div class="jump-menu-header">
-                            <span class="jump-menu-title">Lesson Index</span>
-                            <span class="jump-menu-subtitle">{jumpLessons.length} Projects</span>
-                        </div>
-                        <div class="jump-lessons-list" id="jumpLessonsList">
-                            {jumpLessons.map(l => (
-                                <a 
-                                    href={l.url} 
-                                    class={`jump-item ${l.id === currentLessonId ? 'current' : ''}`}
-                                    id={`jump_item_${trackPrefix}_${l.id}`}
-                                    data-lesson-id={l.id}
-                                    role="menuitem"
-                                >
-                                    <div class="jump-item-info">
-                                        <span class="jump-item-num">§ {String(l.id).padStart(2, '0')}</span>
-                                        <span class="jump-item-name">{l.title}</span>
-                                    </div>
-                                    <span class="jump-item-status" aria-label="Status"></span>
-                                </a>
-                            ))}
-                        </div>
+ <!-- Dropdown Drawer Menu -->
+ <div class="lesson-jump-menu" id="lessonJumpMenu" role="menu">
+ <div class="jump-menu-header">
+ <span class="jump-menu-title">Lesson Index</span>
+ <span class="jump-menu-subtitle">{jumpLessons.length} Projects</span>
+ </div>
+ <div class="jump-lessons-list" id="jumpLessonsList">
+ {jumpLessons.map(l => (
+ <a 
+ href={l.url} 
+ class={`jump-item ${l.id === currentLessonId ? 'current' : ''}`}
+ id={`jump_item_${trackPrefix}_${l.id}`}
+ data-lesson-id={l.id}
+ role="menuitem"
+ >
+ <div class="jump-item-info">
+ <span class="jump-item-num">§ {String(l.id).padStart(2, '0')}</span>
+ <span class="jump-item-name">{l.title}</span>
+ </div>
+ <span class="jump-item-status" aria-label="Status"></span>
+ </a>
+ ))}
+ </div>
 
-                        {certificateUrl && (
-                            <div class="jump-cert-section" id="jumpCertSection">
-                                <div class="jump-divider"></div>
-                                <a href={certificateUrl} class="jump-item jump-cert-item" id="jumpCertItem" role="menuitem">
-                                    <div class="jump-item-info">
-                                        <span class="jump-item-num">PROOF OF WORK</span>
-                                        <span class="jump-item-name">Official Certificate →</span>
-                                    </div>
-                                    <span class="jump-item-status" aria-label="Status"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-                                </a>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
-        </nav>
+ {certificateUrl && (
+ <div class="jump-cert-section" id="jumpCertSection">
+ <div class="jump-divider"></div>
+ <a href={certificateUrl} class="jump-item jump-cert-item" id="jumpCertItem" role="menuitem">
+ <div class="jump-item-info">
+ <span class="jump-item-num">PROOF OF WORK</span>
+ <span class="jump-item-name">Official Certificate →</span>
+ </div>
+ <span class="jump-item-status" aria-label="Status"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+ </a>
+ </div>
+ )}
+ </div>
+ </div>
+ )}
+ </nav>
 
-        <!-- Header User Stats -->
-        <div class="header-user-stats" id="userStatsBar">
-            {showStreakBadge && (
-                <div 
-                    class="stat-badge streak-badge" 
-                    id="headerStreakBadge" 
-                    title="Click to view Daily Coding Streak" 
-                    onclick="if(typeof openStreakModal==='function') openStreakModal();" 
-                    style="cursor: pointer;"
-                >
-                    <span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span>d<span class="streak-days-text">&nbsp;streak</span></span>
-                </div>
-            )}
+ <!-- Header User Stats -->
+ <div class="header-user-stats" id="userStatsBar">
+ {showStreakBadge && (
+ <div 
+ class="stat-badge streak-badge" 
+ id="headerStreakBadge" 
+ title="Click to view Daily Coding Streak" 
+ onclick="if(typeof openStreakModal==='function') openStreakModal();" 
+ style="cursor: pointer;"
+ >
+ <span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span>d<span class="streak-days-text">&nbsp;streak</span></span>
+ </div>
+ )}
 
-            {showXpBadge && (
-                <div 
-                    class="stat-badge xp-badge" 
-                    title="Click to view Learner Profile & XP breakdown" 
-                    onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
-                    style="cursor: pointer;"
-                >
-                    <span class="badge-label" id="userXpLabel">0 XP</span>
-                </div>
-            )}
+ {showXpBadge && (
+ <div 
+ class="stat-badge xp-badge" 
+ title="Click to view Learner Profile & XP breakdown" 
+ onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
+ style="cursor: pointer;"
+ >
+ <span class="badge-label" id="userXpLabel">0 XP</span>
+ </div>
+ )}
 
-            {showLevelBadge && (
-                <div 
-                    class="stat-badge level-badge" 
-                    title="Click to view Learner Profile & Developer Rank" 
-                    onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
-                    style="cursor: pointer;"
-                >
-                    <span class="badge-label" id="userRankLabel">Novice</span>
-                </div>
-            )}
-        </div>
-    </div>
+ {showLevelBadge && (
+ <div 
+ class="stat-badge level-badge" 
+ title="Click to view Learner Profile & Developer Rank" 
+ onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
+ style="cursor: pointer;"
+ >
+ <span class="badge-label" id="userRankLabel">Novice</span>
+ </div>
+ )}
+ </div>
+ </div>
 </header>
 
 <style>
-    /* Jump Dropdown Styles */
-    .lesson-jump-dropdown-wrap {
-        position: relative;
-        display: inline-block;
-    }
+ /* Jump Dropdown Styles */
+ .lesson-jump-dropdown-wrap {
+ position: relative;
+ display: inline-block;
+ }
 
-    .lesson-jump-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: var(--canvas-base);
-        border: 1px solid var(--border-subtle);
-        padding: 5px 10px;
-        border-radius: 2px;
-        font-family: var(--font-mono);
-        font-size: 0.76rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--text-title);
-        cursor: pointer;
-        transition: border-color 0.15s ease;
-    }
+ .lesson-jump-btn {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ background: var(--canvas-base);
+ border: 1px solid var(--border-subtle);
+ padding: 5px 10px;
+ border-radius: 2px;
+ font-family: var(--font-mono);
+ font-size: 0.76rem;
+ font-weight: 500;
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ color: var(--text-title);
+ cursor: pointer;
+ transition: border-color 0.15s ease;
+ }
 
-    .lesson-jump-btn:hover {
-        border-color: var(--border-dark);
-    }
+ .lesson-jump-btn:hover {
+ border-color: var(--border-dark);
+ }
 
-    .jump-arrow {
-        font-size: 0.60rem;
-        transition: transform 0.2s ease;
-    }
+ .jump-arrow {
+ font-size: 0.60rem;
+ transition: transform 0.2s ease;
+ }
 
-    .lesson-jump-dropdown-wrap.open .jump-arrow {
-        transform: rotate(180deg);
-    }
+ .lesson-jump-dropdown-wrap.open .jump-arrow {
+ transform: rotate(180deg);
+ }
 
-    /* Dropdown Drawer Menu */
-    .lesson-jump-menu {
-        position: absolute;
-        top: calc(100% + 4px);
-        right: 0;
-        width: 300px;
-        max-height: 400px;
-        background: var(--card-elevated);
-        border: 1px solid var(--border-subtle);
-        border-radius: 2px;
-        box-shadow: none;
-        padding: 8px;
-        display: none;
-        flex-direction: column;
-        z-index: 1000;
-        overflow-y: auto;
-        box-sizing: border-box;
-    }
+ /* Dropdown Drawer Menu */
+ .lesson-jump-menu {
+ position: absolute;
+ top: calc(100% + 4px);
+ right: 0;
+ width: 300px;
+ max-height: 400px;
+ background: var(--card-elevated);
+ border: 1px solid var(--border-subtle);
+ border-radius: 2px;
+ box-shadow: none;
+ padding: 8px;
+ display: none;
+ flex-direction: column;
+ z-index: 1000;
+ overflow-y: auto;
+ box-sizing: border-box;
+ }
 
-    .lesson-jump-dropdown-wrap.open .lesson-jump-menu {
-        display: flex;
-    }
+ .lesson-jump-dropdown-wrap.open .lesson-jump-menu {
+ display: flex;
+ }
 
-    .jump-menu-header {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        padding: 6px 8px 8px 8px;
-        border-bottom: 1px solid var(--border-subtle);
-        margin-bottom: 6px;
-    }
+ .jump-menu-header {
+ display: flex;
+ align-items: baseline;
+ justify-content: space-between;
+ padding: 6px 8px 8px 8px;
+ border-bottom: 1px solid var(--border-subtle);
+ margin-bottom: 6px;
+ }
 
-    .jump-menu-title {
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--text-title);
-    }
+ .jump-menu-title {
+ font-family: var(--font-mono);
+ font-size: 0.74rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ color: var(--text-title);
+ }
 
-    .jump-menu-subtitle {
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
-        font-weight: 500;
-        color: var(--text-muted);
-    }
+ .jump-menu-subtitle {
+ font-family: var(--font-mono);
+ font-size: 0.68rem;
+ font-weight: 500;
+ color: var(--text-muted);
+ }
 
-    .jump-lessons-list {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        max-height: 260px;
-        overflow-y: auto;
-    }
+ .jump-lessons-list {
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+ max-height: 260px;
+ overflow-y: auto;
+ }
 
-    .jump-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        padding: 6px 8px;
-        border-radius: 2px;
-        text-decoration: none;
-        color: var(--text-body);
-        transition: all 0.15s ease;
-        background: transparent;
-        border: 1px solid transparent;
-    }
+ .jump-item {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 8px;
+ padding: 6px 8px;
+ border-radius: 2px;
+ text-decoration: none;
+ color: var(--text-body);
+ transition: all 0.15s ease;
+ background: transparent;
+ border: 1px solid transparent;
+ }
 
-    .jump-item:hover {
-        background: var(--canvas-base);
-        border-color: var(--border-subtle);
-        color: var(--text-title);
-    }
+ .jump-item:hover {
+ background: var(--canvas-base);
+ border-color: var(--border-subtle);
+ color: var(--text-title);
+ }
 
-    .jump-item.current {
-        background: var(--canvas-base);
-        border-color: var(--border-subtle);
-        color: var(--accent-oxide);
-    }
+ .jump-item.current {
+ background: var(--canvas-base);
+ border-color: var(--border-subtle);
+ color: var(--accent-oxide);
+ }
 
-    .jump-item.completed .jump-item-num {
-        color: #2F5233;
-        font-weight: 600;
-    }
+ .jump-item.completed .jump-item-num {
+ color: #2F5233;
+ font-weight: 600;
+ }
 
-    .jump-item.locked {
-        opacity: 0.45;
-        cursor: not-allowed;
-    }
+ .jump-item.locked {
+ opacity: 0.45;
+ cursor: not-allowed;
+ }
 
-    .jump-item-status {
-        font-size: 0.76rem;
-        flex-shrink: 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
+ .jump-item-status {
+ font-size: 0.76rem;
+ flex-shrink: 0;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ }
 
-    .jump-item.completed .jump-item-status {
-        color: #2F5233;
-    }
+ .jump-item.completed .jump-item-status {
+ color: #2F5233;
+ }
 
-    .jump-item-info {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        overflow: hidden;
-    }
+ .jump-item-info {
+ display: flex;
+ flex-direction: column;
+ text-align: left;
+ overflow: hidden;
+ }
 
-    .jump-item-num {
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
+ .jump-item-num {
+ font-family: var(--font-mono);
+ font-size: 0.68rem;
+ color: var(--text-muted);
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ }
 
-    .jump-item.current .jump-item-num {
-        color: var(--accent-oxide);
-    }
+ .jump-item.current .jump-item-num {
+ color: var(--accent-oxide);
+ }
 
-    .jump-item-name {
-        font-size: 0.82rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-    }
+ .jump-item-name {
+ font-size: 0.82rem;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ color: inherit;
+ }
 
-    .jump-divider {
-        height: 1px;
-        background: var(--border-subtle);
-        margin: 6px 0;
-    }
+ .jump-divider {
+ height: 1px;
+ background: var(--border-subtle);
+ margin: 6px 0;
+ }
 
-    .jump-cert-item {
-        background: var(--canvas-base);
-        border: 1px solid var(--border-subtle);
-    }
+ .jump-cert-item {
+ background: var(--canvas-base);
+ border: 1px solid var(--border-subtle);
+ }
 
-    .jump-cert-item:hover {
-        border-color: var(--border-dark);
-    }
+ .jump-cert-item:hover {
+ border-color: var(--border-dark);
+ }
 
-    /* ── ≤576px: Hide jump button label text ─── */
-    @media (max-width: 576px) {
-        .jump-text {
-            display: none;
-        }
-        .lesson-jump-menu {
-            right: -60px;
-            width: 260px;
-        }
-    }
+ /* ── ≤576px: Hide jump button label text ─── */
+ @media (max-width: 576px) {
+ .jump-text {
+ display: none;
+ }
+ .lesson-jump-menu {
+ right: -60px;
+ width: 260px;
+ }
+ }
 
-    /* ── ≤375px & ≤320px: Center dropdown in viewport (avoids left overflow) ─── */
-    @media (max-width: 375px) {
-        .lesson-jump-dropdown-wrap {
-            position: static;
-        }
-        .lesson-jump-menu {
-            position: fixed;
-            top: 60px;
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            width: min(300px, 90vw);
-            max-height: 70vh;
-        }
-    }
+ /* ── ≤375px & ≤320px: Center dropdown in viewport (avoids left overflow) ─── */
+ @media (max-width: 375px) {
+ .lesson-jump-dropdown-wrap {
+ position: static;
+ }
+ .lesson-jump-menu {
+ position: fixed;
+ top: 60px;
+ left: 50%;
+ right: auto;
+ transform: translateX(-50%);
+ width: min(300px, 90vw);
+ max-height: 70vh;
+ }
+ }
 </style>
 
 <script>
-    // Jump Drawer Toggle Logic & Dynamic Completion Hydration
-    function initHeaderDropdown() {
-        const wrap = document.querySelector('.lesson-jump-dropdown-wrap');
-        const btn = document.getElementById('lessonJumpBtn');
+ // Jump Drawer Toggle Logic & Dynamic Completion Hydration
+ function initHeaderDropdown() {
+ const wrap = document.querySelector('.lesson-jump-dropdown-wrap');
+ const btn = document.getElementById('lessonJumpBtn');
 
-        if (btn && wrap && !(btn as any)._hasClickListener) {
-            (btn as any)._hasClickListener = true;
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isOpen = wrap.classList.toggle('open');
-                btn.setAttribute('aria-expanded', isOpen.toString());
-            });
+ if (btn && wrap && !(btn as any)._hasClickListener) {
+ (btn as any)._hasClickListener = true;
+ btn.addEventListener('click', (e) => {
+ e.stopPropagation();
+ const isOpen = wrap.classList.toggle('open');
+ btn.setAttribute('aria-expanded', isOpen.toString());
+ });
 
-            document.addEventListener('click', (e) => {
-                if (!wrap.contains(e.target as Node)) {
-                    wrap.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
+ document.addEventListener('click', (e) => {
+ if (!wrap.contains(e.target as Node)) {
+ wrap.classList.remove('open');
+ btn.setAttribute('aria-expanded', 'false');
+ }
+ });
+ }
 
-        hydrateJumpMenu();
-    }
+ hydrateJumpMenu();
+ }
 
-    function hydrateJumpMenu() {
-        // Hydrate completion badges & enforce sequential locking in jump dropdown
-        const items = document.querySelectorAll('.jump-item[data-lesson-id]');
-        const dropdownWrap = document.querySelector('.lesson-jump-dropdown-wrap') as HTMLElement | null;
-        const track = dropdownWrap?.dataset.track || 'partB';
-        const isPracticeMode = localStorage.getItem('practice_mode_unlocked') === 'true';
+ function hydrateJumpMenu() {
+ // Hydrate completion badges & enforce sequential locking in jump dropdown
+ const items = document.querySelectorAll('.jump-item[data-lesson-id]');
+ const dropdownWrap = document.querySelector('.lesson-jump-dropdown-wrap') as HTMLElement | null;
+ const track = dropdownWrap?.dataset.track || 'partB';
+ const isPracticeMode = localStorage.getItem('practice_mode_unlocked') === 'true';
 
-        function checkLessonComp(t: string, num: number): boolean {
-            if (t === 'partB') {
-                return localStorage.getItem(`partB_lesson${num}_remake_complete`) === 'true' ||
-                       localStorage.getItem(`lesson_${num}_completed`) === 'true' ||
-                       localStorage.getItem(`lesson_${num}_completed`) === '1';
-            } else if (t === 'partC') {
-                return localStorage.getItem(`partC_lesson${num}_remake_complete`) === 'true';
-            } else if (t === 'partE') {
-                return localStorage.getItem(`partE_lesson${num}_remake_complete`) === 'true';
-            } else if (t.includes('branchA')) {
-                return localStorage.getItem(`partF_branchA_lesson${num}_complete`) === 'true' ||
-                       localStorage.getItem(`partF_branchA_lesson${num}_completed`) === 'true';
-            } else if (t.includes('branchB')) {
-                return localStorage.getItem(`partF_branchB_lesson${num}_complete`) === 'true' ||
-                       localStorage.getItem(`partF_branchB_lesson${num}_completed`) === 'true';
-            } else if (t.includes('branchC')) {
-                return localStorage.getItem(`partF_branchC_lesson${num}_complete`) === 'true' ||
-                       localStorage.getItem(`partF_branchC_lesson${num}_completed`) === 'true';
-            } else if (t.includes('branchD')) {
-                return localStorage.getItem(`partF_branchD_lesson${num}_complete`) === 'true' ||
-                       localStorage.getItem(`partF_branchD_lesson${num}_completed`) === 'true';
-            } else if (t.includes('branchE')) {
-                return localStorage.getItem(`partF_branchE_lesson${num}_complete`) === 'true' ||
-                       localStorage.getItem(`partF_branchE_lesson${num}_completed`) === 'true';
-            } else if (t === 'partG') {
-                return localStorage.getItem(`partG_lesson${num}_remake_complete`) === 'true';
-            } else if (t === 'partH') {
-                return localStorage.getItem(`partH_lesson${num}_remake_complete`) === 'true';
-            } else if (t === 'partI') {
-                return localStorage.getItem(`partI_lesson${num}_remake_complete`) === 'true';
-            }
-            return false;
-        }
+ function checkLessonComp(t: string, num: number): boolean {
+ if (t === 'partB') {
+ return localStorage.getItem(`partB_lesson${num}_remake_complete`) === 'true' ||
+ localStorage.getItem(`lesson_${num}_completed`) === 'true' ||
+ localStorage.getItem(`lesson_${num}_completed`) === '1';
+ } else if (t === 'partC') {
+ return localStorage.getItem(`partC_lesson${num}_remake_complete`) === 'true';
+ } else if (t === 'partE') {
+ return localStorage.getItem(`partE_lesson${num}_remake_complete`) === 'true';
+ } else if (t.includes('branchA')) {
+ return localStorage.getItem(`partF_branchA_lesson${num}_complete`) === 'true' ||
+ localStorage.getItem(`partF_branchA_lesson${num}_completed`) === 'true';
+ } else if (t.includes('branchB')) {
+ return localStorage.getItem(`partF_branchB_lesson${num}_complete`) === 'true' ||
+ localStorage.getItem(`partF_branchB_lesson${num}_completed`) === 'true';
+ } else if (t.includes('branchC')) {
+ return localStorage.getItem(`partF_branchC_lesson${num}_complete`) === 'true' ||
+ localStorage.getItem(`partF_branchC_lesson${num}_completed`) === 'true';
+ } else if (t.includes('branchD')) {
+ return localStorage.getItem(`partF_branchD_lesson${num}_complete`) === 'true' ||
+ localStorage.getItem(`partF_branchD_lesson${num}_completed`) === 'true';
+ } else if (t.includes('branchE')) {
+ return localStorage.getItem(`partF_branchE_lesson${num}_complete`) === 'true' ||
+ localStorage.getItem(`partF_branchE_lesson${num}_completed`) === 'true';
+ } else if (t === 'partG') {
+ return localStorage.getItem(`partG_lesson${num}_remake_complete`) === 'true';
+ } else if (t === 'partH') {
+ return localStorage.getItem(`partH_lesson${num}_remake_complete`) === 'true';
+ } else if (t === 'partI') {
+ return localStorage.getItem(`partI_lesson${num}_remake_complete`) === 'true';
+ }
+ return false;
+ }
 
-        function checkLessonAccessible(t: string, num: number): boolean {
-            if (num <= 1 || isPracticeMode) return true;
-            for (let i = 1; i < num; i++) {
-                if (!checkLessonComp(t, i)) return false;
-            }
-            return true;
-        }
+ function checkLessonAccessible(t: string, num: number): boolean {
+ if (num <= 1 || isPracticeMode) return true;
+ for (let i = 1; i < num; i++) {
+ if (!checkLessonComp(t, i)) return false;
+ }
+ return true;
+ }
 
-        items.forEach(item => {
-            const idStr = item.getAttribute('data-lesson-id');
-            const id = idStr ? parseInt(idStr, 10) : 1;
-            const isCurrent = item.classList.contains('current');
-            const statusSpan = item.querySelector('.jump-item-status');
+ items.forEach(item => {
+ const idStr = item.getAttribute('data-lesson-id');
+ const id = idStr ? parseInt(idStr, 10) : 1;
+ const isCurrent = item.classList.contains('current');
+ const statusSpan = item.querySelector('.jump-item-status');
 
-            const isComp = checkLessonComp(track, id);
-            const isAccessible = checkLessonAccessible(track, id);
+ const isComp = checkLessonComp(track, id);
+ const isAccessible = checkLessonAccessible(track, id);
 
-            if (isComp) {
-                item.classList.add('completed');
-                item.classList.remove('locked');
-                if (statusSpan) {
-                    statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-                    statusSpan.title = 'Completed';
-                }
-            } else if (isCurrent) {
-                item.classList.remove('locked', 'completed');
-                if (statusSpan) {
-                    statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A33B24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
-                    statusSpan.title = 'Current Lesson';
-                }
-            } else if (isAccessible) {
-                item.classList.remove('locked', 'completed');
-                if (statusSpan) {
-                    statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
-                    statusSpan.title = 'Available';
-                }
-            } else {
-                item.classList.add('locked');
-                item.classList.remove('completed');
-                if (statusSpan) {
-                    statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
-                    statusSpan.title = 'Locked - Complete previous lesson first';
-                }
-            }
+ if (isComp) {
+ item.classList.add('completed');
+ item.classList.remove('locked');
+ if (statusSpan) {
+ statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+ statusSpan.title = 'Completed';
+ }
+ } else if (isCurrent) {
+ item.classList.remove('locked', 'completed');
+ if (statusSpan) {
+ statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A33B24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+ statusSpan.title = 'Current Lesson';
+ }
+ } else if (isAccessible) {
+ item.classList.remove('locked', 'completed');
+ if (statusSpan) {
+ statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+ statusSpan.title = 'Available';
+ }
+ } else {
+ item.classList.add('locked');
+ item.classList.remove('completed');
+ if (statusSpan) {
+ statusSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+ statusSpan.title = 'Locked - Complete previous lesson first';
+ }
+ }
 
-            // Guard click event for locked items
-            if (!(item as any)._hasLockGuard) {
-                (item as any)._hasLockGuard = true;
-                item.addEventListener('click', (e) => {
-                    if (item.classList.contains('locked')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const reqId = id - 1;
-                        if (typeof (window as any).Swal !== 'undefined') {
-                            (window as any).Swal.fire({
-                                icon: 'warning',
-                                title: 'Lesson Locked',
-                                html: `You must complete <strong>Lesson ${reqId}</strong> first to unlock <strong>Lesson ${id}</strong>.`,
-                                confirmButtonColor: '#A33B24',
-                                confirmButtonText: 'Acknowledge',
-                                customClass: { popup: 'responsive-profile-modal' }
-                            });
-                        } else {
-                            alert(`Lesson Locked: Complete Lesson ${reqId} first to unlock Lesson ${id}.`);
-                        }
-                    }
-                });
-            }
-        });
+ // Guard click event for locked items
+ if (!(item as any)._hasLockGuard) {
+ (item as any)._hasLockGuard = true;
+ item.addEventListener('click', (e) => {
+ if (item.classList.contains('locked')) {
+ e.preventDefault();
+ e.stopPropagation();
+ const reqId = id - 1;
+ if (typeof (window as any).Swal !== 'undefined') {
+ (window as any).Swal.fire({
+ icon: 'warning',
+ title: 'Lesson Locked',
+ html: `You must complete <strong>Lesson ${reqId}</strong> first to unlock <strong>Lesson ${id}</strong>.`,
+ confirmButtonColor: '#A33B24',
+ confirmButtonText: 'Acknowledge',
+ customClass: { popup: 'responsive-profile-modal' }
+ });
+ } else {
+ alert(`Lesson Locked: Complete Lesson ${reqId} first to unlock Lesson ${id}.`);
+ }
+ }
+ });
+ }
+ });
 
-        // Check and enforce Certificate unlocking in jump dropdown
-        const certItem = document.getElementById('jumpCertItem');
-        if (certItem) {
-            let isCertUnlocked = false;
-            let completedCount = 0;
-            const totalRequired = (track.includes('branch') || track.startsWith('partF') || track === 'partG' || track === 'partH' || track === 'partI') ? 6 : 15;
+ // Check and enforce Certificate unlocking in jump dropdown
+ const certItem = document.getElementById('jumpCertItem');
+ if (certItem) {
+ let isCertUnlocked = false;
+ let completedCount = 0;
+ const totalRequired = (track.includes('branch') || track.startsWith('partF') || track === 'partG' || track === 'partH' || track === 'partI') ? 6 : 15;
 
-            if (track === 'partB') {
-                for (let i = 1; i <= 15; i++) if (checkLessonComp('partB', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 15;
-            } else if (track === 'partC') {
-                for (let i = 1; i <= 15; i++) if (checkLessonComp('partC', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 15;
-            } else if (track === 'partE') {
-                for (let i = 1; i <= 15; i++) if (checkLessonComp('partE', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 15;
-            } else if (track.startsWith('partF') || track.includes('branch')) {
-                const a = checkLessonComp('partF_branchA', 6);
-                const b = checkLessonComp('partF_branchB', 6);
-                const c = checkLessonComp('partF_branchC', 6);
-                isCertUnlocked = isPracticeMode || a || b || c || localStorage.getItem('partF_branchA_completed') === 'true' || localStorage.getItem('partF_branchB_completed') === 'true' || localStorage.getItem('partF_branchC_completed') === 'true';
-            } else if (track === 'partG') {
-                for (let i = 1; i <= 6; i++) if (checkLessonComp('partG', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 6;
-            } else if (track === 'partH') {
-                for (let i = 1; i <= 6; i++) if (checkLessonComp('partH', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 6;
-            } else if (track === 'partI') {
-                for (let i = 1; i <= 6; i++) if (checkLessonComp('partI', i)) completedCount++;
-                isCertUnlocked = isPracticeMode || completedCount >= 6;
-            }
+ if (track === 'partB') {
+ for (let i = 1; i <= 15; i++) if (checkLessonComp('partB', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 15;
+ } else if (track === 'partC') {
+ for (let i = 1; i <= 15; i++) if (checkLessonComp('partC', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 15;
+ } else if (track === 'partE') {
+ for (let i = 1; i <= 15; i++) if (checkLessonComp('partE', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 15;
+ } else if (track.startsWith('partF') || track.includes('branch')) {
+ const a = checkLessonComp('partF_branchA', 6);
+ const b = checkLessonComp('partF_branchB', 6);
+ const c = checkLessonComp('partF_branchC', 6);
+ isCertUnlocked = isPracticeMode || a || b || c || localStorage.getItem('partF_branchA_completed') === 'true' || localStorage.getItem('partF_branchB_completed') === 'true' || localStorage.getItem('partF_branchC_completed') === 'true';
+ } else if (track === 'partG') {
+ for (let i = 1; i <= 6; i++) if (checkLessonComp('partG', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 6;
+ } else if (track === 'partH') {
+ for (let i = 1; i <= 6; i++) if (checkLessonComp('partH', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 6;
+ } else if (track === 'partI') {
+ for (let i = 1; i <= 6; i++) if (checkLessonComp('partI', i)) completedCount++;
+ isCertUnlocked = isPracticeMode || completedCount >= 6;
+ }
 
-            const certStatus = certItem.querySelector('.jump-item-status');
-            if (isCertUnlocked) {
-                certItem.classList.remove('locked');
-                if (certStatus) certStatus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-            } else {
-                certItem.classList.add('locked');
-                if (certStatus) certStatus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
-            }
+ const certStatus = certItem.querySelector('.jump-item-status');
+ if (isCertUnlocked) {
+ certItem.classList.remove('locked');
+ if (certStatus) certStatus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+ } else {
+ certItem.classList.add('locked');
+ if (certStatus) certStatus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+ }
 
-            if (!(certItem as any)._hasLockGuard) {
-                (certItem as any)._hasLockGuard = true;
-                certItem.addEventListener('click', (e) => {
-                    if (certItem.classList.contains('locked')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const reqDesc = (track.includes('branch') || track.startsWith('partF')) ? 'at least 1 full track (6 projects)' : 'all 15 interactive projects';
-                        if (typeof (window as any).Swal !== 'undefined') {
-                            (window as any).Swal.fire({
-                                icon: 'warning',
-                                title: 'Certificate Locked',
-                                html: `You must complete <strong>${reqDesc}</strong> in this level to claim your verified Certificate of Mastery.<br><br><span style="color: #686760; font-family: var(--font-mono, monospace); font-size: 0.82rem;">Current Progress: ${completedCount}/${totalRequired} completed</span>`,
-                                confirmButtonColor: '#A33B24',
-                                confirmButtonText: 'Continue Practice →',
-                                customClass: { popup: 'responsive-profile-modal' }
-                            });
-                        } else {
-                            alert(`Certificate Locked: You must complete ${reqDesc} to claim your Certificate.`);
-                        }
-                    }
-                });
-            }
-        }
-    }
+ if (!(certItem as any)._hasLockGuard) {
+ (certItem as any)._hasLockGuard = true;
+ certItem.addEventListener('click', (e) => {
+ if (certItem.classList.contains('locked')) {
+ e.preventDefault();
+ e.stopPropagation();
+ const reqDesc = (track.includes('branch') || track.startsWith('partF')) ? 'at least 1 full track (6 projects)' : 'all 15 interactive projects';
+ if (typeof (window as any).Swal !== 'undefined') {
+ (window as any).Swal.fire({
+ icon: 'warning',
+ title: 'Certificate Locked',
+ html: `You must complete <strong>${reqDesc}</strong> in this level to claim your verified Certificate of Mastery.<br><br><span style="color: #686760; font-family: var(--font-mono, monospace); font-size: 0.82rem;">Current Progress: ${completedCount}/${totalRequired} completed</span>`,
+ confirmButtonColor: '#A33B24',
+ confirmButtonText: 'Continue Practice →',
+ customClass: { popup: 'responsive-profile-modal' }
+ });
+ } else {
+ alert(`Certificate Locked: You must complete ${reqDesc} to claim your Certificate.`);
+ }
+ }
+ });
+ }
+ }
+ }
 
-    document.addEventListener('DOMContentLoaded', initHeaderDropdown);
-    window.addEventListener('novicodes:xp_updated', hydrateJumpMenu);
-    window.addEventListener('storage', hydrateJumpMenu);
-    window.addEventListener('pageshow', hydrateJumpMenu);
+ document.addEventListener('DOMContentLoaded', initHeaderDropdown);
+ window.addEventListener('novicodes:xp_updated', hydrateJumpMenu);
+ window.addEventListener('storage', hydrateJumpMenu);
+ window.addEventListener('pageshow', hydrateJumpMenu);
 </script>

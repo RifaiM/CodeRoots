@@ -1,55 +1,55 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Lesson 6: Reactive Storefront & Inventory Dashboard!
+const starterCode = `// Lesson 6: Reactive Storefront & Inventory Dashboard!
 
 const initialCatalog = [
-  { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
-  { id: 2, name: "Ultra-Wide 4K Monitor", price: 450, inStock: false },
-  { id: 3, name: "Ergonomic Mesh Chair", price: 299, inStock: true }
+ { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
+ { id: 2, name: "Ultra-Wide 4K Monitor", price: 450, inStock: false },
+ { id: 3, name: "Ergonomic Mesh Chair", price: 299, inStock: true }
 ];
 
 function StorefrontDashboard() {
-  const [catalog, setCatalog] = React.useState(initialCatalog);
-  const [onlyInStock, setOnlyInStock] = React.useState(false);
+ const [catalog, setCatalog] = React.useState(initialCatalog);
+ const [onlyInStock, setOnlyInStock] = React.useState(false);
 
-  // 👉 STEP 1: Filter catalog array based on onlyInStock boolean:
-  // (Hint: const visibleItems = onlyInStock ? catalog.filter(item => item.inStock) : catalog;)
-  const visibleItems = catalog;
+ // STEP 1: Filter catalog array based on onlyInStock boolean:
+ // (Hint: const visibleItems = onlyInStock ? catalog.filter(item => item.inStock) : catalog;)
+ const visibleItems = catalog;
 
-  const handleAddDemoItem = () => {
-    // 👉 STEP 2: Append new item immutably to catalog: setCatalog([...catalog, newItem])
-    // (Hint: setCatalog([...catalog, { id: Date.now(), name: "USB-C Hub Pro", price: 49, inStock: true }]);)
-    
-  };
+ const handleAddDemoItem = () => {
+ // STEP 2: Append new item immutably to catalog: setCatalog([...catalog, newItem])
+ // (Hint: setCatalog([...catalog, { id: Date.now(), name: "USB-C Hub Pro", price: 49, inStock: true }]);)
+ 
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-      <h2 style={{ margin: '0 0 6px 0' }}>🏆 E-Commerce Inventory Dojo</h2>
-      <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total catalog items: <strong>{visibleItems.length}</strong></p>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+ <h2 style={{ margin: '0 0 6px 0' }}> E-Commerce Inventory Dojo</h2>
+ <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total catalog items: <strong>{visibleItems.length}</strong></p>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', cursor: 'pointer' }}>
-          <input type="checkbox" checked={onlyInStock} onChange={e => setOnlyInStock(e.target.checked)} />
-          In-Stock Only
-        </label>
-        <button onClick={handleAddDemoItem} style={{ padding: '8px 14px', background: '#0284c7', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}>
-          + Add Item
-        </button>
-      </div>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+ <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', cursor: 'pointer' }}>
+ <input type="checkbox" checked={onlyInStock} onChange={e => setOnlyInStock(e.target.checked)} />
+ In-Stock Only
+ </label>
+ <button onClick={handleAddDemoItem} style={{ padding: '8px 14px', background: '#0284c7', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}>
+ + Add Item
+ </button>
+ </div>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {visibleItems.map(item => (
-          <li key={item.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-            <span><strong>{item.name}</strong> • \${item.price}</span>
-            <span style={{ color: item.inStock ? '#16a34a' : '#dc2626', fontWeight: 600, fontSize: '0.82rem' }}>
-              {item.inStock ? "🟢 Available" : "🔴 Out of Stock"}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {visibleItems.map(item => (
+ <li key={item.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
+ <span><strong>{item.name}</strong> • \${item.price}</span>
+ <span style={{ color: item.inStock ? '#16a34a' : '#dc2626', fontWeight: 600, fontSize: '0.82rem' }}>
+ {item.inStock ? " Available" : " Out of Stock"}
+ </span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -57,262 +57,262 @@ root.render(<StorefrontDashboard />);
 `;
 
 const jumpLessons = [
-    {
-        "id": 1,
-        "title": "Smooth Skeleton Loaders",
-        "url": "/7. partG/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Friendly Error Screens & 1-Click Retry",
-        "url": "/7. partG/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Smarter Forms (Prevent Double Submits)",
-        "url": "/7. partG/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Instant Optimistic Likes (Zero Lag)",
-        "url": "/7. partG/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Live Activity Badges & Safe Timers",
-        "url": "/7. partG/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Reactive Storefront",
-        "url": "/7. partG/lesson6/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Smooth Skeleton Loaders",
+ "url": "/7. partG/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Friendly Error Screens & 1-Click Retry",
+ "url": "/7. partG/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Smarter Forms (Prevent Double Submits)",
+ "url": "/7. partG/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Instant Optimistic Likes (Zero Lag)",
+ "url": "/7. partG/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Live Activity Badges & Safe Timers",
+ "url": "/7. partG/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Reactive Storefront",
+ "url": "/7. partG/lesson6/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Final Project: Reactive Storefront | Level 8 • Async UI Architecture"
-    description="Combine skeleton loaders, optimistic cart counts, and live activity into one reactive store."
-    levelTag="Level 8 • Async UI Architecture"
-    lessonNum={6}
-    lessonTitle="Final Project: Reactive Storefront"
-    xpAmount={250}
-    completionKey="partG_lesson6_remake_complete"
-    nextLessonUrl="/7. partG/certificate.html"
-    hubUrl="/7. partG/hub.html"
-    hubTitle="Level 8 Hub"
-    hubIcon="🌉"
-    fileTab="App.jsx"
-    mode="react"
-    jumpLessons={jumpLessons}
-    certificateUrl="/7. partG/certificate.html"
-    trackPrefix="partG"
-    starterCode={starterCode}
+ title="Final Project: Reactive Storefront | Level 8 • Async UI Architecture"
+ description="Combine skeleton loaders, optimistic cart counts, and live activity into one reactive store."
+ levelTag="Level 8 • Async UI Architecture"
+ lessonNum={6}
+ lessonTitle="Final Project: Reactive Storefront"
+ xpAmount={250}
+ completionKey="partG_lesson6_remake_complete"
+ nextLessonUrl="/7. partG/certificate.html"
+ hubUrl="/7. partG/hub.html"
+ hubTitle="Level 8 Hub"
+ hubIcon=""
+ fileTab="App.jsx"
+ mode="react"
+ jumpLessons={jumpLessons}
+ certificateUrl="/7. partG/certificate.html"
+ trackPrefix="partG"
+ starterCode={starterCode}
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Combine skeleton loaders, optimistic cart counts, and live activity into one reactive store.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Combine skeleton loaders, optimistic cart counts, and live activity into one reactive store.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a complete e-commerce store with smooth loading, instant cart updates, and live stats!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Build a complete e-commerce store with smooth loading, instant cart updates, and live stats!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- Analogy Explainer Card -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Build an interactive storefront catalog and product inventory dashboard with search filtering and live state updates.</p>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Your Level 8 final project is the interactive dashboard of a modern digital storefront 🏬: tracking stock, accepting new items, and updating shelves in real time.
-            </div>
-        </article>
-    </div>
+ <!-- Analogy Explainer Card -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <p>Build an interactive storefront catalog and product inventory dashboard with search filtering and live state updates.</p>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Your Level 8 final project is the interactive dashboard of a modern digital storefront : tracking stock, accepting new items, and updating shelves in real time.
+ </div>
+ </article>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partG_lesson6';
-        const DEFAULT_STARTER = `// 🏆 Lesson 6: Reactive Storefront & Inventory Dashboard!
+ const DRAFT_KEY = 'novicodes_draft_partG_lesson6';
+ const DEFAULT_STARTER = `// Lesson 6: Reactive Storefront & Inventory Dashboard!
 
 const initialCatalog = [
-  { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
-  { id: 2, name: "Ultra-Wide 4K Monitor", price: 450, inStock: false },
-  { id: 3, name: "Ergonomic Mesh Chair", price: 299, inStock: true }
+ { id: 1, name: "Wireless Mechanical Keyboard", price: 99, inStock: true },
+ { id: 2, name: "Ultra-Wide 4K Monitor", price: 450, inStock: false },
+ { id: 3, name: "Ergonomic Mesh Chair", price: 299, inStock: true }
 ];
 
 function StorefrontDashboard() {
-  const [catalog, setCatalog] = React.useState(initialCatalog);
-  const [onlyInStock, setOnlyInStock] = React.useState(false);
+ const [catalog, setCatalog] = React.useState(initialCatalog);
+ const [onlyInStock, setOnlyInStock] = React.useState(false);
 
-  // 👉 STEP 1: Filter catalog array based on onlyInStock boolean:
-  // (Hint: const visibleItems = onlyInStock ? catalog.filter(item => item.inStock) : catalog;)
-  const visibleItems = catalog;
+ // STEP 1: Filter catalog array based on onlyInStock boolean:
+ // (Hint: const visibleItems = onlyInStock ? catalog.filter(item => item.inStock) : catalog;)
+ const visibleItems = catalog;
 
-  const handleAddDemoItem = () => {
-    // 👉 STEP 2: Append new item immutably to catalog: setCatalog([...catalog, newItem])
-    // (Hint: setCatalog([...catalog, { id: Date.now(), name: "USB-C Hub Pro", price: 49, inStock: true }]);)
-    
-  };
+ const handleAddDemoItem = () => {
+ // STEP 2: Append new item immutably to catalog: setCatalog([...catalog, newItem])
+ // (Hint: setCatalog([...catalog, { id: Date.now(), name: "USB-C Hub Pro", price: 49, inStock: true }]);)
+ 
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-      <h2 style={{ margin: '0 0 6px 0' }}>🏆 E-Commerce Inventory Dojo</h2>
-      <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total catalog items: <strong>{visibleItems.length}</strong></p>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '460px', margin: '0 auto', background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+ <h2 style={{ margin: '0 0 6px 0' }}> E-Commerce Inventory Dojo</h2>
+ <p style={{ color: '#64748b', fontSize: '0.90rem', margin: '0 0 16px 0' }}>Total catalog items: <strong>{visibleItems.length}</strong></p>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', cursor: 'pointer' }}>
-          <input type="checkbox" checked={onlyInStock} onChange={e => setOnlyInStock(e.target.checked)} />
-          In-Stock Only
-        </label>
-        <button onClick={handleAddDemoItem} style={{ padding: '8px 14px', background: '#0284c7', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}>
-          + Add Item
-        </button>
-      </div>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+ <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', cursor: 'pointer' }}>
+ <input type="checkbox" checked={onlyInStock} onChange={e => setOnlyInStock(e.target.checked)} />
+ In-Stock Only
+ </label>
+ <button onClick={handleAddDemoItem} style={{ padding: '8px 14px', background: '#0284c7', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}>
+ + Add Item
+ </button>
+ </div>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {visibleItems.map(item => (
-          <li key={item.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-            <span><strong>{item.name}</strong> • \${item.price}</span>
-            <span style={{ color: item.inStock ? '#16a34a' : '#dc2626', fontWeight: 600, fontSize: '0.82rem' }}>
-              {item.inStock ? "🟢 Available" : "🔴 Out of Stock"}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {visibleItems.map(item => (
+ <li key={item.id} style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
+ <span><strong>{item.name}</strong> • \${item.price}</span>
+ <span style={{ color: item.inStock ? '#16a34a' : '#dc2626', fontWeight: 600, fontSize: '0.82rem' }}>
+ {item.inStock ? " Available" : " Out of Stock"}
+ </span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<StorefrontDashboard />);
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'stock_filter', label: 'Filter visible items with <code>catalog.filter(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /catalog\.filter[\s\n]*\(/i.test(c); } },
-            { id: 'add_item', label: 'Append item immutably with <code>setCatalog([...catalog, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setCatalog[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.catalog/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'stock_filter', label: 'Filter visible items with <code>catalog.filter(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /catalog\.filter[\s\n]*\(/i.test(c); } },
+ { id: 'add_item', label: 'Append item immutably with <code>setCatalog([...catalog, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setCatalog[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.catalog/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Final Project: Reactive Storefront',
-                    xp: 250,
-                    completionKey: 'partG_lesson6_remake_complete',
-                    nextUrl: '/7. partG/certificate.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Final Project: Reactive Storefront',
+ xp: 250,
+ completionKey: 'partG_lesson6_remake_complete',
+ nextUrl: '/7. partG/certificate.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

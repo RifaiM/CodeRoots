@@ -4,364 +4,364 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="Python & Backend Architecture Dojo (Level 6) | NoviCodes"
-    description="Master Python syntax, Object-Oriented Programming, and REST API architecture with real-time browser execution."
-    showHeaderFooter={false}
+ title="Python & Backend Architecture Dojo (Level 6) | NoviCodes"
+ description="Master Python syntax, Object-Oriented Programming, and REST API architecture with real-time browser execution."
+ showHeaderFooter={false}
 >
-    <!-- Top Global Header -->
-    <PlatformHeader 
-        slot="header"
-        tagText="Python Dojo"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={true}
-        showLevelBadge={true}
-    />
+ <!-- Top Global Header -->
+ <PlatformHeader 
+ slot="header"
+ tagText="Python Dojo"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={true}
+ showLevelBadge={true}
+ />
 
-    <main class="hub-container">
-        
-        <!-- Hero Section -->
-        <section class="hub-hero">
-            <span class="hub-badge">Level 6 • Python Backend Dojo</span>
-            <h1>Master Python & <span class="typewriter-wrap theme-emerald"><span class="typewriter-text" data-phrases='["Backend API Logic", "Lists & Data Structures", "Object-Oriented Classes", "Secure Password Hashing", "FastAPI REST Endpoints"]' aria-label="Backend API Logic">Backend API Logic</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
-            <p>
-                See what happens on the server behind the scenes. Learn Python basics, lists and dictionaries, error handling, saving data with SQLite, and creating simple API endpoints right in your browser.
-            </p>
+ <main class="hub-container">
+ 
+ <!-- Hero Section -->
+ <section class="hub-hero">
+ <span class="hub-badge">Level 6 • Python Backend Dojo</span>
+ <h1>Master Python & <span class="typewriter-wrap theme-emerald"><span class="typewriter-text" data-phrases='["Backend API Logic", "Lists & Data Structures", "Object-Oriented Classes", "Secure Password Hashing", "FastAPI REST Endpoints"]' aria-label="Backend API Logic">Backend API Logic</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+ <p>
+ See what happens on the server behind the scenes. Learn Python basics, lists and dictionaries, error handling, saving data with SQLite, and creating simple API endpoints right in your browser.
+ </p>
 
-            <!-- Live Progress Bar -->
-            <div class="hero-progress-wrap">
-                <div class="hero-progress-info">
-                    <span>Course Progress</span>
-                    <span id="heroProgressText">0 of 15 Lessons Completed (0%)</span>
-                </div>
-                <div class="hero-progress-bar">
-                    <div class="hero-progress-fill" id="heroProgressFill"></div>
-                </div>
-            </div>
+ <!-- Live Progress Bar -->
+ <div class="hero-progress-wrap">
+ <div class="hero-progress-info">
+ <span>Course Progress</span>
+ <span id="heroProgressText">0 of 15 Lessons Completed (0%)</span>
+ </div>
+ <div class="hero-progress-bar">
+ <div class="hero-progress-fill" id="heroProgressFill"></div>
+ </div>
+ </div>
 
-            <!-- Smart Resume CTA -->
-            <a href="/5. partE/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>Start Lesson 1: Python Essentials ➔</span>
-            </a>
-            <div style="margin-top: 14px; text-align: center;">
-                <a href="/foundations.html?track=python" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
-                    <span>Explore Level 6 Foundations &amp; Server Concepts ➔</span>
-                </a>
-            </div>
-        </section>
+ <!-- Smart Resume CTA -->
+ <a href="/5. partE/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
+ <span>Start Lesson 1: Python Essentials </span>
+ </a>
+ <div style="margin-top: 14px; text-align: center;">
+ <a href="/foundations.html?track=python" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
+ <span>Explore Level 6 Foundations &amp; Server Concepts </span>
+ </a>
+ </div>
+ </section>
 
-        <!-- Stats Overview Row -->
-        <section class="hub-stats-grid">
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">3,000 XP</div>
-                <div class="hub-stat-lbl">Total XP Bounty</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val" id="statCompletedProjects">0 / 15</div>
-                <div class="hub-stat-lbl">Lessons Completed</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">FastAPI + SQLite</div>
-                <div class="hub-stat-lbl">Backend Stack</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">Level 6 Python</div>
-                <div class="hub-stat-lbl">Official Certificate</div>
-            </div>
-        </section>
+ <!-- Stats Overview Row -->
+ <section class="hub-stats-grid">
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">3,000 XP</div>
+ <div class="hub-stat-lbl">Total XP Bounty</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val" id="statCompletedProjects">0 / 15</div>
+ <div class="hub-stat-lbl">Lessons Completed</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">FastAPI + SQLite</div>
+ <div class="hub-stat-lbl">Backend Stack</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">Level 6 Python</div>
+ <div class="hub-stat-lbl">Official Certificate</div>
+ </div>
+ </section>
 
-        <!-- Curriculum Breakdown by Chapter -->
-        <section class="curriculum-section">
-            
-            <!-- Chapter 1: Python Core Foundations & Control Flow -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 1</span>
-                        <h2 class="chapter-title">Python Basics & Logic</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 1–4 • 800 XP</span>
-                </div>
+ <!-- Curriculum Breakdown by Chapter -->
+ <section class="curriculum-section">
+ 
+ <!-- Chapter 1: Python Core Foundations & Control Flow -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 1</span>
+ <h2 class="chapter-title">Python Basics & Logic</h2>
+ </div>
+ <span class="chapter-badge">Lessons 1–4 • 800 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 1 -->
-                    <a href="/5. partE/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 01</span>
-                            <span class="lesson-status-pill available" id="statusPill1">UP NEXT</span>
-                        </div>
-                        <h3 class="lesson-card-title">Python Essentials & Syntax</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText1">Start ➔</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 1 -->
+ <a href="/5. partE/lesson1/lesson1_remake.html" class="lesson-card" id="lessonCard1">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 01</span>
+ <span class="lesson-status-pill available" id="statusPill1">UP NEXT</span>
+ </div>
+ <h3 class="lesson-card-title">Python Essentials & Syntax</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText1">Start </span>
+ </div>
+ </a>
 
-                    <!-- Lesson 2 -->
-                    <a href="/5. partE/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 02</span>
-                            <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Control Flow & Logic Engines</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText2">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 2 -->
+ <a href="/5. partE/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 02</span>
+ <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Control Flow & Logic Engines</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText2">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 3 -->
-                    <a href="/5. partE/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 03</span>
-                            <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Functions, Scope & Lambdas</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText3">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 3 -->
+ <a href="/5. partE/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 03</span>
+ <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Functions, Scope & Lambdas</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText3">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 4 -->
-                    <a href="/5. partE/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 04</span>
-                            <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Data Structures & List Comprehensions</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText4">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 4 -->
+ <a href="/5. partE/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 04</span>
+ <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Data Structures & List Comprehensions</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText4">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 2: Object-Oriented Design & System Modules -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 2</span>
-                        <h2 class="chapter-title">Object-Oriented Design & System Modules</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 5–8 • 800 XP</span>
-                </div>
+ <!-- Chapter 2: Object-Oriented Design & System Modules -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 2</span>
+ <h2 class="chapter-title">Object-Oriented Design & System Modules</h2>
+ </div>
+ <span class="chapter-badge">Lessons 5–8 • 800 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 5 -->
-                    <a href="/5. partE/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 05</span>
-                            <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Object-Oriented Programming (OOP)</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText5">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 5 -->
+ <a href="/5. partE/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 05</span>
+ <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Object-Oriented Programming (OOP)</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText5">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 6 -->
-                    <a href="/5. partE/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 06</span>
-                            <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">OOP Inheritance & Polymorphism</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText6">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 6 -->
+ <a href="/5. partE/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 06</span>
+ <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">OOP Inheritance & Polymorphism</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText6">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 7 -->
-                    <a href="/5. partE/lesson7/lesson7_remake.html" class="lesson-card locked" id="lessonCard7">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 07</span>
-                            <span class="lesson-status-pill locked" id="statusPill7">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Error & Exception Handling</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText7">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 7 -->
+ <a href="/5. partE/lesson7/lesson7_remake.html" class="lesson-card locked" id="lessonCard7">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 07</span>
+ <span class="lesson-status-pill locked" id="statusPill7">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Error & Exception Handling</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText7">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 8 -->
-                    <a href="/5. partE/lesson8/lesson8_remake.html" class="lesson-card locked" id="lessonCard8">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 08</span>
-                            <span class="lesson-status-pill locked" id="statusPill8">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Modules, Packages & Standard Library</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText8">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 8 -->
+ <a href="/5. partE/lesson8/lesson8_remake.html" class="lesson-card locked" id="lessonCard8">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 08</span>
+ <span class="lesson-status-pill locked" id="statusPill8">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Modules, Packages & Standard Library</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText8">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 3: Persistence, Async & Modern Web APIs with FastAPI -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 3</span>
-                        <h2 class="chapter-title">Persistence, Async & Modern Web APIs</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 9–12 • 800 XP</span>
-                </div>
+ <!-- Chapter 3: Persistence, Async & Modern Web APIs with FastAPI -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 3</span>
+ <h2 class="chapter-title">Persistence, Async & Modern Web APIs</h2>
+ </div>
+ <span class="chapter-badge">Lessons 9–12 • 800 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 9 -->
-                    <a href="/5. partE/lesson9/lesson9_remake.html" class="lesson-card locked" id="lessonCard9">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 09</span>
-                            <span class="lesson-status-pill locked" id="statusPill9">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">File I/O & Data Persistence</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText9">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 9 -->
+ <a href="/5. partE/lesson9/lesson9_remake.html" class="lesson-card locked" id="lessonCard9">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 09</span>
+ <span class="lesson-status-pill locked" id="statusPill9">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">File I/O & Data Persistence</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText9">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 10 -->
-                    <a href="/5. partE/lesson10/lesson10_remake.html" class="lesson-card locked" id="lessonCard10">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 10</span>
-                            <span class="lesson-status-pill locked" id="statusPill10">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Asynchronous Python & Asyncio</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText10">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 10 -->
+ <a href="/5. partE/lesson10/lesson10_remake.html" class="lesson-card locked" id="lessonCard10">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 10</span>
+ <span class="lesson-status-pill locked" id="statusPill10">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Asynchronous Python & Asyncio</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText10">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 11 -->
-                    <a href="/5. partE/lesson11/lesson11_remake.html" class="lesson-card locked" id="lessonCard11">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 11</span>
-                            <span class="lesson-status-pill locked" id="statusPill11">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Databases & SQL ORM Integration</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText11">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 11 -->
+ <a href="/5. partE/lesson11/lesson11_remake.html" class="lesson-card locked" id="lessonCard11">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 11</span>
+ <span class="lesson-status-pill locked" id="statusPill11">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Databases & SQL ORM Integration</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText11">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 12 -->
-                    <a href="/5. partE/lesson12/lesson12_remake.html" class="lesson-card locked" id="lessonCard12">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 12</span>
-                            <span class="lesson-status-pill locked" id="statusPill12">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">RESTful Web APIs with FastAPI</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText12">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 12 -->
+ <a href="/5. partE/lesson12/lesson12_remake.html" class="lesson-card locked" id="lessonCard12">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 12</span>
+ <span class="lesson-status-pill locked" id="statusPill12">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">RESTful Web APIs with FastAPI</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText12">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-            <!-- Chapter 4: Backend Security, Auth & Final Project -->
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Phase 4</span>
-                        <h2 class="chapter-title">Backend Security, Auth & Final Project</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 13–15 • 600 XP</span>
-                </div>
+ <!-- Chapter 4: Backend Security, Auth & Final Project -->
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Phase 4</span>
+ <h2 class="chapter-title">Backend Security, Auth & Final Project</h2>
+ </div>
+ <span class="chapter-badge">Lessons 13–15 • 600 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    <!-- Lesson 13 -->
-                    <a href="/5. partE/lesson13/lesson13_remake.html" class="lesson-card locked" id="lessonCard13">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 13</span>
-                            <span class="lesson-status-pill locked" id="statusPill13">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Authentication & Security Basics</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText13">Locked</span>
-                        </div>
-                    </a>
+ <div class="lesson-cards-grid">
+ <!-- Lesson 13 -->
+ <a href="/5. partE/lesson13/lesson13_remake.html" class="lesson-card locked" id="lessonCard13">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 13</span>
+ <span class="lesson-status-pill locked" id="statusPill13">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Authentication & Security Basics</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText13">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 14 -->
-                    <a href="/5. partE/lesson14/lesson14_remake.html" class="lesson-card locked" id="lessonCard14">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 14</span>
-                            <span class="lesson-status-pill locked" id="statusPill14">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Guided Mini Project: Task Manager API</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText14">Locked</span>
-                        </div>
-                    </a>
+ <!-- Lesson 14 -->
+ <a href="/5. partE/lesson14/lesson14_remake.html" class="lesson-card locked" id="lessonCard14">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 14</span>
+ <span class="lesson-status-pill locked" id="statusPill14">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Guided Mini Project: Task Manager API</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText14">Locked</span>
+ </div>
+ </a>
 
-                    <!-- Lesson 15 -->
-                    <a href="/5. partE/lesson15/lesson15_remake.html" class="lesson-card locked" id="lessonCard15">
-                        <div class="card-top">
-                            <span class="lesson-idx">LESSON 15 • FINAL PROJECT</span>
-                            <span class="lesson-status-pill locked" id="statusPill15">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Final Project: Python API Logic Service</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+200 XP</span>
-                            <span class="card-action-text" id="actionText15">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- Lesson 15 -->
+ <a href="/5. partE/lesson15/lesson15_remake.html" class="lesson-card locked" id="lessonCard15">
+ <div class="card-top">
+ <span class="lesson-idx">LESSON 15 • FINAL PROJECT</span>
+ <span class="lesson-status-pill locked" id="statusPill15">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Final Project: Python API Logic Service</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+200 XP</span>
+ <span class="card-action-text" id="actionText15">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
 
-        </section>
+ </section>
 
-        <!-- Certificate Milestone Box -->
-        <section class="certificate-preview-box">
-            <div class="cert-info-wrap">
-                <div class="cert-trophy-icon"></div>
-                <div>
-                    <h3 class="cert-title">Python Backend Specialist Certificate</h3>
-                    <p class="cert-desc" id="certDescText">
-                        Complete all 15 Python and FastAPI backend projects to unlock your official Python Backend Specialist Certificate.
-                    </p>
-                </div>
-            </div>
-            <a href="javascript:void(0)" class="cert-action-btn locked" id="certActionBtn">
-                <span>Complete All 15 First</span>
-            </a>
-        </section>
+ <!-- Certificate Milestone Box -->
+ <section class="certificate-preview-box">
+ <div class="cert-info-wrap">
+ <div class="cert-trophy-icon"></div>
+ <div>
+ <h3 class="cert-title">Python Backend Specialist Certificate</h3>
+ <p class="cert-desc" id="certDescText">
+ Complete all 15 Python and FastAPI backend projects to unlock your official Python Backend Specialist Certificate.
+ </p>
+ </div>
+ </div>
+ <a href="javascript:void(0)" class="cert-action-btn locked" id="certActionBtn">
+ <span>Complete All 15 First</span>
+ </a>
+ </section>
 
-    </main>
+ </main>
 
-    <!-- Platform Footer -->
-    <PlatformFooter />
+ <!-- Platform Footer -->
+ <PlatformFooter />
 
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/5. partE/hub.css" />
+ <!-- Stylesheet -->
+ <link rel="stylesheet" href="/5. partE/hub.css" />
 
-    <!-- JavaScript Engines -->
-    <script is:inline src="/scripts/dashboard.js"></script>
-    <script is:inline src="/5. partE/hub.js"></script>
+ <!-- JavaScript Engines -->
+ <script is:inline src="/scripts/dashboard.js"></script>
+ <script is:inline src="/5. partE/hub.js"></script>
 </BaseLayout>

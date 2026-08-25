@@ -4,290 +4,290 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="Level 10: SaaS UI & Dashboard Components | NoviCodes"
-    description="Build modern SaaS dashboard interfaces, modular layout shells, debounced search filters, pricing switchers, and interactive AI chat panels."
-    showHeaderFooter={false}
+ title="Level 10: SaaS UI & Dashboard Components | NoviCodes"
+ description="Build modern SaaS dashboard interfaces, modular layout shells, debounced search filters, pricing switchers, and interactive AI chat panels."
+ showHeaderFooter={false}
 >
-    <PlatformHeader 
-        slot="header"
-        tagText="Level 10 • SaaS Dashboard UI"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={true}
-        showLevelBadge={true}
-    />
+ <PlatformHeader 
+ slot="header"
+ tagText="Level 10 • SaaS Dashboard UI"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={true}
+ showLevelBadge={true}
+ />
 
-    <main class="hub-container">
-        <!-- Hero Section -->
-        <section class="hub-hero">
-            <span class="hub-badge">Level 10 • SaaS Dashboard UI</span>
-            <h1>Build Modern SaaS <span class="typewriter-wrap theme-amber"><span class="typewriter-text" data-phrases='["Dashboard Interfaces", "Modular Sidebar Shells", "Debounced Live Search", "Subscription Pricing Cards", "AI Chat Assistant Panels"]' aria-label="Dashboard Interfaces">Dashboard Interfaces</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
-            <p>
-                Your graduation lesson! Put everything together to build a complete dashboard interface: sidebar navigation shell, snappy search filters, an interactive pricing & upgrade table, and a smart AI helper panel.
-            </p>
+ <main class="hub-container">
+ <!-- Hero Section -->
+ <section class="hub-hero">
+ <span class="hub-badge">Level 10 • SaaS Dashboard UI</span>
+ <h1>Build Modern SaaS <span class="typewriter-wrap theme-amber"><span class="typewriter-text" data-phrases='["Dashboard Interfaces", "Modular Sidebar Shells", "Debounced Live Search", "Subscription Pricing Cards", "AI Chat Assistant Panels"]' aria-label="Dashboard Interfaces">Dashboard Interfaces</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+ <p>
+ Your graduation lesson! Put everything together to build a complete dashboard interface: sidebar navigation shell, snappy search filters, an interactive pricing & upgrade table, and a smart AI helper panel.
+ </p>
 
-            <!-- Live Progress Bar -->
-            <div class="hero-progress-wrap">
-                <div class="hero-progress-info">
-                    <span>Course Progress</span>
-                    <span id="heroProgressText">0 of 6 Lessons Completed (0%)</span>
-                </div>
-                <div class="hero-progress-bar">
-                    <div class="hero-progress-fill" id="heroProgressFill"></div>
-                </div>
-            </div>
+ <!-- Live Progress Bar -->
+ <div class="hero-progress-wrap">
+ <div class="hero-progress-info">
+ <span>Course Progress</span>
+ <span id="heroProgressText">0 of 6 Lessons Completed (0%)</span>
+ </div>
+ <div class="hero-progress-bar">
+ <div class="hero-progress-fill" id="heroProgressFill"></div>
+ </div>
+ </div>
 
-            <!-- Smart Resume CTA -->
-            <a href="/9. partI/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
-                <span>Start Lesson 1: App Shell Layout ➔</span>
-            </a>
-            <div style="margin-top: 14px; text-align: center;">
-                <a href="/foundations.html?track=saas" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
-                    <span>Explore Level 10 SaaS Architecture Foundations ➔</span>
-                </a>
-            </div>
-        </section>
+ <!-- Smart Resume CTA -->
+ <a href="/9. partI/lesson1/lesson1_remake.html" class="hero-cta-btn" id="heroResumeBtn">
+ <span>Start Lesson 1: App Shell Layout </span>
+ </a>
+ <div style="margin-top: 14px; text-align: center;">
+ <a href="/foundations.html?track=saas" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); text-decoration: none; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-card); padding: 5px 14px; border-radius: 2px; text-transform: uppercase;">
+ <span>Explore Level 10 SaaS Architecture Foundations </span>
+ </a>
+ </div>
+ </section>
 
-        <!-- Stats Overview Row -->
-        <section class="hub-stats-grid">
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">3,000 XP</div>
-                <div class="hub-stat-lbl">Level 10 Reward</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val" id="statCompletedProjects">0 / 6</div>
-                <div class="hub-stat-lbl">Lessons Completed</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">React 18 + SaaS Patterns</div>
-                <div class="hub-stat-lbl">Architecture Stack</div>
-            </div>
-            <div class="hub-stat-card">
-                <div class="hub-stat-val">SaaS UI Architect</div>
-                <div class="hub-stat-lbl">Level 10 Certificate</div>
-            </div>
-        </section>
+ <!-- Stats Overview Row -->
+ <section class="hub-stats-grid">
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">3,000 XP</div>
+ <div class="hub-stat-lbl">Level 10 Reward</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val" id="statCompletedProjects">0 / 6</div>
+ <div class="hub-stat-lbl">Lessons Completed</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">React 18 + SaaS Patterns</div>
+ <div class="hub-stat-lbl">Architecture Stack</div>
+ </div>
+ <div class="hub-stat-card">
+ <div class="hub-stat-val">SaaS UI Architect</div>
+ <div class="hub-stat-lbl">Level 10 Certificate</div>
+ </div>
+ </section>
 
-        <!-- Curriculum Breakdown -->
-        <section class="curriculum-section">
-            <div class="chapter-block">
-                <div class="chapter-header">
-                    <div class="chapter-title-wrap">
-                        <span class="chapter-num">Diploma Track</span>
-                        <h2 class="chapter-title">The 6 SaaS Dashboard Lessons</h2>
-                    </div>
-                    <span class="chapter-badge">Lessons 1–6 • 3,000 XP</span>
-                </div>
+ <!-- Curriculum Breakdown -->
+ <section class="curriculum-section">
+ <div class="chapter-block">
+ <div class="chapter-header">
+ <div class="chapter-title-wrap">
+ <span class="chapter-num">Diploma Track</span>
+ <h2 class="chapter-title">The 6 SaaS Dashboard Lessons</h2>
+ </div>
+ <span class="chapter-badge">Lessons 1–6 • 3,000 XP</span>
+ </div>
 
-                <div class="lesson-cards-grid">
-                    
-                    <a href="/9. partI/lesson1/lesson1_remake.html" class="lesson-card locked" id="lessonCard1">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 01</span>
-                            <span class="lesson-status-pill locked" id="statusPill1">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">The Sleek SaaS App Shell & Sidebar</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText1">Locked</span>
-                        </div>
-                    </a>
-                    <a href="/9. partI/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 02</span>
-                            <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Instant Search (Filter Without Lag)</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText2">Locked</span>
-                        </div>
-                    </a>
-                    <a href="/9. partI/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 03</span>
-                            <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Interactive Pricing & Upgrade Table</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText3">Locked</span>
-                        </div>
-                    </a>
-                    <a href="/9. partI/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 04</span>
-                            <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">AI Chat Assistant & Insights Panel</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText4">Locked</span>
-                        </div>
-                    </a>
-                    <a href="/9. partI/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 05</span>
-                            <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Launch Readiness & Settings Audit</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText5">Locked</span>
-                        </div>
-                    </a>
-                    <a href="/9. partI/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
-                        <div class="card-top">
-                            <span class="lesson-idx">MILESTONE 06</span>
-                            <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
-                        </div>
-                        <h3 class="lesson-card-title">Final Project: SaaS Dashboard Suite</h3>
-                        <div class="card-bottom">
-                            <span class="xp-tag">+500 XP</span>
-                            <span class="card-action-text" id="actionText6">Locked</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+ <div class="lesson-cards-grid">
+ 
+ <a href="/9. partI/lesson1/lesson1_remake.html" class="lesson-card locked" id="lessonCard1">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 01</span>
+ <span class="lesson-status-pill locked" id="statusPill1">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">The Sleek SaaS App Shell & Sidebar</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText1">Locked</span>
+ </div>
+ </a>
+ <a href="/9. partI/lesson2/lesson2_remake.html" class="lesson-card locked" id="lessonCard2">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 02</span>
+ <span class="lesson-status-pill locked" id="statusPill2">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Instant Search (Filter Without Lag)</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText2">Locked</span>
+ </div>
+ </a>
+ <a href="/9. partI/lesson3/lesson3_remake.html" class="lesson-card locked" id="lessonCard3">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 03</span>
+ <span class="lesson-status-pill locked" id="statusPill3">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Interactive Pricing & Upgrade Table</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText3">Locked</span>
+ </div>
+ </a>
+ <a href="/9. partI/lesson4/lesson4_remake.html" class="lesson-card locked" id="lessonCard4">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 04</span>
+ <span class="lesson-status-pill locked" id="statusPill4">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">AI Chat Assistant & Insights Panel</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText4">Locked</span>
+ </div>
+ </a>
+ <a href="/9. partI/lesson5/lesson5_remake.html" class="lesson-card locked" id="lessonCard5">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 05</span>
+ <span class="lesson-status-pill locked" id="statusPill5">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Launch Readiness & Settings Audit</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText5">Locked</span>
+ </div>
+ </a>
+ <a href="/9. partI/lesson6/lesson6_remake.html" class="lesson-card locked" id="lessonCard6">
+ <div class="card-top">
+ <span class="lesson-idx">MILESTONE 06</span>
+ <span class="lesson-status-pill locked" id="statusPill6">LOCKED</span>
+ </div>
+ <h3 class="lesson-card-title">Final Project: SaaS Dashboard Suite</h3>
+ <div class="card-bottom">
+ <span class="xp-tag">+500 XP</span>
+ <span class="card-action-text" id="actionText6">Locked</span>
+ </div>
+ </a>
+ </div>
+ </div>
+ </section>
 
-        <!-- Certificate Showcase Card -->
-        <section class="cert-callout-card">
-            <div class="cert-callout-info">
-                <h3>SaaS UI &amp; Design Systems Architect Diploma</h3>
-                <p>Complete all 6 lessons to unlock your official Level 10 graduation diploma!</p>
-            </div>
-            <a href="javascript:void(0)" class="cert-callout-btn locked" id="certButton">
-                <span>Complete 6 Lessons to Unlock</span>
-            </a>
-        </section>
-    </main>
+ <!-- Certificate Showcase Card -->
+ <section class="cert-callout-card">
+ <div class="cert-callout-info">
+ <h3>SaaS UI &amp; Design Systems Architect Diploma</h3>
+ <p>Complete all 6 lessons to unlock your official Level 10 graduation diploma!</p>
+ </div>
+ <a href="javascript:void(0)" class="cert-callout-btn locked" id="certButton">
+ <span>Complete 6 Lessons to Unlock</span>
+ </a>
+ </section>
+ </main>
 
-    <PlatformFooter slot="footer" />
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/9. partI/hub.css" />
-    <script is:inline src="/scripts/dashboard.js"></script>
+ <PlatformFooter slot="footer" />
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
+ <!-- Stylesheet -->
+ <link rel="stylesheet" href="/9. partI/hub.css" />
+ <script is:inline src="/scripts/dashboard.js"></script>
 </BaseLayout>
 
 <script is:inline>
-    (function () {
-        const LESSON_KEYS = [
-            'partI_lesson1_remake_complete',
-            'partI_lesson2_remake_complete',
-            'partI_lesson3_remake_complete',
-            'partI_lesson4_remake_complete',
-            'partI_lesson5_remake_complete',
-            'partI_lesson6_remake_complete'
-        ];
+ (function () {
+ const LESSON_KEYS = [
+ 'partI_lesson1_remake_complete',
+ 'partI_lesson2_remake_complete',
+ 'partI_lesson3_remake_complete',
+ 'partI_lesson4_remake_complete',
+ 'partI_lesson5_remake_complete',
+ 'partI_lesson6_remake_complete'
+ ];
 
-        const LESSON_URLS = [
-            '/9. partI/lesson1/lesson1_remake.html',
-            '/9. partI/lesson2/lesson2_remake.html',
-            '/9. partI/lesson3/lesson3_remake.html',
-            '/9. partI/lesson4/lesson4_remake.html',
-            '/9. partI/lesson5/lesson5_remake.html',
-            '/9. partI/lesson6/lesson6_remake.html'
-        ];
+ const LESSON_URLS = [
+ '/9. partI/lesson1/lesson1_remake.html',
+ '/9. partI/lesson2/lesson2_remake.html',
+ '/9. partI/lesson3/lesson3_remake.html',
+ '/9. partI/lesson4/lesson4_remake.html',
+ '/9. partI/lesson5/lesson5_remake.html',
+ '/9. partI/lesson6/lesson6_remake.html'
+ ];
 
-        const LESSON_NAMES = [
-            'Modular SaaS Shell',
-            'Debounced Live Search',
-            'Subscription Tier Switcher',
-            'AI Chat Assistant Panel',
-            'Code Quality & Error Handling',
-            'SaaS Dashboard UI Suite'
-        ];
+ const LESSON_NAMES = [
+ 'Modular SaaS Shell',
+ 'Debounced Live Search',
+ 'Subscription Tier Switcher',
+ 'AI Chat Assistant Panel',
+ 'Code Quality & Error Handling',
+ 'SaaS Dashboard UI Suite'
+ ];
 
-        function initHub() {
-            let completedCount = 0;
-            let firstIncompleteIdx = -1;
+ function initHub() {
+ let completedCount = 0;
+ let firstIncompleteIdx = -1;
 
-            const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
+ const isPracticeUnlocked = localStorage.getItem('practice_mode_unlocked') === 'true';
 
-            LESSON_KEYS.forEach((key, idx) => {
-                const isComplete = localStorage.getItem(key) === 'true';
-                const isUnlocked = idx === 0 || isPracticeUnlocked || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
+ LESSON_KEYS.forEach((key, idx) => {
+ const isComplete = localStorage.getItem(key) === 'true';
+ const isUnlocked = idx === 0 || isPracticeUnlocked || localStorage.getItem(LESSON_KEYS[idx - 1]) === 'true';
 
-                if (isComplete) completedCount++;
-                if (!isComplete && firstIncompleteIdx === -1 && isUnlocked) {
-                    firstIncompleteIdx = idx;
-                }
+ if (isComplete) completedCount++;
+ if (!isComplete && firstIncompleteIdx === -1 && isUnlocked) {
+ firstIncompleteIdx = idx;
+ }
 
-                const card = document.getElementById(`lessonCard${idx + 1}`);
-                const pill = document.getElementById(`statusPill${idx + 1}`);
-                const action = document.getElementById(`actionText${idx + 1}`);
+ const card = document.getElementById(`lessonCard${idx + 1}`);
+ const pill = document.getElementById(`statusPill${idx + 1}`);
+ const action = document.getElementById(`actionText${idx + 1}`);
 
-                if (!card || !pill || !action) return;
+ if (!card || !pill || !action) return;
 
-                if (isComplete) {
-                    card.className = 'lesson-card completed';
-                    pill.className = 'lesson-status-pill completed';
-                    pill.textContent = 'COMPLETED';
-                    action.textContent = 'Review Lesson ➔';
-                } else if (isUnlocked) {
-                    card.className = 'lesson-card in-progress';
-                    pill.className = 'lesson-status-pill available';
-                    pill.textContent = 'UP NEXT';
-                    action.textContent = 'Launch Lesson ➔';
-                } else {
-                    card.className = 'lesson-card locked';
-                    pill.className = 'lesson-status-pill locked';
-                    pill.textContent = 'LOCKED';
-                    action.textContent = 'Locked';
-                }
-            });
+ if (isComplete) {
+ card.className = 'lesson-card completed';
+ pill.className = 'lesson-status-pill completed';
+ pill.textContent = 'COMPLETED';
+ action.textContent = 'Review Lesson ';
+ } else if (isUnlocked) {
+ card.className = 'lesson-card in-progress';
+ pill.className = 'lesson-status-pill available';
+ pill.textContent = 'UP NEXT';
+ action.textContent = 'Launch Lesson ';
+ } else {
+ card.className = 'lesson-card locked';
+ pill.className = 'lesson-status-pill locked';
+ pill.textContent = 'LOCKED';
+ action.textContent = 'Locked';
+ }
+ });
 
-            const percent = Math.round((completedCount / LESSON_KEYS.length) * 100);
-            const progressFill = document.getElementById('heroProgressFill');
-            const progressText = document.getElementById('heroProgressText');
-            const statsVal = document.getElementById('statCompletedProjects');
+ const percent = Math.round((completedCount / LESSON_KEYS.length) * 100);
+ const progressFill = document.getElementById('heroProgressFill');
+ const progressText = document.getElementById('heroProgressText');
+ const statsVal = document.getElementById('statCompletedProjects');
 
-            if (progressFill) progressFill.style.width = percent + '%';
-            if (progressText) progressText.textContent = `${completedCount} of ${LESSON_KEYS.length} Lessons Completed (${percent}%)`;
-            if (statsVal) statsVal.textContent = `${completedCount} / ${LESSON_KEYS.length}`;
+ if (progressFill) progressFill.style.width = percent + '%';
+ if (progressText) progressText.textContent = `${completedCount} of ${LESSON_KEYS.length} Lessons Completed (${percent}%)`;
+ if (statsVal) statsVal.textContent = `${completedCount} / ${LESSON_KEYS.length}`;
 
-            const resumeBtn = document.getElementById('heroResumeBtn');
-            if (resumeBtn) {
-                if (completedCount === LESSON_KEYS.length) {
-                    resumeBtn.href = '/9. partI/certificate.html';
-                    resumeBtn.innerHTML = '<span>Claim Level 10 Certificate ➔</span>';
-                } else if (firstIncompleteIdx !== -1) {
-                    resumeBtn.href = LESSON_URLS[firstIncompleteIdx];
-                    resumeBtn.innerHTML = `<span>Continue Lesson ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} ➔</span>`;
-                }
-            }
+ const resumeBtn = document.getElementById('heroResumeBtn');
+ if (resumeBtn) {
+ if (completedCount === LESSON_KEYS.length) {
+ resumeBtn.href = '/9. partI/certificate.html';
+ resumeBtn.innerHTML = '<span>Claim Level 10 Certificate </span>';
+ } else if (firstIncompleteIdx !== -1) {
+ resumeBtn.href = LESSON_URLS[firstIncompleteIdx];
+ resumeBtn.innerHTML = `<span>Continue Lesson ${firstIncompleteIdx + 1}: ${LESSON_NAMES[firstIncompleteIdx]} </span>`;
+ }
+ }
 
-            const certBtn = document.getElementById('certButton');
-            if (certBtn) {
-                if (completedCount === LESSON_KEYS.length) {
-                    certBtn.className = 'cert-callout-btn unlocked';
-                    certBtn.href = '/9. partI/certificate.html';
-                    certBtn.innerHTML = '<span>View &amp; Download Certificate ➔</span>';
-                } else {
-                    certBtn.className = 'cert-callout-btn locked';
-                    certBtn.href = 'javascript:void(0)';
-                    certBtn.innerHTML = `<span>Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
-                }
-            }
-        }
+ const certBtn = document.getElementById('certButton');
+ if (certBtn) {
+ if (completedCount === LESSON_KEYS.length) {
+ certBtn.className = 'cert-callout-btn unlocked';
+ certBtn.href = '/9. partI/certificate.html';
+ certBtn.innerHTML = '<span>View &amp; Download Certificate </span>';
+ } else {
+ certBtn.className = 'cert-callout-btn locked';
+ certBtn.href = 'javascript:void(0)';
+ certBtn.innerHTML = `<span>Complete ${LESSON_KEYS.length - completedCount} More to Unlock</span>`;
+ }
+ }
+ }
 
-        document.addEventListener('DOMContentLoaded', initHub);
-        window.addEventListener('novicodes:xp_updated', initHub);
-        window.addEventListener('storage', initHub);
-        window.addEventListener('pageshow', initHub);
-    })();
+ document.addEventListener('DOMContentLoaded', initHub);
+ window.addEventListener('novicodes:xp_updated', initHub);
+ window.addEventListener('storage', initHub);
+ window.addEventListener('pageshow', initHub);
+ })();
 </script>

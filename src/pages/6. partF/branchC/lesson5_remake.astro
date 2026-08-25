@@ -1,284 +1,284 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🔬 Lesson 5: Vitest & React Testing Library!
+const starterCode = `// Lesson 5: Vitest & React Testing Library!
 import { render, screen, fireEvent } from '@testing-library/react';
 import { test, expect } from 'vitest';
 import Counter from './Counter';
 
 test('increments counter on button click', () => {
-  // 👉 STEP 1: Mount component with render(<Counter />)
-  
+ // STEP 1: Mount component with render(<Counter />)
+ 
 
-  // 👉 STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
-  
+ // STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
+ 
 
-  // 👉 STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
-  
+ // STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
+ 
 });
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Next.js App Router",
-        "url": "/6. partF/branchC/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Server & Client UI",
-        "url": "/6. partF/branchC/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Zustand Global State",
-        "url": "/6. partF/branchC/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Tailwind UI Architecture",
-        "url": "/6. partF/branchC/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Unit & E2E Testing",
-        "url": "/6. partF/branchC/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Next.js Service Dashboard",
-        "url": "/6. partF/branchC/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Next.js App Router",
+ "url": "/6. partF/branchC/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Server & Client UI",
+ "url": "/6. partF/branchC/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Zustand Global State",
+ "url": "/6. partF/branchC/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Tailwind UI Architecture",
+ "url": "/6. partF/branchC/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Unit & E2E Testing",
+ "url": "/6. partF/branchC/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Next.js Service Dashboard",
+ "url": "/6. partF/branchC/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 05: Unit & E2E Testing | Level 7C • Next.js & Frontend"
-    description="Ensure enterprise reliability by writing component unit tests with Vitest and React Testing Library."
-    levelTag="Level 7C • Next.js & Frontend"
-    lessonNum={5}
-    lessonTitle="Unit & E2E Testing"
-    xpAmount={250}
-    completionKey="partF_branchC_lesson5_complete"
-    nextLessonUrl="/6. partF/branchC/lesson6_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="page.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchC"
+ title="Milestone 05: Unit & E2E Testing | Level 7C • Next.js & Frontend"
+ description="Ensure enterprise reliability by writing component unit tests with Vitest and React Testing Library."
+ levelTag="Level 7C • Next.js & Frontend"
+ lessonNum={5}
+ lessonTitle="Unit & E2E Testing"
+ xpAmount={250}
+ completionKey="partF_branchC_lesson5_complete"
+ nextLessonUrl="/6. partF/branchC/lesson6_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="page.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Write automated tests with Jest and React Testing Library to verify component rendering and state interactions.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Write automated tests with Jest and React Testing Library to verify component rendering and state interactions.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Vitest Test Runner] PASS: Counter increments from 0 to 1 on click (3 tests passed)</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Vitest unit tests are like automated safety crash testing in a car factory 🔬: verifying every button and sensor works perfectly before releasing the car to customers.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [Vitest Test Runner] PASS: Counter increments from 0 to 1 on click (3 tests passed)</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Vitest unit tests are like automated safety crash testing in a car factory : verifying every button and sensor works perfectly before releasing the car to customers.
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>🧪</span> Testing Triad</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">render(&lt;Component /&gt;)</div>
-                        <div class="tag-result">Mounts virtual DOM instance</div>
-                    </div>
-                    <div class="tag-example">
-                        <div class="tag-code">expect(...).toBeInTheDocument()</div>
-                        <div class="tag-result">Asserts visual element existence</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Testing Triad</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">render(&lt;Component /&gt;)</div>
+ <div class="tag-result">Mounts virtual DOM instance</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">expect(...).toBeInTheDocument()</div>
+ <div class="tag-result">Asserts visual element existence</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchC_5">import &#123; render, screen, fireEvent &#125; from '@testing-library/react';
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchC_5">import &#123; render, screen, fireEvent &#125; from '@testing-library/react';
 import Counter from '../components/Counter';
 
 test('increments count on click', () =&gt; &#123;
-    render(&lt;Counter /&gt;);
-    const button = screen.getByRole('button', &#123; name: /increment/i &#125;);
-    fireEvent.click(button);
-    expect(screen.getByText(/Count: 1/i)).toBeInTheDocument();
+ render(&lt;Counter /&gt;);
+ const button = screen.getByRole('button', &#123; name: /increment/i &#125;);
+ fireEvent.click(button);
+ expect(screen.getByText(/Count: 1/i)).toBeInTheDocument();
 &#125;);</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson5';
-        const DEFAULT_STARTER = `// 🔬 Lesson 5: Vitest & React Testing Library!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson5';
+ const DEFAULT_STARTER = `// Lesson 5: Vitest & React Testing Library!
 import { render, screen, fireEvent } from '@testing-library/react';
 import { test, expect } from 'vitest';
 import Counter from './Counter';
 
 test('increments counter on button click', () => {
-  // 👉 STEP 1: Mount component with render(<Counter />)
-  
+ // STEP 1: Mount component with render(<Counter />)
+ 
 
-  // 👉 STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
-  
+ // STEP 2: Click button with fireEvent.click(screen.getByRole('button'))
+ 
 
-  // 👉 STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
-  
+ // STEP 3: Assert expectation with expect(screen.getByText(/Count:\s*1/i)).toBeInTheDocument()
+ 
 });
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'render', label: 'Mount component with <code>render(&lt;Counter /&gt;)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /render\s*\(\s*<Counter/i.test(c); } },
-            { id: 'click', label: 'Simulate click with <code>fireEvent.click(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fireEvent\.click\s*\(/i.test(c); } },
-            { id: 'expect', label: 'Assert expectation with <code>expect(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /expect\s*\(/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'render', label: 'Mount component with <code>render(&lt;Counter /&gt;)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /render\s*\(\s*<Counter/i.test(c); } },
+ { id: 'click', label: 'Simulate click with <code>fireEvent.click(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fireEvent\.click\s*\(/i.test(c); } },
+ { id: 'expect', label: 'Assert expectation with <code>expect(...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /expect\s*\(/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-                        // Jest & React Testing Library Simulated Test Runner
-            if (previewIframe) {
-                const rawCode = editor.value;
-                const hasTest = /test\s*\(/i.test(rawCode);
-                const hasRender = /render\s*\(/i.test(rawCode);
-                const hasClick = /fireEvent\.click/i.test(rawCode);
-                const hasExpect = /expect\s*\(/i.test(rawCode);
+ // Jest & React Testing Library Simulated Test Runner
+ if (previewIframe) {
+ const rawCode = editor.value;
+ const hasTest = /test\s*\(/i.test(rawCode);
+ const hasRender = /render\s*\(/i.test(rawCode);
+ const hasClick = /fireEvent\.click/i.test(rawCode);
+ const hasExpect = /expect\s*\(/i.test(rawCode);
 
-                const testsPassed = hasTest && hasRender && hasClick && hasExpect;
+ const testsPassed = hasTest && hasRender && hasClick && hasExpect;
 
-                const passHtml = '<div style="color: #4ade80; font-weight: bold;">PASS __tests__/Counter.test.jsx</div><div style="color: #22c55e; padding-left: 12px;">✓ increments count on click (14 ms)</div><div style="border-top: 1px solid #1e293b; margin-top: 12px; padding-top: 8px; color: #94a3b8;">Tests: <span style="color: #4ade80; font-weight: bold;">1 passed</span>, 1 total<br>Snapshots: 0 total<br>Time: 0.812 s</div>';
-                const waitHtml = '<div style="color: #facc15;">WAITING: Write your test suite in the editor using test(), render(), fireEvent, and expect().</div><div style="color: #64748b; margin-top: 8px; font-size: 11px;">• test() declared: ' + (hasTest ? '✅ Yes' : '⏳ Pending') + '<br>• render(&lt;Counter /&gt;): ' + (hasRender ? '✅ Yes' : '⏳ Pending') + '<br>• fireEvent.click(): ' + (hasClick ? '✅ Yes' : '⏳ Pending') + '<br>• expect() assertion: ' + (hasExpect ? '✅ Yes' : '⏳ Pending') + '</div>';
+ const passHtml = '<div style="color: #4ade80; font-weight: bold;">PASS __tests__/Counter.test.jsx</div><div style="color: #22c55e; padding-left: 12px;"> increments count on click (14 ms)</div><div style="border-top: 1px solid #1e293b; margin-top: 12px; padding-top: 8px; color: #94a3b8;">Tests: <span style="color: #4ade80; font-weight: bold;">1 passed</span>, 1 total<br>Snapshots: 0 total<br>Time: 0.812 s</div>';
+ const waitHtml = '<div style="color: #facc15;">WAITING: Write your test suite in the editor using test(), render(), fireEvent, and expect().</div><div style="color: #64748b; margin-top: 8px; font-size: 11px;">• test() declared: ' + (hasTest ? ' Yes' : '⏳ Pending') + '<br>• render(&lt;Counter /&gt;): ' + (hasRender ? ' Yes' : '⏳ Pending') + '<br>• fireEvent.click(): ' + (hasClick ? ' Yes' : '⏳ Pending') + '<br>• expect() assertion: ' + (hasExpect ? ' Yes' : '⏳ Pending') + '</div>';
 
-                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"><\/script><style>body { margin: 0; padding: 14px; font-family: monospace; background: #0f172a; color: #f8fafc; font-size: 12px; }</style></head><body><div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><span style="color: #38bdf8; font-weight: 700;">JEST TEST RUNNER</span><span style="color: #94a3b8; font-size: 11px;">__tests__/Counter.test.jsx</span></div><div style="background: #090d16; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; line-height: 1.6;"><div style="color: #94a3b8; margin-bottom: 8px;">$ jest --watchAll=false</div>' + (testsPassed ? passHtml : waitHtml) + '</div></body></html>';
-                previewIframe.srcdoc = htmlDoc;
-            }
+ const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"><\/script><style>body { margin: 0; padding: 14px; font-family: monospace; background: #0f172a; color: #f8fafc; font-size: 12px; }</style></head><body><div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><span style="color: #38bdf8; font-weight: 700;">JEST TEST RUNNER</span><span style="color: #94a3b8; font-size: 11px;">__tests__/Counter.test.jsx</span></div><div style="background: #090d16; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; line-height: 1.6;"><div style="color: #94a3b8; margin-bottom: 8px;">$ jest --watchAll=false</div>' + (testsPassed ? passHtml : waitHtml) + '</div></body></html>';
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Unit & E2E Testing',
-                    xp: 250,
-                    completionKey: 'partF_branchC_lesson5_complete',
-                    nextUrl: '/6. partF/branchC/lesson6_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Unit & E2E Testing',
+ xp: 250,
+ completionKey: 'partF_branchC_lesson5_complete',
+ nextUrl: '/6. partF/branchC/lesson6_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

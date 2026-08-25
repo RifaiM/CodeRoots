@@ -5,1126 +5,1126 @@ import PlatformHeader from '../../components/PlatformHeader.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout 
-    title="Level 6 Certificate: Python & Backend Architecture | NoviCodes" 
-    description="Claim your Level 6 Certificate in Python Syntax, Data Structures, Algorithmic Functions, and Backend Architecture."
-    showHeaderFooter={false}
+ title="Level 6 Certificate: Python & Backend Architecture | NoviCodes" 
+ description="Claim your Level 6 Certificate in Python Syntax, Data Structures, Algorithmic Functions, and Backend Architecture."
+ showHeaderFooter={false}
 >
-    <PlatformHeader 
-        slot="header"
-        tagText="Level 6 • Python Dojo"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={true}
-        showLevelBadge={true}
-    />
-
-    <main class="cert-page-container">
-        <div class="cert-container">
-            
-            <!-- Certificate Generator Controls -->
-            <section class="generator-card">
-                <div class="generator-header">
-                    <h1>Level 6 Certificate Generator</h1>
-                    <p>Enter your full name to generate your verified proof-of-work certificate in PYTHON DATA STRUCTURES & BACKEND ARCHITECTURE.</p>
-                </div>
-
-                <div class="generator-inputs">
-                    <div class="input-group">
-                        <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
-                        <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Python Developer" />
-                    </div>
-                    <div class="btn-row">
-                        <button class="cert-action-btn primary" id="generateCertBtn">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Update Certificate</span>
-                        </button>
-                        <button class="cert-action-btn success" id="downloadCertBtn">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download High-Res PNG</span>
-                        </button>
-                        <button class="cert-action-btn secondary" id="printCertBtn" onclick="window.print()">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print / PDF</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Visual Certificate Preview -->
-            <div class="certificate-frame" id="certificateFrame">
-                <div class="certificate-inner">
-                    <div class="cert-watermark">NOVICODES</div>
-                    
-                    <div class="cert-top-row">
-                        <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
-                        <div class="cert-brand">NOVICODES PLATFORM</div>
-                        <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-PY-2026-0062</span></div>
-                    </div>
-
-                    <div class="cert-headline">CERTIFICATE OF MASTERY</div>
-                    <div class="cert-subheadline">Python Programming &amp; Backend Fundamentals</div>
-
-                    <div class="cert-awarded-text">THIS CERTIFIES THAT</div>
-                    <div class="cert-recipient-name" id="certRecipientName">Python Developer</div>
-
-                    <div class="cert-body-text">
-                        has successfully completed 15 interactive Python exercises demonstrating practical proficiency in Python syntax, lists and dictionaries, object-oriented classes, error handling with try/except, file operations, SQLite database queries, and creating REST API endpoints with FastAPI.
-                    </div>
-
-                    <div class="cert-footer-row">
-                        <div class="cert-sig-col">
-                            <div class="cert-sig-line">NoviCodes Academic Board</div>
-                            <div class="cert-sig-label">Chief Backend Architect</div>
-                        </div>
-                        <div class="cert-badge-center">
-                            <div class="cert-gold-seal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1h10v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-                                <span>LEVEL 6</span>
-                            </div>
-                        </div>
-                        <div class="cert-sig-col">
-                            <div class="cert-sig-line" id="certIssueDate">August 15, 2026</div>
-                            <div class="cert-sig-label">Date of Issuance</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 🚀 What's Next Graduation Bridge (Option C) -->
-        <section class="whats-next-section">
-            <div class="whats-next-inner">
-                <h2 class="whats-next-title">🚀 What Should You Do Next?</h2>
-                <p class="whats-next-sub">
-                    You have mastered this level's core engineering competencies. Here is how to apply your verified skills to real-world production:
-                </p>
-
-                <!-- Creator Support Appreciation Card -->
-                <div class="cert-support-card no-print">
-                    <div class="cert-support-header">
-                        <span class="cert-support-badge">💖 Support Ra Labs</span>
-                        <span class="cert-support-tag">100% Free &amp; Open-Source</span>
-                    </div>
-                    <p class="cert-support-text">
-                        Proud of earning your Level 6 Python Certificate? NoviCodes is independently built to keep coding education accessible with zero paywalls. Your support helps us build new curriculum tracks and maintain free servers!
-                    </p>
-                    <div class="cert-support-btns">
-                        <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="cert-support-btn kofi" title="Buy Ra Labs a Coffee (USD / Global)">
-                            <span>☕ Buy on Ko-fi (Global)</span>
-                        </a>
-                        <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="cert-support-btn trakteer" title="Support Ra Labs on Trakteer (IDR / QRIS)">
-                            <span>🍜 Support on Trakteer (IDR / QRIS)</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="whats-next-grid">
-                    
-                    <div class="wn-card">
-                        <div class="wn-icon">🐍</div>
-                        <h3>Run Python in Cloud Workspaces</h3>
-                        <p>Write and run complete multi-file Python applications directly in your browser with interactive terminals on Replit or GitHub Codespaces.</p>
-                        <a href="https://replit.com/languages/python3" target="_blank" rel="noopener noreferrer" class="wn-link">Try Replit Python (Free) →</a>
-                    </div>
-                    <div class="wn-card">
-                        <div class="wn-icon">📦</div>
-                        <h3>Set Up Local Python</h3>
-                        <p>Install Python 3.12 locally on your computer with virtual environments (venv), pip package manager, and VS Code Python extension.</p>
-                        <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" class="wn-link">Download Python 3.12 →</a>
-                    </div>
-                    <div class="wn-card">
-                        <div class="wn-icon">🌶️</div>
-                        <h3>Build a FastAPI Backend</h3>
-                        <p>Python's FastAPI framework is industry-standard for asynchronous microservices. Build your first REST endpoint with automatic Swagger docs.</p>
-                        <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank" rel="noopener noreferrer" class="wn-link">FastAPI Documentation →</a>
-                    </div>
-                </div>
-                <div class="whats-next-cta">
-                    <a href="/#roadmap" class="whats-next-btn primary">← Return to Skill Tree</a>
-                    <a href="/6. partF/hub.html" class="whats-next-btn accent">Level 7: Mastery Dojo →</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn no-print" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
-    <PlatformFooter slot="footer" />
-
-    <style is:global>
-        /* ==========================================================================
-           Technical Field Journal — Certificate Generator & Graduation Bridge
-           ========================================================================== */
-        .cert-page-container {
-            max-width: 1020px;
-            margin: 32px auto 60px auto;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-
-        .generator-card {
-            background: var(--card-elevated, #F8F6F1);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            padding: 24px 28px;
-            margin-bottom: 32px;
-            box-sizing: border-box;
-        }
-
-        .generator-header h1,
-        .generator-header h2 {
-            margin: 0 0 6px 0;
-            font-family: var(--font-serif, 'Newsreader', serif);
-            font-size: 1.55rem;
-            color: var(--text-title, #20211F);
-            font-weight: 500;
-            line-height: 1.25;
-        }
-
-        .generator-header p {
-            margin: 0 0 18px 0;
-            color: var(--text-muted, #686760);
-            font-size: 0.88rem;
-            line-height: 1.5;
-        }
-
-        .generator-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .input-group label {
-            display: block;
-            font-family: var(--font-mono, monospace);
-            font-size: 0.76rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--text-title, #20211F);
-            margin-bottom: 6px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            background: #FFFFFF;
-            font-size: 0.92rem;
-            font-family: var(--font-sans, 'IBM Plex Sans', sans-serif);
-            color: var(--text-title, #20211F);
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.15s, box-shadow 0.15s;
-        }
-
-        .input-group input:focus {
-            border-color: var(--accent-oxide, #A33B24);
-            box-shadow: 0 0 0 2px rgba(163, 59, 36, 0.15);
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .cert-action-btn {
-            padding: 9px 18px;
-            border-radius: 2px;
-            font-family: var(--font-mono, monospace);
-            font-weight: 600;
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            cursor: pointer;
-            border: 1px solid transparent;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
-        }
-
-        .cert-action-btn:active {
-            transform: scale(0.98);
-        }
-
-        .cert-action-btn.primary {
-            background: var(--header-canvas, #1B1C1A);
-            color: var(--text-inverse, #F1EEE7);
-            border-color: var(--border-dark-hairline, #2C2D2B);
-        }
-
-        .cert-action-btn.primary:hover {
-            background: var(--accent-oxide, #A33B24);
-            border-color: var(--accent-oxide, #A33B24);
-            color: #FFFFFF;
-        }
-
-        .cert-action-btn.success {
-            background: #2F5233;
-            color: #FFFFFF;
-            border-color: #244127;
-        }
-
-        .cert-action-btn.success:hover {
-            background: #223C25;
-            border-color: #1A301D;
-        }
-
-        .cert-action-btn.secondary {
-            background: #FFFFFF;
-            color: var(--text-title, #20211F);
-            border-color: var(--border-subtle, #D5D0C6);
-        }
-
-        .cert-action-btn.secondary:hover {
-            background: #EAE6DC;
-            border-color: #BAB4A6;
-        }
-
-        /* Certificate Visual Frame */
-        .certificate-frame {
-            background: #FFFFFF;
-            border: 8px solid var(--header-canvas, #1B1C1A);
-            padding: 12px;
-            border-radius: 2px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            box-sizing: border-box;
-        }
-
-        .certificate-inner {
-            border: 2px solid var(--border-subtle, #D5D0C6);
-            padding: 40px 48px;
-            text-align: center;
-            position: relative;
-            background: #FFFFFF;
-            box-sizing: border-box;
-        }
-
-        .cert-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
-            font-size: 6.5rem;
-            font-weight: 900;
-            color: rgba(0, 0, 0, 0.025);
-            pointer-events: none;
-            letter-spacing: 12px;
-            user-select: none;
-            z-index: 0;
-            white-space: nowrap;
-        }
-
-        .cert-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cert-logo-img {
-            width: 44px;
-            height: 44px;
-            border-radius: 2px;
-            object-fit: cover;
-            border: 1px solid var(--border-subtle, #D5D0C6);
-        }
-
-        .cert-brand {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--text-title, #20211F);
-        }
-
-        .cert-id-badge {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-muted, #686760);
-            background: var(--surface-muted, #EAE6DC);
-            padding: 4px 10px;
-            border-radius: 2px;
-            letter-spacing: 0.05em;
-            border: 1px solid var(--border-subtle, #D5D0C6);
-        }
-
-        .cert-headline {
-            font-family: var(--font-serif, 'Newsreader', serif);
-            font-size: 1.95rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            color: var(--text-title, #20211F);
-            margin: 0 0 6px 0;
-        }
-
-        .cert-subheadline {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.86rem;
-            color: var(--accent-oxide, #A33B24);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 24px;
-        }
-
-        .cert-awarded-text {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.74rem;
-            font-weight: 600;
-            color: var(--text-muted, #686760);
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .cert-recipient-name {
-            font-family: var(--font-serif, 'Newsreader', serif);
-            font-size: 2.1rem;
-            font-weight: 500;
-            font-style: italic;
-            color: var(--text-title, #20211F);
-            border-bottom: 2px solid var(--header-canvas, #1B1C1A);
-            display: inline-block;
-            padding: 0 24px 6px 24px;
-            margin-bottom: 24px;
-            min-width: 280px;
-        }
-
-        .cert-body-text {
-            font-size: 0.88rem;
-            line-height: 1.65;
-            color: var(--text-body, #20211F);
-            max-width: 680px;
-            margin: 0 auto 32px auto;
-        }
-
-        .cert-footer-row {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cert-sig-col {
-            text-align: center;
-            width: 180px;
-        }
-
-        .cert-sig-line {
-            font-family: var(--font-serif, 'Newsreader', serif);
-            font-style: italic;
-            font-size: 1.05rem;
-            color: var(--text-title, #20211F);
-            border-bottom: 1px solid var(--border-subtle, #D5D0C6);
-            padding-bottom: 4px;
-            margin-bottom: 4px;
-        }
-
-        .cert-sig-label {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.70rem;
-            color: var(--text-muted, #686760);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .cert-badge-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cert-gold-seal {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: #F8F6F1;
-            border: 2px dashed var(--accent-oxide, #A33B24);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            box-shadow: 0 0 0 4px #FFFFFF, 0 0 0 5px var(--border-subtle, #D5D0C6);
-        }
-
-        .cert-gold-seal span:first-child {
-            font-size: 1.3rem;
-        }
-
-        .cert-gold-seal span:last-child {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.58rem;
-            font-weight: 700;
-            color: var(--accent-oxide, #A33B24);
-            letter-spacing: 0.05em;
-        }
-
-        /* Post-Graduation Bridge (What's Next) */
-        .whats-next-section {
-            margin-top: 40px;
-            background: var(--card-elevated, #F8F6F1);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            padding: 32px 28px;
-            box-sizing: border-box;
-        }
-
-        .whats-next-title {
-            font-family: var(--font-serif, 'Newsreader', serif);
-            font-size: 1.55rem;
-            color: var(--text-title, #20211F);
-            font-weight: 500;
-            margin: 0 0 6px 0;
-            line-height: 1.25;
-        }
-
-        .whats-next-sub {
-            color: var(--text-muted, #686760);
-            font-size: 0.88rem;
-            margin: 0 0 24px 0;
-            line-height: 1.5;
-        }
-
-        .cert-support-card {
-            background: #FFFFFF;
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-left: 3px solid var(--accent-oxide, #A33B24);
-            border-radius: 2px;
-            padding: 18px 20px;
-            margin-bottom: 24px;
-        }
-
-        .cert-support-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .cert-support-badge {
-            font-family: var(--font-mono, monospace);
-            font-weight: 600;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            color: var(--accent-oxide, #A33B24);
-        }
-
-        .cert-support-tag {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-muted, #686760);
-            background: var(--surface-muted, #EAE6DC);
-            padding: 2px 6px;
-            border-radius: 2px;
-        }
-
-        .cert-support-text {
-            font-size: 0.86rem;
-            line-height: 1.55;
-            color: var(--text-body, #20211F);
-            margin: 0 0 14px 0;
-        }
-
-        .cert-support-btns {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .cert-support-btn {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            padding: 7px 14px;
-            border-radius: 2px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-
-        .cert-support-btn:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-        }
-
-        .cert-support-btn.kofi {
-            background: #1B1C1A;
-            color: #FFFFFF;
-            border: 1px solid #2C2D2B;
-        }
-
-        .cert-support-btn.kofi:hover {
-            background: #A33B24;
-            border-color: #A33B24;
-        }
-
-        .cert-support-btn.trakteer {
-            background: #2F5233;
-            color: #FFFFFF;
-            border: 1px solid #244127;
-        }
-
-        .cert-support-btn.trakteer:hover {
-            background: #223C25;
-            border-color: #1A301D;
-        }
-
-        .whats-next-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-
-        .wn-card {
-            background: #FFFFFF;
-            border: 1px solid var(--border-subtle, #D5D0C6);
-            border-radius: 2px;
-            padding: 20px 18px;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.15s, box-shadow 0.15s;
-        }
-
-        .wn-card:hover {
-            border-color: var(--border-dark, #BAB4A6);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .wn-icon {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-
-        .wn-card h3 {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-title, #20211F);
-            margin: 0 0 6px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        .wn-card p {
-            font-size: 0.84rem;
-            color: var(--text-body, #20211F);
-            line-height: 1.55;
-            margin: 0 0 14px 0;
-            flex-grow: 1;
-        }
-
-        .wn-link {
-            font-family: var(--font-mono, monospace);
-            font-size: 0.80rem;
-            font-weight: 600;
-            color: var(--accent-oxide, #A33B24);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-
-        .wn-link:hover {
-            color: var(--accent-oxide-hover, #862E1A);
-            text-decoration: underline;
-        }
-
-        .whats-next-cta {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .whats-next-btn {
-            padding: 10px 22px;
-            border-radius: 2px;
-            font-family: var(--font-mono, monospace);
-            font-weight: 600;
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.15s, border-color 0.15s, transform 0.1s;
-        }
-
-        .whats-next-btn:active {
-            transform: scale(0.98);
-        }
-
-        .whats-next-btn.primary {
-            background: #FFFFFF;
-            color: var(--text-title, #20211F);
-            border: 1px solid var(--border-subtle, #D5D0C6);
-        }
-
-        .whats-next-btn.primary:hover {
-            background: #EAE6DC;
-            border-color: #BAB4A6;
-        }
-
-        .whats-next-btn.accent {
-            background: var(--accent-oxide, #A33B24);
-            color: #FFFFFF;
-            border: 1px solid var(--accent-oxide-hover, #862E1A);
-        }
-
-        .whats-next-btn.accent:hover {
-            background: var(--accent-oxide-hover, #862E1A);
-        }
-
-        /* Print Mode Formatting */
-        @media print {
-            .platform-header,
-            .platform-footer,
-            .generator-card,
-            .whats-next-section,
-            .no-print,
-            .back-to-top-btn {
-                display: none !important;
-            }
-
-            body {
-                background: #ffffff !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-
-            .cert-page-container {
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-            }
-
-            .certificate-frame {
-                border: 6px solid var(--header-canvas, #1B1C1A) !important;
-                box-shadow: none !important;
-                page-break-inside: avoid !important;
-                width: 100% !important;
-                max-width: 1000px !important;
-                margin: 0 auto !important;
-            }
-
-            .certificate-inner {
-                padding: 28px 36px !important;
-            }
-
-            .cert-footer-row {
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: space-between !important;
-                align-items: flex-end !important;
-                width: 100% !important;
-                margin-top: 10px !important;
-            }
-
-            .cert-sig-col {
-                width: 220px !important;
-                min-width: 180px !important;
-                max-width: 250px !important;
-                text-align: center !important;
-                flex: 0 0 220px !important;
-            }
-
-            .cert-sig-line {
-                white-space: nowrap !important;
-            }
-
-            .cert-sig-label {
-                white-space: nowrap !important;
-            }
-
-            .cert-badge-center {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                flex: 0 0 auto !important;
-            }
-
-            @page {
-                size: landscape;
-                margin: 1cm;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .cert-page-container {
-                margin: 20px auto 40px auto;
-                padding: 0 16px;
-            }
-
-            .generator-card {
-                padding: 20px 18px;
-                margin-bottom: 24px;
-            }
-
-            .generator-header h1,
-            .generator-header h2 {
-                font-size: 1.35rem;
-            }
-
-            .certificate-inner {
-                padding: 24px 16px;
-            }
-
-            .cert-headline {
-                font-size: 1.5rem;
-            }
-
-            .cert-recipient-name {
-                font-size: 1.6rem;
-                padding: 0 10px 4px 10px;
-                min-width: 200px;
-            }
-
-            .cert-body-text {
-                font-size: 0.84rem;
-                margin-bottom: 24px;
-            }
-
-            .cert-footer-row {
-                flex-direction: column;
-                align-items: center;
-                gap: 16px;
-            }
-
-            .cert-sig-col {
-                width: 100%;
-            }
-
-            .whats-next-section {
-                margin-top: 28px;
-                padding: 24px 18px;
-            }
-
-            .whats-next-title {
-                font-size: 1.35rem;
-            }
-
-            .whats-next-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-                margin-bottom: 22px;
-            }
-
-            .wn-card {
-                padding: 16px 16px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .cert-page-container {
-                margin: 16px auto 32px auto;
-                padding: 0 12px;
-            }
-
-            .generator-card {
-                padding: 16px 14px;
-                margin-bottom: 20px;
-            }
-
-            .generator-header h1,
-            .generator-header h2 {
-                font-size: 1.22rem;
-            }
-
-            .generator-header p {
-                font-size: 0.82rem;
-                margin-bottom: 14px;
-            }
-
-            .btn-row {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .cert-action-btn {
-                width: 100%;
-                justify-content: center;
-                padding: 10px 14px;
-            }
-
-            .certificate-frame {
-                border-width: 5px;
-                padding: 8px;
-            }
-
-            .certificate-inner {
-                padding: 20px 12px;
-            }
-
-            .cert-top-row {
-                margin-bottom: 16px;
-            }
-
-            .cert-logo-img {
-                width: 36px;
-                height: 36px;
-            }
-
-            .cert-brand {
-                font-size: 0.74rem;
-                letter-spacing: 1px;
-            }
-
-            .cert-id-badge {
-                font-size: 0.68rem;
-                padding: 3px 6px;
-            }
-
-            .cert-headline {
-                font-size: 1.30rem;
-                letter-spacing: 1.5px;
-            }
-
-            .cert-subheadline {
-                font-size: 0.78rem;
-                margin-bottom: 16px;
-            }
-
-            .cert-recipient-name {
-                font-size: 1.35rem;
-                min-width: 160px;
-                padding: 0 6px 3px 6px;
-                margin-bottom: 16px;
-            }
-
-            .cert-body-text {
-                font-size: 0.80rem;
-                line-height: 1.55;
-                margin-bottom: 20px;
-            }
-
-            /* What's Next Section Mobile Ergonomics (425px, 375px, 320px) */
-            .whats-next-section {
-                margin-top: 24px;
-                padding: 18px 14px;
-            }
-
-            .whats-next-title {
-                font-size: 1.22rem;
-            }
-
-            .whats-next-sub {
-                font-size: 0.82rem;
-                margin-bottom: 16px;
-                line-height: 1.45;
-            }
-
-            .cert-support-card {
-                padding: 14px 12px;
-                margin-bottom: 18px;
-            }
-
-            .cert-support-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-
-            .cert-support-text {
-                font-size: 0.82rem;
-                line-height: 1.48;
-                margin-bottom: 12px;
-            }
-
-            .cert-support-btns {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .cert-support-btn {
-                width: 100%;
-                justify-content: center;
-                box-sizing: border-box;
-                padding: 8px 12px;
-                font-size: 0.76rem;
-                text-align: center;
-            }
-
-            .whats-next-grid {
-                gap: 12px;
-                margin-bottom: 18px;
-            }
-
-            .wn-card {
-                padding: 14px 12px;
-            }
-
-            .wn-card h3 {
-                font-size: 0.84rem;
-            }
-
-            .wn-card p {
-                font-size: 0.80rem;
-                line-height: 1.45;
-                margin-bottom: 10px;
-            }
-
-            .wn-link {
-                font-size: 0.76rem;
-                word-break: break-word;
-            }
-
-            .whats-next-cta {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .whats-next-btn {
-                width: 100%;
-                justify-content: center;
-                box-sizing: border-box;
-                padding: 10px 14px;
-                font-size: 0.78rem;
-                text-align: center;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            .cert-page-container {
-                padding: 0 8px;
-            }
-
-            .generator-card {
-                padding: 14px 10px;
-            }
-
-            .generator-header h1,
-            .generator-header h2 {
-                font-size: 1.12rem;
-            }
-
-            .certificate-inner {
-                padding: 16px 8px;
-            }
-
-            .cert-headline {
-                font-size: 1.15rem;
-                letter-spacing: 1px;
-            }
-
-            .cert-recipient-name {
-                font-size: 1.2rem;
-                min-width: 140px;
-            }
-
-            .whats-next-section {
-                padding: 14px 10px;
-            }
-
-            .whats-next-title {
-                font-size: 1.12rem;
-            }
-
-            .cert-support-card {
-                padding: 12px 10px;
-            }
-
-            .wn-card {
-                padding: 12px 10px;
-            }
-        }
-    </style>
-
-    <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-    <script>
-        import { checkCertificateAccessAndRenderOverlay } from '../../scripts/dojo/core/protection';
-
-        // 1. Watertight Certificate Security Verification (Immediate Overlay Guard)
-        const isAccessible = checkCertificateAccessAndRenderOverlay({
-            track: 'partE',
-            levelTag: 'Level 6',
-            totalProjects: 15,
-            hubUrl: '/5. partE/hub.html',
-            certName: 'Level 6: Python Backend Dojo'
-        });
-
-        if (isAccessible) {
-            document.addEventListener('DOMContentLoaded', () => {
-                const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
-                const certName = document.getElementById('certRecipientName');
-                const genBtn = document.getElementById('generateCertBtn');
-                const dlBtn = document.getElementById('downloadCertBtn');
-                const dateSpan = document.getElementById('certIssueDate');
-
-                if (dateSpan) {
-                    dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
-
-                function updateName() {
-                    if (certName && nameInput) {
-                        certName.textContent = nameInput.value.trim() || 'Python Developer';
-                    }
-                }
-
-                if (nameInput) nameInput.addEventListener('input', updateName);
-                if (genBtn) genBtn.addEventListener('click', updateName);
-
-                // Back to Top FAB Engine
-                const bttBtn = document.getElementById('backToTopBtn');
-                if (bttBtn) {
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 150) {
-                            bttBtn.classList.add('visible');
-                        } else {
-                            bttBtn.classList.remove('visible');
-                        }
-                    }, { passive: true });
-
-                    bttBtn.addEventListener('click', () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    });
-                }
-
-                // High-Res PNG Download
-                if (dlBtn) {
-                    dlBtn.addEventListener('click', () => {
-                        const certFrame = document.getElementById('certificateFrame');
-                        if (!certFrame || typeof (window as any).html2canvas === 'undefined') return;
-
-                        (window as any).html2canvas(certFrame, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
-                            const link = document.createElement('a');
-                            link.download = `NoviCodes_Level 6_Certificate_${(nameInput?.value || 'Learner').replace(/\s+/g, '_')}.png`;
-                            link.href = canvas.toDataURL('image/png');
-                            link.click();
-                        });
-                    });
-                }
-            });
-        }
-    </script>
+ <PlatformHeader 
+ slot="header"
+ tagText="Level 6 • Python Dojo"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={true}
+ showLevelBadge={true}
+ />
+
+ <main class="cert-page-container">
+ <div class="cert-container">
+ 
+ <!-- Certificate Generator Controls -->
+ <section class="generator-card">
+ <div class="generator-header">
+ <h1>Level 6 Certificate Generator</h1>
+ <p>Enter your full name to generate your verified proof-of-work certificate in PYTHON DATA STRUCTURES & BACKEND ARCHITECTURE.</p>
+ </div>
+
+ <div class="generator-inputs">
+ <div class="input-group">
+ <label for="learnerNameInput">Full Legal Name / Developer Alias:</label>
+ <input type="text" id="learnerNameInput" placeholder="e.g. Alex Rivera" value="Python Developer" />
+ </div>
+ <div class="btn-row">
+ <button class="cert-action-btn primary" id="generateCertBtn">
+ <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Update Certificate</span>
+ </button>
+ <button class="cert-action-btn success" id="downloadCertBtn">
+ <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download High-Res PNG</span>
+ </button>
+ <button class="cert-action-btn secondary" id="printCertBtn" onclick="window.print()">
+ <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print / PDF</span>
+ </button>
+ </div>
+ </div>
+ </section>
+
+ <!-- Visual Certificate Preview -->
+ <div class="certificate-frame" id="certificateFrame">
+ <div class="certificate-inner">
+ <div class="cert-watermark">NOVICODES</div>
+ 
+ <div class="cert-top-row">
+ <img src="/assets/logo.jpg" alt="NoviCodes Logo" class="cert-logo-img" />
+ <div class="cert-brand">NOVICODES PLATFORM</div>
+ <div class="cert-id-badge">ID: <span id="certIdDisplay">NC-PY-2026-0062</span></div>
+ </div>
+
+ <div class="cert-headline">CERTIFICATE OF MASTERY</div>
+ <div class="cert-subheadline">Python Programming &amp; Backend Fundamentals</div>
+
+ <div class="cert-awarded-text">THIS CERTIFIES THAT</div>
+ <div class="cert-recipient-name" id="certRecipientName">Python Developer</div>
+
+ <div class="cert-body-text">
+ has successfully completed 15 interactive Python exercises demonstrating practical proficiency in Python syntax, lists and dictionaries, object-oriented classes, error handling with try/except, file operations, SQLite database queries, and creating REST API endpoints with FastAPI.
+ </div>
+
+ <div class="cert-footer-row">
+ <div class="cert-sig-col">
+ <div class="cert-sig-line">NoviCodes Academic Board</div>
+ <div class="cert-sig-label">Chief Backend Architect</div>
+ </div>
+ <div class="cert-badge-center">
+ <div class="cert-gold-seal">
+ <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1h10v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+ <span>LEVEL 6</span>
+ </div>
+ </div>
+ <div class="cert-sig-col">
+ <div class="cert-sig-line" id="certIssueDate">August 15, 2026</div>
+ <div class="cert-sig-label">Date of Issuance</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+
+ <!-- What's Next Graduation Bridge (Option C) -->
+ <section class="whats-next-section">
+ <div class="whats-next-inner">
+ <h2 class="whats-next-title"> What Should You Do Next?</h2>
+ <p class="whats-next-sub">
+ You have mastered this level's core engineering competencies. Here is how to apply your verified skills to real-world production:
+ </p>
+
+ <!-- Creator Support Appreciation Card -->
+ <div class="cert-support-card no-print">
+ <div class="cert-support-header">
+ <span class="cert-support-badge"> Support Ra Labs</span>
+ <span class="cert-support-tag">100% Free &amp; Open-Source</span>
+ </div>
+ <p class="cert-support-text">
+ Proud of earning your Level 6 Python Certificate? NoviCodes is independently built to keep coding education accessible with zero paywalls. Your support helps us build new curriculum tracks and maintain free servers!
+ </p>
+ <div class="cert-support-btns">
+ <a href="https://ko-fi.com/ralabs" target="_blank" rel="noopener noreferrer" class="cert-support-btn kofi" title="Buy Ra Labs a Coffee (USD / Global)">
+ <span> Buy on Ko-fi (Global)</span>
+ </a>
+ <a href="https://trakteer.id/ra-labs" target="_blank" rel="noopener noreferrer" class="cert-support-btn trakteer" title="Support Ra Labs on Trakteer (IDR / QRIS)">
+ <span> Support on Trakteer (IDR / QRIS)</span>
+ </a>
+ </div>
+ </div>
+
+ <div class="whats-next-grid">
+ 
+ <div class="wn-card">
+ <div class="wn-icon"></div>
+ <h3>Run Python in Cloud Workspaces</h3>
+ <p>Write and run complete multi-file Python applications directly in your browser with interactive terminals on Replit or GitHub Codespaces.</p>
+ <a href="https://replit.com/languages/python3" target="_blank" rel="noopener noreferrer" class="wn-link">Try Replit Python (Free) →</a>
+ </div>
+ <div class="wn-card">
+ <div class="wn-icon"></div>
+ <h3>Set Up Local Python</h3>
+ <p>Install Python 3.12 locally on your computer with virtual environments (venv), pip package manager, and VS Code Python extension.</p>
+ <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" class="wn-link">Download Python 3.12 →</a>
+ </div>
+ <div class="wn-card">
+ <div class="wn-icon">️</div>
+ <h3>Build a FastAPI Backend</h3>
+ <p>Python's FastAPI framework is industry-standard for asynchronous microservices. Build your first REST endpoint with automatic Swagger docs.</p>
+ <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank" rel="noopener noreferrer" class="wn-link">FastAPI Documentation →</a>
+ </div>
+ </div>
+ <div class="whats-next-cta">
+ <a href="/#roadmap" class="whats-next-btn primary">← Return to Skill Tree</a>
+ <a href="/6. partF/hub.html" class="whats-next-btn accent">Level 7: Mastery Dojo →</a>
+ </div>
+ </div>
+ </section>
+ </main>
+
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn no-print" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
+
+ <PlatformFooter slot="footer" />
+
+ <style is:global>
+ /* ==========================================================================
+ Technical Field Journal — Certificate Generator & Graduation Bridge
+ ========================================================================== */
+ .cert-page-container {
+ max-width: 1020px;
+ margin: 32px auto 60px auto;
+ padding: 0 20px;
+ box-sizing: border-box;
+ }
+
+ .generator-card {
+ background: var(--card-elevated, #F8F6F1);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ padding: 24px 28px;
+ margin-bottom: 32px;
+ box-sizing: border-box;
+ }
+
+ .generator-header h1,
+ .generator-header h2 {
+ margin: 0 0 6px 0;
+ font-family: var(--font-serif, 'Newsreader', serif);
+ font-size: 1.55rem;
+ color: var(--text-title, #20211F);
+ font-weight: 500;
+ line-height: 1.25;
+ }
+
+ .generator-header p {
+ margin: 0 0 18px 0;
+ color: var(--text-muted, #686760);
+ font-size: 0.88rem;
+ line-height: 1.5;
+ }
+
+ .generator-inputs {
+ display: flex;
+ flex-direction: column;
+ gap: 16px;
+ }
+
+ .input-group label {
+ display: block;
+ font-family: var(--font-mono, monospace);
+ font-size: 0.76rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ color: var(--text-title, #20211F);
+ margin-bottom: 6px;
+ }
+
+ .input-group input {
+ width: 100%;
+ padding: 10px 14px;
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ background: #FFFFFF;
+ font-size: 0.92rem;
+ font-family: var(--font-sans, 'IBM Plex Sans', sans-serif);
+ color: var(--text-title, #20211F);
+ box-sizing: border-box;
+ outline: none;
+ transition: border-color 0.15s, box-shadow 0.15s;
+ }
+
+ .input-group input:focus {
+ border-color: var(--accent-oxide, #A33B24);
+ box-shadow: 0 0 0 2px rgba(163, 59, 36, 0.15);
+ }
+
+ .btn-row {
+ display: flex;
+ gap: 10px;
+ flex-wrap: wrap;
+ }
+
+ .cert-action-btn {
+ padding: 9px 18px;
+ border-radius: 2px;
+ font-family: var(--font-mono, monospace);
+ font-weight: 600;
+ font-size: 0.82rem;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ cursor: pointer;
+ border: 1px solid transparent;
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+ }
+
+ .cert-action-btn:active {
+ transform: scale(0.98);
+ }
+
+ .cert-action-btn.primary {
+ background: var(--header-canvas, #1B1C1A);
+ color: var(--text-inverse, #F1EEE7);
+ border-color: var(--border-dark-hairline, #2C2D2B);
+ }
+
+ .cert-action-btn.primary:hover {
+ background: var(--accent-oxide, #A33B24);
+ border-color: var(--accent-oxide, #A33B24);
+ color: #FFFFFF;
+ }
+
+ .cert-action-btn.success {
+ background: #2F5233;
+ color: #FFFFFF;
+ border-color: #244127;
+ }
+
+ .cert-action-btn.success:hover {
+ background: #223C25;
+ border-color: #1A301D;
+ }
+
+ .cert-action-btn.secondary {
+ background: #FFFFFF;
+ color: var(--text-title, #20211F);
+ border-color: var(--border-subtle, #D5D0C6);
+ }
+
+ .cert-action-btn.secondary:hover {
+ background: #EAE6DC;
+ border-color: #BAB4A6;
+ }
+
+ /* Certificate Visual Frame */
+ .certificate-frame {
+ background: #FFFFFF;
+ border: 8px solid var(--header-canvas, #1B1C1A);
+ padding: 12px;
+ border-radius: 2px;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ position: relative;
+ box-sizing: border-box;
+ }
+
+ .certificate-inner {
+ border: 2px solid var(--border-subtle, #D5D0C6);
+ padding: 40px 48px;
+ text-align: center;
+ position: relative;
+ background: #FFFFFF;
+ box-sizing: border-box;
+ }
+
+ .cert-watermark {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%) rotate(-25deg);
+ font-size: 6.5rem;
+ font-weight: 900;
+ color: rgba(0, 0, 0, 0.025);
+ pointer-events: none;
+ letter-spacing: 12px;
+ user-select: none;
+ z-index: 0;
+ white-space: nowrap;
+ }
+
+ .cert-top-row {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-bottom: 24px;
+ position: relative;
+ z-index: 1;
+ }
+
+ .cert-logo-img {
+ width: 44px;
+ height: 44px;
+ border-radius: 2px;
+ object-fit: cover;
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ }
+
+ .cert-brand {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.82rem;
+ font-weight: 600;
+ letter-spacing: 2px;
+ color: var(--text-title, #20211F);
+ }
+
+ .cert-id-badge {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.72rem;
+ font-weight: 600;
+ color: var(--text-muted, #686760);
+ background: var(--surface-muted, #EAE6DC);
+ padding: 4px 10px;
+ border-radius: 2px;
+ letter-spacing: 0.05em;
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ }
+
+ .cert-headline {
+ font-family: var(--font-serif, 'Newsreader', serif);
+ font-size: 1.95rem;
+ font-weight: 500;
+ letter-spacing: 3px;
+ color: var(--text-title, #20211F);
+ margin: 0 0 6px 0;
+ }
+
+ .cert-subheadline {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.86rem;
+ color: var(--accent-oxide, #A33B24);
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.06em;
+ margin-bottom: 24px;
+ }
+
+ .cert-awarded-text {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.74rem;
+ font-weight: 600;
+ color: var(--text-muted, #686760);
+ letter-spacing: 2px;
+ margin-bottom: 8px;
+ }
+
+ .cert-recipient-name {
+ font-family: var(--font-serif, 'Newsreader', serif);
+ font-size: 2.1rem;
+ font-weight: 500;
+ font-style: italic;
+ color: var(--text-title, #20211F);
+ border-bottom: 2px solid var(--header-canvas, #1B1C1A);
+ display: inline-block;
+ padding: 0 24px 6px 24px;
+ margin-bottom: 24px;
+ min-width: 280px;
+ }
+
+ .cert-body-text {
+ font-size: 0.88rem;
+ line-height: 1.65;
+ color: var(--text-body, #20211F);
+ max-width: 680px;
+ margin: 0 auto 32px auto;
+ }
+
+ .cert-footer-row {
+ display: flex;
+ align-items: flex-end;
+ justify-content: space-between;
+ position: relative;
+ z-index: 1;
+ }
+
+ .cert-sig-col {
+ text-align: center;
+ width: 180px;
+ }
+
+ .cert-sig-line {
+ font-family: var(--font-serif, 'Newsreader', serif);
+ font-style: italic;
+ font-size: 1.05rem;
+ color: var(--text-title, #20211F);
+ border-bottom: 1px solid var(--border-subtle, #D5D0C6);
+ padding-bottom: 4px;
+ margin-bottom: 4px;
+ }
+
+ .cert-sig-label {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.70rem;
+ color: var(--text-muted, #686760);
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ }
+
+ .cert-badge-center {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+
+ .cert-gold-seal {
+ width: 72px;
+ height: 72px;
+ border-radius: 50%;
+ background: #F8F6F1;
+ border: 2px dashed var(--accent-oxide, #A33B24);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ gap: 2px;
+ box-shadow: 0 0 0 4px #FFFFFF, 0 0 0 5px var(--border-subtle, #D5D0C6);
+ }
+
+ .cert-gold-seal span:first-child {
+ font-size: 1.3rem;
+ }
+
+ .cert-gold-seal span:last-child {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.58rem;
+ font-weight: 700;
+ color: var(--accent-oxide, #A33B24);
+ letter-spacing: 0.05em;
+ }
+
+ /* Post-Graduation Bridge (What's Next) */
+ .whats-next-section {
+ margin-top: 40px;
+ background: var(--card-elevated, #F8F6F1);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ padding: 32px 28px;
+ box-sizing: border-box;
+ }
+
+ .whats-next-title {
+ font-family: var(--font-serif, 'Newsreader', serif);
+ font-size: 1.55rem;
+ color: var(--text-title, #20211F);
+ font-weight: 500;
+ margin: 0 0 6px 0;
+ line-height: 1.25;
+ }
+
+ .whats-next-sub {
+ color: var(--text-muted, #686760);
+ font-size: 0.88rem;
+ margin: 0 0 24px 0;
+ line-height: 1.5;
+ }
+
+ .cert-support-card {
+ background: #FFFFFF;
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-left: 3px solid var(--accent-oxide, #A33B24);
+ border-radius: 2px;
+ padding: 18px 20px;
+ margin-bottom: 24px;
+ }
+
+ .cert-support-header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-bottom: 8px;
+ flex-wrap: wrap;
+ gap: 6px;
+ }
+
+ .cert-support-badge {
+ font-family: var(--font-mono, monospace);
+ font-weight: 600;
+ font-size: 0.78rem;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ color: var(--accent-oxide, #A33B24);
+ }
+
+ .cert-support-tag {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.72rem;
+ font-weight: 600;
+ color: var(--text-muted, #686760);
+ background: var(--surface-muted, #EAE6DC);
+ padding: 2px 6px;
+ border-radius: 2px;
+ }
+
+ .cert-support-text {
+ font-size: 0.86rem;
+ line-height: 1.55;
+ color: var(--text-body, #20211F);
+ margin: 0 0 14px 0;
+ }
+
+ .cert-support-btns {
+ display: flex;
+ gap: 10px;
+ flex-wrap: wrap;
+ }
+
+ .cert-support-btn {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.78rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ padding: 7px 14px;
+ border-radius: 2px;
+ text-decoration: none;
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ transition: opacity 0.2s, transform 0.1s;
+ }
+
+ .cert-support-btn:hover {
+ opacity: 0.92;
+ transform: translateY(-1px);
+ }
+
+ .cert-support-btn.kofi {
+ background: #1B1C1A;
+ color: #FFFFFF;
+ border: 1px solid #2C2D2B;
+ }
+
+ .cert-support-btn.kofi:hover {
+ background: #A33B24;
+ border-color: #A33B24;
+ }
+
+ .cert-support-btn.trakteer {
+ background: #2F5233;
+ color: #FFFFFF;
+ border: 1px solid #244127;
+ }
+
+ .cert-support-btn.trakteer:hover {
+ background: #223C25;
+ border-color: #1A301D;
+ }
+
+ .whats-next-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 16px;
+ margin-bottom: 28px;
+ }
+
+ .wn-card {
+ background: #FFFFFF;
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ border-radius: 2px;
+ padding: 20px 18px;
+ display: flex;
+ flex-direction: column;
+ transition: border-color 0.15s, box-shadow 0.15s;
+ }
+
+ .wn-card:hover {
+ border-color: var(--border-dark, #BAB4A6);
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+ }
+
+ .wn-icon {
+ font-size: 1.5rem;
+ margin-bottom: 8px;
+ }
+
+ .wn-card h3 {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.88rem;
+ font-weight: 600;
+ color: var(--text-title, #20211F);
+ margin: 0 0 6px 0;
+ text-transform: uppercase;
+ letter-spacing: 0.02em;
+ }
+
+ .wn-card p {
+ font-size: 0.84rem;
+ color: var(--text-body, #20211F);
+ line-height: 1.55;
+ margin: 0 0 14px 0;
+ flex-grow: 1;
+ }
+
+ .wn-link {
+ font-family: var(--font-mono, monospace);
+ font-size: 0.80rem;
+ font-weight: 600;
+ color: var(--accent-oxide, #A33B24);
+ text-decoration: none;
+ transition: color 0.15s;
+ }
+
+ .wn-link:hover {
+ color: var(--accent-oxide-hover, #862E1A);
+ text-decoration: underline;
+ }
+
+ .whats-next-cta {
+ display: flex;
+ justify-content: center;
+ gap: 12px;
+ flex-wrap: wrap;
+ }
+
+ .whats-next-btn {
+ padding: 10px 22px;
+ border-radius: 2px;
+ font-family: var(--font-mono, monospace);
+ font-weight: 600;
+ font-size: 0.82rem;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ text-decoration: none;
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ transition: background 0.15s, border-color 0.15s, transform 0.1s;
+ }
+
+ .whats-next-btn:active {
+ transform: scale(0.98);
+ }
+
+ .whats-next-btn.primary {
+ background: #FFFFFF;
+ color: var(--text-title, #20211F);
+ border: 1px solid var(--border-subtle, #D5D0C6);
+ }
+
+ .whats-next-btn.primary:hover {
+ background: #EAE6DC;
+ border-color: #BAB4A6;
+ }
+
+ .whats-next-btn.accent {
+ background: var(--accent-oxide, #A33B24);
+ color: #FFFFFF;
+ border: 1px solid var(--accent-oxide-hover, #862E1A);
+ }
+
+ .whats-next-btn.accent:hover {
+ background: var(--accent-oxide-hover, #862E1A);
+ }
+
+ /* Print Mode Formatting */
+ @media print {
+ .platform-header,
+ .platform-footer,
+ .generator-card,
+ .whats-next-section,
+ .no-print,
+ .back-to-top-btn {
+ display: none !important;
+ }
+
+ body {
+ background: #ffffff !important;
+ margin: 0 !important;
+ padding: 0 !important;
+ }
+
+ .cert-page-container {
+ max-width: 100% !important;
+ margin: 0 !important;
+ padding: 0 !important;
+ width: 100% !important;
+ }
+
+ .certificate-frame {
+ border: 6px solid var(--header-canvas, #1B1C1A) !important;
+ box-shadow: none !important;
+ page-break-inside: avoid !important;
+ width: 100% !important;
+ max-width: 1000px !important;
+ margin: 0 auto !important;
+ }
+
+ .certificate-inner {
+ padding: 28px 36px !important;
+ }
+
+ .cert-footer-row {
+ display: flex !important;
+ flex-direction: row !important;
+ justify-content: space-between !important;
+ align-items: flex-end !important;
+ width: 100% !important;
+ margin-top: 10px !important;
+ }
+
+ .cert-sig-col {
+ width: 220px !important;
+ min-width: 180px !important;
+ max-width: 250px !important;
+ text-align: center !important;
+ flex: 0 0 220px !important;
+ }
+
+ .cert-sig-line {
+ white-space: nowrap !important;
+ }
+
+ .cert-sig-label {
+ white-space: nowrap !important;
+ }
+
+ .cert-badge-center {
+ display: flex !important;
+ align-items: center !important;
+ justify-content: center !important;
+ flex: 0 0 auto !important;
+ }
+
+ @page {
+ size: landscape;
+ margin: 1cm;
+ }
+ }
+
+ @media screen and (max-width: 768px) {
+ .cert-page-container {
+ margin: 20px auto 40px auto;
+ padding: 0 16px;
+ }
+
+ .generator-card {
+ padding: 20px 18px;
+ margin-bottom: 24px;
+ }
+
+ .generator-header h1,
+ .generator-header h2 {
+ font-size: 1.35rem;
+ }
+
+ .certificate-inner {
+ padding: 24px 16px;
+ }
+
+ .cert-headline {
+ font-size: 1.5rem;
+ }
+
+ .cert-recipient-name {
+ font-size: 1.6rem;
+ padding: 0 10px 4px 10px;
+ min-width: 200px;
+ }
+
+ .cert-body-text {
+ font-size: 0.84rem;
+ margin-bottom: 24px;
+ }
+
+ .cert-footer-row {
+ flex-direction: column;
+ align-items: center;
+ gap: 16px;
+ }
+
+ .cert-sig-col {
+ width: 100%;
+ }
+
+ .whats-next-section {
+ margin-top: 28px;
+ padding: 24px 18px;
+ }
+
+ .whats-next-title {
+ font-size: 1.35rem;
+ }
+
+ .whats-next-grid {
+ grid-template-columns: 1fr;
+ gap: 14px;
+ margin-bottom: 22px;
+ }
+
+ .wn-card {
+ padding: 16px 16px;
+ }
+ }
+
+ @media screen and (max-width: 480px) {
+ .cert-page-container {
+ margin: 16px auto 32px auto;
+ padding: 0 12px;
+ }
+
+ .generator-card {
+ padding: 16px 14px;
+ margin-bottom: 20px;
+ }
+
+ .generator-header h1,
+ .generator-header h2 {
+ font-size: 1.22rem;
+ }
+
+ .generator-header p {
+ font-size: 0.82rem;
+ margin-bottom: 14px;
+ }
+
+ .btn-row {
+ flex-direction: column;
+ gap: 8px;
+ }
+
+ .cert-action-btn {
+ width: 100%;
+ justify-content: center;
+ padding: 10px 14px;
+ }
+
+ .certificate-frame {
+ border-width: 5px;
+ padding: 8px;
+ }
+
+ .certificate-inner {
+ padding: 20px 12px;
+ }
+
+ .cert-top-row {
+ margin-bottom: 16px;
+ }
+
+ .cert-logo-img {
+ width: 36px;
+ height: 36px;
+ }
+
+ .cert-brand {
+ font-size: 0.74rem;
+ letter-spacing: 1px;
+ }
+
+ .cert-id-badge {
+ font-size: 0.68rem;
+ padding: 3px 6px;
+ }
+
+ .cert-headline {
+ font-size: 1.30rem;
+ letter-spacing: 1.5px;
+ }
+
+ .cert-subheadline {
+ font-size: 0.78rem;
+ margin-bottom: 16px;
+ }
+
+ .cert-recipient-name {
+ font-size: 1.35rem;
+ min-width: 160px;
+ padding: 0 6px 3px 6px;
+ margin-bottom: 16px;
+ }
+
+ .cert-body-text {
+ font-size: 0.80rem;
+ line-height: 1.55;
+ margin-bottom: 20px;
+ }
+
+ /* What's Next Section Mobile Ergonomics (425px, 375px, 320px) */
+ .whats-next-section {
+ margin-top: 24px;
+ padding: 18px 14px;
+ }
+
+ .whats-next-title {
+ font-size: 1.22rem;
+ }
+
+ .whats-next-sub {
+ font-size: 0.82rem;
+ margin-bottom: 16px;
+ line-height: 1.45;
+ }
+
+ .cert-support-card {
+ padding: 14px 12px;
+ margin-bottom: 18px;
+ }
+
+ .cert-support-header {
+ flex-direction: column;
+ align-items: flex-start;
+ gap: 4px;
+ }
+
+ .cert-support-text {
+ font-size: 0.82rem;
+ line-height: 1.48;
+ margin-bottom: 12px;
+ }
+
+ .cert-support-btns {
+ flex-direction: column;
+ gap: 8px;
+ }
+
+ .cert-support-btn {
+ width: 100%;
+ justify-content: center;
+ box-sizing: border-box;
+ padding: 8px 12px;
+ font-size: 0.76rem;
+ text-align: center;
+ }
+
+ .whats-next-grid {
+ gap: 12px;
+ margin-bottom: 18px;
+ }
+
+ .wn-card {
+ padding: 14px 12px;
+ }
+
+ .wn-card h3 {
+ font-size: 0.84rem;
+ }
+
+ .wn-card p {
+ font-size: 0.80rem;
+ line-height: 1.45;
+ margin-bottom: 10px;
+ }
+
+ .wn-link {
+ font-size: 0.76rem;
+ word-break: break-word;
+ }
+
+ .whats-next-cta {
+ flex-direction: column;
+ gap: 8px;
+ }
+
+ .whats-next-btn {
+ width: 100%;
+ justify-content: center;
+ box-sizing: border-box;
+ padding: 10px 14px;
+ font-size: 0.78rem;
+ text-align: center;
+ }
+ }
+
+ @media screen and (max-width: 360px) {
+ .cert-page-container {
+ padding: 0 8px;
+ }
+
+ .generator-card {
+ padding: 14px 10px;
+ }
+
+ .generator-header h1,
+ .generator-header h2 {
+ font-size: 1.12rem;
+ }
+
+ .certificate-inner {
+ padding: 16px 8px;
+ }
+
+ .cert-headline {
+ font-size: 1.15rem;
+ letter-spacing: 1px;
+ }
+
+ .cert-recipient-name {
+ font-size: 1.2rem;
+ min-width: 140px;
+ }
+
+ .whats-next-section {
+ padding: 14px 10px;
+ }
+
+ .whats-next-title {
+ font-size: 1.12rem;
+ }
+
+ .cert-support-card {
+ padding: 12px 10px;
+ }
+
+ .wn-card {
+ padding: 12px 10px;
+ }
+ }
+ </style>
+
+ <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script is:inline src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+ <script>
+ import { checkCertificateAccessAndRenderOverlay } from '../../scripts/dojo/core/protection';
+
+ // 1. Watertight Certificate Security Verification (Immediate Overlay Guard)
+ const isAccessible = checkCertificateAccessAndRenderOverlay({
+ track: 'partE',
+ levelTag: 'Level 6',
+ totalProjects: 15,
+ hubUrl: '/5. partE/hub.html',
+ certName: 'Level 6: Python Backend Dojo'
+ });
+
+ if (isAccessible) {
+ document.addEventListener('DOMContentLoaded', () => {
+ const nameInput = document.getElementById('learnerNameInput') as HTMLInputElement | null;
+ const certName = document.getElementById('certRecipientName');
+ const genBtn = document.getElementById('generateCertBtn');
+ const dlBtn = document.getElementById('downloadCertBtn');
+ const dateSpan = document.getElementById('certIssueDate');
+
+ if (dateSpan) {
+ dateSpan.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+ }
+
+ function updateName() {
+ if (certName && nameInput) {
+ certName.textContent = nameInput.value.trim() || 'Python Developer';
+ }
+ }
+
+ if (nameInput) nameInput.addEventListener('input', updateName);
+ if (genBtn) genBtn.addEventListener('click', updateName);
+
+ // Back to Top FAB Engine
+ const bttBtn = document.getElementById('backToTopBtn');
+ if (bttBtn) {
+ window.addEventListener('scroll', () => {
+ if (window.scrollY > 150) {
+ bttBtn.classList.add('visible');
+ } else {
+ bttBtn.classList.remove('visible');
+ }
+ }, { passive: true });
+
+ bttBtn.addEventListener('click', () => {
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+ }
+
+ // High-Res PNG Download
+ if (dlBtn) {
+ dlBtn.addEventListener('click', () => {
+ const certFrame = document.getElementById('certificateFrame');
+ if (!certFrame || typeof (window as any).html2canvas === 'undefined') return;
+
+ (window as any).html2canvas(certFrame, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
+ const link = document.createElement('a');
+ link.download = `NoviCodes_Level 6_Certificate_${(nameInput?.value || 'Learner').replace(/\s+/g, '_')}.png`;
+ link.href = canvas.toDataURL('image/png');
+ link.click();
+ });
+ });
+ }
+ });
+ }
+ </script>
 </BaseLayout>

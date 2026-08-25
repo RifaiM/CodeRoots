@@ -1,7 +1,7 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🎟️ Lesson 5: JWT Token Authentication!
+const starterCode = `# ️ Lesson 5: JWT Token Authentication!
 from datetime import datetime, timedelta, timezone
 import jwt
 
@@ -9,153 +9,153 @@ SECRET_KEY = "novicodes-super-secret-key"
 ALGORITHM = "HS256"
 
 def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=30)) -> str:
-    to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + expires_delta
-    to_encode.update({"exp": expire})
-    # 👉 STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    
+ to_encode = data.copy()
+ expire = datetime.now(timezone.utc) + expires_delta
+ to_encode.update({"exp": expire})
+ # STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+ 
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Relational SQL Mastery",
-        "url": "/6. partF/branchB/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Cloud PostgreSQL & SSL",
-        "url": "/6. partF/branchB/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "SQLAlchemy ORM Models",
-        "url": "/6. partF/branchB/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Bcrypt Password Hashing",
-        "url": "/6. partF/branchB/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "JWT Token Authentication",
-        "url": "/6. partF/branchB/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "FastAPI RBAC Middleware",
-        "url": "/6. partF/branchB/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Relational SQL Mastery",
+ "url": "/6. partF/branchB/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Cloud PostgreSQL & SSL",
+ "url": "/6. partF/branchB/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "SQLAlchemy ORM Models",
+ "url": "/6. partF/branchB/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Bcrypt Password Hashing",
+ "url": "/6. partF/branchB/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "JWT Token Authentication",
+ "url": "/6. partF/branchB/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "FastAPI RBAC Middleware",
+ "url": "/6. partF/branchB/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 05: JWT Token Authentication | Level 7B • Backend & DB"
-    description="Generate signed JSON Web Tokens (JWT) with expiration timestamps for stateless user authentication."
-    levelTag="Level 7B • Backend & DB"
-    lessonNum={5}
-    lessonTitle="JWT Token Authentication"
-    xpAmount={250}
-    completionKey="partF_branchB_lesson5_complete"
-    nextLessonUrl="/6. partF/branchB/lesson6_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="server.py"
-    starterCode={starterCode}
-    mode="python"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchB"
+ title="Milestone 05: JWT Token Authentication | Level 7B • Backend & DB"
+ description="Generate signed JSON Web Tokens (JWT) with expiration timestamps for stateless user authentication."
+ levelTag="Level 7B • Backend & DB"
+ lessonNum={5}
+ lessonTitle="JWT Token Authentication"
+ xpAmount={250}
+ completionKey="partF_branchB_lesson5_complete"
+ nextLessonUrl="/6. partF/branchB/lesson6_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="server.py"
+ starterCode={starterCode}
+ mode="python"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchB"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Generate, sign, and encode JSON Web Tokens (JWT) with expiration timestamps and HMAC SHA-256 algorithms.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Generate, sign, and encode JSON Web Tokens (JWT) with expiration timestamps and HMAC SHA-256 algorithms.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [JWT Token] Generated signed token for user 'alex_dev' (Expires in 30 mins)</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> A JWT token is like a concert VIP wristband 🎟️: it contains your user name and an expiration timestamp with a holographic seal that proves it was issued by the official organizer.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; [JWT Token] Generated signed token for user 'alex_dev' (Expires in 30 mins)</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> A JWT token is like a concert VIP wristband ️: it contains your user name and an expiration timestamp with a holographic seal that proves it was issued by the official organizer.
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>🎟️</span> JWT Token Anatomy</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">Header.Payload.Signature</div>
-                        <div class="tag-result">Three dot-separated Base64 encoded sections</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span>️</span> JWT Token Anatomy</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">Header.Payload.Signature</div>
+ <div class="tag-result">Three dot-separated Base64 encoded sections</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchB_5">import jwt
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchB_5">import jwt
 from datetime import datetime, timedelta
 
 SECRET_KEY = "my-super-secret-key"
 ALGORITHM = "HS256"
 
 def create_access_token(data: dict, expires_in_minutes: int = 30) -&gt; str:
-    to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=expires_in_minutes)
-    to_encode["exp"] = expire
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+ to_encode = data.copy()
+ expire = datetime.utcnow() + timedelta(minutes=expires_in_minutes)
+ to_encode["exp"] = expire
+ return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 token = create_access_token(&#123;"sub": "alex_master", "role": "admin"&#125;)
 print(f"Token: &#123;token&#125;")</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson5';
-        const DEFAULT_STARTER = `# 🎟️ Lesson 5: JWT Token Authentication!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchB_lesson5';
+ const DEFAULT_STARTER = `# ️ Lesson 5: JWT Token Authentication!
 from datetime import datetime, timedelta, timezone
 import jwt
 
@@ -163,106 +163,106 @@ SECRET_KEY = "novicodes-super-secret-key"
 ALGORITHM = "HS256"
 
 def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=30)) -> str:
-    to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + expires_delta
-    to_encode.update({"exp": expire})
-    # 👉 STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    
+ to_encode = data.copy()
+ expire = datetime.now(timezone.utc) + expires_delta
+ to_encode.update({"exp": expire})
+ # STEP: Sign and return token with jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+ 
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, ...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\(\s*to_encode\s*,\s*SECRET_KEY/i.test(c); } },
-            { id: 'algorithm', label: 'Specify <code>algorithm=ALGORITHM</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /algorithm\s*=\s*ALGORITHM/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'python'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'encode', label: 'Call <code>jwt.encode(to_encode, SECRET_KEY, ...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /jwt\.encode\s*\(\s*to_encode\s*,\s*SECRET_KEY/i.test(c); } },
+ { id: 'algorithm', label: 'Specify <code>algorithm=ALGORITHM</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /algorithm\s*=\s*ALGORITHM/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'python'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Preview update if HTML mode
-            if (previewIframe) {
-                previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
-            }
+ // Preview update if HTML mode
+ if (previewIframe) {
+ previewIframe.srcdoc = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;">${editor.value}</body></html>`;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'python');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'python');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'JWT Token Authentication',
-                    xp: 250,
-                    completionKey: 'partF_branchB_lesson5_complete',
-                    nextUrl: '/6. partF/branchB/lesson6_remake.html',
-                    mode: 'python'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'JWT Token Authentication',
+ xp: 250,
+ completionKey: 'partF_branchB_lesson5_complete',
+ nextUrl: '/6. partF/branchB/lesson6_remake.html',
+ mode: 'python'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

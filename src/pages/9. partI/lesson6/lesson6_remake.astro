@@ -1,47 +1,47 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🏆 Milestone 6: SaaS Dashboard UI Suite Final Project!
+const starterCode = `// Milestone 6: SaaS Dashboard UI Suite Final Project!
 
 function NoviCodesProSaaS() {
-  const [user] = React.useState({ name: "Alex Rivera", role: "Web Developer", tier: "pro" });
-  const [insights, setInsights] = React.useState([]);
+ const [user] = React.useState({ name: "Alex Rivera", role: "Web Developer", tier: "pro" });
+ const [insights, setInsights] = React.useState([]);
 
-  const handleGenerateMetrics = () => {
-    // 👉 STEP 1: Append new AI insight immutably to insights:
-    // (Hint: setInsights([...insights, "🚀 System Performance: 99.98% Uptime • 42ms Latency"]);)
-    
+ const handleGenerateMetrics = () => {
+ // STEP 1: Append new AI insight immutably to insights:
+ // (Hint: setInsights([...insights, " System Performance: 99.98% Uptime • 42ms Latency"]);)
+ 
 
-  };
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto', background: '#0f172a', color: '#f8fafc', borderRadius: '20px', border: '1px solid #334155', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
-        <div>
-          <h2 style={{ margin: 0, fontSize: '1.2rem' }}>🏆 NoviCodes Pro SaaS Engine</h2>
-          <span style={{ color: '#94a3b8', fontSize: '0.80rem' }}>{user.name} • {user.role}</span>
-        </div>
-        <span style={{ padding: '4px 10px', background: '#f59e0b', color: '#0f172a', fontWeight: 800, fontSize: '0.75rem', borderRadius: '6px' }}>
-          ⭐ {user.tier.toUpperCase()} TIER
-        </span>
-      </div>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto', background: '#0f172a', color: '#f8fafc', borderRadius: '20px', border: '1px solid #334155', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
+ <div>
+ <h2 style={{ margin: 0, fontSize: '1.2rem' }}> NoviCodes Pro SaaS Engine</h2>
+ <span style={{ color: '#94a3b8', fontSize: '0.80rem' }}>{user.name} • {user.role}</span>
+ </div>
+ <span style={{ padding: '4px 10px', background: '#f59e0b', color: '#0f172a', fontWeight: 800, fontSize: '0.75rem', borderRadius: '6px' }}>
+ ⭐ {user.tier.toUpperCase()} TIER
+ </span>
+ </div>
 
-      {/* 👉 STEP 2: Attach onClick={handleGenerateMetrics} to Telemetry button: */}
-      <div style={{ marginBottom: '16px' }}>
-        <button style={{ padding: '10px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
-          ⚡ Run System Telemetry
-        </button>
-      </div>
+ {/* STEP 2: Attach onClick={handleGenerateMetrics} to Telemetry button: */}
+ <div style={{ marginBottom: '16px' }}>
+ <button style={{ padding: '10px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+ Run System Telemetry
+ </button>
+ </div>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {insights.map((ins, idx) => (
-          <li key={idx} style={{ padding: '10px 12px', background: '#1e293b', borderRadius: '8px', marginBottom: '6px', border: '1px solid #334155', fontSize: '0.88rem', color: '#38bdf8' }}>
-            {ins}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {insights.map((ins, idx) => (
+ <li key={idx} style={{ padding: '10px 12px', background: '#1e293b', borderRadius: '8px', marginBottom: '6px', border: '1px solid #334155', fontSize: '0.88rem', color: '#38bdf8' }}>
+ {ins}
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -49,254 +49,254 @@ root.render(<NoviCodesProSaaS />);
 `;
 
 const jumpLessons = [
-    {
-        "id": 1,
-        "title": "The Sleek SaaS App Shell & Sidebar",
-        "url": "/9. partI/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Instant Search (Filter Without Lag)",
-        "url": "/9. partI/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Interactive Pricing & Upgrade Table",
-        "url": "/9. partI/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "AI Chat Assistant & Insights Panel",
-        "url": "/9. partI/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Launch Readiness & Settings Audit",
-        "url": "/9. partI/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: SaaS Dashboard Suite",
-        "url": "/9. partI/lesson6/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "The Sleek SaaS App Shell & Sidebar",
+ "url": "/9. partI/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Instant Search (Filter Without Lag)",
+ "url": "/9. partI/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Interactive Pricing & Upgrade Table",
+ "url": "/9. partI/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "AI Chat Assistant & Insights Panel",
+ "url": "/9. partI/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Launch Readiness & Settings Audit",
+ "url": "/9. partI/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: SaaS Dashboard Suite",
+ "url": "/9. partI/lesson6/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Final Project: SaaS Dashboard Suite | Level 10 • SaaS UI Architecture"
-    description="The final graduation milestone: unite app shells, search, pricing tiers, and AI into one flagship app."
-    levelTag="Level 10 • SaaS UI Architecture"
-    lessonNum={6}
-    lessonTitle="Final Project: SaaS Dashboard Suite"
-    xpAmount={500}
-    completionKey="partI_lesson6_remake_complete"
-    nextLessonUrl="/9. partI/certificate.html"
-    hubUrl="/9. partI/hub.html"
-    hubTitle="Level 10 Hub"
-    hubIcon="🏆"
-    fileTab="Dashboard.jsx"
-    mode="react"
-    jumpLessons={jumpLessons}
-    certificateUrl="/9. partI/certificate.html"
-    trackPrefix="partI"
-    starterCode={starterCode}
+ title="Final Project: SaaS Dashboard Suite | Level 10 • SaaS UI Architecture"
+ description="The final graduation milestone: unite app shells, search, pricing tiers, and AI into one flagship app."
+ levelTag="Level 10 • SaaS UI Architecture"
+ lessonNum={6}
+ lessonTitle="Final Project: SaaS Dashboard Suite"
+ xpAmount={500}
+ completionKey="partI_lesson6_remake_complete"
+ nextLessonUrl="/9. partI/certificate.html"
+ hubUrl="/9. partI/hub.html"
+ hubTitle="Level 10 Hub"
+ hubIcon=""
+ fileTab="Dashboard.jsx"
+ mode="react"
+ jumpLessons={jumpLessons}
+ certificateUrl="/9. partI/certificate.html"
+ trackPrefix="partI"
+ starterCode={starterCode}
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        The final graduation milestone: unite app shells, search, pricing tiers, and AI into one flagship app.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ The final graduation milestone: unite app shells, search, pricing tiers, and AI into one flagship app.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build your flagship SaaS dashboard combining layout shells, live search, pricing, and AI insights!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Build your flagship SaaS dashboard combining layout shells, live search, pricing, and AI insights!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- Analogy Explainer Card -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Unveil the flagship NoviCodes Pro SaaS application integrating Next.js App Router, JWT Auth, Stripe Pro Badges, and AI Summaries.</p>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Your Level 10 final project brings together all your interactive dashboard components: modular sidebar shell, live search filter, and pricing tier cards.
-            </div>
-        </article>
-    </div>
+ <!-- Analogy Explainer Card -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <p>Unveil the flagship NoviCodes Pro SaaS application integrating Next.js App Router, JWT Auth, Stripe Pro Badges, and AI Summaries.</p>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Your Level 10 final project brings together all your interactive dashboard components: modular sidebar shell, live search filter, and pricing tier cards.
+ </div>
+ </article>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partI_lesson6';
-        const DEFAULT_STARTER = `// 🏆 Milestone 6: SaaS Dashboard UI Suite Final Project!
+ const DRAFT_KEY = 'novicodes_draft_partI_lesson6';
+ const DEFAULT_STARTER = `// Milestone 6: SaaS Dashboard UI Suite Final Project!
 
 function NoviCodesProSaaS() {
-  const [user] = React.useState({ name: "Alex Rivera", role: "Web Developer", tier: "pro" });
-  const [insights, setInsights] = React.useState([]);
+ const [user] = React.useState({ name: "Alex Rivera", role: "Web Developer", tier: "pro" });
+ const [insights, setInsights] = React.useState([]);
 
-  const handleGenerateMetrics = () => {
-    // 👉 STEP 1: Append new AI insight immutably to insights:
-    // (Hint: setInsights([...insights, "🚀 System Performance: 99.98% Uptime • 42ms Latency"]);)
-    
+ const handleGenerateMetrics = () => {
+ // STEP 1: Append new AI insight immutably to insights:
+ // (Hint: setInsights([...insights, " System Performance: 99.98% Uptime • 42ms Latency"]);)
+ 
 
-  };
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto', background: '#0f172a', color: '#f8fafc', borderRadius: '20px', border: '1px solid #334155', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
-        <div>
-          <h2 style={{ margin: 0, fontSize: '1.2rem' }}>🏆 NoviCodes Pro SaaS Engine</h2>
-          <span style={{ color: '#94a3b8', fontSize: '0.80rem' }}>{user.name} • {user.role}</span>
-        </div>
-        <span style={{ padding: '4px 10px', background: '#f59e0b', color: '#0f172a', fontWeight: 800, fontSize: '0.75rem', borderRadius: '6px' }}>
-          ⭐ {user.tier.toUpperCase()} TIER
-        </span>
-      </div>
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '480px', margin: '0 auto', background: '#0f172a', color: '#f8fafc', borderRadius: '20px', border: '1px solid #334155', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
+ <div>
+ <h2 style={{ margin: 0, fontSize: '1.2rem' }}> NoviCodes Pro SaaS Engine</h2>
+ <span style={{ color: '#94a3b8', fontSize: '0.80rem' }}>{user.name} • {user.role}</span>
+ </div>
+ <span style={{ padding: '4px 10px', background: '#f59e0b', color: '#0f172a', fontWeight: 800, fontSize: '0.75rem', borderRadius: '6px' }}>
+ ⭐ {user.tier.toUpperCase()} TIER
+ </span>
+ </div>
 
-      {/* 👉 STEP 2: Attach onClick={handleGenerateMetrics} to Telemetry button: */}
-      <div style={{ marginBottom: '16px' }}>
-        <button style={{ padding: '10px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
-          ⚡ Run System Telemetry
-        </button>
-      </div>
+ {/* STEP 2: Attach onClick={handleGenerateMetrics} to Telemetry button: */}
+ <div style={{ marginBottom: '16px' }}>
+ <button style={{ padding: '10px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+ Run System Telemetry
+ </button>
+ </div>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {insights.map((ins, idx) => (
-          <li key={idx} style={{ padding: '10px 12px', background: '#1e293b', borderRadius: '8px', marginBottom: '6px', border: '1px solid #334155', fontSize: '0.88rem', color: '#38bdf8' }}>
-            {ins}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+ <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+ {insights.map((ins, idx) => (
+ <li key={idx} style={{ padding: '10px 12px', background: '#1e293b', borderRadius: '8px', marginBottom: '6px', border: '1px solid #334155', fontSize: '0.88rem', color: '#38bdf8' }}>
+ {ins}
+ </li>
+ ))}
+ </ul>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<NoviCodesProSaaS />);
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'append_insight', label: 'Append insight with <code>setInsights([...insights, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setInsights[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.insights/i.test(c); } },
-            { id: 'telemetry_btn', label: 'Attach <code>onClick={handleGenerateMetrics}</code> to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick[\s\n]*=[\s\n]*\{[\s\n]*handleGenerateMetrics[\s\n]*\}/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'append_insight', label: 'Append insight with <code>setInsights([...insights, ...])</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setInsights[\s\n]*\([\s\n]*\[[\s\n]*\.\.\.insights/i.test(c); } },
+ { id: 'telemetry_btn', label: 'Attach <code>onClick={handleGenerateMetrics}</code> to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick[\s\n]*=[\s\n]*\{[\s\n]*handleGenerateMetrics[\s\n]*\}/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Final Project: SaaS Dashboard UI Suite',
-                    xp: 500,
-                    completionKey: 'partI_lesson6_remake_complete',
-                    nextUrl: '/9. partI/certificate.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Final Project: SaaS Dashboard UI Suite',
+ xp: 500,
+ completionKey: 'partI_lesson6_remake_complete',
+ nextUrl: '/9. partI/certificate.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

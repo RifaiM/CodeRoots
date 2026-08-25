@@ -1,358 +1,358 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 📦 Lesson 8: Python Standard Library & JSON!
+const starterCode = `# Lesson 8: Python Standard Library & JSON!
 
-# 👉 STEP 1: Import math and json modules
+# STEP 1: Import math and json modules
 # (Hint: import math; import json)
 
 
-# 👉 STEP 2: Calculate root = math.sqrt(256) and ceil = math.ceil(4.2)
+# STEP 2: Calculate root = math.sqrt(256) and ceil = math.ceil(4.2)
 
 
-# 👉 STEP 3: Convert data = {"title": "NoviCodes", "rating": 5} to JSON with json.dumps(data)
+# STEP 3: Convert data = {"title": "NoviCodes", "rating": 5} to JSON with json.dumps(data)
 
 `;
 
 const level6Lessons = [
-    {
-        "id": 1,
-        "title": "Python Variables & Output",
-        "url": "/5. partE/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Control Flow & Logic",
-        "url": "/5. partE/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Functions & Return Values",
-        "url": "/5. partE/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dictionaries",
-        "url": "/5. partE/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Classes & OOP Objects",
-        "url": "/5. partE/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Class Inheritance & Reuse",
-        "url": "/5. partE/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Error Handling with Try/Except",
-        "url": "/5. partE/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Standard Library & JSON",
-        "url": "/5. partE/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "File I/O & Persistence",
-        "url": "/5. partE/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Asynchronous Python & Asyncio",
-        "url": "/5. partE/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "SQLite Database CRUD",
-        "url": "/5. partE/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "REST APIs with FastAPI",
-        "url": "/5. partE/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Password Hashing & Security",
-        "url": "/5. partE/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Task Manager Backend API",
-        "url": "/5. partE/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Final Project: Python Backend API Logic",
-        "url": "/5. partE/lesson15/lesson15_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Python Variables & Output",
+ "url": "/5. partE/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Control Flow & Logic",
+ "url": "/5. partE/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Functions & Return Values",
+ "url": "/5. partE/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Lists & Dictionaries",
+ "url": "/5. partE/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Classes & OOP Objects",
+ "url": "/5. partE/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Class Inheritance & Reuse",
+ "url": "/5. partE/lesson6/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Error Handling with Try/Except",
+ "url": "/5. partE/lesson7/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "Standard Library & JSON",
+ "url": "/5. partE/lesson8/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "File I/O & Persistence",
+ "url": "/5. partE/lesson9/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Asynchronous Python & Asyncio",
+ "url": "/5. partE/lesson10/lesson10_remake.html"
+ },
+ {
+ "id": 11,
+ "title": "SQLite Database CRUD",
+ "url": "/5. partE/lesson11/lesson11_remake.html"
+ },
+ {
+ "id": 12,
+ "title": "REST APIs with FastAPI",
+ "url": "/5. partE/lesson12/lesson12_remake.html"
+ },
+ {
+ "id": 13,
+ "title": "Password Hashing & Security",
+ "url": "/5. partE/lesson13/lesson13_remake.html"
+ },
+ {
+ "id": 14,
+ "title": "Task Manager Backend API",
+ "url": "/5. partE/lesson14/lesson14_remake.html"
+ },
+ {
+ "id": 15,
+ "title": "Final Project: Python Backend API Logic",
+ "url": "/5. partE/lesson15/lesson15_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Project 08: Modules, Packages & Standard Library | Level 6 Python Dojo"
-    description="Utilize built-in standard library packages: math functions and json.dumps() data serialization."
-    levelTag="Level 6 • Python Dojo"
-    lessonNum={8}
-    lessonTitle="Standard Library & JSON"
-    xpAmount={150}
-    completionKey="partE_lesson8_remake_complete"
-    nextLessonUrl="/5. partE/lesson9/lesson9_remake.html"
-    hubUrl="/5. partE/hub.html"
-    hubTitle="Level 6 Hub"
-    hubIcon="🐍"
-    fileTab="main.py"
-    starterCode={starterCode}
-    mode="python"
-    jumpLessons={level6Lessons}
-    certificateUrl="/5. partE/certificate.html"
-    trackPrefix="partE"
+ title="Project 08: Modules, Packages & Standard Library | Level 6 Python Dojo"
+ description="Utilize built-in standard library packages: math functions and json.dumps() data serialization."
+ levelTag="Level 6 • Python Dojo"
+ lessonNum={8}
+ lessonTitle="Standard Library & JSON"
+ xpAmount={150}
+ completionKey="partE_lesson8_remake_complete"
+ nextLessonUrl="/5. partE/lesson9/lesson9_remake.html"
+ hubUrl="/5. partE/hub.html"
+ hubTitle="Level 6 Hub"
+ hubIcon=""
+ fileTab="main.py"
+ starterCode={starterCode}
+ mode="python"
+ jumpLessons={level6Lessons}
+ certificateUrl="/5. partE/certificate.html"
+ trackPrefix="partE"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Structure scalable backend applications with modular imports, math calculations, and built-in utilities.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Structure scalable backend applications with modular imports, math calculations, and built-in utilities.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; JSON Payload: &#123;"title": "NoviCodes", "rating": 5&#125; • Sqrt(256) = 16.0</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> The Python Standard Library is like a Swiss Army knife 🇨🇭: it comes built-in with scissors (math), a magnifier (json), and screwdrivers ready to use immediately.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; JSON Payload: &#123;"title": "NoviCodes", "rating": 5&#125; • Sqrt(256) = 16.0</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> The Python Standard Library is like a Swiss Army knife : it comes built-in with scissors (math), a magnifier (json), and screwdrivers ready to use immediately.
+ </div>
+ </article>
 
-        
-        <article class="concept-card">
-            <h3><span>📦</span> Modular Import Patterns</h3>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">import math</div>
-                    <div class="tag-result">Imports full module namespace</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">import json</div>
-                    <div class="tag-result">Built-in JSON serialization toolkit</div>
-                </div>
-            </div>
-        </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Modular Import Patterns</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">import math</div>
+ <div class="tag-result">Imports full module namespace</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">import json</div>
+ <div class="tag-result">Built-in JSON serialization toolkit</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Code Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_8">import math
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Code Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_8">import math
 import json
 
 sqrt_res = math.sqrt(16)
 ceil_res = math.ceil(88.4)
 json_payload = json.dumps(&#123;"status": "ready", "sqrt": sqrt_res&#125;)
 print(json_payload)</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partE_lesson8';
-        const DEFAULT_STARTER = `# 📦 Lesson 8: Python Standard Library & JSON!
+ const DRAFT_KEY = 'novicodes_draft_partE_lesson8';
+ const DEFAULT_STARTER = `# Lesson 8: Python Standard Library & JSON!
 
-# 👉 STEP 1: Import math and json modules
+# STEP 1: Import math and json modules
 # (Hint: import math; import json)
 
 
-# 👉 STEP 2: Calculate root = math.sqrt(256) and ceil = math.ceil(4.2)
+# STEP 2: Calculate root = math.sqrt(256) and ceil = math.ceil(4.2)
 
 
-# 👉 STEP 3: Convert data = {"title": "NoviCodes", "rating": 5} to JSON with json.dumps(data)
+# STEP 3: Convert data = {"title": "NoviCodes", "rating": 5} to JSON with json.dumps(data)
 
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'import', label: 'Import modules with <code>import math</code> and <code>import json</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+math/i.test(c) && /import\s+json/i.test(c); } },
-            { id: 'math_ops', label: 'Use <code>math.sqrt(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /math\.sqrt\s*\(/i.test(c); } },
-            { id: 'json', label: 'Serialize dictionary with <code>json.dumps(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /json\.dumps\s*\(/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'python'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'import', label: 'Import modules with <code>import math</code> and <code>import json</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /import\s+math/i.test(c) && /import\s+json/i.test(c); } },
+ { id: 'math_ops', label: 'Use <code>math.sqrt(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /math\.sqrt\s*\(/i.test(c); } },
+ { id: 'json', label: 'Serialize dictionary with <code>json.dumps(...)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /json\.dumps\s*\(/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'python'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Real-Time Checklist Verification
-            // Real-Time Python Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'python');
+ // Real-Time Checklist Verification
+ // Real-Time Python Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'python');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '    ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 4;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 4;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal reset. Ready to execute main.py</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal reset. Ready to execute main.py</div>';
+ }
+ });
+ }
 
-                                // 🔒 Security: Escape output to prevent XSS
-        function escapeHTML(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
-        }
+ // Security: Escape output to prevent XSS
+ function escapeHTML(str) {
+ return String(str)
+ .replace(/&/g, '&amp;')
+ .replace(/</g, '&lt;')
+ .replace(/>/g, '&gt;')
+ .replace(/"/g, '&quot;')
+ .replace(/'/g, '&#39;');
+ }
 
-        // 5. Python Execution Engine (Pyodide WebAssembly with Safe Client Fallback)
-        function simulatePythonOutputFallback(code) {
-            if (!terminalScreen) return;
-            const prints = [];
-            const lines = code.split('\n');
+ // 5. Python Execution Engine (Pyodide WebAssembly with Safe Client Fallback)
+ function simulatePythonOutputFallback(code) {
+ if (!terminalScreen) return;
+ const prints = [];
+ const lines = code.split('\n');
 
-            for (const line of lines) {
-                const trimmed = line.trim();
-                const printMatch = trimmed.match(/^print\s*\((.*)\)$/);
-                if (printMatch) {
-                    let c = printMatch[1].trim();
-                    if ((c.startsWith('"') && c.endsWith('"')) || (c.startsWith("'") && c.endsWith("'"))) {
-                        c = c.slice(1, -1);
-                    } else if (c.startsWith('f"') || c.startsWith("f'")) {
-                        c = c.slice(2, -1);
-                    }
-                    prints.push(c);
-                }
-            }
+ for (const line of lines) {
+ const trimmed = line.trim();
+ const printMatch = trimmed.match(/^print\s*\((.*)\)$/);
+ if (printMatch) {
+ let c = printMatch[1].trim();
+ if ((c.startsWith('"') && c.endsWith('"')) || (c.startsWith("'") && c.endsWith("'"))) {
+ c = c.slice(1, -1);
+ } else if (c.startsWith('f"') || c.startsWith("f'")) {
+ c = c.slice(2, -1);
+ }
+ prints.push(c);
+ }
+ }
 
-            if (prints.length > 0) {
-                terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
-                    '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-            } else {
-                terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully!</div>' +
-                    '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-            }
-        }
+ if (prints.length > 0) {
+ terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ } else {
+ terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully!</div>' +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ }
+ }
 
-        async function executePythonCode(code) {
-            if (!terminalScreen) return;
+ async function executePythonCode(code) {
+ if (!terminalScreen) return;
 
-            terminalScreen.innerHTML = '<div class="terminal-loading-wrap"><span class="terminal-spinner"></span>&gt; Running CPython 3.12 (WebAssembly)...</div>';
+ terminalScreen.innerHTML = '<div class="terminal-loading-wrap"><span class="terminal-spinner"></span>&gt; Running CPython 3.12 (WebAssembly)...</div>';
 
-            try {
-                const result = await DojoEngine.runPython(code);
+ try {
+ const result = await DojoEngine.runPython(code);
 
-                if (result.success) {
-                    const lines = result.stdout ? result.stdout.split('\n').filter(l => l !== '') : [];
-                    if (lines.length > 0) {
-                        terminalScreen.innerHTML = lines.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
-                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-                    } else {
-                        terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully (no stdout)!</div>' +
-                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-                    }
-                } else {
-                    const errLines = result.stderr ? result.stderr.split('\n').filter(l => l !== '') : ['Execution error'];
-                    terminalScreen.innerHTML = errLines.map(e => `<div style="color: #f87171;">&gt; ${escapeHTML(e)}</div>`).join('') +
-                        '<div style="color: #f87171; margin-top: 8px; font-size: 0.76rem;">✗ [Process exited with code 1]</div>';
-                }
-            } catch (err) {
-                console.warn('Pyodide Web Worker unavailable, using client fallback:', err);
-                simulatePythonOutputFallback(code);
-            }
-        }
+ if (result.success) {
+ const lines = result.stdout ? result.stdout.split('\n').filter(l => l !== '') : [];
+ if (lines.length > 0) {
+ terminalScreen.innerHTML = lines.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ } else {
+ terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully (no stdout)!</div>' +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ }
+ } else {
+ const errLines = result.stderr ? result.stderr.split('\n').filter(l => l !== '') : ['Execution error'];
+ terminalScreen.innerHTML = errLines.map(e => `<div style="color: #f87171;">&gt; ${escapeHTML(e)}</div>`).join('') +
+ '<div style="color: #f87171; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 1]</div>';
+ }
+ } catch (err) {
+ console.warn('Pyodide Web Worker unavailable, using client fallback:', err);
+ simulatePythonOutputFallback(code);
+ }
+ }
 
 // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', async () => {
-                await executePythonCode(editor.value);
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Modules, Packages & Standard Library',
-                    xp: 150,
-                    completionKey: 'partE_lesson8_remake_complete',
-                    nextUrl: '/5. partE/lesson9/lesson9_remake.html',
-                    mode: 'python'
-                });
-            });
-        }
+ if (checkBtn) {
+ checkBtn.addEventListener('click', async () => {
+ await executePythonCode(editor.value);
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Modules, Packages & Standard Library',
+ xp: 150,
+ completionKey: 'partE_lesson8_remake_complete',
+ nextUrl: '/5. partE/lesson9/lesson9_remake.html',
+ mode: 'python'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

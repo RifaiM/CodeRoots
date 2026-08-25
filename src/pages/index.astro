@@ -4,497 +4,497 @@ import PlatformHeader from '../components/PlatformHeader.astro';
 import PlatformFooter from '../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '#roadmap', label: 'Roadmap', icon: '🗺️', active: true, title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '#roadmap', label: 'Roadmap', icon: '️', active: true, title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout 
-    title="NoviCodes • Learn Web Development by Doing" 
-    description="Master web development through 103 hands-on challenges directly in your browser. 10 interactive levels in HTML, CSS, JavaScript, React, Python, TypeScript, and Next.js with zero paywalls and 7 verified certificates."
-    showHeaderFooter={false}
+ title="NoviCodes • Learn Web Development by Doing" 
+ description="Master web development through 103 hands-on challenges directly in your browser. 10 interactive levels in HTML, CSS, JavaScript, React, Python, TypeScript, and Next.js with zero paywalls and 7 verified certificates."
+ showHeaderFooter={false}
 >
-    <!-- Top Global Header -->
-    <PlatformHeader 
-        slot="header"
-        tagText="Field Guide // Vol. 2.5"
-        navLinks={navLinks}
-        showStreakBadge={true}
-        showLevelBadge={true}
-        showXpBadge={true}
-    />
+ <!-- Top Global Header -->
+ <PlatformHeader 
+ slot="header"
+ tagText="Field Guide // Vol. 2.5"
+ navLinks={navLinks}
+ showStreakBadge={true}
+ showLevelBadge={true}
+ showXpBadge={true}
+ />
 
-    <!-- Main Dashboard Body Container -->
-    <main class="dashboard-main">
-        <!-- Hero Intro Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="hero-pill">
-                    FIELD GUIDE // VOL. 2.5 • OPEN ACCESS
-                </div>
-                <h1 class="hero-title">
-                    A practical curriculum for modern web development.
-                </h1>
-                <p class="hero-subtitle">
-                    103 hands-on coding challenges across HTML, CSS, JavaScript, React, Python, and Next.js. Write real code in your browser with zero local setup.
-                </p>
-                <div class="hero-actions-row">
-                    <a href="/2. partB/lesson1/lesson1_remake.html" class="track-btn primary-btn" style="width: auto; padding: 10px 22px;">
-                        <span>BEGIN LESSON 01 →</span>
-                    </a>
-                    <a href="#roadmap" class="track-btn secondary-btn" style="width: auto; padding: 10px 18px;">
-                        <span>VIEW CURRICULUM INDEX ↓</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+ <!-- Main Dashboard Body Container -->
+ <main class="dashboard-main">
+ <!-- Hero Intro Section -->
+ <section class="hero-section">
+ <div class="hero-content">
+ <div class="hero-pill">
+ FIELD GUIDE // VOL. 2.5 • OPEN ACCESS
+ </div>
+ <h1 class="hero-title">
+ A practical curriculum for modern web development.
+ </h1>
+ <p class="hero-subtitle">
+ 103 hands-on coding challenges across HTML, CSS, JavaScript, React, Python, and Next.js. Write real code in your browser with zero local setup.
+ </p>
+ <div class="hero-actions-row">
+ <a href="/2. partB/lesson1/lesson1_remake.html" class="track-btn primary-btn" style="width: auto; padding: 10px 22px;">
+ <span>BEGIN LESSON 01 →</span>
+ </a>
+ <a href="#roadmap" class="track-btn secondary-btn" style="width: auto; padding: 10px 18px;">
+ <span>VIEW CURRICULUM INDEX ↓</span>
+ </a>
+ </div>
+ </div>
+ </section>
 
-        <!-- Daily 2-Minute Quest & Retention Section -->
-        <section class="daily-quest-section" id="dailyQuestSection" aria-label="Daily Coding Quest">
-            <div id="dailyQuestCardContainer"></div>
-        </section>
+ <!-- Daily 2-Minute Quest & Retention Section -->
+ <section class="daily-quest-section" id="dailyQuestSection" aria-label="Daily Coding Quest">
+ <div id="dailyQuestCardContainer"></div>
+ </section>
 
-        <!-- Mobile Track Quick Switcher -->
-        <div class="mobile-segmented-control" role="tablist" aria-label="Learning Track Filters">
-            <button class="segmented-tab active" role="tab" aria-selected="true" data-filter="all">All Tracks</button>
-            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="foundations">Foundations</button>
-            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="dojo">Projects</button>
-            <button class="segmented-tab" role="tab" aria-selected="false" data-filter="advanced">Advanced</button>
-        </div>
+ <!-- Mobile Track Quick Switcher -->
+ <div class="mobile-segmented-control" role="tablist" aria-label="Learning Track Filters">
+ <button class="segmented-tab active" role="tab" aria-selected="true" data-filter="all">All Tracks</button>
+ <button class="segmented-tab" role="tab" aria-selected="false" data-filter="foundations">Foundations</button>
+ <button class="segmented-tab" role="tab" aria-selected="false" data-filter="dojo">Projects</button>
+ <button class="segmented-tab" role="tab" aria-selected="false" data-filter="advanced">Advanced</button>
+ </div>
 
-        <!-- Skill Tree Roadmap Section -->
-        <section class="roadmap-section" id="roadmap">
-            <div class="section-header">
-                <h2>01 / Curriculum Archive</h2>
-                <span class="section-meta">10 Levels • 103 Exercises</span>
-            </div>
+ <!-- Skill Tree Roadmap Section -->
+ <section class="roadmap-section" id="roadmap">
+ <div class="section-header">
+ <h2>01 / Curriculum Archive</h2>
+ <span class="section-meta">10 Levels • 103 Exercises</span>
+ </div>
 
-            <!-- What You'll Build: 3 Concrete, Honest Outcomes -->
-            <div class="outcomes-section" aria-label="What you will build across the curriculum">
-                <div class="outcomes-header">
-                    <span class="outcomes-badge">PUBLICATION PORTFOLIO</span>
-                    <h3 class="outcomes-headline">What You Will Build Across the Journey</h3>
-                    <p class="outcomes-subtitle">No artificial filler. Here is the concrete technical portfolio you construct step-by-step:</p>
-                </div>
-                <div class="outcomes-grid">
-                    <div class="outcome-card outcome-card--html">
-                        <div class="outcome-top">
-                            <span class="outcome-tag">LEVELS 01–04</span>
-                            <span class="outcome-tag">HTML • CSS • JS</span>
-                        </div>
-                        <h4 class="outcome-title">Interactive Web Interfaces</h4>
-                        <p class="outcome-desc">Navigation bars, responsive product grids, modal dialogs, and validated input forms built with HTML5, CSS3, and modern DOM APIs.</p>
-                    </div>
-                    <div class="outcome-card outcome-card--react">
-                        <div class="outcome-top">
-                            <span class="outcome-tag">LEVELS 05–09</span>
-                            <span class="outcome-tag">REACT • ASYNC • AUTH</span>
-                        </div>
-                        <h4 class="outcome-title">React &amp; Live Data Applications</h4>
-                        <p class="outcome-desc">A live task tracker with state management, async data fetching with loading skeletons, user authentication gates, and Python scripts.</p>
-                    </div>
-                    <div class="outcome-card outcome-card--saas">
-                        <div class="outcome-top">
-                            <span class="outcome-tag">LEVEL 10</span>
-                            <span class="outcome-tag">PRODUCTION APP</span>
-                        </div>
-                        <h4 class="outcome-title">Complete SaaS Dashboard UI</h4>
-                        <p class="outcome-desc">A production-ready application shell: collapsible sidebar navigation, live search filters, monthly/annual pricing tables, and an AI helper panel.</p>
-                    </div>
-                </div>
-            </div>
+ <!-- What You'll Build: 3 Concrete, Honest Outcomes -->
+ <div class="outcomes-section" aria-label="What you will build across the curriculum">
+ <div class="outcomes-header">
+ <span class="outcomes-badge">PUBLICATION PORTFOLIO</span>
+ <h3 class="outcomes-headline">What You Will Build Across the Journey</h3>
+ <p class="outcomes-subtitle">No artificial filler. Here is the concrete technical portfolio you construct step-by-step:</p>
+ </div>
+ <div class="outcomes-grid">
+ <div class="outcome-card outcome-card--html">
+ <div class="outcome-top">
+ <span class="outcome-tag">LEVELS 01–04</span>
+ <span class="outcome-tag">HTML • CSS • JS</span>
+ </div>
+ <h4 class="outcome-title">Interactive Web Interfaces</h4>
+ <p class="outcome-desc">Navigation bars, responsive product grids, modal dialogs, and validated input forms built with HTML5, CSS3, and modern DOM APIs.</p>
+ </div>
+ <div class="outcome-card outcome-card--react">
+ <div class="outcome-top">
+ <span class="outcome-tag">LEVELS 05–09</span>
+ <span class="outcome-tag">REACT • ASYNC • AUTH</span>
+ </div>
+ <h4 class="outcome-title">React &amp; Live Data Applications</h4>
+ <p class="outcome-desc">A live task tracker with state management, async data fetching with loading skeletons, user authentication gates, and Python scripts.</p>
+ </div>
+ <div class="outcome-card outcome-card--saas">
+ <div class="outcome-top">
+ <span class="outcome-tag">LEVEL 10</span>
+ <span class="outcome-tag">PRODUCTION APP</span>
+ </div>
+ <h4 class="outcome-title">Complete SaaS Dashboard UI</h4>
+ <p class="outcome-desc">A production-ready application shell: collapsible sidebar navigation, live search filters, monthly/annual pricing tables, and an AI helper panel.</p>
+ </div>
+ </div>
+ </div>
 
-            <!-- Vertical Step-by-Step Tracks Container -->
-            <div class="tracks-snap-lane" id="tracksContainer">
-                
-                <!-- Track 0: Concepts & Web History -->
-                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 00</span>
-                        <span class="track-status-icon ready">+250 XP</span>
-                    </div>
-                    <h3 class="card-title">How the Internet &amp; Websites Work</h3>
-                    <p class="card-desc">
-                        Discover the architecture of the web. Learn what happens when you type a URL, how browsers communicate with servers, and how HTML, CSS, and JavaScript connect.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">HTTP &amp; DNS</span>
-                        <span class="meta-tag">Browser Rendering</span>
-                    </div>
-                    <a href="/1. partA/web_history.html" class="track-btn secondary-btn">
-                        <span>Read Concepts →</span>
-                    </a>
-                </article>
+ <!-- Vertical Step-by-Step Tracks Container -->
+ <div class="tracks-snap-lane" id="tracksContainer">
+ 
+ <!-- Track 0: Concepts & Web History -->
+ <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+ <div class="card-top">
+ <span class="track-level-badge">Level 00</span>
+ <span class="track-status-icon ready">+250 XP</span>
+ </div>
+ <h3 class="card-title">How the Internet &amp; Websites Work</h3>
+ <p class="card-desc">
+ Discover the architecture of the web. Learn what happens when you type a URL, how browsers communicate with servers, and how HTML, CSS, and JavaScript connect.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">HTTP &amp; DNS</span>
+ <span class="meta-tag">Browser Rendering</span>
+ </div>
+ <a href="/1. partA/web_history.html" class="track-btn secondary-btn">
+ <span>Read Concepts →</span>
+ </a>
+ </article>
 
-                <!-- Track 1: HTML5 Structural Mastery -->
-                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 01</span>
-                        <span class="track-status-icon ready">+300 XP</span>
-                    </div>
-                    <h3 class="card-title">HTML: Document Structure</h3>
-                    <p class="card-desc">
-                        Learn the fundamental semantic blocks of every website. Practice using headings, paragraphs, buttons, links, media, and accessible form inputs.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Semantic Tags</span>
-                        <span class="meta-tag">Form Controls</span>
-                    </div>
-                    <a href="/foundations.html?track=html" class="track-btn secondary-btn">
-                        <span>Start HTML Foundations →</span>
-                    </a>
-                </article>
+ <!-- Track 1: HTML5 Structural Mastery -->
+ <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+ <div class="card-top">
+ <span class="track-level-badge">Level 01</span>
+ <span class="track-status-icon ready">+300 XP</span>
+ </div>
+ <h3 class="card-title">HTML: Document Structure</h3>
+ <p class="card-desc">
+ Learn the fundamental semantic blocks of every website. Practice using headings, paragraphs, buttons, links, media, and accessible form inputs.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Semantic Tags</span>
+ <span class="meta-tag">Form Controls</span>
+ </div>
+ <a href="/foundations.html?track=html" class="track-btn secondary-btn">
+ <span>Start HTML Foundations →</span>
+ </a>
+ </article>
 
-                <!-- Track 2: CSS3 & Utility Styling -->
-                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 02</span>
-                        <span class="track-status-icon ready">+300 XP</span>
-                    </div>
-                    <h3 class="card-title">CSS: Box Model &amp; Flexbox</h3>
-                    <p class="card-desc">
-                        Learn how to style and arrange web pages. Master spacing with the Box Model (padding, border, margin), CSS selectors, and aligning items with Flexbox.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Box Model</span>
-                        <span class="meta-tag">Flexbox Alignment</span>
-                    </div>
-                    <a href="/foundations.html?track=css" class="track-btn secondary-btn">
-                        <span>Start CSS Foundations →</span>
-                    </a>
-                </article>
+ <!-- Track 2: CSS3 & Utility Styling -->
+ <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+ <div class="card-top">
+ <span class="track-level-badge">Level 02</span>
+ <span class="track-status-icon ready">+300 XP</span>
+ </div>
+ <h3 class="card-title">CSS: Box Model &amp; Flexbox</h3>
+ <p class="card-desc">
+ Learn how to style and arrange web pages. Master spacing with the Box Model (padding, border, margin), CSS selectors, and aligning items with Flexbox.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Box Model</span>
+ <span class="meta-tag">Flexbox Alignment</span>
+ </div>
+ <a href="/foundations.html?track=css" class="track-btn secondary-btn">
+ <span>Start CSS Foundations →</span>
+ </a>
+ </article>
 
-                <!-- Track 3: Modern JavaScript (ES6+) -->
-                <article class="track-card foundations-track gsap-reveal" data-category="foundations">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 03</span>
-                        <span class="track-status-icon ready">+400 XP</span>
-                    </div>
-                    <h3 class="card-title">JavaScript: Adding Interactivity</h3>
-                    <p class="card-desc">
-                        Bring your web pages to life. Learn how to store information in variables, listen for user interactions, and update screen content dynamically.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Variables &amp; Types</span>
-                        <span class="meta-tag">Event Listeners</span>
-                    </div>
-                    <a href="/foundations.html?track=js" class="track-btn secondary-btn">
-                        <span>Start JS Foundations →</span>
-                    </a>
-                </article>
+ <!-- Track 3: Modern JavaScript (ES6+) -->
+ <article class="track-card foundations-track gsap-reveal" data-category="foundations">
+ <div class="card-top">
+ <span class="track-level-badge">Level 03</span>
+ <span class="track-status-icon ready">+400 XP</span>
+ </div>
+ <h3 class="card-title">JavaScript: Adding Interactivity</h3>
+ <p class="card-desc">
+ Bring your web pages to life. Learn how to store information in variables, listen for user interactions, and update screen content dynamically.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Variables &amp; Types</span>
+ <span class="meta-tag">Event Listeners</span>
+ </div>
+ <a href="/foundations.html?track=js" class="track-btn secondary-btn">
+ <span>Start JS Foundations →</span>
+ </a>
+ </article>
 
-                <!-- Track 4: Practical Dojo Projects -->
-                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
-                    <div class="card-top">
-                        <span class="track-level-badge highlight-gold">Level 04</span>
-                        <span class="track-status-icon ready">+1,500 XP</span>
-                    </div>
-                    <h3 class="card-title">Vanilla JavaScript Widget Dojo</h3>
-                    <p class="card-desc">
-                        Put HTML, CSS, and JavaScript together across 15 guided exercises: navigation menus, styled cards, modals, interactive forms, and a mini-dashboard.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">15 Guided Projects</span>
-                        <span class="meta-tag">Level 4 Certificate</span>
-                    </div>
-                    <a href="/2. partB/hub.html" class="track-btn primary-btn">
-                        <span>Enter Level 04 Dojo →</span>
-                    </a>
-                </article>
+ <!-- Track 4: Practical Dojo Projects -->
+ <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+ <div class="card-top">
+ <span class="track-level-badge highlight-gold">Level 04</span>
+ <span class="track-status-icon ready">+1,500 XP</span>
+ </div>
+ <h3 class="card-title">Vanilla JavaScript Widget Dojo</h3>
+ <p class="card-desc">
+ Put HTML, CSS, and JavaScript together across 15 guided exercises: navigation menus, styled cards, modals, interactive forms, and a mini-dashboard.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">15 Guided Projects</span>
+ <span class="meta-tag">Level 4 Certificate</span>
+ </div>
+ <a href="/2. partB/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 04 Dojo →</span>
+ </a>
+ </article>
 
-                <!-- Track 5: Framework Dojo (React) -->
-                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 05</span>
-                        <span class="track-status-icon ready">+2,250 XP</span>
-                    </div>
-                    <h3 class="card-title">React: Modern Component Dojo</h3>
-                    <p class="card-desc">
-                        Build modern user interfaces with React. Create reusable UI components, manage dynamic state with useState, fetch APIs with useEffect, and build a task tracker across 15 exercises.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Components &amp; Props</span>
-                        <span class="meta-tag">Hooks (useState / useEffect)</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/foundations.html?track=react" class="track-btn secondary-btn">
-                            <span>Read Foundations</span>
-                        </a>
-                        <a href="/3. partC/hub.html" class="track-btn primary-btn">
-                            <span>Enter Level 05 Dojo →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 5: Framework Dojo (React) -->
+ <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+ <div class="card-top">
+ <span class="track-level-badge">Level 05</span>
+ <span class="track-status-icon ready">+2,250 XP</span>
+ </div>
+ <h3 class="card-title">React: Modern Component Dojo</h3>
+ <p class="card-desc">
+ Build modern user interfaces with React. Create reusable UI components, manage dynamic state with useState, fetch APIs with useEffect, and build a task tracker across 15 exercises.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Components &amp; Props</span>
+ <span class="meta-tag">Hooks (useState / useEffect)</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/foundations.html?track=react" class="track-btn secondary-btn">
+ <span>Read Foundations</span>
+ </a>
+ <a href="/3. partC/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 05 Dojo →</span>
+ </a>
+ </div>
+ </article>
 
-                <!-- BONUS ARCADE MODE: DevType Dojo -->
-                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
-                    <div class="card-top">
-                        <span class="track-level-badge">Arcade</span>
-                        <span class="track-status-icon ready">Speedrun</span>
-                    </div>
-                    <h3 class="card-title">DevType: Code Typing Speedrun</h3>
-                    <p class="card-desc">
-                        Sharpen your syntax typing speed. Race against the clock typing real HTML tags, CSS rules, and JavaScript syntax with live speed and accuracy tracking.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Speedrun Challenge</span>
-                        <span class="meta-tag">Live Accuracy Metric</span>
-                    </div>
-                    <a href="/4. partD/devtype/devtype.html" class="track-btn secondary-btn">
-                        <span>Launch DevType Speedrun →</span>
-                    </a>
-                </article>
+ <!-- BONUS ARCADE MODE: DevType Dojo -->
+ <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+ <div class="card-top">
+ <span class="track-level-badge">Arcade</span>
+ <span class="track-status-icon ready">Speedrun</span>
+ </div>
+ <h3 class="card-title">DevType: Code Typing Speedrun</h3>
+ <p class="card-desc">
+ Sharpen your syntax typing speed. Race against the clock typing real HTML tags, CSS rules, and JavaScript syntax with live speed and accuracy tracking.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Speedrun Challenge</span>
+ <span class="meta-tag">Live Accuracy Metric</span>
+ </div>
+ <a href="/4. partD/devtype/devtype.html" class="track-btn secondary-btn">
+ <span>Launch DevType Speedrun →</span>
+ </a>
+ </article>
 
-                <!-- Track 6: Python & Backend Architecture Dojo -->
-                <article class="track-card dojo-track gsap-reveal" data-category="dojo">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 06</span>
-                        <span class="track-status-icon ready">+3,000 XP</span>
-                    </div>
-                    <h3 class="card-title">Python &amp; Backend Basics</h3>
-                    <p class="card-desc">
-                        Inspect how servers handle data behind the scenes. Learn Python basics, data structures, error handling, SQLite databases, and simple API endpoints right in your browser.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Python 3 Basics</span>
-                        <span class="meta-tag">REST Endpoints</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/foundations.html?track=python" class="track-btn secondary-btn">
-                            <span>Read Foundations</span>
-                        </a>
-                        <a href="/5. partE/hub.html" class="track-btn primary-btn">
-                            <span>Enter Level 06 Dojo →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 6: Python & Backend Architecture Dojo -->
+ <article class="track-card dojo-track gsap-reveal" data-category="dojo">
+ <div class="card-top">
+ <span class="track-level-badge">Level 06</span>
+ <span class="track-status-icon ready">+3,000 XP</span>
+ </div>
+ <h3 class="card-title">Python &amp; Backend Basics</h3>
+ <p class="card-desc">
+ Inspect how servers handle data behind the scenes. Learn Python basics, data structures, error handling, SQLite databases, and simple API endpoints right in your browser.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Python 3 Basics</span>
+ <span class="meta-tag">REST Endpoints</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/foundations.html?track=python" class="track-btn secondary-btn">
+ <span>Read Foundations</span>
+ </a>
+ <a href="/5. partE/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 06 Dojo →</span>
+ </a>
+ </div>
+ </article>
 
-                <!-- Track 7: Mastery Specialization Hub -->
-                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 07</span>
-                        <span class="track-status-icon ready">5 Tracks</span>
-                    </div>
-                    <h3 class="card-title">Specialized Developer Tracks</h3>
-                    <p class="card-desc">
-                        Choose your focus: CSS Animations &amp; Motion, TypeScript Mastery, Next.js Web Apps, Cloud Architecture, or SQL Databases across 5 deep specialization tracks.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">CSS Motion</span>
-                        <span class="meta-tag">TypeScript</span>
-                        <span class="meta-tag">Next.js</span>
-                        <span class="meta-tag">Cloud</span>
-                        <span class="meta-tag">SQL</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/1. partA/hub.html#level7-tracks" class="track-btn secondary-btn">
-                            <span>Browse Foundations</span>
-                        </a>
-                        <a href="/6. partF/hub.html" class="track-btn primary-btn">
-                            <span>Enter Level 07 Hub →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 7: Mastery Specialization Hub -->
+ <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+ <div class="card-top">
+ <span class="track-level-badge">Level 07</span>
+ <span class="track-status-icon ready">5 Tracks</span>
+ </div>
+ <h3 class="card-title">Specialized Developer Tracks</h3>
+ <p class="card-desc">
+ Choose your focus: CSS Animations &amp; Motion, TypeScript Mastery, Next.js Web Apps, Cloud Architecture, or SQL Databases across 5 deep specialization tracks.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">CSS Motion</span>
+ <span class="meta-tag">TypeScript</span>
+ <span class="meta-tag">Next.js</span>
+ <span class="meta-tag">Cloud</span>
+ <span class="meta-tag">SQL</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/1. partA/hub.html#level7-tracks" class="track-btn secondary-btn">
+ <span>Browse Foundations</span>
+ </a>
+ <a href="/6. partF/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 07 Hub →</span>
+ </a>
+ </div>
+ </article>
 
-                <!-- Track 8: Async UI & Live Data Patterns -->
-                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 08</span>
-                        <span class="track-status-icon ready">+1,500 XP</span>
-                    </div>
-                    <h3 class="card-title">Polished UI: Loading &amp; Error States</h3>
-                    <p class="card-desc">
-                        Ensure applications handle real-world latency. Learn how to display loading skeletons, retry error screens, optimistic mutations, and live-updating data.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">Loading Skeletons</span>
-                        <span class="meta-tag">Error Boundaries</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/foundations.html?track=async" class="track-btn secondary-btn">
-                            <span>Read Foundations</span>
-                        </a>
-                        <a href="/7. partG/hub.html" class="track-btn primary-btn">
-                            <span>Enter Level 08 Dojo →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 8: Async UI & Live Data Patterns -->
+ <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+ <div class="card-top">
+ <span class="track-level-badge">Level 08</span>
+ <span class="track-status-icon ready">+1,500 XP</span>
+ </div>
+ <h3 class="card-title">Polished UI: Loading &amp; Error States</h3>
+ <p class="card-desc">
+ Ensure applications handle real-world latency. Learn how to display loading skeletons, retry error screens, optimistic mutations, and live-updating data.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">Loading Skeletons</span>
+ <span class="meta-tag">Error Boundaries</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/foundations.html?track=async" class="track-btn secondary-btn">
+ <span>Read Foundations</span>
+ </a>
+ <a href="/7. partG/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 08 Dojo →</span>
+ </a>
+ </div>
+ </article>
 
-                <!-- Track 9: React Auth & Permission Gates -->
-                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
-                    <div class="card-top">
-                        <span class="track-level-badge">Level 09</span>
-                        <span class="track-status-icon ready">+1,500 XP</span>
-                    </div>
-                    <h3 class="card-title">Authentication &amp; Protected Routes</h3>
-                    <p class="card-desc">
-                        Implement real account security models. Manage auth tokens, establish global session context, gate private views, and enforce role-based access control.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">JWT Sessions</span>
-                        <span class="meta-tag">Protected Routes</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/foundations.html?track=auth" class="track-btn secondary-btn">
-                            <span>Read Foundations</span>
-                        </a>
-                        <a href="/8. partH/hub.html" class="track-btn primary-btn">
-                            <span>Enter Level 09 Dojo →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 9: React Auth & Permission Gates -->
+ <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+ <div class="card-top">
+ <span class="track-level-badge">Level 09</span>
+ <span class="track-status-icon ready">+1,500 XP</span>
+ </div>
+ <h3 class="card-title">Authentication &amp; Protected Routes</h3>
+ <p class="card-desc">
+ Implement real account security models. Manage auth tokens, establish global session context, gate private views, and enforce role-based access control.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">JWT Sessions</span>
+ <span class="meta-tag">Protected Routes</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/foundations.html?track=auth" class="track-btn secondary-btn">
+ <span>Read Foundations</span>
+ </a>
+ <a href="/8. partH/hub.html" class="track-btn primary-btn">
+ <span>Enter Level 09 Dojo →</span>
+ </a>
+ </div>
+ </article>
 
-                <!-- Track 10: SaaS UI & Design Systems -->
-                <article class="track-card advanced-track gsap-reveal" data-category="advanced">
-                    <div class="card-top">
-                        <span class="track-level-badge highlight-gold">Level 10</span>
-                        <span class="track-status-icon ready">Final Track</span>
-                    </div>
-                    <h3 class="card-title">SaaS Dashboard UI &amp; Widgets</h3>
-                    <p class="card-desc">
-                        Your graduation milestone. Assemble a complete application shell: collapsible sidebar navigation, search filters, monthly/annual pricing tables, and an AI helper panel.
-                    </p>
-                    <div class="card-meta">
-                        <span class="meta-tag">App Shell Layout</span>
-                        <span class="meta-tag">Pricing Matrix</span>
-                        <span class="meta-tag">AI Panel</span>
-                    </div>
-                    <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                        <a href="/foundations.html?track=saas" class="track-btn secondary-btn">
-                            <span>Read Foundations</span>
-                        </a>
-                        <a href="/9. partI/hub.html" class="track-btn primary-btn">
-                            <span>Launch Level 10 Dojo →</span>
-                        </a>
-                    </div>
-                </article>
+ <!-- Track 10: SaaS UI & Design Systems -->
+ <article class="track-card advanced-track gsap-reveal" data-category="advanced">
+ <div class="card-top">
+ <span class="track-level-badge highlight-gold">Level 10</span>
+ <span class="track-status-icon ready">Final Track</span>
+ </div>
+ <h3 class="card-title">SaaS Dashboard UI &amp; Widgets</h3>
+ <p class="card-desc">
+ Your graduation milestone. Assemble a complete application shell: collapsible sidebar navigation, search filters, monthly/annual pricing tables, and an AI helper panel.
+ </p>
+ <div class="card-meta">
+ <span class="meta-tag">App Shell Layout</span>
+ <span class="meta-tag">Pricing Matrix</span>
+ <span class="meta-tag">AI Panel</span>
+ </div>
+ <div class="track-btn-group" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+ <a href="/foundations.html?track=saas" class="track-btn secondary-btn">
+ <span>Read Foundations</span>
+ </a>
+ <a href="/9. partI/hub.html" class="track-btn primary-btn">
+ <span>Launch Level 10 Dojo →</span>
+ </a>
+ </div>
+ </article>
 
-            </div>
-        </section>
+ </div>
+ </section>
 
-        <!-- Certificate Showcase Card -->
-        <section class="certificate-promo-section">
-            <div class="cert-promo-card">
-                <div class="cert-promo-content">
-                    <span class="cert-badge">PROOF OF WORK</span>
-                    <h2>Earn Verifiable Developer Certificates</h2>
-                    <p>Complete any Level 04 through 10 track to generate your official, verifiable proof-of-work certificates with cryptographically tracked project verification.</p>
-                    <a href="javascript:void(0)" class="cert-promo-btn" onclick="openCertificateHub()">
-                        <span>Open Certificate Hub →</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+ <!-- Certificate Showcase Card -->
+ <section class="certificate-promo-section">
+ <div class="cert-promo-card">
+ <div class="cert-promo-content">
+ <span class="cert-badge">PROOF OF WORK</span>
+ <h2>Earn Verifiable Developer Certificates</h2>
+ <p>Complete any Level 04 through 10 track to generate your official, verifiable proof-of-work certificates with cryptographically tracked project verification.</p>
+ <a href="javascript:void(0)" class="cert-promo-btn" onclick="openCertificateHub()">
+ <span>Open Certificate Hub →</span>
+ </a>
+ </div>
+ </div>
+ </section>
 
-        <!-- Interactive FAQ & Platform Facts Section -->
-        <section class="faq-section" id="faqSection" aria-label="Frequently Asked Questions and Platform Facts">
-            <div class="faq-header">
-                <h2 class="faq-main-title">
-                    03 / Frequently Asked Questions
-                </h2>
-                <p class="faq-subtitle">
-                    Technical reference notes on licensing, browser runtime environment, and project exports.
-                </p>
-            </div>
+ <!-- Interactive FAQ & Platform Facts Section -->
+ <section class="faq-section" id="faqSection" aria-label="Frequently Asked Questions and Platform Facts">
+ <div class="faq-header">
+ <h2 class="faq-main-title">
+ 03 / Frequently Asked Questions
+ </h2>
+ <p class="faq-subtitle">
+ Technical reference notes on licensing, browser runtime environment, and project exports.
+ </p>
+ </div>
 
-            <div class="faq-accordion-container" id="faqAccordionContainer">
-                
-                <!-- FAQ Item 1 -->
-                <article class="faq-item" data-faq="1">
-                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-1" id="faq-q-1">
-                        <span class="faq-q-text">Is NoviCodes open-source and free to use?</span>
-                        <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer-panel" id="faq-ans-1" role="region" aria-labelledby="faq-q-1">
-                        <div class="faq-answer-content">
-                            <p><strong>Yes.</strong> NoviCodes is released under the MIT License. There are no paywalls, accounts required, or locked curriculum gates. All 10 levels and 103 exercises are openly accessible.</p>
-                        </div>
-                    </div>
-                </article>
+ <div class="faq-accordion-container" id="faqAccordionContainer">
+ 
+ <!-- FAQ Item 1 -->
+ <article class="faq-item" data-faq="1">
+ <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-1" id="faq-q-1">
+ <span class="faq-q-text">Is NoviCodes open-source and free to use?</span>
+ <span class="faq-chevron" aria-hidden="true">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+ </span>
+ </button>
+ <div class="faq-answer-panel" id="faq-ans-1" role="region" aria-labelledby="faq-q-1">
+ <div class="faq-answer-content">
+ <p><strong>Yes.</strong> NoviCodes is released under the MIT License. There are no paywalls, accounts required, or locked curriculum gates. All 10 levels and 103 exercises are openly accessible.</p>
+ </div>
+ </div>
+ </article>
 
-                <!-- FAQ Item 2 -->
-                <article class="faq-item" data-faq="2">
-                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-2" id="faq-q-2">
-                        <span class="faq-q-text">Do I need local development tools installed?</span>
-                        <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer-panel" id="faq-ans-2" role="region" aria-labelledby="faq-q-2">
-                        <div class="faq-answer-content">
-                            <p><strong>No installation is required.</strong> Every exercise executes in the client browser with an integrated test runner, sandboxed DOM preview, React transpiler, and Python runtime.</p>
-                        </div>
-                    </div>
-                </article>
+ <!-- FAQ Item 2 -->
+ <article class="faq-item" data-faq="2">
+ <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-2" id="faq-q-2">
+ <span class="faq-q-text">Do I need local development tools installed?</span>
+ <span class="faq-chevron" aria-hidden="true">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+ </span>
+ </button>
+ <div class="faq-answer-panel" id="faq-ans-2" role="region" aria-labelledby="faq-q-2">
+ <div class="faq-answer-content">
+ <p><strong>No installation is required.</strong> Every exercise executes in the client browser with an integrated test runner, sandboxed DOM preview, React transpiler, and Python runtime.</p>
+ </div>
+ </div>
+ </article>
 
-                <!-- FAQ Item 3 -->
-                <article class="faq-item" data-faq="3">
-                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-3" id="faq-q-3">
-                        <span class="faq-q-text">Why learn web development fundamentals in 2026?</span>
-                        <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer-panel" id="faq-ans-3" role="region" aria-labelledby="faq-q-3">
-                        <div class="faq-answer-content">
-                            <p>Effective software engineering requires reviewing, debugging, and auditing code. When an automated tool outputs incorrect CSS layout rules or unstable React hook dependencies, understanding foundational mechanics allows you to identify and resolve root causes rapidly.</p>
-                        </div>
-                    </div>
-                </article>
+ <!-- FAQ Item 3 -->
+ <article class="faq-item" data-faq="3">
+ <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-3" id="faq-q-3">
+ <span class="faq-q-text">Why learn web development fundamentals in 2026?</span>
+ <span class="faq-chevron" aria-hidden="true">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+ </span>
+ </button>
+ <div class="faq-answer-panel" id="faq-ans-3" role="region" aria-labelledby="faq-q-3">
+ <div class="faq-answer-content">
+ <p>Effective software engineering requires reviewing, debugging, and auditing code. When an automated tool outputs incorrect CSS layout rules or unstable React hook dependencies, understanding foundational mechanics allows you to identify and resolve root causes rapidly.</p>
+ </div>
+ </div>
+ </article>
 
-                <!-- FAQ Item 4 -->
-                <article class="faq-item" data-faq="4">
-                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-4" id="faq-q-4">
-                        <span class="faq-q-text">How do verified completion certificates work?</span>
-                        <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer-panel" id="faq-ans-4" role="region" aria-labelledby="faq-q-4">
-                        <div class="faq-answer-content">
-                            <p>Completing all exercises in a track unlocks a verified certificate with a cryptographic identifier. Certificates can be exported as high-resolution assets or printed for verification.</p>
-                        </div>
-                    </div>
-                </article>
+ <!-- FAQ Item 4 -->
+ <article class="faq-item" data-faq="4">
+ <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-4" id="faq-q-4">
+ <span class="faq-q-text">How do verified completion certificates work?</span>
+ <span class="faq-chevron" aria-hidden="true">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+ </span>
+ </button>
+ <div class="faq-answer-panel" id="faq-ans-4" role="region" aria-labelledby="faq-q-4">
+ <div class="faq-answer-content">
+ <p>Completing all exercises in a track unlocks a verified certificate with a cryptographic identifier. Certificates can be exported as high-resolution assets or printed for verification.</p>
+ </div>
+ </div>
+ </article>
 
-                <!-- FAQ Item 5 -->
-                <article class="faq-item" data-faq="5">
-                    <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-5" id="faq-q-5">
-                        <span class="faq-q-text">Can I export and deploy my projects externally?</span>
-                        <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer-panel" id="faq-ans-5" role="region" aria-labelledby="faq-q-5">
-                        <div class="faq-answer-content">
-                            <p><strong>Yes.</strong> All source code created during exercises belongs to you. You can export and deploy projects to GitHub Pages, Vercel, Netlify, or any standard hosting provider.</p>
-                        </div>
-                    </div>
-                </article>
+ <!-- FAQ Item 5 -->
+ <article class="faq-item" data-faq="5">
+ <button class="faq-question-btn" aria-expanded="false" aria-controls="faq-ans-5" id="faq-q-5">
+ <span class="faq-q-text">Can I export and deploy my projects externally?</span>
+ <span class="faq-chevron" aria-hidden="true">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+ </span>
+ </button>
+ <div class="faq-answer-panel" id="faq-ans-5" role="region" aria-labelledby="faq-q-5">
+ <div class="faq-answer-content">
+ <p><strong>Yes.</strong> All source code created during exercises belongs to you. You can export and deploy projects to GitHub Pages, Vercel, Netlify, or any standard hosting provider.</p>
+ </div>
+ </div>
+ </article>
 
-            </div>
-        </section>
-    </main>
+ </div>
+ </section>
+ </main>
 
-    <!-- Platform Footer -->
-    <PlatformFooter />
+ <!-- Platform Footer -->
+ <PlatformFooter />
 
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
 
-    <!-- Scripts -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script is:inline src="/data/daily_quests_data.js"></script>
-    <script is:inline src="/daily-quests.js"></script>
-    <script is:inline src="/scripts/dashboard.js"></script>
+ <!-- Scripts -->
+ <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+ <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+ <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+ <script is:inline src="/data/daily_quests_data.js"></script>
+ <script is:inline src="/daily-quests.js"></script>
+ <script is:inline src="/scripts/dashboard.js"></script>
 </BaseLayout>

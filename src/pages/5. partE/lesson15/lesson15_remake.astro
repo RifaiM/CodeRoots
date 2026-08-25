@@ -1,381 +1,381 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `# 🏆 Lesson 15: Final Project: Python Backend API Logic!
+const starterCode = `# Lesson 15: Final Project: Python Backend API Logic!
 import sqlite3
 import hashlib
 
-# 👉 STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
+# STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
 
 
-# 👉 STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
+# STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
 
 
-# 👉 STEP 3: Implement register_user(conn, username, password) inserting into users table
+# STEP 3: Implement register_user(conn, username, password) inserting into users table
 
 `;
 
 const level6Lessons = [
-    {
-        "id": 1,
-        "title": "Python Variables & Output",
-        "url": "/5. partE/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Control Flow & Logic",
-        "url": "/5. partE/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Functions & Return Values",
-        "url": "/5. partE/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Lists & Dictionaries",
-        "url": "/5. partE/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Classes & OOP Objects",
-        "url": "/5. partE/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Class Inheritance & Reuse",
-        "url": "/5. partE/lesson6/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Error Handling with Try/Except",
-        "url": "/5. partE/lesson7/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "Standard Library & JSON",
-        "url": "/5. partE/lesson8/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "File I/O & Persistence",
-        "url": "/5. partE/lesson9/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Asynchronous Python & Asyncio",
-        "url": "/5. partE/lesson10/lesson10_remake.html"
-    },
-    {
-        "id": 11,
-        "title": "SQLite Database CRUD",
-        "url": "/5. partE/lesson11/lesson11_remake.html"
-    },
-    {
-        "id": 12,
-        "title": "REST APIs with FastAPI",
-        "url": "/5. partE/lesson12/lesson12_remake.html"
-    },
-    {
-        "id": 13,
-        "title": "Password Hashing & Security",
-        "url": "/5. partE/lesson13/lesson13_remake.html"
-    },
-    {
-        "id": 14,
-        "title": "Task Manager Backend API",
-        "url": "/5. partE/lesson14/lesson14_remake.html"
-    },
-    {
-        "id": 15,
-        "title": "Final Project: Python Backend API Logic",
-        "url": "/5. partE/lesson15/lesson15_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Python Variables & Output",
+ "url": "/5. partE/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Control Flow & Logic",
+ "url": "/5. partE/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Functions & Return Values",
+ "url": "/5. partE/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Lists & Dictionaries",
+ "url": "/5. partE/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Classes & OOP Objects",
+ "url": "/5. partE/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Class Inheritance & Reuse",
+ "url": "/5. partE/lesson6/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Error Handling with Try/Except",
+ "url": "/5. partE/lesson7/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "Standard Library & JSON",
+ "url": "/5. partE/lesson8/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "File I/O & Persistence",
+ "url": "/5. partE/lesson9/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Asynchronous Python & Asyncio",
+ "url": "/5. partE/lesson10/lesson10_remake.html"
+ },
+ {
+ "id": 11,
+ "title": "SQLite Database CRUD",
+ "url": "/5. partE/lesson11/lesson11_remake.html"
+ },
+ {
+ "id": 12,
+ "title": "REST APIs with FastAPI",
+ "url": "/5. partE/lesson12/lesson12_remake.html"
+ },
+ {
+ "id": 13,
+ "title": "Password Hashing & Security",
+ "url": "/5. partE/lesson13/lesson13_remake.html"
+ },
+ {
+ "id": 14,
+ "title": "Task Manager Backend API",
+ "url": "/5. partE/lesson14/lesson14_remake.html"
+ },
+ {
+ "id": 15,
+ "title": "Final Project: Python Backend API Logic",
+ "url": "/5. partE/lesson15/lesson15_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Project 15: Final Project: Python API Logic Service | Level 6 Python Dojo"
-    description="Build a Python backend service combining User Models, SHA-256 password hashing logic, and CRUD operations."
-    levelTag="Level 6 • Python Dojo"
-    lessonNum={15}
-    lessonTitle="Final Project: Python Backend API Logic"
-    xpAmount={150}
-    completionKey="partE_lesson15_remake_complete"
-    nextLessonUrl="/5. partE/certificate.html"
-    hubUrl="/5. partE/hub.html"
-    hubTitle="Level 6 Hub"
-    hubIcon="🐍"
-    fileTab="main.py"
-    starterCode={starterCode}
-    mode="python"
-    jumpLessons={level6Lessons}
-    certificateUrl="/5. partE/certificate.html"
-    trackPrefix="partE"
+ title="Project 15: Final Project: Python API Logic Service | Level 6 Python Dojo"
+ description="Build a Python backend service combining User Models, SHA-256 password hashing logic, and CRUD operations."
+ levelTag="Level 6 • Python Dojo"
+ lessonNum={15}
+ lessonTitle="Final Project: Python Backend API Logic"
+ xpAmount={150}
+ completionKey="partE_lesson15_remake_complete"
+ nextLessonUrl="/5. partE/certificate.html"
+ hubUrl="/5. partE/hub.html"
+ hubTitle="Level 6 Hub"
+ hubIcon=""
+ fileTab="main.py"
+ starterCode={starterCode}
+ mode="python"
+ jumpLessons={level6Lessons}
+ certificateUrl="/5. partE/certificate.html"
+ trackPrefix="partE"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Build a Python backend API structure integrating User Models, SHA-256 password hashing logic, and CRUD operations.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Build a Python backend API structure integrating User Models, SHA-256 password hashing logic, and CRUD operations.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; 🏆 Python API Service Online • Registered user 'alex_dev' with secure hash • Database verified!</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Assembling your Python API service combines all your data models, security hashing, and endpoint routing into one cohesive project.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Terminal Output: <code>&gt; Python API Service Online • Registered user 'alex_dev' with secure hash • Database verified!</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Assembling your Python API service combines all your data models, security hashing, and endpoint routing into one cohesive project.
+ </div>
+ </article>
 
-        
-        <article class="concept-card">
-            <h3><span>🏆</span> Level 6 Final Project Architecture</h3>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">UserModel + Hashing</div>
-                    <div class="tag-result">Secure Object-Oriented Entities</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">SQLite + Service Handlers</div>
-                    <div class="tag-result">Atomic Database Transactions</div>
-                </div>
-            </div>
-        </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Level 6 Final Project Architecture</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">UserModel + Hashing</div>
+ <div class="tag-result">Secure Object-Oriented Entities</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">SQLite + Service Handlers</div>
+ <div class="tag-result">Atomic Database Transactions</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Code Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_15">import sqlite3
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Code Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_15">import sqlite3
 import hashlib
 
 def create_pw_hash(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+ return hashlib.sha256(password.encode()).hexdigest()
 
 class UserModel:
-    def __init__(self, user_id, username, role="developer"):
-        self.user_id = user_id
-        self.username = username
-        self.role = role
+ def __init__(self, user_id, username, role="developer"):
+ self.user_id = user_id
+ self.username = username
+ self.role = role
 
-    def to_dict(self):
-        return &#123;"id": self.user_id, "username": self.username, "role": self.role&#125;
+ def to_dict(self):
+ return &#123;"id": self.user_id, "username": self.username, "role": self.role&#125;
 
 conn = sqlite3.connect(":memory:")
 cursor = conn.cursor()
 cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, pw_hash TEXT, role TEXT)")
 
 def register_user(conn, username, password):
-    pw_hash = create_pw_hash(password)
-    c = conn.cursor()
-    c.execute("INSERT INTO users (username, pw_hash, role) VALUES (?, ?, ?)", (username, pw_hash, "developer"))
-    conn.commit()
-    return c.lastrowid
+ pw_hash = create_pw_hash(password)
+ c = conn.cursor()
+ c.execute("INSERT INTO users (username, pw_hash, role) VALUES (?, ?, ?)", (username, pw_hash, "developer"))
+ conn.commit()
+ return c.lastrowid
 
 uid = register_user(conn, "alex_master", "SuperSecret2026!")
 print(f"Registered User ID: &#123;uid&#125;")</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partE_lesson15';
-        const DEFAULT_STARTER = `# 🏆 Lesson 15: Final Project: Python Backend API Logic!
+ const DRAFT_KEY = 'novicodes_draft_partE_lesson15';
+ const DEFAULT_STARTER = `# Lesson 15: Final Project: Python Backend API Logic!
 import sqlite3
 import hashlib
 
-# 👉 STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
+# STEP 1: Define create_pw_hash(password) using hashlib.sha256(password.encode()).hexdigest()
 
 
-# 👉 STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
+# STEP 2: Define class UserModel with __init__(self, id, username, pw_hash) and to_dict(self)
 
 
-# 👉 STEP 3: Implement register_user(conn, username, password) inserting into users table
+# STEP 3: Implement register_user(conn, username, password) inserting into users table
 
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'hasher', label: 'Define <code>create_pw_hash(password)</code> with <code>hashlib.sha256</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+create_pw_hash\s*\([\s\S]*?hashlib\.sha256/i.test(c); } },
-            { id: 'model', label: 'Define <code>class UserModel:</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+UserModel\s*:[\s\S]*?def\s+to_dict/i.test(c); } },
-            { id: 'register', label: 'Implement <code>register_user(conn, username, password)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+register_user\s*\(\s*conn\s*,\s*username\s*,\s*password\s*\)/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'python'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'hasher', label: 'Define <code>create_pw_hash(password)</code> with <code>hashlib.sha256</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+create_pw_hash\s*\([\s\S]*?hashlib\.sha256/i.test(c); } },
+ { id: 'model', label: 'Define <code>class UserModel:</code> with <code>to_dict</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /class\s+UserModel\s*:[\s\S]*?def\s+to_dict/i.test(c); } },
+ { id: 'register', label: 'Implement <code>register_user(conn, username, password)</code>', fn: (code) => { const c = code.replace(/#[^\n]*/g, ''); return /def\s+register_user\s*\(\s*conn\s*,\s*username\s*,\s*password\s*\)/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'python'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Real-Time Checklist Verification
-            // Real-Time Python Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'python');
+ // Real-Time Checklist Verification
+ // Real-Time Python Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'python');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '    ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 4;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 4;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal reset. Ready to execute main.py</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Python Terminal reset. Ready to execute main.py</div>';
+ }
+ });
+ }
 
-                                // 🔒 Security: Escape output to prevent XSS
-        function escapeHTML(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
-        }
+ // Security: Escape output to prevent XSS
+ function escapeHTML(str) {
+ return String(str)
+ .replace(/&/g, '&amp;')
+ .replace(/</g, '&lt;')
+ .replace(/>/g, '&gt;')
+ .replace(/"/g, '&quot;')
+ .replace(/'/g, '&#39;');
+ }
 
-        // 5. Python Execution Engine (Pyodide WebAssembly with Safe Client Fallback)
-        function simulatePythonOutputFallback(code) {
-            if (!terminalScreen) return;
-            const prints = [];
-            const lines = code.split('\n');
+ // 5. Python Execution Engine (Pyodide WebAssembly with Safe Client Fallback)
+ function simulatePythonOutputFallback(code) {
+ if (!terminalScreen) return;
+ const prints = [];
+ const lines = code.split('\n');
 
-            for (const line of lines) {
-                const trimmed = line.trim();
-                const printMatch = trimmed.match(/^print\s*\((.*)\)$/);
-                if (printMatch) {
-                    let c = printMatch[1].trim();
-                    if ((c.startsWith('"') && c.endsWith('"')) || (c.startsWith("'") && c.endsWith("'"))) {
-                        c = c.slice(1, -1);
-                    } else if (c.startsWith('f"') || c.startsWith("f'")) {
-                        c = c.slice(2, -1);
-                    }
-                    prints.push(c);
-                }
-            }
+ for (const line of lines) {
+ const trimmed = line.trim();
+ const printMatch = trimmed.match(/^print\s*\((.*)\)$/);
+ if (printMatch) {
+ let c = printMatch[1].trim();
+ if ((c.startsWith('"') && c.endsWith('"')) || (c.startsWith("'") && c.endsWith("'"))) {
+ c = c.slice(1, -1);
+ } else if (c.startsWith('f"') || c.startsWith("f'")) {
+ c = c.slice(2, -1);
+ }
+ prints.push(c);
+ }
+ }
 
-            if (prints.length > 0) {
-                terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
-                    '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-            } else {
-                terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully!</div>' +
-                    '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-            }
-        }
+ if (prints.length > 0) {
+ terminalScreen.innerHTML = prints.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ } else {
+ terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully!</div>' +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ }
+ }
 
-        async function executePythonCode(code) {
-            if (!terminalScreen) return;
+ async function executePythonCode(code) {
+ if (!terminalScreen) return;
 
-            terminalScreen.innerHTML = '<div class="terminal-loading-wrap"><span class="terminal-spinner"></span>&gt; Running CPython 3.12 (WebAssembly)...</div>';
+ terminalScreen.innerHTML = '<div class="terminal-loading-wrap"><span class="terminal-spinner"></span>&gt; Running CPython 3.12 (WebAssembly)...</div>';
 
-            try {
-                const result = await DojoEngine.runPython(code);
+ try {
+ const result = await DojoEngine.runPython(code);
 
-                if (result.success) {
-                    const lines = result.stdout ? result.stdout.split('\n').filter(l => l !== '') : [];
-                    if (lines.length > 0) {
-                        terminalScreen.innerHTML = lines.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
-                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-                    } else {
-                        terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully (no stdout)!</div>' +
-                            '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;">✓ [Process exited with code 0]</div>';
-                    }
-                } else {
-                    const errLines = result.stderr ? result.stderr.split('\n').filter(l => l !== '') : ['Execution error'];
-                    terminalScreen.innerHTML = errLines.map(e => `<div style="color: #f87171;">&gt; ${escapeHTML(e)}</div>`).join('') +
-                        '<div style="color: #f87171; margin-top: 8px; font-size: 0.76rem;">✗ [Process exited with code 1]</div>';
-                }
-            } catch (err) {
-                console.warn('Pyodide Web Worker unavailable, using client fallback:', err);
-                simulatePythonOutputFallback(code);
-            }
-        }
+ if (result.success) {
+ const lines = result.stdout ? result.stdout.split('\n').filter(l => l !== '') : [];
+ if (lines.length > 0) {
+ terminalScreen.innerHTML = lines.map(p => `<div style="color: #34d399;">&gt; ${escapeHTML(p)}</div>`).join('') +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ } else {
+ terminalScreen.innerHTML = '<div style="color: #34d399;">&gt; main.py executed successfully (no stdout)!</div>' +
+ '<div style="color: #38bdf8; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 0]</div>';
+ }
+ } else {
+ const errLines = result.stderr ? result.stderr.split('\n').filter(l => l !== '') : ['Execution error'];
+ terminalScreen.innerHTML = errLines.map(e => `<div style="color: #f87171;">&gt; ${escapeHTML(e)}</div>`).join('') +
+ '<div style="color: #f87171; margin-top: 8px; font-size: 0.76rem;"> [Process exited with code 1]</div>';
+ }
+ } catch (err) {
+ console.warn('Pyodide Web Worker unavailable, using client fallback:', err);
+ simulatePythonOutputFallback(code);
+ }
+ }
 
 // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', async () => {
-                await executePythonCode(editor.value);
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Final Project: Python API Logic Service',
-                    xp: 150,
-                    completionKey: 'partE_lesson15_remake_complete',
-                    nextUrl: '/5. partE/certificate.html',
-                    mode: 'python'
-                });
-            });
-        }
+ if (checkBtn) {
+ checkBtn.addEventListener('click', async () => {
+ await executePythonCode(editor.value);
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Final Project: Python API Logic Service',
+ xp: 150,
+ completionKey: 'partE_lesson15_remake_complete',
+ nextUrl: '/5. partE/certificate.html',
+ mode: 'python'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

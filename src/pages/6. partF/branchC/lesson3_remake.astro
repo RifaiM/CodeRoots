@@ -1,273 +1,273 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🐻 Lesson 3: Global State Management with Zustand!
+const starterCode = `// Lesson 3: Global State Management with Zustand!
 import { create } from 'zustand';
 
-// 👉 STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
+// STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
 // (Hint: export const useCartStore = create((set) => ({ items: [], addToCart: (item) => set((state) => ({ items: [...state.items, item] })) }));)
 
 
 export default function CartUI() {
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h2>🐻 Zustand Global Cart</h2>
-      <p>Cart ready for global state hook.</p>
-    </div>
-  );
+ return (
+ <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+ <h2> Zustand Global Cart</h2>
+ <p>Cart ready for global state hook.</p>
+ </div>
+ );
 }
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Next.js App Router",
-        "url": "/6. partF/branchC/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Server & Client UI",
-        "url": "/6. partF/branchC/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Zustand Global State",
-        "url": "/6. partF/branchC/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Tailwind UI Architecture",
-        "url": "/6. partF/branchC/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Unit & E2E Testing",
-        "url": "/6. partF/branchC/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Next.js Service Dashboard",
-        "url": "/6. partF/branchC/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Next.js App Router",
+ "url": "/6. partF/branchC/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Server & Client UI",
+ "url": "/6. partF/branchC/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Zustand Global State",
+ "url": "/6. partF/branchC/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Tailwind UI Architecture",
+ "url": "/6. partF/branchC/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Unit & E2E Testing",
+ "url": "/6. partF/branchC/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Next.js Service Dashboard",
+ "url": "/6. partF/branchC/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 03: Zustand Global State | Level 7C • Next.js & Frontend"
-    description="Manage global application state cleanly without boilerplate using Zustand lightweight stores."
-    levelTag="Level 7C • Next.js & Frontend"
-    lessonNum={3}
-    lessonTitle="Zustand Global State"
-    xpAmount={250}
-    completionKey="partF_branchC_lesson3_complete"
-    nextLessonUrl="/6. partF/branchC/lesson4_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="page.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchC"
+ title="Milestone 03: Zustand Global State | Level 7C • Next.js & Frontend"
+ description="Manage global application state cleanly without boilerplate using Zustand lightweight stores."
+ levelTag="Level 7C • Next.js & Frontend"
+ lessonNum={3}
+ lessonTitle="Zustand Global State"
+ xpAmount={250}
+ completionKey="partF_branchC_lesson3_complete"
+ nextLessonUrl="/6. partF/branchC/lesson4_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="page.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Manage lightweight, scalable global application state without boilerplate using Zustand stores and selectors.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Manage lightweight, scalable global application state without boilerplate using Zustand stores and selectors.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: A global Cart Manager with Zustand store displaying total items and an Add Product action!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Zustand is like a shared walkie-talkie channel 📻: any component in your app can broadcast a message or listen for updates with zero messy wires.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview: A global Cart Manager with Zustand store displaying total items and an Add Product action!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Zustand is like a shared walkie-talkie channel : any component in your app can broadcast a message or listen for updates with zero messy wires.
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>🐻</span> Zustand Micro Store</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">create((set) =&gt; (&#123; ... &#125;))</div>
-                        <div class="tag-result">Creates hook-based state store</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Zustand Micro Store</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">create((set) =&gt; (&#123; ... &#125;))</div>
+ <div class="tag-result">Creates hook-based state store</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchC_3">import &#123; create &#125; from 'zustand';
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchC_3">import &#123; create &#125; from 'zustand';
 
 export const useCartStore = create((set) =&gt; (&#123;
-    items: [],
-    addToCart: (product) =&gt; set((state) =&gt; (&#123; items: [...state.items, product] &#125;)),
-    clearCart: () =&gt; set(&#123; items: [] &#125;),
+ items: [],
+ addToCart: (product) =&gt; set((state) =&gt; (&#123; items: [...state.items, product] &#125;)),
+ clearCart: () =&gt; set(&#123; items: [] &#125;),
 &#125;));</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson3';
-        const DEFAULT_STARTER = `// 🐻 Lesson 3: Global State Management with Zustand!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson3';
+ const DEFAULT_STARTER = `// Lesson 3: Global State Management with Zustand!
 import { create } from 'zustand';
 
-// 👉 STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
+// STEP 1: Create global store with create((set) => ({ items: [], addToCart: ... }))
 // (Hint: export const useCartStore = create((set) => ({ items: [], addToCart: (item) => set((state) => ({ items: [...state.items, item] })) }));)
 
 
 export default function CartUI() {
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h2>🐻 Zustand Global Cart</h2>
-      <p>Cart ready for global state hook.</p>
-    </div>
-  );
+ return (
+ <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+ <h2> Zustand Global Cart</h2>
+ <p>Cart ready for global state hook.</p>
+ </div>
+ );
 }
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'create', label: 'Call <code>create((set) => ...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /create\s*\(\s*\(?set\)?\s*=>/i.test(c); } },
-            { id: 'items', label: 'Initialize <code>items: []</code> in store state', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /items\s*:\s*\[\s*\]/i.test(c); } },
-            { id: 'addaction', label: 'Implement <code>addToCart</code> action', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /addToCart\s*:/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'create', label: 'Call <code>create((set) => ...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /create\s*\(\s*\(?set\)?\s*=>/i.test(c); } },
+ { id: 'items', label: 'Initialize <code>items: []</code> in store state', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /items\s*:\s*\[\s*\]/i.test(c); } },
+ { id: 'addaction', label: 'Implement <code>addToCart</code> action', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /addToCart\s*:/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-                        // Next.js + Zustand Global State Live Preview
-            if (previewIframe) {
-                const rawCode = editor.value;
-                let cleanCode = rawCode
-                    .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '')
-                    .replace(/export\s+const\s+/g, 'const ')
-                    .replace(/export\s+default\s+/g, '');
+ // Next.js + Zustand Global State Live Preview
+ if (previewIframe) {
+ const rawCode = editor.value;
+ let cleanCode = rawCode
+ .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '')
+ .replace(/export\s+const\s+/g, 'const ')
+ .replace(/export\s+default\s+/g, '');
 
-                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="color: #7c3aed; font-weight: 700;">ZUSTAND</span><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a; font-weight: 600;">store/useCartStore.js</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;">⚡ Define your Zustand <code>useCartStore</code> with <code>items</code> and <code>addToCart</code> action.</div></div><script type="text/babel">let listeners = []; let state = { items: [] }; const create = (config) => { const set = (updater) => { state = typeof updater === "function" ? { ...state, ...updater(state) } : { ...state, ...updater }; listeners.forEach(l => l(state)); }; state = config(set); return (selector) => { const [val, setVal] = React.useState(() => selector ? selector(state) : state); React.useEffect(() => { const l = (newState) => setVal(selector ? selector(newState) : newState); listeners.push(l); return () => { listeners = listeners.filter(x => x !== l); }; }, []); return val; }; }; try { ' + cleanCode + '\nif (typeof useCartStore !== "undefined") { function CartUI() { const items = useCartStore(s => s.items || []); const addToCart = useCartStore(s => s.addToCart || (() => {})); return (<div style={{ background: "#ffffff", padding: "16px", borderRadius: "12px", border: "1px solid #e2e8f0" }}><h3 style={{ fontWeight: "bold", color: "#1e293b", fontSize: "14px", margin: "0 0 10px 0" }}>🛒 Global Shopping Cart ({items.length} items)</h3><div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}><button onClick={() => addToCart({ id: Date.now(), name: "Next.js Pro Guide", price: 49 })} style={{ background: "#7c3aed", color: "white", fontSize: "12px", fontWeight: "bold", padding: "6px 12px", borderRadius: "8px", border: "none", cursor: "pointer" }}>+ Add Guide ($49)</button><button onClick={() => addToCart({ id: Date.now(), name: "UI Kit", price: 29 })} style={{ background: "#1e293b", color: "white", fontSize: "12px", fontWeight: "bold", padding: "6px 12px", borderRadius: "8px", border: "none", cursor: "pointer" }}>+ Add Kit ($29)</button></div><ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12px" }}>{items.length === 0 ? <li style={{ color: "#94a3b8", fontStyle: "italic", padding: "8px 0" }}>Cart is empty</li> : items.map((it, idx) => (<li key={idx} style={{ padding: "6px 0", display: "flex", justifyContent: "space-between", borderTop: "1px solid #f1f5f9" }}><span style={{ fontWeight: 600, color: "#334155" }}>{it.name}</span><span style={{ color: "#059669", fontWeight: "bold" }}>${it.price}</span></li>))}</ul></div>); } ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(CartUI)); } } catch (err) {}<\/script></body></html>';
-                previewIframe.srcdoc = htmlDoc;
-            }
+ const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="color: #7c3aed; font-weight: 700;">ZUSTAND</span><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a; font-weight: 600;">store/useCartStore.js</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;"> Define your Zustand <code>useCartStore</code> with <code>items</code> and <code>addToCart</code> action.</div></div><script type="text/babel">let listeners = []; let state = { items: [] }; const create = (config) => { const set = (updater) => { state = typeof updater === "function" ? { ...state, ...updater(state) } : { ...state, ...updater }; listeners.forEach(l => l(state)); }; state = config(set); return (selector) => { const [val, setVal] = React.useState(() => selector ? selector(state) : state); React.useEffect(() => { const l = (newState) => setVal(selector ? selector(newState) : newState); listeners.push(l); return () => { listeners = listeners.filter(x => x !== l); }; }, []); return val; }; }; try { ' + cleanCode + '\nif (typeof useCartStore !== "undefined") { function CartUI() { const items = useCartStore(s => s.items || []); const addToCart = useCartStore(s => s.addToCart || (() => {})); return (<div style={{ background: "#ffffff", padding: "16px", borderRadius: "12px", border: "1px solid #e2e8f0" }}><h3 style={{ fontWeight: "bold", color: "#1e293b", fontSize: "14px", margin: "0 0 10px 0" }}> Global Shopping Cart ({items.length} items)</h3><div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}><button onClick={() => addToCart({ id: Date.now(), name: "Next.js Pro Guide", price: 49 })} style={{ background: "#7c3aed", color: "white", fontSize: "12px", fontWeight: "bold", padding: "6px 12px", borderRadius: "8px", border: "none", cursor: "pointer" }}>+ Add Guide ($49)</button><button onClick={() => addToCart({ id: Date.now(), name: "UI Kit", price: 29 })} style={{ background: "#1e293b", color: "white", fontSize: "12px", fontWeight: "bold", padding: "6px 12px", borderRadius: "8px", border: "none", cursor: "pointer" }}>+ Add Kit ($29)</button></div><ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12px" }}>{items.length === 0 ? <li style={{ color: "#94a3b8", fontStyle: "italic", padding: "8px 0" }}>Cart is empty</li> : items.map((it, idx) => (<li key={idx} style={{ padding: "6px 0", display: "flex", justifyContent: "space-between", borderTop: "1px solid #f1f5f9" }}><span style={{ fontWeight: 600, color: "#334155" }}>{it.name}</span><span style={{ color: "#059669", fontWeight: "bold" }}>${it.price}</span></li>))}</ul></div>); } ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(CartUI)); } } catch (err) {}<\/script></body></html>';
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Zustand Global State',
-                    xp: 250,
-                    completionKey: 'partF_branchC_lesson3_complete',
-                    nextUrl: '/6. partF/branchC/lesson4_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Zustand Global State',
+ xp: 250,
+ completionKey: 'partF_branchC_lesson3_complete',
+ nextUrl: '/6. partF/branchC/lesson4_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

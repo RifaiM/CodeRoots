@@ -4,118 +4,118 @@ import PlatformHeader from '../../../components/PlatformHeader.astro';
 import PlatformFooter from '../../../components/PlatformFooter.astro';
 
 const navLinks = [
-    { href: '/', label: 'Roadmap', icon: '🗺️', title: 'Curriculum Roadmap' },
-    { href: '/1. partA/hub.html', label: 'Foundations', icon: '📚', title: 'Foundations Academy' },
-    { href: 'javascript:void(0)', label: 'Dojo', icon: '⚔️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
-    { href: 'javascript:void(0)', label: 'Certs', icon: '📜', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+ { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
+ { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
+ { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+ { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
 <BaseLayout
-    title="Pillar 4: JavaScript Interactivity Fundamentals Guide | NoviCodes"
-    description="Learn how JavaScript powers dynamic interactivity, DOM event handling, and data communication for modern web applications."
-    showHeaderFooter={false}
+ title="Pillar 4: JavaScript Interactivity Fundamentals Guide | NoviCodes"
+ description="Learn how JavaScript powers dynamic interactivity, DOM event handling, and data communication for modern web applications."
+ showHeaderFooter={false}
 >
-    <!-- Standardized Platform Header -->
-    <PlatformHeader 
-        slot="header"
-        tagText="Level 0 • Pillar 4: JavaScript"
-        tagId="headerLogoTag"
-        navLinks={navLinks}
-        showXpBadge={true}
-    />
+ <!-- Standardized Platform Header -->
+ <PlatformHeader 
+ slot="header"
+ tagText="Level 0 • Pillar 4: JavaScript"
+ tagId="headerLogoTag"
+ navLinks={navLinks}
+ showXpBadge={true}
+ />
 
-    <!-- Main Container -->
-    <main class="concept-container">
-        
-        <!-- Hero Banner -->
-        <section class="concept-hero">
-            <span class="concept-badge-pill">04 // PILLAR 4 OF 4 • +50 XP</span>
-            <h1>JavaScript — Dynamic State &amp; Events</h1>
-            <p>
-                Learn how JavaScript brings web pages to life by reacting to user events, calculating dynamic state, and communicating with external APIs.
-            </p>
-        </section>
+ <!-- Main Container -->
+ <main class="concept-container">
+ 
+ <!-- Hero Banner -->
+ <section class="concept-hero">
+ <span class="concept-badge-pill">04 // PILLAR 4 OF 4 • +50 XP</span>
+ <h1>JavaScript — Dynamic State &amp; Events</h1>
+ <p>
+ Learn how JavaScript brings web pages to life by reacting to user events, calculating dynamic state, and communicating with external APIs.
+ </p>
+ </section>
 
-        <!-- 1. The Web Development Triad -->
-        <section class="concept-card">
-            <h2>1. The Web Development Triad in Action</h2>
-            <p>
-                Every client application is an integrated assembly of three distinct technological layers:
-            </p>
+ <!-- 1. The Web Development Triad -->
+ <section class="concept-card">
+ <h2>1. The Web Development Triad in Action</h2>
+ <p>
+ Every client application is an integrated assembly of three distinct technological layers:
+ </p>
 
-            <div class="triad-grid">
-                <div class="triad-card">
-                    <div class="triad-icon">🧱</div>
-                    <h3 class="triad-title">01 / HTML (Structure)</h3>
-                    <p class="triad-desc">Provides the document skeleton, semantic tags, and content hierarchy.</p>
-                </div>
-                <div class="triad-card">
-                    <div class="triad-icon">🎨</div>
-                    <h3 class="triad-title">02 / CSS (Presentation)</h3>
-                    <p class="triad-desc">Applies typography, color schemes, responsive flow, and visual balance.</p>
-                </div>
-                <div class="triad-card">
-                    <div class="triad-icon">⚡</div>
-                    <h3 class="triad-title">03 / JavaScript (Behavior)</h3>
-                    <p class="triad-desc">Executes logic, manages component state, and handles user interactions.</p>
-                </div>
-            </div>
-        </section>
+ <div class="triad-grid">
+ <div class="triad-card">
+ <div class="triad-icon"></div>
+ <h3 class="triad-title">01 / HTML (Structure)</h3>
+ <p class="triad-desc">Provides the document skeleton, semantic tags, and content hierarchy.</p>
+ </div>
+ <div class="triad-card">
+ <div class="triad-icon"></div>
+ <h3 class="triad-title">02 / CSS (Presentation)</h3>
+ <p class="triad-desc">Applies typography, color schemes, responsive flow, and visual balance.</p>
+ </div>
+ <div class="triad-card">
+ <div class="triad-icon"></div>
+ <h3 class="triad-title">03 / JavaScript (Behavior)</h3>
+ <p class="triad-desc">Executes logic, manages component state, and handles user interactions.</p>
+ </div>
+ </div>
+ </section>
 
-        <!-- 2. Interactive Event Playground -->
-        <section class="concept-card">
-            <h2>2. Interactive Event Counter Playground</h2>
-            <p>
-                Trigger the controls below to observe how JavaScript event listeners calculate state and update the DOM:
-            </p>
+ <!-- 2. Interactive Event Playground -->
+ <section class="concept-card">
+ <h2>2. Interactive Event Counter Playground</h2>
+ <p>
+ Trigger the controls below to observe how JavaScript event listeners calculate state and update the DOM:
+ </p>
 
-            <div class="sandbox-card-box">
-                <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; color: #BAB4A6; text-transform: uppercase; letter-spacing: 0.05em;">Live State Machine</span>
-                <div class="counter-value-display" id="counterValueDisplay">0</div>
-                <div class="sandbox-btn-row">
-                    <button class="event-action-btn" id="btnInc">Increment (+1)</button>
-                    <button class="event-action-btn" id="btnDec">Decrement (-1)</button>
-                    <button class="event-action-btn" id="btnReset">Reset (0)</button>
-                </div>
-            </div>
-        </section>
+ <div class="sandbox-card-box">
+ <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; font-weight: 600; color: #BAB4A6; text-transform: uppercase; letter-spacing: 0.05em;">Live State Machine</span>
+ <div class="counter-value-display" id="counterValueDisplay">0</div>
+ <div class="sandbox-btn-row">
+ <button class="event-action-btn" id="btnInc">Increment (+1)</button>
+ <button class="event-action-btn" id="btnDec">Decrement (-1)</button>
+ <button class="event-action-btn" id="btnReset">Reset (0)</button>
+ </div>
+ </div>
+ </section>
 
-        <!-- 3. Mini Knowledge Check -->
-        <section class="concept-card">
-            <div class="section-header-row">
-                <h2>3. Concept Verification Check</h2>
-                <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
-            </div>
-            <p id="quizQText">Loading question...</p>
-            <div class="quiz-options-list" id="quizOptionsContainer"></div>
-            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
-        </section>
+ <!-- 3. Mini Knowledge Check -->
+ <section class="concept-card">
+ <div class="section-header-row">
+ <h2>3. Concept Verification Check</h2>
+ <span class="quiz-badge" id="quizBadge">Question 1 of 3</span>
+ </div>
+ <p id="quizQText">Loading question...</p>
+ <div class="quiz-options-list" id="quizOptionsContainer"></div>
+ <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+ </section>
 
-        <!-- 4. Complete & Return to Roadmap -->
-        <section class="complete-card">
-            <h3>All 4 Pillars Mastered?</h3>
-            <p>Pass the verification check above to claim your +50 XP and return to the Web History roadmap to complete Level 0.</p>
-            <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
-                <span>Complete Verification Above to Unlock (+50 XP)</span>
-            </button>
-        </section>
+ <!-- 4. Complete & Return to Roadmap -->
+ <section class="complete-card">
+ <h3>All 4 Pillars Mastered?</h3>
+ <p>Pass the verification check above to claim your +50 XP and return to the Web History roadmap to complete Level 0.</p>
+ <button class="mark-complete-btn locked" id="markReadBtn" onclick="markConceptComplete()">
+ <span>Complete Verification Above to Unlock (+50 XP)</span>
+ </button>
+ </section>
 
-    </main>
+ </main>
 
-    <!-- Universal Back to Top Floating Action Button -->
-    <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+ <!-- Universal Back to Top Floating Action Button -->
+ <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+ <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="18 15 12 9 6 15"></polyline>
+ </svg>
+ </button>
 
-    <!-- Platform Footer -->
-    <PlatformFooter />
+ <!-- Platform Footer -->
+ <PlatformFooter />
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/1. partA/javascript_concept/javascript_concept.css" />
+ <!-- Stylesheet -->
+ <link rel="stylesheet" href="/1. partA/javascript_concept/javascript_concept.css" />
 
-    <!-- Script -->
-    <script is:inline src="/1. partA/javascript_concept/javascript_concept.js"></script>
+ <!-- Script -->
+ <script is:inline src="/1. partA/javascript_concept/javascript_concept.js"></script>
 </BaseLayout>

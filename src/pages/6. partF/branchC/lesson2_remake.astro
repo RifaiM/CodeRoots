@@ -1,296 +1,296 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// ⚡ Lesson 2: Next.js Client Components with "use client"!
+const starterCode = `// Lesson 2: Next.js Client Components with "use client"!
 
-// 👉 STEP 1: Add "use client" directive at top of file
+// STEP 1: Add "use client" directive at top of file
 
 import React, { useState } from 'react';
 
 export default function InteractiveCounter() {
-  // 👉 STEP 2: Declare state [count, setCount] initialized to 0
-  
+ // STEP 2: Declare state [count, setCount] initialized to 0
+ 
 
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
-      <h2>⚡ Next.js Interactive Client Component</h2>
-      {/* 👉 STEP 3: Render button with onClick={() => setCount(count + 1)} */}
-      <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
-        Count: 0
-      </button>
-    </div>
-  );
+ return (
+ <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
+ <h2> Next.js Interactive Client Component</h2>
+ {/* STEP 3: Render button with onClick={() => setCount(count + 1)} */}
+ <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+ Count: 0
+ </button>
+ </div>
+ );
 }
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Next.js App Router",
-        "url": "/6. partF/branchC/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Server & Client UI",
-        "url": "/6. partF/branchC/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Zustand Global State",
-        "url": "/6. partF/branchC/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Tailwind UI Architecture",
-        "url": "/6. partF/branchC/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Unit & E2E Testing",
-        "url": "/6. partF/branchC/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Next.js Service Dashboard",
-        "url": "/6. partF/branchC/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Next.js App Router",
+ "url": "/6. partF/branchC/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Server & Client UI",
+ "url": "/6. partF/branchC/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Zustand Global State",
+ "url": "/6. partF/branchC/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Tailwind UI Architecture",
+ "url": "/6. partF/branchC/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Unit & E2E Testing",
+ "url": "/6. partF/branchC/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Next.js Service Dashboard",
+ "url": "/6. partF/branchC/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 02: Server & Client UI | Level 7C • Next.js & Frontend"
-    description="Design interactive client components in Next.js using the "use client" directive and useState handlers."use client" directive and useState handlers."
-    levelTag="Level 7C • Next.js & Frontend"
-    lessonNum={2}
-    lessonTitle="Server & Client UI"
-    xpAmount={250}
-    completionKey="partF_branchC_lesson2_complete"
-    nextLessonUrl="/6. partF/branchC/lesson3_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="page.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchC"
+ title="Milestone 02: Server & Client UI | Level 7C • Next.js & Frontend"
+ description="Design interactive client components in Next.js using the "use client" directive and useState handlers."use client" directive and useState handlers."
+ levelTag="Level 7C • Next.js & Frontend"
+ lessonNum={2}
+ lessonTitle="Server & Client UI"
+ xpAmount={250}
+ completionKey="partF_branchC_lesson2_complete"
+ nextLessonUrl="/6. partF/branchC/lesson3_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="page.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Master the boundary between React Server Components (RSC) and interactive Client Components with the 'use client' directive.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Master the boundary between React Server Components (RSC) and interactive Client Components with the 'use client' directive.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: An interactive Next.js Client Counter button ⚡ with click handler and reactive count updates!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Server vs Client components is like a restaurant kitchen 🍲: the chef cooks the heavy meal on the server (fast load), and you add hot sauce at your table (client interactivity).
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview: An interactive Next.js Client Counter button with click handler and reactive count updates!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Server vs Client components is like a restaurant kitchen : the chef cooks the heavy meal on the server (fast load), and you add hot sauce at your table (client interactivity).
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>⚡</span> Server vs Client Components</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">Server Components (Default)</div>
-                        <div class="tag-result">Zero client JavaScript bundle; fast initial HTML</div>
-                    </div>
-                    <div class="tag-example">
-                        <div class="tag-code">'use client'</div>
-                        <div class="tag-result">Opt-in for useState, useEffect, and event listeners</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Server vs Client Components</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">Server Components (Default)</div>
+ <div class="tag-result">Zero client JavaScript bundle; fast initial HTML</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">'use client'</div>
+ <div class="tag-result">Opt-in for useState, useEffect, and event listeners</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchC_2">'use client';
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchC_2">'use client';
 
 import React, &#123; useState &#125; from 'react';
 
 export default function Counter() &#123;
-    const [count, setCount] = useState(0);
+ const [count, setCount] = useState(0);
 
-    return (
-        &lt;div&gt;
-            &lt;p&gt;Count: &#123;count&#125;&lt;/p&gt;
-            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+ Increment&lt;/button&gt;
-        &lt;/div&gt;
-    );
+ return (
+ &lt;div&gt;
+ &lt;p&gt;Count: &#123;count&#125;&lt;/p&gt;
+ &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+ Increment&lt;/button&gt;
+ &lt;/div&gt;
+ );
 &#125;</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson2';
-        const DEFAULT_STARTER = `// ⚡ Lesson 2: Next.js Client Components with "use client"!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson2';
+ const DEFAULT_STARTER = `// Lesson 2: Next.js Client Components with "use client"!
 
-// 👉 STEP 1: Add "use client" directive at top of file
+// STEP 1: Add "use client" directive at top of file
 
 import React, { useState } from 'react';
 
 export default function InteractiveCounter() {
-  // 👉 STEP 2: Declare state [count, setCount] initialized to 0
-  
+ // STEP 2: Declare state [count, setCount] initialized to 0
+ 
 
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
-      <h2>⚡ Next.js Interactive Client Component</h2>
-      {/* 👉 STEP 3: Render button with onClick={() => setCount(count + 1)} */}
-      <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
-        Count: 0
-      </button>
-    </div>
-  );
+ return (
+ <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
+ <h2> Next.js Interactive Client Component</h2>
+ {/* STEP 3: Render button with onClick={() => setCount(count + 1)} */}
+ <button style={{ padding: '10px 20px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+ Count: 0
+ </button>
+ </div>
+ );
 }
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'useclient', label: 'Add <code>"use client"</code> directive at line 1', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /["']use client["']/i.test(c); } },
-            { id: 'usestate', label: 'Declare <code>const [count, setCount] = useState(0)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*count\s*,\s*setCount\s*\]\s*=\s*useState\s*\(\s*0\s*\)/i.test(c); } },
-            { id: 'onclick', label: 'Attach <code>onClick</code> handler to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{\s*\(\s*\)\s*=>\s*setCount/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'useclient', label: 'Add <code>"use client"</code> directive at line 1', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /["']use client["']/i.test(c); } },
+ { id: 'usestate', label: 'Declare <code>const [count, setCount] = useState(0)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s*\[\s*count\s*,\s*setCount\s*\]\s*=\s*useState\s*\(\s*0\s*\)/i.test(c); } },
+ { id: 'onclick', label: 'Attach <code>onClick</code> handler to button', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /onClick\s*=\s*\{\s*\(\s*\)\s*=>\s*setCount/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-                        // Next.js Client Component Live Preview
-            if (previewIframe) {
-                const rawCode = editor.value;
-                let cleanCode = rawCode
-                    .replace(/['"]use client['"];?/g, '')
-                    .replace(/export\s+default\s+function/g, 'function')
-                    .replace(/export\s+const\s+/g, 'const ')
-                    .replace(/export\s+let\s+/g, 'let ')
-                    .replace(/import\s+React\s*,?\s*\{[^}]*\}\s+from\s+['"][^'"]+['"];?/g, 'const { useState, useEffect } = React;');
+ // Next.js Client Component Live Preview
+ if (previewIframe) {
+ const rawCode = editor.value;
+ let cleanCode = rawCode
+ .replace(/['"]use client['"];?/g, '')
+ .replace(/export\s+default\s+function/g, 'function')
+ .replace(/export\s+const\s+/g, 'const ')
+ .replace(/export\s+let\s+/g, 'let ')
+ .replace(/import\s+React\s*,?\s*\{[^}]*\}\s+from\s+['"][^'"]+['"];?/g, 'const { useState, useEffect } = React;');
 
-                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="background: #dbeafe; color: #1d4ed8; padding: 2px 6px; border-radius: 4px; font-weight: 700;">\'use client\'</span><span style="color: #0f172a; font-weight: 600;">components/InteractiveCounter.jsx</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;">⚡ Implement the interactive Counter component with <code>useState</code> to preview live.</div></div><script type="text/babel">try { ' + cleanCode + '\nif (typeof Counter !== "undefined") { ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Counter)); } } catch (err) {}<\/script></body></html>';
-                previewIframe.srcdoc = htmlDoc;
-            }
+ const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="background: #dbeafe; color: #1d4ed8; padding: 2px 6px; border-radius: 4px; font-weight: 700;">\'use client\'</span><span style="color: #0f172a; font-weight: 600;">components/InteractiveCounter.jsx</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;"> Implement the interactive Counter component with <code>useState</code> to preview live.</div></div><script type="text/babel">try { ' + cleanCode + '\nif (typeof Counter !== "undefined") { ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Counter)); } } catch (err) {}<\/script></body></html>';
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Server & Client UI',
-                    xp: 250,
-                    completionKey: 'partF_branchC_lesson2_complete',
-                    nextUrl: '/6. partF/branchC/lesson3_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Server & Client UI',
+ xp: 250,
+ completionKey: 'partF_branchC_lesson2_complete',
+ nextUrl: '/6. partF/branchC/lesson3_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

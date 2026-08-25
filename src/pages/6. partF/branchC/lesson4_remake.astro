@@ -1,274 +1,274 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// 🎨 Lesson 4: Tailwind CSS UI Architecture!
+const starterCode = `// Lesson 4: Tailwind CSS UI Architecture!
 
 export default function TailwindCard() {
-  return (
-    // 👉 STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">🎨 Tailwind Pro Card</h2>
-      <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
-      {/* 👉 STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
-      <span>
-        Level 7 Master
-      </span>
-    </div>
-  );
+ return (
+ // STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
+ <div>
+ <h2 className="text-xl font-bold text-slate-900 mb-2"> Tailwind Pro Card</h2>
+ <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
+ {/* STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
+ <span>
+ Level 7 Master
+ </span>
+ </div>
+ );
 }
 `;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Next.js App Router",
-        "url": "/6. partF/branchC/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Server & Client UI",
-        "url": "/6. partF/branchC/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Zustand Global State",
-        "url": "/6. partF/branchC/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Tailwind UI Architecture",
-        "url": "/6. partF/branchC/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Unit & E2E Testing",
-        "url": "/6. partF/branchC/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Next.js Service Dashboard",
-        "url": "/6. partF/branchC/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Next.js App Router",
+ "url": "/6. partF/branchC/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Server & Client UI",
+ "url": "/6. partF/branchC/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Zustand Global State",
+ "url": "/6. partF/branchC/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Tailwind UI Architecture",
+ "url": "/6. partF/branchC/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Unit & E2E Testing",
+ "url": "/6. partF/branchC/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Next.js Service Dashboard",
+ "url": "/6. partF/branchC/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 04: Tailwind UI Architecture | Level 7C • Next.js & Frontend"
-    description="Craft high-performance responsive UI components using modern Tailwind CSS utility classes."
-    levelTag="Level 7C • Next.js & Frontend"
-    lessonNum={4}
-    lessonTitle="Tailwind UI Architecture"
-    xpAmount={250}
-    completionKey="partF_branchC_lesson4_complete"
-    nextLessonUrl="/6. partF/branchC/lesson5_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="page.jsx"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchC"
+ title="Milestone 04: Tailwind UI Architecture | Level 7C • Next.js & Frontend"
+ description="Craft high-performance responsive UI components using modern Tailwind CSS utility classes."
+ levelTag="Level 7C • Next.js & Frontend"
+ lessonNum={4}
+ lessonTitle="Tailwind UI Architecture"
+ xpAmount={250}
+ completionKey="partF_branchC_lesson4_complete"
+ nextLessonUrl="/6. partF/branchC/lesson5_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="page.jsx"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchC"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Design responsive, utility-first production UI layouts with Tailwind CSS, flexbox grids, and dynamic state styling.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Design responsive, utility-first production UI layouts with Tailwind CSS, flexbox grids, and dynamic state styling.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview: A card styled with Tailwind utility classes (rounded-2xl, shadow-lg, bg-indigo-600)!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Tailwind CSS is like having pre-mixed paint colors and precision Lego bricks 🎨: you snap utility classes directly onto HTML elements without writing separate stylesheet files.
-            </div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview: A card styled with Tailwind utility classes (rounded-2xl, shadow-lg, bg-indigo-600)!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Tailwind CSS is like having pre-mixed paint colors and precision Lego bricks : you snap utility classes directly onto HTML elements without writing separate stylesheet files.
+ </div>
+ </article>
 
-        
-            <article class="concept-card">
-                <h3><span>🎨</span> Tailwind Utility Classes</h3>
-                <div class="tag-demo">
-                    <div class="tag-example">
-                        <div class="tag-code">p-6 rounded-2xl</div>
-                        <div class="tag-result">Padding + Border Radius utilities</div>
-                    </div>
-                </div>
-            </article>
+ 
+ <article class="concept-card">
+ <h3><span></span> Tailwind Utility Classes</h3>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">p-6 rounded-2xl</div>
+ <div class="tag-result">Padding + Border Radius utilities</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- Working Reference Code & Target Result -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchC_4">export default function BadgeCard(&#123; title, tag, isPrimary &#125;) &#123;
-    return (
-        &lt;div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all"&gt;
-            &lt;span className="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-indigo-50 text-indigo-600"&gt;
-                &#123;tag&#125;
-            &lt;/span&gt;
-            &lt;h3 className="mt-3 text-lg font-bold text-slate-900"&gt;&#123;title&#125;&lt;/h3&gt;
-        &lt;/div&gt;
-    );
+ <!-- Working Reference Code & Target Result -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">Production architecture specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchC_4">export default function BadgeCard(&#123; title, tag, isPrimary &#125;) &#123;
+ return (
+ &lt;div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all"&gt;
+ &lt;span className="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-indigo-50 text-indigo-600"&gt;
+ &#123;tag&#125;
+ &lt;/span&gt;
+ &lt;h3 className="mt-3 text-lg font-bold text-slate-900"&gt;&#123;title&#125;&lt;/h3&gt;
+ &lt;/div&gt;
+ );
 &#125;</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-        
+ 
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const terminalScreen = document.getElementById('terminalScreen');
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const terminalScreen = document.getElementById('terminalScreen');
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson4';
-        const DEFAULT_STARTER = `// 🎨 Lesson 4: Tailwind CSS UI Architecture!
+ const DRAFT_KEY = 'novicodes_draft_partF_branchC_lesson4';
+ const DEFAULT_STARTER = `// Lesson 4: Tailwind CSS UI Architecture!
 
 export default function TailwindCard() {
-  return (
-    // 👉 STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">🎨 Tailwind Pro Card</h2>
-      <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
-      {/* 👉 STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
-      <span>
-        Level 7 Master
-      </span>
-    </div>
-  );
+ return (
+ // STEP 1: Apply container utilities: className="p-6 max-w-sm mx-auto bg-white rounded-2xl shadow-lg"
+ <div>
+ <h2 className="text-xl font-bold text-slate-900 mb-2"> Tailwind Pro Card</h2>
+ <p className="text-slate-600 text-sm mb-4">Crafted with modern utility classes.</p>
+ {/* STEP 2: Apply badge utilities: className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold" */}
+ <span>
+ Level 7 Master
+ </span>
+ </div>
+ );
 }
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'container', label: 'Apply padding and rounded utilities: <code>p-6 rounded-2xl</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?p-6[^"']*?rounded-2xl/i.test(c); } },
-            { id: 'tag', label: 'Apply badge utilities: <code>bg-indigo-100 text-indigo-700</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?bg-indigo-100[^"']*?text-indigo-700/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'container', label: 'Apply padding and rounded utilities: <code>p-6 rounded-2xl</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?p-6[^"']*?rounded-2xl/i.test(c); } },
+ { id: 'tag', label: 'Apply badge utilities: <code>bg-indigo-100 text-indigo-700</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /className\s*=\s*["'][^"']*?bg-indigo-100[^"']*?text-indigo-700/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-                        // Tailwind CSS Component Live Preview
-            if (previewIframe) {
-                const rawCode = editor.value;
-                let cleanCode = rawCode
-                    .replace(/export\s+default\s+function/g, 'function')
-                    .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
+ // Tailwind CSS Component Live Preview
+ if (previewIframe) {
+ const rawCode = editor.value;
+ let cleanCode = rawCode
+ .replace(/export\s+default\s+function/g, 'function')
+ .replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '');
 
-                const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; } .bg-white { background-color: #ffffff; } .p-4 { padding: 1rem; } .rounded-xl { border-radius: 0.75rem; } .border { border-width: 1px; } .border-slate-200 { border-color: #e2e8f0; } .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); } .font-bold { font-weight: 700; } .text-slate-800 { color: #1e293b; } .text-sm { font-size: 0.875rem; } .text-xs { font-size: 0.75rem; } .font-semibold { font-weight: 600; } .px-2\\.5 { padding-left: 0.625rem; padding-right: 0.625rem; } .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; } .rounded-full { border-radius: 9999px; } .text-indigo-700 { color: #4338ca; } .bg-indigo-50 { background-color: #eef2ff; } .text-slate-600 { color: #475569; } .bg-slate-100 { background-color: #f1f5f9; } .flex { display: flex; } .items-center { align-items: center; } .justify-between { justify-content: space-between; } .grid { display: grid; } .gap-3 { gap: 0.75rem; } .max-w-sm { max-width: 24rem; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="color: #0284c7; font-weight: 700;">TAILWIND</span><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a; font-weight: 600;">components/BadgeCard.jsx</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;">⚡ Apply Tailwind CSS utility classes to style the <code>BadgeCard</code> component.</div></div><script type="text/babel">try { ' + cleanCode + '\nif (typeof BadgeCard !== "undefined") { function Demo() { return (<div className="grid grid-cols-1 gap-3 max-w-sm"><BadgeCard title="Next.js App Router" tag="Specialization" isPrimary={true} /><BadgeCard title="Tailwind CSS UI" tag="Styling" isPrimary={false} /></div>); } ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Demo)); } } catch (err) {}<\/script></body></html>';
-                previewIframe.srcdoc = htmlDoc;
-            }
+ const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://unpkg.com/react@18/umd/react.development.js"><\/script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script><script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script><style>body { margin: 0; padding: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #0f172a; } .bg-white { background-color: #ffffff; } .p-4 { padding: 1rem; } .rounded-xl { border-radius: 0.75rem; } .border { border-width: 1px; } .border-slate-200 { border-color: #e2e8f0; } .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); } .font-bold { font-weight: 700; } .text-slate-800 { color: #1e293b; } .text-sm { font-size: 0.875rem; } .text-xs { font-size: 0.75rem; } .font-semibold { font-weight: 600; } .px-2\\.5 { padding-left: 0.625rem; padding-right: 0.625rem; } .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; } .rounded-full { border-radius: 9999px; } .text-indigo-700 { color: #4338ca; } .bg-indigo-50 { background-color: #eef2ff; } .text-slate-600 { color: #475569; } .bg-slate-100 { background-color: #f1f5f9; } .flex { display: flex; } .items-center { align-items: center; } .justify-between { justify-content: space-between; } .grid { display: grid; } .gap-3 { gap: 0.75rem; } .max-w-sm { max-width: 24rem; }</style></head><body><div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #64748b; font-family: monospace;"><span style="color: #0284c7; font-weight: 700;">TAILWIND</span><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a; font-weight: 600;">components/BadgeCard.jsx</span></div><div id="root"><div style="color: #64748b; font-size: 13px; padding: 24px; text-align: center; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px;"> Apply Tailwind CSS utility classes to style the <code>BadgeCard</code> component.</div></div><script type="text/babel">try { ' + cleanCode + '\nif (typeof BadgeCard !== "undefined") { function Demo() { return (<div className="grid grid-cols-1 gap-3 max-w-sm"><BadgeCard title="Next.js App Router" tag="Specialization" isPrimary={true} /><BadgeCard title="Tailwind CSS UI" tag="Styling" isPrimary={false} /></div>); } ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Demo)); } } catch (err) {}<\/script></body></html>';
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Checklist Verification
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Checklist Verification
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-                if (terminalScreen) {
-                    terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
-                }
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ if (terminalScreen) {
+ terminalScreen.innerHTML = '<div class="terminal-prompt" style="color: #94a3b8;">&gt; Terminal reset. Ready for input.</div>';
+ }
+ });
+ }
 
-        // 5. Terminal output simulation
-        function simulateTerminal(code: string) {
-            if (!terminalScreen) return;
-            terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
+ // 5. Terminal output simulation
+ function simulateTerminal(code: string) {
+ if (!terminalScreen) return;
+ terminalScreen.innerHTML = `<div style="color: #34d399;">&gt; Executing milestone command stream...</div>
 <div style="color: #f8fafc; font-family: monospace; font-size: 0.78rem; margin: 6px 0;">${code.replace(/\n/g, '<br/>')}</div>
-<div style="color: #38bdf8; font-size: 0.76rem;">✓ [Command batch executed with exit code 0]</div>`;
-        }
+<div style="color: #38bdf8; font-size: 0.76rem;"> [Command batch executed with exit code 0]</div>`;
+ }
 
-        // 6. Check & Verify Code Action with Intelligent Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                if (typeof simulateTerminal === 'function') {
-                    simulateTerminal(editor.value);
-                }
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Tailwind UI Architecture',
-                    xp: 250,
-                    completionKey: 'partF_branchC_lesson4_complete',
-                    nextUrl: '/6. partF/branchC/lesson5_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 6. Check & Verify Code Action with Intelligent Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ if (typeof simulateTerminal === 'function') {
+ simulateTerminal(editor.value);
+ }
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Tailwind UI Architecture',
+ xp: 250,
+ completionKey: 'partF_branchC_lesson4_complete',
+ nextUrl: '/6. partF/branchC/lesson5_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

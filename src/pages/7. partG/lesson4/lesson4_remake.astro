@@ -1,29 +1,29 @@
 ---
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
-const starterCode = `// ⚡ Lesson 4: Optimistic UI Updates!
+const starterCode = `// Lesson 4: Optimistic UI Updates!
 
 function FeatureUpvote() {
-  const [likes, setLikes] = React.useState(42);
+ const [likes, setLikes] = React.useState(42);
 
-  const handleLike = () => {
-    // 👉 STEP 1: Update state optimistically: setLikes(likes + 1)
-    
+ const handleLike = () => {
+ // STEP 1: Update state optimistically: setLikes(likes + 1)
+ 
 
-    // 👉 STEP 2: Transmit sync request to backend endpoint in background:
-    // (Hint: fetch("/api/features/1/like", { method: "POST" });)
-    
-  };
+ // STEP 2: Transmit sync request to backend endpoint in background:
+ // (Hint: fetch("/api/features/1/like", { method: "POST" });)
+ 
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
-      <h2>🚀 Feature Request Voting</h2>
-      <p style={{ color: '#64748b' }}>AI Automated Code Completion</p>
-      <button onClick={handleLike} style={{ padding: '12px 24px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '1rem' }}>
-        👍 Upvote ({likes})
-      </button>
-    </div>
-  );
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+ <h2> Feature Request Voting</h2>
+ <p style={{ color: '#64748b' }}>AI Automated Code Completion</p>
+ <button onClick={handleLike} style={{ padding: '12px 24px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '1rem' }}>
+ Upvote ({likes})
+ </button>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -31,236 +31,236 @@ root.render(<FeatureUpvote />);
 `;
 
 const jumpLessons = [
-    {
-        "id": 1,
-        "title": "Smooth Skeleton Loaders",
-        "url": "/7. partG/lesson1/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "Friendly Error Screens & 1-Click Retry",
-        "url": "/7. partG/lesson2/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "Smarter Forms (Prevent Double Submits)",
-        "url": "/7. partG/lesson3/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Instant Optimistic Likes (Zero Lag)",
-        "url": "/7. partG/lesson4/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Live Activity Badges & Safe Timers",
-        "url": "/7. partG/lesson5/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Final Project: Reactive Storefront",
-        "url": "/7. partG/lesson6/lesson6_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Smooth Skeleton Loaders",
+ "url": "/7. partG/lesson1/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "Friendly Error Screens & 1-Click Retry",
+ "url": "/7. partG/lesson2/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "Smarter Forms (Prevent Double Submits)",
+ "url": "/7. partG/lesson3/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Instant Optimistic Likes (Zero Lag)",
+ "url": "/7. partG/lesson4/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Live Activity Badges & Safe Timers",
+ "url": "/7. partG/lesson5/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Final Project: Reactive Storefront",
+ "url": "/7. partG/lesson6/lesson6_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Instant Optimistic Likes (Zero Lag) | Level 8 • Async UI Architecture"
-    description="Update the UI immediately when clicked without waiting for the server."
-    levelTag="Level 8 • Async UI Architecture"
-    lessonNum={4}
-    lessonTitle="Instant Optimistic Likes (Zero Lag)"
-    xpAmount={250}
-    completionKey="partG_lesson4_remake_complete"
-    nextLessonUrl="/7. partG/lesson5/lesson5_remake.html"
-    hubUrl="/7. partG/hub.html"
-    hubTitle="Level 8 Hub"
-    hubIcon="🌉"
-    fileTab="App.jsx"
-    mode="react"
-    jumpLessons={jumpLessons}
-    certificateUrl="/7. partG/certificate.html"
-    trackPrefix="partG"
-    starterCode={starterCode}
+ title="Instant Optimistic Likes (Zero Lag) | Level 8 • Async UI Architecture"
+ description="Update the UI immediately when clicked without waiting for the server."
+ levelTag="Level 8 • Async UI Architecture"
+ lessonNum={4}
+ lessonTitle="Instant Optimistic Likes (Zero Lag)"
+ xpAmount={250}
+ completionKey="partG_lesson4_remake_complete"
+ nextLessonUrl="/7. partG/lesson5/lesson5_remake.html"
+ hubUrl="/7. partG/hub.html"
+ hubTitle="Level 8 Hub"
+ hubIcon=""
+ fileTab="App.jsx"
+ mode="react"
+ jumpLessons={jumpLessons}
+ certificateUrl="/7. partG/certificate.html"
+ trackPrefix="partG"
+ starterCode={starterCode}
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Update the UI immediately when clicked without waiting for the server.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Update the UI immediately when clicked without waiting for the server.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Unified Mission Card -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Build a social like button that turns red instantly when clicked for a snappy, zero-lag feel!</div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ <!-- Unified Mission Card -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Build a social like button that turns red instantly when clicked for a snappy, zero-lag feel!</div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- Analogy Explainer Card -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <p>Build instant user feedback loops by updating client-side state immediately while transmitting backend sync requests.</p>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Optimistic UI is like a messaging app displaying your sent text instantly 💬: it appears on your screen the millisecond you press Send, while transmitting data to the cloud in the background.
-            </div>
-        </article>
-    </div>
+ <!-- Analogy Explainer Card -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <p>Build instant user feedback loops by updating client-side state immediately while transmitting backend sync requests.</p>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Optimistic UI is like a messaging app displaying your sent text instantly : it appears on your screen the millisecond you press Send, while transmitting data to the cloud in the background.
+ </div>
+ </article>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partG_lesson4';
-        const DEFAULT_STARTER = `// ⚡ Lesson 4: Optimistic UI Updates!
+ const DRAFT_KEY = 'novicodes_draft_partG_lesson4';
+ const DEFAULT_STARTER = `// Lesson 4: Optimistic UI Updates!
 
 function FeatureUpvote() {
-  const [likes, setLikes] = React.useState(42);
+ const [likes, setLikes] = React.useState(42);
 
-  const handleLike = () => {
-    // 👉 STEP 1: Update state optimistically: setLikes(likes + 1)
-    
+ const handleLike = () => {
+ // STEP 1: Update state optimistically: setLikes(likes + 1)
+ 
 
-    // 👉 STEP 2: Transmit sync request to backend endpoint in background:
-    // (Hint: fetch("/api/features/1/like", { method: "POST" });)
-    
-  };
+ // STEP 2: Transmit sync request to backend endpoint in background:
+ // (Hint: fetch("/api/features/1/like", { method: "POST" });)
+ 
+ };
 
-  return (
-    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
-      <h2>🚀 Feature Request Voting</h2>
-      <p style={{ color: '#64748b' }}>AI Automated Code Completion</p>
-      <button onClick={handleLike} style={{ padding: '12px 24px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '1rem' }}>
-        👍 Upvote ({likes})
-      </button>
-    </div>
-  );
+ return (
+ <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
+ <h2> Feature Request Voting</h2>
+ <p style={{ color: '#64748b' }}>AI Automated Code Completion</p>
+ <button onClick={handleLike} style={{ padding: '12px 24px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '1rem' }}>
+ Upvote ({likes})
+ </button>
+ </div>
+ );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<FeatureUpvote />);
 `;
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'instant_state', label: 'Increment state immediately with <code>setLikes(likes + 1)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setLikes[\s\n]*\([\s\n]*(?:likes[\s\n]*\+[\s\n]*1|l[\s\n]*=>[\s\n]*l[\s\n]*\+[\s\n]*1)[\s\n]*\)/i.test(c); } },
-            { id: 'fetch_sync', label: 'Transmit sync call with <code>fetch("/api/features/1/like", ...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["'][^"']*?like["']/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'javascript'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'instant_state', label: 'Increment state immediately with <code>setLikes(likes + 1)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /setLikes[\s\n]*\([\s\n]*(?:likes[\s\n]*\+[\s\n]*1|l[\s\n]*=>[\s\n]*l[\s\n]*\+[\s\n]*1)[\s\n]*\)/i.test(c); } },
+ { id: 'fetch_sync', label: 'Transmit sync call with <code>fetch("/api/features/1/like", ...)</code>', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /fetch[\s\n]*\([\s\n]*["'][^"']*?like["']/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'javascript'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live React JSX preview inside iframe
-            if (previewIframe) {
-                const code = editor.value;
-                const htmlDoc = `<!DOCTYPE html>
+ // Render live React JSX preview inside iframe
+ if (previewIframe) {
+ const code = editor.value;
+ const htmlDoc = `<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
-  <style>
-    body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
-  </style>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+ <style>
+ body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #0f172a; }
+ </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    try {
-      ${code}
-    } catch (err) {
-      document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>⚠️ Render Error:</b> ' + err.message + '</div>';
-    }
-  <\/script>
+ <div id="root"></div>
+ <script type="text/babel">
+ try {
+ ${code}
+ } catch (err) {
+ document.getElementById('root').innerHTML = '<div style="color:#ef4444; background:#fef2f2; border:1px solid #fecaca; padding:12px; border-radius:8px; font-size:13px; font-family:monospace;"><b>️ Render Error:</b> ' + err.message + '</div>';
+ }
+ <\/script>
 </body>
 </html>`;
-                previewIframe.srcdoc = htmlDoc;
-            }
+ previewIframe.srcdoc = htmlDoc;
+ }
 
-            // Real-Time Syntax & Diagnostics
-            DojoEngine.lint(editor.value, 'javascript');
+ // Real-Time Syntax & Diagnostics
+ DojoEngine.lint(editor.value, 'javascript');
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action with Diagnostics
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Optimistic UI Updates',
-                    xp: 250,
-                    completionKey: 'partG_lesson4_remake_complete',
-                    nextUrl: '/7. partG/lesson5/lesson5_remake.html',
-                    mode: 'javascript'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Diagnostics
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Optimistic UI Updates',
+ xp: 250,
+ completionKey: 'partG_lesson4_remake_complete',
+ nextUrl: '/7. partG/lesson5/lesson5_remake.html',
+ mode: 'javascript'
+ });
+ });
+ }
 
-        // Initial Paint
-        updateEditor();
-    }
+ // Initial Paint
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

@@ -2,212 +2,212 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const level4Lessons = [
-    { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
-    { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
-    { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
-    { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
-    { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
-    { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
-    { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
-    { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
-    { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
-    { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
-    { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
-    { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
-    { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
-    { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
-    { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
+ { id: 1, title: 'Interactive HTML Page Structure', url: '/2. partB/lesson1/lesson1_remake.html' },
+ { id: 2, title: 'Typography & Heading Hierarchy', url: '/2. partB/lesson2/lesson2_remake.html' },
+ { id: 3, title: 'Interactive Links & Dynamic Media', url: '/2. partB/lesson3/lesson3_remake.html' },
+ { id: 4, title: 'Lists & Dropdown Drawer Navigation', url: '/2. partB/lesson4/lesson4_remake.html' },
+ { id: 5, title: 'Semantic HTML Web Architecture', url: '/2. partB/lesson5/lesson5_remake.html' },
+ { id: 6, title: 'CSS Colors, Backgrounds & Borders', url: '/2. partB/lesson6/lesson6_remake.html' },
+ { id: 7, title: 'The CSS Box Model & Spacing', url: '/2. partB/lesson7/lesson7_remake.html' },
+ { id: 8, title: 'Modern Flexbox Layout Mastery', url: '/2. partB/lesson8/lesson8_remake.html' },
+ { id: 9, title: 'Responsive CSS Grid Architecture', url: '/2. partB/lesson9/lesson9_remake.html' },
+ { id: 10, title: 'JavaScript Variables & Data Types', url: '/2. partB/lesson10/lesson10_remake.html' },
+ { id: 11, title: 'Functions & Interactive Click Events', url: '/2. partB/lesson11/lesson11_remake.html' },
+ { id: 12, title: 'DOM Manipulation & Dynamic Elements', url: '/2. partB/lesson12/lesson12_remake.html' },
+ { id: 13, title: 'Interactive Forms & Input Validation', url: '/2. partB/lesson13/lesson13_remake.html' },
+ { id: 14, title: 'Asynchronous JavaScript & REST APIs', url: '/2. partB/lesson14/lesson14_remake.html' },
+ { id: 15, title: 'Final Project: Interactive Web App', url: '/2. partB/lesson15/lesson15_remake.html' }
 ];
 
-const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics</title>\n</head>\n<body>\n  <h1>JavaScript Variables</h1>\n  <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n  <script>\n    // 👉 STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n    \n\n    // 👉 STEP 2: Declare let levelNumber = 4 below:\n    \n\n    // 👉 STEP 3: Display message in the #output container below:\n    document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n  </script>\n</body>\n</html>\n";
+const starterCode = "<!DOCTYPE html>\n<html>\n<head>\n <title>JavaScript Basics</title>\n</head>\n<body>\n <h1>JavaScript Variables</h1>\n <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n <script>\n // STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n \n\n // STEP 2: Declare let levelNumber = 4 below:\n \n\n // STEP 3: Display message in the #output container below:\n document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n </script>\n</body>\n</html>\n";
 ---
 
 <LessonLayout
-    title="Project 10: JavaScript Variables & Data Types | Level 4 DOM Dojo"
-    description={"Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console."}
-    levelTag="Level 4 • DOM Dojo"
-    lessonNum={10}
-    lessonTitle="JavaScript Variables & Data Types"
-    xpAmount={100}
-    completionKey="partB_lesson10_remake_complete"
-    nextLessonUrl="/2. partB/lesson11/lesson11_remake.html"
-    hubUrl="/2. partB/hub.html"
-    hubTitle="Level 4 Hub"
-    hubIcon="⚔️"
-    fileTab="index.html"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={level4Lessons}
-    certificateUrl="/2. partB/certificate.html"
-    trackPrefix="partB"
+ title="Project 10: JavaScript Variables & Data Types | Level 4 DOM Dojo"
+ description={"Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console."}
+ levelTag="Level 4 • DOM Dojo"
+ lessonNum={10}
+ lessonTitle="JavaScript Variables & Data Types"
+ xpAmount={100}
+ completionKey="partB_lesson10_remake_complete"
+ nextLessonUrl="/2. partB/lesson11/lesson11_remake.html"
+ hubUrl="/2. partB/hub.html"
+ hubTitle="Level 4 Hub"
+ hubIcon="️"
+ fileTab="index.html"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={level4Lessons}
+ certificateUrl="/2. partB/certificate.html"
+ trackPrefix="partB"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Declare immutable constants and variables (const, let), manage primitive types, and log computed values to the console.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <div class="mission-title-box">
-                    <span style="font-size: 1.25rem;">🎯</span>
-                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
-                </div>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
-                Complete these step-by-step instructions in the code editor on the right:
-            </p>
-            <div id="taskChecklist"></div>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <div class="mission-title-box">
+ <span style="font-size: 1.25rem;"></span>
+ <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;">Your Mission</h3>
+ </div>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 12px 0;">
+ Complete these step-by-step instructions in the code editor on the right:
+ </p>
+ <div id="taskChecklist"></div>
+ </article>
 
-        <!-- 💡 Core Concept & Real-World Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Concept &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Variables are like labeled storage containers in your kitchen. `const` is a sealed jar that cannot be swapped, while `let` is a refillable container.
-            </div>
-        </article>
+ <!-- Core Concept & Real-World Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Concept &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Variables are like labeled storage containers in your kitchen. `const` is a sealed jar that cannot be swapped, while `let` is a refillable container.
+ </div>
+ </article>
 
-        <!-- 🏷️ Core Building Blocks Guide -->
-        <article class="concept-card">
-            <h3><span>🏷️</span> Variable Declaration Keywords</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">How modern JavaScript stores state in memory:</p>
-            <div class="tag-demo">
-                <div class="tag-example">
-                    <div class="tag-code">{"const name = \"Alex\";"}</div>
-                    <div class="tag-result">Constant variable that cannot be reassigned</div>
-                </div>
-                <div class="tag-example">
-                    <div class="tag-code">{"let score = 100;"}</div>
-                    <div class="tag-result">Mutable variable whose value can change</div>
-                </div>
-            </div>
-        </article>
+ <!-- ️ Core Building Blocks Guide -->
+ <article class="concept-card">
+ <h3><span>️</span> Variable Declaration Keywords</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">How modern JavaScript stores state in memory:</p>
+ <div class="tag-demo">
+ <div class="tag-example">
+ <div class="tag-code">{"const name = \"Alex\";"}</div>
+ <div class="tag-result">Constant variable that cannot be reassigned</div>
+ </div>
+ <div class="tag-example">
+ <div class="tag-code">{"let score = 100;"}</div>
+ <div class="tag-result">Mutable variable whose value can change</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 🧩 Architecture Blueprint -->
-        <article class="concept-card">
-            <h3><span>🧩</span> JavaScript Primitive Types</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The primary building block data types in JS:</p>
-            <div class="blueprint-icons-grid">
-                <div class="blueprint-icon-card">
-                    <span class="em">📝</span>
-                    <div class="name">{"String"}</div>
-                    <div class="desc">"Hello World"</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">🔢</span>
-                    <div class="name">{"Number"}</div>
-                    <div class="desc">42, 3.14</div>
-                </div>
-                <div class="blueprint-icon-card">
-                    <span class="em">✅</span>
-                    <div class="name">{"Boolean"}</div>
-                    <div class="desc">true / false</div>
-                </div>
-            </div>
-        </article>
+ <!-- Architecture Blueprint -->
+ <article class="concept-card">
+ <h3><span></span> JavaScript Primitive Types</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 10px 0;">The primary building block data types in JS:</p>
+ <div class="blueprint-icons-grid">
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"String"}</div>
+ <div class="desc">"Hello World"</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"Number"}</div>
+ <div class="desc">42, 3.14</div>
+ </div>
+ <div class="blueprint-icon-card">
+ <span class="em"></span>
+ <div class="name">{"Boolean"}</div>
+ <div class="desc">true / false</div>
+ </div>
+ </div>
+ </article>
 
-        <!-- 💻 Working Reference Code Pattern -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Code Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_10')?.innerText || '')">📋 Copy</button>
-                <pre><code id="refCodeBox_10">{"const learnerName = \"Alex\";\nlet levelNumber = 4;\nconsole.log(learnerName + \" is at Level \" + levelNumber);"}</code></pre>
-            </div>
-        </article>
+ <!-- Working Reference Code Pattern -->
+ <article class="concept-card">
+ <h3><span></span> Reference Code Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">How this architecture looks in real-world code:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('refCodeBox_10')?.innerText || '')"> Copy</button>
+ <pre><code id="refCodeBox_10">{"const learnerName = \"Alex\";\nlet levelNumber = 4;\nconsole.log(learnerName + \" is at Level \" + levelNumber);"}</code></pre>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'partB_lesson10_remake_draft';
-        const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n  <title>JavaScript Basics</title>\n</head>\n<body>\n  <h1>JavaScript Variables</h1>\n  <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n  <script>\n    // 👉 STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n    \n\n    // 👉 STEP 2: Declare let levelNumber = 4 below:\n    \n\n    // 👉 STEP 3: Display message in the #output container below:\n    document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n  <\/script>\n</body>\n</html>\n";
+ const DRAFT_KEY = 'partB_lesson10_remake_draft';
+ const DEFAULT_STARTER = "<!DOCTYPE html>\n<html>\n<head>\n <title>JavaScript Basics</title>\n</head>\n<body>\n <h1>JavaScript Variables</h1>\n <div id=\"output\" style=\"padding: 16px; background: #0f172a; color: #38bdf8; font-family: monospace; border-radius: 8px;\"></div>\n\n <script>\n // STEP 1: Declare const learnerName = \"Alex\" (or your name) below:\n \n\n // STEP 2: Declare let levelNumber = 4 below:\n \n\n // STEP 3: Display message in the #output container below:\n document.getElementById('output').textContent = learnerName + ' is currently mastering Level ' + levelNumber + ' DOM Dojo!';\n <\/script>\n</body>\n</html>\n";
 
-        // 1. Initialize Real-Time Conceptual Checklist
-        DojoEngine.initChecklist([
-            { id: 'const_name', label: '<strong>Step 1:</strong> Declare a <code>const</code> variable named <code>learnerName</code> with a string value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c); } },
-            { id: 'let_level', label: '<strong>Step 2:</strong> Declare a <code>let</code> variable named <code>levelNumber</code> with a number value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /let\s+levelNumber\s*=\s*\d+/i.test(c); } }
-        ], {
-            containerId: 'taskChecklist',
-            submitBtnId: 'checkAnswerBtn',
-            nextBtnId: 'nextLessonBtn',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Conceptual Checklist
+ DojoEngine.initChecklist([
+ { id: 'const_name', label: '<strong>Step 1:</strong> Declare a <code>const</code> variable named <code>learnerName</code> with a string value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /const\s+learnerName\s*=\s*["'][^"']+["']/i.test(c); } },
+ { id: 'let_level', label: '<strong>Step 2:</strong> Declare a <code>let</code> variable named <code>levelNumber</code> with a number value', fn: (code) => { const c = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\r\n]*/g, ''); return /let\s+levelNumber\s*=\s*\d+/i.test(c); } }
+ ], {
+ containerId: 'taskChecklist',
+ submitBtnId: 'checkAnswerBtn',
+ nextBtnId: 'nextLessonBtn',
+ mode: 'html'
+ });
 
-        // 2. Line numbers and scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers and scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Render live preview instantly via srcdoc
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Render live preview instantly via srcdoc
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Intelligent Linter
-            DojoEngine.lint(editor.value, 'html');
+ // Real-Time Intelligent Linter
+ DojoEngine.lint(editor.value, 'html');
 
-            // Real-Time Checklist
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ }
 
-        // 5. Check & Verify Code Action with Empty & Diagnostics Protection
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: 'Project 10: JavaScript Variables & Data Types',
-                    xp: 100,
-                    completionKey: 'partB_lesson10_remake_complete',
-                    nextUrl: '/2. partB/lesson11/lesson11_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action with Empty & Diagnostics Protection
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: 'Project 10: JavaScript Variables & Data Types',
+ xp: 100,
+ completionKey: 'partB_lesson10_remake_complete',
+ nextUrl: '/2. partB/lesson11/lesson11_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

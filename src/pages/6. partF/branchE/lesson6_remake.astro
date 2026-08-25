@@ -2,354 +2,354 @@
 import LessonLayout from '../../../layouts/LessonLayout.astro';
 
 const starterCode = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 220px;
-    background: #0f172a;
-    margin: 0;
-  }
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 220px;
+ background: #0f172a;
+ margin: 0;
+ }
 
-  /* 👉 STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
+ /* STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
 
 
-  .skeleton-card {
-    width: 280px;
-    background: #0b1329;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .skeleton-item {
-    border-radius: 6px;
-    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-    background-size: 200% 100%;
-    /* 👉 STEP 2: Apply animation: shimmer 1.6s infinite linear */
+ .skeleton-card {
+ width: 280px;
+ background: #0b1329;
+ padding: 20px;
+ border-radius: 12px;
+ border: 1px solid #1e293b;
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ }
+ .skeleton-item {
+ border-radius: 6px;
+ background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+ background-size: 200% 100%;
+ /* STEP 2: Apply animation: shimmer 1.6s infinite linear */
 
-  }
+ }
 </style>
 
 <div class="skeleton-card">
-  <div class="skeleton-item" style="height: 100px; width: 100%;"></div>
-  <div class="skeleton-item" style="height: 20px; width: 80%;"></div>
-  <div class="skeleton-item" style="height: 20px; width: 50%;"></div>
+ <div class="skeleton-item" style="height: 100px; width: 100%;"></div>
+ <div class="skeleton-item" style="height: 20px; width: 80%;"></div>
+ <div class="skeleton-item" style="height: 20px; width: 50%;"></div>
 </div>`;
 
 const branchLessons = [
-    {
-        "id": 1,
-        "title": "Transitions 101 & Easing",
-        "url": "/6. partF/branchE/lesson1_remake.html"
-    },
-    {
-        "id": 2,
-        "title": "GPU 2D Transforms",
-        "url": "/6. partF/branchE/lesson2_remake.html"
-    },
-    {
-        "id": 3,
-        "title": "CSS Keyframes (@keyframes)",
-        "url": "/6. partF/branchE/lesson3_remake.html"
-    },
-    {
-        "id": 4,
-        "title": "Cubic-Bézier Spring Physics",
-        "url": "/6. partF/branchE/lesson4_remake.html"
-    },
-    {
-        "id": 5,
-        "title": "Tactile Hover & Active Clicks",
-        "url": "/6. partF/branchE/lesson5_remake.html"
-    },
-    {
-        "id": 6,
-        "title": "Animated Skeletons & Shimmer",
-        "url": "/6. partF/branchE/lesson6_remake.html"
-    },
-    {
-        "id": 7,
-        "title": "Staggered Entrance Cascades",
-        "url": "/6. partF/branchE/lesson7_remake.html"
-    },
-    {
-        "id": 8,
-        "title": "SVG Path Drawing Animations",
-        "url": "/6. partF/branchE/lesson8_remake.html"
-    },
-    {
-        "id": 9,
-        "title": "prefers-reduced-motion A11y",
-        "url": "/6. partF/branchE/lesson9_remake.html"
-    },
-    {
-        "id": 10,
-        "title": "Final Project: Interactive Motion Showcase",
-        "url": "/6. partF/branchE/lesson10_remake.html"
-    }
+ {
+ "id": 1,
+ "title": "Transitions 101 & Easing",
+ "url": "/6. partF/branchE/lesson1_remake.html"
+ },
+ {
+ "id": 2,
+ "title": "GPU 2D Transforms",
+ "url": "/6. partF/branchE/lesson2_remake.html"
+ },
+ {
+ "id": 3,
+ "title": "CSS Keyframes (@keyframes)",
+ "url": "/6. partF/branchE/lesson3_remake.html"
+ },
+ {
+ "id": 4,
+ "title": "Cubic-Bézier Spring Physics",
+ "url": "/6. partF/branchE/lesson4_remake.html"
+ },
+ {
+ "id": 5,
+ "title": "Tactile Hover & Active Clicks",
+ "url": "/6. partF/branchE/lesson5_remake.html"
+ },
+ {
+ "id": 6,
+ "title": "Animated Skeletons & Shimmer",
+ "url": "/6. partF/branchE/lesson6_remake.html"
+ },
+ {
+ "id": 7,
+ "title": "Staggered Entrance Cascades",
+ "url": "/6. partF/branchE/lesson7_remake.html"
+ },
+ {
+ "id": 8,
+ "title": "SVG Path Drawing Animations",
+ "url": "/6. partF/branchE/lesson8_remake.html"
+ },
+ {
+ "id": 9,
+ "title": "prefers-reduced-motion A11y",
+ "url": "/6. partF/branchE/lesson9_remake.html"
+ },
+ {
+ "id": 10,
+ "title": "Final Project: Interactive Motion Showcase",
+ "url": "/6. partF/branchE/lesson10_remake.html"
+ }
 ];
 ---
 
 <LessonLayout
-    title="Milestone 06: Animated Skeletons & Shimmer Waves | Level 7E • CSS Motion"
-    description="Construct high-performance content loading skeletons with an infinite sliding gradient light wave."
-    levelTag="Level 7E • CSS Motion"
-    lessonNum={6}
-    lessonTitle="Animated Skeletons & Shimmer Waves"
-    xpAmount={150}
-    completionKey="partF_branchE_lesson6_complete"
-    nextLessonUrl="/6. partF/branchE/lesson7_remake.html"
-    hubUrl="/6. partF/hub.html"
-    hubTitle="Level 7 Hub"
-    hubIcon="🚀"
-    fileTab="styles.css"
-    starterCode={starterCode}
-    mode="html"
-    jumpLessons={branchLessons}
-    certificateUrl="/6. partF/certificate.html"
-    trackPrefix="partF_branchE"
+ title="Milestone 06: Animated Skeletons & Shimmer Waves | Level 7E • CSS Motion"
+ description="Construct high-performance content loading skeletons with an infinite sliding gradient light wave."
+ levelTag="Level 7E • CSS Motion"
+ lessonNum={6}
+ lessonTitle="Animated Skeletons & Shimmer Waves"
+ xpAmount={150}
+ completionKey="partF_branchE_lesson6_complete"
+ nextLessonUrl="/6. partF/branchE/lesson7_remake.html"
+ hubUrl="/6. partF/hub.html"
+ hubTitle="Level 7 Hub"
+ hubIcon=""
+ fileTab="styles.css"
+ starterCode={starterCode}
+ mode="html"
+ jumpLessons={branchLessons}
+ certificateUrl="/6. partF/certificate.html"
+ trackPrefix="partF_branchE"
 >
-    <!-- Intro Slot -->
-    <p class="lesson-subtitle" slot="intro">
-        Construct high-performance content loading skeletons with an infinite sliding gradient light wave.
-    </p>
+ <!-- Intro Slot -->
+ <p class="lesson-subtitle" slot="intro">
+ Construct high-performance content loading skeletons with an infinite sliding gradient light wave.
+ </p>
 
-    <!-- Concept Slot (Left Pane) -->
-    <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
-        
-        <!-- 🎯 PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
-        <article class="concept-card mission-card">
-            <div class="mission-header">
-                <h3><span>🎯</span> Your Mission</h3>
-                <span class="checklist-counter" id="checklistCounter">0 / 2</span>
-            </div>
-            <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
-                <strong style="color: #334155;">🖼️ Target Goal:</strong>
-                <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
-            </div>
-            <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
-            <div id="taskChecklist"></div>
-        </article>
-        
-        <!-- The Real-World CSS Problem -->
-        <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
-            <h3 style="color: #c2410c;"><span>🚨</span> The Real-World Problem</h3>
-            <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Showing blank white screens or spinning wheels makes perceived load time feel 3x slower. Top companies (YouTube, LinkedIn, Stripe) use skeleton screens so users perceive the page as already loaded.</p>
-        </article>
+ <!-- Concept Slot (Left Pane) -->
+ <div slot="concept" style="display: flex; flex-direction: column; gap: 16px;">
+ 
+ <!-- PROGATE-STYLE TOP MISSION CARD: Immediately informs learner what to do -->
+ <article class="concept-card mission-card">
+ <div class="mission-header">
+ <h3><span></span> Your Mission</h3>
+ <span class="checklist-counter" id="checklistCounter">0 / 2</span>
+ </div>
+ <div class="target-output-preview" style="background: #f1f5f9; border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px 0; border: 1px dashed #94a3b8; font-size: 0.82rem;">
+ <strong style="color: #334155;">️ Target Goal:</strong>
+ <div style="color: #475569; margin-top: 3px;">Live Preview Verification: <code>Interactive CSS Motion &amp; 60 FPS Render</code></div>
+ </div>
+ <p class="mission-subtitle">Follow the step-by-step instructions below in the editor:</p>
+ <div id="taskChecklist"></div>
+ </article>
+ 
+ <!-- The Real-World CSS Problem -->
+ <article class="concept-card" style="background: #fff7ed; border-left: 4px solid #f97316;">
+ <h3 style="color: #c2410c;"><span></span> The Real-World Problem</h3>
+ <p style="color: #9a3412; font-size: 0.88rem; line-height: 1.6; margin: 0;">Showing blank white screens or spinning wheels makes perceived load time feel 3x slower. Top companies (YouTube, LinkedIn, Stripe) use skeleton screens so users perceive the page as already loaded.</p>
+ </article>
 
-        <!-- Core Concept & Analogy -->
-        <article class="concept-card">
-            <h3><span>💡</span> Core Architecture &amp; Mental Model</h3>
-            <div class="analogy-callout">
-                <strong>Real-World Analogy:</strong> Think of an airport baggage conveyor illuminated by a sweeping spotlight beam. Even if your luggage hasn't arrived yet, seeing the light moving across the carousel reassures you that the machine is actively working.
-            </div>
-        </article>
+ <!-- Core Concept & Analogy -->
+ <article class="concept-card">
+ <h3><span></span> Core Architecture &amp; Mental Model</h3>
+ <div class="analogy-callout">
+ <strong>Real-World Analogy:</strong> Think of an airport baggage conveyor illuminated by a sweeping spotlight beam. Even if your luggage hasn't arrived yet, seeing the light moving across the carousel reassures you that the machine is actively working.
+ </div>
+ </article>
 
-        <!-- Syntax & Anatomy Breakdown -->
-        <article class="concept-card">
-            <h3><span>🔬</span> Syntax &amp; Anatomy Breakdown</h3>
-            <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
-                @keyframes shimmerWave &#123;<br/>&nbsp;&nbsp;0% &#123; background-position: 200% 0; &#125;<br/>&nbsp;&nbsp;100% &#123; background-position: -200% 0; &#125;<br/>&#125;<br/><code>background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);</code><br/><code>background-size: 200% 100%;</code>
-            </div>
-        </article>
+ <!-- Syntax & Anatomy Breakdown -->
+ <article class="concept-card">
+ <h3><span></span> Syntax &amp; Anatomy Breakdown</h3>
+ <div style="font-size: 0.85rem; color: #334155; line-height: 1.7;">
+ @keyframes shimmerWave &#123;<br/>&nbsp;&nbsp;0% &#123; background-position: 200% 0; &#125;<br/>&nbsp;&nbsp;100% &#123; background-position: -200% 0; &#125;<br/>&#125;<br/><code>background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);</code><br/><code>background-size: 200% 100%;</code>
+ </div>
+ </article>
 
-        <!-- The VS Code Beginner Trap -->
-        <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
-            <h3 style="color: #b91c1c;"><span>⚠️</span> The Browser &amp; CSS Beginner Trap</h3>
-            <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Make sure you set 'background-size: 200% 100%;'! If background-size is left at default 100%, the gradient will repeat rigidly instead of smoothly sliding across the element.</p>
-        </article>
+ <!-- The VS Code Beginner Trap -->
+ <article class="concept-card" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+ <h3 style="color: #b91c1c;"><span>️</span> The Browser &amp; CSS Beginner Trap</h3>
+ <p style="color: #991b1b; font-size: 0.88rem; line-height: 1.6; margin: 0;">Make sure you set 'background-size: 200% 100%;'! If background-size is left at default 100%, the gradient will repeat rigidly instead of smoothly sliding across the element.</p>
+ </article>
 
-        <!-- Reference Pattern / Starter Code -->
-        <article class="concept-card">
-            <h3><span>💻</span> Reference Pattern</h3>
-            <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
-            <div class="code-snippet-box">
-                <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet">📋 Copy</button>
-                <pre><code id="refCodeBox_branchE_6">&lt;style&gt;
-  body &#123;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 220px;
-    background: #0f172a;
-    margin: 0;
-  &#125;
+ <!-- Reference Pattern / Starter Code -->
+ <article class="concept-card">
+ <h3><span></span> Reference Pattern</h3>
+ <p style="color: #475569; font-size: 0.88rem; margin: 0 0 8px 0;">CSS motion architectural specification:</p>
+ <div class="code-snippet-box">
+ <button class="snippet-copy-btn" type="button" aria-label="Copy code snippet"> Copy</button>
+ <pre><code id="refCodeBox_branchE_6">&lt;style&gt;
+ body &#123;
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 220px;
+ background: #0f172a;
+ margin: 0;
+ &#125;
 
-  /* 👉 STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
+ /* STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
 
 
-  .skeleton-card &#123;
-    width: 280px;
-    background: #0b1329;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  &#125;
-  .skeleton-item &#123;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-    background-size: 200% 100%;
-    /* 👉 STEP 2: Apply animation: shimmer 1.6s infinite linear */
+ .skeleton-card &#123;
+ width: 280px;
+ background: #0b1329;
+ padding: 20px;
+ border-radius: 12px;
+ border: 1px solid #1e293b;
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ &#125;
+ .skeleton-item &#123;
+ border-radius: 6px;
+ background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+ background-size: 200% 100%;
+ /* STEP 2: Apply animation: shimmer 1.6s infinite linear */
 
-  &#125;
+ &#125;
 &lt;/style&gt;
 
 &lt;div class="skeleton-card"&gt;
-  &lt;div class="skeleton-item" style="height: 100px; width: 100%;"&gt;&lt;/div&gt;
-  &lt;div class="skeleton-item" style="height: 20px; width: 80%;"&gt;&lt;/div&gt;
-  &lt;div class="skeleton-item" style="height: 20px; width: 50%;"&gt;&lt;/div&gt;
+ &lt;div class="skeleton-item" style="height: 100px; width: 100%;"&gt;&lt;/div&gt;
+ &lt;div class="skeleton-item" style="height: 20px; width: 80%;"&gt;&lt;/div&gt;
+ &lt;div class="skeleton-item" style="height: 20px; width: 50%;"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </article>
+ </div>
+ </article>
 
-    </div>
+ </div>
 </LessonLayout>
 
 <!-- Client-Side Scripts & Verification Engine -->
 <script>
-    import { DojoEngine } from '../../../scripts/dojo';
+ import { DojoEngine } from '../../../scripts/dojo';
 
-    function initLesson() {
-        const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
-        const lineNumbers = document.getElementById('ideLineNumbers');
-        const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
-        const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
-        const checkBtn = document.getElementById('checkAnswerBtn');
-        const resetBtn = document.getElementById('resetEditorBtn');
+ function initLesson() {
+ const editor = document.getElementById('lessonEditor') as HTMLTextAreaElement | null;
+ const lineNumbers = document.getElementById('ideLineNumbers');
+ const lineNumbersInner = document.getElementById('ideLineNumbersInner') || lineNumbers;
+ const previewIframe = document.getElementById('livePreviewIframe') as HTMLIFrameElement | null;
+ const checkBtn = document.getElementById('checkAnswerBtn');
+ const resetBtn = document.getElementById('resetEditorBtn');
 
-        if (!editor) return;
+ if (!editor) return;
 
-        const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson6';
-        const DEFAULT_STARTER = `<style>
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 220px;
-    background: #0f172a;
-    margin: 0;
-  }
+ const DRAFT_KEY = 'novicodes_draft_partF_branchE_lesson6';
+ const DEFAULT_STARTER = `<style>
+ body {
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 220px;
+ background: #0f172a;
+ margin: 0;
+ }
 
-  /* 👉 STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
+ /* STEP 1: Define @keyframes shimmer with 0% (background-position: 200% 0) and 100% (background-position: -200% 0) */
 
 
-  .skeleton-card {
-    width: 280px;
-    background: #0b1329;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .skeleton-item {
-    border-radius: 6px;
-    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-    background-size: 200% 100%;
-    /* 👉 STEP 2: Apply animation: shimmer 1.6s infinite linear */
+ .skeleton-card {
+ width: 280px;
+ background: #0b1329;
+ padding: 20px;
+ border-radius: 12px;
+ border: 1px solid #1e293b;
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ }
+ .skeleton-item {
+ border-radius: 6px;
+ background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+ background-size: 200% 100%;
+ /* STEP 2: Apply animation: shimmer 1.6s infinite linear */
 
-  }
+ }
 </style>
 
 <div class="skeleton-card">
-  <div class="skeleton-item" style="height: 100px; width: 100%;"></div>
-  <div class="skeleton-item" style="height: 20px; width: 80%;"></div>
-  <div class="skeleton-item" style="height: 20px; width: 50%;"></div>
+ <div class="skeleton-item" style="height: 100px; width: 100%;"></div>
+ <div class="skeleton-item" style="height: 20px; width: 80%;"></div>
+ <div class="skeleton-item" style="height: 20px; width: 50%;"></div>
 </div>`;
 
-        // 1. Initialize Real-Time Checklist
-        DojoEngine.initChecklist([
-            {
-                id: "shimmer-keyframes",
-                label: "Define <code>@keyframes shimmer</code> with <code>background-position: 200% 0</code> to <code>-200% 0</code>",
-                fn: (code) => { try { return Boolean(/@keyframes\s+shimmer[\s\S]*?0%[\s\S]*?background-position\s*:\s*200%[\s\S]*?100%[\s\S]*?background-position\s*:\s*-200%/i.test(code)); } catch(e) { return false; } }
-            },
-            {
-                id: "shimmer-animation",
-                label: "Apply <code>animation: shimmer 1.6s infinite linear;</code> to <code>.skeleton-item</code>",
-                fn: (code) => { try { return Boolean(/\.skeleton-item\s*\{[^}]*animation\s*:[^}]*shimmer[^}]*1\.6s[^}]*infinite[^}]*linear/i.test(code)); } catch(e) { return false; } }
-            }
-        ], {
-            containerId: 'taskChecklist',
-            mode: 'html'
-        });
+ // 1. Initialize Real-Time Checklist
+ DojoEngine.initChecklist([
+ {
+ id: "shimmer-keyframes",
+ label: "Define <code>@keyframes shimmer</code> with <code>background-position: 200% 0</code> to <code>-200% 0</code>",
+ fn: (code) => { try { return Boolean(/@keyframes\s+shimmer[\s\S]*?0%[\s\S]*?background-position\s*:\s*200%[\s\S]*?100%[\s\S]*?background-position\s*:\s*-200%/i.test(code)); } catch(e) { return false; } }
+ },
+ {
+ id: "shimmer-animation",
+ label: "Apply <code>animation: shimmer 1.6s infinite linear;</code> to <code>.skeleton-item</code>",
+ fn: (code) => { try { return Boolean(/\.skeleton-item\s*\{[^}]*animation\s*:[^}]*shimmer[^}]*1\.6s[^}]*infinite[^}]*linear/i.test(code)); } catch(e) { return false; } }
+ }
+ ], {
+ containerId: 'taskChecklist',
+ mode: 'html'
+ });
 
-        // 2. Line numbers & scroll sync
-        function syncScroll() {
-            if (lineNumbersInner && editor) {
-                lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
-            }
-        }
+ // 2. Line numbers & scroll sync
+ function syncScroll() {
+ if (lineNumbersInner && editor) {
+ lineNumbersInner.style.transform = `translateY(-${editor.scrollTop}px)`;
+ }
+ }
 
-        function updateEditor() {
-            if (!editor || !lineNumbersInner) return;
-            const lines = editor.value.split('\n');
-            const lineCount = Math.max(lines.length, 1);
-            lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
-            syncScroll();
+ function updateEditor() {
+ if (!editor || !lineNumbersInner) return;
+ const lines = editor.value.split('\n');
+ const lineCount = Math.max(lines.length, 1);
+ lineNumbersInner.textContent = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+ syncScroll();
 
-            // Real-Time Live Preview in Iframe
-            if (previewIframe) {
-                previewIframe.srcdoc = editor.value;
-            }
+ // Real-Time Live Preview in Iframe
+ if (previewIframe) {
+ previewIframe.srcdoc = editor.value;
+ }
 
-            // Real-Time Checklist Verification
-            DojoEngine.runChecklist(editor.value);
-        }
+ // Real-Time Checklist Verification
+ DojoEngine.runChecklist(editor.value);
+ }
 
-        // 3. Draft Auto-Save & Crash Resilience
-        DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
+ // 3. Draft Auto-Save & Crash Resilience
+ DojoEngine.setupDraftPersistence(editor, DRAFT_KEY, DEFAULT_STARTER, updateEditor);
 
-        editor.addEventListener('scroll', syncScroll);
+ editor.addEventListener('scroll', syncScroll);
 
-        editor.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 2;
-                updateEditor();
-            }
-        });
+ editor.addEventListener('keydown', (e) => {
+ if (e.key === 'Tab') {
+ e.preventDefault();
+ const start = editor.selectionStart;
+ const end = editor.selectionEnd;
+ editor.value = editor.value.substring(0, start) + ' ' + editor.value.substring(end);
+ editor.selectionStart = editor.selectionEnd = start + 2;
+ updateEditor();
+ }
+ });
 
-        // 4. Safe Reset Button Handler
-        if (resetBtn) {
-            DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
-                updateEditor();
-            });
-        }
+ // 4. Safe Reset Button Handler
+ if (resetBtn) {
+ DojoEngine.setupResetButton(resetBtn, editor, DRAFT_KEY, DEFAULT_STARTER, () => {
+ updateEditor();
+ });
+ }
 
-        // 5. Check & Verify Code Action
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                DojoEngine.verifySubmission(editor.value, {
-                    lessonTitle: "Animated Skeletons & Shimmer Waves",
-                    xp: 150,
-                    completionKey: 'partF_branchE_lesson6_complete',
-                    nextUrl: '/6. partF/branchE/lesson7_remake.html',
-                    mode: 'html'
-                });
-            });
-        }
+ // 5. Check & Verify Code Action
+ if (checkBtn) {
+ checkBtn.addEventListener('click', () => {
+ DojoEngine.verifySubmission(editor.value, {
+ lessonTitle: "Animated Skeletons & Shimmer Waves",
+ xp: 150,
+ completionKey: 'partF_branchE_lesson6_complete',
+ nextUrl: '/6. partF/branchE/lesson7_remake.html',
+ mode: 'html'
+ });
+ });
+ }
 
-        // Initial render
-        updateEditor();
-    }
+ // Initial render
+ updateEditor();
+ }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLesson);
-    } else {
-        initLesson();
-    }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', initLesson);
+ } else {
+ initLesson();
+ }
 </script>

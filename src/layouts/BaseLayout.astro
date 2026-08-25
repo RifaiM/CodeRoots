@@ -6,100 +6,100 @@ import PlatformFooter from '../components/PlatformFooter.astro';
 import UserProfileModal from '../components/UserProfileModal.astro';
 
 interface Props {
-    title?: string;
-    description?: string;
-    canonical?: string;
-    ogImage?: string;
-    showHeaderFooter?: boolean;
-    bodyClass?: string;
-    noPageContentWrapper?: boolean;
+ title?: string;
+ description?: string;
+ canonical?: string;
+ ogImage?: string;
+ showHeaderFooter?: boolean;
+ bodyClass?: string;
+ noPageContentWrapper?: boolean;
 }
 
 const {
-    title = 'NoviCodes • Learn Web Development by Doing',
-    description = 'Master web development through interactive in-browser coding practice. 10 structured levels, 103 hands-on challenges in HTML, CSS, JavaScript, React, Next.js, TypeScript, Cloud, SQL, and Python with an instant test runner and verified proof-of-work certificates.',
-    canonical = 'https://novicodes.dev',
-    ogImage = '/assets/og-image.jpg',
-    showHeaderFooter = true,
-    bodyClass = '',
-    noPageContentWrapper = false
+ title = 'NoviCodes • Learn Web Development by Doing',
+ description = 'Master web development through interactive in-browser coding practice. 10 structured levels, 103 hands-on challenges in HTML, CSS, JavaScript, React, Next.js, TypeScript, Cloud, SQL, and Python with an instant test runner and verified proof-of-work certificates.',
+ canonical = 'https://novicodes.dev',
+ ogImage = '/assets/og-image.jpg',
+ showHeaderFooter = true,
+ bodyClass = '',
+ noPageContentWrapper = false
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
-    
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content="learn web development, learn javascript by doing, interactive react tutorials, python coding practice, typescript mastery, css animations, nextjs app router, in-browser code editor, web development roadmap, frontend coding challenges, proof of work certificates" />
-    <meta name="author" content="NoviCodes" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={canonical} />
-    
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:site_name" content="NoviCodes" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="en_US" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonical} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    
-    <!-- JSON-LD Structured Data Schema -->
-    <script type="application/ld+json" is:inline>
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalWebSite",
-        "name": "NoviCodes",
-        "url": "https://novicodes.dev",
-        "description": "Interactive web development learning platform with in-browser coding sandbox, 103 hands-on challenges, and verified proof-of-work certificates.",
-        "inLanguage": "en-US",
-        "educationalLevel": "Beginner to Advanced",
-        "isAccessibleForFree": true,
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
-    
-    <!-- Google Fonts: Technical Field Journal Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet" />
-    
-    <!-- SweetAlert2 CDN -->
-    <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <slot name="head" />
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link rel="icon" type="image/png" href="/assets/favicon.png" />
+ 
+ <title>{title}</title>
+ <meta name="description" content={description} />
+ <meta name="keywords" content="learn web development, learn javascript by doing, interactive react tutorials, python coding practice, typescript mastery, css animations, nextjs app router, in-browser code editor, web development roadmap, frontend coding challenges, proof of work certificates" />
+ <meta name="author" content="NoviCodes" />
+ <meta name="robots" content="index, follow" />
+ <link rel="canonical" href={canonical} />
+ 
+ <!-- Open Graph / Facebook / LinkedIn -->
+ <meta property="og:site_name" content="NoviCodes" />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content={canonical} />
+ <meta property="og:title" content={title} />
+ <meta property="og:description" content={description} />
+ <meta property="og:image" content={ogImage} />
+ <meta property="og:locale" content="en_US" />
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="twitter:url" content={canonical} />
+ <meta name="twitter:title" content={title} />
+ <meta name="twitter:description" content={description} />
+ <meta name="twitter:image" content={ogImage} />
+ 
+ <!-- JSON-LD Structured Data Schema -->
+ <script type="application/ld+json" is:inline>
+ {
+ "@context": "https://schema.org",
+ "@type": "EducationalWebSite",
+ "name": "NoviCodes",
+ "url": "https://novicodes.dev",
+ "description": "Interactive web development learning platform with in-browser coding sandbox, 103 hands-on challenges, and verified proof-of-work certificates.",
+ "inLanguage": "en-US",
+ "educationalLevel": "Beginner to Advanced",
+ "isAccessibleForFree": true,
+ "offers": {
+ "@type": "Offer",
+ "price": "0",
+ "priceCurrency": "USD",
+ "availability": "https://schema.org/InStock"
+ }
+ }
+ </script>
+ 
+ <!-- Google Fonts: Technical Field Journal Typography -->
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet" />
+ 
+ <!-- SweetAlert2 CDN -->
+ <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+ <slot name="head" />
 </head>
 <body class={bodyClass}>
-    <slot name="header" />
-    
-    {noPageContentWrapper ? (
-        <slot />
-    ) : (
-        <main class="page-content">
-            <slot />
-        </main>
-    )}
+ <slot name="header" />
+ 
+ {noPageContentWrapper ? (
+ <slot />
+ ) : (
+ <main class="page-content">
+ <slot />
+ </main>
+ )}
 
-    {showHeaderFooter && <PlatformFooter />}
-    <slot name="footer" />
-    
-    <UserProfileModal />
+ {showHeaderFooter && <PlatformFooter />}
+ <slot name="footer" />
+ 
+ <UserProfileModal />
 </body>
 </html>
