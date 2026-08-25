@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
@@ -31,7 +32,7 @@ const navLinks = [
  
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Foundations Academy • Levels 0–3</span>
+ <span class="hub-badge"><Icon name="book-open" size={14} /> Foundations Academy • Levels 0–3</span>
  <h1>Master Core <span class="typewriter-wrap theme-blue"><span class="typewriter-text" data-phrases='["Building Blocks of Web", "HTML & CSS Box Model", "Flexbox & Grid Layouts", "JavaScript ES6+ Logic", "Web Architecture Models"]' aria-label="Building Blocks of Web">Building Blocks of Web</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Build unbreakable mental models before you start writing complex applications. Learn internet architecture, semantic HTML structure, modern CSS styling, and reactive JavaScript logic with zero setup required.
@@ -50,7 +51,7 @@ const navLinks = [
 
  <!-- Smart Resume CTA -->
  <a href="/1. partA/web_history.html" class="hero-cta-btn" id="heroResumeBtn">
- <span>Start Level 0: Web History </span>
+ <span>Start Level 0: Web History →</span>
  </a>
  </section>
 
@@ -92,7 +93,7 @@ const navLinks = [
  <a href="/1. partA/web_history.html" class="track-hub-card card-l0" id="cardL0">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 0 • Architecture</span>
+ <span class="track-card-level"><Icon name="globe" size={13} /> Level 0 • Architecture</span>
  <span class="track-status-pill available" id="pillL0">UP NEXT</span>
  </div>
  <h3 class="track-card-title">Web History &amp; Core Concepts</h3>
@@ -116,7 +117,7 @@ const navLinks = [
  <a href="/foundations.html?track=html" class="track-hub-card card-l1" id="cardL1">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 1 • Structure</span>
+ <span class="track-card-level"><Icon name="blocks" size={13} /> Level 1 • Structure</span>
  <span class="track-status-pill locked" id="pillL1">LOCKED</span>
  </div>
  <h3 class="track-card-title">HTML5 Structural Foundations</h3>
@@ -140,7 +141,7 @@ const navLinks = [
  <a href="/foundations.html?track=css" class="track-hub-card card-l2" id="cardL2">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 2 • Styling</span>
+ <span class="track-card-level"><Icon name="palette" size={13} /> Level 2 • Styling</span>
  <span class="track-status-pill locked" id="pillL2">LOCKED</span>
  </div>
  <h3 class="track-card-title">Modern CSS3 Styling &amp; Layouts</h3>
@@ -164,7 +165,7 @@ const navLinks = [
  <a href="/foundations.html?track=js" class="track-hub-card card-l3" id="cardL3">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 3 • Logic</span>
+ <span class="track-card-level"><Icon name="zap" size={13} /> Level 3 • Logic</span>
  <span class="track-status-pill locked" id="pillL3">LOCKED</span>
  </div>
  <h3 class="track-card-title">Modern JavaScript (ES6+) Logic</h3>
@@ -197,7 +198,7 @@ const navLinks = [
  <a href="/foundations.html?track=react" class="track-hub-card" id="cardL5">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 5 • Framework</span>
+ <span class="track-card-level"><Icon name="react" size={13} /> Level 5 • Framework</span>
  <span class="track-status-pill available" id="pillL5">AVAILABLE</span>
  </div>
  <h3 class="track-card-title">React &amp; Modern UI Foundations</h3>
@@ -219,7 +220,7 @@ const navLinks = [
  <a href="/foundations.html?track=python" class="track-hub-card" id="cardL6">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 6 • Backend</span>
+ <span class="track-card-level"><Icon name="python" size={13} /> Level 6 • Backend</span>
  <span class="track-status-pill available" id="pillL6">AVAILABLE</span>
  </div>
  <h3 class="track-card-title">Python &amp; Server Logic Foundations</h3>
@@ -376,7 +377,7 @@ const navLinks = [
  <a href="/foundations.html?track=auth" class="track-hub-card" id="cardL9">
  <div>
  <div class="track-hub-header">
- <span class="track-card-level">Level 9 • Security</span>
+ <span class="track-card-level"><Icon name="shield" size={13} /> Level 9 • Security</span>
  <span class="track-status-pill available" id="pillL9">AVAILABLE</span>
  </div>
  <h3 class="track-card-title">User Logins &amp; Security UI Foundations</h3>
