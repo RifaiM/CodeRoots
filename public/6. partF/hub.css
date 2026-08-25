@@ -116,14 +116,13 @@ body {
 
 /* Typewriter Highlight */
 .typewriter-wrap {
- color: var(--accent-color);
- border-bottom: 2px solid var(--accent-color);
- padding-bottom: 1px;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 1px;
 }
 
 .typewriter-cursor {
- color: var(--accent-color);
- animation: blinkCursor 0.8s infinite;
+  color: currentColor;
+  animation: typewriterBlink 0.8s infinite;
 }
 
 @keyframes blinkCursor {

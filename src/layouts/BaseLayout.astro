@@ -102,9 +102,79 @@ const {
  
  <UserProfileModal />
 <script is:inline>
-  if (typeof initHeroTypewriter === 'function') {
-    initHeroTypewriter();
-  }
+(function() {
+    function startTypewriters() {
+        var elements = document.querySelectorAll('.typewriter-text, #typewriterText');
+        if (!elements || elements.length === 0) return;
+
+        var defaultPhrases = [
+            'Doing, Not Just Watching',
+            'Solving 103 Hands-On Challenges',
+            'Mastering React & JavaScript',
+            'Writing Real Code in Browser',
+            'Building Modern Web Interfaces'
+        ];
+
+        elements.forEach(function(el) {
+            if (el._typingActive) return;
+            el._typingActive = true;
+
+            var phrases = defaultPhrases;
+            if (el.dataset && el.dataset.phrases) {
+                try {
+                    var parsed = JSON.parse(el.dataset.phrases);
+                    if (Array.isArray(parsed) && parsed.length > 0) phrases = parsed;
+                } catch (e) {}
+            }
+
+            var pIdx = 0;
+            var cIdx = phrases[0].length;
+            var isDeleting = true;
+            el.textContent = phrases[0];
+
+            function tick() {
+                if (document.hidden) {
+                    setTimeout(tick, 500);
+                    return;
+                }
+
+                var current = phrases[pIdx];
+
+                if (isDeleting) {
+                    cIdx--;
+                    el.textContent = current.substring(0, Math.max(0, cIdx));
+
+                    if (cIdx <= 0) {
+                        isDeleting = false;
+                        pIdx = (pIdx + 1) % phrases.length;
+                        setTimeout(tick, 350);
+                        return;
+                    }
+                    setTimeout(tick, 30);
+                } else {
+                    cIdx++;
+                    el.textContent = current.substring(0, Math.min(current.length, cIdx));
+
+                    if (cIdx >= current.length) {
+                        isDeleting = true;
+                        setTimeout(tick, 2000);
+                        return;
+                    }
+                    setTimeout(tick, 55);
+                }
+            }
+
+            setTimeout(tick, 600);
+        });
+    }
+
+    if (document.readyState !== 'loading') {
+        startTypewriters();
+    } else {
+        document.addEventListener('DOMContentLoaded', startTypewriters);
+    }
+    window.addEventListener('load', startTypewriters);
+})();
 </script>
 </body>
 </html>
