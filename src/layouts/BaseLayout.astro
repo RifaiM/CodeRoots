@@ -101,5 +101,10 @@ const {
  <slot name="footer" />
  
  <UserProfileModal />
+<script is:inline>
+  if (typeof initHeroTypewriter === 'function') {
+    initHeroTypewriter();
+  }
+</script>
 </body>
 </html>

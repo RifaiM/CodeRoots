@@ -35,10 +35,6 @@ function initHeroTypewriter() {
     const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
     if (!elements || elements.length === 0) return;
 
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
-    }
-
     const defaultPhrases = [
         'Doing, Not Just Watching',
         'Solving 103 Hands-On Challenges',
@@ -48,8 +44,8 @@ function initHeroTypewriter() {
     ];
 
     elements.forEach(el => {
-        if (el._typewriterActive) return;
-        el._typewriterActive = true;
+        if (el._typewriterRunning) return;
+        el._typewriterRunning = true;
 
         let phrases = defaultPhrases;
         if (el.dataset && el.dataset.phrases) {
@@ -64,10 +60,10 @@ function initHeroTypewriter() {
         let phraseIdx = 0;
         let charIdx = phrases[0].length;
         let isDeleting = true;
-        const typeSpeed = 50;
+        const typeSpeed = 55;
         const deleteSpeed = 30;
         const pauseEnd = 2000;
-        const pauseStart = 300;
+        const pauseStart = 350;
         let timeoutId = null;
 
         el.textContent = phrases[0];
@@ -104,8 +100,8 @@ function initHeroTypewriter() {
             }
         }
 
-        // Start cycling after a short 800ms initial read pause
-        timeoutId = setTimeout(typeLoop, 800);
+        // Start cycling after 500ms initial read pause
+        timeoutId = setTimeout(typeLoop, 500);
     });
 }
 window.initHeroTypewriter = initHeroTypewriter;
