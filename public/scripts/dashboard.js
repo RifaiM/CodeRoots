@@ -28,81 +28,12 @@ window.addEventListener('storage', () => initUserProgress());
 window.addEventListener('pageshow', () => initUserProgress());
 
 /**
- * Smooth Rotating Skill Suffix Typewriter Engine
- * Accessible, zero-layout-shift, self-healing, works across all browsers & pages
+ * Smooth Rotating Skill Suffix Typewriter Engine Delegation
  */
 function initHeroTypewriter() {
-    const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
-    if (!elements || elements.length === 0) return;
-
-    const defaultPhrases = [
-        'Doing, Not Just Watching',
-        'Solving 103 Hands-On Challenges',
-        'Mastering React & JavaScript',
-        'Writing Real Code in Browser',
-        'Building Modern Web Interfaces'
-    ];
-
-    elements.forEach(el => {
-        if (el._typewriterRunning) return;
-        el._typewriterRunning = true;
-
-        let phrases = defaultPhrases;
-        if (el.dataset && el.dataset.phrases) {
-            try {
-                const parsed = JSON.parse(el.dataset.phrases);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    phrases = parsed;
-                }
-            } catch (e) {}
-        }
-
-        let phraseIdx = 0;
-        let charIdx = phrases[0].length;
-        let isDeleting = true;
-        const typeSpeed = 55;
-        const deleteSpeed = 30;
-        const pauseEnd = 2000;
-        const pauseStart = 350;
-        let timeoutId = null;
-
-        el.textContent = phrases[0];
-
-        function typeLoop() {
-            if (document.hidden) {
-                timeoutId = setTimeout(typeLoop, 500);
-                return;
-            }
-
-            const currentPhrase = phrases[phraseIdx];
-
-            if (isDeleting) {
-                charIdx--;
-                el.textContent = currentPhrase.substring(0, Math.max(0, charIdx));
-
-                if (charIdx <= 0) {
-                    isDeleting = false;
-                    phraseIdx = (phraseIdx + 1) % phrases.length;
-                    timeoutId = setTimeout(typeLoop, pauseStart);
-                    return;
-                }
-                timeoutId = setTimeout(typeLoop, deleteSpeed);
-            } else {
-                charIdx++;
-                el.textContent = currentPhrase.substring(0, Math.min(currentPhrase.length, charIdx));
-
-                if (charIdx >= currentPhrase.length) {
-                    isDeleting = true;
-                    timeoutId = setTimeout(typeLoop, pauseEnd);
-                    return;
-                }
-                timeoutId = setTimeout(typeLoop, typeSpeed);
-            }
-        }
-
-        // Start cycling after 500ms initial read pause
-        timeoutId = setTimeout(typeLoop, 500);
-    });
+    if (typeof window.startNoviTypewriter === 'function') {
+        window.startNoviTypewriter();
+    }
 }
 window.initHeroTypewriter = initHeroTypewriter;
 

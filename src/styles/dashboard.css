@@ -3794,7 +3794,9 @@ a.meta-tag:hover,
     border-bottom: 2px solid currentColor !important;
     padding-bottom: 1px;
     white-space: pre-wrap;
-    transition: color 0.25s ease, border-color 0.25s ease;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
 }
 
 .typewriter-wrap.theme-oxide {
@@ -3832,15 +3834,21 @@ a.meta-tag:hover,
     border-bottom-color: #D97706 !important;
 }
 
+.typewriter-text {
+    text-shadow: none !important;
+    filter: none !important;
+}
+
 .typewriter-cursor {
     display: inline-block;
     margin-left: 2px;
     font-weight: 300;
     color: currentColor !important;
-    animation: typewriterBlink 0.8s infinite;
+    text-shadow: none !important;
+    animation: typewriterStepBlink 0.9s step-start infinite;
 }
 
-@keyframes typewriterBlink {
+@keyframes typewriterStepBlink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
