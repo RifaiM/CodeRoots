@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -30,7 +31,7 @@ const navLinks = [
  
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 4 • JavaScript Widget Dojo</span>
+ <span class="hub-badge"><Icon name="swords" size={14} /> Level 4 • JavaScript Widget Dojo</span>
  <h1>Build 15 Interactive <span class="typewriter-wrap theme-blue"><span class="typewriter-text" data-phrases='["JavaScript Widgets", "Modal Popups & Drawers", "Accordion FAQ Panels", "Tab Content Switchers", "Dynamic Form Validators"]' aria-label="JavaScript Widgets">JavaScript Widgets</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Put HTML, CSS, and JavaScript together step-by-step. Build navigation menus, styled cards, popups, and interactive forms with live visual feedback, and earn your Level 4 Certificate!

@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -30,7 +31,7 @@ const navLinks = [
  
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 6 • Python Backend Dojo</span>
+ <span class="hub-badge"><Icon name="python" size={14} /> Level 6 • Python Backend Dojo</span>
  <h1>Master Python & <span class="typewriter-wrap theme-emerald"><span class="typewriter-text" data-phrases='["Backend API Logic", "Lists & Data Structures", "Object-Oriented Classes", "Secure Password Hashing", "FastAPI REST Endpoints"]' aria-label="Backend API Logic">Backend API Logic</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  See what happens on the server behind the scenes. Learn Python basics, lists and dictionaries, error handling, saving data with SQLite, and creating simple API endpoints right in your browser.

@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -30,7 +31,7 @@ const navLinks = [
  
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 5 • React Component Dojo</span>
+ <span class="hub-badge"><Icon name="react" size={14} /> Level 5 • React Component Dojo</span>
  <h1>Master React 18 & <span class="typewriter-wrap theme-sky"><span class="typewriter-text" data-phrases='["Component Architecture", "Dynamic useState Hooks", "Lifecycle useEffect Feeds", "Custom Hook Systems", "Interactive Task Apps"]' aria-label="Component Architecture">Component Architecture</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Learn how modern websites are built. Master React components, pass data with props, manage dynamic state with useState, fetch live APIs with useEffect, and build a task tracker across 15 guided exercises.

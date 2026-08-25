@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -28,7 +29,7 @@ const navLinks = [
  <main class="hub-container">
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 10 • SaaS Dashboard UI</span>
+ <span class="hub-badge"><Icon name="crown" size={14} /> Level 10 • SaaS Dashboard UI</span>
  <h1>Build Modern SaaS <span class="typewriter-wrap theme-amber"><span class="typewriter-text" data-phrases='["Dashboard Interfaces", "Modular Sidebar Shells", "Debounced Live Search", "Subscription Pricing Cards", "AI Chat Assistant Panels"]' aria-label="Dashboard Interfaces">Dashboard Interfaces</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Your graduation lesson! Put everything together to build a complete dashboard interface: sidebar navigation shell, snappy search filters, an interactive pricing & upgrade table, and a smart AI helper panel.

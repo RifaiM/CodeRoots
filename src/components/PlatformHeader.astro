@@ -67,17 +67,11 @@ const {
  title={link.title || link.label}
  onclick={link.onClick}
  >
- {link.icon && (
- <span class="nav-icon">
- {link.icon === '️' && <Icon name="map" size={15} />}
- {link.icon === '' && <Icon name="book-open" size={15} />}
- {link.icon === '️' && <Icon name="swords" size={15} />}
- {link.icon === '' && <Icon name="certificate" size={15} />}
- {link.icon === '' && <Icon name="home" size={15} />}
- {link.icon === '' && <Icon name="flame" size={15} />}
- {!['️', '', '️', '', '', ''].includes(link.icon) && link.icon}
- </span>
- )}
+ {(link.iconName || link.icon) && (
+                    <span class="nav-icon">
+                        <Icon name={link.iconName || (link.icon === 'map' ? 'map' : link.icon === 'book-open' ? 'book-open' : link.icon === 'swords' ? 'swords' : link.icon === 'certificate' ? 'certificate' : link.label.toLowerCase().includes('road') ? 'map' : link.label.toLowerCase().includes('found') ? 'book-open' : link.label.toLowerCase().includes('dojo') ? 'swords' : link.label.toLowerCase().includes('cert') ? 'certificate' : 'sparkles')} size={15} />
+                    </span>
+                )}
  <span class="nav-text">{link.label}</span>
  </a>
  ))}
@@ -141,7 +135,7 @@ const {
  onclick="if(typeof openStreakModal==='function') openStreakModal();" 
  style="cursor: pointer;"
  >
- <span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span>d<span class="streak-days-text">&nbsp;streak</span></span>
+ <Icon name="flame" size={14} color="#A33B24" style="margin-right: 4px;" /><span class="badge-label" id="userStreakLabel"><span class="streak-num-val">0</span>d<span class="streak-days-text">&nbsp;streak</span></span>
  </div>
  )}
 
@@ -152,7 +146,7 @@ const {
  onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
  style="cursor: pointer;"
  >
- <span class="badge-label" id="userXpLabel">0 XP</span>
+ <Icon name="zap" size={13} color="#2563eb" style="margin-right: 4px;" /><span class="badge-label" id="userXpLabel">0 XP</span>
  </div>
  )}
 
@@ -163,7 +157,7 @@ const {
  onclick="if(typeof openUserProfileModal==='function') openUserProfileModal();" 
  style="cursor: pointer;"
  >
- <span class="badge-label" id="userRankLabel">Novice</span>
+ <Icon name="shield" size={13} color="#10b981" style="margin-right: 4px;" /><span class="badge-label" id="userRankLabel">Novice</span>
  </div>
  )}
  </div>

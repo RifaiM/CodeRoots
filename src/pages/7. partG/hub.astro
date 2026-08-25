@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -28,7 +29,7 @@ const navLinks = [
  <main class="hub-container">
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 8 • Async UI &amp; Live Data</span>
+ <span class="hub-badge"><Icon name="pulse" size={14} /> Level 8 • Async UI &amp; Live Data</span>
  <h1>Master Modern <span class="typewriter-wrap theme-blue"><span class="typewriter-text" data-phrases='["Async UI & Live Data", "Skeleton Loading States", "Optimistic Mutations", "Retry Error Boundaries", "Real-Time Feed Polling"]' aria-label="Async UI & Live Data">Async UI &amp; Live Data</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Learn how to make modern web apps feel instant. Handle network delays, loading skeletons, error screens with retry buttons, optimistic updates, and background data polling.

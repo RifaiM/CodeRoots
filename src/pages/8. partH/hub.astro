@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PlatformHeader from '../../components/PlatformHeader.astro';
+import Icon from '../../components/Icon.astro';
 import PlatformFooter from '../../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '/', label: 'Roadmap', icon: '️', title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -28,7 +29,7 @@ const navLinks = [
  <main class="hub-container">
  <!-- Hero Section -->
  <section class="hub-hero">
- <span class="hub-badge">Level 9 • User Logins &amp; Auth</span>
+ <span class="hub-badge"><Icon name="shield" size={14} /> Level 9 • User Logins &amp; Auth</span>
  <h1>Master Modern <span class="typewriter-wrap theme-purple"><span class="typewriter-text" data-phrases='["User Logins & Auth", "JWT Token Storage", "Global Session Context", "Protected Route Guards", "Role Permissions (RBAC)"]' aria-label="User Logins & Auth">User Logins &amp; Auth</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
  <p>
  Learn how to build secure login experiences in client-side web apps. Master JWT token storage, global React auth state, protecting private pages, and showing admin-only features.

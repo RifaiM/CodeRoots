@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PlatformHeader from '../components/PlatformHeader.astro';
+import Icon from '../components/Icon.astro';
 import PlatformFooter from '../components/PlatformFooter.astro';
 
 const navLinks = [
- { href: '#roadmap', label: 'Roadmap', icon: '️', active: true, title: 'Curriculum Roadmap' },
- { href: '/1. partA/hub.html', label: 'Foundations', icon: '', title: 'Foundations Academy' },
- { href: 'javascript:void(0)', label: 'Dojo', icon: '️', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
- { href: 'javascript:void(0)', label: 'Certs', icon: '', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
+    { href: '/', label: 'Roadmap', iconName: 'map', title: 'Curriculum Roadmap' },
+    { href: '/1. partA/hub.html', label: 'Foundations', iconName: 'book-open', title: 'Foundations Academy' },
+    { href: 'javascript:void(0)', label: 'Dojo', iconName: 'swords', title: 'Practical Dojo Hub', id: 'dojoNavLink', extraClass: 'dojo-nav-highlight', onClick: 'openDojoHub()' },
+    { href: 'javascript:void(0)', label: 'Certs', iconName: 'certificate', title: 'Proof-of-Work Certificates', id: 'certificateNavLink', onClick: 'openCertificateHub()' }
 ];
 ---
 
@@ -42,10 +43,10 @@ const navLinks = [
  </p>
  <div class="hero-actions-row">
  <a href="/2. partB/lesson1/lesson1_remake.html" class="track-btn primary-btn" style="width: auto; padding: 10px 22px;">
- <span>BEGIN LESSON 01 →</span>
+ <span><Icon name="zap" size={15} color="currentColor" /> BEGIN LESSON 01 →</span>
  </a>
  <a href="#roadmap" class="track-btn secondary-btn" style="width: auto; padding: 10px 18px;">
- <span>VIEW CURRICULUM INDEX ↓</span>
+ <span><Icon name="map" size={15} color="currentColor" /> VIEW CURRICULUM INDEX ↓</span>
  </a>
  </div>
  </div>
@@ -67,7 +68,7 @@ const navLinks = [
  <!-- Skill Tree Roadmap Section -->
  <section class="roadmap-section" id="roadmap">
  <div class="section-header">
- <h2>01 / Curriculum Archive</h2>
+ <h2><Icon name="map" size={22} color="var(--accent-oxide, #A33B24)" /> 01 / Curriculum Archive</h2>
  <span class="section-meta">10 Levels • 103 Exercises</span>
  </div>
 
@@ -112,7 +113,7 @@ const navLinks = [
  <!-- Track 0: Concepts & Web History -->
  <article class="track-card foundations-track gsap-reveal" data-category="foundations">
  <div class="card-top">
- <span class="track-level-badge">Level 00</span>
+ <span class="track-level-badge"><Icon name="globe" size={14} /> Level 00</span>
  <span class="track-status-icon ready">+250 XP</span>
  </div>
  <h3 class="card-title">How the Internet &amp; Websites Work</h3>
@@ -131,7 +132,7 @@ const navLinks = [
  <!-- Track 1: HTML5 Structural Mastery -->
  <article class="track-card foundations-track gsap-reveal" data-category="foundations">
  <div class="card-top">
- <span class="track-level-badge">Level 01</span>
+ <span class="track-level-badge"><Icon name="blocks" size={14} /> Level 01</span>
  <span class="track-status-icon ready">+300 XP</span>
  </div>
  <h3 class="card-title">HTML: Document Structure</h3>
@@ -150,7 +151,7 @@ const navLinks = [
  <!-- Track 2: CSS3 & Utility Styling -->
  <article class="track-card foundations-track gsap-reveal" data-category="foundations">
  <div class="card-top">
- <span class="track-level-badge">Level 02</span>
+ <span class="track-level-badge"><Icon name="palette" size={14} /> Level 02</span>
  <span class="track-status-icon ready">+300 XP</span>
  </div>
  <h3 class="card-title">CSS: Box Model &amp; Flexbox</h3>
@@ -169,7 +170,7 @@ const navLinks = [
  <!-- Track 3: Modern JavaScript (ES6+) -->
  <article class="track-card foundations-track gsap-reveal" data-category="foundations">
  <div class="card-top">
- <span class="track-level-badge">Level 03</span>
+ <span class="track-level-badge"><Icon name="zap" size={14} /> Level 03</span>
  <span class="track-status-icon ready">+400 XP</span>
  </div>
  <h3 class="card-title">JavaScript: Adding Interactivity</h3>
@@ -188,7 +189,7 @@ const navLinks = [
  <!-- Track 4: Practical Dojo Projects -->
  <article class="track-card dojo-track gsap-reveal" data-category="dojo">
  <div class="card-top">
- <span class="track-level-badge highlight-gold">Level 04</span>
+ <span class="track-level-badge highlight-gold"><Icon name="swords" size={14} /> Level 04</span>
  <span class="track-status-icon ready">+1,500 XP</span>
  </div>
  <h3 class="card-title">Vanilla JavaScript Widget Dojo</h3>
@@ -207,7 +208,7 @@ const navLinks = [
  <!-- Track 5: Framework Dojo (React) -->
  <article class="track-card dojo-track gsap-reveal" data-category="dojo">
  <div class="card-top">
- <span class="track-level-badge">Level 05</span>
+ <span class="track-level-badge"><Icon name="react" size={14} /> Level 05</span>
  <span class="track-status-icon ready">+2,250 XP</span>
  </div>
  <h3 class="card-title">React: Modern Component Dojo</h3>
@@ -231,7 +232,7 @@ const navLinks = [
  <!-- BONUS ARCADE MODE: DevType Dojo -->
  <article class="track-card dojo-track gsap-reveal" data-category="dojo">
  <div class="card-top">
- <span class="track-level-badge">Arcade</span>
+ <span class="track-level-badge"><Icon name="gamepad" size={14} /> Arcade</span>
  <span class="track-status-icon ready">Speedrun</span>
  </div>
  <h3 class="card-title">DevType: Code Typing Speedrun</h3>
@@ -250,7 +251,7 @@ const navLinks = [
  <!-- Track 6: Python & Backend Architecture Dojo -->
  <article class="track-card dojo-track gsap-reveal" data-category="dojo">
  <div class="card-top">
- <span class="track-level-badge">Level 06</span>
+ <span class="track-level-badge"><Icon name="python" size={14} /> Level 06</span>
  <span class="track-status-icon ready">+3,000 XP</span>
  </div>
  <h3 class="card-title">Python &amp; Backend Basics</h3>
@@ -274,7 +275,7 @@ const navLinks = [
  <!-- Track 7: Mastery Specialization Hub -->
  <article class="track-card advanced-track gsap-reveal" data-category="advanced">
  <div class="card-top">
- <span class="track-level-badge">Level 07</span>
+ <span class="track-level-badge"><Icon name="rocket" size={14} /> Level 07</span>
  <span class="track-status-icon ready">5 Tracks</span>
  </div>
  <h3 class="card-title">Specialized Developer Tracks</h3>
@@ -301,7 +302,7 @@ const navLinks = [
  <!-- Track 8: Async UI & Live Data Patterns -->
  <article class="track-card advanced-track gsap-reveal" data-category="advanced">
  <div class="card-top">
- <span class="track-level-badge">Level 08</span>
+ <span class="track-level-badge"><Icon name="pulse" size={14} /> Level 08</span>
  <span class="track-status-icon ready">+1,500 XP</span>
  </div>
  <h3 class="card-title">Polished UI: Loading &amp; Error States</h3>
@@ -325,7 +326,7 @@ const navLinks = [
  <!-- Track 9: React Auth & Permission Gates -->
  <article class="track-card advanced-track gsap-reveal" data-category="advanced">
  <div class="card-top">
- <span class="track-level-badge">Level 09</span>
+ <span class="track-level-badge"><Icon name="shield" size={14} /> Level 09</span>
  <span class="track-status-icon ready">+1,500 XP</span>
  </div>
  <h3 class="card-title">Authentication &amp; Protected Routes</h3>
@@ -349,7 +350,7 @@ const navLinks = [
  <!-- Track 10: SaaS UI & Design Systems -->
  <article class="track-card advanced-track gsap-reveal" data-category="advanced">
  <div class="card-top">
- <span class="track-level-badge highlight-gold">Level 10</span>
+ <span class="track-level-badge highlight-gold"><Icon name="crown" size={14} /> Level 10</span>
  <span class="track-status-icon ready">Final Track</span>
  </div>
  <h3 class="card-title">SaaS Dashboard UI &amp; Widgets</h3>
