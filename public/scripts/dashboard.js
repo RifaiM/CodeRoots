@@ -535,15 +535,14 @@ function initUserProgress() {
 
  // Navbar Practical Dojo Link Control (Only #dojoNavLink opens Hub Modal)
  const dojoNavLinks = document.querySelectorAll('#dojoNavLink');
- dojoNavLinks.forEach(dojoLink => {
- dojoLink.classList.remove('dojo-locked');
- dojoLink.innerHTML = '<span class="nav-icon">️</span><span class="nav-text">&nbsp;Practical Dojo</span>';
- dojoLink.title = 'Practical Dojo Hub';
- dojoLink.onclick = (e) => {
- e.preventDefault();
- openDojoHub();
- };
- });
+    dojoNavLinks.forEach(dojoLink => {
+        dojoLink.classList.remove('dojo-locked');
+        dojoLink.title = 'Practical Dojo Hub';
+        dojoLink.onclick = (e) => {
+            e.preventDefault();
+            openDojoHub();
+        };
+    });
 }
 
 function updateTrackCardState(card, statusIcon, btn, isCompleted, progressInfo, linkUrl, trackName) {

@@ -3787,7 +3787,7 @@ a.meta-tag:hover,
 
 
 
-/* Universal Rotating Typewriter Engine Styles */
+/* Universal Rotating Typewriter Engine Styles (Zero Layout Shift) */
 .typewriter-wrap {
     display: inline-block;
     color: var(--accent-color, var(--accent-oxide, #A33B24));
@@ -3797,6 +3797,8 @@ a.meta-tag:hover,
     text-shadow: none !important;
     box-shadow: none !important;
     filter: none !important;
+    min-height: 1.15em;
+    vertical-align: text-bottom;
 }
 
 .typewriter-wrap.theme-oxide {
@@ -3837,6 +3839,8 @@ a.meta-tag:hover,
 .typewriter-text {
     text-shadow: none !important;
     filter: none !important;
+    display: inline-block;
+    min-height: 1.15em;
 }
 
 .typewriter-cursor {
