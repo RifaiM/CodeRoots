@@ -3758,43 +3758,18 @@ a.meta-tag:hover,
 /* Universal Rotating Typewriter Engine Styles */
 .typewriter-wrap {
     display: inline-block;
-    color: var(--accent-oxide, #A33B24);
-    border-bottom: 2px solid var(--accent-oxide, #A33B24);
-    padding-bottom: 2px;
+    color: var(--accent-oxide, #A33B24) !important;
+    border-bottom: 2px solid var(--accent-oxide, #A33B24) !important;
+    padding-bottom: 1px;
     white-space: pre-wrap;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.typewriter-wrap.theme-blue {
-    color: #2563eb !important;
-    border-color: #2563eb !important;
-}
-
-.typewriter-wrap.theme-sky {
-    color: #0284c7 !important;
-    border-color: #0284c7 !important;
-}
-
-.typewriter-wrap.theme-emerald {
-    color: #059669 !important;
-    border-color: #059669 !important;
-}
-
-.typewriter-wrap.theme-purple {
-    color: #7c3aed !important;
-    border-color: #7c3aed !important;
-}
-
-.typewriter-wrap.theme-amber {
-    color: #d97706 !important;
-    border-color: #d97706 !important;
+    transition: all 0.2s ease;
 }
 
 .typewriter-cursor {
     display: inline-block;
     margin-left: 2px;
     font-weight: 300;
-    color: currentColor;
+    color: var(--accent-oxide, #A33B24) !important;
     animation: typewriterBlink 0.8s infinite;
 }
 

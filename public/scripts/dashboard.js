@@ -6,14 +6,14 @@
  ========================================================================== */
 
 function bootDashboard() {
-    initDashboardSecurity();
-    initUserProgress();
-    initGSAPAnimations();
-    initMobileSegmentedFilter();
-    initGlobalBackToTop();
-    initFAQAccordion();
-    initHashNavigation();
-    initHeroTypewriter();
+    try { initDashboardSecurity(); } catch (e) { console.warn('Dashboard security init error:', e); }
+    try { initUserProgress(); } catch (e) { console.warn('User progress init error:', e); }
+    try { initGSAPAnimations(); } catch (e) { console.warn('GSAP init error:', e); }
+    try { initMobileSegmentedFilter(); } catch (e) { console.warn('Filter init error:', e); }
+    try { initGlobalBackToTop(); } catch (e) { console.warn('Back to top init error:', e); }
+    try { initFAQAccordion(); } catch (e) { console.warn('FAQ init error:', e); }
+    try { initHashNavigation(); } catch (e) { console.warn('Hash nav init error:', e); }
+    try { initHeroTypewriter(); } catch (e) { console.warn('Typewriter init error:', e); }
 }
 
 if (document.readyState === 'loading') {
@@ -64,9 +64,10 @@ function initHeroTypewriter() {
         let phraseIdx = 0;
         let charIdx = phrases[0].length;
         let isDeleting = true;
-        let typingSpeed = 65;
-        const pauseEnd = 2200;
-        const pauseStart = 400;
+        const typeSpeed = 50;
+        const deleteSpeed = 30;
+        const pauseEnd = 2000;
+        const pauseStart = 300;
         let timeoutId = null;
 
         el.textContent = phrases[0];
@@ -81,8 +82,7 @@ function initHeroTypewriter() {
 
             if (isDeleting) {
                 charIdx--;
-                el.textContent = currentPhrase.substring(0, charIdx);
-                typingSpeed = 35;
+                el.textContent = currentPhrase.substring(0, Math.max(0, charIdx));
 
                 if (charIdx <= 0) {
                     isDeleting = false;
@@ -90,22 +90,22 @@ function initHeroTypewriter() {
                     timeoutId = setTimeout(typeLoop, pauseStart);
                     return;
                 }
+                timeoutId = setTimeout(typeLoop, deleteSpeed);
             } else {
                 charIdx++;
-                el.textContent = currentPhrase.substring(0, charIdx);
-                typingSpeed = 60;
+                el.textContent = currentPhrase.substring(0, Math.min(currentPhrase.length, charIdx));
 
                 if (charIdx >= currentPhrase.length) {
                     isDeleting = true;
                     timeoutId = setTimeout(typeLoop, pauseEnd);
                     return;
                 }
+                timeoutId = setTimeout(typeLoop, typeSpeed);
             }
-
-            timeoutId = setTimeout(typeLoop, typingSpeed);
         }
 
-        timeoutId = setTimeout(typeLoop, pauseEnd);
+        // Start cycling after a short 800ms initial read pause
+        timeoutId = setTimeout(typeLoop, 800);
     });
 }
 window.initHeroTypewriter = initHeroTypewriter;
