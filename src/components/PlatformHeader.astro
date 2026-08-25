@@ -59,22 +59,33 @@ const {
 
  <!-- Header Nav Links & Jump to Lesson Dropdown -->
  <nav class="header-nav-links" aria-label="Main Navigation">
- {navLinks.map(link => (
- <a 
- href={link.href} 
- id={link.id}
- class={`nav-link ${link.active ? 'active' : ''} ${link.extraClass || ''}`}
- title={link.title || link.label}
- onclick={link.onClick}
- >
- {(link.iconName || link.icon) && (
-                    <span class="nav-icon">
-                        <Icon name={link.iconName || (link.icon === 'map' ? 'map' : link.icon === 'book-open' ? 'book-open' : link.icon === 'swords' ? 'swords' : link.icon === 'certificate' ? 'certificate' : link.label.toLowerCase().includes('road') ? 'map' : link.label.toLowerCase().includes('found') ? 'book-open' : link.label.toLowerCase().includes('dojo') ? 'swords' : link.label.toLowerCase().includes('cert') ? 'certificate' : 'sparkles')} size={15} />
-                    </span>
-                )}
- <span class="nav-text">{link.label}</span>
- </a>
- ))}
+ {navLinks.map(link => {
+                    const iconName = link.iconName || (
+                        link.icon === 'map' ? 'map' :
+                        link.icon === 'book-open' ? 'book-open' :
+                        link.icon === 'swords' ? 'swords' :
+                        link.icon === 'certificate' ? 'certificate' :
+                        link.label.toLowerCase().includes('road') ? 'map' :
+                        link.label.toLowerCase().includes('found') ? 'book-open' :
+                        link.label.toLowerCase().includes('dojo') ? 'swords' :
+                        link.label.toLowerCase().includes('cert') ? 'certificate' :
+                        'sparkles'
+                    );
+                    return (
+                        <a 
+                            href={link.href} 
+                            id={link.id}
+                            class={`nav-link ${link.active ? 'active' : ''} ${link.extraClass || ''}`}
+                            title={link.title || link.label}
+                            onclick={link.onClick}
+                        >
+                            <span class="nav-icon" aria-hidden="true">
+                                <Icon name={iconName} size={15} />
+                            </span>
+                            <span class="nav-text">{link.label}</span>
+                        </a>
+                    );
+                })}
 
  <!-- Interactive Jump to Lesson Drawer Button -->
  {showJumpDropdown && jumpLessons.length > 0 && (
