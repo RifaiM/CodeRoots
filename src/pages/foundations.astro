@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import PlatformHeader from '../components/PlatformHeader.astro';
 import PlatformFooter from '../components/PlatformFooter.astro';
 
@@ -100,7 +101,7 @@ const navLinks = [
  <!-- Instant Concept Search & Filter Bar -->
  <div class="concept-search-bar-wrap">
  <div class="concept-search-bar">
- <span class="search-icon"></span>
+ <span class="search-icon"><Icon name="target" size={16} /></span>
  <input type="text" id="conceptSearchInput" placeholder="Quick find concepts in this track (e.g. useState, Box Model, Async)..." aria-label="Search Concepts in this Track" />
  <button type="button" id="clearConceptSearchBtn" class="clear-search-btn" style="display: none;" title="Clear search"></button>
  </div>
@@ -118,7 +119,7 @@ const navLinks = [
  <h2> Interactive Terms &amp; Glossary Bank</h2>
  <p>Search and filter core web development terminology with real-world analogies.</p>
  <div class="glossary-search-bar">
- <span class="search-icon"></span>
+ <span class="search-icon"><Icon name="target" size={16} /></span>
  <input type="text" id="glossarySearchInput" placeholder="Search terms (e.g. DOM, Tag, Flexbox, Variable)..." aria-label="Search Glossary Terms" />
  <button type="button" id="clearGlossarySearchBtn" class="clear-search-btn" style="display: none;" title="Clear search"></button>
  </div>

@@ -12,168 +12,536 @@ const navLinks = [
 ];
 ---
 
-<BaseLayout
- title="Level 7: Specialized Web Tracks (18 Projects) | NoviCodes"
- description="Specialize in Cloud Hosting configs (Vercel/Render), SQL database schemas (PostgreSQL), and Next.js App Router UI across 18 focused coding lessons."
- showHeaderFooter={false}
+<BaseLayout 
+	title="Level 7: Specialized Web Tracks (40 Projects) | NoviCodes" 
+	description="Specialize in Cloud Hosting configs (Vercel/Render), SQL database schemas (PostgreSQL), Next.js App Router UI, TypeScript Type-Safety, and CSS Motion across 40 focused coding lessons."
+	showHeaderFooter={false}
 >
- <!-- Top Global Header -->
- <PlatformHeader 
- slot="header"
- tagText="Specialization"
- tagId="headerLogoTag"
- navLinks={navLinks}
- showXpBadge={true}
- showLevelBadge={true}
- />
+	<!-- Top Global Header -->
+	<PlatformHeader 
+		slot="header"
+		tagText="Specialization"
+		tagId="headerLogoTag"
+		navLinks={navLinks}
+		showXpBadge={true}
+		showLevelBadge={true}
+	/>
 
- <main class="hub-container">
- <!-- Hero Banner -->
- <section class="hub-hero">
- <span class="level7-badge">Level 7 • Specialized Developer Tracks</span>
- <h1>Choose Your <span class="typewriter-wrap theme-purple"><span class="typewriter-text" data-phrases='["Specialized Developer Track", "CSS Animations & Micro-Interactions", "TypeScript & Type-Safe Code", "Next.js App Router Architecture", "Cloud Hosting & CI/CD Pipelines", "SQL Databases & Relational Queries"]' aria-label="Specialized Developer Track">Specialized Developer Track</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
- <p>
- Pick the track you want to explore next: CSS Animations &amp; Micro-Interactions, TypeScript Mastery, Cloud Hosting &amp; CI/CD Pipelines, SQL Databases, or Modern Next.js Web Apps. Complete any track to earn your Level 7 Certificate!
- </p>
- <div class="hub-stats-row">
- <span class="stat-pill">Track 7A: Cloud Hosting (1,500 XP)</span>
- <span class="stat-pill">Track 7B: SQL Databases (1,500 XP)</span>
- <span class="stat-pill">Track 7C: Next.js Apps (1,500 XP)</span>
- <span class="stat-pill">Track 7D: TypeScript (1,800 XP)</span>
- <span class="stat-pill">Track 7E: CSS Motion (1,500 XP)</span>
- </div>
- </section>
+	<main class="hub-container">
+		<!-- Hero Banner -->
+		<section class="hub-hero">
+			<span class="level7-badge"><Icon name="rocket" size={14} /> Level 7 • Specialized Developer Tracks</span>
+			<h1>Choose Your <span class="typewriter-wrap theme-purple"><span class="typewriter-text" data-phrases='["Specialized Developer Track", "CSS Animations & Micro-Interactions", "TypeScript & Type-Safe Code", "Next.js App Router Architecture", "Cloud Hosting & CI/CD Pipelines", "SQL Databases & Relational Queries"]' aria-label="Specialized Developer Track">Specialized Developer Track</span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
+			<p>
+				Pick the track you want to explore next: CSS Animations &amp; Micro-Interactions, TypeScript Mastery, Cloud Hosting &amp; CI/CD Pipelines, SQL Databases, or Modern Next.js Web Apps. Complete any track to earn your Level 7 Certificate!
+			</p>
+			<div class="hub-stats-row">
+				<span class="stat-pill"><Icon name="cloud" size={13} /> Track 7A: Cloud Hosting (1,500 XP)</span>
+				<span class="stat-pill"><Icon name="database" size={13} /> Track 7B: SQL Databases (1,500 XP)</span>
+				<span class="stat-pill"><Icon name="nextjs" size={13} /> Track 7C: Next.js Apps (1,500 XP)</span>
+				<span class="stat-pill"><Icon name="variable" size={13} /> Track 7D: TypeScript (1,800 XP)</span>
+				<span class="stat-pill"><Icon name="pulse" size={13} /> Track 7E: CSS Motion (1,500 XP)</span>
+			</div>
+		</section>
 
- <!-- Branch Selector Grid -->
- <section class="branch-grid">
- 
- <!-- Branch 7A: Cloud Shipping & DevOps -->
- <article class="branch-card card-cloud">
- <div>
- <div class="branch-card-header">
- <div class="branch-icon-box"><Icon name="pulse" size={24} color="#ec4899" /></div>
- <span class="branch-tag">Track 7E</span>
- </div>
- <h2 class="branch-title">CSS Animations &amp; Micro-Interactions</h2>
- <p class="branch-desc">
- Craft fluid, hardware-accelerated web experiences. Master transitions, 2D GPU transforms, keyframes, spring physics, tactile buttons, skeleton shimmers, and SVG path drawing.
- </p>
- <div class="branch-meta-list">
- <span class="branch-meta-item">GPU Transforms</span>
- <span class="branch-meta-item">@keyframes</span>
- <span class="branch-meta-item">Spring Physics</span>
- <span class="branch-meta-item">Micro-Interactions</span>
- <span class="branch-meta-item">prefers-reduced-motion</span>
- </div>
+		<!-- Branch Selector Grid -->
+		<section class="branch-grid">
+			
+			<!-- Branch 7A: Cloud Shipping & DevOps -->
+			<article class="branch-card card-cloud">
+				<div>
+					<div class="branch-card-header">
+						<div class="branch-icon-box"><Icon name="cloud" size={24} color="#8b5cf6" /></div>
+						<span class="branch-tag">Track 7A</span>
+					</div>
+					<h2 class="branch-title">Cloud Hosting &amp; CI/CD Pipelines</h2>
+					<p class="branch-desc">
+						Master Git workflows and write cloud hosting configuration manifests for Vercel, Cloudflare Pages, Netlify, and Render.
+					</p>
+					<div class="branch-meta-list">
+						<span class="branch-meta-item"><Icon name="network" size={12} /> Git / GitHub</span>
+						<span class="branch-meta-item"><Icon name="cloud" size={12} /> Vercel &amp; Netlify</span>
+						<span class="branch-meta-item"><Icon name="globe" size={12} /> Cloudflare Pages</span>
+						<span class="branch-meta-item"><Icon name="server" size={12} /> Render API</span>
+						<span class="branch-meta-item"><Icon name="zap" size={12} /> CI/CD</span>
+					</div>
 
- <!-- 10-Lesson Syllabus List -->
- <div class="branch-syllabus-wrap">
- <div class="syllabus-heading">
- <span>Syllabus (10 Lessons)</span>
- <span>+1,500 XP</span>
- </div>
- <div class="syllabus-list">
- <a href="/6. partF/branchE/lesson1_remake.html" class="syllabus-item" id="item7E_1">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">01</span>
- <span class="syllabus-name">Transitions 101 &amp; Easing</span>
- </div>
- <span class="syllabus-status" id="stat7E_1">UP NEXT</span>
- </a>
- <a href="/6. partF/branchE/lesson2_remake.html" class="syllabus-item locked" id="item7E_2">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">02</span>
- <span class="syllabus-name">GPU 2D Transforms</span>
- </div>
- <span class="syllabus-status" id="stat7E_2">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson3_remake.html" class="syllabus-item locked" id="item7E_3">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">03</span>
- <span class="syllabus-name">CSS Keyframes (@keyframes)</span>
- </div>
- <span class="syllabus-status" id="stat7E_3">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson4_remake.html" class="syllabus-item locked" id="item7E_4">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">04</span>
- <span class="syllabus-name">Cubic-Bézier Spring Physics</span>
- </div>
- <span class="syllabus-status" id="stat7E_4">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson5_remake.html" class="syllabus-item locked" id="item7E_5">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">05</span>
- <span class="syllabus-name">Tactile Hover &amp; Active Clicks</span>
- </div>
- <span class="syllabus-status" id="stat7E_5">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson6_remake.html" class="syllabus-item locked" id="item7E_6">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">06</span>
- <span class="syllabus-name">Animated Skeletons &amp; Shimmer</span>
- </div>
- <span class="syllabus-status" id="stat7E_6">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson7_remake.html" class="syllabus-item locked" id="item7E_7">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">07</span>
- <span class="syllabus-name">Staggered Entrance Cascades</span>
- </div>
- <span class="syllabus-status" id="stat7E_7">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson8_remake.html" class="syllabus-item locked" id="item7E_8">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">08</span>
- <span class="syllabus-name">SVG Path Drawing Animations</span>
- </div>
- <span class="syllabus-status" id="stat7E_8">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson9_remake.html" class="syllabus-item locked" id="item7E_9">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">09</span>
- <span class="syllabus-name">prefers-reduced-motion A11y</span>
- </div>
- <span class="syllabus-status" id="stat7E_9">LOCKED</span>
- </a>
- <a href="/6. partF/branchE/lesson10_remake.html" class="syllabus-item locked" id="item7E_10">
- <div class="syllabus-item-left">
- <span class="syllabus-idx">10</span>
- <span class="syllabus-name">Final Project: Interactive Motion Showcase</span>
- </div>
- <span class="syllabus-status" id="stat7E_10">LOCKED</span>
- </a>
- </div>
- </div>
- </div>
+					<!-- 6-Lesson Syllabus List -->
+					<div class="branch-syllabus-wrap">
+						<div class="syllabus-heading">
+							<span>Syllabus (6 Lessons)</span>
+							<span>+1,500 XP</span>
+						</div>
+						<div class="syllabus-list">
+							<a href="/6. partF/branchA/lesson1_remake.html" class="syllabus-item" id="item7A_1">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">01</span>
+									<span class="syllabus-name">Git &amp; GitHub Workflow</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_1">UP NEXT</span>
+							</a>
+							<a href="/6. partF/branchA/lesson2_remake.html" class="syllabus-item locked" id="item7A_2">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">02</span>
+									<span class="syllabus-name">Vercel &amp; Netlify Deployments</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_2">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchA/lesson3_remake.html" class="syllabus-item locked" id="item7A_3">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">03</span>
+									<span class="syllabus-name">Cloudflare Pages &amp; Workers</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_3">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchA/lesson4_remake.html" class="syllabus-item locked" id="item7A_4">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">04</span>
+									<span class="syllabus-name">Render &amp; Fly.io Web Services</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_4">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchA/lesson5_remake.html" class="syllabus-item locked" id="item7A_5">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">05</span>
+									<span class="syllabus-name">FastAPI CORS &amp; Environment Security</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_5">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchA/lesson6_remake.html" class="syllabus-item locked" id="item7A_6">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">06</span>
+									<span class="syllabus-name">GitHub Actions CI/CD Pipeline</span>
+								</div>
+								<span class="syllabus-status" id="stat7A_6">LOCKED</span>
+							</a>
+						</div>
+					</div>
+				</div>
 
- <div class="branch-footer">
- <div class="branch-progress-bar">
- <div class="branch-progress-fill" id="fillBranch7E"></div>
- </div>
- <a href="/6. partF/branchE/lesson1_remake.html" class="branch-btn" id="btnBranch7E">
- <span>Launch Track 7E (Lesson 1/10) →</span>
- </a>
- </div>
- </article>
+				<div class="branch-footer">
+					<div class="branch-progress-bar">
+						<div class="branch-progress-fill" id="fillBranch7A"></div>
+					</div>
+					<a href="/6. partF/branchA/lesson1_remake.html" class="branch-btn" id="btnBranch7A">
+						<span>Launch Track 7A (Lesson 1/6) →</span>
+					</a>
+				</div>
+			</article>
 
- </section>
- </main>
+			<!-- Branch 7B: Database Architecture & Auth -->
+			<article class="branch-card card-db">
+				<div>
+					<div class="branch-card-header">
+						<div class="branch-icon-box"><Icon name="database" size={24} color="#3b82f6" /></div>
+						<span class="branch-tag">Track 7B</span>
+					</div>
+					<h2 class="branch-title">Databases &amp; Auth Architecture</h2>
+					<p class="branch-desc">
+						Learn relational SQL, managed cloud PostgreSQL (Neon/Supabase), SQLAlchemy ORMs, Bcrypt security, and JWT tokens.
+					</p>
+					<div class="branch-meta-list">
+						<span class="branch-meta-item"><Icon name="database" size={12} /> PostgreSQL / SQL</span>
+						<span class="branch-meta-item"><Icon name="server" size={12} /> Supabase / Neon</span>
+						<span class="branch-meta-item"><Icon name="blocks" size={12} /> SQLAlchemy</span>
+						<span class="branch-meta-item"><Icon name="lock" size={12} /> Bcrypt &amp; JWT</span>
+					</div>
 
- <!-- Platform Footer -->
- <PlatformFooter />
+					<!-- 6-Lesson Syllabus List -->
+					<div class="branch-syllabus-wrap">
+						<div class="syllabus-heading">
+							<span>Syllabus (6 Lessons)</span>
+							<span>+1,500 XP</span>
+						</div>
+						<div class="syllabus-list">
+							<a href="/6. partF/branchB/lesson1_remake.html" class="syllabus-item" id="item7B_1">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">01</span>
+									<span class="syllabus-name">SQL Fundamentals &amp; Queries</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_1">UP NEXT</span>
+							</a>
+							<a href="/6. partF/branchB/lesson2_remake.html" class="syllabus-item locked" id="item7B_2">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">02</span>
+									<span class="syllabus-name">Cloud PostgreSQL (Neon/Supabase)</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_2">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchB/lesson3_remake.html" class="syllabus-item locked" id="item7B_3">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">03</span>
+									<span class="syllabus-name">SQLAlchemy ORM Models</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_3">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchB/lesson4_remake.html" class="syllabus-item locked" id="item7B_4">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">04</span>
+									<span class="syllabus-name">Bcrypt Password Hashing</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_4">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchB/lesson5_remake.html" class="syllabus-item locked" id="item7B_5">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">05</span>
+									<span class="syllabus-name">JWT Token Authentication</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_5">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchB/lesson6_remake.html" class="syllabus-item locked" id="item7B_6">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">06</span>
+									<span class="syllabus-name">Auth Middleware &amp; RBAC</span>
+								</div>
+								<span class="syllabus-status" id="stat7B_6">LOCKED</span>
+							</a>
+						</div>
+					</div>
+				</div>
 
- <!-- Universal Back to Top Floating Action Button -->
- <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
- <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
- <polyline points="18 15 12 9 6 15"></polyline>
- </svg>
- </button>
+				<div class="branch-footer">
+					<div class="branch-progress-bar">
+						<div class="branch-progress-fill" id="fillBranch7B"></div>
+					</div>
+					<a href="/6. partF/branchB/lesson1_remake.html" class="branch-btn" id="btnBranch7B">
+						<span>Launch Track 7B (Lesson 1/6) →</span>
+					</a>
+				</div>
+			</article>
 
- <!-- Stylesheet -->
- <link rel="stylesheet" href="/6. partF/hub.css" />
+			<!-- Branch 7C: Next.js & Modern Frameworks -->
+			<article class="branch-card card-next">
+				<div>
+					<div class="branch-card-header">
+						<div class="branch-icon-box"><Icon name="nextjs" size={24} color="#06b6d4" /></div>
+						<span class="branch-tag">Track 7C</span>
+					</div>
+					<h2 class="branch-title">Next.js &amp; Server Components</h2>
+					<p class="branch-desc">
+						Master Server-Side Rendering (SSR), Next.js App Router, Server Components vs Client Components, and Vercel Deployments.
+					</p>
+					<div class="branch-meta-list">
+						<span class="branch-meta-item"><Icon name="nextjs" size={12} /> Next.js App Router</span>
+						<span class="branch-meta-item"><Icon name="refresh" size={12} /> SSR vs CSR</span>
+						<span class="branch-meta-item"><Icon name="server" size={12} /> Server Actions</span>
+						<span class="branch-meta-item"><Icon name="cloud" size={12} /> Vercel Deploy</span>
+					</div>
 
- <!-- JavaScript Engines -->
- <script is:inline src="/scripts/dashboard.js"></script>
- <script is:inline src="/6. partF/hub.js"></script>
+					<!-- 6-Lesson Syllabus List -->
+					<div class="branch-syllabus-wrap">
+						<div class="syllabus-heading">
+							<span>Syllabus (6 Lessons)</span>
+							<span>+1,500 XP</span>
+						</div>
+						<div class="syllabus-list">
+							<a href="/6. partF/branchC/lesson1_remake.html" class="syllabus-item" id="item7C_1">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">01</span>
+									<span class="syllabus-name">App Router Architecture</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_1">UP NEXT</span>
+							</a>
+							<a href="/6. partF/branchC/lesson2_remake.html" class="syllabus-item locked" id="item7C_2">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">02</span>
+									<span class="syllabus-name">Server vs Client Components</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_2">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchC/lesson3_remake.html" class="syllabus-item locked" id="item7C_3">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">03</span>
+									<span class="syllabus-name">Server Actions Form Mutation</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_3">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchC/lesson4_remake.html" class="syllabus-item locked" id="item7C_4">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">04</span>
+									<span class="syllabus-name">Static vs Dynamic Rendering</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_4">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchC/lesson5_remake.html" class="syllabus-item locked" id="item7C_5">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">05</span>
+									<span class="syllabus-name">Next.js API Route Handlers</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_5">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchC/lesson6_remake.html" class="syllabus-item locked" id="item7C_6">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">06</span>
+									<span class="syllabus-name">Fullstack Deployment on Vercel</span>
+								</div>
+								<span class="syllabus-status" id="stat7C_6">LOCKED</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="branch-footer">
+					<div class="branch-progress-bar">
+						<div class="branch-progress-fill" id="fillBranch7C"></div>
+					</div>
+					<a href="/6. partF/branchC/lesson1_remake.html" class="branch-btn" id="btnBranch7C">
+						<span>Launch Track 7C (Lesson 1/6) →</span>
+					</a>
+				</div>
+			</article>
+
+			<!-- Branch 7D: TypeScript Mastery -->
+			<article class="branch-card card-ts">
+				<div>
+					<div class="branch-card-header">
+						<div class="branch-icon-box"><Icon name="variable" size={24} color="#3b82f6" /></div>
+						<span class="branch-tag">Track 7D</span>
+					</div>
+					<h2 class="branch-title">TypeScript: Type-Safe Modern Web Development</h2>
+					<p class="branch-desc">
+						Build robust, error-free web applications. Master static typing, primitive and compound types, interfaces, generics, union types, null narrowing, and type narrowing.
+					</p>
+					<div class="branch-meta-list">
+						<span class="branch-meta-item"><Icon name="variable" size={12} /> Static Typing</span>
+						<span class="branch-meta-item"><Icon name="code" size={12} /> Generics</span>
+						<span class="branch-meta-item"><Icon name="shield" size={12} /> Type Narrowing</span>
+						<span class="branch-meta-item"><Icon name="blocks" size={12} /> Utility Types</span>
+						<span class="branch-meta-item"><Icon name="layout-grid" size={12} /> Typed DOM</span>
+					</div>
+
+					<!-- 12-Lesson Syllabus List -->
+					<div class="branch-syllabus-wrap">
+						<div class="syllabus-heading">
+							<span>Syllabus (12 Lessons)</span>
+							<span>+1,800 XP</span>
+						</div>
+						<div class="syllabus-list">
+							<a href="/6. partF/branchD/lesson1_remake.html" class="syllabus-item" id="item7D_1">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">01</span>
+									<span class="syllabus-name">Primitive Types &amp; Annotations</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_1">UP NEXT</span>
+							</a>
+							<a href="/6. partF/branchD/lesson2_remake.html" class="syllabus-item locked" id="item7D_2">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">02</span>
+									<span class="syllabus-name">Type Inference &amp; any/unknown</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_2">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson3_remake.html" class="syllabus-item locked" id="item7D_3">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">03</span>
+									<span class="syllabus-name">Arrays, Tuples &amp; Enums</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_3">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson4_remake.html" class="syllabus-item locked" id="item7D_4">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">04</span>
+									<span class="syllabus-name">Interfaces &amp; Contracts</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_4">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson5_remake.html" class="syllabus-item locked" id="item7D_5">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">05</span>
+									<span class="syllabus-name">Typed Functions &amp; Rest Params</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_5">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson6_remake.html" class="syllabus-item locked" id="item7D_6">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">06</span>
+									<span class="syllabus-name">DOM Elements &amp; Null Narrowing</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_6">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson7_remake.html" class="syllabus-item locked" id="item7D_7">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">07</span>
+									<span class="syllabus-name">Typed Event Handlers &amp; Casting</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_7">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson8_remake.html" class="syllabus-item locked" id="item7D_8">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">08</span>
+									<span class="syllabus-name">Discriminated Unions &amp; Reducers</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_8">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson9_remake.html" class="syllabus-item locked" id="item7D_9">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">09</span>
+									<span class="syllabus-name">Generics 101 &amp; API Wrappers</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_9">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson10_remake.html" class="syllabus-item locked" id="item7D_10">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">10</span>
+									<span class="syllabus-name">Generic Constraints &amp; keyof</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_10">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson11_remake.html" class="syllabus-item locked" id="item7D_11">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">11</span>
+									<span class="syllabus-name">Core Utility Types (Partial/Pick)</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_11">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchD/lesson12_remake.html" class="syllabus-item locked" id="item7D_12">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">12</span>
+									<span class="syllabus-name">Final Project: Typed State Store</span>
+								</div>
+								<span class="syllabus-status" id="stat7D_12">LOCKED</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="branch-footer">
+					<div class="branch-progress-bar">
+						<div class="branch-progress-fill" id="fillBranch7D"></div>
+					</div>
+					<a href="/6. partF/branchD/lesson1_remake.html" class="branch-btn" id="btnBranch7D">
+						<span>Launch Track 7D (Lesson 1/12) →</span>
+					</a>
+				</div>
+			</article>
+
+			<!-- Branch 7E: CSS Animations & Micro-Interactions -->
+			<article class="branch-card card-motion">
+				<div>
+					<div class="branch-card-header">
+						<div class="branch-icon-box"><Icon name="pulse" size={24} color="#ec4899" /></div>
+						<span class="branch-tag">Track 7E</span>
+					</div>
+					<h2 class="branch-title">CSS Animations &amp; Micro-Interactions</h2>
+					<p class="branch-desc">
+						Craft fluid, hardware-accelerated web experiences. Master transitions, 2D GPU transforms, keyframes, spring physics, tactile buttons, skeleton shimmers, and SVG path drawing.
+					</p>
+					<div class="branch-meta-list">
+						<span class="branch-meta-item"><Icon name="pulse" size={12} /> GPU Transforms</span>
+						<span class="branch-meta-item"><Icon name="code" size={12} /> @keyframes</span>
+						<span class="branch-meta-item"><Icon name="zap" size={12} /> Spring Physics</span>
+						<span class="branch-meta-item"><Icon name="mouse-pointer" size={12} /> Micro-Interactions</span>
+						<span class="branch-meta-item"><Icon name="shield" size={12} /> prefers-reduced-motion</span>
+					</div>
+
+					<!-- 10-Lesson Syllabus List -->
+					<div class="branch-syllabus-wrap">
+						<div class="syllabus-heading">
+							<span>Syllabus (10 Lessons)</span>
+							<span>+1,500 XP</span>
+						</div>
+						<div class="syllabus-list">
+							<a href="/6. partF/branchE/lesson1_remake.html" class="syllabus-item" id="item7E_1">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">01</span>
+									<span class="syllabus-name">Transitions 101 &amp; Easing</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_1">UP NEXT</span>
+							</a>
+							<a href="/6. partF/branchE/lesson2_remake.html" class="syllabus-item locked" id="item7E_2">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">02</span>
+									<span class="syllabus-name">GPU 2D Transforms</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_2">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson3_remake.html" class="syllabus-item locked" id="item7E_3">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">03</span>
+									<span class="syllabus-name">CSS Keyframes (@keyframes)</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_3">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson4_remake.html" class="syllabus-item locked" id="item7E_4">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">04</span>
+									<span class="syllabus-name">Cubic-Bézier Spring Physics</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_4">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson5_remake.html" class="syllabus-item locked" id="item7E_5">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">05</span>
+									<span class="syllabus-name">Tactile Hover &amp; Active Clicks</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_5">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson6_remake.html" class="syllabus-item locked" id="item7E_6">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">06</span>
+									<span class="syllabus-name">Animated Skeletons &amp; Shimmer</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_6">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson7_remake.html" class="syllabus-item locked" id="item7E_7">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">07</span>
+									<span class="syllabus-name">Staggered Entrance Cascades</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_7">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson8_remake.html" class="syllabus-item locked" id="item7E_8">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">08</span>
+									<span class="syllabus-name">SVG Path Drawing Animations</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_8">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson9_remake.html" class="syllabus-item locked" id="item7E_9">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">09</span>
+									<span class="syllabus-name">prefers-reduced-motion A11y</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_9">LOCKED</span>
+							</a>
+							<a href="/6. partF/branchE/lesson10_remake.html" class="syllabus-item locked" id="item7E_10">
+								<div class="syllabus-item-left">
+									<span class="syllabus-idx">10</span>
+									<span class="syllabus-name">Final Project: Interactive Motion Showcase</span>
+								</div>
+								<span class="syllabus-status" id="stat7E_10">LOCKED</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="branch-footer">
+					<div class="branch-progress-bar">
+						<div class="branch-progress-fill" id="fillBranch7E"></div>
+					</div>
+					<a href="/6. partF/branchE/lesson1_remake.html" class="branch-btn" id="btnBranch7E">
+						<span>Launch Track 7E (Lesson 1/10) →</span>
+					</a>
+				</div>
+			</article>
+
+		</section>
+	</main>
+
+	<!-- Platform Footer -->
+	<PlatformFooter />
+
+	<!-- Universal Back to Top Floating Action Button -->
+	<button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to Top">
+		<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+			<polyline points="18 15 12 9 6 15"></polyline>
+		</svg>
+	</button>
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="/6. partF/hub.css" />
+
+	<!-- JavaScript Engines -->
+	<script is:inline src="/scripts/dashboard.js"></script>
+	<script is:inline src="/6. partF/hub.js"></script>
 </BaseLayout>

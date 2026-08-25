@@ -121,7 +121,7 @@
  resumeBtn.innerHTML = '<span>View Official Certificate </span>';
  } else if (completedCount === 0) {
  resumeBtn.href = './lesson1/lesson1_remake.html';
- resumeBtn.innerHTML = '<span>Start Lesson 1: Page Structure </span>';
+ resumeBtn.innerHTML = '<span>Start Lesson 1: Page Structure →</span>';
  } else {
  const nextLessonObj = level4Lessons.find(l => l.id === nextAccessibleLesson) || level4Lessons[0];
  resumeBtn.href = `./lesson${nextLessonObj.id}/lesson${nextLessonObj.id}_remake.html`;

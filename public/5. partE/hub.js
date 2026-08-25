@@ -119,7 +119,7 @@
  resumeBtn.innerHTML = '<span>View Official Certificate </span>';
  } else if (completedCount === 0) {
  resumeBtn.href = './lesson1/lesson1_remake.html';
- resumeBtn.innerHTML = '<span>Start Lesson 1: Python Essentials </span>';
+ resumeBtn.innerHTML = '<span>Start Lesson 1: Python Essentials →</span>';
  } else {
  const nextLessonObj = level6Lessons.find(l => l.id === nextAccessibleLesson) || level6Lessons[0];
  resumeBtn.href = `./lesson${nextLessonObj.id}/lesson${nextLessonObj.id}_remake.html`;

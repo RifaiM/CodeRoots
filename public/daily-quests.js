@@ -86,10 +86,10 @@
  btn.disabled = true;
  if (idx === quest.correctIndex) {
  btn.classList.add('correct');
- btn.innerHTML = `<span class="opt-icon"></span> <span>${escapeHtml(quest.options[idx])}</span>`;
+ btn.innerHTML = `<span class="opt-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></span> <span>${escapeHtml(quest.options[idx])}</span>`;
  } else if (idx === selectedOptionIndex) {
  btn.classList.add('incorrect');
- btn.innerHTML = `<span class="opt-icon"></span> <span>${escapeHtml(quest.options[idx])}</span>`;
+ btn.innerHTML = `<span class="opt-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></span> <span>${escapeHtml(quest.options[idx])}</span>`;
  }
  });
 
