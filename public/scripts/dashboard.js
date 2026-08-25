@@ -5,16 +5,22 @@
  Progress: LocalStorage Sync & Dynamic XP Engine
  ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
- initDashboardSecurity();
- initUserProgress();
- initGSAPAnimations();
- initMobileSegmentedFilter();
- initGlobalBackToTop();
- initFAQAccordion();
- initHashNavigation();
- initHeroTypewriter();
-});
+function bootDashboard() {
+    initDashboardSecurity();
+    initUserProgress();
+    initGSAPAnimations();
+    initMobileSegmentedFilter();
+    initGlobalBackToTop();
+    initFAQAccordion();
+    initHashNavigation();
+    initHeroTypewriter();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootDashboard);
+} else {
+    bootDashboard();
+}
 
 // Real-time reactive updates for DevKit (Ctrl+Alt+D) & cross-tab progress sync
 window.addEventListener('novicodes:xp_updated', () => initUserProgress());
@@ -23,116 +29,86 @@ window.addEventListener('pageshow', () => initUserProgress());
 
 /**
  * Smooth Rotating Skill Suffix Typewriter Engine
- * Accessible, zero-layout-shift, prefers-reduced-motion safe
- * Enhanced: IntersectionObserver auto-pause & Page Visibility API integration
+ * Accessible, zero-layout-shift, self-healing, works across all browsers & pages
  */
 function initHeroTypewriter() {
- const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
- if (!elements || elements.length === 0) return;
+    const elements = document.querySelectorAll('.typewriter-text, #typewriterText');
+    if (!elements || elements.length === 0) return;
 
- if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
- return;
- }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
 
- const defaultPhrases = [
- 'Doing, Not Just Watching',
- 'Solving 103 Hands-On Challenges',
- 'Mastering React & JavaScript',
- 'Writing Real Code in Browser',
- 'Building Modern Web Interfaces'
- ];
+    const defaultPhrases = [
+        'Doing, Not Just Watching',
+        'Solving 103 Hands-On Challenges',
+        'Mastering React & JavaScript',
+        'Writing Real Code in Browser',
+        'Building Modern Web Interfaces'
+    ];
 
- elements.forEach(el => {
- let phrases = defaultPhrases;
- if (el.dataset && el.dataset.phrases) {
- try {
- const parsed = JSON.parse(el.dataset.phrases);
- if (Array.isArray(parsed) && parsed.length > 0) {
- phrases = parsed;
- }
- } catch (e) {}
- }
+    elements.forEach(el => {
+        if (el._typewriterActive) return;
+        el._typewriterActive = true;
 
- let phraseIdx = 0;
- let charIdx = el.textContent.length || phrases[0].length;
- let isDeleting = true;
- let typingSpeed = 60;
- const pauseEnd = 2400;
- const pauseStart = 350;
- let timeoutId = null;
- let isSectionInView = true;
- let isPageVisible = !document.hidden;
+        let phrases = defaultPhrases;
+        if (el.dataset && el.dataset.phrases) {
+            try {
+                const parsed = JSON.parse(el.dataset.phrases);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    phrases = parsed;
+                }
+            } catch (e) {}
+        }
 
- function typeLoop() {
- if (!isSectionInView || !isPageVisible) return;
+        let phraseIdx = 0;
+        let charIdx = phrases[0].length;
+        let isDeleting = true;
+        let typingSpeed = 65;
+        const pauseEnd = 2200;
+        const pauseStart = 400;
+        let timeoutId = null;
 
- const currentPhrase = phrases[phraseIdx];
+        el.textContent = phrases[0];
 
- if (isDeleting) {
- charIdx--;
- el.textContent = currentPhrase.substring(0, charIdx);
- typingSpeed = 35;
+        function typeLoop() {
+            if (document.hidden) {
+                timeoutId = setTimeout(typeLoop, 500);
+                return;
+            }
 
- if (charIdx <= 0) {
- isDeleting = false;
- phraseIdx = (phraseIdx + 1) % phrases.length;
- timeoutId = setTimeout(typeLoop, pauseStart);
- return;
- }
- } else {
- charIdx++;
- el.textContent = currentPhrase.substring(0, charIdx);
- typingSpeed = 65;
+            const currentPhrase = phrases[phraseIdx];
 
- if (charIdx >= currentPhrase.length) {
- isDeleting = true;
- timeoutId = setTimeout(typeLoop, pauseEnd);
- return;
- }
- }
+            if (isDeleting) {
+                charIdx--;
+                el.textContent = currentPhrase.substring(0, charIdx);
+                typingSpeed = 35;
 
- timeoutId = setTimeout(typeLoop, typingSpeed);
- }
+                if (charIdx <= 0) {
+                    isDeleting = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                    timeoutId = setTimeout(typeLoop, pauseStart);
+                    return;
+                }
+            } else {
+                charIdx++;
+                el.textContent = currentPhrase.substring(0, charIdx);
+                typingSpeed = 60;
 
- // 1. IntersectionObserver: Freeze loop when user scrolls past or leaves hero section
- const targetContainer = el.closest('.hero-section, .hub-hero, .hub-header, header, .hero') || el;
- 
- if ('IntersectionObserver' in window) {
- const observer = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
- if (entry.isIntersecting) {
- if (!isSectionInView) {
- isSectionInView = true;
- clearTimeout(timeoutId);
- timeoutId = setTimeout(typeLoop, 200);
- }
- } else {
- isSectionInView = false;
- clearTimeout(timeoutId);
- }
- });
- }, {
- root: null,
- threshold: 0.05
- });
+                if (charIdx >= currentPhrase.length) {
+                    isDeleting = true;
+                    timeoutId = setTimeout(typeLoop, pauseEnd);
+                    return;
+                }
+            }
 
- observer.observe(targetContainer);
- }
+            timeoutId = setTimeout(typeLoop, typingSpeed);
+        }
 
- // 2. Page Visibility API: Pause when tab is switched or minimized
- document.addEventListener('visibilitychange', () => {
- isPageVisible = !document.hidden;
- if (isPageVisible && isSectionInView) {
- clearTimeout(timeoutId);
- timeoutId = setTimeout(typeLoop, 300);
- } else {
- clearTimeout(timeoutId);
- }
- });
-
- timeoutId = setTimeout(typeLoop, pauseEnd);
- });
+        timeoutId = setTimeout(typeLoop, pauseEnd);
+    });
 }
+window.initHeroTypewriter = initHeroTypewriter;
 
 /**
  * Global Back To Top Floating Action Button Engine
