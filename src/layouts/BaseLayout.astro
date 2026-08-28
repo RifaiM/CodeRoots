@@ -133,14 +133,20 @@ const {
             var currentPhrase = phrases[phraseIdx];
             var charIdx = currentPhrase.length;
             var isDeleting = true;
+            var isVisible = true;
+            var isLoopActive = false;
+            var loopTimer = null;
+
             el.textContent = currentPhrase;
 
             function runLoop() {
-                if (document.hidden) {
-                    setTimeout(runLoop, 500);
+                // Instantly pause and prevent any CLS layout shifts if scrolled past viewport or tab backgrounded
+                if (!isVisible || document.hidden) {
+                    isLoopActive = false;
                     return;
                 }
 
+                isLoopActive = true;
                 currentPhrase = phrases[phraseIdx];
 
                 if (isDeleting) {
@@ -151,24 +157,78 @@ const {
                     if (charIdx <= 0) {
                         isDeleting = false;
                         phraseIdx = (phraseIdx + 1) % phrases.length;
-                        setTimeout(runLoop, 400);
+                        loopTimer = setTimeout(runLoop, 400);
                         return;
                     }
-                    setTimeout(runLoop, 28);
+                    loopTimer = setTimeout(runLoop, 28);
                 } else {
                     charIdx++;
                     el.textContent = currentPhrase.substring(0, Math.min(currentPhrase.length, charIdx));
 
                     if (charIdx >= currentPhrase.length) {
                         isDeleting = true;
-                        setTimeout(runLoop, 2200);
+                        loopTimer = setTimeout(runLoop, 2200);
                         return;
                     }
-                    setTimeout(runLoop, 50);
+                    loopTimer = setTimeout(runLoop, 50);
                 }
             }
 
-            setTimeout(runLoop, 1000);
+            function wakeLoop() {
+                if (isVisible && !document.hidden && !isLoopActive) {
+                    if (loopTimer) clearTimeout(loopTimer);
+                    runLoop();
+                }
+            }
+
+            // IntersectionObserver: automatically stops/pauses when user scrolls past this section
+            var targetToObserve = el.closest('.typewriter-wrap') || el.closest('h1') || el.closest('header') || el;
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            isVisible = true;
+                            wakeLoop();
+                        } else {
+                            isVisible = false;
+                            isLoopActive = false;
+                            if (loopTimer) clearTimeout(loopTimer);
+                        }
+                    });
+                }, {
+                    root: null,
+                    threshold: 0.05
+                });
+                observer.observe(targetToObserve);
+            } else {
+                // Scroll listener fallback for older browsers without IntersectionObserver
+                var checkScrollVisibility = function() {
+                    var rect = targetToObserve.getBoundingClientRect();
+                    var inView = rect.top < window.innerHeight && rect.bottom > 0;
+                    if (inView !== isVisible) {
+                        isVisible = inView;
+                        if (inView) {
+                            wakeLoop();
+                        } else {
+                            isLoopActive = false;
+                            if (loopTimer) clearTimeout(loopTimer);
+                        }
+                    }
+                };
+                window.addEventListener('scroll', checkScrollVisibility, { passive: true });
+                checkScrollVisibility();
+            }
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    isLoopActive = false;
+                    if (loopTimer) clearTimeout(loopTimer);
+                } else {
+                    wakeLoop();
+                }
+            });
+
+            loopTimer = setTimeout(wakeLoop, 1000);
         });
     };
 
