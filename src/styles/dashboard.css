@@ -3802,6 +3802,22 @@ a.meta-tag:hover,
     vertical-align: text-bottom;
 }
 
+.hero-title .typewriter-wrap,
+.typewriter-wrap.typewriter-block {
+    display: block;
+    margin-top: 6px;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 1.25em;
+}
+
+@media (max-width: 640px) {
+    .hero-title .typewriter-wrap,
+    .typewriter-wrap.typewriter-block {
+        min-height: 2.3em;
+    }
+}
+
 .typewriter-wrap.theme-oxide {
     color: #A33B24 !important;
     border-bottom-color: #A33B24 !important;
