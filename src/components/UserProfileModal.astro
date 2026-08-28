@@ -57,7 +57,7 @@
  return `
  <div style="${bg} padding: 8px 12px; border-radius: 2px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
  <div style="text-align: left;">
- <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${r.level}</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">0${idx + 1}. // ${r.level}</div>
  <div style="font-weight: 600; font-size: 0.88rem; color: ${isCurrent ? 'var(--accent-oxide, #A33B24)' : 'var(--text-title, #20211F)'};">${r.title}</div>
  </div>
  <span style="${badgeStyle} font-family: var(--font-mono, monospace); font-size: 0.68rem; font-weight: 600; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em;">${badgeText}</span>
@@ -433,7 +433,7 @@
  return `
  <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; ${bg} border-radius: 2px;">
  <div style="text-align: left;">
- <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${m.days}-DAY GOAL</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">0${idx + 1}. // ${m.days}-DAY GOAL</div>
  <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-title, #20211F);">${m.title}</div>
  <div style="font-size: 0.74rem; color: var(--text-muted, #686760);">${m.sub}</div>
  </div>

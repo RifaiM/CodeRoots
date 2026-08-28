@@ -381,7 +381,7 @@
  return `
  <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; ${bg} border-radius: 2px;">
  <div style="text-align: left;">
- <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">§ 0${idx + 1} // ${m.days}-DAY GOAL</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: var(--text-muted, #686760); text-transform: uppercase;">0${idx + 1}. // ${m.days}-DAY GOAL</div>
  <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-title, #20211F);">${m.title}</div>
  <div style="font-size: 0.74rem; color: var(--text-muted, #686760);">${m.sub}</div>
  </div>

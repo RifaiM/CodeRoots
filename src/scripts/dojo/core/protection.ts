@@ -175,7 +175,7 @@ export function checkLessonAccessAndRenderOverlay(opts: AccessCheckOptions): boo
  card.setAttribute('style', 'position:relative;z-index:1;background:#F8F6F1;border:1px solid #D5D0C6;border-radius:2px;padding:32px 24px;max-width:460px;width:95%;text-align:center;box-shadow:0 16px 40px rgba(32,33,31,0.18);animation:_adSlideIn 0.25s ease;box-sizing:border-box;');
 
  card.innerHTML = `
- <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">§ 00 // PREREQUISITE REQUIRED</div>
+ <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">00. // PREREQUISITE REQUIRED</div>
  <h2 style="color:#20211F;margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-size:1.55rem;font-weight:500;letter-spacing:-0.01em;">Access Restricted</h2>
  <p style="margin:0 0 20px;line-height:1.6;color:#686760;font-size:0.90rem;">
  You must complete <strong style="color:#20211F;">Lesson ${requiredLesson}</strong> before accessing <strong style="color:#20211F;">Lesson ${opts.lessonNum}</strong> in ${opts.levelTag}.
@@ -277,7 +277,7 @@ export function checkCertificateAccessAndRenderOverlay(opts: CertAccessCheckOpti
  card.setAttribute('style', 'position:relative;background:#F8F6F1;border:1px solid #D5D0C6;border-radius:2px;padding:32px 24px;max-width:460px;width:95%;text-align:center;box-shadow:0 16px 40px rgba(32,33,31,0.18);animation:_certSlideIn 0.25s ease;box-sizing:border-box;');
 
  card.innerHTML = `
- <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">§ 00 // CERTIFICATE LOCKED</div>
+ <div style="display:inline-block;background:#F1EEE7;color:#A33B24;border:1px solid #D5D0C6;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:2px;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">00. // CERTIFICATE LOCKED</div>
  <h2 style="color:#20211F;margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-size:1.55rem;font-weight:500;letter-spacing:-0.01em;">${opts.levelTag} Certificate Locked</h2>
  <p style="margin:0 0 20px;line-height:1.6;color:#686760;font-size:0.90rem;">
  You must complete all <strong style="color:#20211F;">${opts.totalProjects} projects</strong> in ${opts.certName} before unlocking your verified proof-of-work certificate.
