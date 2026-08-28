@@ -95,53 +95,83 @@
 
 /* Center Header Navigation Bar Links */
 .header-nav-links {
- display: flex !important;
- align-items: center !important;
- gap: 4px !important;
- background: transparent !important;
- border: none !important;
- padding: 0 !important;
- border-radius: 0 !important;
- box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 .header-nav-links .nav-link {
- font-family: var(--font-mono) !important;
- color: var(--text-muted) !important;
- text-decoration: none !important;
- font-size: 0.78rem !important;
- font-weight: 500 !important;
- text-transform: uppercase !important;
- letter-spacing: 0.04em !important;
- padding: 6px 12px !important;
- border-radius: 2px !important;
- border: 1px solid transparent !important;
- transition: all 0.15s ease !important;
- white-space: nowrap !important;
- display: inline-flex !important;
- align-items: center !important;
- justify-content: center !important;
+  font-family: var(--font-mono) !important;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  padding: 6px 12px !important;
+  border-radius: 2px !important;
+  border: 1px solid transparent !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
 }
 
 .header-nav-links .nav-icon {
- display: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.95rem !important;
+  line-height: 1 !important;
+  color: currentColor !important;
+}
+
+.header-nav-links .nav-icon svg {
+  width: 15px !important;
+  height: 15px !important;
+  display: block !important;
+  stroke: currentColor !important;
+  flex-shrink: 0 !important;
 }
 
 .header-nav-links .nav-text {
- display: inline-block !important;
+  display: inline-block !important;
 }
 
 .header-nav-links .nav-link:hover {
- color: var(--text-title) !important;
- background: var(--canvas-base) !important;
- border-color: var(--border-subtle) !important;
+  color: var(--text-title) !important;
+  background: var(--canvas-base) !important;
+  border-color: var(--border-subtle) !important;
 }
 
 .header-nav-links .nav-link.active {
- color: var(--accent-oxide) !important;
- background: var(--canvas-base) !important;
- border-color: var(--border-subtle) !important;
- box-shadow: none !important;
+  color: var(--accent-oxide) !important;
+  background: var(--canvas-base) !important;
+  border-color: var(--border-subtle) !important;
+  box-shadow: none !important;
+}
+
+/* High-Contrast Practical Dojo Hub Nav Button */
+#dojoNavLink.dojo-nav-highlight,
+.nav-link.dojo-nav-highlight {
+  color: var(--accent-oxide, #A33B24) !important;
+  border-color: rgba(163, 59, 36, 0.4) !important;
+  background: var(--canvas-base) !important;
+}
+
+#dojoNavLink.dojo-nav-highlight .nav-icon,
+#dojoNavLink.dojo-nav-highlight svg {
+  color: var(--accent-oxide, #A33B24) !important;
+  stroke: var(--accent-oxide, #A33B24) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Header User Stats & Buttons */
@@ -1482,12 +1512,21 @@
  }
 
  .header-nav-links .nav-icon {
- display: inline-flex !important;
- align-items: center !important;
- justify-content: center !important;
- font-size: 0.95rem !important;
- line-height: 1 !important;
- }
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.95rem !important;
+    line-height: 1 !important;
+    color: currentColor !important;
+  }
+
+  .header-nav-links .nav-icon svg {
+    width: 15px !important;
+    height: 15px !important;
+    display: block !important;
+    stroke: currentColor !important;
+    flex-shrink: 0 !important;
+  }
 
  .header-nav-links .nav-text {
  display: none !important;
