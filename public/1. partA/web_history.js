@@ -18,6 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
  ========================================================================== */
 window.getUserXPAndRank = function() {
  const isL0 = localStorage.getItem('level0_completed') === 'true';
+ const readWebsite = localStorage.getItem('readWebsite') === 'true';
+ const readHTML = localStorage.getItem('readHTML') === 'true';
+ const readCSS = localStorage.getItem('readCSS') === 'true';
+ const readJavaScript = localStorage.getItem('readJavaScript') === 'true';
+ const level0QuizCompleted = localStorage.getItem('level0_quiz_completed') === 'true';
+
+ let l0XP = 0;
+ if (isL0) {
+  l0XP = 250;
+ } else {
+  if (readWebsite) l0XP += 50;
+  if (readHTML) l0XP += 50;
+  if (readCSS) l0XP += 50;
+  if (readJavaScript) l0XP += 50;
+  if (level0QuizCompleted) l0XP += 50;
+  l0XP = Math.min(250, l0XP);
+ }
+
  const isL1 = localStorage.getItem('level1_completed') === 'true';
  const isL2 = localStorage.getItem('level2_completed') === 'true';
  const isL3 = localStorage.getItem('level3_completed') === 'true';
@@ -120,7 +138,7 @@ window.getUserXPAndRank = function() {
  const streakCount = safeParseInt(localStorage.getItem('novicodes_streak_count'), 0);
 
  let totalXP = 0;
- if (isL0) totalXP += 250;
+ totalXP += l0XP;
  if (isL1) totalXP += 300;
  if (isL2) totalXP += 300;
  if (isL3) totalXP += 400;
@@ -209,6 +227,12 @@ window.getUserXPAndRank = function() {
  rankTitle,
  rankIcon,
  isL0,
+ l0XP,
+ readWebsite,
+ readHTML,
+ readCSS,
+ readJavaScript,
+ level0QuizCompleted,
  isL1,
  isL2,
  isL3,
@@ -420,32 +444,47 @@ function initTimelineFilter() {
  5. 4 Core Pillars Progress Synchronization
  ========================================================================== */
 function initPillarsProgress() {
- const isWebsite = localStorage.getItem('readWebsite') === 'true';
- const isHTML = localStorage.getItem('readHTML') === 'true';
- const isCSS = localStorage.getItem('readCSS') === 'true';
- const isJS = localStorage.getItem('readJavaScript') === 'true';
- const isQuizComplete = localStorage.getItem('level0_quiz_completed') === 'true';
- const isL0 = localStorage.getItem('level0_completed') === 'true';
+    const isWebsite = localStorage.getItem('readWebsite') === 'true';
+    const isHTML = localStorage.getItem('readHTML') === 'true';
+    const isCSS = localStorage.getItem('readCSS') === 'true';
+    const isJS = localStorage.getItem('readJavaScript') === 'true';
+    const isQuizComplete = localStorage.getItem('level0_quiz_completed') === 'true';
+    const isL0 = localStorage.getItem('level0_completed') === 'true';
 
- const count = (isWebsite ? 1 : 0) + (isHTML ? 1 : 0) + (isCSS ? 1 : 0) + (isJS ? 1 : 0);
+    const count = (isWebsite ? 1 : 0) + (isHTML ? 1 : 0) + (isCSS ? 1 : 0) + (isJS ? 1 : 0);
 
- const cardWebsite = document.getElementById('cardWebsite');
- const cardHTML = document.getElementById('cardHTML');
- const cardCSS = document.getElementById('cardCSS');
- const cardJS = document.getElementById('cardJS');
+    const pillars = [
+        { id: 'cardWebsite', completed: isWebsite },
+        { id: 'cardHTML', completed: isHTML },
+        { id: 'cardCSS', completed: isCSS },
+        { id: 'cardJS', completed: isJS }
+    ];
 
- if (cardWebsite && isWebsite) cardWebsite.classList.add('completed');
- if (cardHTML && isHTML) cardHTML.classList.add('completed');
- if (cardCSS && isCSS) cardCSS.classList.add('completed');
- if (cardJS && isJS) cardJS.classList.add('completed');
+    pillars.forEach(p => {
+        const card = document.getElementById(p.id);
+        if (!card) return;
+        const xpBadge = card.querySelector('.pillar-xp-badge');
+        const actionLink = card.querySelector('.pillar-action-link');
 
- const progressCount = document.getElementById('pillarProgressCount');
- const progressFill = document.getElementById('pillarProgressFill');
+        if (p.completed) {
+            card.classList.add('completed');
+            if (xpBadge) xpBadge.innerHTML = '✓ COMPLETED (+50 XP)';
+            if (actionLink) actionLink.innerHTML = 'Review Concept →';
+        } else {
+            card.classList.remove('completed');
+            if (xpBadge) xpBadge.innerHTML = '+50 XP';
+            if (actionLink) actionLink.innerHTML = 'Explore Concept →';
+        }
+    });
 
- if (progressCount) progressCount.textContent = `${count}/4`;
- if (progressFill) progressFill.style.width = `${(count / 4) * 100}%`;
+    const progressCount = document.getElementById('pillarProgressCount');
+    const progressFill = document.getElementById('pillarProgressFill');
 
- updateClaimButtonState(count, isQuizComplete, isL0);
+    if (progressCount) progressCount.textContent = `${count}/4`;
+    if (progressFill) progressFill.style.width = `${(count / 4) * 100}%`;
+
+    updateClaimButtonState(count, isQuizComplete, isL0);
+    updateHeaderStats();
 }
 
 function updateClaimButtonState(pillarCount, isQuizComplete, isL0) {
@@ -618,13 +657,16 @@ function handleOptionClick(selectedBtn, isCorrect, explanation) {
  });
  }
 
- const isFinalQuestion = currentQuestionIndex === questions.length - 1;
+    const isFinalQuestion = currentQuestionIndex === questions.length - 1;
 
- if (isFinalQuestion) {
- localStorage.setItem('level0_quiz_completed', 'true');
- localStorage.setItem('level0_quiz_score', quizScore.toString());
- initPillarsProgress(); // Re-check and unlock claim button immediately!
- }
+    if (isFinalQuestion) {
+        localStorage.setItem('level0_quiz_completed', 'true');
+        localStorage.setItem('level0_quiz_score', quizScore.toString());
+        initPillarsProgress(); // Re-check and unlock claim button immediately!
+        updateHeaderStats();
+        window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+        window.dispatchEvent(new Event('storage'));
+    }
 
  const feedbackBox = document.getElementById('quizFeedbackBox');
  if (feedbackBox) {
@@ -695,6 +737,10 @@ window.claimLevel0Completion = function() {
  localStorage.setItem('readCSS', 'true');
  localStorage.setItem('readJavaScript', 'true');
  localStorage.setItem('level0_quiz_completed', 'true');
+
+ updateHeaderStats();
+ window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+ window.dispatchEvent(new Event('storage'));
 
  if (typeof Swal !== 'undefined') {
  Swal.fire({

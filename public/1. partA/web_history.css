@@ -455,7 +455,34 @@ body {
 }
 
 .pillar-card.completed {
- border-color: var(--border-card);
+  border-color: rgba(47, 82, 51, 0.4);
+  background: var(--bg-card);
+}
+
+.pillar-card.completed:hover {
+  border-color: #2F5233;
+  background: var(--bg-card-elevated);
+}
+
+.pillar-card.completed .pillar-icon-box {
+  background: rgba(47, 82, 51, 0.08);
+  border-color: rgba(47, 82, 51, 0.25);
+  color: #2F5233;
+}
+
+.pillar-card.completed .pillar-xp-badge {
+  color: #2F5233;
+  background: rgba(47, 82, 51, 0.1);
+  padding: 2px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(47, 82, 51, 0.25);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.pillar-card.completed .pillar-action-link {
+  color: #2F5233;
+  font-weight: 700;
 }
 
 .pillar-icon-box {

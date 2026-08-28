@@ -10,6 +10,12 @@ export interface UserStats {
  rankTitle: string;
  rankIcon: string;
  isL0: boolean;
+ l0XP: number;
+ readWebsite: boolean;
+ readHTML: boolean;
+ readCSS: boolean;
+ readJavaScript: boolean;
+ level0QuizCompleted: boolean;
  isL1: boolean;
  isL2: boolean;
  isL3: boolean;
@@ -54,6 +60,12 @@ export function getUserXPAndRank(): UserStats {
  rankTitle: 'Web Explorer',
  rankIcon: '',
  isL0: false,
+ l0XP: 0,
+ readWebsite: false,
+ readHTML: false,
+ readCSS: false,
+ readJavaScript: false,
+ level0QuizCompleted: false,
  isL1: false,
  isL2: false,
  isL3: false,
@@ -89,6 +101,24 @@ export function getUserXPAndRank(): UserStats {
 
  // Core Foundations (L0 - L3)
  const isL0 = localStorage.getItem('level0_completed') === 'true';
+ const readWebsite = localStorage.getItem('readWebsite') === 'true';
+ const readHTML = localStorage.getItem('readHTML') === 'true';
+ const readCSS = localStorage.getItem('readCSS') === 'true';
+ const readJavaScript = localStorage.getItem('readJavaScript') === 'true';
+ const level0QuizCompleted = localStorage.getItem('level0_quiz_completed') === 'true';
+
+ let l0XP = 0;
+ if (isL0) {
+ l0XP = 250;
+ } else {
+ if (readWebsite) l0XP += 50;
+ if (readHTML) l0XP += 50;
+ if (readCSS) l0XP += 50;
+ if (readJavaScript) l0XP += 50;
+ if (level0QuizCompleted) l0XP += 50;
+ l0XP = Math.min(250, l0XP);
+ }
+
  const isL1 = localStorage.getItem('level1_completed') === 'true';
  const isL2 = localStorage.getItem('level2_completed') === 'true';
  const isL3 = localStorage.getItem('level3_completed') === 'true';
@@ -197,7 +227,7 @@ export function getUserXPAndRank(): UserStats {
  const streakCount = safeParseInt(localStorage.getItem('novicodes_streak_count'), 0);
 
  let totalXP = 0;
- if (isL0) totalXP += 250;
+ totalXP += l0XP;
  if (isL1) totalXP += 300;
  if (isL2) totalXP += 300;
  if (isL3) totalXP += 400;
@@ -286,6 +316,12 @@ export function getUserXPAndRank(): UserStats {
  rankTitle,
  rankIcon,
  isL0,
+ l0XP,
+ readWebsite,
+ readHTML,
+ readCSS,
+ readJavaScript,
+ level0QuizCompleted,
  isL1,
  isL2,
  isL3,

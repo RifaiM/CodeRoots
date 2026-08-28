@@ -184,6 +184,9 @@ window.markConceptComplete = function() {
  }
 
  localStorage.setItem('readCSS', 'true');
+ updateHeaderStats();
+ window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+ window.dispatchEvent(new Event('storage'));
 
  if (typeof Swal !== 'undefined') {
  Swal.fire({

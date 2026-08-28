@@ -373,97 +373,97 @@ function initTabNavigation() {
 }
 
 const DOJO_DESTINATIONS = {
- html: {
- title: 'Level 4 • JavaScript Widget Dojo',
- desc: 'Take your HTML & DOM structural knowledge into 15 hands-on interactive browser widgets.',
- url: '/2. partB/hub.html',
- btnText: '️ Start Level 4 DOM Dojo ',
- icon: '️'
- },
- css: {
- title: 'Level 7E • CSS Motion & Animation Dojo',
- desc: 'Put your box model and styling theory into 10 interactive hardware-accelerated animations.',
- url: '/6. partF/branchE/lesson1_remake.html',
- btnText: ' Start CSS Motion Dojo ',
- icon: ''
- },
- js: {
- title: 'Level 4 • JavaScript Widget Dojo',
- desc: 'Put variables, functions, and event listeners to work building 15 interactive browser widgets.',
- url: '/2. partB/lesson1/lesson1_remake.html',
- btnText: ' Start Level 4 Lesson 1 (Counter Widget) ',
- icon: '️'
- },
- react: {
- title: 'Level 5 • React Component Dojo',
- desc: 'Put JSX, props, and useState mental models to work across 15 interactive React milestones.',
- url: '/3. partC/lesson1/lesson1_remake.html',
- btnText: '️ Start Level 5 Lesson 1 (JSX Component) ',
- icon: '️'
- },
- python: {
- title: 'Level 6 • Python & Backend Dojo',
- desc: 'Practice algorithms, data structures, OOP classes, and API mocks in 15 Python challenges.',
- url: '/5. partE/lesson1/lesson1_remake.html',
- btnText: ' Start Level 6 Lesson 1 (Python Basics) ',
- icon: ''
- },
- cloud: {
- title: 'Level 7A • Cloud Hosting & DevOps Dojo',
- desc: 'Write real Nginx configs, Dockerfile manifests, and automated GitHub Actions CI/CD workflows.',
- url: '/6. partF/branchA/lesson1_remake.html',
- btnText: '️ Start Level 7A Lesson 1 (Static Hosting) ',
- icon: '️'
- },
- sql: {
- title: 'Level 7B • SQL Relational Databases Dojo',
- desc: 'Design relational tables, foreign keys, complex JOINs, and safe database transactions.',
- url: '/6. partF/branchB/lesson1_remake.html',
- btnText: '️ Start Level 7B Lesson 1 (Create Table) ',
- icon: '️'
- },
- nextjs: {
- title: 'Level 7C • Next.js App Router Dojo',
- desc: 'Build with React Server Components, App Router layouts, dynamic routes, and server data fetching.',
- url: '/6. partF/branchC/lesson1_remake.html',
- btnText: ' Start Level 7C Lesson 1 (App Router) ',
- icon: ''
- },
- typescript: {
- title: 'Level 7D • TypeScript Mastery Dojo',
- desc: 'Build type-safe interfaces, generics <T>, discriminated unions, and a reactive state store.',
- url: '/6. partF/branchD/lesson1_remake.html',
- btnText: ' Start Level 7D Lesson 1 (Type Inference) ',
- icon: ''
- },
- cssmotion: {
- title: 'Level 7E • CSS Motion & Micro-Interactions Dojo',
- desc: 'Build GPU-accelerated transforms, keyframe spinners, card shimmer, and accessible motion.',
- url: '/6. partF/branchE/lesson1_remake.html',
- btnText: ' Start Level 7E Lesson 1 (Transitions) ',
- icon: ''
- },
- async: {
- title: 'Level 8 • Async UI & Live Data Dojo',
- desc: 'Build animated skeleton placeholders, error recovery screens, and optimistic UI rollbacks.',
- url: '/7. partG/lesson1/lesson1_remake.html',
- btnText: ' Start Level 8 Lesson 1 (Skeleton Loaders) ',
- icon: ''
- },
- auth: {
- title: 'Level 9 • User Logins & Auth Dojo',
- desc: 'Build JWT session gates, AuthContext providers, protected routes, and role permissions.',
- url: '/8. partH/lesson1/lesson1_remake.html',
- btnText: '️ Start Level 9 Lesson 1 (Auth Gate) ',
- icon: '️'
- },
- saas: {
- title: 'Level 10 • SaaS Dashboard UI Dojo',
- desc: 'Combine layout shells, debounced live queries, subscription tiers, and AI chat panels.',
- url: '/9. partI/lesson1/lesson1_remake.html',
- btnText: ' Start Level 10 Lesson 1 (Sidebar Shell) ',
- icon: ''
- }
+    html: {
+        title: 'Level 4 • JavaScript Widget Dojo',
+        desc: 'Take your HTML & DOM structural knowledge into 15 hands-on interactive browser widgets.',
+        url: '/2. partB/hub.html',
+        btnText: 'Start Level 4 DOM Dojo →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="9" y2="18"/><line x1="7" y1="17" x2="4" y2="20"/><line x1="3" y1="19" x2="5" y2="21"/></svg>'
+    },
+    css: {
+        title: 'Level 7E • CSS Motion & Animation Dojo',
+        desc: 'Put your box model and styling theory into 10 interactive hardware-accelerated animations.',
+        url: '/6. partF/branchE/lesson1_remake.html',
+        btnText: 'Start CSS Motion Dojo →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg>'
+    },
+    js: {
+        title: 'Level 4 • JavaScript Widget Dojo',
+        desc: 'Put variables, functions, and event listeners to work building 15 interactive browser widgets.',
+        url: '/2. partB/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 4 Lesson 1 (Counter Widget) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
+    },
+    react: {
+        title: 'Level 5 • React Component Dojo',
+        desc: 'Put JSX, props, and useState mental models to work across 15 interactive React milestones.',
+        url: '/3. partC/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 5 Lesson 1 (JSX Component) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>'
+    },
+    python: {
+        title: 'Level 6 • Python & Backend Dojo',
+        desc: 'Practice algorithms, data structures, OOP classes, and API mocks in 15 Python challenges.',
+        url: '/5. partE/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 6 Lesson 1 (Python Basics) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-4 0-4 1.8-4 1.8l.004 1.8h3.996v.6H5.4s-3.4-.4-3.4 3.8 2.8 3.8 2.8 3.8h1.6v-2.2s-.1-2.6 2.6-2.6h4.4s2.4.1 2.4-2.4V4.4s.4-2.4-3.8-2.4zm-1.8 1.4a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6z"/><path d="M12 22c4 0 4-1.8 4-1.8l-.004-1.8h-3.996v-.6h6.6s3.4.4 3.4-3.8-2.8-3.8-2.8-3.8h-1.6v2.2s.1 2.6-2.6 2.6H10.6s-2.4-.1-2.4 2.4v2.4s-.4 2.4 3.8 2.4zm1.8-1.4a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6z"/></svg>'
+    },
+    cloud: {
+        title: 'Level 7A • Cloud Hosting & DevOps Dojo',
+        desc: 'Write real Nginx configs, Dockerfile manifests, and automated GitHub Actions CI/CD workflows.',
+        url: '/6. partF/branchA/lesson1_remake.html',
+        btnText: 'Start Level 7A Lesson 1 (Static Hosting) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>'
+    },
+    sql: {
+        title: 'Level 7B • SQL Relational Databases Dojo',
+        desc: 'Design relational tables, foreign keys, complex JOINs, and safe database transactions.',
+        url: '/6. partF/branchB/lesson1_remake.html',
+        btnText: 'Start Level 7B Lesson 1 (Create Table) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>'
+    },
+    nextjs: {
+        title: 'Level 7C • Next.js App Router Dojo',
+        desc: 'Build with React Server Components, App Router layouts, dynamic routes, and server data fetching.',
+        url: '/6. partF/branchC/lesson1_remake.html',
+        btnText: 'Start Level 7C Lesson 1 (App Router) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 17.5V6.5h3.5L16 17.5"/><path d="M16 6.5v6"/></svg>'
+    },
+    typescript: {
+        title: 'Level 7D • TypeScript Mastery Dojo',
+        desc: 'Build type-safe interfaces, generics <T>, discriminated unions, and a reactive state store.',
+        url: '/6. partF/branchD/lesson1_remake.html',
+        btnText: 'Start Level 7D Lesson 1 (Type Inference) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/><path d="M15 21V9"/></svg>'
+    },
+    cssmotion: {
+        title: 'Level 7E • CSS Motion & Micro-Interactions Dojo',
+        desc: 'Build GPU-accelerated transforms, keyframe spinners, card shimmer, and accessible motion.',
+        url: '/6. partF/branchE/lesson1_remake.html',
+        btnText: 'Start Level 7E Lesson 1 (Transitions) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+    },
+    async: {
+        title: 'Level 8 • Async UI & Live Data Dojo',
+        desc: 'Build animated skeleton placeholders, error recovery screens, and optimistic UI rollbacks.',
+        url: '/7. partG/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 8 Lesson 1 (Skeleton Loaders) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>'
+    },
+    auth: {
+        title: 'Level 9 • User Logins & Auth Dojo',
+        desc: 'Build JWT session gates, AuthContext providers, protected routes, and role permissions.',
+        url: '/8. partH/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 9 Lesson 1 (Auth Gate) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+    },
+    saas: {
+        title: 'Level 10 • SaaS Dashboard UI Dojo',
+        desc: 'Combine layout shells, debounced live queries, subscription tiers, and AI chat panels.',
+        url: '/9. partI/lesson1/lesson1_remake.html',
+        btnText: 'Start Level 10 Lesson 1 (Sidebar Shell) →',
+        icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>'
+    }
 };
 
 /**

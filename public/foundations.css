@@ -2339,16 +2339,25 @@
 }
 
 .bridge-icon-badge {
- font-size: 2.2rem;
- background: #fff7ed;
- border: 1px solid #fed7aa;
- width: 58px;
- height: 58px;
- border-radius: 16px;
- display: flex;
- align-items: center;
- justify-content: center;
- flex-shrink: 0;
+  font-size: 2.2rem;
+  background: var(--canvas-base, #F1EEE7);
+  border: 1px solid var(--border-subtle, #D5D0C6);
+  width: 58px;
+  height: 58px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-oxide, #A33B24);
+}
+
+.bridge-icon-badge svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  stroke: var(--accent-oxide, #A33B24);
+  flex-shrink: 0;
 }
 
 .bridge-text-block {

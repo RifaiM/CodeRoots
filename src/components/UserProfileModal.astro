@@ -93,7 +93,7 @@
  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: left; margin-bottom: 16px;">
  <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
  <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Level 00: Web Architecture</div>
- <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${stats.isL0 ? '250 / 250 XP' : '0 / 250 XP'}</div>
+ <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; font-weight: 600; color: var(--text-title, #20211F);">${(stats.l0XP || 0).toLocaleString()} / 250 XP</div>
  </div>
  <div style="background: var(--canvas-base, #F1EEE7); border: 1px solid var(--border-subtle, #D5D0C6); padding: 8px 10px; border-radius: 2px;">
  <div style="font-family: var(--font-mono, monospace); font-size: 0.68rem; color: var(--text-muted, #686760);">Levels 01–03: Foundations</div>

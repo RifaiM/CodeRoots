@@ -178,6 +178,9 @@ window.markConceptComplete = function() {
  }
 
  localStorage.setItem('readJavaScript', 'true');
+ updateHeaderStats();
+ window.dispatchEvent(new CustomEvent('novicodes:xp_updated'));
+ window.dispatchEvent(new Event('storage'));
 
  if (typeof Swal !== 'undefined') {
  Swal.fire({
