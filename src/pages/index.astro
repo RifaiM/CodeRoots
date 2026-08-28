@@ -41,14 +41,106 @@ const navLinks = [
  <p class="hero-subtitle">
  103 hands-on coding challenges across HTML, CSS, JavaScript, React, Python, and Next.js. Write real code in your browser with zero local setup.
  </p>
- <div class="hero-actions-row">
- <a href="/2. partB/lesson1/lesson1_remake.html" class="track-btn primary-btn" style="width: auto; padding: 10px 22px;">
- <span><Icon name="zap" size={15} color="currentColor" /> BEGIN LESSON 01 →</span>
- </a>
- <a href="#roadmap" class="track-btn secondary-btn" style="width: auto; padding: 10px 18px;">
- <span><Icon name="map" size={15} color="currentColor" /> VIEW CURRICULUM INDEX ↓</span>
- </a>
- </div>
+ 				<div class="hero-actions-row">
+					<a href="/1. partA/web_history.html" class="track-btn primary-btn" id="heroPrimaryCta" style="width: auto; padding: 10px 22px;">
+						<span><Icon name="zap" size={15} color="currentColor" /> START AT LEVEL 00 →</span>
+					</a>
+					<a href="#roadmap" class="track-btn secondary-btn" id="heroSecondaryCta" style="width: auto; padding: 10px 18px;">
+						<span><Icon name="map" size={15} color="currentColor" /> EXPLORE ROADMAP ↓</span>
+					</a>
+				</div>
+				<script is:inline>
+				(function() {
+					function hydrateHeroCta() {
+						var btn = document.getElementById('heroPrimaryCta');
+						if (!btn) return;
+						try {
+							var stored = localStorage.getItem('novicodes_last_active_lesson');
+							if (stored) {
+								var data = JSON.parse(stored);
+								if (data && data.url) {
+									var label = data.lessonTitle ? ('RESUME ' + String(data.lessonTitle).toUpperCase() + ' →') : 'RESUME CURRENT LESSON →';
+									btn.href = data.url;
+									btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> ' + label + '</span>';
+									return;
+								}
+							}
+
+							var isL0 = localStorage.getItem('level0_completed') === 'true';
+							var isL1 = localStorage.getItem('level1_completed') === 'true';
+							var isL2 = localStorage.getItem('level2_completed') === 'true';
+							var isL3 = localStorage.getItem('level3_completed') === 'true';
+
+							var l4Count = 0;
+							for (var i = 1; i <= 15; i++) {
+								if (localStorage.getItem('partB_lesson' + i + '_remake_complete') === 'true' || localStorage.getItem('lesson_' + i + '_completed') === 'true') {
+									l4Count++;
+								}
+							}
+							if (l4Count > 0 && l4Count < 15) {
+								var nextL = l4Count + 1;
+								btn.href = '/2. partB/lesson' + nextL + '/lesson' + nextL + '_remake.html';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> RESUME LEVEL 04 (LESSON ' + nextL + ') →</span>';
+								return;
+							}
+
+							var l5Count = 0;
+							for (var j = 1; j <= 15; j++) {
+								if (localStorage.getItem('partC_lesson' + j + '_remake_complete') === 'true') l5Count++;
+							}
+							if (l5Count > 0 && l5Count < 15) {
+								var nextL5 = l5Count + 1;
+								btn.href = '/3. partC/lesson' + nextL5 + '/lesson' + nextL5 + '_remake.html';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg> RESUME LEVEL 05 (LESSON ' + nextL5 + ') →</span>';
+								return;
+							}
+
+							if (isL3) {
+								btn.href = '/2. partB/lesson1/lesson1_remake.html';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> ENTER LEVEL 04 DOM DOJO →</span>';
+								return;
+							}
+							if (isL2) {
+								btn.href = '/foundations.html?track=js';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> CONTINUE LEVEL 03 (JS) →</span>';
+								return;
+							}
+							if (isL1) {
+								btn.href = '/foundations.html?track=css';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg> CONTINUE LEVEL 02 (CSS) →</span>';
+								return;
+							}
+							if (isL0) {
+								btn.href = '/foundations.html?track=html';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/><path d="M15 21V9"/></svg> CONTINUE LEVEL 01 (HTML) →</span>';
+								return;
+							}
+
+							var p1 = localStorage.getItem('readWebsite') === 'true';
+							var p2 = localStorage.getItem('readHTML') === 'true';
+							var p3 = localStorage.getItem('readCSS') === 'true';
+							var p4 = localStorage.getItem('readJavaScript') === 'true';
+							if (p1 || p2 || p3 || p4) {
+								btn.href = '/1. partA/web_history.html';
+								btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> RESUME LEVEL 00 (WEB BASICS) →</span>';
+								return;
+							}
+
+							btn.href = '/1. partA/web_history.html';
+							btn.innerHTML = '<span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> START AT LEVEL 00 →</span>';
+						} catch (e) {}
+					}
+
+					if (document.readyState === 'loading') {
+						document.addEventListener('DOMContentLoaded', hydrateHeroCta);
+					} else {
+						hydrateHeroCta();
+					}
+					window.addEventListener('novicodes:xp_updated', hydrateHeroCta);
+					window.addEventListener('storage', hydrateHeroCta);
+					window.addEventListener('pageshow', hydrateHeroCta);
+				})();
+				</script>
  </div>
  </section>
 

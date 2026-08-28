@@ -273,6 +273,19 @@ const foundationsUrl = `/foundations.html?track=${foundationsRef.query}`;
  });
  }
 
+ 	// Save Last Active Lesson for Smart Hero CTA
+	try {
+		const titleEl = document.querySelector('.lesson-nav-title');
+		const lessonTitle = titleEl ? titleEl.textContent?.trim() : `Lesson ${lessonNum}`;
+		localStorage.setItem('novicodes_last_active_lesson', JSON.stringify({
+			url: window.location.pathname,
+			trackPrefix: `${trackPrefix}`,
+			lessonId: Number(`${lessonNum}`) || 1,
+			lessonTitle: lessonTitle || `Lesson ${lessonNum}`,
+			timestamp: Date.now()
+		}));
+	} catch (e) {}
+
  // Global Foundations Concept Dropdown Sync Handler
  const foundationsSelect = document.getElementById('lessonFoundationsSelect') as HTMLSelectElement | null;
  const openFoundationsBtn = document.getElementById('openCurrentFoundationsBtn') as HTMLAnchorElement | null;
