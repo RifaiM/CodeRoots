@@ -64,6 +64,11 @@
  --criterion-bg: #F8F6F1;
  --feature-bg: #F8F6F1;
 }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 60px;
+}
  
 * {
  box-sizing: border-box;
