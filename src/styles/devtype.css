@@ -255,25 +255,29 @@ body.devtype-page {
 
 /* 5. Main Code Typing Area */
 .typing-area-card {
- background: var(--carbon, #20211F) !important;
- border: 1px solid var(--carbon, #20211F) !important;
- border-radius: 2px !important;
- padding: 18px !important;
- box-shadow: none !important;
- margin-bottom: 12px !important;
- position: relative !important;
- min-height: 140px !important;
- cursor: text !important;
+    background: var(--carbon, #20211F) !important;
+    border: 1px solid var(--carbon, #20211F) !important;
+    border-radius: 2px !important;
+    padding: 18px !important;
+    box-shadow: none !important;
+    margin-bottom: 12px !important;
+    position: relative !important;
+    height: 144px !important;
+    max-height: 144px !important;
+    overflow: hidden !important;
+    cursor: text !important;
 }
 
 .code-display {
- font-family: var(--font-mono, 'Courier New', monospace) !important;
- font-size: 0.94rem !important;
- line-height: 1.65 !important;
- color: #BAB4A6 !important;
- white-space: pre-wrap !important;
- word-break: break-word !important;
- user-select: none !important;
+    font-family: var(--font-mono, 'Courier New', monospace) !important;
+    font-size: 0.94rem !important;
+    line-height: 1.65 !important;
+    color: #BAB4A6 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    user-select: none !important;
+    transition: transform 0.12s ease-out !important;
+    will-change: transform !important;
 }
 
 .code-display .char {
