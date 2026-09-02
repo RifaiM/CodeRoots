@@ -1,4 +1,4 @@
-// NoviCodes DevType Dojo - Continuous Monkeytype Flow Engine
+// NoviCodes DevType Dojo - Line-Buffered Monkeytype Continuous Engine
 (function() {
     'use strict';
 
@@ -752,6 +752,495 @@
                                 </div>
                                 <div>
                                     <div style="font-size: 1.15rem; font-weight: 600; color: var(--text-title, #20211F); font-family: var(--font-mono, monospace);">${this.totalTypedChars}</div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">Keystrokes</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonColor: '#A33B24',
+                    confirmButtonText: 'Play Again (Esc)',
+                    showCancelButton: false
+                }).then(() => {
+                    this.resetSession();
+                });
+            }
+        }
+    }
+
+    window.showArcadeHelpModal = function() {
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                title: 'DevType Arcade: How It Works',
+                html: `
+                    <div style="text-align: left; line-height: 1.6; font-size: 0.90rem; color: var(--text-body, #20211F);">
+                        <p><strong>DevType Arcade</strong> is built to help developers build instinctive muscle memory across modern frameworks and languages.</p>
+                        <ul style="padding-left: 20px; margin: 12px 0;">
+                            <li><strong>Continuous Flow:</strong> Real-world snippets stream seamlessly until the timer expires.</li>
+                            <li><strong>VS Code Tab Support:</strong> Press <kbd style="padding: 2px 6px; background: #E5E1D8; border-radius: 2px; font-family: monospace;">Tab</kbd> to insert 2 spaces just like in your code editor.</li>
+                            <li><strong>Instant Restart:</strong> Press <kbd style="padding: 2px 6px; background: #E5E1D8; border-radius: 2px; font-family: monospace;">Esc</kbd> at any time to immediately reset with a fresh snippet queue.</li>
+                            <li><strong>7 Developer Tracks:</strong> 350 curated patterns across HTML, CSS, JavaScript, React, Python, SQL, and Next.js App Router.</li>
+                        </ul>
+                    </div>
+                `,
+                confirmButtonColor: '#A33B24',
+                confirmButtonText: 'Got It (Start Typing)'
+            });
+        }
+    };
+
+    class DevTypeEngine {
+        constructor() {
+            this.currentMode = 'js';
+            this.timeLimit = 30; // seconds (0 = infinite single snippet)
+            this.timeRemaining = 30;
+            this.streamText = '';
+            this.lines = []; // Array of line strings
+            this.charElements = []; // 2D array: [lineIndex][charIndex] -> span element
+            this.flatChars = []; // 1D array of all char metadata { char, lineIdx, charIdx, el }
+            
+            this.currentCursor = 0; // index in flatChars
+            this.mistakes = 0;
+            this.correctChars = 0;
+            this.totalTyped = 0;
+            
+            this.startTime = null;
+            this.timer = null;
+            this.isPlaying = false;
+            this.lineHeight = 28; // px per line
+
+            this.init();
+        }
+
+        init() {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => this.setup());
+            } else {
+                this.setup();
+            }
+        }
+
+        setup() {
+            this.typingCard = document.querySelector('.typing-area-card');
+            this.codeDisplay = document.getElementById('codeDisplay');
+            this.hiddenInput = document.getElementById('hiddenInput');
+            this.wpmEl = document.getElementById('wpmVal');
+            this.cpmEl = document.getElementById('cpmVal');
+            this.accuracyEl = document.getElementById('accuracyVal');
+            this.timerLabelEl = document.getElementById('timerLabelVal');
+            this.timerValEl = document.getElementById('timerVal');
+            this.highScoreEl = document.getElementById('highScoreVal');
+
+            this.retryBtn = document.getElementById('retryBtn');
+            this.nextBtn = document.getElementById('nextBtn');
+
+            this.loadHighScore();
+            this.bindEvents();
+            this.loadMode(this.currentMode);
+        }
+
+        bindEvents() {
+            // Mode buttons (HTML, CSS, JS, REACT, PYTHON, SQL, NEXTJS)
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    this.currentMode = e.currentTarget.dataset.mode;
+                    this.loadMode(this.currentMode);
+                });
+            });
+
+            // Timer buttons (15s, 30s, 60s, custom, 0)
+            document.querySelectorAll('.timer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const timeVal = e.currentTarget.dataset.time;
+                    if (timeVal === 'custom') {
+                        this.promptCustomTimer(e.currentTarget);
+                    } else {
+                        document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.timeLimit = parseInt(timeVal, 10);
+                        this.resetSession();
+                    }
+                });
+            });
+
+            // Action Buttons
+            if (this.retryBtn) this.retryBtn.addEventListener('click', () => this.resetSession());
+            if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.loadMode(this.currentMode));
+
+            // Typing & Focus Handling: Click anywhere on card or viewport to focus
+            if (this.typingCard) {
+                this.typingCard.addEventListener('click', () => this.focusInput());
+            }
+            if (this.codeDisplay) {
+                this.codeDisplay.addEventListener('click', () => this.focusInput());
+            }
+
+            if (this.hiddenInput) {
+                this.hiddenInput.addEventListener('input', () => this.handleTyping());
+                this.hiddenInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
+            }
+
+            // Global Key Handler: Auto-focus hiddenInput on any typing keystroke & handle shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ignore if interacting with a modal, input, or button
+                if (e.target.tagName === 'INPUT' && e.target !== this.hiddenInput) return;
+                if (e.target.tagName === 'TEXTAREA' && e.target !== this.hiddenInput) return;
+                if (e.target.tagName === 'BUTTON') return;
+
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    this.resetSession();
+                    return;
+                }
+
+                // Auto focus on printable characters
+                if (document.activeElement !== this.hiddenInput && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    this.focusInput();
+                }
+            });
+        }
+
+        promptCustomTimer(btnEl) {
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: 'Custom Speedrun Timer',
+                    input: 'number',
+                    inputLabel: 'Enter duration in seconds (5 to 600 seconds):',
+                    inputValue: 45,
+                    showCancelButton: true,
+                    confirmButtonColor: '#A33B24',
+                    cancelButtonColor: '#BAB4A6',
+                    confirmButtonText: 'Set Timer',
+                    cancelButtonText: 'Cancel',
+                    inputValidator: (value) => {
+                        const num = parseInt(value, 10);
+                        if (!value || isNaN(num) || num < 5 || num > 600) {
+                            return 'Please enter a duration between 5 and 600 seconds.';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const customSecs = parseInt(result.value, 10);
+                        document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+                        btnEl.classList.add('active');
+                        btnEl.textContent = `⏱️ ${customSecs}s`;
+                        this.timeLimit = customSecs;
+                        this.resetSession();
+                    }
+                });
+            }
+        }
+
+        loadHighScore() {
+            const saved = localStorage.getItem('devtype_highscore_wpm') || '0';
+            if (this.highScoreEl) {
+                this.highScoreEl.textContent = `${saved} WPM`;
+            }
+        }
+
+        loadMode(mode) {
+            this.currentMode = mode;
+            this.resetSession();
+        }
+
+        generateContinuousStream() {
+            const snippets = codeSnippets[this.currentMode] || codeSnippets.js;
+            if (this.timeLimit === 0) {
+                // Untimed mode: 1 complete standalone snippet
+                return snippets[Math.floor(Math.random() * snippets.length)];
+            }
+
+            // Timed mode: Shuffle and chain 25 snippets seamlessly
+            const shuffled = [...snippets].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, 25).join('\n\n');
+        }
+
+        resetSession() {
+            clearInterval(this.timer);
+            this.isPlaying = false;
+            this.startTime = null;
+            this.timeRemaining = this.timeLimit > 0 ? this.timeLimit : 0;
+
+            this.currentCursor = 0;
+            this.mistakes = 0;
+            this.correctChars = 0;
+            this.totalTyped = 0;
+
+            if (this.timerValEl) {
+                this.timerValEl.textContent = this.timeLimit > 0 ? `${this.timeRemaining}s` : '∞ Untimed';
+            }
+
+            if (this.wpmEl) this.wpmEl.textContent = '0 WPM';
+            if (this.cpmEl) this.cpmEl.textContent = '0';
+            if (this.accuracyEl) this.accuracyEl.textContent = '100%';
+
+            this.streamText = this.generateContinuousStream();
+
+            if (this.hiddenInput) {
+                this.hiddenInput.value = '';
+            }
+
+            this.buildCodeLinesDOM();
+            this.focusInput();
+        }
+
+        focusInput() {
+            if (this.hiddenInput) {
+                this.hiddenInput.focus();
+            }
+        }
+
+        buildCodeLinesDOM() {
+            if (!this.codeDisplay) return;
+            this.codeDisplay.innerHTML = '';
+            this.codeDisplay.style.transform = 'translateY(0px)';
+
+            this.lines = this.streamText.split('\n');
+            this.charElements = [];
+            this.flatChars = [];
+
+            const fragment = document.createDocumentFragment();
+
+            for (let lineIdx = 0; lineIdx < this.lines.length; lineIdx++) {
+                const lineStr = this.lines[lineIdx];
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'code-line';
+                lineDiv.dataset.line = lineIdx;
+
+                const lineChars = [];
+
+                for (let charIdx = 0; charIdx < lineStr.length; charIdx++) {
+                    const char = lineStr[charIdx];
+                    const span = document.createElement('span');
+                    span.className = 'char';
+                    span.textContent = char;
+
+                    lineDiv.appendChild(span);
+                    lineChars.push(span);
+
+                    this.flatChars.push({
+                        char: char,
+                        lineIdx: lineIdx,
+                        charIdx: charIdx,
+                        el: span,
+                        isNewline: false
+                    });
+                }
+
+                // Add newline character to flatChars if not last line
+                if (lineIdx < this.lines.length - 1) {
+                    const newlineSpan = document.createElement('span');
+                    newlineSpan.className = 'char char-newline';
+                    newlineSpan.textContent = ' '; // hidden or subtle return mark
+                    lineDiv.appendChild(newlineSpan);
+                    lineChars.push(newlineSpan);
+
+                    this.flatChars.push({
+                        char: '\n',
+                        lineIdx: lineIdx,
+                        charIdx: lineStr.length,
+                        el: newlineSpan,
+                        isNewline: true
+                    });
+                }
+
+                this.charElements.push(lineChars);
+                fragment.appendChild(lineDiv);
+            }
+
+            this.codeDisplay.appendChild(fragment);
+
+            // Set initial cursor on character 0
+            if (this.flatChars.length > 0) {
+                this.flatChars[0].el.classList.add('current');
+            }
+        }
+
+        handleKeyDown(e) {
+            // VS Code Tab Key Support (Insert 2 spaces)
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                if (!this.hiddenInput) return;
+
+                const start = this.hiddenInput.selectionStart;
+                const val = this.hiddenInput.value;
+                this.hiddenInput.value = val.substring(0, start) + '  ' + val.substring(start);
+                this.hiddenInput.selectionStart = this.hiddenInput.selectionEnd = start + 2;
+
+                this.handleTyping();
+            }
+        }
+
+        handleTyping() {
+            if (!this.isPlaying) {
+                this.isPlaying = true;
+                this.startTime = new Date();
+
+                if (this.timeLimit > 0) {
+                    this.timer = setInterval(() => this.tickTimer(), 1000);
+                }
+            }
+
+            const val = this.hiddenInput.value;
+            const typedLen = val.length;
+            this.totalTyped = typedLen;
+
+            let errors = 0;
+            let correct = 0;
+
+            // Only loop over the typed portion and 1 ahead (ultra-fast O(typed) instead of O(all))
+            const maxIdx = Math.min(this.flatChars.length, typedLen + 1);
+
+            for (let i = 0; i < maxIdx; i++) {
+                const item = this.flatChars[i];
+                if (!item) continue;
+
+                if (i < typedLen) {
+                    const typedChar = val[i];
+                    const expectedChar = item.char;
+
+                    if (typedChar === expectedChar) {
+                        item.el.className = item.isNewline ? 'char char-newline correct' : 'char correct';
+                        correct++;
+                    } else {
+                        item.el.className = item.isNewline ? 'char char-newline incorrect' : 'char incorrect';
+                        errors++;
+                    }
+                } else if (i === typedLen) {
+                    item.el.className = item.isNewline ? 'char char-newline current' : 'char current';
+                }
+            }
+
+            // Clear any lingering classes on chars beyond cursor
+            for (let j = maxIdx; j < Math.min(this.flatChars.length, maxIdx + 5); j++) {
+                const item = this.flatChars[j];
+                if (item) {
+                    item.el.className = item.isNewline ? 'char char-newline' : 'char';
+                }
+            }
+
+            this.mistakes = errors;
+            this.correctChars = correct;
+
+            // Smooth Scroll Calculation based on current line index
+            const currentItem = this.flatChars[Math.min(typedLen, this.flatChars.length - 1)];
+            if (currentItem) {
+                const activeLine = currentItem.lineIdx;
+                // Keep cursor on line 1 or 2 (start scrolling from line 2)
+                if (activeLine >= 2) {
+                    const scrollY = -((activeLine - 1) * this.lineHeight);
+                    this.codeDisplay.style.transform = `translateY(${scrollY}px)`;
+                } else {
+                    this.codeDisplay.style.transform = 'translateY(0px)';
+                }
+            }
+
+            this.updateStats();
+
+            // End of snippet / stream handling
+            if (typedLen >= this.flatChars.length) {
+                if (this.timeLimit > 0) {
+                    // Seamlessly append more code
+                    const extra = '\n\n' + this.generateContinuousStream();
+                    this.streamText += extra;
+                    this.buildCodeLinesDOM();
+                    this.hiddenInput.value = val;
+                } else {
+                    this.finishSpeedrun();
+                }
+            }
+        }
+
+        tickTimer() {
+            this.timeRemaining--;
+            if (this.timerValEl) this.timerValEl.textContent = `${this.timeRemaining}s`;
+
+            this.updateStats();
+
+            if (this.timeRemaining <= 0) {
+                this.finishSpeedrun();
+            }
+        }
+
+        updateStats() {
+            if (!this.startTime) return;
+            const now = new Date();
+            const elapsedSeconds = Math.max(0.5, (now - this.startTime) / 1000);
+            const elapsedMinutes = elapsedSeconds / 60;
+
+            const wpm = Math.round((this.correctChars / 5) / elapsedMinutes) || 0;
+            const cpm = Math.round(this.correctChars / elapsedMinutes) || 0;
+            const accuracy = this.totalTyped > 0 ? Math.round((this.correctChars / this.totalTyped) * 100) : 100;
+
+            if (this.wpmEl) this.wpmEl.textContent = `${wpm} WPM`;
+            if (this.cpmEl) this.cpmEl.textContent = `${cpm}`;
+            if (this.accuracyEl) this.accuracyEl.textContent = `${accuracy}%`;
+        }
+
+        finishSpeedrun() {
+            clearInterval(this.timer);
+            this.isPlaying = false;
+
+            const now = new Date();
+            const elapsedSeconds = this.startTime ? Math.max(1, (now - this.startTime) / 1000) : 1;
+            const elapsedMinutes = elapsedSeconds / 60;
+
+            const finalWpm = Math.round((this.correctChars / 5) / elapsedMinutes) || 0;
+            const finalCpm = Math.round(this.correctChars / elapsedMinutes) || 0;
+            const finalAccuracy = this.totalTyped > 0 ? Math.round((this.correctChars / this.totalTyped) * 100) : 100;
+
+            // Save High Score
+            const currentHigh = parseInt(localStorage.getItem('devtype_highscore_wpm') || '0', 10);
+            let isNewHigh = false;
+            if (finalWpm > currentHigh) {
+                localStorage.setItem('devtype_highscore_wpm', finalWpm.toString());
+                isNewHigh = true;
+                this.loadHighScore();
+            }
+
+            // Trigger Victory Confetti
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            // Results Modal
+            if (typeof Swal !== 'undefined') {
+                const modeTitles = {
+                    html: 'HTML5 Semantic',
+                    css: 'CSS Styling & Motion',
+                    js: 'JavaScript ES6+',
+                    react: 'React 19 Components',
+                    python: 'Python 3.12 Backend',
+                    sql: 'SQL & Database Queries',
+                    nextjs: 'Next.js App Router'
+                };
+
+                Swal.fire({
+                    title: isNewHigh ? '🏆 New Personal Record!' : '⌨️ Speedrun Complete!',
+                    html: `
+                        <div style="text-align: center; margin: 16px 0;">
+                            <div style="font-family: var(--font-mono, monospace); font-size: 0.82rem; color: var(--text-muted, #686760); text-transform: uppercase; margin-bottom: 8px;">
+                                Track: ${modeTitles[this.currentMode] || this.currentMode.toUpperCase()}
+                            </div>
+                            <div style="font-size: 3rem; font-weight: 700; color: var(--accent-oxide, #A33B24); line-height: 1; font-family: var(--font-mono, monospace);">
+                                ${finalWpm} <span style="font-size: 1rem; color: var(--text-muted, #686760); font-weight: 500;">WPM</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-around; margin-top: 20px; padding: 12px; background: var(--canvas-base, #F1EEE7); border-radius: 4px; border: 1px solid var(--border-subtle, #D5D0C6);">
+                                <div>
+                                    <div style="font-size: 1.15rem; font-weight: 600; color: var(--text-title, #20211F); font-family: var(--font-mono, monospace);">${finalAccuracy}%</div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">Accuracy</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.15rem; font-weight: 600; color: var(--text-title, #20211F); font-family: var(--font-mono, monospace);">${finalCpm}</div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">CPM</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.15rem; font-weight: 600; color: var(--text-title, #20211F); font-family: var(--font-mono, monospace);">${this.totalTyped}</div>
                                     <div style="font-size: 0.72rem; color: var(--text-muted, #686760); text-transform: uppercase;">Keystrokes</div>
                                 </div>
                             </div>

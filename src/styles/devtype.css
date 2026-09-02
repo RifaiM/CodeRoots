@@ -258,61 +258,90 @@ body.devtype-page {
     background: var(--carbon, #20211F) !important;
     border: 1px solid var(--carbon, #20211F) !important;
     border-radius: 2px !important;
-    padding: 18px !important;
+    padding: 16px 20px !important;
+    box-sizing: border-box !important;
     box-shadow: none !important;
     margin-bottom: 12px !important;
     position: relative !important;
-    height: 144px !important;
-    max-height: 144px !important;
+    height: 160px !important;
+    max-height: 160px !important;
     overflow: hidden !important;
     cursor: text !important;
 }
 
 .code-display {
     font-family: var(--font-mono, 'Courier New', monospace) !important;
-    font-size: 0.94rem !important;
-    line-height: 1.65 !important;
+    font-size: 0.95rem !important;
     color: #BAB4A6 !important;
-    white-space: pre-wrap !important;
-    word-break: break-word !important;
     user-select: none !important;
     transition: transform 0.12s ease-out !important;
     will-change: transform !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.code-display .code-line {
+    display: block !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    white-space: pre !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .code-display .char {
- position: relative !important;
- transition: color 0.05s ease !important;
+    display: inline !important;
+    position: relative !important;
+    transition: color 0.04s ease, background-color 0.04s ease !important;
 }
 
 .code-display .char.correct {
- color: #86efac !important;
+    color: #86efac !important;
 }
 
 .code-display .char.incorrect {
- color: #fca5a5 !important;
- background: rgba(239, 68, 68, 0.35) !important;
- border-radius: 2px !important;
+    color: #fca5a5 !important;
+    background: rgba(239, 68, 68, 0.4) !important;
+    border-radius: 2px !important;
 }
 
 .code-display .char.current {
- color: #FFFFFF !important;
- background: var(--accent-oxide, #A33B24) !important;
- border-radius: 2px !important;
- animation: blink 1s infinite !important;
+    color: #FFFFFF !important;
+    background: var(--accent-oxide, #A33B24) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    animation: blink 1s infinite !important;
+}
+
+.code-display .char-newline {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 18px !important;
+    vertical-align: middle !important;
+}
+
+.code-display .char-newline.current {
+    width: 8px !important;
+    background: var(--accent-oxide, #A33B24) !important;
 }
 
 @keyframes blink {
- 0%, 100% { opacity: 1; }
- 50% { opacity: 0.4; }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
 }
 
 #hiddenInput {
- position: absolute !important;
- opacity: 0 !important;
- pointer-events: none !important;
- width: 1px !important;
- height: 1px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    opacity: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    z-index: -1 !important;
 }
 
 /* 6. Action Footer */
