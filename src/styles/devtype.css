@@ -263,29 +263,31 @@ body.devtype-page {
     box-shadow: none !important;
     margin-bottom: 12px !important;
     position: relative !important;
-    height: 160px !important;
-    max-height: 160px !important;
+    height: 164px !important;
+    max-height: 164px !important;
     overflow: hidden !important;
     cursor: text !important;
 }
 
 .code-display {
     font-family: var(--font-mono, 'Courier New', monospace) !important;
-    font-size: 0.95rem !important;
+    font-size: clamp(0.82rem, 1.35vw, 0.95rem) !important;
     color: #BAB4A6 !important;
     user-select: none !important;
     transition: transform 0.12s ease-out !important;
     will-change: transform !important;
     margin: 0 !important;
     padding: 0 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
 }
 
 .code-display .code-line {
     display: block !important;
-    height: 28px !important;
+    min-height: 28px !important;
     line-height: 28px !important;
-    white-space: pre !important;
-    overflow: visible !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -324,6 +326,24 @@ body.devtype-page {
 .code-display .char-newline.current {
     width: 8px !important;
     background: var(--accent-oxide, #A33B24) !important;
+}
+
+@media (max-width: 640px) {
+    .devtype-viewport-container {
+        padding: 10px 8px !important;
+    }
+    .typing-area-card {
+        padding: 12px 14px !important;
+        height: 152px !important;
+        max-height: 152px !important;
+    }
+    .code-display {
+        font-size: 0.82rem !important;
+    }
+    .code-display .code-line {
+        min-height: 24px !important;
+        line-height: 24px !important;
+    }
 }
 
 @keyframes blink {
