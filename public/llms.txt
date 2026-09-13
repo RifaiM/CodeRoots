@@ -1,0 +1,34 @@
+# NoviCodes
+
+> NoviCodes (https://novicodes.dev) is a 100% free, open-access, browser-native web development academy. It features 103 hands-on coding challenges across 13 learning tracks, real-time in-browser code execution and AST linting, and 7 verified proof-of-work certificates. Zero local setup or tools required.
+
+## Platform Highlights
+- In-Browser IDE: Real-time code execution, AST/regex diagnostics, and instant browser preview without installing Node.js, Docker, or compilers.
+- 103 Hands-on Challenges: Interactive missions covering HTML, CSS, JavaScript (ES6+), React 18/19, Python 3.12, SQL, and Next.js App Router.
+- Proof-of-Work Certificates: 7 cryptographic-style canvas certificates earned by completing full project suites.
+- Privacy by Design: 100% client-side architecture using LocalStorage. No account required, no tracking cookies, and zero user data harvesting (GDPR compliant).
+
+## Curriculum Roadmap
+
+- [Level 00: Web History & Architecture](https://novicodes.dev/1.%20partA/web_history.html): Understand how the web works, client-server models, HTTP requests, DNS resolution, and the 4 pillars of web development.
+- [Level 01: HTML Structure Foundations](https://novicodes.dev/foundations.html?track=html): Semantic HTML5 elements, DOM tree architecture, forms, and web accessibility standards.
+- [Level 02: CSS Styling Foundations](https://novicodes.dev/foundations.html?track=css): The CSS box model, Flexbox alignments, Grid systems, and responsive viewport media queries.
+- [Level 03: JavaScript Interactivity](https://novicodes.dev/foundations.html?track=js): Modern ES6+ syntax, asynchronous programming (Promises, async/await), DOM events, and Web APIs.
+- [Level 04: JavaScript Widget Dojo](https://novicodes.dev/2.%20partB/hub.html): Build 15 interactive frontend widgets in pure vanilla JavaScript (modals, accordions, tabs, form validators).
+- [Level 05: React Component Dojo](https://novicodes.dev/3.%20partC/hub.html): Master React component architecture, useState, useEffect, useCallback, useMemo, and custom hooks across 15 interactive challenges.
+- [Level 06: Python Backend Basics Dojo](https://novicodes.dev/5.%20partE/hub.html): 15 Python challenges covering data structures, FastAPI REST endpoints, Pydantic data validation, and authentication logic.
+- [Level 07A: Cloud Systems & DevOps](https://novicodes.dev/6.%20partF/branchA/lesson1_remake.html): CI/CD pipelines, Docker containerization, edge hosting, and cloud deployment workflows.
+- [Level 07B: PostgreSQL & Database Architecture](https://novicodes.dev/6.%20partF/branchB/lesson1_remake.html): Relational SQL database schema design, multi-table JOINs, indexing, and data modeling.
+- [Level 07C: Next.js App Router & Server Components](https://novicodes.dev/6.%20partF/branchC/lesson1_remake.html): Modern fullstack React with Server Components, Server Actions, route handlers, and streaming.
+- [Level 07D: TypeScript Mastery](https://novicodes.dev/6.%20partF/branchD/lesson1_remake.html): 12 challenges on static type systems, generics, utility types, and union types.
+- [Level 07E: CSS Motion & Micro-Interactions](https://novicodes.dev/6.%20partF/branchE/lesson1_remake.html): 10 challenges on hardware-accelerated animations, transitions, keyframes, and spring motion physics.
+- [Level 08: Async UI & Error Boundaries](https://novicodes.dev/7.%20partG/hub.html): 6 challenges on skeleton loading states, optimistic UI mutations, and resilient error recovery boundaries.
+- [Level 09: Authentication & Security Architecture](https://novicodes.dev/8.%20partH/hub.html): 6 challenges mastering JWT authentication, cookie storage, protected route guards, and RBAC role permissions.
+- [Level 10: Apex Production Capstone](https://novicodes.dev/9.%20partI/hub.html): 6 enterprise-grade milestone projects building an end-to-end SaaS dashboard.
+- [DevType Typing Arcade](https://novicodes.dev/4.%20partD/devtype/devtype.html): Speedrun code typing simulator with 350 curated code snippets across 7 developer tracks.
+
+## Reference & Cheatsheets
+- [Foundations Reference Hub](https://novicodes.dev/foundations.html): 13-track interactive code reference, syntax examples, and live sandbox.
+- [Privacy Policy](https://novicodes.dev/privacy.html): Full explanation of zero-tracking client-side architecture and GDPR compliance.
+- [Terms of Service](https://novicodes.dev/terms.html): Open educational license terms and platform policies.
+- [Platform Disclaimer](https://novicodes.dev/disclaimer.html): Educational disclaimer and attribution.

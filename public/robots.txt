@@ -2,5 +2,32 @@
 User-agent: *
 Allow: /
 
-# Sitemap Index
+# Explicitly welcome AI & Answer Search Crawlers (GEO & AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Sitemap Index & LLM Manifest
 Sitemap: https://novicodes.dev/sitemap.xml
+# LLMs Context: https://novicodes.dev/llms.txt
+

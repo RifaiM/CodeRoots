@@ -56,25 +56,77 @@ const {
  <meta name="twitter:description" content={description} />
  <meta name="twitter:image" content={ogImage} />
  
- <!-- JSON-LD Structured Data Schema -->
- <script type="application/ld+json" is:inline>
- {
- "@context": "https://schema.org",
- "@type": "EducationalWebSite",
- "name": "NoviCodes",
- "url": "https://novicodes.dev",
- "description": "Interactive web development learning platform with in-browser coding sandbox, 103 hands-on challenges, and verified proof-of-work certificates.",
- "inLanguage": "en-US",
- "educationalLevel": "Beginner to Advanced",
- "isAccessibleForFree": true,
- "offers": {
- "@type": "Offer",
- "price": "0",
- "priceCurrency": "USD",
- "availability": "https://schema.org/InStock"
- }
- }
- </script>
+	<!-- JSON-LD Structured Data Schema (SEO, AEO & GEO Optimized) -->
+	<script type="application/ld+json" is:inline>
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "EducationalWebSite",
+				"@id": "https://novicodes.dev/#website",
+				"url": "https://novicodes.dev",
+				"name": "NoviCodes",
+				"alternateName": ["CodeRoots", "NoviCodes Academy"],
+				"description": "Interactive web development learning platform with an in-browser coding sandbox, 103 hands-on challenges across HTML, CSS, JS, React, Python, and Next.js, and 7 verified proof-of-work certificates.",
+				"inLanguage": "en-US",
+				"educationalLevel": "Beginner to Advanced",
+				"isAccessibleForFree": true,
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "USD",
+					"availability": "https://schema.org/InStock"
+				}
+			},
+			{
+				"@type": "Organization",
+				"@id": "https://novicodes.dev/#organization",
+				"name": "NoviCodes",
+				"url": "https://novicodes.dev",
+				"logo": "https://novicodes.dev/assets/favicon.png",
+				"description": "Open-access, browser-native web development academy dedicated to zero-barrier technical education."
+			},
+			{
+				"@type": "FAQPage",
+				"@id": "https://novicodes.dev/#faq",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "What is NoviCodes?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "NoviCodes is a 100% free, browser-native web development platform where learners master HTML, CSS, JavaScript, React, Python, and Next.js by completing 103 hands-on coding challenges with zero local setup."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Do I need to install any software to use NoviCodes?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "No. NoviCodes runs entirely in your web browser with a built-in sandbox, real-time AST diagnostic linters, and instant preview. No terminal, Node.js, or Docker installation is required."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Are NoviCodes proof-of-work certificates free?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Yes. Learners can earn 7 cryptographic-style Proof-of-Work certificates by completing full project suites across JavaScript, React, Python, Specialization tracks, Async UI, Auth, and Apex SaaS. All certificates are 100% free to earn and download."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Does NoviCodes require an account or track personal data?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "No. NoviCodes operates on a client-side architecture where all progress, XP points, and code drafts are safely preserved in browser LocalStorage. No account registration, email, or tracking cookies are used."
+						}
+					}
+				]
+			}
+		]
+	}
+	</script>
  
  <!-- Google Fonts: Technical Field Journal Typography -->
  <link rel="preconnect" href="https://fonts.googleapis.com" />
